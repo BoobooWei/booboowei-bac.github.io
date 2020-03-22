@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/about/index.html</loc>
+    
+    <lastmod>2020-03-22T14:36:14.783Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2020/03/22/hello-world/</loc>
     
     <lastmod>2020-03-22T14:23:51.136Z</lastmod>
@@ -96,13 +103,6 @@
     <loc>http://www.toberoot.com/categories/index.html</loc>
     
     <lastmod>2020-03-22T07:46:24.742Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/about/index.html</loc>
-    
-    <lastmod>2020-03-22T07:44:47.257Z</lastmod>
     
   </url>
   
