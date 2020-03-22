@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>利用split工具解决一次MongoDB日志异常问题 | Amy and Booboo</title>
+  <meta name="keywords" content=" 数据救援 ">
+  <meta name="description" content="利用split工具解决一次MongoDB日志异常问题 | Amy and Booboo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="BoobooWei 爱美食、爱运动、爱生活的女子一枚">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="BoobooWei 爱美食、爱运动、爱生活的女子一枚">
+<meta property="article:published_time" content="2018-06-07T16:03:08.000Z">
+<meta property="article:modified_time" content="2020-03-22T07:44:47.257Z">
+<meta property="article:author" content="BoobooWei">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/influx.svg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my.png" />
+</a>
+<div class="author">
+    <span>BoobooWei</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/booboowei" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+<a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(12)</small></div></li>
+    
+        
+            
+            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(5)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    <a class="dynamic-menu site_url"   href="/photo">相册</a>
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/booboowei">github</a>
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="12">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据救援</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">锁故障</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SQL优化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">RDS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">主从同步</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">宝宝成长</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/05/17/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
+            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2017/08/19/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="锁故障"
+           data-author="" >
+            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
+            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
+        </a>
+        
+        <a  class="Hexo "
+           href="/2020/03/22/hello-world/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-03-22 07:42:39">2020/03/22</span>
+        </a>
+        
+        <a  class="技术广角 Oracle "
+           href="/2018/05/29/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
+           data-tag="SQL优化"
+           data-author="" >
+            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
+            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
+        </a>
+        
+        <a  class="技术广角 MongoDB "
+           href="/2018/08/03/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
+            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/08/22/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
+           data-tag="RDS,主从同步"
+           data-author="" >
+            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
+            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/10/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
+            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/30/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
+            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/29/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
+            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/20/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
+            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/19/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="家长会">家长会</span>
+            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/21/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
+            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-利用split工具解决一次MongoDB日志异常问题" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">利用split工具解决一次MongoDB日志异常问题</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="技术广角">技术广角</a>/
+            
+                <a  data-rel="MongoDB">MongoDB</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color5">数据救援</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-03-22 08:32:42'>2018-08-03 12:25</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#故事背景"><span class="toc-text">故事背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库明细"><span class="toc-text">数据库明细</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#故事情节"><span class="toc-text">故事情节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复现与剖析"><span class="toc-text">复现与剖析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#拉取日志异常"><span class="toc-text">拉取日志异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日志异常分析"><span class="toc-text">日志异常分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析原日志切割明细"><span class="toc-text">分析原日志切割明细</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证echo-gt-与PCX图片头部0a一致"><span class="toc-text">验证echo &gt;与PCX图片头部0a一致</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复现MongoDB日志从ASCII-text转变为PCX-格式"><span class="toc-text">复现MongoDB日志从ASCII text转变为PCX 格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#待解决问题"><span class="toc-text">待解决问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MongoDB日志轮询"><span class="toc-text">MongoDB日志轮询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#测试环境"><span class="toc-text">测试环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生产环境"><span class="toc-text">生产环境</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修复异常日志"><span class="toc-text">修复异常日志</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#修复思路"><span class="toc-text">修复思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#操作明细"><span class="toc-text">操作明细</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析日志"><span class="toc-text">分析日志</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分析命令"><span class="toc-text">分析命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#慢查询散点分布图"><span class="toc-text">慢查询散点分布图</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mongodb日志轮询的问题"><span class="toc-text">mongodb日志轮询的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题解决"><span class="toc-text">问题解决</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>摘要： </p>
+<ul>
+<li>某天晚上刚到家不久，就接到杭州同事的电话，客户MongoDB集群中的某个分片节点CPU飙高，初步判断是慢查询，现在需要拉取CPU飙高时间段的慢查询。心想拉取慢查询应该很快，不就是个系统日志吗？而且还做了日志切割一天一个，按道理很快搞定的，谁知当天晚上搞了接近三个小时也没搞定。究竟发生了什么？</li>
+<li>进入到日志目录一看，目前保留近7天的日志，每天的日志量在23G~24G，我当时就想这个客户数据量这么大！后续发现日志格式本该为普通文本文件确变成了图片格式，究竟为何会文件格式会转变？能否从图片格式中拉取指定时间段的日志呢？</li>
+<li>第二天到公司，由于客户环境我们也是第一次接手，因此咱们技术专家团队搞了一个3人的”专家会诊”，经过了一番折腾总算把原因找到了，具体过程请看下文！</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="故事背景"><a href="#故事背景" class="headerlink" title="故事背景"></a>故事背景</h2><h3 id="数据库明细"><a href="#数据库明细" class="headerlink" title="数据库明细"></a>数据库明细</h3><p>说在前面：</p>
+<ul>
+<li>数据库：MongoDB集群 4个分片节点</li>
+<li>分片节点规格：16核 / 32G CentOS 7.4 64位</li>
+<li>数据目录所在磁盘: 300G   49G  252G  17% /data</li>
+</ul>
+<h3 id="故事情节"><a href="#故事情节" class="headerlink" title="故事情节"></a>故事情节</h3><ul>
+<li>某天晚上刚到家不久，就接到杭州同事的电话，客户MongoDB集群中的某个分片节点CPU飙高，初步判断是慢查询，现在需要拉取CPU飙高时间段的慢查询。心想拉取慢查询应该很快，不就是个系统日志吗？而且还做了日志切割一天一个，按道理很快搞定的，谁知当天晚上搞了接近三个小时也没搞定。究竟发生了什么？</li>
+<li>进入到日志目录一看，目前保留近7天的日志，每天的日志量在23G~24G，我当时就想这个客户数据量这么大！后续发现日志格式本该为普通文本文件确变成了图片格式，究竟为何会文件格式会转变？能否从图片格式中拉取指定时间段的日志呢？</li>
+<li>第二天到公司，由于客户环境我们也是第一次接受，因此咱们技术专家团队搞了一个3人的”专家会诊”，经过了一番折腾总算把原因找到了，具体过程请看下文！</li>
+</ul>
+<h2 id="复现与剖析"><a href="#复现与剖析" class="headerlink" title="复现与剖析"></a>复现与剖析</h2><h3 id="拉取日志异常"><a href="#拉取日志异常" class="headerlink" title="拉取日志异常"></a>拉取日志异常</h3><p><strong>使用mlogfilter过滤文件时报错说文件非mongodb的日志文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@sh_01 booboo]# mlogfilter shard.log.2018-08-01 --from 2018-08-01T15:00:00.000+0800 --to "+1h" --slow 1000 &gt; /alidata/booboo/tf.1</span><br><span class="line">报错:非mongodb日志格式</span><br></pre></td></tr></table></figure>
+
+<p>回到客户服务器检查日志文件格式，明细如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@MONGO-SHARD-18 logs]# file *</span><br><span class="line">shard.log:            PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-25: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-26: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-27: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-28: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-29: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-30: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-31: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-08-01: PCX ver. 2.5 image data</span><br></pre></td></tr></table></figure>
+
+<p>mongodb的日志正常应该为：<code>ASCII text, with very long lines</code>，但是现在却变成了<code>PCX ver. 2.5 image data</code>。需要弄清楚原因。</p>
+<h3 id="日志异常分析"><a href="#日志异常分析" class="headerlink" title="日志异常分析"></a>日志异常分析</h3><ul>
+<li>为什么客户每天的日志量达到22个G，并且每天的日志量都是大于等于前一天？很显然，日志截断有问题。</li>
+<li>这个是近7天的日志，而日志格式变成了PCX图片格式是为何？</li>
+<li>怀疑每次日志轮询时都没有真正截断日志！</li>
+</ul>
+<p><img src="%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/01.png" alt=""></p>
+<h3 id="分析原日志切割明细"><a href="#分析原日志切割明细" class="headerlink" title="分析原日志切割明细"></a>分析原日志切割明细</h3><p><img src="%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/03.png" alt=""></p>
+<p>怀疑与<code>echo &gt;</code>有关，进行验证。</p>
+<h3 id="验证echo-gt-与PCX图片头部0a一致"><a href="#验证echo-gt-与PCX图片头部0a一致" class="headerlink" title="验证echo &gt;与PCX图片头部0a一致"></a>验证<code>echo &gt;</code>与<code>PCX图片头部0a一致</code></h3><ol>
+<li>建一个空文档<code>log</code>；执行<code>echo &gt; log</code>；通过<code>cat -A log</code>查看文件中插入了一个符号即换行符<code>\n</code></li>
+<li>通过<code>hexdump -c log</code> 查看测试文件头部显示为ASCII字符 <code>\n</code></li>
+<li>通过<code>hexdump -d log</code> 查看测试文件头部显示为16进制<code>00010</code> 即<code>0a</code></li>
+<li>通过<code>vim</code> 用16进制查看文档<code>log</code>可以看到log的文件头部为<code>0a</code>，正是PCX图片的头部</li>
+<li>生产环境查看客户有问题的mongodb系统日志文件格式为<code>PCX</code>图片格式</li>
+<li>通过<code>hexdump -c log</code> 显示为ASCII字符，生产日志文件头部与测试的log一致，都是<code>\n</code></li>
+<li>通过<code>hexdump -d log</code>显示为16进制，生产日志文件头部与测试的log一致<code>00010</code> 即 <code>0a</code></li>
+</ol>
+<p><img src="%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/02.png" alt=""></p>
+<p><strong>到此验证成功:通过<code>echo &gt; log</code>的方式会往文件头部新增’0a’</strong></p>
+<hr>
+<h3 id="复现MongoDB日志从ASCII-text转变为PCX-格式"><a href="#复现MongoDB日志从ASCII-text转变为PCX-格式" class="headerlink" title="复现MongoDB日志从ASCII text转变为PCX 格式"></a>复现MongoDB日志从ASCII text转变为PCX 格式</h3><p>在测试环境中复现日志从<code>ASCII text</code>变成<code>PCX ver. 2.5 image data</code></p>
+<ol>
+<li>通过mongo登陆数据库执行大量的插入操作</li>
+<li>通过echo &gt; mongod27017.log  命令尝试清空mongod27017.log</li>
+<li>查看截断后的日志文件格式，变成了very short file (no magic)</li>
+<li>等文档插入完毕</li>
+<li>通过<code>tail -f</code> 查看日志明细，看到确实有日志写入</li>
+<li>查看日志格式，发现变成了<code>PCX ver. 2.5 image data</code></li>
+</ol>
+<p><img src="%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/05.png" alt=""></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">[root@sh_01 ~]# mongo</span><br><span class="line">MongoDB shell version: 3.2.16</span><br><span class="line">connecting to: test</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> db.auth(<span class="string">'test_dev'</span>,<span class="string">'uplooking'</span>)</span></span><br><span class="line">1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> db.t1.find()</span></span><br><span class="line">&#123; "_id" : ObjectId("5b5ebb6796b8b74a73ee30f6"), "a" : 1, "b" : 2 &#125;</span><br><span class="line">&#123; "_id" : ObjectId("5b5ebb6996b8b74a73ee30f7"), "a" : 1, "b" : 1 &#125;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="keyword">for</span> (i=1;i&lt;200000;i++)&#123;</span></span><br><span class="line">... db.t1.insert(&#123;id:i&#125;)&#125;</span><br><span class="line">WriteResult(&#123; "nInserted" : 1 &#125;)</span><br><span class="line"></span><br><span class="line">[root@sh_01 ~]# cd /alidata/mongodb/logs</span><br><span class="line">[root@sh_01 log]# ll</span><br><span class="line">-rw-r--r-- 1 root root 2182 Aug  3 10:28 mongod27017.log</span><br><span class="line">-rw-r--r-- 1 root root 3100 Aug  2 14:19 mongod27017.log.2018-08-02T07-18-27</span><br><span class="line">-rw-r--r-- 1 root root 1526 Aug  2 15:18 mongod27017.log.2018-08-02T07-18-54</span><br><span class="line">[root@sh_01 log]# file *</span><br><span class="line">mongod27017.log:                     ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-02T07-18-27: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-02T07-18-54: ASCII text, with very long lines</span><br><span class="line"></span><br><span class="line">[root@sh_01 log]# echo &gt; mongod27017.log</span><br><span class="line">[root@sh_01 log]# echo &gt; mongod27017.log</span><br><span class="line">[root@sh_01 log]# ll</span><br><span class="line">total 12</span><br><span class="line">-rw-r--r-- 1 root root    1 Aug  3 10:29 mongod27017.log</span><br><span class="line">-rw-r--r-- 1 root root 3100 Aug  2 14:19 mongod27017.log.2018-08-02T07-18-27</span><br><span class="line">-rw-r--r-- 1 root root 1526 Aug  2 15:18 mongod27017.log.2018-08-02T07-18-54</span><br><span class="line">[root@sh_01 log]# file *</span><br><span class="line">mongod27017.log:                     very short file (no magic)</span><br><span class="line">mongod27017.log.2018-08-02T07-18-27: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-02T07-18-54: ASCII text, with very long lines</span><br><span class="line"></span><br><span class="line">[root@sh_01 log]# tail -f mongod27017.log</span><br><span class="line"></span><br><span class="line">2018-08-03T10:30:21.936+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:43720 #2 (2 connections now open)</span><br><span class="line"></span><br><span class="line">[root@sh_01 log]# ll -h</span><br><span class="line">total 12K</span><br><span class="line">-rw-r--r-- 1 root root 2.8K Aug  3 10:30 mongod27017.log</span><br><span class="line">-rw-r--r-- 1 root root 3.1K Aug  2 14:19 mongod27017.log.2018-08-02T07-18-27</span><br><span class="line">-rw-r--r-- 1 root root 1.5K Aug  2 15:18 mongod27017.log.2018-08-02T07-18-54</span><br><span class="line">[root@sh_01 log]# file *</span><br><span class="line">mongod27017.log:                     PCX ver. 2.5 image data</span><br><span class="line">mongod27017.log.2018-08-02T07-18-27: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-02T07-18-54: ASCII text, with very long lines</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 一边不断产生日志，一边多次执行<span class="built_in">echo</span>&gt; </span></span><br><span class="line">[root@sh_01 log]# echo &gt; mongod27017.log</span><br><span class="line">[root@sh_01 log]# echo &gt; mongod27017.log</span><br><span class="line">[root@sh_01 log]# file *</span><br><span class="line">mongod27017.log:                     PCX ver. 2.5 image data</span><br><span class="line">mongod27017.log.2018-08-02T07-18-27: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-02T07-18-54: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-03T03-09-08: PCX ver. 2.5 image data</span><br><span class="line">[root@sh_01 log]# echo &gt; mongod27017.log</span><br><span class="line">[root@sh_01 log]# file *</span><br><span class="line">mongod27017.log:                     very short file (no magic)</span><br><span class="line">mongod27017.log.2018-08-02T07-18-27: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-02T07-18-54: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-03T03-09-08: PCX ver. 2.5 image data</span><br><span class="line">[root@sh_01 log]# ll -h</span><br><span class="line">total 16K</span><br><span class="line">-rw-r--r-- 1 root root    1 Aug  3 11:28 mongod27017.log</span><br><span class="line">-rw-r--r-- 1 root root 3.1K Aug  2 14:19 mongod27017.log.2018-08-02T07-18-27</span><br><span class="line">-rw-r--r-- 1 root root 1.5K Aug  2 15:18 mongod27017.log.2018-08-02T07-18-54</span><br><span class="line">-rw-r--r-- 1 root root 2.9K Aug  3 11:05 mongod27017.log.2018-08-03T03-09-08</span><br><span class="line">[root@sh_01 log]# file *</span><br><span class="line">mongod27017.log:                     very short file (no magic)</span><br><span class="line">mongod27017.log.2018-08-02T07-18-27: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-02T07-18-54: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-03T03-09-08: PCX ver. 2.5 image data</span><br><span class="line">[root@sh_01 log]# file *</span><br><span class="line">mongod27017.log:                     PCX ver. 2.5 image data</span><br><span class="line">mongod27017.log.2018-08-02T07-18-27: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-02T07-18-54: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-03T03-09-08: PCX ver. 2.5 image data</span><br><span class="line">[root@sh_01 log]# hexdump -c mongod27017.log</span><br><span class="line">0000000  \n  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0</span><br><span class="line">0000010  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0</span><br><span class="line">*</span><br><span class="line">0000850  \0  \0  \0  \0  \0  \0  \0   2   0   1   8   -   0   8   -   0</span><br><span class="line">0000860   3   T   1   1   :   2   9   :   0   6   .   7   2   9   +   0</span><br><span class="line">0000870   8   0   0       I       A   C   C   E   S   S               [</span><br><span class="line">0000880   c   o   n   n   3   ]       U   n   a   u   t   h   o   r   i</span><br><span class="line">0000890   z   e   d   :       n   o   t       a   u   t   h   o   r   i</span><br><span class="line">00008a0   z   e   d       o   n       t   e   s   t       t   o       e</span><br><span class="line">00008b0   x   e   c   u   t   e       c   o   m   m   a   n   d       &#123;</span><br><span class="line">00008c0       f   i   n   d   :       "   t   1   "   ,       f   i   l</span><br><span class="line">00008d0   t   e   r   :       &#123;   &#125;       &#125;  \n</span><br></pre></td></tr></table></figure>
+
+<p>成功复现了客户的情况：</p>
+<ol>
+<li><p>第一次<code>echo &gt; log</code>，文件头部新增<code>\n</code></p>
+</li>
+<li><p>多次<code>echo &gt; log</code>,文件头部如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0000000  \n  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0</span><br><span class="line">0000010  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0</span><br><span class="line">*</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>确实是mongodb日志轮询出了问题：</p>
+<ol>
+<li><code>echo &gt; log</code>会往文件头部插入<code>\n</code>即16进制的<code>0a</code></li>
+<li>在数据库正常运行中，对log文件是加了锁的，强制执行<code>echo &gt; log</code>是无法进行覆盖的，会将所有的数据全部置为<code>0</code></li>
+<li>强制覆盖后，文件头部变成了无数的空白</li>
+</ol>
+<h3 id="待解决问题"><a href="#待解决问题" class="headerlink" title="待解决问题"></a>待解决问题</h3><ul>
+<li>MongoDB日志轮询方法调整为<strong>kill -SIGUSER1 [mongodpid]</strong></li>
+<li>修复目前已经变为图片格式的日志，并拉取15点到16点的日志</li>
+</ul>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="MongoDB日志轮询"><a href="#MongoDB日志轮询" class="headerlink" title="MongoDB日志轮询"></a>MongoDB日志轮询</h3><h4 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@sh_01 log]# pidof mongod</span><br><span class="line">1828</span><br><span class="line">[root@sh_01 log]# kill -SIGUSER1 1828</span><br><span class="line">-bash: kill: SIGUSER1: invalid signal specification</span><br><span class="line">[root@sh_01 log]# kill -SIGUSR1 1828</span><br><span class="line">[root@sh_01 log]# ll</span><br><span class="line">total 16</span><br><span class="line">-rw-r--r-- 1 root root 1526 Aug  3 11:09 mongod27017.log</span><br><span class="line">-rw-r--r-- 1 root root 3100 Aug  2 14:19 mongod27017.log.2018-08-02T07-18-27</span><br><span class="line">-rw-r--r-- 1 root root 1526 Aug  2 15:18 mongod27017.log.2018-08-02T07-18-54</span><br><span class="line">-rw-r--r-- 1 root root 2942 Aug  3 11:05 mongod27017.log.2018-08-03T03-09-08</span><br><span class="line">[root@sh_01 log]# file *</span><br><span class="line">mongod27017.log:                     ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-02T07-18-27: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-02T07-18-54: ASCII text, with very long lines</span><br><span class="line">mongod27017.log.2018-08-03T03-09-08: PCX ver. 2.5 image data</span><br></pre></td></tr></table></figure>
+
+<h4 id="生产环境"><a href="#生产环境" class="headerlink" title="生产环境"></a>生产环境</h4><p><img src="%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/04.png" alt=""></p>
+<p>修改日志轮询脚本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@MONGO-SHARD-18 logs]# cat /etc/init.d/mongo_logspit.sh </span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2018/08/02 Apple</span></span><br><span class="line"><span class="meta">#</span><span class="bash">Rotate the MongoDB logs to prevent a single logfile from consuming too much disk space.</span></span><br><span class="line"></span><br><span class="line">cmd=mongod</span><br><span class="line">mongodpath=/opt/mongodb/bin</span><br><span class="line">pidarray=`pidof $&#123;mongodpath&#125;/$cmd`</span><br><span class="line">LOGPATH_SHARD=/data/mongodb/shard1/logs</span><br><span class="line"></span><br><span class="line">for pid in $pidarray;do</span><br><span class="line">if [ $pid ]</span><br><span class="line">then</span><br><span class="line">    kill -SIGUSR1 $pid</span><br><span class="line">fi</span><br><span class="line">done</span><br><span class="line"><span class="meta">#</span><span class="bash">clear logfile more than 7 days</span></span><br><span class="line">cd $LOGPATH_SHARD</span><br><span class="line">find ./ -xdev -mtime +7 -name "shard.log.*" -exec rm -f &#123;&#125;  \;</span><br></pre></td></tr></table></figure>
+
+<p>所有的分片都去执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -SIGUSR1 pidof mongod</span><br></pre></td></tr></table></figure>
+
+<p>分片15操作如下：其他分片同样</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">[zyadmin@MONGO-SHARD-15 ~]$ sudo -i</span><br><span class="line">[root@MONGO-SHARD-15 ~]# cd /data/mongodb/shard1/logs/</span><br><span class="line">[root@MONGO-SHARD-15 logs]# ll -h</span><br><span class="line">total 1.7G</span><br><span class="line">-rw-r--r-- 1 root root 20G Aug  2 15:27 shard.log</span><br><span class="line">-rw-r--r-- 1 root root 19G Jul 25 23:50 shard.log.2018-07-25</span><br><span class="line">-rw-r--r-- 1 root root 19G Jul 26 23:50 shard.log.2018-07-26</span><br><span class="line">-rw-r--r-- 1 root root 19G Jul 27 23:50 shard.log.2018-07-27</span><br><span class="line">-rw-r--r-- 1 root root 20G Jul 28 23:50 shard.log.2018-07-28</span><br><span class="line">-rw-r--r-- 1 root root 20G Jul 29 23:50 shard.log.2018-07-29</span><br><span class="line">-rw-r--r-- 1 root root 20G Jul 30 23:50 shard.log.2018-07-30</span><br><span class="line">-rw-r--r-- 1 root root 20G Jul 31 23:50 shard.log.2018-07-31</span><br><span class="line">-rw-r--r-- 1 root root 20G Aug  1 23:50 shard.log.2018-08-01</span><br><span class="line">[root@MONGO-SHARD-15 logs]# file *</span><br><span class="line">shard.log:            PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-25: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-26: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-27: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-28: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-29: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-30: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-31: PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-08-01: PCX ver. 2.5 image data</span><br><span class="line">[root@MONGO-SHARD-15 logs]# kill -SIGUSR1 `pidof mongod`</span><br><span class="line">[root@MONGO-SHARD-15 logs]# file *</span><br><span class="line">shard.log:                     ASCII text, with very long lines</span><br><span class="line">shard.log.2018-07-25:          PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-26:          PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-27:          PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-28:          PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-29:          PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-30:          PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-07-31:          PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-08-01:          PCX ver. 2.5 image data</span><br><span class="line">shard.log.2018-08-02T07-27-29: PCX ver. 2.5 image data</span><br><span class="line">[root@MONGO-SHARD-15 logs]# ll -h</span><br><span class="line">total 1.7G</span><br><span class="line">-rw-r--r-- 1 root root 2.0K Aug  2 15:27 shard.log</span><br><span class="line">-rw-r--r-- 1 root root  19G Jul 25 23:50 shard.log.2018-07-25</span><br><span class="line">-rw-r--r-- 1 root root  19G Jul 26 23:50 shard.log.2018-07-26</span><br><span class="line">-rw-r--r-- 1 root root  19G Jul 27 23:50 shard.log.2018-07-27</span><br><span class="line">-rw-r--r-- 1 root root  20G Jul 28 23:50 shard.log.2018-07-28</span><br><span class="line">-rw-r--r-- 1 root root  20G Jul 29 23:50 shard.log.2018-07-29</span><br><span class="line">-rw-r--r-- 1 root root  20G Jul 30 23:50 shard.log.2018-07-30</span><br><span class="line">-rw-r--r-- 1 root root  20G Jul 31 23:50 shard.log.2018-07-31</span><br><span class="line">-rw-r--r-- 1 root root  20G Aug  1 23:50 shard.log.2018-08-01</span><br><span class="line">-rw-r--r-- 1 root root  20G Aug  2 15:27 shard.log.2018-08-02T07-27-29</span><br></pre></td></tr></table></figure>
+
+<h3 id="修复异常日志"><a href="#修复异常日志" class="headerlink" title="修复异常日志"></a>修复异常日志</h3><h4 id="修复思路"><a href="#修复思路" class="headerlink" title="修复思路"></a>修复思路</h4><p>弄清楚日志变更的原因以及复现过程后，不难发现，日志因为头部变化从而导致文件格式变更。因此推测异常日志的组成如下：</p>
+<ol>
+<li>头部为<code>0a</code></li>
+<li>中间全部都是<code>0</code></li>
+<li>最后是正常的字符串记录着mongodb的日志信息，类似于<code>2018-08-03T10:30:21.936+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:43720 #2 (2 connections now open)</code>由日志和日志明细组成</li>
+</ol>
+<p>因此修复的思路如下：</p>
+<ul>
+<li>23G的日志，首先按照大小6G做切分<code>split -b 6G log</code>，切分成4个文件</li>
+<li>查看切分后的日志格式，如果最后一个日志为<code>ASCII text</code>则不再切分否则，将最后一个日志继续切分</li>
+<li>循环上一步，直到最后一个文件切分出来没有<code>ASCII text</code>为止</li>
+</ul>
+<h4 id="操作明细"><a href="#操作明细" class="headerlink" title="操作明细"></a>操作明细</h4><blockquote>
+<p>日志轮询的部署距离现在大概4个月</p>
+</blockquote>
+<ol>
+<li><p>第一次将23G的文件以6G切分成4个文件：xaa\xab\xac\xad，查看4个文件的属性为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xaa:               PCX ver. 2.5 image data</span><br><span class="line">xab:               PCX ver. 2.5 image data</span><br><span class="line">xac:               PCX ver. 2.5 image data</span><br><span class="line">xad:                PCX ver. 2.5 image data</span><br></pre></td></tr></table></figure></li>
+<li><p>重命名xad为x1第二次切分x1 5G，按照1G切分成5份，查看文件属性</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xaa:               PCX ver. 2.5 image data</span><br><span class="line">xab:               PCX ver. 2.5 image data</span><br><span class="line">xac:               PCX ver. 2.5 image data</span><br><span class="line">xad:                PCX ver. 2.5 image data</span><br><span class="line">xae:                ASCII text, with very long lines</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重名xad 为 x2 按照15M的大小切分，查看文件的属性如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">xaa:	      PCX ver. 2.5 image data</span><br><span class="line">此处省略。。。</span><br><span class="line">xdo:               PCX ver. 2.5 image data</span><br><span class="line">xdp:               ASCII text, with very long lines</span><br><span class="line">xdq:               ASCII text, with very long lines</span><br><span class="line">xdr:               ASCII text, with very long lines</span><br><span class="line">xds:               ASCII text, with very long lines</span><br><span class="line">xdt:               ASCII text, with very long lines</span><br><span class="line">xdu:               ASCII text, with very long lines</span><br><span class="line">xdv:               UTF-8 Unicode text, with very long lines</span><br><span class="line">xdw:               ASCII text, with very long lines</span><br><span class="line">xdx:               ASCII text, with very long lines</span><br><span class="line">xdy:               ASCII text, with very long lines</span><br></pre></td></tr></table></figure></li>
+<li><p>切分后文件类型为<code>ASCII text</code>的文件中找到15点~16点的文档</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@sh_01 mongolog_20180801]# head -n 2 xdv</span><br><span class="line">re: "x86_64", version: "Kernel 3.10.0-693.2.2.el7.x86_64" &#125; &#125;</span><br><span class="line">2018-08-01T16:13:44.958+0800 I ACCESS   [conn4972925] Successfully authenticated as principal __system on local</span><br><span class="line">[root@sh_01 mongolog_20180801]# head -n 2 xdu</span><br><span class="line">38422 #4967772 (445 connections now open)</span><br><span class="line">2018-08-01T14:00:10.575+0800 I NETWORK  [thread1] connection accepted from 172.16.0.44:38430 #4967773 (446 connections now open)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><code>xdv</code> 的头部是<code>2018-08-01T16:13:44.958+0800</code>,因此可以确定15~16的日志在xdu中</li>
+<li><code>xdu</code>记录的日志时间段为<code>2018-08-01T14:00:10.575+0800</code>~<code>2018-08-01T16:13:44.958+0800</code></li>
+<li>重命名<code>xdu</code>为<code>mongolog.18.14_16</code></li>
+</ul>
+<h3 id="分析日志"><a href="#分析日志" class="headerlink" title="分析日志"></a>分析日志</h3><h4 id="分析命令"><a href="#分析命令" class="headerlink" title="分析命令"></a>分析命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 获取08月01号下午3点开始到4点执行时间超过5秒的查询</span></span><br><span class="line">mlogfilter mongolog.18.14_16 --from 2018-08-01T15 --to "+1h" --slow 5000 &gt; slowlog.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取08月01号下午3点开始到4点语句的执行次数、用时等统计信息</span></span><br><span class="line">mloginfo slowlog.txt  --queries &gt; an_slowlog.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 通过mplotqueries进行慢查询散点分布图绘制，且只返回前10个</span></span><br><span class="line">mplotqueries slowlog.txt --output-file 01.png --logscale --group-limit 10</span><br></pre></td></tr></table></figure>
+
+<h4 id="慢查询散点分布图"><a href="#慢查询散点分布图" class="headerlink" title="慢查询散点分布图"></a>慢查询散点分布图</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@sh_01 booboo]# mplotqueries slowlog.txt --output-file 01.png --logscale --group-limit 10</span><br><span class="line">                                                                                          </span><br><span class="line">SCATTER plot</span><br><span class="line">   id   #points  group</span><br><span class="line">    1       692  order.order</span><br><span class="line">    2       615  omdmain.item_region_erp</span><br><span class="line">    3         1  omdmain.customer</span><br><span class="line">()</span><br></pre></td></tr></table></figure>
+<p><img src="%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/10.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="mongodb日志轮询的问题"><a href="#mongodb日志轮询的问题" class="headerlink" title="mongodb日志轮询的问题"></a>mongodb日志轮询的问题</h3><ol>
+<li><code>echo &gt; log</code>会往文件头部插入<code>\n</code>即16进制的<code>0a</code></li>
+<li>在数据库正常运行中，对log文件是加了锁的，强制执行<code>echo &gt; log</code>是无法进行覆盖的，会将所有的数据全部置为<code>0</code></li>
+<li>强制覆盖后，文件头部变成了无数的空白</li>
+</ol>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><ul>
+<li>MongoDB日志轮询方法调整为<strong>kill -SIGUSER1 [mongodpid]</strong></li>
+<li>修复目前已经变为图片格式的日志，并拉取15点到16点的日志</li>
+</ul>
+<p>该case花了一整天，从怀疑被攻击到确认是日志轮询引起文件格式变更是一个关键转折点；</p>
+<p>另外PCX格式是第一次碰到，疑惑了半天~最后是@培尧发现了<code>echo</code>的端倪，@衾袭@大宝去验证最终确认了问题的根源。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>利用split工具解决一次MongoDB日志异常问题</p>
+    
+    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
+    <p><span class="copy-title">发布时间:</span>2018-08-03, 12:25:24</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-22, 08:32:42</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/08/03/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/" title="利用split工具解决一次MongoDB日志异常问题">http://www.toberoot.com/2018/08/03/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: 'booboowei.github.io',
+            owner: 'booboowei',
+            admin: ['booboowei'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018-2020 BoobooWei</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#数据救援','#锁故障','#hexo','#SQL优化','#RDS','#主从同步','#宝宝成长',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    .post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    <a class="dynamic-menu site_url"   href="/photo">相册</a>
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/booboowei">github</a>
+    
+</div>
+
+
+</html>
