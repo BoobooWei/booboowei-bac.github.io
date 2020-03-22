@@ -80,7 +80,7 @@ div.ac > ul.tag > li:before {
   width: 3em;
   text-decoration: none;
   outline-width: 0;
-  color: #258fb8;
+  color: #ff8475;
   outline: none;
 }
 #comments .comment-bar a .fa.pulse {
@@ -104,10 +104,11 @@ div.ac > ul.tag > li:before {
   display: none;
 }
 .shang_box {
-  width: 540px;
-  height: 450px;
+  width: 440px;
+  height: 440px;
   padding: 10px;
-  background-color: #3f3f3f;
+  background-image: url("https://www.changhai.org/files/images/bg1.gif");
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-border-radius: 10px;
   border-radius: 10px;
   position: fixed;
@@ -131,12 +132,11 @@ div.ac > ul.tag > li:before {
 }
 .shang_box .shang_tit {
   width: 100%;
-  font-family: Roboto, "Roboto", serif;
   height: 75px;
   text-align: center;
   line-height: 66px;
-  color: #fff;
-  font-size: 30px;
+  color: #010207;
+  font-size: 24px;
   margin-top: 7px;
   margin-right: 2px;
 }
@@ -144,7 +144,6 @@ div.ac > ul.tag > li:before {
   width: 255px;
   height: 255px;
   padding: 10px;
-  border: 6px solid #4094c7;
   margin: 0 auto;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -167,8 +166,8 @@ div.ac > ul.tag > li:before {
   float: right;
 }
 .shang_box .shang_payselect {
-  font-size: 20px;
-  color: #fff;
+  font-size: 14px;
+  color: #010207;
   text-align: center;
   margin: 0 auto;
   margin-top: 20px;
@@ -400,21 +399,27 @@ div.ac > ul > li:before,
 }
 .icon-clock:before {
   content: "\e787";
+  color: #ff8475;
 }
 .icon-search:before {
   content: "\e60f";
+  color: #ff8475;
 }
 .icon-email:before {
   content: "\e665";
+  color: #ff8475;
 }
 .icon-cancle:before {
   content: "\e602";
+  color: #ff8475;
 }
 .icon-right:before {
   content: "\e65b";
+  color: #ff8475;
 }
 .icon-tag:before {
   content: "\e603";
+  color: #ff8475;
 }
 .icon-rss:before {
   content: "\e611";
@@ -498,7 +503,7 @@ div.ac > ul > li:before,
   font-size: 24px;
   line-height: 42px;
   color: #fff;
-  background: #2a2935;
+  background: #ff8475;
   overflow: hidden;
 }
 .full-toc .full .min:before {
@@ -535,7 +540,7 @@ div.ac > ul > li:before,
   font-size: 24px;
   line-height: 42px;
   color: #fff;
-  background: #2a2935;
+  background: #ff8475;
   overflow: hidden;
 }
 .full-toc .post-toc-menu-icons:before {
@@ -635,7 +640,9 @@ div.ac > ul > li:before,
 .nav-left {
   width: 120px;
   height: 100%;
-  background: #2a2935;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  background-image: url("https://www.changhai.org/files/images/bg1.gif");
   box-shadow: inset -15px 0 15px -15px #222;
   float: left;
   position: relative;
@@ -650,7 +657,7 @@ div.ac > ul > li:before,
   height: 100px;
   margin: 55px auto 15px;
   border-radius: 50%;
-  box-shadow: 0 0 0px 4px #fff, 0 0 4px 4px #eee;
+  box-shadow: 0 0 0px 4px #fff, 0 0 4px 4px #fff;
   background-repeat: no-repeat;
   background-size: 100px 100px;
   display: block;
@@ -662,7 +669,7 @@ div.ac > ul > li:before,
 .nav-left .author {
   text-align: center;
   height: 27px;
-  color: #fff;
+  color: #010207;
 }
 .nav-left .more-menus {
   display: none;
@@ -672,11 +679,11 @@ div.ac > ul > li:before,
   margin: 0 auto 5px;
 }
 .nav-left .icon a {
-  color: #fff;
+  color: #010207;
   line-height: 19px;
 }
 .nav-left .icon a:hover {
-  color: #309e85;
+  color: #ff8475;
 }
 .nav-left .icon a.rss:before {
   content: "\ea9b";
@@ -717,8 +724,7 @@ div.ac > ul > li:before,
 .nav-left ul {
   margin: 0;
   padding: 0;
-  font-size: 17px;
-  border-top: 1px solid #fff;
+  font-size: 14px;
   list-style: none;
   overflow-y: auto;
 }
@@ -749,22 +755,22 @@ div.ac > ul > li:before,
 }
 .nav-left ul li>div {
   height: 40px;
-  color: rgba(255,255,255,0.7);
+  color: #444;
   transition: color 0.15s linear, box-shadow 0.3s cubic-bezier(0.77, 0, 0.175, 1);
   position: relative;
 }
 .nav-left ul li>div:hover {
-  color: #f7f7f7;
-  box-shadow: inset 6px 0 0 #fff;
+  color: #010207;
+  box-shadow: inset 6px 0 0 #ff8475;
 }
 .nav-left ul li>div.active {
   color: #020202;
-  box-shadow: inset 165px 0 0 #fff;
+  box-shadow: inset 165px 0 0 #ff8475;
   position: relative;
 }
 .nav-left ul li>div>.fold {
   left: 4px;
-  font-size: 0.7em;
+  font-size: 0.9em;
   position: absolute;
   transition: transform 0.3s;
 }
@@ -777,8 +783,8 @@ div.ac > ul > li:before,
   border-collapse: collapse;
   bottom: 0px;
   width: 100%;
-  font-size: 17px;
-  color: rgba(255,255,255,0.7);
+  font-size: 0.9em;
+  color: #444;
 }
 .nav-left .left-bottom a {
   display: table-cell;
@@ -805,8 +811,8 @@ div.ac > ul > li:before,
 .nav-right {
   width: 420px;
   height: 100%;
-  background: rgba(250,250,250,0.95);
-  border-right: 1px solid #e5e8ec;
+  font-size: 14px;
+  background-image: url("https://www.changhai.org/files/images/bg1.gif");
   overflow: hidden;
   float: left;
   position: relative;
@@ -841,13 +847,14 @@ div.ac > ul > li:before,
 }
 .nav-right .title-list form .cross:before {
   content: "\ea0f";
+  color: #ff8475;
 }
 .nav-right .title-list form .search {
   width: 250px;
   margin-top: 12px;
   padding: 20px 0 0 20px;
   color: #383636;
-  font-size: 18px;
+  font-size: 14px;
   font-family: inherit;
   background: inherit;
   border: none;
@@ -862,9 +869,9 @@ div.ac > ul > li:before,
   right: 10px;
 }
 .nav-right .title-list form span #tagswitch:checked +#tagsWitchIcon:before {
-  border-color: #64bd63;
-  box-shadow: inset 0 0 0 0.16rem #64bd63;
-  background-color: #64bd63;
+  border-color: #ff8475;
+  box-shadow: inset 0 0 0 0.16rem #ff8475;
+  background-color: #ff8475;
   -webkit-transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;
   transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;
 }
@@ -877,7 +884,7 @@ div.ac > ul > li:before,
   top: 10px;
   -webkit-transform: translateY(-50%);
   border-radius: 100%;
-  background-color: #91c0f1;
+  background-color: #fff;
   box-shadow: 0 1px 1px rgba(0,0,0,0.4);
   -webkit-transition: left 0.2s;
   transition: left 0.2s;
@@ -902,7 +909,7 @@ div.ac > ul > li:before,
   top: 10px;
   -webkit-transform: translateY(-50%);
   border-radius: 100%;
-  background-color: #91c0f1;
+  background-color: #fff;
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.4);
   box-shadow: 0 1px 1px rgba(0,0,0,0.4);
   -webkit-transition: left 0.2s;
@@ -914,8 +921,8 @@ div.ac > ul > li:before,
   content: '';
   width: 40px;
   height: 14px;
-  border: 1px solid #bdcabc;
-  background-color: #fdfdfd;
+  border: 1px solid #fff;
+  background-color: rgba(4,26,65,0.28);
   border-radius: 20px;
   cursor: pointer;
   display: inline-block;
@@ -923,8 +930,8 @@ div.ac > ul > li:before,
   vertical-align: middle;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  -webkit-box-shadow: inset 0 0 0 0 #dfdfdf;
-  box-shadow: inset 0 0 0 0 #dfdfdf;
+  -webkit-box-shadow: inset 0 0 0 0 gba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 0 0 rgba(0,0,0,0.4);
   -webkit-transition: border 0.4s, box-shadow 0.4s;
   -webkit-transition: border 0.4s, -webkit-box-shadow 0.4s;
   transition: border 0.4s, -webkit-box-shadow 0.4s;
@@ -938,7 +945,6 @@ div.ac > ul > li:before,
   margin: 15px 10px 15px;
   padding: 10px;
   float: left;
-  background: #f1f1f1;
   border-radius: 25px;
   list-style: none outside none;
   position: absolute;
@@ -951,7 +957,7 @@ div.ac > ul > li:before,
 .nav-right .title-list .tags-list li a {
   height: 18px;
   line-height: 18px;
-  font-size: 17px;
+  font-size: 14px;
   float: left;
   padding: 0 5px 0 10px;
   color: #fff;
@@ -987,28 +993,28 @@ div.ac > ul > li:before,
   border-right-color: #ff945c;
 }
 .nav-right .title-list .tags-list li a.color2 {
-  background: #cc8167;
+  background: #d3af86;
 }
 .nav-right .title-list .tags-list li a.color2:before {
-  border-right-color: #cc8167;
+  border-right-color: #d6baad;
 }
 .nav-right .title-list .tags-list li a.color3 {
-  background: #ba8f6c;
+  background: #a5c261;
 }
 .nav-right .title-list .tags-list li a.color3:before {
-  border-right-color: #ba8f6c;
+  border-right-color: #a2dc30;
 }
 .nav-right .title-list .tags-list li a.color4 {
-  background: #94635c;
+  background: #42b978;
 }
 .nav-right .title-list .tags-list li a.color4:before {
-  border-right-color: #94635c;
+  border-right-color: #42b983;
 }
 .nav-right .title-list .tags-list li a.color5 {
-  background: #7b5d5f;
+  background: #6f42c1;
 }
 .nav-right .title-list .tags-list li a.color5:before {
-  border-right-color: #7b5d5f;
+  border-right-color: #6f42b4;
 }
 .nav-right .title-list nav,
 .nav-right .title-list #local-search-result {
@@ -1031,7 +1037,7 @@ div.ac > ul > li:before,
 }
 .nav-right .title-list nav::-webkit-scrollbar-thumb,
 .nav-right .title-list #local-search-result::-webkit-scrollbar-thumb {
-  background: #309e85;
+  background: #ff8475;
 }
 .nav-right .title-list nav .search-result-list,
 .nav-right .title-list #local-search-result .search-result-list {
@@ -1063,12 +1069,13 @@ div.ac > ul > li:before,
   top: 7px;
   left: 12px;
   z-index: 1;
-  font-size: 18px;
-  color: #309e85;
+  font-size: 14px;
+  color: #9aa4af;
 }
 .nav-right .title-list nav a#top:before,
 .nav-right .title-list #local-search-result a#top:before {
   content: "\f08d";
+  color: #444;
 }
 .nav-right .title-list nav a.hover:before,
 .nav-right .title-list #local-search-result a.hover:before {
@@ -1083,18 +1090,18 @@ div.ac > ul > li:before,
   clear: both;
   margin: 5px 0;
   padding-left: 32px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   white-space: nowrap;
   text-decoration: none;
   text-overflow: ellipsis;
-  color: #55606f;
+  color: #9aa4af;
   overflow: hidden;
   outline: none;
 }
 .nav-right .title-list nav a .post-date,
 .nav-right .title-list #local-search-result a .post-date {
-  font-size: 15px;
+  font-size: 14px;
   margin: 8px 0;
   padding-right: 3px;
   color: #9aa4af;
@@ -1115,7 +1122,7 @@ div.ac > ul > li:before,
   vertical-align: middle;
   display: table-cell;
   width: 420px;
-  font-size: 23px;
+  font-size: 16px;
   border-bottom: 2px solid #e5e8ec;
   font-weight: bold;
 }
@@ -1126,6 +1133,7 @@ div.ac > ul > li:before,
 .nav-right .friends-area .friends-title .back-title-list:before {
   cursor: pointer;
   content: "\e968";
+  color: #ff8475;
 }
 .nav-right .friends-area .friends-content {
   overflow-y: auto;
@@ -1133,7 +1141,7 @@ div.ac > ul > li:before,
 }
 .nav-right .friends-area .friends-content a {
   line-height: 30px;
-  color: #4183c4;
+  color: #ff8475;
 }
 #nprogress {
   position: fixed;
@@ -1274,10 +1282,10 @@ div.ac > ul > li:before,
 }
 .post {
   height: 100%;
-  font-size: 11px;
-  font-family: MicrosoftJhengHe;
-  line-height: 1;
-  background: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  background-image: url("https://www.changhai.org/files/images/bg1.gif");
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -1287,7 +1295,7 @@ div.ac > ul > li:before,
 }
 .post ::selection {
   color: #fff;
-  background: #33caa6;
+  background: #ff8475;
   text-shadow: none;
 }
 .post .pjax {
@@ -1316,7 +1324,7 @@ div.ac > ul > li:before,
   padding-top: 2.5em;
 /* Inline code */
 }
-.post .pjax article .article-entry>p:nth-child(1) {
+.post .pjax article .article-entry > p:nth-child(1) {
   margin-top: 20px;
 }
 .post .pjax article .article-meta {
@@ -1334,13 +1342,13 @@ div.ac > ul > li:before,
 .post .pjax article .article-meta .top-comment a {
   cursor: pointer;
   color: inherit;
-  font: 400 15px/1 "Open Sans", "Hiragino Sans GB", sans-serif;
 }
 .post .pjax article .article-meta .top-comment a:hover {
   color: #4078c0;
 }
 .post .pjax article .article-meta .top:before {
   content: "\f08d";
+  color: #ff8475;
 }
 .post .pjax article .article-meta .top a {
   color: inherit;
@@ -1365,6 +1373,7 @@ div.ac > ul > li:before,
 }
 .post .pjax article .article-meta .book:before {
   content: "\f02d";
+  color: #ff8475;
 }
 .post .pjax article .article-meta .book a {
   cursor: pointer;
@@ -1376,6 +1385,7 @@ div.ac > ul > li:before,
 }
 .post .pjax article .article-meta .tag:before {
   content: "\e936";
+  color: #ff8475;
 }
 .post .pjax article .article-meta .tag a {
   height: 18px;
@@ -1419,28 +1429,28 @@ div.ac > ul > li:before,
   border-right-color: #ff945c;
 }
 .post .pjax article .article-meta .tag a.color2 {
-  background: #cc8167;
+  background: #d3af86;
 }
 .post .pjax article .article-meta .tag a.color2:before {
-  border-right-color: #cc8167;
+  border-right-color: #d6baad;
 }
 .post .pjax article .article-meta .tag a.color3 {
-  background: #ba8f6c;
+  background: #a5c261;
 }
 .post .pjax article .article-meta .tag a.color3:before {
-  border-right-color: #ba8f6c;
+  border-right-color: #a2dc30;
 }
 .post .pjax article .article-meta .tag a.color4 {
-  background: #94635c;
+  background: #42b978;
 }
 .post .pjax article .article-meta .tag a.color4:before {
-  border-right-color: #94635c;
+  border-right-color: #42b983;
 }
 .post .pjax article .article-meta .tag a.color5 {
-  background: #7b5d5f;
+  background: #6f42c1;
 }
 .post .pjax article .article-meta .tag a.color5:before {
-  border-right-color: #7b5d5f;
+  border-right-color: #6f42b4;
 }
 .post .pjax article .article-title {
   margin: 0;
@@ -1510,11 +1520,11 @@ div.ac > ul > li:before,
 .post .pjax article .inner-toc ol {
   list-style: none;
 }
-.post .pjax article ol>li {
+.post .pjax article ol > li {
   margin-bottom: 10px;
   margin-left: -9px;
 }
-.post .pjax article ul:not(.pre-numbering)>li {
+.post .pjax article ul:not(.pre-numbering) > li {
   margin-bottom: 10px;
   margin-left: -20px;
 }
@@ -1561,15 +1571,15 @@ div.ac > ul > li:before,
 .post .pjax article table.green tr th {
   color: #fff;
   font-weight: bold;
-  background-color: #5db084;
+  background-color: #ff8475;
 }
 .post .pjax article table.green_title tr th {
   color: #eee;
-  border: 1px solid #009688;
-  background-color: #009688;
+  border: 1px solid #ff8475;
+  background-color: #ff8475;
 }
 .post .pjax article :not(pre) > code {
-  color: #bf1827;
+  color: #ff8475;
   font-family: sans-serif;
 }
 .post .pjax article pre.mermaid {
@@ -1580,6 +1590,8 @@ div.ac > ul > li:before,
   font-size: 10px;
   border-radius: 3px;
 /* 滚动条 */
+/*滚动条的圆角宽度*/
+/*滚动条的高度*/
 }
 .post .pjax article pre > code::-webkit-scrollbar-thumb:horizontal {
   width: 5px;
@@ -1588,11 +1600,11 @@ div.ac > ul > li:before,
 }
 .post .pjax article pre > code::-webkit-scrollbar-track-piece {
   background-color: #fff; /*滚动条的背景颜色*/
-  -webkit-border-radius: 0; /*滚动条的圆角宽度*/
+  -webkit-border-radius: 0;
 }
 .post .pjax article pre > code::-webkit-scrollbar {
   width: 10px /*滚动条的宽度*/;
-  height: 8px /*滚动条的高度*/;
+  height: 8px;
 }
 .post .pjax article pre > code::-webkit-scrollbar-thumb:vertical {
   height: 50px;
@@ -1616,7 +1628,7 @@ div.ac > ul > li:before,
   font-size: 16px;
   color: #fff;
   border: none;
-  background: #4094c7;
+  background: #ff8475;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   text-align: center;
@@ -1636,7 +1648,7 @@ div.ac > ul > li:before,
   color: #bcc1c4;
 }
 .post .copyright a {
-  color: #4078c0;
+  color: #ff8475;
   word-break: break-all;
   font-family: sans-serif;
 }
@@ -1653,13 +1665,20 @@ div.ac > ul > li:before,
   line-height: 22px;
   color: #595f67;
   font-size: 10px;
+a
 }
 .post .article_copyright .copy-title {
   color: #595f67;
   margin-right: 10px;
 }
-.post .article_copyright>p {
+.post .article_copyright > p {
   margin: 0;
+}
+color #595f67,
+word-break break-all,
+font-family sans-serif,
+:hover {
+  text-decoration: underline;
 }
 html,
 body {
@@ -1688,12 +1707,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: inherit;
+  margin: 0 0 15px 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
-  margin-top: 30px;
-  color: #283444;
-  text-rendering: optimizelegibility;
-  border-bottom: 1px solid #eee;
+  color: #444;
+  text-transform: none;
 }
 h1 {
   font-size: 1.8em;
@@ -1731,7 +1749,8 @@ h1 {
   width: 20px;
   height: 40px;
   border-radius: 0 100px 100px 0;
-  background-color: #42b983;
+  background-color: #ff8475;
+  color: #fff;
   cursor: pointer;
   margin-left: -20px;
   transition: margin-left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
@@ -1740,6 +1759,7 @@ h1 {
   padding-top: 12px;
   padding-left: 4px;
   font-weight: bolder;
+  color: #fff;
 }
 div.img_max {
   position: fixed;
