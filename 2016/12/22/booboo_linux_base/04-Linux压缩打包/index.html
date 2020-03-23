@@ -502,7 +502,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-23 06:07:52'>2016-12-21 20:06</time>
+        创建时间:<time class="date" title='更新时间: 2020-03-23 06:24:25'>2016-12-21 20:06</time>
         
     </div>
     <div class="article-meta">
@@ -537,7 +537,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux压缩打包"><span class="toc-text">Linux压缩打包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩的意义和原理"><span class="toc-text">压缩的意义和原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩的意义"><span class="toc-text">压缩的意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩的原理"><span class="toc-text">压缩的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩与解压缩的好处"><span class="toc-text">压缩与解压缩的好处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩打包命令"><span class="toc-text">压缩打包命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zip"><span class="toc-text">.zip</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#zip-命令用法"><span class="toc-text">zip 命令用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#unzip-的用法"><span class="toc-text">unzip 的用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gz"><span class="toc-text">.gz</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-的用法"><span class="toc-text">gzip 的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gunzip-的用法"><span class="toc-text">gunzip 的用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bz2"><span class="toc-text">.bz2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#bzip2-的用法"><span class="toc-text">bzip2 的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bunzip2-的用法"><span class="toc-text">bunzip2 的用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xz"><span class="toc-text">.xz</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#xz-命令用法"><span class="toc-text">xz 命令用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar"><span class="toc-text">tar</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-Linux压缩打包课后习题"><span class="toc-text">04-Linux压缩打包课后习题</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩的意义和原理"><span class="toc-text">压缩的意义和原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩的意义"><span class="toc-text">压缩的意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩的原理"><span class="toc-text">压缩的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩与解压缩的好处"><span class="toc-text">压缩与解压缩的好处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩打包命令"><span class="toc-text">压缩打包命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zip"><span class="toc-text">.zip</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#zip-命令用法"><span class="toc-text">zip 命令用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#unzip-的用法"><span class="toc-text">unzip 的用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gz"><span class="toc-text">.gz</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-的用法"><span class="toc-text">gzip 的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gunzip-的用法"><span class="toc-text">gunzip 的用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bz2"><span class="toc-text">.bz2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#bzip2-的用法"><span class="toc-text">bzip2 的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bunzip2-的用法"><span class="toc-text">bunzip2 的用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xz"><span class="toc-text">.xz</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#xz-命令用法"><span class="toc-text">xz 命令用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar"><span class="toc-text">tar</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-Linux压缩打包课后习题"><span class="toc-text">04-Linux压缩打包课后习题</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -553,8 +553,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Linux压缩打包"><a href="#Linux压缩打包" class="headerlink" title="Linux压缩打包"></a>Linux压缩打包</h1><p>[TOC]</p>
-<h2 id="压缩的意义和原理"><a href="#压缩的意义和原理" class="headerlink" title="压缩的意义和原理"></a>压缩的意义和原理</h2><h3 id="压缩的意义"><a href="#压缩的意义" class="headerlink" title="压缩的意义"></a>压缩的意义</h3><p>你是否遇到过以下情况：</p>
+        <h2 id="压缩的意义和原理"><a href="#压缩的意义和原理" class="headerlink" title="压缩的意义和原理"></a>压缩的意义和原理</h2><h3 id="压缩的意义"><a href="#压缩的意义" class="headerlink" title="压缩的意义"></a>压缩的意义</h3><p>你是否遇到过以下情况：</p>
 <ul>
 <li>文件太大, 一个 u 盘无法全部复制? </li>
 <li>备份某些重要数据 , 偏偏这些数据量太大了 , 耗掉了你太多的磁盘空间? </li>
@@ -671,7 +670,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">6.6k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
     <p><span class="copy-title">发布时间:</span>2016-12-21, 20:06:27</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-23, 06:07:52</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-23, 06:24:25</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/" title="Linux 压缩打包">http://www.toberoot.com/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

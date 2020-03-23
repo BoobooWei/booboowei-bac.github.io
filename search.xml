@@ -1199,8 +1199,7 @@
   <entry>
     <title>Linux 基础命令</title>
     <url>/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="Linux基础命令"><a href="#Linux基础命令" class="headerlink" title="Linux基础命令"></a>Linux基础命令</h1><p>[TOC]</p>
-<ul>
+    <content><![CDATA[<ul>
 <li><p>在教室物理机包括rhel7和rhel6两台实验虚拟机，上打开虚拟机命令: <em>rht-vmctl start rhel7</em> </p>
 <ul>
 <li>在物理机上远程登陆到虚拟机rhel7 <em>ssh root@rhel7-fN</em> ，<em>N</em> 为你的机器编号， <em>root</em>密码都是<em>uplooking</em>，系统中有一个普通用户<em>student</em>，其密码为<em>student</em>。</li>
@@ -1583,8 +1582,7 @@
   <entry>
     <title>Linux 用户和组</title>
     <url>/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="Linux用户和组"><a href="#Linux用户和组" class="headerlink" title="Linux用户和组"></a>Linux用户和组</h1><p>[TOC]</p>
-<h2 id="课堂作业"><a href="#课堂作业" class="headerlink" title="课堂作业"></a>课堂作业</h2><ol>
+    <content><![CDATA[<h2 id="课堂作业"><a href="#课堂作业" class="headerlink" title="课堂作业"></a>课堂作业</h2><ol>
 <li>添加2个组，一个组名为justice，另外一个组名为ninja。</li>
 <li>添加4个新用户，分别为 superman、batman、wonderwoman、greenlantern，密码均为uplooking；其附加组为justice。</li>
 <li>添加4个新用户，分别为 leo、raph、mikey、don ，密码均为uplooking，其附加组为ninja。</li>
@@ -1892,8 +1890,7 @@
   <entry>
     <title>Linux 文件和目录</title>
     <url>/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/</url>
-    <content><![CDATA[<h1 id="Linux-文件和目录"><a href="#Linux-文件和目录" class="headerlink" title="Linux 文件和目录"></a>Linux 文件和目录</h1><p>[TOC]</p>
-<h2 id="Linux-目录"><a href="#Linux-目录" class="headerlink" title="Linux 目录"></a>Linux 目录</h2><h3 id="Linux-目录配置的依据-–FHS"><a href="#Linux-目录配置的依据-–FHS" class="headerlink" title="Linux 目录配置的依据 –FHS"></a>Linux 目录配置的依据 –FHS</h3><p>因为利用 Linux 来开发产品或 distributions 的社区 / 公司或个人实在太多了 , 如果每个人都用自己的想法来配置文件放置的目录 , 那将可能造成很多管理上的困扰。 你能想象 , 你进入一个企业之后 , 所 接触到的 Linux 目录配置方法竟然跟你以前学的完全不同吗 ? 很难想象吧 ~ 所以 , 后来就有所谓的Filesystem Hierarchy Standard (FHS) 标准的出炉了 !</p>
+    <content><![CDATA[<h2 id="Linux-目录"><a href="#Linux-目录" class="headerlink" title="Linux 目录"></a>Linux 目录</h2><h3 id="Linux-目录配置的依据-–FHS"><a href="#Linux-目录配置的依据-–FHS" class="headerlink" title="Linux 目录配置的依据 –FHS"></a>Linux 目录配置的依据 –FHS</h3><p>因为利用 Linux 来开发产品或 distributions 的社区 / 公司或个人实在太多了 , 如果每个人都用自己的想法来配置文件放置的目录 , 那将可能造成很多管理上的困扰。 你能想象 , 你进入一个企业之后 , 所 接触到的 Linux 目录配置方法竟然跟你以前学的完全不同吗 ? 很难想象吧 ~ 所以 , 后来就有所谓的Filesystem Hierarchy Standard (FHS) 标准的出炉了 !</p>
 <p>根据 FHS(<a href="http://www.pathname.com/fhs/" target="_blank" rel="noopener">http://www.pathname.com/fhs/</a>) 的官方文件指出 , 他们的主要目的是希望让使用者可以了解到已安装软件通常放置在哪个目录下 , 所以他们希望独立的软件开发商、操作系统制作者、以及想要维护系统的用户 , 都能够遵循 FHS 的标准。 也就是说 ,FHS 的重点在于规范每个特定的目录下应该存放什么样子的数据而已。</p>
 <p>亊实上 ,FHS 是根据过去的经验一直再持续的改版的 ,FHS 依据文件系统使用的频繁与否允许使用者随意更动 , 而将目录定义成为四种交互作用的形态 , 用表格来说有点像底下这样 ：</p>
 <table>
@@ -2709,8 +2706,7 @@
   <entry>
     <title>Linux 压缩打包</title>
     <url>/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/</url>
-    <content><![CDATA[<h1 id="Linux压缩打包"><a href="#Linux压缩打包" class="headerlink" title="Linux压缩打包"></a>Linux压缩打包</h1><p>[TOC]</p>
-<h2 id="压缩的意义和原理"><a href="#压缩的意义和原理" class="headerlink" title="压缩的意义和原理"></a>压缩的意义和原理</h2><h3 id="压缩的意义"><a href="#压缩的意义" class="headerlink" title="压缩的意义"></a>压缩的意义</h3><p>你是否遇到过以下情况：</p>
+    <content><![CDATA[<h2 id="压缩的意义和原理"><a href="#压缩的意义和原理" class="headerlink" title="压缩的意义和原理"></a>压缩的意义和原理</h2><h3 id="压缩的意义"><a href="#压缩的意义" class="headerlink" title="压缩的意义"></a>压缩的意义</h3><p>你是否遇到过以下情况：</p>
 <ul>
 <li>文件太大, 一个 u 盘无法全部复制? </li>
 <li>备份某些重要数据 , 偏偏这些数据量太大了 , 耗掉了你太多的磁盘空间? </li>
@@ -2823,8 +2819,7 @@
   <entry>
     <title>Linux Bash简介</title>
     <url>/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<h1 id="Bash简介"><a href="#Bash简介" class="headerlink" title="Bash简介"></a>Bash简介</h1><p>[TOC]</p>
-<h2 id="SHELL"><a href="#SHELL" class="headerlink" title="SHELL"></a>SHELL</h2><h3 id="shell-简介"><a href="#shell-简介" class="headerlink" title="shell 简介"></a>shell 简介</h3><p>Shell 是一个命令解释器, 是人与操作系统之间的桥梁。 我们平时无论任何操作,最终都要操作硬件,比如输入一个字符 “ a ”, 那么信号 首先会从键盘传递到主板,通过主板总线传递到内存,CPU,显卡等,最终经过显卡的运 算完成后在屏幕的某个位置, 显示一个特定字体的字符 “ a ”, 这一整个过程可以说是 不断的和硬件打交道了,但是如果让人去发送这些硬件操作码显然不适合, 因为这不是人干 的事,所以我们有了操作系统,操作系统通过加载一定的硬件驱动,从而控制硬件,操作硬件,那剩下的事就是如何和操作系统通信了,对于普通的系统管理员来说,这也是一件非常困难的事,为了方便人和操作系统沟通, 我们开发了 shell 。</p>
+    <content><![CDATA[<h2 id="SHELL"><a href="#SHELL" class="headerlink" title="SHELL"></a>SHELL</h2><h3 id="shell-简介"><a href="#shell-简介" class="headerlink" title="shell 简介"></a>shell 简介</h3><p>Shell 是一个命令解释器, 是人与操作系统之间的桥梁。 我们平时无论任何操作,最终都要操作硬件,比如输入一个字符 “ a ”, 那么信号 首先会从键盘传递到主板,通过主板总线传递到内存,CPU,显卡等,最终经过显卡的运 算完成后在屏幕的某个位置, 显示一个特定字体的字符 “ a ”, 这一整个过程可以说是 不断的和硬件打交道了,但是如果让人去发送这些硬件操作码显然不适合, 因为这不是人干 的事,所以我们有了操作系统,操作系统通过加载一定的硬件驱动,从而控制硬件,操作硬件,那剩下的事就是如何和操作系统通信了,对于普通的系统管理员来说,这也是一件非常困难的事,为了方便人和操作系统沟通, 我们开发了 shell 。</p>
 <p>Shell 可以将我们平时运行的一些指令解释给操作系统执行, 方便管理员操作系统。而 Shell 的脚本其实是一种命令的堆积,我们将所有需要执行的命令, 以从上至下的方 式写在一个文件当中, 交给 shell 去自动解释执行。</p>
 <h3 id="shell-历史"><a href="#shell-历史" class="headerlink" title="shell 历史"></a>shell 历史</h3><p>在 AT&amp;T 的 Dennis Ritchie 和 Ken Thompson 设计 UNIXTM 的时候, 他们想要为 用户创建一种与他们的新系统交流的方法。那时的操作系统带有命令解释器。命令解释器接受用户的命令,然后解释它们,因而计算机可以使用这些命令。 但是 Ritchie 和 Thompson 想要的不只是这些功能,他们想提供比当时的命令解释器 具备更优异功能的工具。这导致了 Bourne shell ( 通称为 sh )的开发, 由 S.R. Bourne 创建。自从 Bourne shell 的创建, 其它 shell 也被一一开发, 如 C shell ( csh ) 和 Korn shell (ksh ) 。</p>
 <p>当自由软件基金会想寻求一种免费的 shell , 开发者们开始致力于 Bourne shell 以及当 时其它 shell中某些很受欢迎的功能背后的语言。 这个开发结果是 Bourne Again Shell , 或称 bash 。虽然你的Red Hat Linux 包括几 种不同的 shell , bash 是为互动用户提供的默认 shell 。</p>
@@ -2981,8 +2976,7 @@
   <entry>
     <title>Linux 软件安装</title>
     <url>/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h1 id="Linux-软件安装"><a href="#Linux-软件安装" class="headerlink" title="Linux 软件安装"></a>Linux 软件安装</h1><p>[TOC]</p>
-<h2 id="源代码安装"><a href="#源代码安装" class="headerlink" title="源代码安装"></a>源代码安装</h2><ul>
+    <content><![CDATA[<h2 id="源代码安装"><a href="#源代码安装" class="headerlink" title="源代码安装"></a>源代码安装</h2><ul>
 <li>优势 : 可定制，紧跟发布，及时修正Bug</li>
 <li>缺点 : 操作复杂 , 编译时间长 , 极易出现错误，大面积部署复杂且低效，安全性隐患大</li>
 </ul>
@@ -3143,8 +3137,7 @@
   <entry>
     <title>Linux Vim 编辑器</title>
     <url>/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/</url>
-    <content><![CDATA[<h1 id="Vim-编辑器"><a href="#Vim-编辑器" class="headerlink" title="Vim 编辑器"></a>Vim 编辑器</h1><p>[TOC]</p>
-<h2 id="Vim-简介"><a href="#Vim-简介" class="headerlink" title="Vim 简介"></a>Vim 简介</h2><p><img src="pic/10.png" alt="10.png"></p>
+    <content><![CDATA[<h2 id="Vim-简介"><a href="#Vim-简介" class="headerlink" title="Vim 简介"></a>Vim 简介</h2><p><img src="pic/10.png" alt="10.png"></p>
 <p>Vim 是 Linux 系统上的最著名的文本/ 代码编辑器,也是早年的 Vi编辑器的加强版，而 gVim 则是其 Windows 版。它的最大特色是完全使用键盘命令进行编辑，脱离了鼠标操作虽然使得入门变得困难,但上手之后键盘流的各种巧妙组合操作却能带来极为大幅的效率提升。</p>
 <p>因此 Vim 和现代的编辑器(如 Sublime Text)有着非常巨大的差异,而且入门学习曲线陡峭,需要记住很多按键组合和命令,如今被看作是高手、Geek 们专用的编辑器。尽管 Vim 已经是古董级的软件,但还是有无数新人迎着困难去学习使用,可见其经典与受欢迎程度。</p>
 <p>另外,由于 Vim 的可配置性非常强,各种插件、语法高亮配色方案等多不胜数,无论作为代码编辑器或是文稿撰写工具都非常给力！</p>
@@ -3332,8 +3325,7 @@
   <entry>
     <title>Linux 文件系统和磁盘管理</title>
     <url>/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="Linux文件系统和磁盘管理"><a href="#Linux文件系统和磁盘管理" class="headerlink" title="Linux文件系统和磁盘管理"></a>Linux文件系统和磁盘管理</h1><p>[TOC]</p>
-<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="资源虚拟化"><a href="#资源虚拟化" class="headerlink" title="资源虚拟化"></a>资源虚拟化</h3><p><img src="pic/20.png" alt="20"></p>
+    <content><![CDATA[<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="资源虚拟化"><a href="#资源虚拟化" class="headerlink" title="资源虚拟化"></a>资源虚拟化</h3><p><img src="pic/20.png" alt="20"></p>
 <p>Linux操作系统内核由6个部分组成：</p>
 <ul>
 <li>进程调度与管理</li>
@@ -3629,8 +3621,7 @@
   <entry>
     <title>Linux 日志和计划任务</title>
     <url>/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/</url>
-    <content><![CDATA[<h1 id="日志和计划任务"><a href="#日志和计划任务" class="headerlink" title="日志和计划任务"></a>日志和计划任务</h1><p>[TOC]</p>
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="日志的作用"><a href="#日志的作用" class="headerlink" title="日志的作用"></a>日志的作用</h3><ul>
+    <content><![CDATA[<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="日志的作用"><a href="#日志的作用" class="headerlink" title="日志的作用"></a>日志的作用</h3><ul>
 <li>解决系统方面的错误</li>
 <li>解决网络服务的问题</li>
 <li>过往事件记录</li>
@@ -4127,8 +4118,7 @@
   <entry>
     <title>Linux 开机启动流程</title>
     <url>/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="Linux-开机启动流程"><a href="#Linux-开机启动流程" class="headerlink" title="Linux 开机启动流程"></a>Linux 开机启动流程</h1><p>[TOC]</p>
-<h2 id="启动流程概览"><a href="#启动流程概览" class="headerlink" title="启动流程概览"></a>启动流程概览</h2><ol>
+    <content><![CDATA[<h2 id="启动流程概览"><a href="#启动流程概览" class="headerlink" title="启动流程概览"></a>启动流程概览</h2><ol>
 <li>加载 BIOS 的硬件信息并自我测试 , 依据设定取得第一个可开机的装置 ;</li>
 <li>读取并执行第一个开机装置内 MBR 的 boot Loader ( grub, spfdisk 等程序 );</li>
 <li>依据 boot loader 的设定加载 Kernel</li>
@@ -4280,8 +4270,7 @@
   <entry>
     <title>Linux 内核</title>
     <url>/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/</url>
-    <content><![CDATA[<h1 id="Linux-内核"><a href="#Linux-内核" class="headerlink" title="Linux 内核"></a>Linux 内核</h1><p>[TOC]</p>
-<h2 id="WHERE"><a href="#WHERE" class="headerlink" title="WHERE"></a>WHERE</h2><p>内核与内核模块在哪里呢?内核模块都有哪些呢?下面的表中都列出来了:</p>
+    <content><![CDATA[<h2 id="WHERE"><a href="#WHERE" class="headerlink" title="WHERE"></a>WHERE</h2><p>内核与内核模块在哪里呢?内核模块都有哪些呢?下面的表中都列出来了:</p>
 <ul>
 <li>内核 /boot/vmlinuz-version</li>
 <li>内核解压缩所需 RAM Disk /boot/initrd-version</li>
@@ -4420,8 +4409,7 @@
   <entry>
     <title>Linux SELINUX</title>
     <url>/2016/12/22/booboo_linux_base/12-SELINUX/</url>
-    <content><![CDATA[<h1 id="Linux-SELINUX"><a href="#Linux-SELINUX" class="headerlink" title="Linux SELINUX"></a>Linux SELINUX</h1><p>[TOC]</p>
-<h2 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h2><p>Security Enhanced Linux 安全强化的 Linux</p>
+    <content><![CDATA[<h2 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h2><p>Security Enhanced Linux 安全强化的 Linux</p>
 <h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>强制限制某些操作 , 属于权限的一种</p>
 <p>思考 : 到目前为止学过的 linux 中的权限 ?</p>
 <p>u\g\o r\w\x ssid\sgid\stid acl attr</p>
@@ -4478,8 +4466,7 @@
   <entry>
     <title>Linux 进程管理</title>
     <url>/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="Linux-进程管理"><a href="#Linux-进程管理" class="headerlink" title="Linux 进程管理"></a>Linux 进程管理</h1><p>[TOC]</p>
-<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><ul>
+    <content><![CDATA[<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><ul>
 <li><p>进程： 运行在内存中程序实例 , 进程是程序运行的一种状态 , 是内存中的概念，进程与进程之间无法访问对方私有的内存区域。</p>
 </li>
 <li><p>线程： 程序运行的最小单元，一个进程可以派生出多个线程，同一个进程内的线程之间可以相互访问彼此内存区域，并且可以共享同一进程的共享内存区域。</p>

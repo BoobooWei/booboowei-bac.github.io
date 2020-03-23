@@ -502,7 +502,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-23 06:07:52'>2016-12-21 20:06</time>
+        创建时间:<time class="date" title='更新时间: 2020-03-23 06:24:25'>2016-12-21 20:06</time>
         
     </div>
     <div class="article-meta">
@@ -537,7 +537,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-进程管理"><span class="toc-text">Linux 进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#进程"><span class="toc-text">进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pstree-命令"><span class="toc-text">pstree 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态查看进程信息"><span class="toc-text">静态查看进程信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ps"><span class="toc-text">ps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pgrep"><span class="toc-text">pgrep</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态查看进程信息"><span class="toc-text">动态查看进程信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#top-终端提示符不显示"><span class="toc-text">top 终端提示符不显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止进程"><span class="toc-text">停止进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#killall"><span class="toc-text">killall</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pkill"><span class="toc-text">pkill</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xkill"><span class="toc-text">xkill</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程优先级"><span class="toc-text">进程优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定优先级"><span class="toc-text">指定优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调整优先级"><span class="toc-text">调整优先级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前后台作业"><span class="toc-text">前后台作业</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程管理课后作业"><span class="toc-text">进程管理课后作业</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进程"><span class="toc-text">进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pstree-命令"><span class="toc-text">pstree 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态查看进程信息"><span class="toc-text">静态查看进程信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ps"><span class="toc-text">ps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pgrep"><span class="toc-text">pgrep</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态查看进程信息"><span class="toc-text">动态查看进程信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#top-终端提示符不显示"><span class="toc-text">top 终端提示符不显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止进程"><span class="toc-text">停止进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#killall"><span class="toc-text">killall</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pkill"><span class="toc-text">pkill</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xkill"><span class="toc-text">xkill</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程优先级"><span class="toc-text">进程优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定优先级"><span class="toc-text">指定优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调整优先级"><span class="toc-text">调整优先级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前后台作业"><span class="toc-text">前后台作业</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程管理课后作业"><span class="toc-text">进程管理课后作业</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -553,8 +553,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Linux-进程管理"><a href="#Linux-进程管理" class="headerlink" title="Linux 进程管理"></a>Linux 进程管理</h1><p>[TOC]</p>
-<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><ul>
+        <h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><ul>
 <li><p>进程： 运行在内存中程序实例 , 进程是程序运行的一种状态 , 是内存中的概念，进程与进程之间无法访问对方私有的内存区域。</p>
 </li>
 <li><p>线程： 程序运行的最小单元，一个进程可以派生出多个线程，同一个进程内的线程之间可以相互访问彼此内存区域，并且可以共享同一进程的共享内存区域。</p>
@@ -733,7 +732,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">2.8k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
     <p><span class="copy-title">发布时间:</span>2016-12-21, 20:06:27</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-23, 06:07:52</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-23, 06:24:25</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" title="Linux 进程管理">http://www.toberoot.com/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
