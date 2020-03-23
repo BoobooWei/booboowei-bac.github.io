@@ -1707,14 +1707,15 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 15px 0;
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  line-height: 1.4;
+  cursor: text;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
   color: #444;
   text-transform: none;
-}
-h1 {
-  font-size: 1.8em;
 }
 .nav {
   width: 542px;
