@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>MySQL 管理课程 第七课 复制 AB replication | Amy and Booboo</title>
+  <meta name="keywords" content=" 培训 , MySQL基础管理 ">
+  <meta name="description" content="MySQL 管理课程 第七课 复制 AB replication | Amy and Booboo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amy and Booboo">
+<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta property="article:published_time" content="2020-03-22T14:48:00.876Z">
+<meta property="article:modified_time" content="2020-03-22T14:48:00.875Z">
+<meta property="article:author" content="BoobooWei">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/influx.svg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my.png" />
+</a>
+<div class="author">
+    <span>BoobooWei</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(53)</small></div></li>
+    
+        
+            
+            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(41)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="LinuxShell脚本教程">LinuxShell脚本教程<small>(7)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MySQL基础管理教程">MySQL基础管理教程<small>(11)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="53">
+<input type="hidden" id="yelog_site_word_count" value="305.4k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
+            
+            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
+            
+            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color5">宝宝成长</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">培训</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">LinuxShell脚本</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Linux基础服务</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Linux</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">MySQL基础管理</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据救援</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SQL优化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">锁故障</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">RDS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">主从同步</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
+            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
+            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
+            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
+            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="家长会">家长会</span>
+            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
+            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第一课 简介和变量">LINUX Shell Scripts 第一课 简介和变量</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第二课 流程控制语句">LINUX Shell Scripts 第二课 流程控制语句</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第三课 正则表达式">LINUX Shell Scripts 第三课 正则表达式</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第四课 Sed">LINUX Shell Scripts 第四课 Sed</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第五课 各种括号的作用">LINUX Shell Scripts 第五课 各种括号的作用</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第六课 上机考试">LINUX Shell Scripts 第六课 上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第七课 笔试">LINUX Shell Scripts 第七课 笔试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/01_dns/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/02_ftp/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/03_nfs/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/04_samba/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/05_apache/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/ule-online/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/00-linux_history/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 内核">Linux 内核</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/00-MySQL%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第一课 课程简介">MySQL 管理课程 第一课 课程简介</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/30/booboo_mysql/03-MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%92%8CInnodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎">MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎</span>
+            <span class="post-date" title="2016-12-29 21:06:27">2016/12/29</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/31/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第七课 复制 AB replication">MySQL 管理课程 第七课 复制 AB replication</span>
+            <span class="post-date" title="2016-12-30 21:06:27">2016/12/30</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2017/01/02/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第八课 高可用性HA">MySQL 管理课程 第八课 高可用性HA</span>
+            <span class="post-date" title="2017-01-01 21:06:27">2017/01/01</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2017/01/03/booboo_mysql/06-MySQL%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7sysbench/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第九课 MySQL压力测试工具sysbench">MySQL 管理课程 第九课 MySQL压力测试工具sysbench</span>
+            <span class="post-date" title="2017-01-02 21:06:27">2017/01/02</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2017/01/04/booboo_mysql/07-MySQL5.6%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制">MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制</span>
+            <span class="post-date" title="2017-01-03 21:06:27">2017/01/03</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2017/01/05/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&mysqlpump&mydumper/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper">MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</span>
+            <span class="post-date" title="2017-01-04 21:06:27">2017/01/04</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
+            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
+        </a>
+        
+        <a  class="技术广角 Hexo "
+           href="/2020/03/22/booboo_others/hello-world/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
+        </a>
+        
+        <a  class="技术广角 Oracle "
+           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
+           data-tag="SQL优化"
+           data-author="" >
+            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
+            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="锁故障"
+           data-author="" >
+            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
+            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
+           data-tag="RDS,主从同步"
+           data-author="" >
+            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
+            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
+        </a>
+        
+        <a  class="技术广角 MongoDB "
+           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
+            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/26/booboo_mysql/01-MySQL%E5%92%8CMariaDB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍">MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍</span>
+            <span class="post-date" title="2016-12-25 21:06:27">2016/12/25</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/29/booboo_mysql/03-MySQL%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第五课 备份与恢复">MySQL 管理课程 第五课 备份与恢复</span>
+            <span class="post-date" title="2016-12-28 21:06:27">2016/12/28</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/27/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1">MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1</span>
+            <span class="post-date" title="2016-12-26 21:06:27">2016/12/26</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/28/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2">MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2</span>
+            <span class="post-date" title="2016-12-27 21:06:27">2016/12/27</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-booboo_mysql/04-MySQL复制replication" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">MySQL 管理课程 第七课 复制 AB replication</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="技术培训">技术培训</a>/
+            
+                <a  data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color3">培训</a>
+            
+            <a class="color5">MySQL基础管理</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-03-24 05:29:49'>2016-12-30 21:06</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:8.9k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#复制概述"><span class="toc-text">复制概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制解决的问题"><span class="toc-text">复制解决的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制的原理"><span class="toc-text">复制的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实战1：mariadb-server-5-5-单主从架构"><span class="toc-text">项目实战1：mariadb server 5.5 单主从架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实战2：mysql-server-5-7-基于GTID的单主从架构"><span class="toc-text">项目实战2：mysql server 5.7 基于GTID的单主从架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制中的延迟问题-重演延迟"><span class="toc-text">复制中的延迟问题_重演延迟</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实战3：mysql-server-5-7-基于GTID的并行MTS单主从架构"><span class="toc-text">项目实战3：mysql server 5.7 基于GTID的并行MTS单主从架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置重演模式slave-parallel-type"><span class="toc-text">设置重演模式slave-parallel-type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置重演线程数slave-parallel-workers"><span class="toc-text">设置重演线程数slave_parallel_workers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Enhanced-Multi-Threaded-Slave配置总结"><span class="toc-text">Enhanced Multi-Threaded Slave配置总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#软件安装"><span class="toc-text">软件安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置文件"><span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实战4：mysql-server-5-7-基于GTID的并行MTS单主从架构crash-safe参数调优"><span class="toc-text">项目实战4：mysql server 5.7 基于GTID的并行MTS单主从架构crash safe参数调优</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置文件-1"><span class="toc-text">配置文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结-1"><span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复制中的延迟问题-读写分离"><span class="toc-text">复制中的延迟问题_读写分离</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#半同步复制的潜在问题"><span class="toc-text">半同步复制的潜在问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#无数据丢失的半同步复制"><span class="toc-text">无数据丢失的半同步复制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实战5：mysql-server-5-7-基于GTID的并行MTS单主从半同步架构"><span class="toc-text">项目实战5：mysql server 5.7 基于GTID的并行MTS单主从半同步架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装插件"><span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置文件-2"><span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试半同步复制超时后自动切换回异步模式"><span class="toc-text">测试半同步复制超时后自动切换回异步模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控主从是否运行在半同步复制模式下"><span class="toc-text">监控主从是否运行在半同步复制模式下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态变量"><span class="toc-text">状态变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结-2"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制中的单点故障问题"><span class="toc-text">复制中的单点故障问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#复制拓扑-配置M-S-S"><span class="toc-text">复制拓扑_配置M-S-S</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复制拓扑-配置M-M"><span class="toc-text">复制拓扑_配置M-M</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复制拓扑-配置M-s-M-s"><span class="toc-text">复制拓扑_配置M(s)-M(s)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复制拓扑-配置M-M-S-S"><span class="toc-text">复制拓扑_配置M-M-S-S</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#项目实战6：mysql-server-5-7-基于GTID的并行MTS多级主从-Multisource-半同步架构"><span class="toc-text">项目实战6：mysql server 5.7 基于GTID的并行MTS多级主从 Multisource 半同步架构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#M-M-S-S步骤"><span class="toc-text">M-M-S-S步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结-3"><span class="toc-text">总结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本讲义参考 《 HA mysql 》 高可用MySQL:第2版 /(美)贝尔(Bell,C.),(美)肯德尔(Kindahl,M.),(美)塞尔曼</p>
+</blockquote>
+<h3 id="复制概述"><a href="#复制概述" class="headerlink" title="复制概述"></a>复制概述</h3><p>数据库为应用程序提供高可用性和可扩展性的重要特性之一就是复制(Replication)。复制在数据库层创建冗余,同时产生多个数据库副本进行读扩展。</p>
+<p>复制就是把某个服务器上(称为 主节点服务器 或者简称 主节点 ,即 master)的所有变化克隆到另一个服务器(称为 从节点服务器 或简称 从节点 ,即 slave)。复制通常用来创建master 的一个可靠副本,不过复制也有其他用途。</p>
+<p>两种最常见的使用复制的例子是 :</p>
+<ul>
+<li>(1)创建一个 master 的备份,以避免 master 崩溃时丢失数据 ;</li>
+<li>(2)创建一个 master 的副本,从而在不干扰其他业务的情况下执行报表和分析工作。</li>
+</ul>
+<p>对小型企业来说,这足以简化很多事情,但复制可以做得更多,比如 :</p>
+<ul>
+<li>支持多个机房</li>
+</ul>
+<p>每个地点都可能要维护服务器,然后将变更复制到其他地方,从而使得信息处处可用。这就需要保护数据,在合法的情况下,保证用于审计目的的业务信息可用。</p>
+<ul>
+<li>即使有服务器停机,也能保证业务的持续运行</li>
+</ul>
+<p>如果原来的服务器失效,由其他服务器处理所有的访问量。</p>
+<ul>
+<li>即使有灾难发生,也能保证业务持续运行</li>
+</ul>
+<p>复制可以将变更发送给不同地理位置的其他数据中心。</p>
+<ul>
+<li>错误保护(oops)</li>
+</ul>
+<p>当 slave 连接 master 时,可从总是比 master 落后一个固定的时间周期(例如 1 小时),这样就会产生一个 延迟的 slave(Delayed Slave)。如果这时 master 上发生错误,可以找到出错的语句,然后在 slave 执行之前删除它。</p>
+<p>目前很多应用程序中使用复制最重要的场景之一就是 横向扩展 (scale out)。现今的应用程序通常是读密集型的,具有高读写比。为了减少 master 上的负载,你可以搭建一个专门响应读请求的 slave。通过一个负载均衡器,可以将读请求定向到合适的 slave,而写请求则交给 master 处理。</p>
+<p>在横向扩展的场景下使用复制时,理解 MySQL 复制的 异步性 (asynchronous)很重要,即事务首先在 master 上提交,然后复制到 slave 并在 slave 上执行。这意味着 master 和slave 可能并不一致,而且如果复制持续运行,slave 将会落后于 master。</p>
+<p>使用异步复制的好处在于它比同步复制更快、更具可扩展性,但在那些实时数据很重要的情况下,必须处理好不同步的问题以保证信息的时效性。</p>
+<p>然而,读扩展并不足以适用于所有应用程序。随着需求增加,数据库更大,写负载更高,需要扩展的就不只是读操作了。管理大型数据库,提升大型数据库系统的性能,可以通过分片 (sharding)技术来实现。通过分片,可以将数据库划分为若干可管理的数据分片,将数据库分发到多个服务器上,从而增加数据库的规模,并有效地扩展写操作。</p>
+<p>复制的另一个重要应用是通过添加冗余来保证高可用性。最常见的技术是使用 双主配置(dual-master),即通过复制保持一对 master 总是可用,其中每个 master 都是对方的镜像。如果其中一个 master 失效,另一个会立即接手。</p>
+<p>除了双主配置,还有其他与复制无关的高可用性技术,如使用共享存储或复制磁盘。尽管它们不是 MySQL 特有的,但这些技术对于保证高可用性来说也是很重要的工具</p>
+<h3 id="复制解决的问题"><a href="#复制解决的问题" class="headerlink" title="复制解决的问题"></a>复制解决的问题</h3><blockquote>
+<p>复制用例:</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>通过热备份达到高可用性</p>
+</blockquote>
+</blockquote>
+<p>如果服务器宕机,一切都将停止 :不能执行(可能很关键的)事务, 无法得到用户信息,也不能检索其他重要数据。要不惜(几乎)一切代价避免这种情况发生,因为它会严重破坏业务。最简单的方法就是配置一个额外的服务器专门作为热备份(hot standby),在主服务器宕机的时候随时接管业务。</p>
+<p>如果数据库只做了备份，现在数据库坏了，我们要恢复数据库，可能要花几个小时；但是现在我们希望这台数据库坏了，另外一台能够立刻顶上使用，该怎么做呢？</p>
+<p>那就需要我们有一个冗余的环境，备份是备份,冗余是冗余。概念不一样,备份是将数据以隔离的方式保存,备份的缺点,他不是瞬间还原,备份在还原过程中是有耗时的,他不是瞬间还原,例如,我们有几百个 G 的文件要还原回去,慢慢拷吧,几个小时。冗余不一样,主服务器/从服务器,主服务器坏掉,从服务器就顶上工作,所以冗余在可用性上来讲,恢复的速度上来讲,比备份来的快,但是冗余有他的缺点,备份有他的优点,比如我们作主从同步,主服务器和从服务器数据都一样的,如果主服务器上有人错删了一个表,我们把这种操作称为误操作,那么从服务器也会发生误操作,所以呢,冗余不能解决人为的误操作,而备份可以解决。冗余他能解决硬件故障,但是误操作无法解决,备份不是瞬间还原,但是既可以解决硬件故障又能解决误操作,他们各有优劣点,而真实的线上生产环境是两种方法一起使用,既有冗余环境,又有周期性备份,管理员要周期性地进行备份,同时有多台服务器作冗余。</p>
+<blockquote>
+<blockquote>
+<p>产生报表</p>
+</blockquote>
+</blockquote>
+<p>直接用服务器上的数据创建报表将大大降低服务器的性能,在某些情况下尤其显著。如果产生报表需要大量的后台作业,最好创建一个额外的服务器来运行这些作业。停止报表数据库上的复制,然后在不影响主要业务服务器的情况下运行大量查询,从而得到数据库在某一特定时间的快照。例如,如果在每天最后一个事务处理完毕后停止复制,可以提取日报表而其他业务仍正常运转。</p>
+<blockquote>
+<blockquote>
+<p>调试和审计</p>
+</blockquote>
+</blockquote>
+<p>还可以审查服务器上的查询。例如,查看某些查询是否有性能问题,以及服务器是否由于某个糟糕的查询而不同步。</p>
+<h3 id="复制的原理"><a href="#复制的原理" class="headerlink" title="复制的原理"></a>复制的原理</h3><p>在详细介绍如何设置复制之前，让我门先看看MySQL实际上时如何复制数据的。总的来说，复制有三个步骤：</p>
+<ol>
+<li>在主库上把数据更改记录到二进制日志（Binary Log）中（这写记录被称为二进制日志事件）。</li>
+<li>备库将主库的日志复制到自己的中继日志（Relay Log）中。</li>
+<li>备库读取中继日志中的事件，将其重放/重演到备库数据之上。</li>
+</ol>
+<p>以上只是概述，实际商每一步都很复杂，下图更详细地描述了复制的细节。</p>
+<p><img src="pic/23-replication-how.png" alt="replication-how"></p>
+<h4 id="项目实战1：mariadb-server-5-5-单主从架构"><a href="#项目实战1：mariadb-server-5-5-单主从架构" class="headerlink" title="项目实战1：mariadb server 5.5 单主从架构"></a>项目实战1：mariadb server 5.5 单主从架构</h4><p><img src="pic/62.jpg" alt="62"></p>
+<p><em>单主从步骤</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 主服务器</span><br><span class="line">1）修改配置文件	log-bin server-id&#x3D;1（重启服务）</span><br><span class="line">2）授权从机	grant replication slave to slave@172.25.0.12 uplooking</span><br><span class="line">3）初始化数据一致	mysqldump---》传输给从机器</span><br><span class="line"></span><br><span class="line"># 从服务</span><br><span class="line">1）install</span><br><span class="line">2）修改配置文件	server-id&#x3D;2</span><br><span class="line">3）初始化数据一致	导入全备数据</span><br><span class="line">4）&gt; change master master_host&#x3D;&#39;172.25.0.11&#39;</span><br><span class="line">		master_user&#x3D;&#39;slave&#39;</span><br><span class="line">		master_password&#x3D;&#39;uplooking&#39;</span><br><span class="line">		master_log_file&#x3D;&#39;&#39;</span><br><span class="line">		master_log_pos&#x3D;&#39;&#39;</span><br><span class="line">5)&gt; start slave;</span><br><span class="line">6)&gt; show slave status\G;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 主服务器</span></span></span><br><span class="line">[root@mastera0 mysql]# vim /etc/my.cnf</span><br><span class="line">[root@mastera0 mysql]# grep -v '^#' /etc/my.cnf|grep -v '^$'</span><br><span class="line">[mysqld]</span><br><span class="line">datadir=/var/lib/mysql</span><br><span class="line">socket=/var/lib/mysql/mysql.sock</span><br><span class="line">symbolic-links=0</span><br><span class="line">log-bin=/var/lib/mysql-log/mastera</span><br><span class="line">server-id=1</span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error=/var/log/mariadb/mariadb.log</span><br><span class="line">pid-file=/var/run/mariadb/mariadb.pid</span><br><span class="line">!includedir /etc/my.cnf.d</span><br><span class="line"></span><br><span class="line">[root@mastera0 mysql]# systemctl restart mariadb</span><br><span class="line">[root@mastera0 mysql]# mysql -uroot -puplooking</span><br><span class="line">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span><br><span class="line">Your MariaDB connection id is 2</span><br><span class="line">Server version: 5.5.44-MariaDB-log MariaDB Server</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; grant replication slave on *.* to slave@'172.25.0.12' identified by 'uplooking';</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; \q</span><br><span class="line">Bye</span><br><span class="line">[root@mastera0 mysql]# mysqldump -uroot -puplooking -A --single-transaction --master-data=2 --flush-logs &gt; /tmp/mysql.91.sql</span><br><span class="line">[root@mastera0 mysql]# scp /tmp/mysql.91.sql root@172.25.0.12:/tmp</span><br><span class="line">The authenticity of host \'172.25.0.12 (172.25.0.12)\' can\'t be established.</span><br><span class="line">ECDSA key fingerprint is 91:2b:bd:df:0e:17:da:a0:f6:01:ff:5b:09:50:e8:ad.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)? yes</span><br><span class="line">Warning: Permanently added '172.25.0.12' (ECDSA) to the list of known hosts.</span><br><span class="line">root@172.25.0.12\'s password:</span><br><span class="line">mysql.91.sql                                                      100%  505KB 504.7KB/s   00:00    </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 从服务器</span></span></span><br><span class="line">[root@masterb0 ~]# yum install -y mariadb-server</span><br><span class="line">[root@masterb0 ~]# vi /etc/my.cnf</span><br><span class="line">[root@masterb0 ~]# systemctl start mariadb</span><br><span class="line">[root@masterb0 ~]# mysql &lt; /tmp/mysql.91.sql</span><br><span class="line">[root@masterb0 ~]# mysql</span><br><span class="line">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span><br><span class="line">Your MariaDB connection id is 3</span><br><span class="line">Server version: 5.5.44-MariaDB MariaDB Server</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; \q</span><br><span class="line">Bye</span><br><span class="line">[root@masterb0 ~]# mysql</span><br><span class="line">ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)</span><br><span class="line">[root@masterb0 ~]# mysql -uroot -puplooking</span><br><span class="line">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span><br><span class="line">Your MariaDB connection id is 5</span><br><span class="line">Server version: 5.5.44-MariaDB MariaDB Server</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; change master to master_host='172.25.0.11',master_user='slave',master_password='uplooking',master_log_file='mastera.000028',MASTER_LOG_POS=245;</span><br><span class="line">Query OK, 0 rows affected (0.21 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; start slave;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; show slave status\G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 172.25.0.11</span><br><span class="line">                  Master_User: slave</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: mastera.000028</span><br><span class="line">          Read_Master_Log_Pos: 245</span><br><span class="line">               Relay_Log_File: mariadb-relay-bin.000002</span><br><span class="line">                Relay_Log_Pos: 527</span><br><span class="line">        Relay_Master_Log_File: mastera.000028</span><br><span class="line">             Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB:</span><br><span class="line">          Replicate_Ignore_DB:</span><br><span class="line">           Replicate_Do_Table:</span><br><span class="line">       Replicate_Ignore_Table:</span><br><span class="line">      Replicate_Wild_Do_Table:</span><br><span class="line">  Replicate_Wild_Ignore_Table:</span><br><span class="line">                   Last_Errno: 0</span><br><span class="line">                   Last_Error:</span><br><span class="line">                 Skip_Counter: 0</span><br><span class="line">          Exec_Master_Log_Pos: 245</span><br><span class="line">              Relay_Log_Space: 823</span><br><span class="line">              Until_Condition: None</span><br><span class="line">               Until_Log_File:</span><br><span class="line">                Until_Log_Pos: 0</span><br><span class="line">           Master_SSL_Allowed: No</span><br><span class="line">           Master_SSL_CA_File:</span><br><span class="line">           Master_SSL_CA_Path:</span><br><span class="line">              Master_SSL_Cert:</span><br><span class="line">            Master_SSL_Cipher:</span><br><span class="line">               Master_SSL_Key:</span><br><span class="line">        Seconds_Behind_Master: 0</span><br><span class="line">Master_SSL_Verify_Server_Cert: No</span><br><span class="line">                Last_IO_Errno: 0</span><br><span class="line">                Last_IO_Error:</span><br><span class="line">               Last_SQL_Errno: 0</span><br><span class="line">               Last_SQL_Error:</span><br><span class="line">  Replicate_Ignore_Server_Ids:</span><br><span class="line">             Master_Server_Id: 1</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">ERROR: No query specified</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt;</span><br><span class="line">MariaDB [(none)]&gt; select * from db1.t1;</span><br><span class="line">+-----+</span><br><span class="line">| id  |</span><br><span class="line">+-----+</span><br><span class="line">|   3 |</span><br><span class="line">|   4 |</span><br><span class="line">|   5 |</span><br><span class="line">|   6 |</span><br><span class="line">|   7 |</span><br><span class="line">|   8 |</span><br><span class="line">|   9 |</span><br><span class="line">|  10 |</span><br><span class="line">|  11 |</span><br><span class="line">|  12 |</span><br><span class="line">|  13 |</span><br><span class="line">|  14 |</span><br><span class="line">| 100 |</span><br><span class="line">| 101 |</span><br><span class="line">| 102 |</span><br><span class="line">| 103 |</span><br><span class="line">| 777 |</span><br><span class="line">+-----+</span><br><span class="line">17 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; \q</span><br><span class="line">Bye</span><br></pre></td></tr></table></figure>
+
+<p><img src="pic/63.jpg" alt=""></p>
+<h4 id="项目实战2：mysql-server-5-7-基于GTID的单主从架构"><a href="#项目实战2：mysql-server-5-7-基于GTID的单主从架构" class="headerlink" title="项目实战2：mysql server 5.7 基于GTID的单主从架构"></a>项目实战2：mysql server 5.7 基于GTID的单主从架构</h4><p><img src="pic/64.jpg" alt=""></p>
+<table>
+<thead>
+<tr>
+<th align="left">server</th>
+<th align="left">ip</th>
+<th align="left">software</th>
+<th align="left">rule</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">masterb</td>
+<td align="left">172.25.0.12</td>
+<td align="left">mysql-server 5.7</td>
+<td align="left">master</td>
+</tr>
+<tr>
+<td align="left">slaveb</td>
+<td align="left">172.25.0.14</td>
+<td align="left">mysql-server 5.7</td>
+<td align="left">slave</td>
+</tr>
+</tbody></table>
+<p>配置文件如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Master:</span><br><span class="line">[mysqld]</span><br><span class="line">server-id=1</span><br><span class="line">log-bin=/var/lib/mysql-log/mastera</span><br><span class="line">gitd_mode=on</span><br><span class="line">enforce_gtid_consistency=1</span><br><span class="line"></span><br><span class="line">Slave:</span><br><span class="line">[mysqld]</span><br><span class="line">server-id=2</span><br><span class="line">gtid_mode=on</span><br><span class="line">enforce_gtid_consistency=1</span><br></pre></td></tr></table></figure>
+
+<p>其他步骤与项目实践类似，再次不再赘述</p>
+<p><img src="pic/65.jpg" alt=""></p>
+<h3 id="复制中的延迟问题-重演延迟"><a href="#复制中的延迟问题-重演延迟" class="headerlink" title="复制中的延迟问题_重演延迟"></a>复制中的延迟问题_重演延迟</h3><ul>
+<li>mysql5.5之前没有解决方案——单线程</li>
+<li>mysql5.6（mariadb10）开始——一库一线程</li>
+<li>mysql5.7（mariadb10.1）真正解决了——一组一线程</li>
+</ul>
+<p><img src="pic/32.png" alt=""></p>
+<h4 id="项目实战3：mysql-server-5-7-基于GTID的并行MTS单主从架构"><a href="#项目实战3：mysql-server-5-7-基于GTID的并行MTS单主从架构" class="headerlink" title="项目实战3：mysql server 5.7 基于GTID的并行MTS单主从架构"></a>项目实战3：mysql server 5.7 基于GTID的并行MTS单主从架构</h4><p>MySQL 5.7才可称为真正的并行复制，这其中最为主要的原因就是slave服务器的回放与主机是一致的即master服务器上是怎么并行执行的slave上就怎样进行并行回放。</p>
+<p>MTS: Prepared transactions slave parallel applier </p>
+<p>该并行复制的思想最早是由MariaDB的Kristain提出，并已在MariaDB 10中出现，相信很多选择MariaDB的小伙伴最为看重的功能之一就是并行复制。</p>
+<p>MySQL 5.7并行复制的思想简单易懂，一言以蔽之：一个组提交的事务都是可以并行回放，因为这些事务都已进入到事务的prepare阶段，则说明事务之间没有任何冲突（否则就不可能提交）。</p>
+<blockquote>
+<h4 id="设置重演模式slave-parallel-type"><a href="#设置重演模式slave-parallel-type" class="headerlink" title="设置重演模式slave-parallel-type"></a>设置重演模式<code>slave-parallel-type</code></h4></blockquote>
+<p>为了兼容MySQL 5.6基于库的并行复制，5.7引入了新的变量<code>slave-parallel-type</code>，其可以配置的值有：</p>
+<ul>
+<li>DATABASE：默认值，基于库的并行复制方式</li>
+<li>LOGICAL_CLOCK：基于组提交的并行复制方式</li>
+</ul>
+<p>支持并行复制的GTID</p>
+<p>last_committed</p>
+<p>sequence_number</p>
+<p>并行复制配置与调优<br>master_info_repository</p>
+<blockquote>
+<h4 id="设置重演线程数slave-parallel-workers"><a href="#设置重演线程数slave-parallel-workers" class="headerlink" title="设置重演线程数slave_parallel_workers"></a>设置重演线程数<code>slave_parallel_workers</code></h4></blockquote>
+<ul>
+<li>slave_parallel_workers设置为0，则MySQL 5.7退化为原单线程复制</li>
+<li>slave_parallel_workers设置为1，则SQL线程功能转化为coordinator线程，但是只有1个worker线程进行回放，也是单线程复制。然而，这两种性能却又有一些的区别，因为多了一次coordinator<br>线程的转发，因此slave_parallel_workers=1的性能反而比0还要差</li>
+</ul>
+<blockquote>
+<h4 id="Enhanced-Multi-Threaded-Slave配置总结"><a href="#Enhanced-Multi-Threaded-Slave配置总结" class="headerlink" title="Enhanced Multi-Threaded Slave配置总结"></a>Enhanced Multi-Threaded Slave配置总结</h4></blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> slave</span></span><br><span class="line">slave-parallel-type=LOGICAL_CLOCK</span><br><span class="line">slave-parallel-workers=16</span><br><span class="line">master_info_repository=TABLE</span><br><span class="line">relay_log_info_repository=TABLE</span><br><span class="line">relay_log_recovery=ON</span><br></pre></td></tr></table></figure>
+
+<p><img src="pic/66.jpg" alt=""></p>
+<blockquote>
+<h4 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h4></blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">host</th>
+<th align="left">ip</th>
+<th align="left">software</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">masterb</td>
+<td align="left">172.25.0.12</td>
+<td align="left">mysql-community-server-5.7</td>
+</tr>
+<tr>
+<td align="left">slaveb</td>
+<td align="left">172.25.0.14</td>
+<td align="left">mysql-community-server-5.7</td>
+</tr>
+</tbody></table>
+<blockquote>
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4></blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># master</span></span></span><br><span class="line">	[mysqld]</span><br><span class="line"><span class="meta">	#</span><span class="bash"> AB replication</span></span><br><span class="line">	server-id=1</span><br><span class="line">	log-bin=/var/lib/mysql-log/masterb</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> GTID</span></span><br><span class="line">	gtid_mode=on</span><br><span class="line">	enforce_gtid_consistency=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># slave</span></span></span><br><span class="line">	[mysqld]</span><br><span class="line"><span class="meta">	#</span><span class="bash"> AB replication</span></span><br><span class="line">	server-id=2</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> open gtid mode</span></span><br><span class="line">	gtid_mode=on</span><br><span class="line">	enforce_gtid_consistency=1</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> MTS 一组一线程</span></span><br><span class="line">	slave-parallel-type=logical_clock</span><br><span class="line">	slave-parallel-workers=16</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>MySQL 5.7推出的Enhanced Multi-Threaded Slave解决了困扰MySQL长达数十年的复制延迟问题</p>
+</blockquote>
+<h4 id="项目实战4：mysql-server-5-7-基于GTID的并行MTS单主从架构crash-safe参数调优"><a href="#项目实战4：mysql-server-5-7-基于GTID的并行MTS单主从架构crash-safe参数调优" class="headerlink" title="项目实战4：mysql server 5.7 基于GTID的并行MTS单主从架构crash safe参数调优"></a>项目实战4：mysql server 5.7 基于GTID的并行MTS单主从架构crash safe参数调优</h4><p>Master<br>sync_binlog=1 #强制刷新binlog到磁盘<br>innodb_flush_log_at_trx_commit=1 #强制刷新redolog到磁盘</p>
+<p>Slave<br>relay_log_recovery=1 #如果slave的中继日志出问题，能够再次自动获取master的二进制日志</p>
+<blockquote>
+<h4 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h4></blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># master</span></span></span><br><span class="line">	[mysqld]</span><br><span class="line"><span class="meta">	#</span><span class="bash"> AB replication</span></span><br><span class="line">	server-id=1</span><br><span class="line">	log-bin=/var/lib/mysql-log/masterb</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> GTID</span></span><br><span class="line">	gtid_mode=on</span><br><span class="line">	enforce_gtid_consistency=1</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> crash safe</span></span><br><span class="line">	sync_binlog=1</span><br><span class="line">	innodb_flush_log_at_trx_commit=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># slave</span></span></span><br><span class="line">	[mysqld]</span><br><span class="line"><span class="meta">	#</span><span class="bash"> AB replication</span></span><br><span class="line">	server-id=2</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> open gtid mode</span></span><br><span class="line">	gtid_mode=on</span><br><span class="line">	enforce_gtid_consistency=1</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> slave crash</span></span><br><span class="line">	relay_log_recovery=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> MTS 一组一线程</span></span><br><span class="line">	slave-parallel-type=logical_clock</span><br><span class="line">	slave-parallel-workers=16</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2></blockquote>
+<p>crash safe 打开后能够更好的保证在数据库出现断电等特殊情况下，数据尽可能地少丢失！</p>
+<h3 id="复制中的延迟问题-读写分离"><a href="#复制中的延迟问题-读写分离" class="headerlink" title="复制中的延迟问题_读写分离"></a>复制中的延迟问题_读写分离</h3><p><img src="pic/26-rep4.png" alt="rep1"></p>
+<p>主服务器写入，同步到从服务器，在从服务器中读取数据，一般一台主服务器，多台从服务器(5.7版本以后支持多master，之前都是一个master )</p>
+<p><img src="pic/30.png" alt=""></p>
+<p><img src="pic/24-rep1.png" alt="rep2"></p>
+<p>从MySQL5.5开始，MySQL以插件的形式支持半同步复制。</p>
+<p>异步复制（Asynchronous replication）</p>
+<p>MySQL默认的复制即是异步的，主库在执行完客户端提交的事务后会立即将结果返给给客户端，并不关心从库是否已经接收并处理，这样就会有一个问题，主如果crash掉了，此时主上已经提交的事务可能并没有传到从上，如果此时，强行将从提升为主，可能导致新主上的数据不完整。</p>
+<p>全同步复制（Fully synchronous replication）</p>
+<p>指当主库执行完一个事务，所有的从库都执行了该事务才返回给客户端。因为需要等待所有从库执行完该事务才能返回，所以全同步复制的性能必然会收到严重的影响。</p>
+<p>半同步复制（Semisynchronous replication）</p>
+<p>介于异步复制和全同步复制之间，主库在执行完客户端提交的事务后不是立刻返回给客户端，而是等待至少一个从库接收到并写到relay log中才返回给客户端。相对于异步复制，半同步复制提高了数据的安全性，同时它也造成了一定程度的延迟，这个延迟最少是一个TCP/IP往返的时间。所以，半同步复制最好在低延时的网络中使用。</p>
+<h4 id="半同步复制的潜在问题"><a href="#半同步复制的潜在问题" class="headerlink" title="半同步复制的潜在问题"></a>半同步复制的潜在问题</h4><p>客户端事务在存储引擎层提交后，在得到从库确认的过程中，主库宕机了，此时，可能的情况有两种</p>
+<p>1.事务还没发送到从库上</p>
+<p>此时，客户端会收到事务提交失败的信息，客户端会重新提交该事务到新的主上，当宕机的主库重新启动后，以从库的身份重新加入到该主从结构中，会发现，该事务在从库中被提交了两次，一次是之前作为主的时候，一次是被新主同步过来的。</p>
+<p>2.事务已经发送到从库上</p>
+<p>此时，从库已经收到并应用了该事务，但是客户端仍然会收到事务提交失败的信息，重新提交该事务到新的主上。</p>
+<h4 id="无数据丢失的半同步复制"><a href="#无数据丢失的半同步复制" class="headerlink" title="无数据丢失的半同步复制"></a>无数据丢失的半同步复制</h4><p>针对上述潜在问题，MySQL 5.7引入了一种新的半同步方案：Loss-Less半同步复制。</p>
+<p>当然，之前的半同步方案同样支持，MySQL 5.7.2引入了一个新的参数进行控制-<code>rpl_semi_sync_master_wait_point</code></p>
+<p>rpl_semi_sync_master_wait_point有两种取值</p>
+<p><code>AFTER_SYNC</code> 这个即新的半同步方案，Waiting Slave dump在Storage Commit之前。</p>
+<p><code>AFTER_COMMIT</code> 老的半同步方案</p>
+<h4 id="项目实战5：mysql-server-5-7-基于GTID的并行MTS单主从半同步架构"><a href="#项目实战5：mysql-server-5-7-基于GTID的并行MTS单主从半同步架构" class="headerlink" title="项目实战5：mysql server 5.7 基于GTID的并行MTS单主从半同步架构"></a>项目实战5：mysql server 5.7 基于GTID的并行MTS单主从半同步架构</h4><p>要想使用半同步复制，必须满足以下几个条件：</p>
+<ol>
+<li><p>MySQL 5.5及以上版本</p>
+</li>
+<li><p>变量have_dynamic_loading为YES</p>
+</li>
+<li><p>异步复制已经存在</p>
+</li>
+</ol>
+<p><img src="pic/31.png" alt="31.png"></p>
+<blockquote>
+<h4 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h4></blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> install plugin rpl_semi_sync_master soname <span class="string">'semisync_master.so'</span>;</span></span><br><span class="line">Query OK, 0 rows affected (0.10 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> install plugin rpl_semi_sync_slave soname <span class="string">'semisync_slave.so'</span>;</span></span><br><span class="line">Query OK, 0 rows affected (0.05 sec)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="配置文件-2"><a href="#配置文件-2" class="headerlink" title="配置文件"></a>配置文件</h4></blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># master</span></span></span><br><span class="line">	[mysqld]</span><br><span class="line"><span class="meta">	#</span><span class="bash"> AB replication</span></span><br><span class="line">	server-id=1</span><br><span class="line">	log-bin=/var/lib/mysql-log/masterb</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> GTID</span></span><br><span class="line">	gtid_mode=on</span><br><span class="line">	enforce_gtid_consistency=1</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> crash safe</span></span><br><span class="line">	sync_binlog=1</span><br><span class="line">	innodb_flush_log_at_trx_commit=1</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 半同步模式</span></span><br><span class="line">	rpl_semi_sync_master_enabled=1</span><br><span class="line">	rpl_semi_sync_master_timeout=1000</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># slave</span></span></span><br><span class="line">	[mysqld]</span><br><span class="line"><span class="meta">	#</span><span class="bash"> AB replication</span></span><br><span class="line">	server-id=2</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> open gtid mode</span></span><br><span class="line">	gtid_mode=on</span><br><span class="line">	enforce_gtid_consistency=1</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> slave crash</span></span><br><span class="line">	relay_log_recovery=1</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> MTS 一组一线程</span></span><br><span class="line">	slave-parallel-type=logical_clock</span><br><span class="line">	slave-parallel-workers=16</span><br><span class="line"></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 半同步模式</span></span><br><span class="line">	rpl_semi_sync_slave_enabled=1</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="测试半同步复制超时后自动切换回异步模式"><a href="#测试半同步复制超时后自动切换回异步模式" class="headerlink" title="测试半同步复制超时后自动切换回异步模式"></a>测试半同步复制超时后自动切换回异步模式</h4></blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create database db1;</span></span><br><span class="line">Query OK, 1 row affected (0.06 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create table db1.t1 (id int);</span></span><br><span class="line">Query OK, 0 rows affected (0.26 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> insert into db1.t1 values (1);</span></span><br><span class="line">Query OK, 1 row affected (0.23 sec)</span><br><span class="line"><span class="meta">#</span><span class="bash"> 将slave关闭后再执行以下操作</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> insert into db1.t1 values (2);</span></span><br><span class="line">Query OK, 1 row affected (1.19 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> insert into db1.t1 values (3);</span></span><br><span class="line">Query OK, 1 row affected (0.36 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> insert into db1.t1 values (4);</span></span><br><span class="line">Query OK, 1 row affected (0.08 sec)</span><br></pre></td></tr></table></figure>
+
+<p>如果从机想回到半异步模式，需要重启slave，否则默认还是异步复制。</p>
+<blockquote>
+<h4 id="监控主从是否运行在半同步复制模式下"><a href="#监控主从是否运行在半同步复制模式下" class="headerlink" title="监控主从是否运行在半同步复制模式下"></a>监控主从是否运行在半同步复制模式下</h4></blockquote>
+<ul>
+<li><code>show status like &#39;rpl_semi_sync_master_status&#39;;</code></li>
+<li><code>show status like &#39;rpl_semi_sync_slave_status&#39;;</code></li>
+</ul>
+<blockquote>
+<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4></blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show variables like <span class="string">'%Rpl%'</span>;</span></span><br><span class="line">+-------------------------------------------+------------+</span><br><span class="line">| Variable_name                             | Value      |</span><br><span class="line">+-------------------------------------------+------------+</span><br><span class="line">| rpl_semi_sync_master_enabled              | ON         |</span><br><span class="line">| rpl_semi_sync_master_timeout              | 10000      |</span><br><span class="line">| rpl_semi_sync_master_trace_level          | 32         |</span><br><span class="line">| rpl_semi_sync_master_wait_for_slave_count | 1          |</span><br><span class="line">| rpl_semi_sync_master_wait_no_slave        | ON         |</span><br><span class="line">| rpl_semi_sync_master_wait_point           | AFTER_SYNC |</span><br><span class="line">| rpl_stop_slave_timeout                    | 31536000   |</span><br><span class="line">+-------------------------------------------+------------+</span><br><span class="line">7 rows in set (0.30 sec)</span><br></pre></td></tr></table></figure>
+
+<p><code>rpl_semi_sync_master_wait_for_slave_count</code></p>
+<p>MySQL 5.7.3引入的，该变量设置主需要等待多少个slave应答，才能返回给客户端，默认为1。</p>
+<p><code>rpl_semi_sync_master_wait_no_slave</code></p>
+<p>ON</p>
+<p>默认值，当状态变量Rpl_semi_sync_master_clients中的值小于rpl_semi_sync_master_wait_for_slave_count时，Rpl_semi_sync_master_status依旧显示为ON。</p>
+<p>OFF</p>
+<p>当状态变量Rpl_semi_sync_master_clients中的值于rpl_semi_sync_master_wait_for_slave_count时，Rpl_semi_sync_master_status立即显示为OFF，即异步复制。</p>
+<p>说得直白一点，如果我的架构是1主2从，2个从都采用了半同步复制，且设置的是rpl_semi_sync_master_wait_for_slave_count=2，如果其中一个挂掉了，对于rpl_semi_sync_master_wait_no_slave设置为ON的情况，此时显示的仍然是半同步复制，如果rpl_semi_sync_master_wait_no_slave设置为OFF，则会立刻变成异步复制。</p>
+<blockquote>
+<h4 id="状态变量"><a href="#状态变量" class="headerlink" title="状态变量"></a>状态变量</h4></blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show status like <span class="string">'%Rpl_semi%'</span>;</span></span><br><span class="line">+--------------------------------------------+-------+</span><br><span class="line">| Variable_name                              | Value |</span><br><span class="line">+--------------------------------------------+-------+</span><br><span class="line">| Rpl_semi_sync_master_clients               | 1     |</span><br><span class="line">| Rpl_semi_sync_master_net_avg_wait_time     | 0     |</span><br><span class="line">| Rpl_semi_sync_master_net_wait_time         | 0     |</span><br><span class="line">| Rpl_semi_sync_master_net_waits             | 6     |</span><br><span class="line">| Rpl_semi_sync_master_no_times              | 1     |</span><br><span class="line">| Rpl_semi_sync_master_no_tx                 | 1     |</span><br><span class="line">| Rpl_semi_sync_master_status                | ON    |</span><br><span class="line">| Rpl_semi_sync_master_timefunc_failures     | 0     |</span><br><span class="line">| Rpl_semi_sync_master_tx_avg_wait_time      | 1120  |</span><br><span class="line">| Rpl_semi_sync_master_tx_wait_time          | 4483  |</span><br><span class="line">| Rpl_semi_sync_master_tx_waits              | 4     |</span><br><span class="line">| Rpl_semi_sync_master_wait_pos_backtraverse | 0     |</span><br><span class="line">| Rpl_semi_sync_master_wait_sessions         | 0     |</span><br><span class="line">| Rpl_semi_sync_master_yes_tx                | 4     |</span><br><span class="line">+--------------------------------------------+-------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+
+<p>上述状态变量中，比较重要的有以下几个</p>
+<p><code>Rpl_semi_sync_master_clients</code></p>
+<p>当前半同步复制从的个数，如果是一主多从的架构，并不包含异步复制从的个数。</p>
+<p><code>Rpl_semi_sync_master_no_tx</code></p>
+<p>The number of commits that were not acknowledged successfully by a slave.</p>
+<p>具体到上面的测试中，指的是insert into test.test values(2)这个事务。</p>
+<p><code>Rpl_semi_sync_master_yes_tx</code></p>
+<p>The number of commits that were acknowledged successfully by a slave.</p>
+<blockquote>
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3></blockquote>
+<ol>
+<li><p>在一主多从的架构中，如果要开启半同步复制，并不要求所有的从都是半同步复制。</p>
+</li>
+<li><p>MySQL 5.7极大的提升了半同步复制的性能。</p>
+<p> 5.6版本的半同步复制，dump thread 承担了两份不同且又十分频繁的任务：传送binlog 给slave ，还需要等待slave反馈信息，而且这两个任务是串行的，dump thread 必须等待 slave 返回之后才会传送下一个 events 事务。dump thread 已然成为整个半同步提高性能的瓶颈。在高并发业务场景下，这样的机制会影响数据库整体的TPS 。</p>
+<p> 5.7版本的半同步复制中，独立出一个 ack collector thread ，专门用于接收slave 的反馈信息。这样master 上有两个线程独立工作，可以同时发送binlog 到slave ，和接收slave的反馈。 </p>
+</li>
+</ol>
+<h3 id="复制中的单点故障问题"><a href="#复制中的单点故障问题" class="headerlink" title="复制中的单点故障问题"></a>复制中的单点故障问题</h3><h4 id="复制拓扑-配置M-S-S"><a href="#复制拓扑-配置M-S-S" class="headerlink" title="复制拓扑_配置M-S-S"></a>复制拓扑_配置M-S-S</h4><p>有很多复杂的拓扑结构，但即使是最简单的也可能会非常灵活。一种拓扑可以有多种用途。</p>
+<p>接下来我们讨论一些比较普遍的拓扑结构以及它们的优缺点。记住下面的基本原则：</p>
+<ul>
+<li>每个备库必须有一个唯一的服务器ID</li>
+<li>一个主库可以有多个备库</li>
+<li>mysql5.7开始一个备库可以有多个主库(multisource replication)</li>
+<li>如果打开了log_save_updates选项，一个备库可以把其主库上的数据变化传播到其他备库</li>
+</ul>
+<p>一主库多备库的结构，备库之间没有交互，它们仅仅是连接到同一个主库上。</p>
+<p><img src="pic/26-rep5.png" alt="rep5"></p>
+<p>尽管这是非常简单的拓扑结构，但它非常灵活，能满足多种需求。</p>
+<p><em>用途：</em></p>
+<ul>
+<li>为不同的角色使用不同的备库（例如添加不同的索引或使用不同的存储引擎）。</li>
+<li>把一台备库当作待用的主库，除了复制没有其他数据传输。</li>
+<li>将一台备库放到远程数据中心，用作灾难恢复。</li>
+<li>延迟一个或多个备库，以备灾难恢复。</li>
+<li>使用其中一个备库，作为备份、培训或者测试使用服务器。</li>
+</ul>
+<p><em>优点</em> ：避免了很多其他拓扑结构的复杂性。</p>
+<h4 id="复制拓扑-配置M-M"><a href="#复制拓扑-配置M-M" class="headerlink" title="复制拓扑_配置M-M"></a>复制拓扑_配置M-M</h4><p><em>主主复制（也叫做双主复制或双向复制）</em> 包含两台服务器，每一个都被配置成对方的主库和备库，还句话说，它们是一对主库。</p>
+<p><img src="pic/26-rep6.png" alt="rep6"></p>
+<p><em>应用场景</em> 通常用于特殊的目的。一个可能的应用场景是两个位于不同地理位置的办公室，并且都需要一份可写的数据拷贝。</p>
+<p><em>最大的问题</em> 两个可写的互主服务器导致的问题非常多。这通常发生在两台服务器同时修改一行记录，或同时在量太服务器上向一个包含<code>auto_increment</code>列的表里插入数据。</p>
+<p>总的来说，允许向两台服务器上写如带来的麻烦远远大于其带来的好处。</p>
+<p><em>双主步骤</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mastera masterb</span><br><span class="line">主	      从     已完成</span><br><span class="line">从	      主</span><br><span class="line">	# 主服务器 masterb</span><br><span class="line">	1）修改配置文件	log-bin&#x3D;&#x2F;var&#x2F;lib&#x2F;mysql-log&#x2F;masterb</span><br><span class="line">			server-id&#x3D;2（重启服务）</span><br><span class="line">			mkdir &#x2F;var&#x2F;lib&#x2F;mysql-log&#x2F;	--ugo,selinux</span><br><span class="line">	2)&gt; show master status\G;</span><br><span class="line"></span><br><span class="line">	# 从服务 mastera</span><br><span class="line">	1）授权从机	grant replication slave to slave@172.25.0.11 uplooking   </span><br><span class="line">			(masterb &gt; show grants for slave@172.25.0.11;)</span><br><span class="line">	2）&gt; change master master_host&#x3D;&#39;172.25.0.12&#39;</span><br><span class="line">			master_user&#x3D;&#39;slave&#39;</span><br><span class="line">			master_password&#x3D;&#39;uplooking&#39;</span><br><span class="line">			master_log_file&#x3D;&#39;&#39;</span><br><span class="line">			master_log_pos&#x3D;&#39;&#39;</span><br><span class="line">	3)&gt; start slave;</span><br><span class="line">	4)&gt; show slave status\G;</span><br><span class="line">	5)测试</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>实现 mariadb 5.5 MySQL AB 复制 M-M部署</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 双主从</span></span><br><span class="line">[root@masterb0 ~]# vi /etc/my.cnf</span><br><span class="line">[root@masterb0 ~]# grep -v '^#' /etc/my.cnf|grep -v '^$'</span><br><span class="line">[mysqld]</span><br><span class="line">datadir=/var/lib/mysql</span><br><span class="line">socket=/var/lib/mysql/mysql.sock</span><br><span class="line">symbolic-links=0</span><br><span class="line">server-id=2</span><br><span class="line">log-bin=/var/lib/mysql-log/masterb</span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error=/var/log/mariadb/mariadb.log</span><br><span class="line">pid-file=/var/run/mariadb/mariadb.pid</span><br><span class="line">!includedir /etc/my.cnf.d</span><br><span class="line"></span><br><span class="line">[root@masterb0 ~]# mkdir /var/lib/mysql-log/</span><br><span class="line">[root@masterb0 ~]# chown mysql. /var/lib/mysql-log/</span><br><span class="line">[root@masterb0 ~]# getenforce</span><br><span class="line">Permissive</span><br><span class="line">[root@masterb0 ~]# systemctl restart mariadb</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 通过在mastera上添加授权，同步给masterb，允许mastera对masterb有replication slave的权限</span></span></span><br><span class="line"></span><br><span class="line">[root@mastera0 ~]# mysql -uroot -puplooking</span><br><span class="line">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span><br><span class="line">Your MariaDB connection id is 7</span><br><span class="line">Server version: 5.5.44-MariaDB-log MariaDB Server</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; grant replication slave on *.* to slave@'172.25.0.11' identified by 'uplooking';</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 到masterb上检查是否已经同步到对mastera的授权信息</span></span></span><br><span class="line"></span><br><span class="line">[root@masterb0 ~]# mysql -uroot -puplooking</span><br><span class="line">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span><br><span class="line">Your MariaDB connection id is 4</span><br><span class="line">Server version: 5.5.44-MariaDB-log MariaDB Server</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; show grants for slave@172.25.0.11;</span><br><span class="line">+----------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| Grants for slave@172.25.0.11                                                                                               |</span><br><span class="line">+----------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| GRANT REPLICATION SLAVE ON *.* TO 'slave'@'172.25.0.11' IDENTIFIED BY PASSWORD '*6FF883623B8639D08083FF411D20E6856EB7D2BF' |</span><br><span class="line">+----------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 查看当前masterb的日志写到哪里了，哪个位置了</span></span></span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; show master status\G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">            File: masterb.000001</span><br><span class="line">        Position: 245</span><br><span class="line">    Binlog_Do_DB:</span><br><span class="line">Binlog_Ignore_DB:</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 在mastera上操作，change master to</span></span></span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; change master to master_host='172.25.0.12',master_user='slave',master_password='uplooking',master_log_file='masterb.000001',master_log_pos=245;</span><br><span class="line">Query OK, 0 rows affected (0.20 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; start slave;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; show slave status\G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 172.25.0.12</span><br><span class="line">                  Master_User: slave</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: masterb.000001</span><br><span class="line">          Read_Master_Log_Pos: 245</span><br><span class="line">               Relay_Log_File: mariadb-relay-bin.000002</span><br><span class="line">                Relay_Log_Pos: 527</span><br><span class="line">        Relay_Master_Log_File: masterb.000001</span><br><span class="line">             Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB:</span><br><span class="line">          Replicate_Ignore_DB:</span><br><span class="line">           Replicate_Do_Table:</span><br><span class="line">       Replicate_Ignore_Table:</span><br><span class="line">      Replicate_Wild_Do_Table:</span><br><span class="line">  Replicate_Wild_Ignore_Table:</span><br><span class="line">                   Last_Errno: 0</span><br><span class="line">                   Last_Error:</span><br><span class="line">                 Skip_Counter: 0</span><br><span class="line">          Exec_Master_Log_Pos: 245</span><br><span class="line">              Relay_Log_Space: 823</span><br><span class="line">              Until_Condition: None</span><br><span class="line">               Until_Log_File:</span><br><span class="line">                Until_Log_Pos: 0</span><br><span class="line">           Master_SSL_Allowed: No</span><br><span class="line">           Master_SSL_CA_File:</span><br><span class="line">           Master_SSL_CA_Path:</span><br><span class="line">              Master_SSL_Cert:</span><br><span class="line">            Master_SSL_Cipher:</span><br><span class="line">               Master_SSL_Key:</span><br><span class="line">        Seconds_Behind_Master: 0</span><br><span class="line">Master_SSL_Verify_Server_Cert: No</span><br><span class="line">                Last_IO_Errno: 0</span><br><span class="line">                Last_IO_Error:</span><br><span class="line">               Last_SQL_Errno: 0</span><br><span class="line">               Last_SQL_Error:</span><br><span class="line">  Replicate_Ignore_Server_Ids:</span><br><span class="line">             Master_Server_Id: 2</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">ERROR: No query specified</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 测试 在masterb上写数据，测试mastera是否能够同步到</span></span></span><br><span class="line">MariaDB [(none)]&gt; insert into db1.t1 values (100);</span><br><span class="line">Query OK, 1 row affected (0.06 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 在mastera上查看db1.t1表是否同步到数据了</span></span></span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; select * from db1.t1;</span><br><span class="line">+-----+</span><br><span class="line">| id  |</span><br><span class="line">+-----+</span><br><span class="line">|   1 |</span><br><span class="line">|   2 |</span><br><span class="line">| 100 |</span><br><span class="line">+-----+</span><br><span class="line">3 rows in set (0.00 sec)</span><br><span class="line">ERROR: No query specified</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt;</span><br><span class="line">MariaDB [(none)]&gt; insert into db1.t1 values (100);</span><br><span class="line">Query OK, 1 row affected (0.06 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; select * from db1.t1;</span><br><span class="line">+-----+</span><br><span class="line">| id  |</span><br><span class="line">+-----+</span><br><span class="line">|   1 |</span><br><span class="line">|   2 |</span><br><span class="line">| 100 |</span><br><span class="line">+-----+</span><br><span class="line">3 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="复制拓扑-配置M-s-M-s"><a href="#复制拓扑-配置M-s-M-s" class="headerlink" title="复制拓扑_配置M(s)-M(s)"></a>复制拓扑_配置M(s)-M(s)</h4><p><em>拥有备库的主-主结构</em> 为每个主库增加一个备库。</p>
+<p><img src="pic/26-rep7.png" alt="rep7"></p>
+<p>该配置的优点是增加了冗余，对于不同物理位置的复制拓扑，能够消除站点单点失效的问题。还能做读写分离。</p>
+<p>如果在本地为了故障转移使用主-主结构，这种配置同样有用。当主库失效时，用备库来代替主库还是可行的，虽然这优点复杂，同样也库一把备库指向一个不同的主库，但需要考虑增加的复杂度。</p>
+<h4 id="复制拓扑-配置M-M-S-S"><a href="#复制拓扑-配置M-M-S-S" class="headerlink" title="复制拓扑_配置M-M-S-S"></a>复制拓扑_配置M-M-S-S</h4><p><em>MySQL 5.7 开始支持多主库复制</em> 多主库复制（multisource replication）特指一个备库有多个主库。5.7开始支持的，意味着5.7之前的版本不支持。</p>
+<h5 id="项目实战6：mysql-server-5-7-基于GTID的并行MTS多级主从-Multisource-半同步架构"><a href="#项目实战6：mysql-server-5-7-基于GTID的并行MTS多级主从-Multisource-半同步架构" class="headerlink" title="项目实战6：mysql server 5.7 基于GTID的并行MTS多级主从 Multisource 半同步架构"></a>项目实战6：mysql server 5.7 基于GTID的并行MTS多级主从 Multisource 半同步架构</h5><p><img src="pic/70.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th align="left">服务器</th>
+<th align="left">ip</th>
+<th align="left">功能</th>
+<th align="left">软件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">mastera</td>
+<td align="left">172.25.0.11</td>
+<td align="left">主</td>
+<td align="left">mysql-community-client 5.7</td>
+</tr>
+<tr>
+<td align="left">masterb</td>
+<td align="left">172.25.0.12</td>
+<td align="left">主</td>
+<td align="left">mysql-community-client 5.7</td>
+</tr>
+<tr>
+<td align="left">slavea</td>
+<td align="left">172.25.0.13</td>
+<td align="left">从</td>
+<td align="left">mysql-community-client 5.7</td>
+</tr>
+<tr>
+<td align="left">slaveb</td>
+<td align="left">172.25.0.14</td>
+<td align="left">从</td>
+<td align="left">mysql-community-client 5.7</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>安装软件</p>
+</blockquote>
+<ol>
+<li>操作系统 RHEL7.2</li>
+<li>下载软件（rpm；本地yum源； 在线yum源；）<pre><code>http://classroom.example.com/materials/mysql-5.7.repo</code></pre></li>
+<li>/etc/yum.repos.d/</li>
+<li>yum clean all;yum makecache</li>
+<li>yum list|grep mysql<pre><code>mysql-community-server 5.7</code></pre></li>
+<li>yum install —-报错，软件冲突：mariadb-libs 5.5 /var/lib/mysql/*</li>
+<li>rpm -e –nodeps mariadb-libs</li>
+</ol>
+<blockquote>
+<p>服务器端</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">项目名</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">软件名</td>
+<td align="left">mysql-community-server 5.7</td>
+</tr>
+<tr>
+<td align="left">service</td>
+<td align="left">mysqld</td>
+</tr>
+<tr>
+<td align="left">daemon</td>
+<td align="left">mysqld</td>
+</tr>
+<tr>
+<td align="left">配置文件</td>
+<td align="left">/etc/my.cnf，/etc/my.cnf.d/*.cnf</td>
+</tr>
+<tr>
+<td align="left">数据文件</td>
+<td align="left">/var/lib/mysql</td>
+</tr>
+<tr>
+<td align="left">启动日志</td>
+<td align="left">/var/log/mysqld.log</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>客户端</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">项目名</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">软件名</td>
+<td align="left">mysql-community-client 5.7</td>
+</tr>
+<tr>
+<td align="left">命令</td>
+<td align="left">mysql,mysqladmin,mysqlbinlog,mysqldump</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>服务端启动服务</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>查看进程<code>ps -ef|grep mysqld</code> 或 <code>systemctl status mysqld</code></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>查看端口 <code>netstat -lunpt|grep mysqld</code>  <code>3306</code></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>服务端修改初始密码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep password &#x2F;var&#x2F;log&#x2F;mysqld.log</span><br><span class="line">mysqladmin -uroot -p&#39;&#39; password &#39;(Uploo00king)&#39;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>客户端登陆数据库</p>
+</blockquote>
+<p><code>mysql -uroot -p&#39;(Uploo00king)&#39;</code></p>
+<p>mysql.user表的结构变化了，原先的password列改为了authentication_string列</p>
+<blockquote>
+<blockquote>
+<p>实现半同步，需要先安装半同步插件</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<h3 id="M-M-S-S步骤"><a href="#M-M-S-S步骤" class="headerlink" title="M-M-S-S步骤"></a>M-M-S-S步骤</h3></blockquote>
+<blockquote>
+<blockquote>
+<p>主服务器</p>
+</blockquote>
+</blockquote>
+<ol>
+<li>configure  </li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id=1</span><br><span class="line">log-bin=/var/lib/mysql-log/mastera</span><br><span class="line"><span class="meta">#</span><span class="bash"> GTID</span></span><br><span class="line">gitd_mode=on</span><br><span class="line">enforce_gtid_consistency=1</span><br><span class="line"><span class="meta">#</span><span class="bash"> crash safe</span></span><br><span class="line">sync_binlog=1 #强制刷新binlog到磁盘</span><br><span class="line">innodb_flush_log_at_trx_commit=1 #强制刷新redolog到磁盘</span><br><span class="line"><span class="meta">#</span><span class="bash"> semi sync</span></span><br><span class="line">rpl-semi_sync_master_enable=1</span><br><span class="line">rpl_semi_sync_master_timeout=1000 #ms</span><br><span class="line">rpl_semi_sync_master_warit_slave_count=num</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>grant replication slave@’172.25.X.%’</p>
+</li>
+<li><p>mysqldump\tar\lvm\innobackupex</p>
+</li>
+</ol>
+<blockquote>
+<blockquote>
+<p>从服务器</p>
+</blockquote>
+</blockquote>
+<ol>
+<li>configure</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">Server-id=2</span><br><span class="line"><span class="meta">#</span><span class="bash"> GTID</span></span><br><span class="line">gtid_mode=on</span><br><span class="line">enforce_gtid_consistency=1</span><br><span class="line"><span class="meta">#</span><span class="bash"> MTS</span></span><br><span class="line">slave-parallel-type=logical_clock</span><br><span class="line">Slave-parallel-workers=16</span><br><span class="line"><span class="meta">#</span><span class="bash"> crash safe</span></span><br><span class="line">relay_log_recovery=1</span><br><span class="line"><span class="meta">#</span><span class="bash"> semi sync</span></span><br><span class="line">rpl_semi_sync_slave_enable=1</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>mysql -uroot -p’(Uploo00king)’ &lt; mysql.all.sql</p>
+</li>
+<li><p>change mastert to</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">master_host&#x3D;&#39;ip&#39;</span><br><span class="line">master_user&#x3D;&#39;slave&#39;</span><br><span class="line">master_password&#x3D;&#39;&#39;</span><br><span class="line">master_auto_position&#x3D;1</span><br></pre></td></tr></table></figure></li>
+<li><p>start slave;</p>
+</li>
+<li><p>show slave status\G;</p>
+</li>
+</ol>
+<blockquote>
+<p>详细步骤</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br></pre></td><td class="code"><pre><span class="line">mastera:</span><br><span class="line"></span><br><span class="line">    1  ssh-keygen -t dsa</span><br><span class="line">    2  for i in 11 12 13 14;do ssh-copy-id root@172.25.0.$i;done</span><br><span class="line">    3  for i in 11 12 13 14;do ssh root@172.25.0.$i "setenforce 0;systemctl stop firewalld;yum install -y wget";done</span><br><span class="line">    4  for i in 11 12 13 14;do ssh root@172.25.0.$i "cd /etc/yum.repos.d/;wget http://classroom.example.com/materials/mysql-5.7.repo";done</span><br><span class="line">    5  ls /etc/yum.repos.d/</span><br><span class="line"></span><br><span class="line">    6  for i in 11 12 13 14;do ssh root@172.25.0.$i "rpm -e --nodeps mariadb-libs";done</span><br><span class="line">    7  yum list|grep mysql</span><br><span class="line">    8  for i in 11 12 13 14;do ssh root@172.25.0.$i "yum install -y mysql-community*";done</span><br><span class="line">    9  for i in 11 12 13 14;do ssh root@172.25.0.$i "systemctl start mysqld";done</span><br><span class="line">**********************</span><br><span class="line">每一台都需要修改密码</span><br><span class="line">    1  grep password /var/log/mysqld.log</span><br><span class="line">    2  mysqladmin -uroot -p'wXE?ekekJ3Na' password '(Uploo00king)'</span><br><span class="line">**********************</span><br><span class="line">mastera：</span><br><span class="line">新建库和表，并全备份,复制到masterb、slavea、slaveb</span><br><span class="line"></span><br><span class="line">    1  mysql -uroot -p'(Uploo00king)'</span><br><span class="line">	create database db1;</span><br><span class="line">	use db1;</span><br><span class="line">	create table t1 (id int);</span><br><span class="line">    2  mysqldump -A -uroot -p'(Uploo00king)' &gt; /tmp/mysql.all.sql</span><br><span class="line">    3  for i in 12 13 14 ;do scp /tmp/mysql.all.sql root@172.25.0.$i:/tmp; done</span><br><span class="line">    4  for i in 12 13 14 ;do ssh root@172.25.0.$i "mysql -uroot -p'(Uploo00king)' &lt; /tmp/mysql.all.sql"; done</span><br><span class="line">************************</span><br><span class="line">masterb/slavea/slaveb:</span><br><span class="line"><span class="meta">#</span><span class="bash">修改配置文件</span></span><br><span class="line"></span><br><span class="line">   1  vi /etc/my.cnf</span><br><span class="line"><span class="meta">#</span><span class="bash">mastera:</span></span><br><span class="line">	log-bin=/var/lib/mysql-log/mastera</span><br><span class="line">	server-id=1</span><br><span class="line">	gtid_mode = ON</span><br><span class="line">	enforce_gtid_consistency = 1</span><br><span class="line"><span class="meta">#</span><span class="bash">masterb:</span></span><br><span class="line">	log-bin=/var/lib/mysql-log/serverb</span><br><span class="line">	server-id=2</span><br><span class="line">	gtid_mode = ON</span><br><span class="line">	enforce_gtid_consistency = 1</span><br><span class="line"><span class="meta">#</span><span class="bash">slavea:</span></span><br><span class="line">	server-id=3</span><br><span class="line">	gtid_mode = ON</span><br><span class="line">	enforce_gtid_consistency = 1</span><br><span class="line">	master-info-repository=TABLE</span><br><span class="line">	relay-log-info-repository=TABLE</span><br><span class="line"><span class="meta">#</span><span class="bash">slaveb:</span></span><br><span class="line">	server-id=4</span><br><span class="line">	gtid_mode = ON</span><br><span class="line">	enforce_gtid_consistency = 1</span><br><span class="line">	master-info-repository=TABLE</span><br><span class="line">	relay-log-info-repository=TABLE</span><br><span class="line"></span><br><span class="line">mastera/masterb:</span><br><span class="line">创建二进制日志的目录，并修改权限</span><br><span class="line"></span><br><span class="line">    2  mkdir /var/lib/mysql-log</span><br><span class="line">    3  chown mysql. /var/lib/mysql-log</span><br><span class="line"></span><br><span class="line">mastera：</span><br><span class="line">将四台服务器重新启动服务</span><br><span class="line">    4  for i in 11 12 13 14;do ssh root@172.25.0.$i "systemctl restart mysqld";done</span><br><span class="line"></span><br><span class="line">************************************************</span><br><span class="line"><span class="meta">mastera--&gt;</span><span class="bash">masterb\slavea\slaveb 主从同步</span></span><br><span class="line"><span class="meta">masterb--&gt;</span><span class="bash">mastera双主</span></span><br><span class="line">multi-source</span><br><span class="line"></span><br><span class="line">在mastera上面授权:</span><br><span class="line"></span><br><span class="line">    1  mysql -uroot -p'(Uploo00king)'</span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> grant replication slave on *.* to slave@172.25.0.12 identified by <span class="string">'(Uploo00king)'</span>;</span></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> grant replication slave on *.* to slave@172.25.0.13 identified by <span class="string">'(Uploo00king)'</span>;</span></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> grant replication slave on *.* to slave@172.25.0.14 identified by <span class="string">'(Uploo00king)'</span>;</span></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> grant replication slave on *.* to slave@172.25.0.11 identified by <span class="string">'(Uploo00king)'</span>;</span></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> flush privileges;</span></span><br><span class="line"></span><br><span class="line">在masterb上面change master:</span><br><span class="line">     2	mysql&gt; change master to master_host="172.25.0.11",master_user="slave",master_password="(Uploo00king)",master_auto_position=1;</span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> start slave;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> show slave status\G;</span></span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 172.25.0.11</span><br><span class="line">                  Master_User: slave</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: mastera.000002</span><br><span class="line">          Read_Master_Log_Pos: 1188</span><br><span class="line">               Relay_Log_File: masterb0-relay-bin.000002</span><br><span class="line">                Relay_Log_Pos: 1397</span><br><span class="line">        Relay_Master_Log_File: mastera.000002</span><br><span class="line">             Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB:</span><br><span class="line">          Replicate_Ignore_DB:</span><br><span class="line">           Replicate_Do_Table:</span><br><span class="line">       Replicate_Ignore_Table:</span><br><span class="line">      Replicate_Wild_Do_Table:</span><br><span class="line">  Replicate_Wild_Ignore_Table:</span><br><span class="line">                   Last_Errno: 0</span><br><span class="line">                   Last_Error:</span><br><span class="line">                 Skip_Counter: 0</span><br><span class="line">          Exec_Master_Log_Pos: 1188</span><br><span class="line">              Relay_Log_Space: 1607</span><br><span class="line">              Until_Condition: None</span><br><span class="line">               Until_Log_File:</span><br><span class="line">                Until_Log_Pos: 0</span><br><span class="line">           Master_SSL_Allowed: No</span><br><span class="line">           Master_SSL_CA_File:</span><br><span class="line">           Master_SSL_CA_Path:</span><br><span class="line">              Master_SSL_Cert:</span><br><span class="line">            Master_SSL_Cipher:</span><br><span class="line">               Master_SSL_Key:</span><br><span class="line">        Seconds_Behind_Master: 0</span><br><span class="line">Master_SSL_Verify_Server_Cert: No</span><br><span class="line">                Last_IO_Errno: 0</span><br><span class="line">                Last_IO_Error:</span><br><span class="line">               Last_SQL_Errno: 0</span><br><span class="line">               Last_SQL_Error:</span><br><span class="line">  Replicate_Ignore_Server_Ids:</span><br><span class="line">             Master_Server_Id: 1</span><br><span class="line">                  Master_UUID: ca914200-225d-11e6-a1ab-52540000000b</span><br><span class="line">             Master_Info_File: /var/lib/mysql/master.info</span><br><span class="line">                    SQL_Delay: 0</span><br><span class="line">          SQL_Remaining_Delay: NULL</span><br><span class="line">      Slave_SQL_Running_State: Slave has read all relay log; waiting for more updates</span><br><span class="line">           Master_Retry_Count: 86400</span><br><span class="line">                  Master_Bind:</span><br><span class="line">      Last_IO_Error_Timestamp:</span><br><span class="line">     Last_SQL_Error_Timestamp:</span><br><span class="line">               Master_SSL_Crl:</span><br><span class="line">           Master_SSL_Crlpath:</span><br><span class="line">           Retrieved_Gtid_Set: ca914200-225d-11e6-a1ab-52540000000b:1-4</span><br><span class="line">            Executed_Gtid_Set: ca914200-225d-11e6-a1ab-52540000000b:1-4</span><br><span class="line">                Auto_Position: 1</span><br><span class="line">         Replicate_Rewrite_DB:</span><br><span class="line">                 Channel_Name:</span><br><span class="line">           Master_TLS_Version:</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">ERROR:</span><br><span class="line">No query specified</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在mastera上面change master：</span></span><br><span class="line">    3  mysql&gt; change master to master_host="172.25.0.12",master_user="slave",master_password="(Uploo00king)",master_auto_position=1;</span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> start slave;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> show slave status\G;</span></span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 172.25.0.12</span><br><span class="line">                  Master_User: slave</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: serverb.000002</span><br><span class="line">          Read_Master_Log_Pos: 154</span><br><span class="line">               Relay_Log_File: mastera0-relay-bin.000002</span><br><span class="line">                Relay_Log_Pos: 363</span><br><span class="line">        Relay_Master_Log_File: serverb.000002</span><br><span class="line">             Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB:</span><br><span class="line">          Replicate_Ignore_DB:</span><br><span class="line">           Replicate_Do_Table:</span><br><span class="line">       Replicate_Ignore_Table:</span><br><span class="line">      Replicate_Wild_Do_Table:</span><br><span class="line">  Replicate_Wild_Ignore_Table:</span><br><span class="line">                   Last_Errno: 0</span><br><span class="line">                   Last_Error:</span><br><span class="line">                 Skip_Counter: 0</span><br><span class="line">          Exec_Master_Log_Pos: 154</span><br><span class="line">              Relay_Log_Space: 573</span><br><span class="line">              Until_Condition: None</span><br><span class="line">               Until_Log_File:</span><br><span class="line">                Until_Log_Pos: 0</span><br><span class="line">           Master_SSL_Allowed: No</span><br><span class="line">           Master_SSL_CA_File:</span><br><span class="line">           Master_SSL_CA_Path:</span><br><span class="line">              Master_SSL_Cert:</span><br><span class="line">            Master_SSL_Cipher:</span><br><span class="line">               Master_SSL_Key:</span><br><span class="line">        Seconds_Behind_Master: 0</span><br><span class="line">Master_SSL_Verify_Server_Cert: No</span><br><span class="line">                Last_IO_Errno: 0</span><br><span class="line">                Last_IO_Error:</span><br><span class="line">               Last_SQL_Errno: 0</span><br><span class="line">               Last_SQL_Error:</span><br><span class="line">  Replicate_Ignore_Server_Ids:</span><br><span class="line">             Master_Server_Id: 2</span><br><span class="line">                  Master_UUID: e9660793-225d-11e6-996d-52540000000c</span><br><span class="line">             Master_Info_File: /var/lib/mysql/master.info</span><br><span class="line">                    SQL_Delay: 0</span><br><span class="line">          SQL_Remaining_Delay: NULL</span><br><span class="line">      Slave_SQL_Running_State: Slave has read all relay log; waiting for more updates</span><br><span class="line">           Master_Retry_Count: 86400</span><br><span class="line">                  Master_Bind:</span><br><span class="line">      Last_IO_Error_Timestamp:</span><br><span class="line">     Last_SQL_Error_Timestamp:</span><br><span class="line">               Master_SSL_Crl:</span><br><span class="line">           Master_SSL_Crlpath:</span><br><span class="line">           Retrieved_Gtid_Set:</span><br><span class="line">            Executed_Gtid_Set: ca914200-225d-11e6-a1ab-52540000000b:1-6</span><br><span class="line">                Auto_Position: 1</span><br><span class="line">         Replicate_Rewrite_DB:</span><br><span class="line">                 Channel_Name:</span><br><span class="line">           Master_TLS_Version:</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">ERROR:</span><br><span class="line">No query specified</span><br><span class="line">=========================================================================================</span><br><span class="line">到此位置mastera和masterb的双主配置好了。可以测试以下。</span><br><span class="line"></span><br><span class="line">接下来配置多级主从，不要用gtid，用老方法master_log_file和master_log_positon</span><br><span class="line">=============================================================================================</span><br><span class="line"><span class="meta">#</span><span class="bash">在mastera上面查看master的状态:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> show master status\G;</span></span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">             File: mastera.000002</span><br><span class="line">         Position: 1634</span><br><span class="line">     Binlog_Do_DB:</span><br><span class="line"> Binlog_Ignore_DB:</span><br><span class="line">Executed_Gtid_Set: ca914200-225d-11e6-a1ab-52540000000b:1-6,</span><br><span class="line">e9660793-225d-11e6-996d-52540000000c:1-3</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">ERROR:</span><br><span class="line">No query specified</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在masterb上面去查看master的状态:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> show master status\G;</span></span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">             File: serverb.000002</span><br><span class="line">         Position: 894</span><br><span class="line">     Binlog_Do_DB:</span><br><span class="line"> Binlog_Ignore_DB:</span><br><span class="line">Executed_Gtid_Set: ca914200-225d-11e6-a1ab-52540000000b:1-6,</span><br><span class="line">e9660793-225d-11e6-996d-52540000000c:1-3</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">ERROR:</span><br><span class="line">No query specified</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在slavea上面去操作:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> change master to master_host=<span class="string">"172.25.0.11"</span>,master_user=<span class="string">"slave"</span>,master_password=<span class="string">"(Uploo00king)"</span>,master_log_file=<span class="string">'mastera.000002'</span>,master_log_pos=1634 <span class="keyword">for</span> channel <span class="string">'mastera'</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> change master to master_host=<span class="string">"172.25.0.12"</span>,master_user=<span class="string">"slave"</span>,master_password=<span class="string">"(Uploo00king)"</span>,master_log_file=<span class="string">'serverb.000002'</span>,master_log_pos=894 <span class="keyword">for</span> channel <span class="string">'masterb'</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> start slave;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> show slave status\G;</span></span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 172.25.0.11</span><br><span class="line">                  Master_User: slave</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: mastera.000002</span><br><span class="line">          Read_Master_Log_Pos: 1885</span><br><span class="line">               Relay_Log_File: slavea0-relay-bin-mastera.000002</span><br><span class="line">                Relay_Log_Pos: 569</span><br><span class="line">        Relay_Master_Log_File: mastera.000002</span><br><span class="line">             Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB:</span><br><span class="line">          Replicate_Ignore_DB:</span><br><span class="line">           Replicate_Do_Table:</span><br><span class="line">       Replicate_Ignore_Table:</span><br><span class="line">      Replicate_Wild_Do_Table:</span><br><span class="line">  Replicate_Wild_Ignore_Table:</span><br><span class="line">                   Last_Errno: 0</span><br><span class="line">                   Last_Error:</span><br><span class="line">                 Skip_Counter: 0</span><br><span class="line">          Exec_Master_Log_Pos: 1885</span><br><span class="line">              Relay_Log_Space: 786</span><br><span class="line">              Until_Condition: None</span><br><span class="line">               Until_Log_File:</span><br><span class="line">                Until_Log_Pos: 0</span><br><span class="line">           Master_SSL_Allowed: No</span><br><span class="line">           Master_SSL_CA_File:</span><br><span class="line">           Master_SSL_CA_Path:</span><br><span class="line">              Master_SSL_Cert:</span><br><span class="line">            Master_SSL_Cipher:</span><br><span class="line">               Master_SSL_Key:</span><br><span class="line">        Seconds_Behind_Master: 0</span><br><span class="line">Master_SSL_Verify_Server_Cert: No</span><br><span class="line">                Last_IO_Errno: 0</span><br><span class="line">                Last_IO_Error:</span><br><span class="line">               Last_SQL_Errno: 0</span><br><span class="line">               Last_SQL_Error:</span><br><span class="line">  Replicate_Ignore_Server_Ids:</span><br><span class="line">             Master_Server_Id: 1</span><br><span class="line">                  Master_UUID: ca914200-225d-11e6-a1ab-52540000000b</span><br><span class="line">             Master_Info_File: mysql.slave_master_info</span><br><span class="line">                    SQL_Delay: 0</span><br><span class="line">          SQL_Remaining_Delay: NULL</span><br><span class="line">      Slave_SQL_Running_State: Slave has read all relay log; waiting for more updates</span><br><span class="line">           Master_Retry_Count: 86400</span><br><span class="line">                  Master_Bind:</span><br><span class="line">      Last_IO_Error_Timestamp:</span><br><span class="line">     Last_SQL_Error_Timestamp:</span><br><span class="line">               Master_SSL_Crl:</span><br><span class="line">           Master_SSL_Crlpath:</span><br><span class="line">           Retrieved_Gtid_Set: ca914200-225d-11e6-a1ab-52540000000b:7</span><br><span class="line">            Executed_Gtid_Set: ca914200-225d-11e6-a1ab-52540000000b:7,</span><br><span class="line">e9660793-225d-11e6-996d-52540000000c:4</span><br><span class="line">                Auto_Position: 0</span><br><span class="line">         Replicate_Rewrite_DB:</span><br><span class="line">                 Channel_Name: mastera</span><br><span class="line">           Master_TLS_Version:</span><br><span class="line">*************************** 2. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 172.25.0.12</span><br><span class="line">                  Master_User: slave</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: serverb.000002</span><br><span class="line">          Read_Master_Log_Pos: 1142</span><br><span class="line">               Relay_Log_File: slavea0-relay-bin-masterb.000002</span><br><span class="line">                Relay_Log_Pos: 566</span><br><span class="line">        Relay_Master_Log_File: serverb.000002</span><br><span class="line">             Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB:</span><br><span class="line">          Replicate_Ignore_DB:</span><br><span class="line">           Replicate_Do_Table:</span><br><span class="line">       Replicate_Ignore_Table:</span><br><span class="line">      Replicate_Wild_Do_Table:</span><br><span class="line">  Replicate_Wild_Ignore_Table:</span><br><span class="line">                   Last_Errno: 0</span><br><span class="line">                   Last_Error:</span><br><span class="line">                 Skip_Counter: 0</span><br><span class="line">          Exec_Master_Log_Pos: 1142</span><br><span class="line">              Relay_Log_Space: 783</span><br><span class="line">              Until_Condition: None</span><br><span class="line">               Until_Log_File:</span><br><span class="line">                Until_Log_Pos: 0</span><br><span class="line">           Master_SSL_Allowed: No</span><br><span class="line">           Master_SSL_CA_File:</span><br><span class="line">           Master_SSL_CA_Path:</span><br><span class="line">              Master_SSL_Cert:</span><br><span class="line">            Master_SSL_Cipher:</span><br><span class="line">               Master_SSL_Key:</span><br><span class="line">        Seconds_Behind_Master: 0</span><br><span class="line">Master_SSL_Verify_Server_Cert: No</span><br><span class="line">                Last_IO_Errno: 0</span><br><span class="line">                Last_IO_Error:</span><br><span class="line">               Last_SQL_Errno: 0</span><br><span class="line">               Last_SQL_Error:</span><br><span class="line">  Replicate_Ignore_Server_Ids:</span><br><span class="line">             Master_Server_Id: 2</span><br><span class="line">                  Master_UUID: e9660793-225d-11e6-996d-52540000000c</span><br><span class="line">             Master_Info_File: mysql.slave_master_info</span><br><span class="line">                    SQL_Delay: 0</span><br><span class="line">          SQL_Remaining_Delay: NULL</span><br><span class="line">      Slave_SQL_Running_State: Slave has read all relay log; waiting for more updates</span><br><span class="line">           Master_Retry_Count: 86400</span><br><span class="line">                  Master_Bind:</span><br><span class="line">      Last_IO_Error_Timestamp:</span><br><span class="line">     Last_SQL_Error_Timestamp:</span><br><span class="line">               Master_SSL_Crl:</span><br><span class="line">           Master_SSL_Crlpath:</span><br><span class="line">           Retrieved_Gtid_Set: e9660793-225d-11e6-996d-52540000000c:4</span><br><span class="line">            Executed_Gtid_Set: ca914200-225d-11e6-a1ab-52540000000b:7,</span><br><span class="line">e9660793-225d-11e6-996d-52540000000c:4</span><br><span class="line">                Auto_Position: 0</span><br><span class="line">         Replicate_Rewrite_DB:</span><br><span class="line">                 Channel_Name: masterb</span><br><span class="line">           Master_TLS_Version:</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">ERROR:</span><br><span class="line">No query specified</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在slaveb上面去操作:</span></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> change master to master_host=<span class="string">"172.25.0.11"</span>,master_user=<span class="string">"slave"</span>,master_password=<span class="string">"(Uploo00king)"</span>,master_log_file=<span class="string">'mastera.000002'</span>,master_log_pos=1634 <span class="keyword">for</span> channel <span class="string">'mastera'</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> change master to master_host=<span class="string">"172.25.0.12"</span>,master_user=<span class="string">"slave"</span>,master_password=<span class="string">"(Uploo00king)"</span>,master_log_file=<span class="string">'serverb.000002'</span>,master_log_pos=894 <span class="keyword">for</span> channel <span class="string">'masterb'</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> start slave;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">	mysql&gt;</span><span class="bash"> show slave status\G;</span></span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 172.25.0.11</span><br><span class="line">                  Master_User: slave</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: mastera.000002</span><br><span class="line">          Read_Master_Log_Pos: 1634</span><br><span class="line">               Relay_Log_File: slaveb0-relay-bin-mastera.000002</span><br><span class="line">                Relay_Log_Pos: 318</span><br><span class="line">        Relay_Master_Log_File: mastera.000002</span><br><span class="line">             Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB:</span><br><span class="line">          Replicate_Ignore_DB:</span><br><span class="line">           Replicate_Do_Table:</span><br><span class="line">       Replicate_Ignore_Table:</span><br><span class="line">      Replicate_Wild_Do_Table:</span><br><span class="line">  Replicate_Wild_Ignore_Table:</span><br><span class="line">                   Last_Errno: 0</span><br><span class="line">                   Last_Error:</span><br><span class="line">                 Skip_Counter: 0</span><br><span class="line">          Exec_Master_Log_Pos: 1634</span><br><span class="line">              Relay_Log_Space: 535</span><br><span class="line">              Until_Condition: None</span><br><span class="line">               Until_Log_File:</span><br><span class="line">                Until_Log_Pos: 0</span><br><span class="line">           Master_SSL_Allowed: No</span><br><span class="line">           Master_SSL_CA_File:</span><br><span class="line">           Master_SSL_CA_Path:</span><br><span class="line">              Master_SSL_Cert:</span><br><span class="line">            Master_SSL_Cipher:</span><br><span class="line">               Master_SSL_Key:</span><br><span class="line">        Seconds_Behind_Master: 0</span><br><span class="line">Master_SSL_Verify_Server_Cert: No</span><br><span class="line">                Last_IO_Errno: 0</span><br><span class="line">                Last_IO_Error:</span><br><span class="line">               Last_SQL_Errno: 0</span><br><span class="line">               Last_SQL_Error:</span><br><span class="line">  Replicate_Ignore_Server_Ids:</span><br><span class="line">             Master_Server_Id: 1</span><br><span class="line">                  Master_UUID: ca914200-225d-11e6-a1ab-52540000000b</span><br><span class="line">             Master_Info_File: mysql.slave_master_info</span><br><span class="line">                    SQL_Delay: 0</span><br><span class="line">          SQL_Remaining_Delay: NULL</span><br><span class="line">      Slave_SQL_Running_State: Slave has read all relay log; waiting for more updates</span><br><span class="line">           Master_Retry_Count: 86400</span><br><span class="line">                  Master_Bind:</span><br><span class="line">      Last_IO_Error_Timestamp:</span><br><span class="line">     Last_SQL_Error_Timestamp:</span><br><span class="line">               Master_SSL_Crl:</span><br><span class="line">           Master_SSL_Crlpath:</span><br><span class="line">           Retrieved_Gtid_Set:</span><br><span class="line">            Executed_Gtid_Set:</span><br><span class="line">                Auto_Position: 0</span><br><span class="line">         Replicate_Rewrite_DB:</span><br><span class="line">                 Channel_Name: mastera</span><br><span class="line">           Master_TLS_Version:</span><br><span class="line">*************************** 2. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 172.25.0.12</span><br><span class="line">                  Master_User: slave</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: serverb.000002</span><br><span class="line">          Read_Master_Log_Pos: 894</span><br><span class="line">               Relay_Log_File: slaveb0-relay-bin-masterb.000002</span><br><span class="line">                Relay_Log_Pos: 318</span><br><span class="line">        Relay_Master_Log_File: serverb.000002</span><br><span class="line">             Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB:</span><br><span class="line">          Replicate_Ignore_DB:</span><br><span class="line">           Replicate_Do_Table:</span><br><span class="line">       Replicate_Ignore_Table:</span><br><span class="line">      Replicate_Wild_Do_Table:</span><br><span class="line">  Replicate_Wild_Ignore_Table:</span><br><span class="line">                   Last_Errno: 0</span><br><span class="line">                   Last_Error:</span><br><span class="line">                 Skip_Counter: 0</span><br><span class="line">          Exec_Master_Log_Pos: 894</span><br><span class="line">              Relay_Log_Space: 535</span><br><span class="line">              Until_Condition: None</span><br><span class="line">               Until_Log_File:</span><br><span class="line">                Until_Log_Pos: 0</span><br><span class="line">           Master_SSL_Allowed: No</span><br><span class="line">           Master_SSL_CA_File:</span><br><span class="line">           Master_SSL_CA_Path:</span><br><span class="line">              Master_SSL_Cert:</span><br><span class="line">            Master_SSL_Cipher:</span><br><span class="line">               Master_SSL_Key:</span><br><span class="line">        Seconds_Behind_Master: 0</span><br><span class="line">Master_SSL_Verify_Server_Cert: No</span><br><span class="line">                Last_IO_Errno: 0</span><br><span class="line">                Last_IO_Error:</span><br><span class="line">               Last_SQL_Errno: 0</span><br><span class="line">               Last_SQL_Error:</span><br><span class="line">  Replicate_Ignore_Server_Ids:</span><br><span class="line">             Master_Server_Id: 2</span><br><span class="line">                  Master_UUID: e9660793-225d-11e6-996d-52540000000c</span><br><span class="line">             Master_Info_File: mysql.slave_master_info</span><br><span class="line">                    SQL_Delay: 0</span><br><span class="line">          SQL_Remaining_Delay: NULL</span><br><span class="line">      Slave_SQL_Running_State: Slave has read all relay log; waiting for more updates</span><br><span class="line">           Master_Retry_Count: 86400</span><br><span class="line">                  Master_Bind:</span><br><span class="line">      Last_IO_Error_Timestamp:</span><br><span class="line">     Last_SQL_Error_Timestamp:</span><br><span class="line">               Master_SSL_Crl:</span><br><span class="line">           Master_SSL_Crlpath:</span><br><span class="line">           Retrieved_Gtid_Set:</span><br><span class="line">            Executed_Gtid_Set:</span><br><span class="line">                Auto_Position: 0</span><br><span class="line">         Replicate_Rewrite_DB:</span><br><span class="line">                 Channel_Name: masterb</span><br><span class="line">           Master_TLS_Version:</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">ERROR:</span><br><span class="line">No query specified</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>可以去测试了：</p>
+</blockquote>
+</blockquote>
+<p>mastera: <code>insert into db1.t1 values (2);</code></p>
+<p>masterb slavea slaveb都同步了数据库</p>
+<p>masterb:<code>insert into db1.t1 values (3);</code></p>
+<p>mastera slavea slaveb都同步了数据库</p>
+<p>关闭mastera的数据，对masterb写，slavea和slaveb也能同步数据；再次打开mastera也能同步到数据。</p>
+<h3 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h3><p>重点掌握</p>
+<ol>
+<li>主从同步的原理以及同步过程中的延迟和数据一致性问题</li>
+<li>mariadb5.5和mysql5.7的主从同步步骤</li>
+</ol>
+<p>难点</p>
+<ol>
+<li>同步过程中的延迟问题和数据一致性问题</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>MySQL 管理课程 第七课 复制 AB replication</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">8.9k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
+    <p><span class="copy-title">发布时间:</span>2016-12-30, 21:06:27</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 05:29:49</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/31/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/" title="MySQL 管理课程 第七课 复制 AB replication">http://www.toberoot.com/2016/12/31/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'af999a0c30ad557db57d',
+            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+            repo: 'booboowei.github.io',
+            owner: 'booboowei',
+            admin: ['booboowei'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018-2020 BoobooWei</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#宝宝成长','#培训','#LinuxShell脚本','#Linux基础服务','#Linux','#MySQL基础管理','#数据救援','#hexo','#SQL优化','#锁故障','#RDS','#主从同步',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 622px;
+    }
+    .nav.fullscreen {
+        margin-left: -622px;
+    }
+    .nav-left {
+        width: 200px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
