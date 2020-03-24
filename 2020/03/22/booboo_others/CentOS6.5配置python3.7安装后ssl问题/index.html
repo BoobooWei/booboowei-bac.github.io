@@ -6,14 +6,14 @@
   <meta name="keywords" content=" python ">
   <meta name="description" content="CentOS6.5配置python3.7安装后ssl问题 | Amy and Booboo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Amy and Booboo">
-<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://www.toberoot.com/categories/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
-<meta property="og:description" content="除了自己的无知，我什么都不懂。－苏格拉底">
-<meta property="article:published_time" content="2020-03-22T14:48:00.876Z">
-<meta property="article:modified_time" content="2020-03-22T14:48:00.875Z">
+<meta property="og:description" content="君不见黄河之水天上来，奔流到海不复回。">
+<meta property="article:published_time" content="2018-06-07T13:50:04.000Z">
+<meta property="article:modified_time" content="2020-03-22T07:46:24.742Z">
 <meta property="article:author" content="BoobooWei">
 <meta name="twitter:card" content="summary">
 
@@ -772,12 +772,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-24 12:30:02'>2020-03-22 14:23</time>
+        创建时间:<time class="date" title='更新时间: 2020-03-24 12:31:58'>2020-03-22 14:23</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:211</span>
+        <span>字数:215</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -826,7 +826,7 @@
         <h2 id="报错明细"><a href="#报错明细" class="headerlink" title="报错明细"></a>报错明细</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip is configured with locations that require TLS/SSL, however the ssl module <span class="keyword">in</span> Python is not available.</span><br></pre></td></tr></table></figure>
 
 <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>由于AIA系统是CentOS release 6.7，所有openssl的版本为 OpenSSL 1.0.1e ,而python3.7需要的openssl的版本为 1.0.2 或者 1.1.x,需要对openssl进行升级，并重新编译python3.7.0</p>
-<h2 id="详细记录"><a href="#详细记录" class="headerlink" title="详细记录"></a>详细记录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@CNACLQLJMP010 install]<span class="comment"># rpm -qa|grep openssl</span></span><br><span class="line">openssl-devel-1.0.1e-58.el6_10.x86_64</span><br><span class="line">openssl-1.0.1e-58.el6_10.x86_64</span><br><span class="line">openssl-static-1.0.1e-58.el6_10.x86_64</span><br><span class="line">[root@CNACLQLJMP010 install]<span class="comment"># openssl version</span></span><br><span class="line">OpenSSL 1.0.1e-fips 11 Feb 2013</span><br><span class="line"></span><br><span class="line">wget https://www.openssl.org/<span class="built_in">source</span>/openssl-1.1.1-pre8.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openssl-1.1.1-pre8</span><br><span class="line">./config --prefix=/usr/<span class="built_in">local</span>/openssl no-zlib <span class="comment">#不需要zlib</span></span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">mv /usr/bin/openssl /usr/bin/openssl.bak</span><br><span class="line">mv /usr/include/openssl/ /usr/include/openssl.bak</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/include/openssl /usr/include/openssl</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/lib/libssl.so.1.1 /usr/<span class="built_in">local</span>/lib64/libssl.so</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/bin/openssl /usr/bin/openssl</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/usr/local/openssl/lib"</span> &gt;&gt; /etc/ld.so.conf</span><br><span class="line">ldconfig -v</span><br><span class="line"></span><br><span class="line">openssl version</span><br></pre></td></tr></table></figure>
+<h2 id="详细记录"><a href="#详细记录" class="headerlink" title="详细记录"></a>详细记录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@CNACLQLJMP010 install]<span class="comment"># rpm -qa|grep openssl</span></span><br><span class="line">openssl-devel-1.0.1e-58.el6_10.x86_64</span><br><span class="line">openssl-1.0.1e-58.el6_10.x86_64</span><br><span class="line">openssl-static-1.0.1e-58.el6_10.x86_64</span><br><span class="line">[root@CNACLQLJMP010 install]<span class="comment"># openssl version</span></span><br><span class="line">OpenSSL 1.0.1e-fips 11 Feb 2013</span><br><span class="line"></span><br><span class="line">wget https://www.openssl.org/<span class="built_in">source</span>/openssl-1.1.1-pre8.tar.gz</span><br><span class="line">tar -xf openssl-1.1.1-pre8.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openssl-1.1.1-pre8</span><br><span class="line">./config --prefix=/usr/<span class="built_in">local</span>/openssl no-zlib</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">mv /usr/bin/openssl /usr/bin/openssl.bak</span><br><span class="line">mv /usr/include/openssl/ /usr/include/openssl.bak</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/include/openssl /usr/include/openssl</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/lib/libssl.so.1.1 /usr/<span class="built_in">local</span>/lib64/libssl.so</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/bin/openssl /usr/bin/openssl</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/usr/local/openssl/lib"</span> &gt;&gt; /etc/ld.so.conf</span><br><span class="line">ldconfig -v</span><br><span class="line"></span><br><span class="line">openssl version</span><br></pre></td></tr></table></figure>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
@@ -841,10 +841,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>CentOS6.5配置python3.7安装后ssl问题</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">211</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">215</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
     <p><span class="copy-title">发布时间:</span>2020-03-22, 14:23:51</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-24, 12:30:02</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 12:31:58</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/03/22/booboo_others/CentOS6.5%E9%85%8D%E7%BD%AEpython3.7%E5%AE%89%E8%A3%85%E5%90%8Essl%E9%97%AE%E9%A2%98/" title="CentOS6.5配置python3.7安装后ssl问题">http://www.toberoot.com/2020/03/22/booboo_others/CentOS6.5%E9%85%8D%E7%BD%AEpython3.7%E5%AE%89%E8%A3%85%E5%90%8Essl%E9%97%AE%E9%A2%98/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
