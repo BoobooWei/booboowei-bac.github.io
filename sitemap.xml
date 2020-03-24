@@ -2,6 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/</loc>
+    
+    <lastmod>2020-03-24T05:15:44.389Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/</loc>
+    
+    <lastmod>2020-03-24T05:15:44.386Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/</loc>
+    
+    <lastmod>2020-03-24T05:15:44.384Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/</loc>
+    
+    <lastmod>2020-03-24T05:15:44.382Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/</loc>
+    
+    <lastmod>2020-03-24T05:15:44.380Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/</loc>
+    
+    <lastmod>2020-03-24T05:15:44.377Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/</loc>
+    
+    <lastmod>2020-03-24T05:15:44.375Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/02_ftp/</loc>
     
     <lastmod>2020-03-24T05:02:31.715Z</lastmod>

