@@ -642,7 +642,7 @@ div.ac > ul > li:before,
   height: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  background: #ffa;
+  background-image: url("../../img/bg1.gif");
   box-shadow: inset -15px 0 15px -15px #222;
   float: left;
   position: relative;
@@ -814,7 +814,7 @@ div.ac > ul > li:before,
   width: 420px;
   height: 100%;
   font-size: 14px;
-  background: #fdfdfd;
+  background-image: url("../../img/bg1.gif");
   overflow: hidden;
   float: left;
   position: relative;

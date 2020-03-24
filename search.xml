@@ -8250,6 +8250,195 @@ $    取用变量符
       </tags>
   </entry>
   <entry>
+    <title>LINUX Shell Scripts 第五课 各种括号的作用</title>
+    <url>/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/</url>
+    <content><![CDATA[<h3 id="一、小括号-圆括号"><a href="#一、小括号-圆括号" class="headerlink" title="一、小括号,圆括号()"></a>一、小括号,圆括号()</h3><h4 id="1、单小括号"><a href="#1、单小括号" class="headerlink" title="1、单小括号 ()"></a>1、单小括号 ()</h4><p>1 命令组。括号中的命令将会新开一个子shell顺序执行,所以括号中的变量不能够被脚本余下的部分使用。括号中多个命令之间用分号隔开,最后一个命令可以没有分号,各命令和括号之间不必有空格。</p>
+<p>2 命令替换。等同于<code>cmd</code>,shell扫描一遍命令行,发现了$(cmd)结构,便将$(cmd)中的cmd执行一次,得到其标准输出,再将此输出放到原来命令。有些shell不支持,如tcsh。</p>
+<p>3 用于初始化数组。如:array=(a b c d)</p>
+<h4 id="2、双小括号"><a href="#2、双小括号" class="headerlink" title="2、双小括号 (( ))"></a>2、双小括号 (( ))</h4><p>1 整数扩展。这种扩展计算是整数型的计算,不支持浮点型。((exp))结构扩展并计算一个算术表达式的值,如果表达式的结果为0,那么返回的退出状态码为1,或者 是”假”,而一个非零值的表达式所返回的退出状态码将为0,或者是”true”。若是逻辑判断,表达式exp为真则为1,假则为0。</p>
+<p>2 只要括号中的运算符、表达式符合C语言运算规则,都可用在$((exp))中,甚至是三目运算符。作不同进位(如二进制、八进制、十六进制)运算时,输出结果全都自动转化成了十进制。如:echo $((16#5f)) 结果为95(16进位转十进制)</p>
+<p>3 单纯用 (( )) 也可重定义变量值,比如 a=5; ((a++)) 可将 $a 重定义为6</p>
+<p>4 常用于算术运算比较,双括号中的变量可以不使用$符号前缀。括号内支持多个表达式用逗号分开。 只要括号中的表达式符合C语言运算规则,比如可以直接使用for((i=0;i&lt;5;i++)), 如果不使用双括号, 则为for i in <code>seq 04</code>或者for i in {0..4}。再如可以直接使用if (($i&lt;5)), 如果不使用双括号, 则为if [ $i -lt 5 ]。</p>
+<h3 id="二、中括号-方括号"><a href="#二、中括号-方括号" class="headerlink" title="二、中括号,方括号[]"></a>二、中括号,方括号[]</h3><h4 id="1、单中括号"><a href="#1、单中括号" class="headerlink" title="1、单中括号 []"></a>1、单中括号 []</h4><p>1 bash 的内部命令,[和test是等同的。如果我们不用绝对路径指明,通常我们用的都是bash自带的命令。if/test结构中的左中括号是调用test的命令标识,右中括号是关闭条件判断的。这个命令把它的参数作为比较表达式或者作为文件测试,并且根据比较的结果来返回一个退出状态码。if/test结构中并不是必须右中括号,但是新版的Bash中要求必须这样。</p>
+<p>2 Test和[]中可用的比较运算符只有==和!=,两者都是用于字符串比较的,不可用于整数比较,整数比较只能使用-eq,-gt这种形式。无论是字符串比较还是整数比较都不支持大于号小于号。如果实在想用,对于字符串比较可以使用转义形式,如果比较”ab”和”bc”:[ ab &lt; bc ],结果为真,也就是返回状态为0。[ ]中的逻辑与和逻辑或使用-a 和-o 表示。</p>
+<p>3 字符范围。用作正则表达式的一部分,描述一个匹配的字符范围。作为test用途的中括号内不能使用正则。</p>
+<p>4 在一个array 结构的上下文中,中括号用来引用数组中每个元素的编号。</p>
+<h4 id="2、双中括号"><a href="#2、双中括号" class="headerlink" title="2、双中括号[[ ]]"></a>2、双中括号[[ ]]</h4><p>1 [[是 bash 程序语言的关键字。并不是一个命令,[[ ]] 结构比[ ]结构更加通用。在[[和]]之间所有的字符都不会发生文件名扩展或者单词分割,但是会发生参数扩展和命令替换。</p>
+<p>2 支持字符串的模式匹配,使用=~操作符时甚至支持shell的正则表达式。字符串比较时可以把右边的作为一shell中各种括号的作用()、个模式,而不仅仅是一个字符串,比如[[ hello == hell? ]],结果为真。[[ ]] 中匹配字符串或通配符,不需要引号。</p>
+<p>3 使用[[ … ]]条件判断结构,而不是[ … ],能够防止脚本中的许多逻辑错误。比如,&amp;&amp;、||、&lt;和&gt; 操作符能linux shell下除了某个文件外的其他文件全部删除够正常存在于[[ ]]条件判断结构中,但是如果出现在[ ]结构中的话,会报错。比如可以直接使用if [[ $a != 1 &amp;&amp;$a != 2 ]], 如果不适用双括号, 则为if [ $a -ne 1] &amp;&amp; [ $a != 2 ]或者if [ $a -ne 1 -a $a != 2 ]。</p>
+<p>4 bash把双中括号中的表达式看作一个单独的元素,并返回一个退出状态码。</p>
+<h3 id="三、大括号、花括号"><a href="#三、大括号、花括号" class="headerlink" title="三、大括号、花括号 {}"></a>三、大括号、花括号 {}</h3><h4 id="1、常规用法"><a href="#1、常规用法" class="headerlink" title="1、常规用法"></a>1、常规用法</h4><p>1 大括号拓展。(通配(globbing))将对大括号中的文件名做扩展。在大括号中,不允许有空白,除非这个空白被引用或转义。第一种:对大括号中的以逗号分割的文件列表进行拓展。如 touch {a,b}.txt 结果为a.txt b.txt。第二种:对大括号中以点点(..)分割的顺序文件列表起拓展作用,如:touch {a..d}.txt 结果为a.txt b.txt c.txtd.txt</p>
+<p>2 代码块,又被称为内部组,这个结构事实上创建了一个匿名函数 。与小括号中的命令不同,大括号内的命令不会新开一个子shell运行,即脚本余下部分仍可使用括号内变量。括号内的命令间用分号隔开,最后一个也必须有分号。{}的第一个命令和左括号之间必须要有一个空格</p>
+<h4 id="2、几种特殊的替换结构"><a href="#2、几种特殊的替换结构" class="headerlink" title="2、几种特殊的替换结构"></a>2、几种特殊的替换结构</h4><p>${var:-string},${var:+string},${var:=string},${var:?string}</p>
+<p>1 ${var:-string}和${var:=string}:若变量var为空,则用在命令行中用string来替换${var:-string},否则变量var不为空时,则用变量var的值来替换${var:-string};对于${var:=string}的替换规则和${var:-string}是一样的,所不同之处是${var:=string}若var为空时,用string替换${var:=string}的同时,把string赋给变量var:${var:=string}很常用的一种用法是,判断某个变量是否赋值,没有的话则给它赋上一个默认值。</p>
+<p>2 ${var:+string}的替换规则和上面的相反,即只有当var不是空的时候才替换成string,若var为空时则不替换或者说是替换成变量 var的值,即空值。(因为变量var此时为空,所以这两种说法是等价的)</p>
+<p>3 ${var:?string}替换规则为:若变量var不为空,则用变量var的值来替换${var:?string};若变量var为空,则把string输出到标准错误中,并从脚本中退出。我们可利用此特性来检查是否设置了变量的值。</p>
+<p>补充扩展:在上面这五种替换结构中string不一定是常值的,可用另外一个变量的值或是一种命令的输出。</p>
+<h4 id="3、四种模式匹配替换结构"><a href="#3、四种模式匹配替换结构" class="headerlink" title="3、四种模式匹配替换结构"></a>3、四种模式匹配替换结构</h4><p>模式匹配记忆方法:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 是去掉左边(在键盘上<span class="comment">#在$之左边)</span></span></span><br><span class="line"><span class="meta">%</span><span class="bash"> 是去掉右边(在键盘上%在$之右边)</span></span><br><span class="line"><span class="meta">#</span><span class="bash">和%中的单一符号是最小匹配,两个相同符号是最大匹配。</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;var%pattern&#125;,<span class="variable">$&#123;var%%pattern&#125;</span>,<span class="variable">$&#123;var#pattern&#125;</span>,<span class="variable">$&#123;var##pattern&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="4、字符串提取和替换"><a href="#4、字符串提取和替换" class="headerlink" title="4、字符串提取和替换"></a>4、字符串提取和替换</h4><p>${var:num},${var:num1:num2},${var/pattern/pattern},${var//pattern/pattern}</p>
+<ul>
+<li>第一种模式:${var:num},这种模式时,shell在var中提取第num个字符到末尾的所有字符。若num为正数,从左边0处开始;若num为负数,从右边开始提取字串,但必须使用在冒号后面加空格或一个数字或整个num加上括号,如${var: -2}、${var:1-3}或${var:(-2)}。</li>
+<li>第二种模式:${var:num1:num2},num1是位置,num2是长度。表示从$var字符串的第$num1个位置开始提取长度为$num2的子串。不能为负数。</li>
+<li>第三种模式:${var/pattern/pattern}表示将var字符串的第一个匹配的pattern替换为另一个pattern。 。</li>
+<li>第四种模式:${var//pattern/pattern}表示将var字符串中的所有能匹配的pattern替换为另一个pattern。</li>
+</ul>
+<h3 id="四、符号-后的括号"><a href="#四、符号-后的括号" class="headerlink" title="四、符号$后的括号"></a>四、符号$后的括号</h3><ul>
+<li>(1) ${a} 变量a的值, 在不引起歧义的情况下可以省略大括号。</li>
+<li>(2) $(cmd) 命令替换,和<code>cmd</code>效果相同,结果为shell命令cmd的输,过某些Shell版本不支持$()形式的命令替换, 如tcsh。</li>
+<li>(3) $((expression)) 和<code>exprexpression</code>效果相同, 计算数学表达式exp的数值, 其中exp只要符合C语言的运算规则即可, 甚至三目运算符和逻辑表达式都可以计算。</li>
+</ul>
+<h3 id="五、使用多条命令执行"><a href="#五、使用多条命令执行" class="headerlink" title="五、使用多条命令执行"></a>五、使用多条命令执行</h3><ul>
+<li>(1)单小括号,(cmd1;cmd2;cmd3) 新开一个子shell顺序执行命令cmd1,cmd2,cmd3, 各命令之间用分号隔开,最后一个命令后可以没有分号。</li>
+<li>(2)单大括号,{ cmd1;cmd2;cmd3;} 在当前shell顺序执行命令cmd1,cmd2,cmd3, 各命令之间用分号隔开, 最后一个命令后必须有分号, 第一条命令和左括号之间必须用空格隔开。对{}和()而言, 括号中的重定向符只影响该条命令, 而括号外的重定向符影响到括号中的所有命令。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>LinuxShell脚本教程</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>LinuxShell脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LINUX Shell Scripts 第三课 正则表达式</title>
+    <url>/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/</url>
+    <content><![CDATA[<p>Regular Expression 、 regex 或 regexp, 缩写为 RE 正则表达式这个概念最初是由 Unix 中的工具软件 ( 例如 sed 和 grep) 普及开的。</p>
+<p>通常被用来检索、替换那些符合某个规则的文本。</p>
+<p>许多程序设计语言都支持正则表达是进行字符串操作。例如，在perl中就内建了一个功能强大的正则表达式引擎，还有java语言自带的。</p>
+<p>起源于科学家对人类神经系统工作原理的早期研究；Ken Thompson将其应用到计算搜索算法 ，Unix之父将此引入到编辑器QED，后来的ed，最终引入grep。</p>
+<p>概念：</p>
+<p>正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、以及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。</p>
+<h3 id="什么是正则表达式"><a href="#什么是正则表达式" class="headerlink" title="什么是正则表达式"></a>什么是正则表达式</h3><ul>
+<li>正则表达式就是记录文本规则的代码</li>
+<li>和通配符类似,正则表达式也是用来进行文本匹配的工具,只不过比起通配符,它能更精确地描述你的需求</li>
+</ul>
+<p>字符和字符串：</p>
+<ul>
+<li>字符是计算机软件处理文字时最基本的单位,可能是字母,数字,标点符号,空格,换行符,汉字等等</li>
+<li>字符串是0个或更多个字符的序列。</li>
+</ul>
+<p>特点：</p>
+<ol>
+<li>灵活性、逻辑性和功能性非常强；</li>
+<li>可以迅速地用极简单的方式达到字符串的复杂控制；</li>
+<li>对于刚接触的人来说，比较晦涩难懂。</li>
+</ol>
+<p>应用程序：<br>grep,egrep,awk,mysql,vim</p>
+<h3 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">特殊字符 	代表意义</span><br><span class="line">[:alnum:] 代表英文大小写字符及数字 ,0-9, A-Z, a-z</span><br><span class="line">[:alpha:] 代表任何英文大小写字符 , A-Z, a-z</span><br><span class="line">[:lower:] 代表小写字符 , a-z</span><br><span class="line">[:upper:] 代表大写字符 ,A-Z</span><br><span class="line">[:digit:] 代表数字而已 , 0-9</span><br><span class="line">[:xdigit:] 代表 16 进制数字 , 因此包括 : 0-9, A-F, a-f</span><br><span class="line">[:blank:] 代表空格键和 [Tab] 按键</span><br><span class="line">[:space:] 任何会产生空白的字符,包括空格键 , [Tab], CR 等等</span><br><span class="line">[:graph:] 除了空格键 ( 空格键和 [Tab] ) 外的其他所有按键</span><br><span class="line">[:cntrl:] 代表键盘上面的控制按键 , 包括 CR, LF, Tab, Del.. 等等</span><br><span class="line">[:print:] 代表任何可以被打印出来的字符</span><br><span class="line">[:punct:] 代表标点符号 (punctuation symbol) :&quot; &#39; ? ! ; : # $...</span><br></pre></td></tr></table></figure>
+<h3 id="非打印字符"><a href="#非打印字符" class="headerlink" title="非打印字符"></a>非打印字符</h3><p>非打印字符也可以是正则表达式的组成部分。下表列出了表示非打印字符的转义序列：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">字符 	描述</span><br><span class="line">\cx 	匹配由x指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 &#39;c&#39; 字符。</span><br><span class="line">\f 	匹配一个换页符。等价于 \x0c 和 \cL。</span><br><span class="line">\n 	匹配一个换行符。等价于 \x0a 和 \cJ。</span><br><span class="line">\r 	匹配一个回车符。等价于 \x0d 和 \cM。</span><br><span class="line">\s 	匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。</span><br><span class="line">\S 	匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。</span><br><span class="line">\t 	匹配一个制表符。等价于 \x09 和 \cI。</span><br><span class="line">\v 	匹配一个垂直制表符。等价于 \x0b 和 \cK</span><br></pre></td></tr></table></figure>
+<h3 id="常见的正则表达式"><a href="#常见的正则表达式" class="headerlink" title="常见的正则表达式"></a>常见的正则表达式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^ 	行首定位符</span><br><span class="line">$ 	行尾定位符</span><br><span class="line">. 	匹配除换行符之外的单个字符</span><br><span class="line">* 	匹配 0 个或多个前一字符</span><br><span class="line">? 	匹配 0 个或1个前一字符</span><br><span class="line">+	匹配 1 个或多个前一个字符</span><br><span class="line">[ ] 	匹配指定字符组内的任一字符</span><br><span class="line">[^] 	匹配不在指定字符组内的任一字符</span><br><span class="line">\&lt; 	单词起始边界匹配符</span><br><span class="line">\&gt; 	单词结束边界匹配符</span><br><span class="line">x\&#123;m\&#125;	连续 M 个字符 X</span><br><span class="line">x\&#123;m,\&#125; 至少 M 个字符 X</span><br><span class="line">x\&#123;m,n\&#125;至少 M 个最多 N 个字符 X</span><br></pre></td></tr></table></figure>
+
+<h3 id="课堂练习"><a href="#课堂练习" class="headerlink" title="课堂练习"></a>课堂练习</h3><blockquote>
+<p>写一个测试脚本re.sh;带位置参数执行，例如 re.sh ab</p>
+</blockquote>
+<h4 id="代表以a开头的"><a href="#代表以a开头的" class="headerlink" title="代表以a开头的"></a>代表以a开头的</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ^a  ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh b</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
+<h4 id="代表以a结尾的"><a href="#代表以a结尾的" class="headerlink" title="代表以a结尾的"></a>代表以a结尾的</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ a$  ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.sh</span><br><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh b</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ba</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="代表a字符后面一定有两个字符"><a href="#代表a字符后面一定有两个字符" class="headerlink" title="代表a字符后面一定有两个字符"></a>代表a字符后面一定有两个字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ a..  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.sh</span><br><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh axx</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh baxx</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh baxxx</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
+
+<h4 id="代表匹配a字符后面可以是0个b，也可以是多个b"><a href="#代表匹配a字符后面可以是0个b，也可以是多个b" class="headerlink" title="代表匹配a字符后面可以是0个b，也可以是多个b"></a>代表匹配a字符后面可以是0个b，也可以是多个b</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ab*  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbbb</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbbbxxx</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh accc</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh ccc</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="匹配-0-个或1个前一字符"><a href="#匹配-0-个或1个前一字符" class="headerlink" title="匹配 0 个或1个前一字符"></a>匹配 0 个或1个前一字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ 1a?1 ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh 11</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh 1a1</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh 1aa1</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+
+<h4 id="代表匹配a字符后面可以是1个b，也可以是多个b"><a href="#代表匹配a字符后面可以是1个b，也可以是多个b" class="headerlink" title="代表匹配a字符后面可以是1个b，也可以是多个b"></a>代表匹配a字符后面可以是1个b，也可以是多个b</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ab+ ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbb</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh ac</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="代表匹配ab字符，后面可以是任意字符"><a href="#代表匹配ab字符，后面可以是任意字符" class="headerlink" title="代表匹配ab字符，后面可以是任意字符"></a>代表匹配ab字符，后面可以是任意字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ab.*  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.sh</span><br><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbbb</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh accc</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ccc</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+
+<h4 id="代表匹配a和b字符之间可以是任意字符"><a href="#代表匹配a和b字符之间可以是任意字符" class="headerlink" title="代表匹配a和b字符之间可以是任意字符"></a>代表匹配a和b字符之间可以是任意字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ a.*b  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh b</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh a1b</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh 1a1b1</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
+<h4 id="代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符"><a href="#代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符" class="headerlink" title="代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符"></a>代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ [Bb]ooboo ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh booboo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh Booboo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh cooboo</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+
+<h4 id="代表匹配不在指定字符组内的任一字符"><a href="#代表匹配不在指定字符组内的任一字符" class="headerlink" title="代表匹配不在指定字符组内的任一字符"></a>代表匹配不在指定字符组内的任一字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ [^Bb]ooboo ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh booboo</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh Booboo</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh cooboo</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="单词起始和结束边界匹配符与行首行尾的匹配对比"><a href="#单词起始和结束边界匹配符与行首行尾的匹配对比" class="headerlink" title="单词起始和结束边界匹配符与行首行尾的匹配对比"></a>单词起始和结束边界匹配符与行首行尾的匹配对比</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# grep "^booboo" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">[root@rhel6 ~]# grep "\&lt;booboo" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">[root@rhel6 ~]# grep "\&gt;booboo" re.file</span><br><span class="line">[root@rhel6 ~]# grep "\&gt;jack" re.file</span><br><span class="line">[root@rhel6 ~]# grep "jack$" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line">[root@rhel6 ~]# grep "jack\&gt;" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
+<h4 id="某个字符数量限定"><a href="#某个字符数量限定" class="headerlink" title="某个字符数量限定"></a>某个字符数量限定</h4><ul>
+<li>x{m}连续 M 个字符 X       x{3} =3<ul>
+<li>x{m,} 至少 M 个字符 Xx{3,} &gt;=3</li>
+</ul>
+</li>
+<li>x{m,n} 至少 M 个最多 N 个字符 X x{3,4} &gt;=3 &lt;=4</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# grep "o\&#123;0\&#125;" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line">booo</span><br><span class="line">boo</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line">[root@rhel6 ~]# grep "o\&#123;1\&#125;" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">booo</span><br><span class="line">boo</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line">[root@rhel6 ~]# grep "o\&#123;4\&#125;" re.file</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ o&#123;2,3&#125;$ ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# bash re.sh foo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh fooo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh fooof</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh foof</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+<h4 id="digit-代表数字而已-0-9"><a href="#digit-代表数字而已-0-9" class="headerlink" title="[:digit:]代表数字而已 , 0-9"></a>[:digit:]代表数字而已 , 0-9</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# cat re.file1</span><br><span class="line">45aa</span><br><span class="line">sdfsdf</span><br><span class="line">4444</span><br><span class="line">[root@rhel6 ~]# grep "[[:digit:]]" re.file1</span><br><span class="line">45aa</span><br><span class="line">4444</span><br><span class="line">[root@rhel6 ~]# grep "^[[:digit:]]" re.file1</span><br><span class="line">45aa</span><br><span class="line">4444</span><br><span class="line">[root@rhel6 ~]# grep "[^[:digit:]]" re.file1</span><br><span class="line">45aa</span><br><span class="line">sdfsdf</span><br><span class="line">[root@rhel6 ~]# grep "^[^[:digit:]]" re.file1</span><br><span class="line">sdfsdf</span><br></pre></td></tr></table></figure>
+<h3 id="课堂作业"><a href="#课堂作业" class="headerlink" title="课堂作业"></a>课堂作业</h3><blockquote>
+<p>1.说出下面匹配的内容</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">^a 以a开头</span></span><br><span class="line"><span class="meta">#</span><span class="bash">b? b的个数0或者1</span></span><br><span class="line"><span class="meta">#</span><span class="bash">c+ c的个数&gt;=1</span></span><br><span class="line"><span class="meta">#</span><span class="bash">d.*e d和e之间可以是任意字符</span></span><br><span class="line"><span class="meta">#</span><span class="bash">f$ 以f结尾</span></span><br><span class="line">if [[ $1 =~ ^ab?c+d.*ef$ ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<h3 id="课后作业"><a href="#课后作业" class="headerlink" title="课后作业"></a>课后作业</h3><blockquote>
+<p>1.if判断匹配ip地址</p>
+</blockquote>
+<blockquote>
+<p>2.if判断匹配邮件地址格式为<a href="mailto:9aA@9aA.com">9aA@9aA.com</a></p>
+</blockquote>
+<blockquote>
+<p>3.grep 过滤空白行</p>
+</blockquote>
+<blockquote>
+<p>4.grep 过滤以空格开头的行</p>
+</blockquote>
+<blockquote>
+<p>5.针对/usr/share/dict/words文件做过滤</p>
+</blockquote>
+<blockquote>
+<p> 1）列出文件中包含 先有字母t，然后中间有一个元音字母，之后是sh的单词；</p>
+</blockquote>
+<blockquote>
+<p> 2）列出文件中包含 先有字母t，然后中间有若干个元音字母，之后是sh的单词；</p>
+</blockquote>
+<blockquote>
+<p> 3）列出文件中刚好包含16个字母的单词。**</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ^[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;$ ]]</span><br><span class="line">then</span><br><span class="line">	IP=($&#123;1//\./ &#125;)</span><br><span class="line">	[ $&#123;IP[0]&#125; -gt 0 -a $&#123;IP[0]&#125; -lt 255 ] &amp;&amp; [ $&#123;IP[1]&#125; -ge 0 -a $&#123;IP[1]&#125; -lt 255 ] &amp;&amp; [ $&#123;IP[2]&#125; -ge 0 -a $&#123;IP[2]&#125; -lt 255 ] &amp;&amp; [ $&#123;IP[3]&#125; -gt 0 -a $&#123;IP[3]&#125; -lt 255 ] &amp;&amp; echo ok || echo no</span><br><span class="line"></span><br><span class="line">else</span><br><span class="line">        echo "this is not IPADDR!"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ^[0-9a-zA-Z]+@[0-9a-zA-Z]+\.com$  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# grep "^$" re.file2</span><br><span class="line"></span><br><span class="line">grep '^t[a-zA-Z]sh' /usr/share/dict/words</span><br><span class="line">grep '^t[a-zA-Z]\+sh' /usr/share/dict/words</span><br><span class="line">grep -E '^[a-zA-Z0-9]&#123;16&#125;$' /usr/share/dict/words                         </span><br><span class="line">grep '^[a-zA-Z0-9]\&#123;16\&#125;$' /usr/share/dict/words</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="晚自习作业"><a href="#晚自习作业" class="headerlink" title="晚自习作业"></a>晚自习作业</h3><ol>
+<li>完成所有练习</li>
+<li>帐号是否合法（字母开头，允许5-16位，只能包含字母数字下划线）</li>
+<li>密码是否合法（字母开头，允许6-18位，只能包含字母数字下划线和！@#）</li>
+<li>匹配日期2016-10-11<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="keyword">if</span> [[ <span class="variable">$1</span> =~ ^[0-9]&#123;4&#125;-[0-9]&#123;2&#125;-[0-9]&#123;2&#125;$ ]]</span></span><br><span class="line">if [[ $1 =~ ^[0-9]&#123;4&#125;-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[1-9]|3[01])$ ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>LinuxShell脚本教程</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>LinuxShell脚本</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LINUX Shell Scripts 第二课 流程控制语句</title>
     <url>/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/</url>
     <content><![CDATA[<ol>
@@ -8420,142 +8609,6 @@ shell commands
       </tags>
   </entry>
   <entry>
-    <title>LINUX Shell Scripts 第三课 正则表达式</title>
-    <url>/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/</url>
-    <content><![CDATA[<p>Regular Expression 、 regex 或 regexp, 缩写为 RE 正则表达式这个概念最初是由 Unix 中的工具软件 ( 例如 sed 和 grep) 普及开的。</p>
-<p>通常被用来检索、替换那些符合某个规则的文本。</p>
-<p>许多程序设计语言都支持正则表达是进行字符串操作。例如，在perl中就内建了一个功能强大的正则表达式引擎，还有java语言自带的。</p>
-<p>起源于科学家对人类神经系统工作原理的早期研究；Ken Thompson将其应用到计算搜索算法 ，Unix之父将此引入到编辑器QED，后来的ed，最终引入grep。</p>
-<p>概念：</p>
-<p>正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、以及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。</p>
-<h3 id="什么是正则表达式"><a href="#什么是正则表达式" class="headerlink" title="什么是正则表达式"></a>什么是正则表达式</h3><ul>
-<li>正则表达式就是记录文本规则的代码</li>
-<li>和通配符类似,正则表达式也是用来进行文本匹配的工具,只不过比起通配符,它能更精确地描述你的需求</li>
-</ul>
-<p>字符和字符串：</p>
-<ul>
-<li>字符是计算机软件处理文字时最基本的单位,可能是字母,数字,标点符号,空格,换行符,汉字等等</li>
-<li>字符串是0个或更多个字符的序列。</li>
-</ul>
-<p>特点：</p>
-<ol>
-<li>灵活性、逻辑性和功能性非常强；</li>
-<li>可以迅速地用极简单的方式达到字符串的复杂控制；</li>
-<li>对于刚接触的人来说，比较晦涩难懂。</li>
-</ol>
-<p>应用程序：<br>grep,egrep,awk,mysql,vim</p>
-<h3 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">特殊字符 	代表意义</span><br><span class="line">[:alnum:] 代表英文大小写字符及数字 ,0-9, A-Z, a-z</span><br><span class="line">[:alpha:] 代表任何英文大小写字符 , A-Z, a-z</span><br><span class="line">[:lower:] 代表小写字符 , a-z</span><br><span class="line">[:upper:] 代表大写字符 ,A-Z</span><br><span class="line">[:digit:] 代表数字而已 , 0-9</span><br><span class="line">[:xdigit:] 代表 16 进制数字 , 因此包括 : 0-9, A-F, a-f</span><br><span class="line">[:blank:] 代表空格键和 [Tab] 按键</span><br><span class="line">[:space:] 任何会产生空白的字符,包括空格键 , [Tab], CR 等等</span><br><span class="line">[:graph:] 除了空格键 ( 空格键和 [Tab] ) 外的其他所有按键</span><br><span class="line">[:cntrl:] 代表键盘上面的控制按键 , 包括 CR, LF, Tab, Del.. 等等</span><br><span class="line">[:print:] 代表任何可以被打印出来的字符</span><br><span class="line">[:punct:] 代表标点符号 (punctuation symbol) :&quot; &#39; ? ! ; : # $...</span><br></pre></td></tr></table></figure>
-<h3 id="非打印字符"><a href="#非打印字符" class="headerlink" title="非打印字符"></a>非打印字符</h3><p>非打印字符也可以是正则表达式的组成部分。下表列出了表示非打印字符的转义序列：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">字符 	描述</span><br><span class="line">\cx 	匹配由x指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 &#39;c&#39; 字符。</span><br><span class="line">\f 	匹配一个换页符。等价于 \x0c 和 \cL。</span><br><span class="line">\n 	匹配一个换行符。等价于 \x0a 和 \cJ。</span><br><span class="line">\r 	匹配一个回车符。等价于 \x0d 和 \cM。</span><br><span class="line">\s 	匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。</span><br><span class="line">\S 	匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。</span><br><span class="line">\t 	匹配一个制表符。等价于 \x09 和 \cI。</span><br><span class="line">\v 	匹配一个垂直制表符。等价于 \x0b 和 \cK</span><br></pre></td></tr></table></figure>
-<h3 id="常见的正则表达式"><a href="#常见的正则表达式" class="headerlink" title="常见的正则表达式"></a>常见的正则表达式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^ 	行首定位符</span><br><span class="line">$ 	行尾定位符</span><br><span class="line">. 	匹配除换行符之外的单个字符</span><br><span class="line">* 	匹配 0 个或多个前一字符</span><br><span class="line">? 	匹配 0 个或1个前一字符</span><br><span class="line">+	匹配 1 个或多个前一个字符</span><br><span class="line">[ ] 	匹配指定字符组内的任一字符</span><br><span class="line">[^] 	匹配不在指定字符组内的任一字符</span><br><span class="line">\&lt; 	单词起始边界匹配符</span><br><span class="line">\&gt; 	单词结束边界匹配符</span><br><span class="line">x\&#123;m\&#125;	连续 M 个字符 X</span><br><span class="line">x\&#123;m,\&#125; 至少 M 个字符 X</span><br><span class="line">x\&#123;m,n\&#125;至少 M 个最多 N 个字符 X</span><br></pre></td></tr></table></figure>
-
-<h3 id="课堂练习"><a href="#课堂练习" class="headerlink" title="课堂练习"></a>课堂练习</h3><blockquote>
-<p>写一个测试脚本re.sh;带位置参数执行，例如 re.sh ab</p>
-</blockquote>
-<h4 id="代表以a开头的"><a href="#代表以a开头的" class="headerlink" title="代表以a开头的"></a>代表以a开头的</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ^a  ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-
-<p><strong>测试：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh b</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
-<h4 id="代表以a结尾的"><a href="#代表以a结尾的" class="headerlink" title="代表以a结尾的"></a>代表以a结尾的</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ a$  ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p><strong>测试：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.sh</span><br><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh b</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ba</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="代表a字符后面一定有两个字符"><a href="#代表a字符后面一定有两个字符" class="headerlink" title="代表a字符后面一定有两个字符"></a>代表a字符后面一定有两个字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ a..  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p><strong>测试：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.sh</span><br><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh axx</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh baxx</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh baxxx</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
-
-<h4 id="代表匹配a字符后面可以是0个b，也可以是多个b"><a href="#代表匹配a字符后面可以是0个b，也可以是多个b" class="headerlink" title="代表匹配a字符后面可以是0个b，也可以是多个b"></a>代表匹配a字符后面可以是0个b，也可以是多个b</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ab*  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p><strong>测试：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbbb</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbbbxxx</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh accc</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh ccc</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="匹配-0-个或1个前一字符"><a href="#匹配-0-个或1个前一字符" class="headerlink" title="匹配 0 个或1个前一字符"></a>匹配 0 个或1个前一字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ 1a?1 ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p><strong>测试：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh 11</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh 1a1</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh 1aa1</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
-
-<h4 id="代表匹配a字符后面可以是1个b，也可以是多个b"><a href="#代表匹配a字符后面可以是1个b，也可以是多个b" class="headerlink" title="代表匹配a字符后面可以是1个b，也可以是多个b"></a>代表匹配a字符后面可以是1个b，也可以是多个b</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ab+ ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p><strong>测试：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbb</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh ac</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="代表匹配ab字符，后面可以是任意字符"><a href="#代表匹配ab字符，后面可以是任意字符" class="headerlink" title="代表匹配ab字符，后面可以是任意字符"></a>代表匹配ab字符，后面可以是任意字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ab.*  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p><strong>测试：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.sh</span><br><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh abbbb</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh accc</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ccc</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
-
-<h4 id="代表匹配a和b字符之间可以是任意字符"><a href="#代表匹配a和b字符之间可以是任意字符" class="headerlink" title="代表匹配a和b字符之间可以是任意字符"></a>代表匹配a和b字符之间可以是任意字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ a.*b  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p><strong>测试：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh a</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh b</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh ab</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh a1b</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh 1a1b1</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
-<h4 id="代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符"><a href="#代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符" class="headerlink" title="代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符"></a>代表匹配指定字符组内的任一字符，可以用逗号分割，或者不用，效果一样都代表匹配一个字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ [Bb]ooboo ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p><strong>测试：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh booboo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh Booboo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh cooboo</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
-
-<h4 id="代表匹配不在指定字符组内的任一字符"><a href="#代表匹配不在指定字符组内的任一字符" class="headerlink" title="代表匹配不在指定字符组内的任一字符"></a>代表匹配不在指定字符组内的任一字符</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ [^Bb]ooboo ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p><strong>测试：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# bash re.sh booboo</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh Booboo</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh cooboo</span><br><span class="line">ok</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="单词起始和结束边界匹配符与行首行尾的匹配对比"><a href="#单词起始和结束边界匹配符与行首行尾的匹配对比" class="headerlink" title="单词起始和结束边界匹配符与行首行尾的匹配对比"></a>单词起始和结束边界匹配符与行首行尾的匹配对比</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# grep "^booboo" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">[root@rhel6 ~]# grep "\&lt;booboo" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">[root@rhel6 ~]# grep "\&gt;booboo" re.file</span><br><span class="line">[root@rhel6 ~]# grep "\&gt;jack" re.file</span><br><span class="line">[root@rhel6 ~]# grep "jack$" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line">[root@rhel6 ~]# grep "jack\&gt;" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
-<h4 id="某个字符数量限定"><a href="#某个字符数量限定" class="headerlink" title="某个字符数量限定"></a>某个字符数量限定</h4><ul>
-<li>x{m}连续 M 个字符 X       x{3} =3<ul>
-<li>x{m,} 至少 M 个字符 Xx{3,} &gt;=3</li>
-</ul>
-</li>
-<li>x{m,n} 至少 M 个最多 N 个字符 X x{3,4} &gt;=3 &lt;=4</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# vim re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# grep "o\&#123;0\&#125;" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">jack</span><br><span class="line"> jack</span><br><span class="line">jack</span><br><span class="line">booo</span><br><span class="line">boo</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line">[root@rhel6 ~]# grep "o\&#123;1\&#125;" re.file</span><br><span class="line">booboo	tom	jack</span><br><span class="line">jack	tom	booboo</span><br><span class="line">tom tom	tom</span><br><span class="line">booo</span><br><span class="line">boo</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line">[root@rhel6 ~]# grep "o\&#123;4\&#125;" re.file</span><br><span class="line">f	fo	foo	fooo	foooo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ o&#123;2,3&#125;$ ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# bash re.sh foo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh fooo</span><br><span class="line">ok</span><br><span class="line">[root@rhel6 ~]# bash re.sh fooof</span><br><span class="line">no</span><br><span class="line">[root@rhel6 ~]# bash re.sh foof</span><br><span class="line">no</span><br></pre></td></tr></table></figure>
-<h4 id="digit-代表数字而已-0-9"><a href="#digit-代表数字而已-0-9" class="headerlink" title="[:digit:]代表数字而已 , 0-9"></a>[:digit:]代表数字而已 , 0-9</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel6 ~]# cat re.file1</span><br><span class="line">45aa</span><br><span class="line">sdfsdf</span><br><span class="line">4444</span><br><span class="line">[root@rhel6 ~]# grep "[[:digit:]]" re.file1</span><br><span class="line">45aa</span><br><span class="line">4444</span><br><span class="line">[root@rhel6 ~]# grep "^[[:digit:]]" re.file1</span><br><span class="line">45aa</span><br><span class="line">4444</span><br><span class="line">[root@rhel6 ~]# grep "[^[:digit:]]" re.file1</span><br><span class="line">45aa</span><br><span class="line">sdfsdf</span><br><span class="line">[root@rhel6 ~]# grep "^[^[:digit:]]" re.file1</span><br><span class="line">sdfsdf</span><br></pre></td></tr></table></figure>
-<h3 id="课堂作业"><a href="#课堂作业" class="headerlink" title="课堂作业"></a>课堂作业</h3><blockquote>
-<p>1.说出下面匹配的内容</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">^a 以a开头</span></span><br><span class="line"><span class="meta">#</span><span class="bash">b? b的个数0或者1</span></span><br><span class="line"><span class="meta">#</span><span class="bash">c+ c的个数&gt;=1</span></span><br><span class="line"><span class="meta">#</span><span class="bash">d.*e d和e之间可以是任意字符</span></span><br><span class="line"><span class="meta">#</span><span class="bash">f$ 以f结尾</span></span><br><span class="line">if [[ $1 =~ ^ab?c+d.*ef$ ]]</span><br><span class="line">then</span><br><span class="line">        echo ok</span><br><span class="line">else</span><br><span class="line">        echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-
-<h3 id="课后作业"><a href="#课后作业" class="headerlink" title="课后作业"></a>课后作业</h3><blockquote>
-<p>1.if判断匹配ip地址</p>
-</blockquote>
-<blockquote>
-<p>2.if判断匹配邮件地址格式为<a href="mailto:9aA@9aA.com">9aA@9aA.com</a></p>
-</blockquote>
-<blockquote>
-<p>3.grep 过滤空白行</p>
-</blockquote>
-<blockquote>
-<p>4.grep 过滤以空格开头的行</p>
-</blockquote>
-<blockquote>
-<p>5.针对/usr/share/dict/words文件做过滤</p>
-</blockquote>
-<blockquote>
-<p> 1）列出文件中包含 先有字母t，然后中间有一个元音字母，之后是sh的单词；</p>
-</blockquote>
-<blockquote>
-<p> 2）列出文件中包含 先有字母t，然后中间有若干个元音字母，之后是sh的单词；</p>
-</blockquote>
-<blockquote>
-<p> 3）列出文件中刚好包含16个字母的单词。**</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ^[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;$ ]]</span><br><span class="line">then</span><br><span class="line">	IP=($&#123;1//\./ &#125;)</span><br><span class="line">	[ $&#123;IP[0]&#125; -gt 0 -a $&#123;IP[0]&#125; -lt 255 ] &amp;&amp; [ $&#123;IP[1]&#125; -ge 0 -a $&#123;IP[1]&#125; -lt 255 ] &amp;&amp; [ $&#123;IP[2]&#125; -ge 0 -a $&#123;IP[2]&#125; -lt 255 ] &amp;&amp; [ $&#123;IP[3]&#125; -gt 0 -a $&#123;IP[3]&#125; -lt 255 ] &amp;&amp; echo ok || echo no</span><br><span class="line"></span><br><span class="line">else</span><br><span class="line">        echo "this is not IPADDR!"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">if [[ $1 =~ ^[0-9a-zA-Z]+@[0-9a-zA-Z]+\.com$  ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# grep "^$" re.file2</span><br><span class="line"></span><br><span class="line">grep '^t[a-zA-Z]sh' /usr/share/dict/words</span><br><span class="line">grep '^t[a-zA-Z]\+sh' /usr/share/dict/words</span><br><span class="line">grep -E '^[a-zA-Z0-9]&#123;16&#125;$' /usr/share/dict/words                         </span><br><span class="line">grep '^[a-zA-Z0-9]\&#123;16\&#125;$' /usr/share/dict/words</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="晚自习作业"><a href="#晚自习作业" class="headerlink" title="晚自习作业"></a>晚自习作业</h3><ol>
-<li>完成所有练习</li>
-<li>帐号是否合法（字母开头，允许5-16位，只能包含字母数字下划线）</li>
-<li>密码是否合法（字母开头，允许6-18位，只能包含字母数字下划线和！@#）</li>
-<li>匹配日期2016-10-11<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="keyword">if</span> [[ <span class="variable">$1</span> =~ ^[0-9]&#123;4&#125;-[0-9]&#123;2&#125;-[0-9]&#123;2&#125;$ ]]</span></span><br><span class="line">if [[ $1 =~ ^[0-9]&#123;4&#125;-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[1-9]|3[01])$ ]]</span><br><span class="line">then</span><br><span class="line">	echo ok</span><br><span class="line">else</span><br><span class="line">	echo no</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>技术培训</category>
-        <category>LinuxShell脚本教程</category>
-      </categories>
-      <tags>
-        <tag>培训</tag>
-        <tag>LinuxShell脚本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LINUX Shell Scripts 第四课 Sed</title>
     <url>/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/</url>
     <content><![CDATA[<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><h3 id="什么是sed"><a href="#什么是sed" class="headerlink" title="什么是sed"></a>什么是sed</h3><p>sed( 意为流编辑器 , 源自英语 “ stream editor” 的缩写 ) 是 Unix 常见的命令行程序。 sed 用来把文档或字符串里面的文字经过一系列编辑命令转换为另一种格式输出。 sed 通常 用来匹配一个或多个正则表达式的文本进行处理。 分号 (;) 可以用作分隔命令的指示符。尽管 sed 脚本固有的很多限制 , 一连串的 sed 指令加起来可以编程像 仓 库番、快打砖块、甚至俄罗斯方块等电脑游戏的复杂程序。</p>
@@ -8701,59 +8754,6 @@ shell commands
 
 <p>这里使用for循环遍历数组</p>
 <p>awk编程的内容极多，这里只罗列简单常用的用法，更多请参考 <a href="http://www.gnu.org/software/gawk/manual/gawk.html" target="_blank" rel="noopener">http://www.gnu.org/software/gawk/manual/gawk.html</a></p>
-]]></content>
-      <categories>
-        <category>技术培训</category>
-        <category>LinuxShell脚本教程</category>
-      </categories>
-      <tags>
-        <tag>培训</tag>
-        <tag>LinuxShell脚本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LINUX Shell Scripts 第五课 各种括号的作用</title>
-    <url>/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/</url>
-    <content><![CDATA[<h3 id="一、小括号-圆括号"><a href="#一、小括号-圆括号" class="headerlink" title="一、小括号,圆括号()"></a>一、小括号,圆括号()</h3><h4 id="1、单小括号"><a href="#1、单小括号" class="headerlink" title="1、单小括号 ()"></a>1、单小括号 ()</h4><p>1 命令组。括号中的命令将会新开一个子shell顺序执行,所以括号中的变量不能够被脚本余下的部分使用。括号中多个命令之间用分号隔开,最后一个命令可以没有分号,各命令和括号之间不必有空格。</p>
-<p>2 命令替换。等同于<code>cmd</code>,shell扫描一遍命令行,发现了$(cmd)结构,便将$(cmd)中的cmd执行一次,得到其标准输出,再将此输出放到原来命令。有些shell不支持,如tcsh。</p>
-<p>3 用于初始化数组。如:array=(a b c d)</p>
-<h4 id="2、双小括号"><a href="#2、双小括号" class="headerlink" title="2、双小括号 (( ))"></a>2、双小括号 (( ))</h4><p>1 整数扩展。这种扩展计算是整数型的计算,不支持浮点型。((exp))结构扩展并计算一个算术表达式的值,如果表达式的结果为0,那么返回的退出状态码为1,或者 是”假”,而一个非零值的表达式所返回的退出状态码将为0,或者是”true”。若是逻辑判断,表达式exp为真则为1,假则为0。</p>
-<p>2 只要括号中的运算符、表达式符合C语言运算规则,都可用在$((exp))中,甚至是三目运算符。作不同进位(如二进制、八进制、十六进制)运算时,输出结果全都自动转化成了十进制。如:echo $((16#5f)) 结果为95(16进位转十进制)</p>
-<p>3 单纯用 (( )) 也可重定义变量值,比如 a=5; ((a++)) 可将 $a 重定义为6</p>
-<p>4 常用于算术运算比较,双括号中的变量可以不使用$符号前缀。括号内支持多个表达式用逗号分开。 只要括号中的表达式符合C语言运算规则,比如可以直接使用for((i=0;i&lt;5;i++)), 如果不使用双括号, 则为for i in <code>seq 04</code>或者for i in {0..4}。再如可以直接使用if (($i&lt;5)), 如果不使用双括号, 则为if [ $i -lt 5 ]。</p>
-<h3 id="二、中括号-方括号"><a href="#二、中括号-方括号" class="headerlink" title="二、中括号,方括号[]"></a>二、中括号,方括号[]</h3><h4 id="1、单中括号"><a href="#1、单中括号" class="headerlink" title="1、单中括号 []"></a>1、单中括号 []</h4><p>1 bash 的内部命令,[和test是等同的。如果我们不用绝对路径指明,通常我们用的都是bash自带的命令。if/test结构中的左中括号是调用test的命令标识,右中括号是关闭条件判断的。这个命令把它的参数作为比较表达式或者作为文件测试,并且根据比较的结果来返回一个退出状态码。if/test结构中并不是必须右中括号,但是新版的Bash中要求必须这样。</p>
-<p>2 Test和[]中可用的比较运算符只有==和!=,两者都是用于字符串比较的,不可用于整数比较,整数比较只能使用-eq,-gt这种形式。无论是字符串比较还是整数比较都不支持大于号小于号。如果实在想用,对于字符串比较可以使用转义形式,如果比较”ab”和”bc”:[ ab &lt; bc ],结果为真,也就是返回状态为0。[ ]中的逻辑与和逻辑或使用-a 和-o 表示。</p>
-<p>3 字符范围。用作正则表达式的一部分,描述一个匹配的字符范围。作为test用途的中括号内不能使用正则。</p>
-<p>4 在一个array 结构的上下文中,中括号用来引用数组中每个元素的编号。</p>
-<h4 id="2、双中括号"><a href="#2、双中括号" class="headerlink" title="2、双中括号[[ ]]"></a>2、双中括号[[ ]]</h4><p>1 [[是 bash 程序语言的关键字。并不是一个命令,[[ ]] 结构比[ ]结构更加通用。在[[和]]之间所有的字符都不会发生文件名扩展或者单词分割,但是会发生参数扩展和命令替换。</p>
-<p>2 支持字符串的模式匹配,使用=~操作符时甚至支持shell的正则表达式。字符串比较时可以把右边的作为一shell中各种括号的作用()、个模式,而不仅仅是一个字符串,比如[[ hello == hell? ]],结果为真。[[ ]] 中匹配字符串或通配符,不需要引号。</p>
-<p>3 使用[[ … ]]条件判断结构,而不是[ … ],能够防止脚本中的许多逻辑错误。比如,&amp;&amp;、||、&lt;和&gt; 操作符能linux shell下除了某个文件外的其他文件全部删除够正常存在于[[ ]]条件判断结构中,但是如果出现在[ ]结构中的话,会报错。比如可以直接使用if [[ $a != 1 &amp;&amp;$a != 2 ]], 如果不适用双括号, 则为if [ $a -ne 1] &amp;&amp; [ $a != 2 ]或者if [ $a -ne 1 -a $a != 2 ]。</p>
-<p>4 bash把双中括号中的表达式看作一个单独的元素,并返回一个退出状态码。</p>
-<h3 id="三、大括号、花括号"><a href="#三、大括号、花括号" class="headerlink" title="三、大括号、花括号 {}"></a>三、大括号、花括号 {}</h3><h4 id="1、常规用法"><a href="#1、常规用法" class="headerlink" title="1、常规用法"></a>1、常规用法</h4><p>1 大括号拓展。(通配(globbing))将对大括号中的文件名做扩展。在大括号中,不允许有空白,除非这个空白被引用或转义。第一种:对大括号中的以逗号分割的文件列表进行拓展。如 touch {a,b}.txt 结果为a.txt b.txt。第二种:对大括号中以点点(..)分割的顺序文件列表起拓展作用,如:touch {a..d}.txt 结果为a.txt b.txt c.txtd.txt</p>
-<p>2 代码块,又被称为内部组,这个结构事实上创建了一个匿名函数 。与小括号中的命令不同,大括号内的命令不会新开一个子shell运行,即脚本余下部分仍可使用括号内变量。括号内的命令间用分号隔开,最后一个也必须有分号。{}的第一个命令和左括号之间必须要有一个空格</p>
-<h4 id="2、几种特殊的替换结构"><a href="#2、几种特殊的替换结构" class="headerlink" title="2、几种特殊的替换结构"></a>2、几种特殊的替换结构</h4><p>${var:-string},${var:+string},${var:=string},${var:?string}</p>
-<p>1 ${var:-string}和${var:=string}:若变量var为空,则用在命令行中用string来替换${var:-string},否则变量var不为空时,则用变量var的值来替换${var:-string};对于${var:=string}的替换规则和${var:-string}是一样的,所不同之处是${var:=string}若var为空时,用string替换${var:=string}的同时,把string赋给变量var:${var:=string}很常用的一种用法是,判断某个变量是否赋值,没有的话则给它赋上一个默认值。</p>
-<p>2 ${var:+string}的替换规则和上面的相反,即只有当var不是空的时候才替换成string,若var为空时则不替换或者说是替换成变量 var的值,即空值。(因为变量var此时为空,所以这两种说法是等价的)</p>
-<p>3 ${var:?string}替换规则为:若变量var不为空,则用变量var的值来替换${var:?string};若变量var为空,则把string输出到标准错误中,并从脚本中退出。我们可利用此特性来检查是否设置了变量的值。</p>
-<p>补充扩展:在上面这五种替换结构中string不一定是常值的,可用另外一个变量的值或是一种命令的输出。</p>
-<h4 id="3、四种模式匹配替换结构"><a href="#3、四种模式匹配替换结构" class="headerlink" title="3、四种模式匹配替换结构"></a>3、四种模式匹配替换结构</h4><p>模式匹配记忆方法:</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 是去掉左边(在键盘上<span class="comment">#在$之左边)</span></span></span><br><span class="line"><span class="meta">%</span><span class="bash"> 是去掉右边(在键盘上%在$之右边)</span></span><br><span class="line"><span class="meta">#</span><span class="bash">和%中的单一符号是最小匹配,两个相同符号是最大匹配。</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;var%pattern&#125;,<span class="variable">$&#123;var%%pattern&#125;</span>,<span class="variable">$&#123;var#pattern&#125;</span>,<span class="variable">$&#123;var##pattern&#125;</span></span></span><br></pre></td></tr></table></figure>
-<h4 id="4、字符串提取和替换"><a href="#4、字符串提取和替换" class="headerlink" title="4、字符串提取和替换"></a>4、字符串提取和替换</h4><p>${var:num},${var:num1:num2},${var/pattern/pattern},${var//pattern/pattern}</p>
-<ul>
-<li>第一种模式:${var:num},这种模式时,shell在var中提取第num个字符到末尾的所有字符。若num为正数,从左边0处开始;若num为负数,从右边开始提取字串,但必须使用在冒号后面加空格或一个数字或整个num加上括号,如${var: -2}、${var:1-3}或${var:(-2)}。</li>
-<li>第二种模式:${var:num1:num2},num1是位置,num2是长度。表示从$var字符串的第$num1个位置开始提取长度为$num2的子串。不能为负数。</li>
-<li>第三种模式:${var/pattern/pattern}表示将var字符串的第一个匹配的pattern替换为另一个pattern。 。</li>
-<li>第四种模式:${var//pattern/pattern}表示将var字符串中的所有能匹配的pattern替换为另一个pattern。</li>
-</ul>
-<h3 id="四、符号-后的括号"><a href="#四、符号-后的括号" class="headerlink" title="四、符号$后的括号"></a>四、符号$后的括号</h3><ul>
-<li>(1) ${a} 变量a的值, 在不引起歧义的情况下可以省略大括号。</li>
-<li>(2) $(cmd) 命令替换,和<code>cmd</code>效果相同,结果为shell命令cmd的输,过某些Shell版本不支持$()形式的命令替换, 如tcsh。</li>
-<li>(3) $((expression)) 和<code>exprexpression</code>效果相同, 计算数学表达式exp的数值, 其中exp只要符合C语言的运算规则即可, 甚至三目运算符和逻辑表达式都可以计算。</li>
-</ul>
-<h3 id="五、使用多条命令执行"><a href="#五、使用多条命令执行" class="headerlink" title="五、使用多条命令执行"></a>五、使用多条命令执行</h3><ul>
-<li>(1)单小括号,(cmd1;cmd2;cmd3) 新开一个子shell顺序执行命令cmd1,cmd2,cmd3, 各命令之间用分号隔开,最后一个命令后可以没有分号。</li>
-<li>(2)单大括号,{ cmd1;cmd2;cmd3;} 在当前shell顺序执行命令cmd1,cmd2,cmd3, 各命令之间用分号隔开, 最后一个命令后必须有分号, 第一条命令和左括号之间必须用空格隔开。对{}和()而言, 括号中的重定向符只影响该条命令, 而括号外的重定向符影响到括号中的所有命令。</li>
-</ul>
 ]]></content>
       <categories>
         <category>技术培训</category>
@@ -9702,28 +9702,6 @@ shell commands
       </tags>
   </entry>
   <entry>
-    <title>SAMBA文件共享服务</title>
-    <url>/2016/12/23/booboo_easy_service/04_samba/</url>
-    <content><![CDATA[<h3 id="Samba的历史及原理"><a href="#Samba的历史及原理" class="headerlink" title="Samba的历史及原理"></a>Samba的历史及原理</h3><p>在早期的网络世界中，文件数据在不同主机之间的传输大多是使用FTP这个好用的服务器软件进行的。不过，使用FTP传输文件却有个小小的问题，那就是您无法直接修改主机上面的文件数据。也就是说，您想要更改Linux主机上面的某个文件时，必须要由服务器端将该文件下载到您工作的客户端后才能修改，因此该文件在服务器端和客户端都会存在。这时，如果有一天您修改了某个文件，却忘记将数据上传回主机，那么等过了一阵子之后，您如何知道哪既然有这样的问题，那好吧，我可不可以在客户端的机器上面直接取用服务器上面的文件？如果可以在客户端直接进行服务器端文件的访问，那么我在客户端就不需要存在该文件数据了，也就是说，我只要有服务器上面的文件数据存在就可以了。有没有这样的文件系统（File System）呢？前面我们提到过的Network File System（NFS）就是这样的文件系统之一。只要在客户端将服务器端所提供的共享目录挂载进来，那么在我的客户端就可以直接取用服务器上的文件数据，而且，该数据就像是客户端上的分区一样，非常好用！而除了可以让Unix Like的机器互相分享文件的NFS服务器之外，在微软（Microsoft）上面也有类似的文件系统，那就是Common Internet File System（CIFS）。CIFS最简单的用途就是目前常见的“网上邻居”。Windows系统的计算机可以通过桌面上的“网上邻居”来访问别人所提供的文件数据。不过，NFS仅能让Unix机器沟通，CIFS只能让Windows机器沟通。那么有没有让Windows与Unix Like这两个不同的平台相互分享文件数据的文件系统呢？个文件才是最新的？</p>
-<p>在1991年，一个名叫Andrew Tridgwell的大学生就有这样的困扰，他手上有三台机器，分别是运行DOS的个人计算机、DEC公司的Digital Unix系统以及Sun的Unix系统。在当时，DEC 公司开发出一套称为PATHWORKS的软件，这套软件可以用来分享DEC的Unix与个人计算机的DOS这两个操作系统的文件数据，可惜让Tridgwell觉得较困扰的是Sun的Unix无法通过这个软件来达到文件共享的目的。这个时候Tridgwell就想：“咦！既然这两台系统可以共享，没道理Sun就必须这么苦命吧？可不可以将这两个系统的工作原理找出来，然后让Sun机器也能够共享文件数据呢？”，为了解决这样的的问题，Tridgwell就自行编写了一个程序去检测当DOS与DEC的Unix系统在进行文件分享传输时所使用到的通信协议信息，然后获取这些重要的信息，并且基于上述所找到的通信协议而开发出Server Message Block（SMB）这个文件系统，而就是这套SMB软件就能够让Unix与DOS互相共享文件。</p>
-<p>既然写成了软件，总需要注册商标，因此Tridgwell就申请SMB Server作为该软件的商标。可惜因为SMB是没有意义的文字，没有办法达成注册。既然如此，能不能在字典里面找到相关的字词可以作为商标来注册呢？翻了老半天，发现SAMBA刚好含有SMB，又是热情有劲的拉丁舞蹈的名称，不然就用这个名字来作为商标好了。这成为我们今天所使用的SAMBA的名称的由来。</p>
-<h3 id="Samba的作用"><a href="#Samba的作用" class="headerlink" title="Samba的作用"></a>Samba的作用</h3><p>作用：windows和类unix系统文件共享服务</p>
-<h3 id="Samba的软件结构"><a href="#Samba的软件结构" class="headerlink" title="Samba的软件结构"></a>Samba的软件结构</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 服务端linux</span></span><br><span class="line"></span><br><span class="line">软件		samba samba-common</span><br><span class="line">service		nmb	smb</span><br><span class="line">daemon		nmbd	smbd</span><br><span class="line">端口		137 138|139 445</span><br><span class="line">配置文件		/etc/samba/smb.conf</span><br><span class="line">数据文件		/var/lib/samba</span><br><span class="line">日志文件		/var/log/samba</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端linux</span></span><br><span class="line">软件		samba-client</span><br><span class="line">命令		smbclient</span><br><span class="line">		smbclient -L ip -U username</span><br><span class="line">		smbpasswd -a username</span><br><span class="line">		smbpasswd username</span><br><span class="line">		smbclient //172.25.0.11/共享名</span><br><span class="line">		smbclient //172.25.0.11/共享名 -U student</span><br><span class="line">		mount -t cifs //172.25.15.11/共享名 /mnt -o guest</span><br><span class="line">		mount -t cifs //172.25.15.11/共享名 /mnt -o username=student</span><br></pre></td></tr></table></figure>
-<h3 id="项目实践1：配置samba共享"><a href="#项目实践1：配置samba共享" class="headerlink" title="项目实践1：配置samba共享"></a>项目实践1：配置samba共享</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">系统用户</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">服务器端rhel6</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">[root@rhel6 ~]# yum install -y samba samba-common</span><br><span class="line">[root@rhel6 ~]# service iptables stop</span><br><span class="line">iptables: Setting chains to policy ACCEPT: filter          [  OK  ]</span><br><span class="line">iptables: Flushing firewall rules:                         [  OK  ]</span><br><span class="line">iptables: Unloading modules:                               [  OK  ]</span><br><span class="line">[root@rhel6 ~]#</span><br><span class="line">[root@rhel6 ~]# service smb start</span><br><span class="line">Starting SMB services:                                     [  OK  ]</span><br><span class="line">[root@rhel6 ~]# service nmb start</span><br><span class="line">Starting NMB services:                                     [  OK  ]</span><br><span class="line">[root@rhel6 ~]# id student</span><br><span class="line">uid=500(student) gid=500(student) groups=500(student)</span><br><span class="line">[root@rhel6 ~]# which smbpasswd</span><br><span class="line">/usr/bin/smbpasswd</span><br><span class="line">[root@rhel6 ~]# smbpasswd -a student</span><br><span class="line">New SMB password:</span><br><span class="line">Retype new SMB password:</span><br><span class="line">Added user student.</span><br><span class="line">[root@rhel6 ~]# getsebool -a|grep samba</span><br><span class="line">samba_create_home_dirs --&gt; off</span><br><span class="line">samba_domain_controller --&gt; off</span><br><span class="line">samba_enable_home_dirs --&gt; off</span><br><span class="line">samba_export_all_ro --&gt; off</span><br><span class="line">samba_export_all_rw --&gt; off</span><br><span class="line">samba_portmapper --&gt; off</span><br><span class="line">samba_run_unconfined --&gt; off</span><br><span class="line">samba_share_fusefs --&gt; off</span><br><span class="line">samba_share_nfs --&gt; off</span><br><span class="line">sanlock_use_samba --&gt; off</span><br><span class="line">use_samba_home_dirs --&gt; off</span><br><span class="line">virt_use_samba --&gt; off</span><br><span class="line">[root@rhel6 ~]# setsebool -P samba_enable_home_dirs 1</span><br><span class="line">[root@rhel6 ~]# getsebool -a|grep samba</span><br><span class="line">samba_create_home_dirs --&gt; off</span><br><span class="line">samba_domain_controller --&gt; off</span><br><span class="line">samba_enable_home_dirs --&gt; on</span><br><span class="line">samba_export_all_ro --&gt; off</span><br><span class="line">samba_export_all_rw --&gt; off</span><br><span class="line">samba_portmapper --&gt; off</span><br><span class="line">samba_run_unconfined --&gt; off</span><br><span class="line">samba_share_fusefs --&gt; off</span><br><span class="line">samba_share_nfs --&gt; off</span><br><span class="line">sanlock_use_samba --&gt; off</span><br><span class="line">use_samba_home_dirs --&gt; off</span><br><span class="line">virt_use_samba --&gt; off</span><br><span class="line">-----------------------------------</span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端linux——类似ftp的方式访问</span></span><br><span class="line">[root@rhel7 ~]# systemctl stop firewalld</span><br><span class="line">[root@rhel7 ~]# yum install -y samba-client</span><br><span class="line">[root@rhel7 ~]# smbclient -L 172.25.0.11</span><br><span class="line">Enter root\'s password:</span><br><span class="line">Anonymous login successful</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Sharename       Type      Comment</span><br><span class="line">	---------       ----      -------</span><br><span class="line"><span class="meta">	IPC$</span><span class="bash">            IPC       IPC Service (Samba Server Version 3.6.9-164.el6)</span></span><br><span class="line">Anonymous login successful</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Server               Comment</span><br><span class="line">	---------            -------</span><br><span class="line">	RHEL6                Samba Server Version 3.6.9-164.el6</span><br><span class="line"></span><br><span class="line">	Workgroup            Master</span><br><span class="line">	---------            -------</span><br><span class="line">	MYGROUP              RHEL6</span><br><span class="line">[root@rhel7 ~]# smbclient -L 172.25.0.11 -U student</span><br><span class="line">Enter student\'s password:</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Sharename       Type      Comment</span><br><span class="line">	---------       ----      -------</span><br><span class="line"><span class="meta">	IPC$</span><span class="bash">            IPC       IPC Service (Samba Server Version 3.6.9-164.el6)</span></span><br><span class="line">	student         Disk      Home Directories</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Server               Comment</span><br><span class="line">	---------            -------</span><br><span class="line">	RHEL6                Samba Server Version 3.6.9-164.el6</span><br><span class="line"></span><br><span class="line">	Workgroup            Master</span><br><span class="line">	---------            -------</span><br><span class="line">	MYGROUP              RHEL6</span><br><span class="line">[root@rhel7 ~]# smbclient //172.25.0.11/student -U student</span><br><span class="line">Enter student\'s password:</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line">smb: \&gt;</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">NT_STATUS_ACCESS_DENIED listing \*</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">  .                                   D        0  Thu Jul  2 04:01:16 2015</span><br><span class="line">  ..                                  D        0  Thu Jul  2 03:57:29 2015</span><br><span class="line">  .ssh                               DH        0  Thu Jul  2 04:01:07 2015</span><br><span class="line">  .bashrc                             H      124  Tue Jul  9 09:24:50 2013</span><br><span class="line">  .bash_logout                        H       18  Tue Jul  9 09:24:50 2013</span><br><span class="line">  .mozilla                           DH        0  Thu Jul  2 03:36:20 2015</span><br><span class="line">  .bash_history                       H        5  Thu Jul  2 04:01:16 2015</span><br><span class="line">  .gnome2                            DH        0  Wed Jul 14 11:55:40 2010</span><br><span class="line">  .bash_profile                       H      176  Tue Jul  9 09:24:50 2013</span><br><span class="line"></span><br><span class="line">		49584 blocks of size 8192. 45708 blocks available</span><br><span class="line">smb: \&gt; exit</span><br><span class="line">-------------------------------------------------------------</span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端windows</span></span><br><span class="line">打开浏览器输入\\172.25.0.11\</span><br><span class="line">输入student和uplooking密码后就可以进入服务器中的用户家目录，创建目录aa，以及文件aa下的dd.txt</span><br><span class="line">--------------------------------------------------------------</span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端linux</span></span><br><span class="line">[root@rhel7 ~]# smbclient //172.25.0.11/student -U student</span><br><span class="line">Enter student\'s password:</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">  .                                   D        0  Thu Aug  4 04:30:31 2016</span><br><span class="line">  ..                                  D        0  Thu Jul  2 03:57:30 2015</span><br><span class="line">  .ssh                               DH        0  Thu Jul  2 04:01:07 2015</span><br><span class="line">  aa                                  D        0  Thu Aug  4 04:30:28 2016</span><br><span class="line">  .bashrc                             H      124  Tue Jul  9 09:24:50 2013</span><br><span class="line">  .bash_logout                        H       18  Tue Jul  9 09:24:50 2013</span><br><span class="line">  .mozilla                           DH        0  Thu Jul  2 03:36:20 2015</span><br><span class="line">  .bash_history                       H        5  Thu Jul  2 04:01:16 2015</span><br><span class="line">  .gnome2                            DH        0  Wed Jul 14 11:55:40 2010</span><br><span class="line">  .bash_profile                       H      176  Tue Jul  9 09:24:50 2013</span><br><span class="line"></span><br><span class="line">		49584 blocks of size 8192. 45707 blocks available</span><br><span class="line">smb: \&gt; get aa</span><br><span class="line">NT_STATUS_FILE_IS_A_DIRECTORY opening remote file \aa</span><br><span class="line">smb: \&gt; cd aa</span><br><span class="line">smb: \aa\&gt; ls</span><br><span class="line">  .                                   D        0  Thu Aug  4 04:30:28 2016</span><br><span class="line">  ..                                  D        0  Thu Aug  4 04:30:31 2016</span><br><span class="line">  dd.txt                              A        2  Thu Aug  4 04:31:01 2016</span><br><span class="line"></span><br><span class="line">		49584 blocks of size 8192. 45707 blocks available</span><br><span class="line">smb: \aa\&gt; get dd.txt</span><br><span class="line">getting file \aa\dd.txt of size 2 as dd.txt (1.0 KiloBytes/sec) (average 1.0 KiloBytes/sec)</span><br><span class="line">可以查看到了。</span><br><span class="line"></span><br><span class="line">********************************************************************</span><br><span class="line">=====================================================================</span><br><span class="line">匿名用户</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">服务器端rhel6</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line"></span><br><span class="line">1.创建共享目录/var/lib/samba/share</span><br><span class="line">[root@rhel6 ~]# mkdir /var/lib/samba/share</span><br><span class="line">2.修改配置文件</span><br><span class="line">[root@rhel6 ~]# vim /etc/samba/smb.conf</span><br><span class="line">[public]</span><br><span class="line">       comment = Public Stuff</span><br><span class="line">       path = /var/lib/samba/share</span><br><span class="line">       public = yes</span><br><span class="line">       writable = yes</span><br><span class="line">3.重启服务</span><br><span class="line">[root@rhel6 ~]# service smb restart</span><br><span class="line">Shutting down SMB services:                                [  OK  ]</span><br><span class="line">Starting SMB services:                                     [  OK  ]</span><br><span class="line">[root@rhel6 ~]# service nmb restart</span><br><span class="line">Shutting down NMB services:                                [  OK  ]</span><br><span class="line">Starting NMB services:                                     [  OK  ]</span><br><span class="line">4.修改共享目录的UGO权限</span><br><span class="line">[root@rhel6 ~]# ll -d /var/lib/samba/share</span><br><span class="line">drwxr-xr-x. 2 root root 4096 Aug  5 10:27 /var/lib/samba/share</span><br><span class="line">[root@rhel6 ~]# grep nobody /etc/passwd</span><br><span class="line">nobody:x:99:99:Nobody:/:/sbin/nologin</span><br><span class="line">nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin</span><br><span class="line">[root@rhel6 ~]# chown nobody. /var/lib/samba/share</span><br><span class="line">[root@rhel6 ~]# ll -d /var/lib/samba/share</span><br><span class="line">drwxr-xr-x. 2 nobody nobody 4096 Aug  5 10:27 /var/lib/samba/share</span><br><span class="line">[root@rhel6 ~]# touch /var/lib/samba/share</span><br><span class="line">[root@rhel6 ~]# touch /var/lib/samba/share/smb-file&#123;1..5&#125;</span><br><span class="line">[root@rhel6 ~]# chown nobody. /var/lib/samba/share -R</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# service smb stop</span><br><span class="line">Shutting down SMB services:                                [  OK  ]</span><br><span class="line">[root@rhel6 ~]# service smb start</span><br><span class="line">Starting SMB services:                                     [  OK  ]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">客户端rhel7</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">[root@rhel7 ~]# smbclient -L 172.25.0.11</span><br><span class="line">Enter root\'s password:</span><br><span class="line">Anonymous login successful</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Sharename       Type      Comment</span><br><span class="line">	---------       ----      -------</span><br><span class="line">	public          Disk      Public Stuff</span><br><span class="line"><span class="meta">	IPC$</span><span class="bash">            IPC       IPC Service (Samba Server Version 3.6.9-164.el6)</span></span><br><span class="line">Anonymous login successful</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Server               Comment</span><br><span class="line">	---------            -------</span><br><span class="line">	RHEL6                Samba Server Version 3.6.9-164.el6</span><br><span class="line"></span><br><span class="line">	Workgroup            Master</span><br><span class="line">	---------            -------</span><br><span class="line">	MYGROUP              RHEL6</span><br><span class="line">[root@rhel7 ~]# smbclient //172.25.0.11/public</span><br><span class="line">Enter root\'s password:</span><br><span class="line">Anonymous login successful</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">  .                                   D        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  ..                                  D        0  Thu Aug  4 22:30:52 2016</span><br><span class="line">  smb-file4                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file2                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file5                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file1                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file3                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line"></span><br><span class="line">		34505 blocks of size 524288. 26941 blocks available</span><br><span class="line">smb: \&gt; get smb-file1</span><br><span class="line">getting file \smb-file1 of size 0 as smb-file1 (0.0 KiloBytes/sec) (average 0.0 KiloBytes/sec)</span><br><span class="line">smb: \&gt; put rhel7</span><br><span class="line">putting file rhel7 as \rhel7 (0.0 kb/s) (average 0.0 kb/s)</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">  .                                   D        0  Thu Aug  4 22:34:46 2016</span><br><span class="line">  ..                                  D        0  Thu Aug  4 22:30:52 2016</span><br><span class="line">  smb-file4                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  rhel7                               A        0  Thu Aug  4 22:34:46 2016</span><br><span class="line">  smb-file2                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file5                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file1                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file3                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line"></span><br><span class="line">		34505 blocks of size 524288. 26941 blocks available</span><br><span class="line">smb: \&gt; exit</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">客户端windows</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">打开浏览器输入\\172.25.0.11\</span><br><span class="line">就能看到public了</span><br><span class="line"></span><br><span class="line">=================================================================</span><br><span class="line">～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～</span><br><span class="line">以类似nfs挂接的方式来共享samba</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line">客户端</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line">mount -t cifs //172.25.0.11/student /mnt -o username=student</span><br><span class="line">uplooking</span><br><span class="line"></span><br><span class="line">1.安装软件cifs-utils</span><br><span class="line">[root@rhel7 ~]# yum install -y cifs-utils</span><br><span class="line">2.mount挂载</span><br><span class="line">[root@rhel7 ~]# mount -t cifs //172.25.0.11/student /mnt -o username=student</span><br><span class="line">Password for student@//172.25.0.11/student:  *********</span><br><span class="line">[root@rhel7 ~]# mount|tail -n 1</span><br><span class="line">//172.25.0.11/student on /mnt type cifs (rw,relatime,vers=1.0,cache=strict,username=student,domain=RHEL6,uid=0,noforceuid,gid=0,noforcegid,addr=172.25.0.11,unix,posixpaths,serverino,acl,rsize=1048576,wsize=65536,actimeo=1)</span><br><span class="line">[root@rhel7 ~]# cd /mnt</span><br><span class="line">[root@rhel7 mnt]# ll</span><br><span class="line">total 1024</span><br><span class="line">-rwxrw-r--. 1 500 500 8 Aug  4 22:15 file-student.txt</span><br><span class="line">drwxr-xr-x. 2 500 500 0 Aug  4 22:19 windows</span><br><span class="line"></span><br><span class="line">3.可以设置开机自动挂载，/etc/bashrc或者/etc/profile中</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Samba的主配置文件-etc-samba-smb-conf详细解析"><a href="#Samba的主配置文件-etc-samba-smb-conf详细解析" class="headerlink" title="Samba的主配置文件/etc/samba/smb.conf详细解析"></a>Samba的主配置文件/etc/samba/smb.conf详细解析</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">首先是全局配置</span><br><span class="line">【global】</span><br><span class="line">        workgroup = MYGROUP     --&gt;工作组，工作组是windows上的概念</span><br><span class="line">        server string = Samba Server Version %v   --&gt;关于samba的说明</span><br><span class="line"></span><br><span class="line">        netbios name = MYSERVER   --&gt;网络名称</span><br><span class="line"></span><br><span class="line">;       interfaces = lo eth0 192.168.12.2/24 192.168.13.2/24   --&gt;接口网段信息</span><br><span class="line">;       hosts allow = 127. 192.168.12. 192.168.13.    --&gt;允许哪些机器来访问共享</span><br><span class="line"></span><br><span class="line">;       max protocol = SMB2</span><br><span class="line">【logging options】  关于日志的配置</span><br><span class="line"> 	log file = /var/log/samba/log.%m    	日志存放的位置，%m代表日期</span><br><span class="line"> 	max log size = 50			日志的大小限制为50K</span><br><span class="line">【 Standalone Server Options 】 关于安全级别的相关配置</span><br><span class="line">        security = user    --&gt; user代表需要用户名和密码，密码与下面的passdb backend有关，share代表任何来都可以直接访问，server指的是使用外部的密码，需要提供password server = IP的设置值才行。</span><br><span class="line">        passdb backend = tdbsam   --&gt;数据库格式，默认的格式是tdbsam，文职被放置到/var/lib/samba/private/passwd.tdb</span><br><span class="line"></span><br><span class="line">【 Share Definitions 】</span><br><span class="line">[homes]    --&gt;默认情况用户家目录的共享信息</span><br><span class="line">        comment = Home Directories</span><br><span class="line">        browseable = no</span><br><span class="line">        writable = yes</span><br><span class="line">;       valid users = %S</span><br><span class="line">;       valid users = MYDOMAIN\%S</span><br><span class="line">[printers]  --&gt;关于打印机的配置，这是一些例子。下面跟上了一些选项。</span><br><span class="line">        path = /var/spool/samba</span><br><span class="line">        browseable = no</span><br><span class="line">        guest ok = no</span><br><span class="line">        writable = no</span><br><span class="line">        printable = yes</span><br><span class="line">[sharesmb]        --&gt;共享目录名</span><br><span class="line">        comment = 说明</span><br><span class="line">        path = /test    --&gt;共享路径</span><br><span class="line">        public = yes    --&gt;是否所有人都能够访问</span><br><span class="line">        writable = yes  --&gt;是否可以写</span><br><span class="line">        printable = no  --&gt;是否打印，默认是no，写了yes会直接被传递到打印机，可以省略该行</span><br><span class="line">        write list = +staff  --&gt;可写用户列表。我们这里先把这行删掉。</span><br><span class="line">        browsable=no    --&gt;是否可浏览，如果是yes则默认隐藏。</span><br><span class="line">     	  hosts allow= 用来限制主机和网段。谁可以访问。</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术培训</category>
-        <category>Linux简易服务教程</category>
-      </categories>
-      <tags>
-        <tag>培训</tag>
-        <tag>Linux基础服务</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NFS文件共享服务</title>
     <url>/2016/12/23/booboo_easy_service/03_nfs/</url>
     <content><![CDATA[<h3 id="NFS是什么"><a href="#NFS是什么" class="headerlink" title="NFS是什么"></a>NFS是什么</h3><p>NFS（Network File System）即网络文件系统，SUN公司开发的,是FreeBSD支持的文件系统中的一种，它允许网络中的计算机之间通过TCP/IP网络共享资源。在NFS的应用中，本地NFS的客户端应用可以透明地读写位于远端NFS服务器上的文件，就像访问本地文件一样。</p>
@@ -10039,6 +10017,28 @@ shell commands
 
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="pic/06.png" alt="06"></p>
 <p><img src="pic/07.png" alt="07"></p>
+]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>Linux简易服务教程</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>Linux基础服务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SAMBA文件共享服务</title>
+    <url>/2016/12/23/booboo_easy_service/04_samba/</url>
+    <content><![CDATA[<h3 id="Samba的历史及原理"><a href="#Samba的历史及原理" class="headerlink" title="Samba的历史及原理"></a>Samba的历史及原理</h3><p>在早期的网络世界中，文件数据在不同主机之间的传输大多是使用FTP这个好用的服务器软件进行的。不过，使用FTP传输文件却有个小小的问题，那就是您无法直接修改主机上面的文件数据。也就是说，您想要更改Linux主机上面的某个文件时，必须要由服务器端将该文件下载到您工作的客户端后才能修改，因此该文件在服务器端和客户端都会存在。这时，如果有一天您修改了某个文件，却忘记将数据上传回主机，那么等过了一阵子之后，您如何知道哪既然有这样的问题，那好吧，我可不可以在客户端的机器上面直接取用服务器上面的文件？如果可以在客户端直接进行服务器端文件的访问，那么我在客户端就不需要存在该文件数据了，也就是说，我只要有服务器上面的文件数据存在就可以了。有没有这样的文件系统（File System）呢？前面我们提到过的Network File System（NFS）就是这样的文件系统之一。只要在客户端将服务器端所提供的共享目录挂载进来，那么在我的客户端就可以直接取用服务器上的文件数据，而且，该数据就像是客户端上的分区一样，非常好用！而除了可以让Unix Like的机器互相分享文件的NFS服务器之外，在微软（Microsoft）上面也有类似的文件系统，那就是Common Internet File System（CIFS）。CIFS最简单的用途就是目前常见的“网上邻居”。Windows系统的计算机可以通过桌面上的“网上邻居”来访问别人所提供的文件数据。不过，NFS仅能让Unix机器沟通，CIFS只能让Windows机器沟通。那么有没有让Windows与Unix Like这两个不同的平台相互分享文件数据的文件系统呢？个文件才是最新的？</p>
+<p>在1991年，一个名叫Andrew Tridgwell的大学生就有这样的困扰，他手上有三台机器，分别是运行DOS的个人计算机、DEC公司的Digital Unix系统以及Sun的Unix系统。在当时，DEC 公司开发出一套称为PATHWORKS的软件，这套软件可以用来分享DEC的Unix与个人计算机的DOS这两个操作系统的文件数据，可惜让Tridgwell觉得较困扰的是Sun的Unix无法通过这个软件来达到文件共享的目的。这个时候Tridgwell就想：“咦！既然这两台系统可以共享，没道理Sun就必须这么苦命吧？可不可以将这两个系统的工作原理找出来，然后让Sun机器也能够共享文件数据呢？”，为了解决这样的的问题，Tridgwell就自行编写了一个程序去检测当DOS与DEC的Unix系统在进行文件分享传输时所使用到的通信协议信息，然后获取这些重要的信息，并且基于上述所找到的通信协议而开发出Server Message Block（SMB）这个文件系统，而就是这套SMB软件就能够让Unix与DOS互相共享文件。</p>
+<p>既然写成了软件，总需要注册商标，因此Tridgwell就申请SMB Server作为该软件的商标。可惜因为SMB是没有意义的文字，没有办法达成注册。既然如此，能不能在字典里面找到相关的字词可以作为商标来注册呢？翻了老半天，发现SAMBA刚好含有SMB，又是热情有劲的拉丁舞蹈的名称，不然就用这个名字来作为商标好了。这成为我们今天所使用的SAMBA的名称的由来。</p>
+<h3 id="Samba的作用"><a href="#Samba的作用" class="headerlink" title="Samba的作用"></a>Samba的作用</h3><p>作用：windows和类unix系统文件共享服务</p>
+<h3 id="Samba的软件结构"><a href="#Samba的软件结构" class="headerlink" title="Samba的软件结构"></a>Samba的软件结构</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 服务端linux</span></span><br><span class="line"></span><br><span class="line">软件		samba samba-common</span><br><span class="line">service		nmb	smb</span><br><span class="line">daemon		nmbd	smbd</span><br><span class="line">端口		137 138|139 445</span><br><span class="line">配置文件		/etc/samba/smb.conf</span><br><span class="line">数据文件		/var/lib/samba</span><br><span class="line">日志文件		/var/log/samba</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端linux</span></span><br><span class="line">软件		samba-client</span><br><span class="line">命令		smbclient</span><br><span class="line">		smbclient -L ip -U username</span><br><span class="line">		smbpasswd -a username</span><br><span class="line">		smbpasswd username</span><br><span class="line">		smbclient //172.25.0.11/共享名</span><br><span class="line">		smbclient //172.25.0.11/共享名 -U student</span><br><span class="line">		mount -t cifs //172.25.15.11/共享名 /mnt -o guest</span><br><span class="line">		mount -t cifs //172.25.15.11/共享名 /mnt -o username=student</span><br></pre></td></tr></table></figure>
+<h3 id="项目实践1：配置samba共享"><a href="#项目实践1：配置samba共享" class="headerlink" title="项目实践1：配置samba共享"></a>项目实践1：配置samba共享</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">系统用户</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">服务器端rhel6</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">[root@rhel6 ~]# yum install -y samba samba-common</span><br><span class="line">[root@rhel6 ~]# service iptables stop</span><br><span class="line">iptables: Setting chains to policy ACCEPT: filter          [  OK  ]</span><br><span class="line">iptables: Flushing firewall rules:                         [  OK  ]</span><br><span class="line">iptables: Unloading modules:                               [  OK  ]</span><br><span class="line">[root@rhel6 ~]#</span><br><span class="line">[root@rhel6 ~]# service smb start</span><br><span class="line">Starting SMB services:                                     [  OK  ]</span><br><span class="line">[root@rhel6 ~]# service nmb start</span><br><span class="line">Starting NMB services:                                     [  OK  ]</span><br><span class="line">[root@rhel6 ~]# id student</span><br><span class="line">uid=500(student) gid=500(student) groups=500(student)</span><br><span class="line">[root@rhel6 ~]# which smbpasswd</span><br><span class="line">/usr/bin/smbpasswd</span><br><span class="line">[root@rhel6 ~]# smbpasswd -a student</span><br><span class="line">New SMB password:</span><br><span class="line">Retype new SMB password:</span><br><span class="line">Added user student.</span><br><span class="line">[root@rhel6 ~]# getsebool -a|grep samba</span><br><span class="line">samba_create_home_dirs --&gt; off</span><br><span class="line">samba_domain_controller --&gt; off</span><br><span class="line">samba_enable_home_dirs --&gt; off</span><br><span class="line">samba_export_all_ro --&gt; off</span><br><span class="line">samba_export_all_rw --&gt; off</span><br><span class="line">samba_portmapper --&gt; off</span><br><span class="line">samba_run_unconfined --&gt; off</span><br><span class="line">samba_share_fusefs --&gt; off</span><br><span class="line">samba_share_nfs --&gt; off</span><br><span class="line">sanlock_use_samba --&gt; off</span><br><span class="line">use_samba_home_dirs --&gt; off</span><br><span class="line">virt_use_samba --&gt; off</span><br><span class="line">[root@rhel6 ~]# setsebool -P samba_enable_home_dirs 1</span><br><span class="line">[root@rhel6 ~]# getsebool -a|grep samba</span><br><span class="line">samba_create_home_dirs --&gt; off</span><br><span class="line">samba_domain_controller --&gt; off</span><br><span class="line">samba_enable_home_dirs --&gt; on</span><br><span class="line">samba_export_all_ro --&gt; off</span><br><span class="line">samba_export_all_rw --&gt; off</span><br><span class="line">samba_portmapper --&gt; off</span><br><span class="line">samba_run_unconfined --&gt; off</span><br><span class="line">samba_share_fusefs --&gt; off</span><br><span class="line">samba_share_nfs --&gt; off</span><br><span class="line">sanlock_use_samba --&gt; off</span><br><span class="line">use_samba_home_dirs --&gt; off</span><br><span class="line">virt_use_samba --&gt; off</span><br><span class="line">-----------------------------------</span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端linux——类似ftp的方式访问</span></span><br><span class="line">[root@rhel7 ~]# systemctl stop firewalld</span><br><span class="line">[root@rhel7 ~]# yum install -y samba-client</span><br><span class="line">[root@rhel7 ~]# smbclient -L 172.25.0.11</span><br><span class="line">Enter root\'s password:</span><br><span class="line">Anonymous login successful</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Sharename       Type      Comment</span><br><span class="line">	---------       ----      -------</span><br><span class="line"><span class="meta">	IPC$</span><span class="bash">            IPC       IPC Service (Samba Server Version 3.6.9-164.el6)</span></span><br><span class="line">Anonymous login successful</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Server               Comment</span><br><span class="line">	---------            -------</span><br><span class="line">	RHEL6                Samba Server Version 3.6.9-164.el6</span><br><span class="line"></span><br><span class="line">	Workgroup            Master</span><br><span class="line">	---------            -------</span><br><span class="line">	MYGROUP              RHEL6</span><br><span class="line">[root@rhel7 ~]# smbclient -L 172.25.0.11 -U student</span><br><span class="line">Enter student\'s password:</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Sharename       Type      Comment</span><br><span class="line">	---------       ----      -------</span><br><span class="line"><span class="meta">	IPC$</span><span class="bash">            IPC       IPC Service (Samba Server Version 3.6.9-164.el6)</span></span><br><span class="line">	student         Disk      Home Directories</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Server               Comment</span><br><span class="line">	---------            -------</span><br><span class="line">	RHEL6                Samba Server Version 3.6.9-164.el6</span><br><span class="line"></span><br><span class="line">	Workgroup            Master</span><br><span class="line">	---------            -------</span><br><span class="line">	MYGROUP              RHEL6</span><br><span class="line">[root@rhel7 ~]# smbclient //172.25.0.11/student -U student</span><br><span class="line">Enter student\'s password:</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line">smb: \&gt;</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">NT_STATUS_ACCESS_DENIED listing \*</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">  .                                   D        0  Thu Jul  2 04:01:16 2015</span><br><span class="line">  ..                                  D        0  Thu Jul  2 03:57:29 2015</span><br><span class="line">  .ssh                               DH        0  Thu Jul  2 04:01:07 2015</span><br><span class="line">  .bashrc                             H      124  Tue Jul  9 09:24:50 2013</span><br><span class="line">  .bash_logout                        H       18  Tue Jul  9 09:24:50 2013</span><br><span class="line">  .mozilla                           DH        0  Thu Jul  2 03:36:20 2015</span><br><span class="line">  .bash_history                       H        5  Thu Jul  2 04:01:16 2015</span><br><span class="line">  .gnome2                            DH        0  Wed Jul 14 11:55:40 2010</span><br><span class="line">  .bash_profile                       H      176  Tue Jul  9 09:24:50 2013</span><br><span class="line"></span><br><span class="line">		49584 blocks of size 8192. 45708 blocks available</span><br><span class="line">smb: \&gt; exit</span><br><span class="line">-------------------------------------------------------------</span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端windows</span></span><br><span class="line">打开浏览器输入\\172.25.0.11\</span><br><span class="line">输入student和uplooking密码后就可以进入服务器中的用户家目录，创建目录aa，以及文件aa下的dd.txt</span><br><span class="line">--------------------------------------------------------------</span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端linux</span></span><br><span class="line">[root@rhel7 ~]# smbclient //172.25.0.11/student -U student</span><br><span class="line">Enter student\'s password:</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">  .                                   D        0  Thu Aug  4 04:30:31 2016</span><br><span class="line">  ..                                  D        0  Thu Jul  2 03:57:30 2015</span><br><span class="line">  .ssh                               DH        0  Thu Jul  2 04:01:07 2015</span><br><span class="line">  aa                                  D        0  Thu Aug  4 04:30:28 2016</span><br><span class="line">  .bashrc                             H      124  Tue Jul  9 09:24:50 2013</span><br><span class="line">  .bash_logout                        H       18  Tue Jul  9 09:24:50 2013</span><br><span class="line">  .mozilla                           DH        0  Thu Jul  2 03:36:20 2015</span><br><span class="line">  .bash_history                       H        5  Thu Jul  2 04:01:16 2015</span><br><span class="line">  .gnome2                            DH        0  Wed Jul 14 11:55:40 2010</span><br><span class="line">  .bash_profile                       H      176  Tue Jul  9 09:24:50 2013</span><br><span class="line"></span><br><span class="line">		49584 blocks of size 8192. 45707 blocks available</span><br><span class="line">smb: \&gt; get aa</span><br><span class="line">NT_STATUS_FILE_IS_A_DIRECTORY opening remote file \aa</span><br><span class="line">smb: \&gt; cd aa</span><br><span class="line">smb: \aa\&gt; ls</span><br><span class="line">  .                                   D        0  Thu Aug  4 04:30:28 2016</span><br><span class="line">  ..                                  D        0  Thu Aug  4 04:30:31 2016</span><br><span class="line">  dd.txt                              A        2  Thu Aug  4 04:31:01 2016</span><br><span class="line"></span><br><span class="line">		49584 blocks of size 8192. 45707 blocks available</span><br><span class="line">smb: \aa\&gt; get dd.txt</span><br><span class="line">getting file \aa\dd.txt of size 2 as dd.txt (1.0 KiloBytes/sec) (average 1.0 KiloBytes/sec)</span><br><span class="line">可以查看到了。</span><br><span class="line"></span><br><span class="line">********************************************************************</span><br><span class="line">=====================================================================</span><br><span class="line">匿名用户</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">服务器端rhel6</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line"></span><br><span class="line">1.创建共享目录/var/lib/samba/share</span><br><span class="line">[root@rhel6 ~]# mkdir /var/lib/samba/share</span><br><span class="line">2.修改配置文件</span><br><span class="line">[root@rhel6 ~]# vim /etc/samba/smb.conf</span><br><span class="line">[public]</span><br><span class="line">       comment = Public Stuff</span><br><span class="line">       path = /var/lib/samba/share</span><br><span class="line">       public = yes</span><br><span class="line">       writable = yes</span><br><span class="line">3.重启服务</span><br><span class="line">[root@rhel6 ~]# service smb restart</span><br><span class="line">Shutting down SMB services:                                [  OK  ]</span><br><span class="line">Starting SMB services:                                     [  OK  ]</span><br><span class="line">[root@rhel6 ~]# service nmb restart</span><br><span class="line">Shutting down NMB services:                                [  OK  ]</span><br><span class="line">Starting NMB services:                                     [  OK  ]</span><br><span class="line">4.修改共享目录的UGO权限</span><br><span class="line">[root@rhel6 ~]# ll -d /var/lib/samba/share</span><br><span class="line">drwxr-xr-x. 2 root root 4096 Aug  5 10:27 /var/lib/samba/share</span><br><span class="line">[root@rhel6 ~]# grep nobody /etc/passwd</span><br><span class="line">nobody:x:99:99:Nobody:/:/sbin/nologin</span><br><span class="line">nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin</span><br><span class="line">[root@rhel6 ~]# chown nobody. /var/lib/samba/share</span><br><span class="line">[root@rhel6 ~]# ll -d /var/lib/samba/share</span><br><span class="line">drwxr-xr-x. 2 nobody nobody 4096 Aug  5 10:27 /var/lib/samba/share</span><br><span class="line">[root@rhel6 ~]# touch /var/lib/samba/share</span><br><span class="line">[root@rhel6 ~]# touch /var/lib/samba/share/smb-file&#123;1..5&#125;</span><br><span class="line">[root@rhel6 ~]# chown nobody. /var/lib/samba/share -R</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# service smb stop</span><br><span class="line">Shutting down SMB services:                                [  OK  ]</span><br><span class="line">[root@rhel6 ~]# service smb start</span><br><span class="line">Starting SMB services:                                     [  OK  ]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">客户端rhel7</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">[root@rhel7 ~]# smbclient -L 172.25.0.11</span><br><span class="line">Enter root\'s password:</span><br><span class="line">Anonymous login successful</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Sharename       Type      Comment</span><br><span class="line">	---------       ----      -------</span><br><span class="line">	public          Disk      Public Stuff</span><br><span class="line"><span class="meta">	IPC$</span><span class="bash">            IPC       IPC Service (Samba Server Version 3.6.9-164.el6)</span></span><br><span class="line">Anonymous login successful</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line"></span><br><span class="line">	Server               Comment</span><br><span class="line">	---------            -------</span><br><span class="line">	RHEL6                Samba Server Version 3.6.9-164.el6</span><br><span class="line"></span><br><span class="line">	Workgroup            Master</span><br><span class="line">	---------            -------</span><br><span class="line">	MYGROUP              RHEL6</span><br><span class="line">[root@rhel7 ~]# smbclient //172.25.0.11/public</span><br><span class="line">Enter root\'s password:</span><br><span class="line">Anonymous login successful</span><br><span class="line">Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9-164.el6]</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">  .                                   D        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  ..                                  D        0  Thu Aug  4 22:30:52 2016</span><br><span class="line">  smb-file4                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file2                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file5                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file1                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file3                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line"></span><br><span class="line">		34505 blocks of size 524288. 26941 blocks available</span><br><span class="line">smb: \&gt; get smb-file1</span><br><span class="line">getting file \smb-file1 of size 0 as smb-file1 (0.0 KiloBytes/sec) (average 0.0 KiloBytes/sec)</span><br><span class="line">smb: \&gt; put rhel7</span><br><span class="line">putting file rhel7 as \rhel7 (0.0 kb/s) (average 0.0 kb/s)</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">  .                                   D        0  Thu Aug  4 22:34:46 2016</span><br><span class="line">  ..                                  D        0  Thu Aug  4 22:30:52 2016</span><br><span class="line">  smb-file4                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  rhel7                               A        0  Thu Aug  4 22:34:46 2016</span><br><span class="line">  smb-file2                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file5                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file1                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line">  smb-file3                           N        0  Thu Aug  4 22:32:12 2016</span><br><span class="line"></span><br><span class="line">		34505 blocks of size 524288. 26941 blocks available</span><br><span class="line">smb: \&gt; exit</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">客户端windows</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">打开浏览器输入\\172.25.0.11\</span><br><span class="line">就能看到public了</span><br><span class="line"></span><br><span class="line">=================================================================</span><br><span class="line">～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～</span><br><span class="line">以类似nfs挂接的方式来共享samba</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line">客户端</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line">mount -t cifs //172.25.0.11/student /mnt -o username=student</span><br><span class="line">uplooking</span><br><span class="line"></span><br><span class="line">1.安装软件cifs-utils</span><br><span class="line">[root@rhel7 ~]# yum install -y cifs-utils</span><br><span class="line">2.mount挂载</span><br><span class="line">[root@rhel7 ~]# mount -t cifs //172.25.0.11/student /mnt -o username=student</span><br><span class="line">Password for student@//172.25.0.11/student:  *********</span><br><span class="line">[root@rhel7 ~]# mount|tail -n 1</span><br><span class="line">//172.25.0.11/student on /mnt type cifs (rw,relatime,vers=1.0,cache=strict,username=student,domain=RHEL6,uid=0,noforceuid,gid=0,noforcegid,addr=172.25.0.11,unix,posixpaths,serverino,acl,rsize=1048576,wsize=65536,actimeo=1)</span><br><span class="line">[root@rhel7 ~]# cd /mnt</span><br><span class="line">[root@rhel7 mnt]# ll</span><br><span class="line">total 1024</span><br><span class="line">-rwxrw-r--. 1 500 500 8 Aug  4 22:15 file-student.txt</span><br><span class="line">drwxr-xr-x. 2 500 500 0 Aug  4 22:19 windows</span><br><span class="line"></span><br><span class="line">3.可以设置开机自动挂载，/etc/bashrc或者/etc/profile中</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Samba的主配置文件-etc-samba-smb-conf详细解析"><a href="#Samba的主配置文件-etc-samba-smb-conf详细解析" class="headerlink" title="Samba的主配置文件/etc/samba/smb.conf详细解析"></a>Samba的主配置文件/etc/samba/smb.conf详细解析</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">首先是全局配置</span><br><span class="line">【global】</span><br><span class="line">        workgroup = MYGROUP     --&gt;工作组，工作组是windows上的概念</span><br><span class="line">        server string = Samba Server Version %v   --&gt;关于samba的说明</span><br><span class="line"></span><br><span class="line">        netbios name = MYSERVER   --&gt;网络名称</span><br><span class="line"></span><br><span class="line">;       interfaces = lo eth0 192.168.12.2/24 192.168.13.2/24   --&gt;接口网段信息</span><br><span class="line">;       hosts allow = 127. 192.168.12. 192.168.13.    --&gt;允许哪些机器来访问共享</span><br><span class="line"></span><br><span class="line">;       max protocol = SMB2</span><br><span class="line">【logging options】  关于日志的配置</span><br><span class="line"> 	log file = /var/log/samba/log.%m    	日志存放的位置，%m代表日期</span><br><span class="line"> 	max log size = 50			日志的大小限制为50K</span><br><span class="line">【 Standalone Server Options 】 关于安全级别的相关配置</span><br><span class="line">        security = user    --&gt; user代表需要用户名和密码，密码与下面的passdb backend有关，share代表任何来都可以直接访问，server指的是使用外部的密码，需要提供password server = IP的设置值才行。</span><br><span class="line">        passdb backend = tdbsam   --&gt;数据库格式，默认的格式是tdbsam，文职被放置到/var/lib/samba/private/passwd.tdb</span><br><span class="line"></span><br><span class="line">【 Share Definitions 】</span><br><span class="line">[homes]    --&gt;默认情况用户家目录的共享信息</span><br><span class="line">        comment = Home Directories</span><br><span class="line">        browseable = no</span><br><span class="line">        writable = yes</span><br><span class="line">;       valid users = %S</span><br><span class="line">;       valid users = MYDOMAIN\%S</span><br><span class="line">[printers]  --&gt;关于打印机的配置，这是一些例子。下面跟上了一些选项。</span><br><span class="line">        path = /var/spool/samba</span><br><span class="line">        browseable = no</span><br><span class="line">        guest ok = no</span><br><span class="line">        writable = no</span><br><span class="line">        printable = yes</span><br><span class="line">[sharesmb]        --&gt;共享目录名</span><br><span class="line">        comment = 说明</span><br><span class="line">        path = /test    --&gt;共享路径</span><br><span class="line">        public = yes    --&gt;是否所有人都能够访问</span><br><span class="line">        writable = yes  --&gt;是否可以写</span><br><span class="line">        printable = no  --&gt;是否打印，默认是no，写了yes会直接被传递到打印机，可以省略该行</span><br><span class="line">        write list = +staff  --&gt;可写用户列表。我们这里先把这行删掉。</span><br><span class="line">        browsable=no    --&gt;是否可浏览，如果是yes则默认隐藏。</span><br><span class="line">     	  hosts allow= 用来限制主机和网段。谁可以访问。</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术培训</category>
@@ -10695,314 +10695,6 @@ shell commands
       </tags>
   </entry>
   <entry>
-    <title>Linux 用户和组</title>
-    <url>/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/</url>
-    <content><![CDATA[<h2 id="课堂作业"><a href="#课堂作业" class="headerlink" title="课堂作业"></a>课堂作业</h2><ol>
-<li>添加2个组，一个组名为justice，另外一个组名为ninja。</li>
-<li>添加4个新用户，分别为 superman、batman、wonderwoman、greenlantern，密码均为uplooking；其附加组为justice。</li>
-<li>添加4个新用户，分别为 leo、raph、mikey、don ，密码均为uplooking，其附加组为ninja。</li>
-<li>mikey用户总是在系统里搞破坏，root决定封他的号，让他不能登陆。过了几天，再解封。</li>
-<li>leo想加入justice，root同意了，将justice作为附加组添加给leo。</li>
-<li>don整天搞创造，root要求他的密码要更安全，所以将他的密码设置成7天之后要换密码，并且密码过期前3天要提醒他，如果密码过期后2天还没有设置新密码，那么就封锁don账户。</li>
-<li>batman总是喜欢修改密码，没事就在修改密码，而使用该batman账户的人有好几个，比如蝙蝠侠，蝙蝠侠的管家，蝙蝠侠的助手罗宾等等。所以root决定将batman账户的密码的最小存活期改为10天。也就是说10天之内batman账户不能修改密码。</li>
-<li>leo想退出justice,root帮他设置一下。</li>
-<li>superman想把密码改为uplooking123，让他自己改。发现改不了，密码太简单了，自己去想一个复杂的密码。</li>
-<li>让superman能够修改root用户的密码。</li>
-</ol>
-<h2 id="用户和组的相关文件"><a href="#用户和组的相关文件" class="headerlink" title="用户和组的相关文件"></a>用户和组的相关文件</h2><table>
-<thead>
-<tr>
-<th align="left">文件名</th>
-<th align="left">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">/etc/passwd</td>
-<td align="left">系统中的账号信息</td>
-</tr>
-<tr>
-<td align="left">etc/shadow</td>
-<td align="left">存放密码及其策略相关信息</td>
-</tr>
-<tr>
-<td align="left">/etc/group</td>
-<td align="left">存放用户组的信息</td>
-</tr>
-<tr>
-<td align="left">/etc/gshadow</td>
-<td align="left">存放用户组的密码及其策略相关信息</td>
-</tr>
-<tr>
-<td align="left">/etc/default/useradd</td>
-<td align="left">创建新用户时默认的配置信息</td>
-</tr>
-<tr>
-<td align="left">/etc/skel/*</td>
-<td align="left">Directory containing default files.</td>
-</tr>
-<tr>
-<td align="left">/etc/login.defs</td>
-<td align="left">用户和组默认的配置信息</td>
-</tr>
-<tr>
-<td align="left">/etc/shells</td>
-<td align="left">该文件记录着合法的 shell 版本</td>
-</tr>
-</tbody></table>
-<h3 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h3><p>每一行都代表一个账号 , 有几行就代表有几个账号在你的系统中</p>
-<p>系统统账号: bin, daemon, adm, nobody</p>
-<p>以“：”作为分隔符,七个字段</p>
-<p><code>root:x:0:0:root:/root:/bin/bash</code> </p>
-<ol>
-<li><p>账号名称 :root</p>
-</li>
-<li><p>密码 :X</p>
-</li>
-<li><p>UID: 使用者标识符<br>rhel6 root_uid=0 sys_uid=1-499 user_uid=500-65535 ( 2^32-1 )<br>rhel7 root_uid=0 sys_uid=201-999 user_uid=1000-65535</p>
-</li>
-<li><p>GID: 用户组标识符 root_guid=0</p>
-</li>
-<li><p>用户信息说明栏 </p>
-</li>
-<li><p>家目录 : 用户的家目录 root 的家目录在 /root, 默认用户的家目录在 /home/yourname</p>
-</li>
-<li><p>Shell: 命令解释器</p>
-<ul>
-<li>系统默认为 /bin/bash</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>/sbin/nologin 不可通过终端登录系统</li>
-</ul>
-<h3 id="etc-shadow"><a href="#etc-shadow" class="headerlink" title="/etc/shadow"></a>/etc/shadow</h3><p>存放密码及其策略相关信息</p>
-<p>以“：”作为分隔符九个字段</p>
-<p><code>root:$1$/30QpE5e$y9N/D0bh6rAACBEz.hqo00:14126:0:99999:7:::</code></p>
-<ol>
-<li>账号名称 :root</li>
-<li>密码 : 加密后的字符串，以$N$ 开头</li>
-<li>最近变更密码的日期 : 天数,以 1970 年 1 月 1 日作为 1 而累加的日期<br>echo $(($(date –date=”2008/09/04” +%s)/86400+1))<br>14126</li>
-<li>密码不可被更改的天数 :0 : 表示密码随时可以更改， 20 :表示 距最近一次修改密码20 天之内都不能修改密码</li>
-<li>密码需要重新变更的天数 :99999 ( 计算为 273 年 ) 表示密码的变更没有强制性。</li>
-<li>密码需要变更期限前的警告天数 : 在密码到期之前几天提醒</li>
-<li>密码过期后的账号宽限时间 ( 密码失效日 ): 密码过期特性。</li>
-<li>账号失效日期 : 天数，以 1970 年 1 月 1 日作为 1 而累加的日期</li>
-<li>保留 : 保留段</li>
-</ol>
-<h3 id="etc-group"><a href="#etc-group" class="headerlink" title="/etc/group"></a>/etc/group</h3><p>存放用户组的信息</p>
-<p>每一行代表一个群组以“：”作为分隔符四个字段</p>
-<p><code>root:x:0:root</code></p>
-<ol>
-<li>组名 :root</li>
-<li>群组密码 :x 一般不设定,通常是给『群组管理员』使用</li>
-<li>GID: 群组的 ID</li>
-<li>此群组支持的账号名称 : 一个账号可以加入多个群组</li>
-</ol>
-<p>例如,将 dabao 加入 root 群组后 :</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root:x:0:root,dmtsai</span><br></pre></td></tr></table></figure>
-
-<h3 id="etc-gshadow"><a href="#etc-gshadow" class="headerlink" title="/etc/gshadow"></a>/etc/gshadow</h3><p>存放用户组的密码及其策略相关信息</p>
-<p>每一行代表一个群组 “: ” 作为分隔符四个字段</p>
-<p><code>newgroup:!::redhat</code></p>
-<ol>
-<li>组名 :newgroup</li>
-<li>密码栏 : 开头为 ! 表示无合法密码 , 所以无群组管理员</li>
-<li>群组管理员的账号</li>
-<li>此群组支持的账号名称 : 与 /etc/group 相同</li>
-</ol>
-<h3 id="etc-default-useradd"><a href="#etc-default-useradd" class="headerlink" title="/etc/default/useradd"></a>/etc/default/useradd</h3><p>创建新用户时默认的配置信息</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">GROUP=100 &lt;== 预设的群组，现已不生效，如果创建用户时不指定群组，则使用与用户同名的群组</span><br><span class="line">HOME=/home &lt;== 默认的家目录所在目录</span><br><span class="line">INACTIVE=-1 &lt;== 密码失效日 , 在 shadow 第 7 栏</span><br><span class="line">EXPIRE= &lt;== 账号失效日 , 在 shadow 第 8 栏</span><br><span class="line">SHELL=/bin/bash &lt;== 预设的 shell /sbin/nologin 将无法登陆</span><br><span class="line">SKEL=/etc/skel&lt;== 用户家目录的内容数据参考目录</span><br><span class="line">CREATE_MAIL_SPOOL=yes &lt;== 是否主动帮助使用者建立邮件信箱 (mailbox)</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="etc-skel"><a href="#etc-skel" class="headerlink" title="/etc/skel/"></a>/etc/skel/</h3><p>Directory containing default files.</p>
-<p>.bash_logout .bash_profile .bashrc .gnome2 .mozilla</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 skel]# ll -a /etc/skel</span><br><span class="line">total 40</span><br><span class="line">drwxr-xr-x. 4 root root 4096 Jan 2 01:58 .</span><br><span class="line">drwxr-xr-x. 125 root root 12288 Mar 21 03:09 ..</span><br><span class="line">-rw-r--r--. 1 root root 18 Jul 9 2013 .bash_logout</span><br><span class="line">-rw-r--r--. 1 root root 176 Jul 9 2013 .bash_profile</span><br><span class="line">-rw-r--r--. 1 root root 124 Jul 9 2013 .bashrc</span><br><span class="line">-rw-r--r--. 1 root root 500 May 7 2013 .emacs</span><br><span class="line">drwxr-xr-x. 2 root root 4096 Jul 14 2010 .gnome2</span><br><span class="line">drwxr-xr-x. 4 root root 4096 Jan 2 01:52 .mozilla</span><br></pre></td></tr></table></figure>
-
-<h3 id="etc-login-defs"><a href="#etc-login-defs" class="headerlink" title="/etc/login.defs"></a>/etc/login.defs</h3><p>默认的配置信息 rhel6 下的信息</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MAIL_DIR           /var/spool/mail 用户默认邮件信箱放置目录</span><br><span class="line">PASS_MAX_DAYS      99999 /etc/shadow 第 5 栏 , 密码需要重新变更的天数</span><br><span class="line">PASS_MIN_DAYS      0 /etc/shadow 第 4 栏 , 密码不可被更动的天数</span><br><span class="line">PASS_MIN_LEN       5 密码最短的字符长度 , 已被 pam 模块取代 , 失去效用 !</span><br><span class="line">PASS_WARN_AGE      7 /etc/shadow 第 6 栏 , 过期前会警告天数</span><br><span class="line">UID_MIN            500 使用者最小的 UID 不能 &lt;500</span><br><span class="line">UID_MAX            60000  使用者最大的 UID 不能 &gt;60000</span><br><span class="line">GID_MIN            500  自定义组最小的 UID 不能 &lt;500</span><br><span class="line">GID_MAX            60000  自定义组最大的 UID 不能 &gt;60000</span><br><span class="line">CREATE_HOME     yes  在 username 命令不加 -M 及 -m 时 , 是否主动建立用户家目录</span><br><span class="line">UMASK        077  用户家目录建立的 umask , 因此权限会是 700 『 drwx------ 』</span><br><span class="line">USERGROUPS_ENAB  yes  使用 userdel 时 , 是否会删除初始群组(如果使用 userdel 去删除一个账号时 , 该账号所属的初始群组已经没有人隶属于该群组了 , 那举就删掉该群组)</span><br><span class="line">ENCRYPT_METHOD    SHA512  经过 SHA512 进行加密处理</span><br></pre></td></tr></table></figure>
-
-<h3 id="etc-shells"><a href="#etc-shells" class="headerlink" title="/etc/shells"></a>/etc/shells</h3><p>该文件记录着合法的 shell 版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 skel]# cat /etc/shells</span><br><span class="line">/bin/sh</span><br><span class="line">/bin/bash</span><br><span class="line">/sbin/nologin</span><br><span class="line">/bin/dash</span><br><span class="line">/bin/tcsh</span><br><span class="line">/bin/csh</span><br></pre></td></tr></table></figure>
-
-<h2 id="用户和组的相关命令"><a href="#用户和组的相关命令" class="headerlink" title="用户和组的相关命令"></a>用户和组的相关命令</h2><table>
-<thead>
-<tr>
-<th align="left">用户和组</th>
-<th align="left"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">新建组</td>
-<td align="left">groupadd</td>
-</tr>
-<tr>
-<td align="left">新建用户</td>
-<td align="left">useradd</td>
-</tr>
-<tr>
-<td align="left">修改密码</td>
-<td align="left">passwd 密码 &gt;8 位字符、小写 / 大写 / 数字 / 特殊符号之间任选 3 位</td>
-</tr>
-<tr>
-<td align="left">修改用户属性</td>
-<td align="left">usermod</td>
-</tr>
-<tr>
-<td align="left">修改组属性</td>
-<td align="left">groupmod</td>
-</tr>
-<tr>
-<td align="left">修改密码属性</td>
-<td align="left">chage</td>
-</tr>
-<tr>
-<td align="left">修改 shell</td>
-<td align="left">chsh</td>
-</tr>
-<tr>
-<td align="left">删除用户</td>
-<td align="left">userdel</td>
-</tr>
-<tr>
-<td align="left">删除组</td>
-<td align="left">groupdel</td>
-</tr>
-<tr>
-<td align="left">查看已存在用户的基本信息</td>
-<td align="left">id</td>
-</tr>
-<tr>
-<td align="left">查看当前用户支持的群组信息</td>
-<td align="left">groups</td>
-</tr>
-</tbody></table>
-<p>通过文件查看</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">/etc/passwd</span><br><span class="line">/etc/shadow</span><br><span class="line">/etc/group</span><br><span class="line">/etc/gshadow</span><br></pre></td></tr></table></figure>
-
-<h3 id="新建用户和组"><a href="#新建用户和组" class="headerlink" title="新建用户和组"></a>新建用户和组</h3><h4 id="groupadd"><a href="#groupadd" class="headerlink" title="groupadd"></a>groupadd</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">groupadd 创建组</span><br><span class="line">-g, --gid GID</span><br><span class="line">-r, --system  Create a system group</span><br><span class="line"></span><br><span class="line"> 新建组 test 制定 gid 为 888</span><br><span class="line">[root@rhel7 ~]# groupadd -g 888 test</span><br><span class="line"> 新建一个系统组 baby</span><br><span class="line">[root@rhel7 ~]# groupadd -r baby</span><br><span class="line"> 查看一下刚刚新建的组的信息</span><br><span class="line">[root@rhel7 ~]# tail -n 2 /etc/group</span><br><span class="line">test:x:888:</span><br><span class="line">baby:x:490:</span><br></pre></td></tr></table></figure>
-
-<h4 id="useradd"><a href="#useradd" class="headerlink" title="useradd"></a>useradd</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">创建新用户</span><br><span class="line">useradd [-u UID] [-g 初始群组 ] [-G 次要群组 ] [-mM] [-c 说明栏 ] [-d 家目录绝对路径 ] [-s shell] 账号名</span><br><span class="line">拓展: -e : 接日期『 YYYY-MM-DD 』 shadow 第八字段账号失效日期</span><br><span class="line"> 	-f : 接天数 shadow 第七字段密码失效日 0 :立刻失效 -1 :永不失效</span><br><span class="line">		失效后可登陆,但是会强制你重新设置密码</span><br><span class="line">[root@rhel7 ~]# useradd -u 888 -g 888 -f 0 -e 2016-03-21 t1</span><br><span class="line">[root@rhel7 ~]# id t1</span><br><span class="line">uid=888(t1) gid=888(test) groups=888(test)</span><br><span class="line">[root@rhel7 ~]# tail -n 1 /etc/passwd</span><br><span class="line">t1:x:888:888::/home/t1:/bin/bash</span><br><span class="line">[root@rhel7 ~]# tail -n 1 /etc/shadow</span><br><span class="line">t1:!!:16880:0:99999:7:0:16881:</span><br></pre></td></tr></table></figure>
-
-<h4 id="passwd"><a href="#passwd" class="headerlink" title="passwd"></a>passwd</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">给用户设置密码</span><br><span class="line">passwd [--sdtin] &lt;&#x3D;&#x3D; 所有人均可使用更改自己的密码</span><br><span class="line">passwd [-l] [-u] [--sdtin] [-S] [-n 日数 ] [-x 日数 ] [-w 日数 ] [-i 日期 ] 账号 &lt;&#x3D;&#x3D;root 功能</span><br><span class="line">选项与参数 :</span><br><span class="line">--stdin : 可以透过来自前一个管线的数据 , 作为密码输入 echo 123 | passwd --stdin dabao</span><br><span class="line">-l : 是 Lock 的缩写 , 会将 &#x2F;etc&#x2F;shadow 第二栏最前面加上 ! 使密码失效</span><br><span class="line">-u : 与 -l 相对 , 是 Unlock 的缩写</span><br><span class="line">-S : 列出密码相关参数 shadow 大部分信息。</span><br><span class="line">-n : 后面接天数 ,shadow 第 4 字段 , 密码不可被更动的天数</span><br><span class="line">-x : 后面接天数 ,shadow 第 5 字段 , 密码需要重新变更的天数</span><br><span class="line">-w : 后面接天数 ,shadow 第 6 字段 , 密码需要变更期限前的警告天数</span><br><span class="line">-i : 后面接天数 ,shadow 第 7 字段 , 密码失效日期</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 ~]# passwd t1</span><br><span class="line">Changing password for user t1.</span><br><span class="line">New password:</span><br><span class="line">BAD PASSWORD: it is based on a dictionary word</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br><span class="line"></span><br><span class="line"> 设置密码失效日期为 7 天</span><br><span class="line">[root@rhel7 ~]# passwd -i 7 t1</span><br><span class="line">Adjusting aging data for user t1.</span><br><span class="line">passwd: Success</span><br><span class="line"></span><br><span class="line"> 查看记录用户密码属性的文件 /etc/shadow ,截取 t1 用户的那一行</span><br><span class="line">[root@rhel7 ~]# sed -n '/t1/p' /etc/shadow</span><br><span class="line">t1:$6$TDnycU/C$0AmM5AoZmoHZQMex.dQCoroH2JxdSnDhLnBMorcUPlWgshYrlstZJmH.Q.fT</span><br><span class="line">OTV.pECGEuqFqugj8YccRqcdD/:16880:0:99999:7:7:16881:</span><br><span class="line"></span><br><span class="line"> 截取 t1 用户密码属性,以 : 为分割的第 7 字段</span><br><span class="line">[root@rhel7 ~]# sed -n '/t1/p' /etc/shadow|cut -d":" -f 7</span><br><span class="line">7</span><br><span class="line">[root@rhel7 ~]# sed -n '/t1/p' /etc/shadow|awk -F: '&#123;print 7&#125;'</span><br><span class="line">7</span><br></pre></td></tr></table></figure>
-
-<h3 id="修改用户和组属性"><a href="#修改用户和组属性" class="headerlink" title="修改用户和组属性"></a>修改用户和组属性</h3><h4 id="groupmod"><a href="#groupmod" class="headerlink" title="groupmod"></a>groupmod</h4><p>修改组属性</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">groupmod -g gid [gname] 修改 gid</span><br><span class="line">groupmod -n new_gname [gname] 修改组的名字</span><br><span class="line">[root@rhel7 ~]# groupmod -g 999 test</span><br><span class="line">[root@rhel7 ~]# grep test /etc/group</span><br><span class="line">test:x:999:</span><br><span class="line">[root@rhel7 ~]# groupmod -n test1 test</span><br><span class="line">[root@rhel7 ~]# grep test /etc/group</span><br><span class="line">test1:x:999:</span><br></pre></td></tr></table></figure>
-
-<h4 id="usermod"><a href="#usermod" class="headerlink" title="usermod"></a>usermod</h4><p>修改用户属性</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">usermod [-cdegGlsuLU] username</span><br><span class="line">选项不参数 :</span><br><span class="line">-c : 后面接账号的说明 修改 &#x2F;etc&#x2F;passwd 第 5 字段</span><br><span class="line">-d : 后面接账号的家目录 修改 &#x2F;etc&#x2F;passwd 第 6 字段</span><br><span class="line">-e : 后面接日期 , 格式是 YYYY-MM-DD 修改 shadow 第 8 字段 ( 账号失效日 )</span><br><span class="line">-f : 后面接天数 修改 shadow 第 7 字段 ( 密码失效日期 )</span><br><span class="line">-g : 后面接初始群组 修改 &#x2F;etc&#x2F;passwd 第 4 字段 GID</span><br><span class="line">-G : 后面接次要群组 , 修改这个使用者能够支持的群组 修改 &#x2F;etc&#x2F;group</span><br><span class="line">-aG : 『增加次要群组的支持』而非『设定』</span><br><span class="line">-l : 后面接账号名称 修改账号名称 修改 &#x2F;etc&#x2F;passwd 第 1 字段</span><br><span class="line">-s : 后面接 Shell 的实际档案 , 例如 &#x2F;bin&#x2F;bash &#x2F;bin&#x2F;csh 等等</span><br><span class="line">-u : 后面接 UID 数字啦 ! 卲 &#x2F;etc&#x2F;passwd 第三栏的资料 ;</span><br><span class="line">-L : 暂时将用户的密码冻结 , 让他无法登入。修改 &#x2F;etc&#x2F;shadow 密码栏</span><br><span class="line">-U : 将 &#x2F;etc&#x2F;shadow 密码栏的 ! 拿掉 , 解冻</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 ~]# usermod -g test2 -G test3 t1</span><br><span class="line">[root@rhel7 ~]# id t1</span><br><span class="line">uid=888(t1) gid=1000(test2) groups=1000(test2),1001(test3)</span><br><span class="line">[root@rhel7 ~]# usermod -s /sbin/nologin t1</span><br><span class="line">[root@rhel7 ~]# grep t1 /etc/passwd</span><br><span class="line">t1:x:888:1000::/home/t1:/sbin/nologin</span><br><span class="line">[root@rhel7 ~]# su - t1</span><br><span class="line">This account is currently not available.</span><br></pre></td></tr></table></figure>
-
-<h4 id="chage"><a href="#chage" class="headerlink" title="chage"></a>chage</h4><p>修改用户密码属性</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chage [-ldEImMW] 账号名</span><br><span class="line">选项与参数 :</span><br><span class="line">-l : 列出该账号的详细密码参数 ;</span><br><span class="line">-d : 后面接日期 , 修改 shadow 第 3 字段 ( 最近一次更改密码的日期 ), 格式 YYYY-MM-DD</span><br><span class="line">-m : 后面接天数 , 修改 shadow 第 4 字段 ( 密码不可被更动的天数 )</span><br><span class="line">-M : 后面接天数 , 修改 shadow 第 5 字段 ( 密码需要重新变更的天数 )</span><br><span class="line">-W : 后面接天数 , 修改 shadow 第 6 字段 ( 密码需要变更期限前的警告天数 )</span><br><span class="line">-I : 后面接天数 , 修改 shadow 第 7 字段 ( 密码失效日期 )</span><br><span class="line">-E : 后面接日期 , 修改 shadow 第 8 字段 ( 账号失效日 ), 格式 YYYY-MM-DD</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 ~]# chage t1</span><br><span class="line">Changing the aging information for t1</span><br><span class="line">Enter the new value, or press ENTER for the default</span><br><span class="line">Minimum Password Age [0]:</span><br><span class="line">Maximum Password Age [99999]:</span><br><span class="line">Last Password Change (YYYY-MM-DD) [2016-03-20]:</span><br><span class="line">Password Expiration Warning [7]:</span><br><span class="line">Password Inactive [7]:</span><br><span class="line">Account Expiration Date (YYYY-MM-DD) [2016-03-21]:</span><br></pre></td></tr></table></figure>
-
-<h4 id="chsh"><a href="#chsh" class="headerlink" title="chsh"></a>chsh</h4><p>change shell 的简写</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chsh [-ls]</span><br><span class="line">选项与参数 :</span><br><span class="line">-l : 列出目前系统上面可用的 shell /etc/shells 里内容</span><br><span class="line">-s : 修改自己的 Shell</span><br><span class="line">[root@rhel7 ~]# chsh -s /bin/bash t1</span><br><span class="line">Changing shell for t1.</span><br><span class="line">Shell changed.</span><br><span class="line">[root@rhel7 ~]# grep t1 /etc/passwd</span><br><span class="line">t1:x:888:1000::/home/t1:/bin/bash</span><br></pre></td></tr></table></figure>
-
-<h3 id="删除用户和组"><a href="#删除用户和组" class="headerlink" title="删除用户和组"></a>删除用户和组</h3><h4 id="groupdel"><a href="#groupdel" class="headerlink" title="groupdel"></a>groupdel</h4><p>删除组</p>
-<p>groupdel groupname</p>
-<h4 id="userdel"><a href="#userdel" class="headerlink" title="userdel"></a>userdel</h4><p>删除用户</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">userdel [-r] username</span><br><span class="line">选项不参数 :</span><br><span class="line">-r 没有这个选项删除会不彻底,关于用户的目录、文档全部删除</span><br><span class="line"></span><br><span class="line">[root@rhel7 ~]# tail -3 /etc/group</span><br><span class="line">test:x:999:</span><br><span class="line">test2:x:1000:</span><br><span class="line">test3:x:1001:t1</span><br><span class="line">[root@rhel7 ~]# groupdel test3</span><br><span class="line">[root@rhel7 ~]# tail -3 /etc/group</span><br><span class="line">baby:x:490:</span><br><span class="line">test:x:999:</span><br><span class="line">test2:x:1000:</span><br><span class="line">[root@rhel7 ~]# userdel -r t1</span><br><span class="line">[root@rhel7 ~]# ll /home</span><br><span class="line">total 12</span><br><span class="line">drwx------. 27 cong cong 4096 Jan 1 18:40 cong</span><br><span class="line">drwx------. 4 g2</span><br><span class="line">888 4096 Mar 21 03:56 g2</span><br><span class="line">drwx------. 12 tom tom 4096 Mar 21 02:14 tom</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看用户和组信息"><a href="#查看用户和组信息" class="headerlink" title="查看用户和组信息"></a>查看用户和组信息</h3><h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>查看已存在用户的基本信息</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 ~]# id root</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root)</span><br><span class="line">[root@rhel7 ~]# id -g root</span><br><span class="line">0</span><br><span class="line">[root@rhel7 ~]# id -u root</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-
-<h4 id="groups"><a href="#groups" class="headerlink" title="groups"></a>groups</h4><p>查看当前用户支持的群组信息</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 ~]# groups</span><br><span class="line">root</span><br></pre></td></tr></table></figure>
-
-<p>思考题: root 和普通用户都可以修改 /etc/passwd 文档,那么这个文档的权限是什么呢?<br>SUID</p>
-<h2 id="用户身份切换-sudo-su"><a href="#用户身份切换-sudo-su" class="headerlink" title="用户身份切换 sudo / su"></a>用户身份切换 sudo / su</h2><h3 id="su"><a href="#su" class="headerlink" title="su"></a>su</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su [-lm] [-c 指令 ] [username]</span><br><span class="line">选项与参数 :</span><br><span class="line">- : 单纯使用 - 如『 su - 』 以 login-shell 变量档案读取方式登入系统 ; 默认切换为 root</span><br><span class="line">-l : 与 - 类似 login-shell</span><br><span class="line">-m :-m 与 -p 一样 , 表示『使用目前的环境设定 , 而不读取新使用者的配置文件』</span><br><span class="line">-c : 接指令</span><br></pre></td></tr></table></figure>
-
-<p>总结:</p>
-<ol>
-<li>su - username 或 su -l username<br>完整切换成新使用者的环境 用 env 查看环境变量<br>PATH/USER/MAIL</li>
-<li>su - -c “ 指令 “<br>仅想要执行一次 root 的指令</li>
-<li>使用 root 切换成为任何使用者时 , 不需要输入新用户密码</li>
-<li>缺点:当主机多人管理时, su 切换成 root ,那每个人都需要知道 root 密码,不安全。</li>
-</ol>
-<h3 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h3><p>sudo [-u user name | #uid] [command]</p>
-<h4 id="sudo-执行流程"><a href="#sudo-执行流程" class="headerlink" title="sudo 执行流程"></a>sudo 执行流程</h4><ol>
-<li>在 /etc/sudoers 档案中查看 user 是否有 sudo 执行权限</li>
-<li>若有 sudo 执行权限 , 『输入用户的密码』</li>
-<li>密码正确 , 开始执行 sudo 后续接的指令</li>
-<li>root 无需密码,自己切换自己也无需密码</li>
-</ol>
-<h4 id="添加用户-sudo-执行权限的方法"><a href="#添加用户-sudo-执行权限的方法" class="headerlink" title="添加用户 sudo 执行权限的方法"></a>添加用户 sudo 执行权限的方法</h4><p>(如何让用户可以使用 sudo ?)</p>
-<ol>
-<li>visudo 可以让系统检验 /etc/sudoers 的语法是否正确</li>
-<li>修改 /etc/sudoers 中的语法</li>
-</ol>
-<p>1 )单一用户可使用 root 所有指令或某些指令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root 		ALL=(ALL) 	ALL &lt;== 找到这一行 ,rh6 在 98 行</span><br><span class="line">username 	ALL=(ALL) 	ALL &lt;== 新增这一行</span><br><span class="line">username 	ALL=(root) 	/bin/touch&lt;== 新增这一行</span><br></pre></td></tr></table></figure>
-
-<p>语法解释:</p>
-<p>使用者账号 登入者的来源主机名 =( 可切换的身份 )     可下达的指令</p>
-<p>root             ALL=(ALL)                 ALL &lt;== 这是默认值</p>
-<ol>
-<li>使用者帐号:系统哪个帐号可以使用 sudo</li>
-<li>登入者的来源主机名:信任用户 默认 root 可来自任何一部网络主机</li>
-<li>可切换的身份:该账号可以切换成谁来下命令 , 末日 root 可以切换成任何人</li>
-<li>可下达的指令:可用该身份下达什么指令。必需使用绝对路径 ( 可通过 which\whereis 查询 )</li>
-<li>ALL : 是特殊关键词 , 代表任何身份、任何主机、任何命令</li>
-</ol>
-<p>2 )群组和免密码的功能处理</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">wheel ALL=(ALL) ALL&lt;== 找到这一行 ,rh6 在 105 行</span></span><br><span class="line"><span class="meta">%</span><span class="bash">wheel ALL=(ALL) NOPASSWD: ALL&lt;== 找到这一行 ,rh6 在 108 行</span></span><br></pre></td></tr></table></figure>
-
-<p>语法解释:</p>
-<ol>
-<li>% 接群组</li>
-<li>wheel 群组内的用户有使用 sudo 的权限,并可以切换成任何人,执行切换后身份的任何命令</li>
-<li>wheel 群组内的用户切换用户时不需要输入自己的密码</li>
-</ol>
-<p>3）有限的权限操作</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dabao ALL=(root) /usr/bin/passwd &lt;== 有 bug , dabao 能修改 root 密码</span><br><span class="line">dabao ALL=(root) !/usr/bin/passwd, /usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root&lt;== 可以执</span><br><span class="line">行『 passwd 任意字符』 , 但是『 passwd 』和『 passwd root 』这两个命令不可执行</span><br></pre></td></tr></table></figure>
-
-<p>4 )别名设置 visudo</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">User_Alias DABAO=dabao,jerry,tom,g1,g2,g3</span><br><span class="line">Cmnd_Alias DABAOCOM = !/usr/bin/passwd,/usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root</span><br><span class="line">DABAO ALL=(root) DABAOCOM</span><br></pre></td></tr></table></figure>
-
-<p>5) sudo 搭配 su 使用</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">username ALL=(root) /bin/su -</span><br><span class="line">sudo su - &lt;==sudo -u root su -l root</span><br></pre></td></tr></table></figure>
-<p>可以直接切换成 root 用户,而且不需要输入 root 密码</p>
-<p>6 ) 5 分钟内可以不用再输入密码。</p>
-<h2 id="Linux用户和组课后作业"><a href="#Linux用户和组课后作业" class="headerlink" title="Linux用户和组课后作业"></a>Linux用户和组课后作业</h2><ol>
-<li>新建一个用户名为 redhat。密码为 password ，配置以下信息,以达到要求:</li>
-</ol>
-<ul>
-<li>密码的最小存活期为:1 天</li>
-<li>密码的最大存活期为:10 天</li>
-<li>密码过期前 5 天提醒</li>
-<li>密码过期后如 15 天仍未设置新密码,则封锁该帐户。</li>
-</ul>
-<ol>
-<li>创建一个新组 newgroup、将 redhat 以附加组成员的身份加入 到 newgroup 中。</li>
-<li>添加 3 个用户,用户 harry,natasha,tom,和一个组 ,组名为 admin 组 ，<br>要求 ：</li>
-</ol>
-<ul>
-<li>harry,natasha 用户的附加组为 admin 组；</li>
-<li>tom 用户的登陆 shell 为非交互式 shell；</li>
-<li>用户密码都为 uplooking</li>
-</ul>
-<ol>
-<li>使用 harry 用户登陆系统,尝试修改自己的密码,密码自己设 定。</li>
-<li>创建一个叫做 alex 用户,用户 uid 为 1234,不能登陆系统。</li>
-<li>以 root 用户身份给 natasha 用户修改密码,密码修改为 abc12345。</li>
-<li>给 tom 用户追加附加组,追加的附加组为 alex,同时给 tom 用户修改 uid,修改为 2222。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>技术培训</category>
-        <category>Linux系统基础培训</category>
-      </categories>
-      <tags>
-        <tag>培训</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux 基础命令</title>
     <url>/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<ul>
@@ -11374,6 +11066,314 @@ shell commands
 <li>统计/boot/下所有文件的属性中含 root 字段的文件共有几个。</li>
 <li>熟悉一下 vim 编辑器,利用 vim 编辑器书写整理一下今天所学的 知识点。</li>
 <li>判断一下 boot 目录下文件的内容类型,并将属于 ASCII 码文件内容 类型的文件名显示到屏幕上</li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术培训</category>
+        <category>Linux系统基础培训</category>
+      </categories>
+      <tags>
+        <tag>培训</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 用户和组</title>
+    <url>/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/</url>
+    <content><![CDATA[<h2 id="课堂作业"><a href="#课堂作业" class="headerlink" title="课堂作业"></a>课堂作业</h2><ol>
+<li>添加2个组，一个组名为justice，另外一个组名为ninja。</li>
+<li>添加4个新用户，分别为 superman、batman、wonderwoman、greenlantern，密码均为uplooking；其附加组为justice。</li>
+<li>添加4个新用户，分别为 leo、raph、mikey、don ，密码均为uplooking，其附加组为ninja。</li>
+<li>mikey用户总是在系统里搞破坏，root决定封他的号，让他不能登陆。过了几天，再解封。</li>
+<li>leo想加入justice，root同意了，将justice作为附加组添加给leo。</li>
+<li>don整天搞创造，root要求他的密码要更安全，所以将他的密码设置成7天之后要换密码，并且密码过期前3天要提醒他，如果密码过期后2天还没有设置新密码，那么就封锁don账户。</li>
+<li>batman总是喜欢修改密码，没事就在修改密码，而使用该batman账户的人有好几个，比如蝙蝠侠，蝙蝠侠的管家，蝙蝠侠的助手罗宾等等。所以root决定将batman账户的密码的最小存活期改为10天。也就是说10天之内batman账户不能修改密码。</li>
+<li>leo想退出justice,root帮他设置一下。</li>
+<li>superman想把密码改为uplooking123，让他自己改。发现改不了，密码太简单了，自己去想一个复杂的密码。</li>
+<li>让superman能够修改root用户的密码。</li>
+</ol>
+<h2 id="用户和组的相关文件"><a href="#用户和组的相关文件" class="headerlink" title="用户和组的相关文件"></a>用户和组的相关文件</h2><table>
+<thead>
+<tr>
+<th align="left">文件名</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">/etc/passwd</td>
+<td align="left">系统中的账号信息</td>
+</tr>
+<tr>
+<td align="left">etc/shadow</td>
+<td align="left">存放密码及其策略相关信息</td>
+</tr>
+<tr>
+<td align="left">/etc/group</td>
+<td align="left">存放用户组的信息</td>
+</tr>
+<tr>
+<td align="left">/etc/gshadow</td>
+<td align="left">存放用户组的密码及其策略相关信息</td>
+</tr>
+<tr>
+<td align="left">/etc/default/useradd</td>
+<td align="left">创建新用户时默认的配置信息</td>
+</tr>
+<tr>
+<td align="left">/etc/skel/*</td>
+<td align="left">Directory containing default files.</td>
+</tr>
+<tr>
+<td align="left">/etc/login.defs</td>
+<td align="left">用户和组默认的配置信息</td>
+</tr>
+<tr>
+<td align="left">/etc/shells</td>
+<td align="left">该文件记录着合法的 shell 版本</td>
+</tr>
+</tbody></table>
+<h3 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h3><p>每一行都代表一个账号 , 有几行就代表有几个账号在你的系统中</p>
+<p>系统统账号: bin, daemon, adm, nobody</p>
+<p>以“：”作为分隔符,七个字段</p>
+<p><code>root:x:0:0:root:/root:/bin/bash</code> </p>
+<ol>
+<li><p>账号名称 :root</p>
+</li>
+<li><p>密码 :X</p>
+</li>
+<li><p>UID: 使用者标识符<br>rhel6 root_uid=0 sys_uid=1-499 user_uid=500-65535 ( 2^32-1 )<br>rhel7 root_uid=0 sys_uid=201-999 user_uid=1000-65535</p>
+</li>
+<li><p>GID: 用户组标识符 root_guid=0</p>
+</li>
+<li><p>用户信息说明栏 </p>
+</li>
+<li><p>家目录 : 用户的家目录 root 的家目录在 /root, 默认用户的家目录在 /home/yourname</p>
+</li>
+<li><p>Shell: 命令解释器</p>
+<ul>
+<li>系统默认为 /bin/bash</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>/sbin/nologin 不可通过终端登录系统</li>
+</ul>
+<h3 id="etc-shadow"><a href="#etc-shadow" class="headerlink" title="/etc/shadow"></a>/etc/shadow</h3><p>存放密码及其策略相关信息</p>
+<p>以“：”作为分隔符九个字段</p>
+<p><code>root:$1$/30QpE5e$y9N/D0bh6rAACBEz.hqo00:14126:0:99999:7:::</code></p>
+<ol>
+<li>账号名称 :root</li>
+<li>密码 : 加密后的字符串，以$N$ 开头</li>
+<li>最近变更密码的日期 : 天数,以 1970 年 1 月 1 日作为 1 而累加的日期<br>echo $(($(date –date=”2008/09/04” +%s)/86400+1))<br>14126</li>
+<li>密码不可被更改的天数 :0 : 表示密码随时可以更改， 20 :表示 距最近一次修改密码20 天之内都不能修改密码</li>
+<li>密码需要重新变更的天数 :99999 ( 计算为 273 年 ) 表示密码的变更没有强制性。</li>
+<li>密码需要变更期限前的警告天数 : 在密码到期之前几天提醒</li>
+<li>密码过期后的账号宽限时间 ( 密码失效日 ): 密码过期特性。</li>
+<li>账号失效日期 : 天数，以 1970 年 1 月 1 日作为 1 而累加的日期</li>
+<li>保留 : 保留段</li>
+</ol>
+<h3 id="etc-group"><a href="#etc-group" class="headerlink" title="/etc/group"></a>/etc/group</h3><p>存放用户组的信息</p>
+<p>每一行代表一个群组以“：”作为分隔符四个字段</p>
+<p><code>root:x:0:root</code></p>
+<ol>
+<li>组名 :root</li>
+<li>群组密码 :x 一般不设定,通常是给『群组管理员』使用</li>
+<li>GID: 群组的 ID</li>
+<li>此群组支持的账号名称 : 一个账号可以加入多个群组</li>
+</ol>
+<p>例如,将 dabao 加入 root 群组后 :</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root:x:0:root,dmtsai</span><br></pre></td></tr></table></figure>
+
+<h3 id="etc-gshadow"><a href="#etc-gshadow" class="headerlink" title="/etc/gshadow"></a>/etc/gshadow</h3><p>存放用户组的密码及其策略相关信息</p>
+<p>每一行代表一个群组 “: ” 作为分隔符四个字段</p>
+<p><code>newgroup:!::redhat</code></p>
+<ol>
+<li>组名 :newgroup</li>
+<li>密码栏 : 开头为 ! 表示无合法密码 , 所以无群组管理员</li>
+<li>群组管理员的账号</li>
+<li>此群组支持的账号名称 : 与 /etc/group 相同</li>
+</ol>
+<h3 id="etc-default-useradd"><a href="#etc-default-useradd" class="headerlink" title="/etc/default/useradd"></a>/etc/default/useradd</h3><p>创建新用户时默认的配置信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">GROUP=100 &lt;== 预设的群组，现已不生效，如果创建用户时不指定群组，则使用与用户同名的群组</span><br><span class="line">HOME=/home &lt;== 默认的家目录所在目录</span><br><span class="line">INACTIVE=-1 &lt;== 密码失效日 , 在 shadow 第 7 栏</span><br><span class="line">EXPIRE= &lt;== 账号失效日 , 在 shadow 第 8 栏</span><br><span class="line">SHELL=/bin/bash &lt;== 预设的 shell /sbin/nologin 将无法登陆</span><br><span class="line">SKEL=/etc/skel&lt;== 用户家目录的内容数据参考目录</span><br><span class="line">CREATE_MAIL_SPOOL=yes &lt;== 是否主动帮助使用者建立邮件信箱 (mailbox)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="etc-skel"><a href="#etc-skel" class="headerlink" title="/etc/skel/"></a>/etc/skel/</h3><p>Directory containing default files.</p>
+<p>.bash_logout .bash_profile .bashrc .gnome2 .mozilla</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 skel]# ll -a /etc/skel</span><br><span class="line">total 40</span><br><span class="line">drwxr-xr-x. 4 root root 4096 Jan 2 01:58 .</span><br><span class="line">drwxr-xr-x. 125 root root 12288 Mar 21 03:09 ..</span><br><span class="line">-rw-r--r--. 1 root root 18 Jul 9 2013 .bash_logout</span><br><span class="line">-rw-r--r--. 1 root root 176 Jul 9 2013 .bash_profile</span><br><span class="line">-rw-r--r--. 1 root root 124 Jul 9 2013 .bashrc</span><br><span class="line">-rw-r--r--. 1 root root 500 May 7 2013 .emacs</span><br><span class="line">drwxr-xr-x. 2 root root 4096 Jul 14 2010 .gnome2</span><br><span class="line">drwxr-xr-x. 4 root root 4096 Jan 2 01:52 .mozilla</span><br></pre></td></tr></table></figure>
+
+<h3 id="etc-login-defs"><a href="#etc-login-defs" class="headerlink" title="/etc/login.defs"></a>/etc/login.defs</h3><p>默认的配置信息 rhel6 下的信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MAIL_DIR           /var/spool/mail 用户默认邮件信箱放置目录</span><br><span class="line">PASS_MAX_DAYS      99999 /etc/shadow 第 5 栏 , 密码需要重新变更的天数</span><br><span class="line">PASS_MIN_DAYS      0 /etc/shadow 第 4 栏 , 密码不可被更动的天数</span><br><span class="line">PASS_MIN_LEN       5 密码最短的字符长度 , 已被 pam 模块取代 , 失去效用 !</span><br><span class="line">PASS_WARN_AGE      7 /etc/shadow 第 6 栏 , 过期前会警告天数</span><br><span class="line">UID_MIN            500 使用者最小的 UID 不能 &lt;500</span><br><span class="line">UID_MAX            60000  使用者最大的 UID 不能 &gt;60000</span><br><span class="line">GID_MIN            500  自定义组最小的 UID 不能 &lt;500</span><br><span class="line">GID_MAX            60000  自定义组最大的 UID 不能 &gt;60000</span><br><span class="line">CREATE_HOME     yes  在 username 命令不加 -M 及 -m 时 , 是否主动建立用户家目录</span><br><span class="line">UMASK        077  用户家目录建立的 umask , 因此权限会是 700 『 drwx------ 』</span><br><span class="line">USERGROUPS_ENAB  yes  使用 userdel 时 , 是否会删除初始群组(如果使用 userdel 去删除一个账号时 , 该账号所属的初始群组已经没有人隶属于该群组了 , 那举就删掉该群组)</span><br><span class="line">ENCRYPT_METHOD    SHA512  经过 SHA512 进行加密处理</span><br></pre></td></tr></table></figure>
+
+<h3 id="etc-shells"><a href="#etc-shells" class="headerlink" title="/etc/shells"></a>/etc/shells</h3><p>该文件记录着合法的 shell 版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 skel]# cat /etc/shells</span><br><span class="line">/bin/sh</span><br><span class="line">/bin/bash</span><br><span class="line">/sbin/nologin</span><br><span class="line">/bin/dash</span><br><span class="line">/bin/tcsh</span><br><span class="line">/bin/csh</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户和组的相关命令"><a href="#用户和组的相关命令" class="headerlink" title="用户和组的相关命令"></a>用户和组的相关命令</h2><table>
+<thead>
+<tr>
+<th align="left">用户和组</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">新建组</td>
+<td align="left">groupadd</td>
+</tr>
+<tr>
+<td align="left">新建用户</td>
+<td align="left">useradd</td>
+</tr>
+<tr>
+<td align="left">修改密码</td>
+<td align="left">passwd 密码 &gt;8 位字符、小写 / 大写 / 数字 / 特殊符号之间任选 3 位</td>
+</tr>
+<tr>
+<td align="left">修改用户属性</td>
+<td align="left">usermod</td>
+</tr>
+<tr>
+<td align="left">修改组属性</td>
+<td align="left">groupmod</td>
+</tr>
+<tr>
+<td align="left">修改密码属性</td>
+<td align="left">chage</td>
+</tr>
+<tr>
+<td align="left">修改 shell</td>
+<td align="left">chsh</td>
+</tr>
+<tr>
+<td align="left">删除用户</td>
+<td align="left">userdel</td>
+</tr>
+<tr>
+<td align="left">删除组</td>
+<td align="left">groupdel</td>
+</tr>
+<tr>
+<td align="left">查看已存在用户的基本信息</td>
+<td align="left">id</td>
+</tr>
+<tr>
+<td align="left">查看当前用户支持的群组信息</td>
+<td align="left">groups</td>
+</tr>
+</tbody></table>
+<p>通过文件查看</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">/etc/passwd</span><br><span class="line">/etc/shadow</span><br><span class="line">/etc/group</span><br><span class="line">/etc/gshadow</span><br></pre></td></tr></table></figure>
+
+<h3 id="新建用户和组"><a href="#新建用户和组" class="headerlink" title="新建用户和组"></a>新建用户和组</h3><h4 id="groupadd"><a href="#groupadd" class="headerlink" title="groupadd"></a>groupadd</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">groupadd 创建组</span><br><span class="line">-g, --gid GID</span><br><span class="line">-r, --system  Create a system group</span><br><span class="line"></span><br><span class="line"> 新建组 test 制定 gid 为 888</span><br><span class="line">[root@rhel7 ~]# groupadd -g 888 test</span><br><span class="line"> 新建一个系统组 baby</span><br><span class="line">[root@rhel7 ~]# groupadd -r baby</span><br><span class="line"> 查看一下刚刚新建的组的信息</span><br><span class="line">[root@rhel7 ~]# tail -n 2 /etc/group</span><br><span class="line">test:x:888:</span><br><span class="line">baby:x:490:</span><br></pre></td></tr></table></figure>
+
+<h4 id="useradd"><a href="#useradd" class="headerlink" title="useradd"></a>useradd</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">创建新用户</span><br><span class="line">useradd [-u UID] [-g 初始群组 ] [-G 次要群组 ] [-mM] [-c 说明栏 ] [-d 家目录绝对路径 ] [-s shell] 账号名</span><br><span class="line">拓展: -e : 接日期『 YYYY-MM-DD 』 shadow 第八字段账号失效日期</span><br><span class="line"> 	-f : 接天数 shadow 第七字段密码失效日 0 :立刻失效 -1 :永不失效</span><br><span class="line">		失效后可登陆,但是会强制你重新设置密码</span><br><span class="line">[root@rhel7 ~]# useradd -u 888 -g 888 -f 0 -e 2016-03-21 t1</span><br><span class="line">[root@rhel7 ~]# id t1</span><br><span class="line">uid=888(t1) gid=888(test) groups=888(test)</span><br><span class="line">[root@rhel7 ~]# tail -n 1 /etc/passwd</span><br><span class="line">t1:x:888:888::/home/t1:/bin/bash</span><br><span class="line">[root@rhel7 ~]# tail -n 1 /etc/shadow</span><br><span class="line">t1:!!:16880:0:99999:7:0:16881:</span><br></pre></td></tr></table></figure>
+
+<h4 id="passwd"><a href="#passwd" class="headerlink" title="passwd"></a>passwd</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">给用户设置密码</span><br><span class="line">passwd [--sdtin] &lt;&#x3D;&#x3D; 所有人均可使用更改自己的密码</span><br><span class="line">passwd [-l] [-u] [--sdtin] [-S] [-n 日数 ] [-x 日数 ] [-w 日数 ] [-i 日期 ] 账号 &lt;&#x3D;&#x3D;root 功能</span><br><span class="line">选项与参数 :</span><br><span class="line">--stdin : 可以透过来自前一个管线的数据 , 作为密码输入 echo 123 | passwd --stdin dabao</span><br><span class="line">-l : 是 Lock 的缩写 , 会将 &#x2F;etc&#x2F;shadow 第二栏最前面加上 ! 使密码失效</span><br><span class="line">-u : 与 -l 相对 , 是 Unlock 的缩写</span><br><span class="line">-S : 列出密码相关参数 shadow 大部分信息。</span><br><span class="line">-n : 后面接天数 ,shadow 第 4 字段 , 密码不可被更动的天数</span><br><span class="line">-x : 后面接天数 ,shadow 第 5 字段 , 密码需要重新变更的天数</span><br><span class="line">-w : 后面接天数 ,shadow 第 6 字段 , 密码需要变更期限前的警告天数</span><br><span class="line">-i : 后面接天数 ,shadow 第 7 字段 , 密码失效日期</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 ~]# passwd t1</span><br><span class="line">Changing password for user t1.</span><br><span class="line">New password:</span><br><span class="line">BAD PASSWORD: it is based on a dictionary word</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br><span class="line"></span><br><span class="line"> 设置密码失效日期为 7 天</span><br><span class="line">[root@rhel7 ~]# passwd -i 7 t1</span><br><span class="line">Adjusting aging data for user t1.</span><br><span class="line">passwd: Success</span><br><span class="line"></span><br><span class="line"> 查看记录用户密码属性的文件 /etc/shadow ,截取 t1 用户的那一行</span><br><span class="line">[root@rhel7 ~]# sed -n '/t1/p' /etc/shadow</span><br><span class="line">t1:$6$TDnycU/C$0AmM5AoZmoHZQMex.dQCoroH2JxdSnDhLnBMorcUPlWgshYrlstZJmH.Q.fT</span><br><span class="line">OTV.pECGEuqFqugj8YccRqcdD/:16880:0:99999:7:7:16881:</span><br><span class="line"></span><br><span class="line"> 截取 t1 用户密码属性,以 : 为分割的第 7 字段</span><br><span class="line">[root@rhel7 ~]# sed -n '/t1/p' /etc/shadow|cut -d":" -f 7</span><br><span class="line">7</span><br><span class="line">[root@rhel7 ~]# sed -n '/t1/p' /etc/shadow|awk -F: '&#123;print 7&#125;'</span><br><span class="line">7</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改用户和组属性"><a href="#修改用户和组属性" class="headerlink" title="修改用户和组属性"></a>修改用户和组属性</h3><h4 id="groupmod"><a href="#groupmod" class="headerlink" title="groupmod"></a>groupmod</h4><p>修改组属性</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">groupmod -g gid [gname] 修改 gid</span><br><span class="line">groupmod -n new_gname [gname] 修改组的名字</span><br><span class="line">[root@rhel7 ~]# groupmod -g 999 test</span><br><span class="line">[root@rhel7 ~]# grep test /etc/group</span><br><span class="line">test:x:999:</span><br><span class="line">[root@rhel7 ~]# groupmod -n test1 test</span><br><span class="line">[root@rhel7 ~]# grep test /etc/group</span><br><span class="line">test1:x:999:</span><br></pre></td></tr></table></figure>
+
+<h4 id="usermod"><a href="#usermod" class="headerlink" title="usermod"></a>usermod</h4><p>修改用户属性</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">usermod [-cdegGlsuLU] username</span><br><span class="line">选项不参数 :</span><br><span class="line">-c : 后面接账号的说明 修改 &#x2F;etc&#x2F;passwd 第 5 字段</span><br><span class="line">-d : 后面接账号的家目录 修改 &#x2F;etc&#x2F;passwd 第 6 字段</span><br><span class="line">-e : 后面接日期 , 格式是 YYYY-MM-DD 修改 shadow 第 8 字段 ( 账号失效日 )</span><br><span class="line">-f : 后面接天数 修改 shadow 第 7 字段 ( 密码失效日期 )</span><br><span class="line">-g : 后面接初始群组 修改 &#x2F;etc&#x2F;passwd 第 4 字段 GID</span><br><span class="line">-G : 后面接次要群组 , 修改这个使用者能够支持的群组 修改 &#x2F;etc&#x2F;group</span><br><span class="line">-aG : 『增加次要群组的支持』而非『设定』</span><br><span class="line">-l : 后面接账号名称 修改账号名称 修改 &#x2F;etc&#x2F;passwd 第 1 字段</span><br><span class="line">-s : 后面接 Shell 的实际档案 , 例如 &#x2F;bin&#x2F;bash &#x2F;bin&#x2F;csh 等等</span><br><span class="line">-u : 后面接 UID 数字啦 ! 卲 &#x2F;etc&#x2F;passwd 第三栏的资料 ;</span><br><span class="line">-L : 暂时将用户的密码冻结 , 让他无法登入。修改 &#x2F;etc&#x2F;shadow 密码栏</span><br><span class="line">-U : 将 &#x2F;etc&#x2F;shadow 密码栏的 ! 拿掉 , 解冻</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 ~]# usermod -g test2 -G test3 t1</span><br><span class="line">[root@rhel7 ~]# id t1</span><br><span class="line">uid=888(t1) gid=1000(test2) groups=1000(test2),1001(test3)</span><br><span class="line">[root@rhel7 ~]# usermod -s /sbin/nologin t1</span><br><span class="line">[root@rhel7 ~]# grep t1 /etc/passwd</span><br><span class="line">t1:x:888:1000::/home/t1:/sbin/nologin</span><br><span class="line">[root@rhel7 ~]# su - t1</span><br><span class="line">This account is currently not available.</span><br></pre></td></tr></table></figure>
+
+<h4 id="chage"><a href="#chage" class="headerlink" title="chage"></a>chage</h4><p>修改用户密码属性</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chage [-ldEImMW] 账号名</span><br><span class="line">选项与参数 :</span><br><span class="line">-l : 列出该账号的详细密码参数 ;</span><br><span class="line">-d : 后面接日期 , 修改 shadow 第 3 字段 ( 最近一次更改密码的日期 ), 格式 YYYY-MM-DD</span><br><span class="line">-m : 后面接天数 , 修改 shadow 第 4 字段 ( 密码不可被更动的天数 )</span><br><span class="line">-M : 后面接天数 , 修改 shadow 第 5 字段 ( 密码需要重新变更的天数 )</span><br><span class="line">-W : 后面接天数 , 修改 shadow 第 6 字段 ( 密码需要变更期限前的警告天数 )</span><br><span class="line">-I : 后面接天数 , 修改 shadow 第 7 字段 ( 密码失效日期 )</span><br><span class="line">-E : 后面接日期 , 修改 shadow 第 8 字段 ( 账号失效日 ), 格式 YYYY-MM-DD</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 ~]# chage t1</span><br><span class="line">Changing the aging information for t1</span><br><span class="line">Enter the new value, or press ENTER for the default</span><br><span class="line">Minimum Password Age [0]:</span><br><span class="line">Maximum Password Age [99999]:</span><br><span class="line">Last Password Change (YYYY-MM-DD) [2016-03-20]:</span><br><span class="line">Password Expiration Warning [7]:</span><br><span class="line">Password Inactive [7]:</span><br><span class="line">Account Expiration Date (YYYY-MM-DD) [2016-03-21]:</span><br></pre></td></tr></table></figure>
+
+<h4 id="chsh"><a href="#chsh" class="headerlink" title="chsh"></a>chsh</h4><p>change shell 的简写</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chsh [-ls]</span><br><span class="line">选项与参数 :</span><br><span class="line">-l : 列出目前系统上面可用的 shell /etc/shells 里内容</span><br><span class="line">-s : 修改自己的 Shell</span><br><span class="line">[root@rhel7 ~]# chsh -s /bin/bash t1</span><br><span class="line">Changing shell for t1.</span><br><span class="line">Shell changed.</span><br><span class="line">[root@rhel7 ~]# grep t1 /etc/passwd</span><br><span class="line">t1:x:888:1000::/home/t1:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除用户和组"><a href="#删除用户和组" class="headerlink" title="删除用户和组"></a>删除用户和组</h3><h4 id="groupdel"><a href="#groupdel" class="headerlink" title="groupdel"></a>groupdel</h4><p>删除组</p>
+<p>groupdel groupname</p>
+<h4 id="userdel"><a href="#userdel" class="headerlink" title="userdel"></a>userdel</h4><p>删除用户</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">userdel [-r] username</span><br><span class="line">选项不参数 :</span><br><span class="line">-r 没有这个选项删除会不彻底,关于用户的目录、文档全部删除</span><br><span class="line"></span><br><span class="line">[root@rhel7 ~]# tail -3 /etc/group</span><br><span class="line">test:x:999:</span><br><span class="line">test2:x:1000:</span><br><span class="line">test3:x:1001:t1</span><br><span class="line">[root@rhel7 ~]# groupdel test3</span><br><span class="line">[root@rhel7 ~]# tail -3 /etc/group</span><br><span class="line">baby:x:490:</span><br><span class="line">test:x:999:</span><br><span class="line">test2:x:1000:</span><br><span class="line">[root@rhel7 ~]# userdel -r t1</span><br><span class="line">[root@rhel7 ~]# ll /home</span><br><span class="line">total 12</span><br><span class="line">drwx------. 27 cong cong 4096 Jan 1 18:40 cong</span><br><span class="line">drwx------. 4 g2</span><br><span class="line">888 4096 Mar 21 03:56 g2</span><br><span class="line">drwx------. 12 tom tom 4096 Mar 21 02:14 tom</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看用户和组信息"><a href="#查看用户和组信息" class="headerlink" title="查看用户和组信息"></a>查看用户和组信息</h3><h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>查看已存在用户的基本信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 ~]# id root</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root)</span><br><span class="line">[root@rhel7 ~]# id -g root</span><br><span class="line">0</span><br><span class="line">[root@rhel7 ~]# id -u root</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<h4 id="groups"><a href="#groups" class="headerlink" title="groups"></a>groups</h4><p>查看当前用户支持的群组信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@rhel7 ~]# groups</span><br><span class="line">root</span><br></pre></td></tr></table></figure>
+
+<p>思考题: root 和普通用户都可以修改 /etc/passwd 文档,那么这个文档的权限是什么呢?<br>SUID</p>
+<h2 id="用户身份切换-sudo-su"><a href="#用户身份切换-sudo-su" class="headerlink" title="用户身份切换 sudo / su"></a>用户身份切换 sudo / su</h2><h3 id="su"><a href="#su" class="headerlink" title="su"></a>su</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su [-lm] [-c 指令 ] [username]</span><br><span class="line">选项与参数 :</span><br><span class="line">- : 单纯使用 - 如『 su - 』 以 login-shell 变量档案读取方式登入系统 ; 默认切换为 root</span><br><span class="line">-l : 与 - 类似 login-shell</span><br><span class="line">-m :-m 与 -p 一样 , 表示『使用目前的环境设定 , 而不读取新使用者的配置文件』</span><br><span class="line">-c : 接指令</span><br></pre></td></tr></table></figure>
+
+<p>总结:</p>
+<ol>
+<li>su - username 或 su -l username<br>完整切换成新使用者的环境 用 env 查看环境变量<br>PATH/USER/MAIL</li>
+<li>su - -c “ 指令 “<br>仅想要执行一次 root 的指令</li>
+<li>使用 root 切换成为任何使用者时 , 不需要输入新用户密码</li>
+<li>缺点:当主机多人管理时, su 切换成 root ,那每个人都需要知道 root 密码,不安全。</li>
+</ol>
+<h3 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h3><p>sudo [-u user name | #uid] [command]</p>
+<h4 id="sudo-执行流程"><a href="#sudo-执行流程" class="headerlink" title="sudo 执行流程"></a>sudo 执行流程</h4><ol>
+<li>在 /etc/sudoers 档案中查看 user 是否有 sudo 执行权限</li>
+<li>若有 sudo 执行权限 , 『输入用户的密码』</li>
+<li>密码正确 , 开始执行 sudo 后续接的指令</li>
+<li>root 无需密码,自己切换自己也无需密码</li>
+</ol>
+<h4 id="添加用户-sudo-执行权限的方法"><a href="#添加用户-sudo-执行权限的方法" class="headerlink" title="添加用户 sudo 执行权限的方法"></a>添加用户 sudo 执行权限的方法</h4><p>(如何让用户可以使用 sudo ?)</p>
+<ol>
+<li>visudo 可以让系统检验 /etc/sudoers 的语法是否正确</li>
+<li>修改 /etc/sudoers 中的语法</li>
+</ol>
+<p>1 )单一用户可使用 root 所有指令或某些指令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root 		ALL=(ALL) 	ALL &lt;== 找到这一行 ,rh6 在 98 行</span><br><span class="line">username 	ALL=(ALL) 	ALL &lt;== 新增这一行</span><br><span class="line">username 	ALL=(root) 	/bin/touch&lt;== 新增这一行</span><br></pre></td></tr></table></figure>
+
+<p>语法解释:</p>
+<p>使用者账号 登入者的来源主机名 =( 可切换的身份 )     可下达的指令</p>
+<p>root             ALL=(ALL)                 ALL &lt;== 这是默认值</p>
+<ol>
+<li>使用者帐号:系统哪个帐号可以使用 sudo</li>
+<li>登入者的来源主机名:信任用户 默认 root 可来自任何一部网络主机</li>
+<li>可切换的身份:该账号可以切换成谁来下命令 , 末日 root 可以切换成任何人</li>
+<li>可下达的指令:可用该身份下达什么指令。必需使用绝对路径 ( 可通过 which\whereis 查询 )</li>
+<li>ALL : 是特殊关键词 , 代表任何身份、任何主机、任何命令</li>
+</ol>
+<p>2 )群组和免密码的功能处理</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">wheel ALL=(ALL) ALL&lt;== 找到这一行 ,rh6 在 105 行</span></span><br><span class="line"><span class="meta">%</span><span class="bash">wheel ALL=(ALL) NOPASSWD: ALL&lt;== 找到这一行 ,rh6 在 108 行</span></span><br></pre></td></tr></table></figure>
+
+<p>语法解释:</p>
+<ol>
+<li>% 接群组</li>
+<li>wheel 群组内的用户有使用 sudo 的权限,并可以切换成任何人,执行切换后身份的任何命令</li>
+<li>wheel 群组内的用户切换用户时不需要输入自己的密码</li>
+</ol>
+<p>3）有限的权限操作</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dabao ALL=(root) /usr/bin/passwd &lt;== 有 bug , dabao 能修改 root 密码</span><br><span class="line">dabao ALL=(root) !/usr/bin/passwd, /usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root&lt;== 可以执</span><br><span class="line">行『 passwd 任意字符』 , 但是『 passwd 』和『 passwd root 』这两个命令不可执行</span><br></pre></td></tr></table></figure>
+
+<p>4 )别名设置 visudo</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">User_Alias DABAO=dabao,jerry,tom,g1,g2,g3</span><br><span class="line">Cmnd_Alias DABAOCOM = !/usr/bin/passwd,/usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root</span><br><span class="line">DABAO ALL=(root) DABAOCOM</span><br></pre></td></tr></table></figure>
+
+<p>5) sudo 搭配 su 使用</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">username ALL=(root) /bin/su -</span><br><span class="line">sudo su - &lt;==sudo -u root su -l root</span><br></pre></td></tr></table></figure>
+<p>可以直接切换成 root 用户,而且不需要输入 root 密码</p>
+<p>6 ) 5 分钟内可以不用再输入密码。</p>
+<h2 id="Linux用户和组课后作业"><a href="#Linux用户和组课后作业" class="headerlink" title="Linux用户和组课后作业"></a>Linux用户和组课后作业</h2><ol>
+<li>新建一个用户名为 redhat。密码为 password ，配置以下信息,以达到要求:</li>
+</ol>
+<ul>
+<li>密码的最小存活期为:1 天</li>
+<li>密码的最大存活期为:10 天</li>
+<li>密码过期前 5 天提醒</li>
+<li>密码过期后如 15 天仍未设置新密码,则封锁该帐户。</li>
+</ul>
+<ol>
+<li>创建一个新组 newgroup、将 redhat 以附加组成员的身份加入 到 newgroup 中。</li>
+<li>添加 3 个用户,用户 harry,natasha,tom,和一个组 ,组名为 admin 组 ，<br>要求 ：</li>
+</ol>
+<ul>
+<li>harry,natasha 用户的附加组为 admin 组；</li>
+<li>tom 用户的登陆 shell 为非交互式 shell；</li>
+<li>用户密码都为 uplooking</li>
+</ul>
+<ol>
+<li>使用 harry 用户登陆系统,尝试修改自己的密码,密码自己设 定。</li>
+<li>创建一个叫做 alex 用户,用户 uid 为 1234,不能登陆系统。</li>
+<li>以 root 用户身份给 natasha 用户修改密码,密码修改为 abc12345。</li>
+<li>给 tom 用户追加附加组,追加的附加组为 alex,同时给 tom 用户修改 uid,修改为 2222。</li>
 </ol>
 ]]></content>
       <categories>
