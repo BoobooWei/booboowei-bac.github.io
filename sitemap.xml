@@ -2,6 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&mysqlpump&mydumper/</loc>
+    
+    <lastmod>2020-03-24T05:27:17.977Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/06-MySQL%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7sysbench/</loc>
+    
+    <lastmod>2020-03-24T05:27:17.974Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/</loc>
+    
+    <lastmod>2020-03-24T05:27:17.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/</loc>
+    
+    <lastmod>2020-03-24T05:27:17.967Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/00-MySQL%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B/</loc>
+    
+    <lastmod>2020-03-24T05:27:17.964Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/03-MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%92%8CInnodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/</loc>
+    
+    <lastmod>2020-03-24T05:27:17.961Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/07-MySQL5.6%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/</loc>
+    
+    <lastmod>2020-03-24T05:27:17.957Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</loc>
+    
+    <lastmod>2020-03-24T05:24:35.236Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2/</loc>
+    
+    <lastmod>2020-03-24T05:24:35.228Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/03-MySQL%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</loc>
+    
+    <lastmod>2020-03-24T05:24:35.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/01-MySQL%E5%92%8CMariaDB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/</loc>
+    
+    <lastmod>2020-03-24T05:24:35.213Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/</loc>
+    
+    <lastmod>2020-03-24T05:21:05.681Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/</loc>
     
     <lastmod>2020-03-24T05:17:54.760Z</lastmod>
@@ -26,13 +110,6 @@
     <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/</loc>
     
     <lastmod>2020-03-24T05:17:54.753Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/</loc>
-    
-    <lastmod>2020-03-24T05:17:54.751Z</lastmod>
     
   </url>
   

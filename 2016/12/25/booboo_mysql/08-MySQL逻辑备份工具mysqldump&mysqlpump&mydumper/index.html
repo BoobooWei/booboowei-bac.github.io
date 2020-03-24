@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper | Amy and Booboo</title>
+  <meta name="keywords" content=" 培训 , MySQL基础管理 ">
+  <meta name="description" content="MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper | Amy and Booboo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="schedule">
+<meta property="og:url" content="http://www.toberoot.com/schedule/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="君不见黄河之水天上来，奔流到海不复回。">
+<meta property="article:published_time" content="2020-03-22T11:45:14.000Z">
+<meta property="article:modified_time" content="2020-03-22T03:45:14.331Z">
+<meta property="article:author" content="BoobooWei">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/influx.svg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my.png" />
+</a>
+<div class="author">
+    <span>BoobooWei</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(53)</small></div></li>
+    
+        
+            
+            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(41)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="LinuxShell脚本教程">LinuxShell脚本教程<small>(7)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MySQL基础管理教程">MySQL基础管理教程<small>(11)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="53">
+<input type="hidden" id="yelog_site_word_count" value="305.4k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
+            
+            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
+            
+            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color5">宝宝成长</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">培训</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">LinuxShell脚本</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Linux基础服务</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Linux</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">锁故障</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据救援</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SQL优化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">RDS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">主从同步</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">MySQL基础管理</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
+            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
+            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
+            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
+            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="家长会">家长会</span>
+            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
+            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第一课 简介和变量">LINUX Shell Scripts 第一课 简介和变量</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第二课 流程控制语句">LINUX Shell Scripts 第二课 流程控制语句</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第三课 正则表达式">LINUX Shell Scripts 第三课 正则表达式</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第四课 Sed">LINUX Shell Scripts 第四课 Sed</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第六课 上机考试">LINUX Shell Scripts 第六课 上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第七课 笔试">LINUX Shell Scripts 第七课 笔试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第五课 各种括号的作用">LINUX Shell Scripts 第五课 各种括号的作用</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/01_dns/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/03_nfs/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/02_ftp/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/04_samba/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/05_apache/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/ule-online/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/00-linux_history/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 内核">Linux 内核</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术广角 Hexo "
+           href="/2020/03/22/booboo_others/hello-world/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="锁故障"
+           data-author="" >
+            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
+            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
+            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
+        </a>
+        
+        <a  class="技术广角 Oracle "
+           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
+           data-tag="SQL优化"
+           data-author="" >
+            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
+            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
+           data-tag="RDS,主从同步"
+           data-author="" >
+            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
+            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
+        </a>
+        
+        <a  class="技术广角 MongoDB "
+           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
+            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/00-MySQL%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第一课 课程简介">MySQL 管理课程 第一课 课程简介</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第七课 复制 AB replication">MySQL 管理课程 第七课 复制 AB replication</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/06-MySQL%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7sysbench/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第九课 MySQL压力测试工具sysbench">MySQL 管理课程 第九课 MySQL压力测试工具sysbench</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/03-MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%92%8CInnodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎">MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第八课 高可用性HA">MySQL 管理课程 第八课 高可用性HA</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&mysqlpump&mydumper/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper">MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/07-MySQL5.6%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制">MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/01-MySQL%E5%92%8CMariaDB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍">MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/03-MySQL%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第五课 备份与恢复">MySQL 管理课程 第五课 备份与恢复</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1">MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2">MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-booboo_mysql/08-MySQL逻辑备份工具mysqldump&amp;mysqlpump&amp;mydumper" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="技术培训">技术培训</a>/
+            
+                <a  data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color3">培训</a>
+            
+            <a class="color5">MySQL基础管理</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-03-24 05:27:17'>2016-12-24 21:06</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:9.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysqldump"><span class="toc-text">mysqldump</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysqlpump"><span class="toc-text">mysqlpump</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参数"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用说明"><span class="toc-text">使用说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mydumper"><span class="toc-text">mydumper</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mydumper备份原理"><span class="toc-text">mydumper备份原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mydumper-参数"><span class="toc-text">mydumper 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#myloader-参数"><span class="toc-text">myloader 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用案例"><span class="toc-text">使用案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysqldump-mysqlpump-mydumper对比"><span class="toc-text">mysqldump,mysqlpump,mydumper对比</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="mysqldump"><a href="#mysqldump" class="headerlink" title="mysqldump"></a>mysqldump</h2><p>mysql经典逻辑备份工具</p>
+<p>参数说明，具体的参数可以用mysqldump –help查看。</p>
+<p>比较重要的几个参数</p>
+<p>①：–single-transaction</p>
+<p>通过将导出操作封装在一个事务(Repeatable Read)内来使得导出的数据是一个一致性快照。只有当表使用支持MVCC的存储引擎（目前只有InnoDB）时才可以工作；其他引擎不能保证导出是一致的。当导出开启了–single-transaction选项时，要确保导出文件有效（正确的表数据和二进制日志位置），就要保证没有其他连接会执行如下语句：ALTER TABLE, DROP TABLE, RENAME TABLE, TRUNCATE TABLE，这会导致一致性快照失效。这个选项开启后会自动关闭lock-tables。并且在mysql5.7.11之前，–default-parallelism大于1的时候和此参也互斥，必须使用–default-parallelism=0。5.7.11之后解决了–single-transaction和–default-parallelism的互斥问题。</p>
+<p>②：–master-data</p>
+<p>这个选项可以把binlog的位置和文件名添加到输出中，如果等于1，将会打印成一个CHANGE MASTER命令；如果等于2，会加上注释前缀。并且这个选项会自动打开–lock-all-tables，除非同时设置了–single-transaction（这种情况下，全局读锁只会在开始dump的时候加上一小段时间，不要忘了阅读–single-transaction的部分）。在任何情况下，所有日志中的操作都会发生在导出的准确时刻。这个选项会自动关闭–lock-tables。打开该参数需要有reload权限，并且服务器开启binlog。</p>
+<p>③：–lock-all-tables ，-x</p>
+<p>锁定所有库中所有的表。这是通过在整个dump的过程中持有全局读锁来实现的。会自动关闭–single-transaction 和 –lock-tables。</p>
+<p>④：–lock-tables，-l</p>
+<p>备份某个库就锁该库的所有表，用READ LOCAL来锁表。MyISAM允许并发写入，因为锁表只针对指定的数据库，不能保证物理上的一致性，不同库的表备份完成时会有不同的状态。用–skip-lock-tables来关闭。</p>
+<p>⑤：–flush-logs，-F</p>
+<p>在开始导出前刷新服务器的日志文件。注意，如果你一次性导出很多数据库（使用–databases= 或–all-databases 选项），导出每个库时都会触发日志刷新。例外是当使用了–lock-all-tables、–master-data或–single-transaction时：日志只会被刷新一次，那个时候所有表都会被锁住。所以如果你希望你的导出和日志刷新发生在同一个确定的时刻，你需要使用–lock-all-tables、–master-data和–single-transaction配合 –flush-logs。</p>
+<p>⑥：–opt</p>
+<p>该参数默认开启，表示快递启动–add-drop-table –add-locks –create-options –disable-keys –extended-insert –lock-tables –quick –set-charset选项，通过 –skip-opt 关闭。</p>
+<p>–all-databases  , -A<br>导出全部数据库。</p>
+<p>–all-tablespaces  , -Y<br>导出全部表空间。</p>
+<p>–no-tablespaces  , -y<br>不导出任何表空间信息。</p>
+<p>–add-drop-database<br>每个数据库创建之前添加drop数据库语句。</p>
+<p>–add-drop-table<br>每个数据表创建之前添加drop数据表语句。(默认为打开状态，使用–skip-add-drop-table取消选项)</p>
+<p>–add-locks<br>在每个表导出之前增加LOCK TABLES并且之后UNLOCK  TABLE。(默认为打开状态，使用–skip-add-locks取消选项)</p>
+<p>–allow-keywords<br>允许创建是关键词的列名字。这由表名前缀于每个列名做到。</p>
+<p>–apply-slave-statements<br>在’CHANGE MASTER’前添加’STOP SLAVE’，并且在导出的最后添加’START SLAVE’。</p>
+<p>–character-sets-dir<br>字符集文件的目录</p>
+<p>–comments<br>附加注释信息。默认为打开，可以用–skip-comments取消</p>
+<p>–compatible<br>导出的数据将和其它数据库或旧版本的MySQL 相兼容。值可以为ansi、mysql323、mysql40、postgresql、oracle、mssql、db2、maxdb、no_key_options、no_tables_options、no_field_options等，<br>要使用几个值，用逗号将它们隔开。它并不保证能完全兼容，而是尽量兼容。</p>
+<p>–compact<br>导出更少的输出信息(用于调试)。去掉注释和头尾等结构。可以使用选项：–skip-add-drop-table  –skip-add-locks –skip-comments –skip-disable-keys</p>
+<p>–complete-insert,  -c<br>使用完整的insert语句(包含列名称)。这么做能提高插入效率，但是可能会受到max_allowed_packet参数的影响而导致插入失败。</p>
+<p>–compress, -C<br>在客户端和服务器之间启用压缩传递所有信息</p>
+<p>–create-options,  -a<br>在CREATE TABLE语句中包括所有MySQL特性选项。(默认为打开状态)</p>
+<p>–databases,  -B<br>导出几个数据库。参数后面所有名字参量都被看作数据库名。</p>
+<p>–debug<br>输出debug信息，用于调试。默认值为：d:t:o,/tmp/mysqldump.trace</p>
+<p>–debug-check<br>检查内存和打开文件使用说明并退出。</p>
+<p>–debug-info<br>输出调试信息并退出</p>
+<p>–default-character-set<br>设置默认字符集，默认值为utf8</p>
+<p>–delayed-insert<br>采用延时插入方式（INSERT DELAYED）导出数据</p>
+<p>–delete-master-logs<br>master备份后删除日志. 这个参数将自动激活–master-data。</p>
+<p>–disable-keys<br>对于每个表，用/<em>!40000 ALTER TABLE tbl_name DISABLE KEYS */;和/</em>!40000 ALTER TABLE tbl_name ENABLE KEYS */;语句引用INSERT语句。这样可以更快地导入dump出来的文件，因为它是在插入所有行后创建索引的。该选项只适合MyISAM表，默认为打开状态。</p>
+<p>–dump-slave<br>该选项将导致主的binlog位置和文件名追加到导出数据的文件中。设置为1时，将会以CHANGE MASTER命令输出到数据文件；设置为2时，在命令前增加说明信息。该选项将会打开–lock-all-tables，除非–single-transaction被指定。该选项会自动关闭–lock-tables选项。默认值为0。</p>
+<p>–events, -E<br>导出事件。</p>
+<p>–extended-insert,  -e<br>使用具有多个VALUES列的INSERT语法。这样使导出文件更小，并加速导入时的速度。默认为打开状态，使用–skip-extended-insert取消选项。</p>
+<p>–fields-terminated-by<br>导出文件中忽略给定字段。与–tab选项一起使用，不能用于–databases和–all-databases选项</p>
+<p>–fields-enclosed-by<br>输出文件中的各个字段用给定字符包裹。与–tab选项一起使用，不能用于–databases和–all-databases选项</p>
+<p>–fields-optionally-enclosed-by<br>输出文件中的各个字段用给定字符选择性包裹。与–tab选项一起使用，不能用于–databases和–all-databases选项</p>
+<p>–fields-escaped-by<br>输出文件中的各个字段忽略给定字符。与–tab选项一起使用，不能用于–databases和–all-databases选项</p>
+<p>–flush-logs<br>开始导出之前刷新日志。<br>请注意：假如一次导出多个数据库(使用选项–databases或者–all-databases)，将会逐个数据库刷新日志。除使用–lock-all-tables或者–master-data外。在这种情况下，日志将会被刷新一次，相应的所以表同时被锁定。因此，如果打算同时导出和刷新日志应该使用–lock-all-tables 或者–master-data 和–flush-logs。</p>
+<p>–flush-privileges<br>在导出mysql数据库之后，发出一条FLUSH  PRIVILEGES 语句。为了正确恢复，该选项应该用于导出mysql数据库和依赖mysql数据库数据的任何时候。</p>
+<p>–force<br>在导出过程中忽略出现的SQL错误。</p>
+<p>–help<br>显示帮助信息并退出。</p>
+<p>–hex-blob<br>使用十六进制格式导出二进制字符串字段。如果有二进制数据就必须使用该选项。影响到的字段类型有BINARY、VARBINARY、BLOB。</p>
+<p>–host, -h<br>需要导出的主机信息</p>
+<p>–ignore-table<br>不导出指定表。指定忽略多个表时，需要重复多次，每次一个表。每个表必须同时指定数据库和表名。例如：–ignore-table=database.table1 –ignore-table=database.table2 ……</p>
+<p>–include-master-host-port<br>在–dump-slave产生的’CHANGE  MASTER TO..’语句中增加’MASTER_HOST=<host>，MASTER_PORT=<port>‘  </p>
+<p>–insert-ignore<br>在插入行时使用INSERT IGNORE语句.</p>
+<p>–lines-terminated-by<br>输出文件的每行用给定字符串划分。与–tab选项一起使用，不能用于–databases和–all-databases选项。</p>
+<p>–lock-all-tables,  -x<br>提交请求锁定所有数据库中的所有表，以保证数据的一致性。这是一个全局读锁，并且自动关闭–single-transaction 和–lock-tables 选项。</p>
+<p>–lock-tables,  -l<br>开始导出前，锁定所有表。用READ  LOCAL锁定表以允许MyISAM表并行插入。对于支持事务的表例如InnoDB和BDB，–single-transaction是一个更好的选择，因为它根本不需要锁定表。<br>请注意当导出多个数据库时，–lock-tables分别为每个数据库锁定表。因此，该选项不能保证导出文件中的表在数据库之间的逻辑一致性。不同数据库表的导出状态可以完全不同。</p>
+<p>–log-error<br>附加警告和错误信息到给定文件</p>
+<p>–master-data<br>该选项将binlog的位置和文件名追加到输出文件中。如果为1，将会输出CHANGE MASTER 命令；如果为2，输出的CHANGE  MASTER命令前添加注释信息。该选项将打开–lock-all-tables 选项，除非–single-transaction也被指定（在这种情况下，全局读锁在开始导出时获得很短的时间；其他内容参考下面的–single-transaction选项）。该选项自动关闭–lock-tables选项。</p>
+<p>–max_allowed_packet<br>服务器发送和接受的最大包长度。</p>
+<p>–net_buffer_length<br>TCP/IP和socket连接的缓存大小。</p>
+<p>–no-autocommit<br>使用autocommit/commit 语句包裹表。</p>
+<p>–no-create-db,  -n<br>只导出数据，而不添加CREATE DATABASE 语句。</p>
+<p>–no-create-info,  -t<br>只导出数据，而不添加CREATE TABLE 语句。</p>
+<p>–no-data, -d<br>不导出任何数据，只导出数据库表结构。</p>
+<p>–no-set-names,  -N<br>等同于–skip-set-charset</p>
+<p>–opt<br>等同于–add-drop-table,  –add-locks, –create-options, –quick, –extended-insert, –lock-tables,  –set-charset, –disable-keys 该选项默认开启,  可以用–skip-opt禁用.</p>
+<p>–order-by-primary<br>如果存在主键，或者第一个唯一键，对每个表的记录进行排序。在导出MyISAM表到InnoDB表时有效，但会使得导出工作花费很长时间。 </p>
+<p>–password, -p<br>连接数据库密码</p>
+<p>–pipe(windows系统可用)<br>使用命名管道连接mysql</p>
+<p>–port, -P<br>连接数据库端口号</p>
+<p>–protocol<br>使用的连接协议，包括：tcp, socket, pipe, memory.</p>
+<p>–quick, -q<br>不缓冲查询，直接导出到标准输出。默认为打开状态，使用–skip-quick取消该选项。</p>
+<p>–quote-names,-Q<br>使用（`）引起表和列名。默认为打开状态，使用–skip-quote-names取消该选项。</p>
+<p>–replace<br>使用REPLACE INTO 取代INSERT INTO.</p>
+<p>–result-file,  -r<br>直接输出到指定文件中。该选项应该用在使用回车换行对（\r\n）换行的系统上（例如：DOS，Windows）。该选项确保只有一行被使用。</p>
+<p>–routines, -R<br>导出存储过程以及自定义函数。</p>
+<p>–set-charset<br>添加’SET NAMES  default_character_set’到输出文件。默认为打开状态，使用–skip-set-charset关闭选项。</p>
+<p>–single-transaction<br>该选项在导出数据之前提交一个BEGIN SQL语句，BEGIN 不会阻塞任何应用程序且能保证导出时数据库的一致性状态。它只适用于多版本存储引擎，仅InnoDB。本选项和–lock-tables 选项是互斥的，因为LOCK  TABLES 会使任何挂起的事务隐含提交。要想导出大表的话，应结合使用–quick 选项。</p>
+<p>–dump-date<br>将导出时间添加到输出文件中。默认为打开状态，使用–skip-dump-date关闭选项。</p>
+<p>–skip-opt<br>禁用–opt选项.</p>
+<p>–socket,-S<br>`指定连接mysql的socket文件位置，默认路径/tmp/mysql.sock</p>
+<p>–tab,-T<br>为每个表在给定路径创建tab分割的文本文件。注意：仅仅用于mysqldump和mysqld服务器运行在相同机器上。</p>
+<p>–tables<br>覆盖–databases (-B)参数，指定需要导出的表名。</p>
+<p>–triggers</p>
+<p>导出触发器。该选项默认启用，用–skip-triggers禁用它。<br>`<br>–tz-utc<br>在导出顶部设置时区TIME_ZONE=’+00:00’ ，以保证在不同时区导出的TIMESTAMP 数据或者数据被移动其他时区时的正确性。</p>
+<p>–user, -u<br>指定连接的用户名。</p>
+<p>–verbose, –v<br>输出多种平台信息。</p>
+<p>–version, -V<br>输出mysqldump版本信息并退出</p>
+<p>–where, -w<br>只转储给定的WHERE条件选择的记录。请注意如果条件包含命令解释符专用空格或字符，一定要将条件引用起来。</p>
+<p>–xml, -X<br>导出XML格式.</p>
+<p>–plugin_dir<br>客户端插件的目录，用于兼容不同的插件版本。</p>
+<p>–default_auth<br>客户端插件默认使用权限。</p>
+<p>备份数据库常用案例：</p>
+<table>
+<thead>
+<tr>
+<th>备份内容</th>
+<th>情况1</th>
+<th>参数</th>
+<th>情况2</th>
+<th>参数</th>
+<th>情况3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>库的数量</td>
+<td>所有</td>
+<td>-A</td>
+<td>多个</td>
+<td>-B db1 db2 db3</td>
+<td>db1</td>
+</tr>
+<tr>
+<td>表的数量</td>
+<td>所有</td>
+<td></td>
+<td>多个</td>
+<td>–table t1 t2</td>
+<td>一个 t1</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>导出</td>
+<td></td>
+<td>不导出</td>
+<td>-t</td>
+<td></td>
+</tr>
+<tr>
+<td>数据</td>
+<td>导出</td>
+<td></td>
+<td>不导出</td>
+<td>-d</td>
+<td></td>
+</tr>
+<tr>
+<td>列名</td>
+<td>导出</td>
+<td>-c</td>
+<td>不导出</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>存储过程</td>
+<td>导出</td>
+<td>-R</td>
+<td>不导出</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>创建数据库</td>
+<td>导出</td>
+<td></td>
+<td>不导出</td>
+<td>-n</td>
+<td></td>
+</tr>
+</tbody></table>
+<ol>
+<li><p>导出结构不导出数据</p>
+<p><code>mysqldump -d 数据库名 -uroot -p &gt; xxx.sql</code></p>
+</li>
+<li><p>导出数据不导出结构</p>
+<p><code>mysqldump -t 数据库名 -uroot -p &gt; xxx.sql</code></p>
+</li>
+<li><p>导出数据和表结构</p>
+<p><code>mysqldump 数据库名 -uroot -p &gt; xxx.sql</code></p>
+</li>
+<li><p>导出特定表的结构</p>
+<p><code>mysqldump -uroot -p -B数据库名 --table 表名 &gt; xxx.sql</code></p>
+</li>
+<li><p>导出db1库中t1表的表结构和数据，并且打印出列名</p>
+<p><code>mysqldump -uusername -ppassword db1 t1 -c &gt; xxx.sql</code> </p>
+<p> -c, –complete-insert   使用完整的insert语句(用列名字)。</p>
+</li>
+<li><p>只导出存储过程</p>
+<p><code>mysqldump -B db1 db2 -t -d -n -R &gt; xxx.sql</code></p>
+</li>
+</ol>
+<h2 id="mysqlpump"><a href="#mysqlpump" class="headerlink" title="mysqlpump"></a>mysqlpump</h2><p>MySQL5.7之后多了一个备份工具：mysqlpump。它是mysqldump的一个衍生，mysqldump就不多说明了，现在看看mysqlpump到底有了哪些提升，可以查看官方文档，这里针对如何使用做下说明。</p>
+<p>mysqlpump和mysqldump一样，属于逻辑备份，备份以SQL形式的文本保存。逻辑备份相对物理备份的好处是不关心undo log的大小，直接备份数据即可。它最主要的特点是：</p>
+<ul>
+<li>并行备份数据库和数据库中的对象的，加快备份过程。</li>
+<li>更好的控制数据库和数据库对象（表，存储过程，用户帐户）的备份。</li>
+<li>备份用户账号作为帐户管理语句（CREATE USER，GRANT），而不是直接插入到MySQL的系统数据库。</li>
+<li>备份出来直接生成压缩后的备份文件。</li>
+<li>备份进度指示（估计值）。</li>
+<li>重新加载（还原）备份文件，先建表后插入数据最后建立索引，减少了索引维护开销，</li>
+<li>加快了还原速度。</li>
+<li>备份可以排除或则指定数据库。</li>
+</ul>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>绝大部分参数和mysqldump一致</p>
+<p>1：–add-drop-database：在建立库之前先执行删库操作。</p>
+<p>DROP DATABASE IF EXISTS <code>...</code>;</p>
+<p>2：–add-drop-table：在建表之前先执行删表操作。</p>
+<p>DROP TABLE IF EXISTS <code>...</code>.<code>...</code>;</p>
+<p>3：–add-drop-user：在CREATE USER语句之前增加DROP USER，注意：这个参数需要和–users一起使用，否者不生效。</p>
+<p>DROP USER ‘backup’@’192.168.123.%’;</p>
+<p>4：–add-locks：备份表时，使用LOCK TABLES和UNLOCK TABLES。注意：这个参数不支持并行备份，需要关闭并行备份功能：–default-parallelism=0 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LOCK TABLES `...`.`...` WRITE;</span><br><span class="line">...</span><br><span class="line">UNLOCK TABLES;</span><br></pre></td></tr></table></figure>
+
+<p>5：–all-databases：备份所有库，-A。</p>
+<p>6：–bind-address：指定通过哪个网络接口来连接Mysql服务器（一台服务器可能有多个IP），防止同一个网卡出去影响业务。</p>
+<p>7：–complete-insert：dump出包含所有列的完整insert语句。</p>
+<p>8：–compress： 压缩客户端和服务器传输的所有的数据，-C。</p>
+<p>9：–compress-output：默认不压缩输出，目前可以使用的压缩算法有LZ4和ZLIB。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">shell&gt;</span><span class="bash"> mysqlpump --compress-output=LZ4 &gt; dump.lz4</span></span><br><span class="line"><span class="meta">shell&gt;</span><span class="bash"> lz4_decompress dump.lz4 dump.txt</span></span><br><span class="line"></span><br><span class="line"><span class="meta">shell&gt;</span><span class="bash"> mysqlpump --compress-output=ZLIB &gt; dump.zlib</span></span><br><span class="line"><span class="meta">shell&gt;</span><span class="bash"> zlib_decompress dump.zlib dump.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>10：–databases：手动指定要备份的库，支持多个数据库，用空格分隔，-B。</p>
+<p>11：–default-character-set：指定备份的字符集。</p>
+<p>12：–default-parallelism：指定并行线程数，默认是2，如果设置成0，表示不使用并行备份。注意：每个线程的备份步骤是：先create table但不建立二级索引（主键会在create table时候建立），再写入数据，最后建立二级索引。</p>
+<p>13：–defer-table-indexes：延迟创建索引，直到所有数据都加载完之后，再创建索引，默认开启。若关闭则会和mysqldump一样：先创建一个表和所有索引，再导入数据，因为在加载还原数据的时候要维护二级索引的开销，导致效率比较低。关闭使用参数：–skip–defer-table-indexes。</p>
+<p>14：–events：备份数据库的事件，默认开启，关闭使用–skip-events参数。</p>
+<p>15：–exclude-databases：备份排除该参数指定的数据库，多个用逗号分隔。类似的还有–exclude-events、–exclude-routines、–exclude-tables、–exclude-triggers、–exclude-users。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysqlpump --exclude-databases=mysql,sys    #备份过滤mysql和sys数据库</span><br><span class="line"></span><br><span class="line">mysqlpump --exclude-tables=rr,tt   #备份过滤所有数据库中rr、tt表</span><br><span class="line"></span><br><span class="line">mysqlpump -B test --exclude-tables=tmp_ifulltext,tt #备份过滤test库中的rr、tt表</span><br></pre></td></tr></table></figure>
+
+<p>注意：要是只备份数据库的账号，需要添加参数–users，并且需要过滤掉所有的数据库，如：</p>
+<p>mysqlpump –users –exclude-databases=sys,mysql,db1,db2 –exclude-users=dba,backup  #备份除dba和backup的所有账号。</p>
+<p>16：–include-databases：指定备份数据库，多个用逗号分隔，类似的还有–include-events、–include-routines、–include-tables、–include-triggers、–include-users，大致方法使用同15。</p>
+<p>17：–insert-ignore：备份用insert ignore语句代替insert语句。</p>
+<p>18：–log-error-file：备份出现的warnings和erros信息输出到一个指定的文件。</p>
+<p>19：–max-allowed-packet：备份时用于client/server直接通信的最大buffer包的大小。</p>
+<p>20：–net-buffer-length：备份时用于client/server通信的初始buffer大小，当创建多行插入语句的时候，mysqlpump 创建行到N个字节长。</p>
+<p>21：–no-create-db：备份不写CREATE DATABASE语句。要是备份多个库，需要使用参数-B，而使用-B的时候会出现create database语句，该参数可以屏蔽create database 语句。</p>
+<p>22：–no-create-info：备份不写建表语句，即不备份表结构，只备份数据，-t。</p>
+<p>23：–hex-blob： 备份binary字段的时候使用十六进制计数法，受影响的字段类型有BINARY、VARBINARY、BLOB、BIT。</p>
+<p>24：–host ：备份指定的数据库地址，-h。</p>
+<p>25：–parallel-schemas=[N:]db_list：指定并行备份的库，多个库用逗号分隔，如果指定了N，将使用N个线程的地队列，如果N不指定，将由 –default-parallelism才确认N的值，可以设置多个–parallel-schemas。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysqlpump --parallel-schemas=4:vs,aa --parallel-schemas=3:pt   #4个线程备份vs和aa，3个线程备份pt。通过show processlist 可以看到有7个线程。</span><br><span class="line"></span><br><span class="line">mysqlpump --parallel-schemas=vs,abc --parallel-schemas=pt  #默认2个线程，即2个线程备份vs和abc，2个线程备份pt</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###当然要是硬盘IO不允许的话，可以少开几个线程和数据库进行并行备份</span></span></span><br></pre></td></tr></table></figure>
+
+<p>26：–password：备份需要的密码。</p>
+<p>27：–port ：备份数据库的端口。</p>
+<p>28：–protocol={TCP|SOCKET|PIPE|MEMORY}：指定连接服务器的协议。</p>
+<p>29：–replace：备份出来replace into语句。</p>
+<p>30：–routines：备份出来包含存储过程和函数，默认开启，需要对 mysql.proc表有查看权限。生成的文件中会包含CREATE PROCEDURE 和 CREATE FUNCTION语句以用于恢复，关闭则需要用–skip-routines参数。</p>
+<p>31：–triggers：备份出来包含触发器，默认开启，使用–skip-triggers来关闭。</p>
+<p>31：–set-charset：备份文件里写SET NAMES default_character_set 到输出，此参默认开启。 – skip-set-charset禁用此参数，不会在备份文件里面写出set names…</p>
+<p>32：–single-transaction：该参数在事务隔离级别设置成Repeatable Read，并在dump之前发送start transaction 语句给服务端。这在使用innodb时很有用，因为在发出start transaction时，保证了在不阻塞任何应用下的一致性状态。对myisam和memory等非事务表，还是会改变状态的，当使用此参的时候要确保没有其他连接在使用ALTER TABLE、CREATE TABLE、DROP TABLE、RENAME TABLE、TRUNCATE TABLE等语句，否则会出现不正确的内容或则失败。–add-locks和此参互斥，在mysql5.7.11之前，–default-parallelism大于1的时候和此参也互斥，必须使用–default-parallelism=0。5.7.11之后解决了–single-transaction和–default-parallelism的互斥问题。</p>
+<p>33：–skip-definer：忽略那些创建视图和存储过程用到的 DEFINER 和 SQL SECURITY 语句，恢复的时候，会使用默认值，否则会在还原的时候看到没有DEFINER定义时的账号而报错。</p>
+<p>34：–skip-dump-rows：只备份表结构，不备份数据，-d。注意：mysqldump支持–no-data，mysqlpump不支持–no-data</p>
+<p>35：–socket：对于连接到localhost，Unix使用套接字文件，在Windows上是命名管道的名称使用，-S。</p>
+<p>36：–ssl：–ssl参数将要被去除，用–ssl-mode取代。关于ssl相关的备份，请看官方文档。</p>
+<p>37：–tz-utc：备份时会在备份文件的最前几行添加SET TIME_ZONE=’+00:00’。注意：如果还原的服务器不在同一个时区并且还原表中的列有timestamp字段，会导致还原出来的结果不一致。默认开启该参数，用 –skip-tz-utc来关闭参数。</p>
+<p>38：–user：备份时候的用户名，-u。</p>
+<p>39：–users：备份数据库用户，备份的形式是CREATE USER…，GRANT…，只备份数据库账号可以通过如下命令：</p>
+<p>mysqlpump –exclude-databases=% –users    #过滤掉所有数据库</p>
+<p>40：–watch-progress：定期显示进度的完成，包括总数表、行和其他对象。该参数默认开启，用–skip-watch-progress来关闭。</p>
+<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><p>mysqlpump的架构如下图所示：</p>
+<p><img src="pic/71.png" alt=""></p>
+<p>mysqlpump支持基于库和表的并行导出，mysqlpump的并行导出功能的架构为：队列+线程，允许有多个队列（–parallel-schemas？），每个队列下有多个线程（N？），而一个队列可以绑定1个或者多个数据库（逗号分隔）。mysqlpump的备份是基于表并行的，对于每张表的导出只能是单个线程的，这里会有个限制是如果某个数据库有一张表非常大，可能大部分的时间都是消耗在这个表的备份上面，并行备份的效果可能就不明显。这里可以利用mydumper其是以chunk的方式批量导出，即mydumper支持一张表多个线程以chunk的方式批量导出。但是相对于mysqldump还是有了很大的提升。这里大致测试下mysqlpump和mysqldump的备份效率。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">mysqlpump压缩备份vs数据库 三个并发线程备份，消耗时间：222s</span></span><br><span class="line">mysqlpump -uzjy -p -h192.168.123.70 --single-transaction --default-character-set=utf8 --compress-output=LZ4 --default-parallelism=3 -B vs &gt; /home/zhoujy/vs_db.sql.lz4</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">mysqldump备份压缩vs数据库 单个线程备份，消耗时间：900s，gzip的压缩率比LZ4的高</span></span><br><span class="line">mysqldump -uzjy -p -h192.168.123.70 --default-character-set=utf8 -P3306 --skip-opt --add-drop-table --create-options  --quick --extended-insert --single-transaction -B vs | gzip &gt; /home/zhoujy/vs.sql.gz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">mydumper备份vs数据库 三个并发线程备份，消耗时间：300s，gzip的压缩率比LZ4的高</span></span><br><span class="line">mydumper -u zjy -p  -h 192.168.123.70 -P 3306 -t 3 -c -l 3600 -s 10000000 -B vs -o /home/zhoujy/vs/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">mydumper备份vs数据库，五个并发线程备份，并且开启对一张表多个线程以chunk的方式批量导出，-r。消耗时间：180s</span></span><br><span class="line">mydumper -u zjy -p  -h 192.168.123.70 -P 3306 -t 5 -c -r 300000 -l 3600 -s 10000000 -B vs -o /home/zhoujy/vs/</span><br></pre></td></tr></table></figure>
+
+<p>从上面看出，mysqlpump的备份效率是最快的，mydumper次之，mysqldump最差。所以在IO允许的情况下，能用多线程就别用单线程备份。并且mysqlpump还支持多数据库的并行备份，而mydumper要么备份一个库，要么就备份所有库。姜大神的Oracle官方并行逻辑备份工具mysqlpump这篇文章的测试结果也说明了mysqlpump比mysqldump的测试好。由于实际情况不同，测试给出的速度提升只是参考。到底开启多少个并行备份的线程，这个看磁盘IO的承受能力，若该服务器只进行备份任务，可以最大限制的来利用磁盘。</p>
+<p>总结：</p>
+<p>mysqldump和mysqlpump的使用方法绝大部分一致，到底用那种工具备份数据库这个要在具体的环境下才能做出选择，有些时候可能用物理备份更好（xtrabackup），总之根据需要进行测试，最后再决定使用哪种备份工具进行备份。</p>
+<p>–</p>
+<h2 id="mydumper"><a href="#mydumper" class="headerlink" title="mydumper"></a>mydumper</h2><p>mydumper（&amp;myloader）是用于对MySQL数据库进行多线程备份和恢复的开源 (GNU GPLv3)工具。开发人员主要来自MySQL、Facebook和SkySQL公司，目前由Percona公司开发和维护，是PerconaRemote DBA项目的重要组成部分，包含在Percona XtraDB Cluster中。mydumper的第一版0.1发布于2010.3.26，最新版本0.9.1发布于2015.11.06。</p>
+<p>mydumper是一种比MySQL官方mysqldump更优秀的备份工具，主要体现在多线程和备份文件保存方式上。在MySQL 5.7版本中，官方发布了一种新的备份工具mysqlpump，也是多线程的，其实现方式给人耳目一新的感觉，但遗憾的是其仍为表级别的并行。而mydumper能够实现记录级别的并行备份，其备份框架由主线程和多个工作线程组成.</p>
+<p>这里一致性数据指的是在某个时间点，导出的数据与导出的Binlog文件信息相匹配，如果导出了多张表的数据，这些不同表之间的数据都是同一个时间点的数据。</p>
+<h3 id="mydumper备份原理"><a href="#mydumper备份原理" class="headerlink" title="mydumper备份原理"></a>mydumper备份原理</h3><p>在mydumper进行备份的时候，由一个主线程以及多个备份线程完成。其主线程的流程是：</p>
+<ol>
+<li>连接数据库</li>
+<li>FLUSH TABLES WITH READ LOCK 将脏页刷新到磁盘并获得只读锁</li>
+<li>START TRANSACTION /!40108 WITH CONSISTENT SNAPSHOT / 开启事物并获取一致性快照</li>
+<li>SHOW MASTER STATUS 获得binlog信息</li>
+<li>创建子线程并连接数据库</li>
+<li>为子线程分配任务并push到队列中</li>
+<li>UNLOCK TABLES / FTWRL / 释放锁</li>
+</ol>
+<p>子线程的主要流程是：</p>
+<ol>
+<li>连接数据库</li>
+<li>SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE</li>
+<li>START TRANSACTION /!40108 WITH CONSISTENT SNAPSHOT /</li>
+<li>从队列中pop任务并执行</li>
+</ol>
+<p>上述两个线程的流程的关系如图</p>
+<p><img src="pic/72.png" alt=""></p>
+<p>从图中可以看到，主线程释放锁是在子线程开启事物之后。这里是保证子线程获得的数据一定为一致性数据的关键。</p>
+<p>主线程在连接到数据库后立即通过Flush tables with read lock(FTWRL) 操作将脏页刷新到磁盘，并获取一个全局的只读锁，这样便可以保证在锁释放之前由主线程看到的数据是一致的。然后立即通过 Start Transaction with consistent snapshot 创建一个快照读事物，并通过 show master status获取binlog位置信息。</p>
+<p>然后创建完成dump任务的子线程并为其分配任务。</p>
+<p>主线程在创建子线程后通过一个异步消息队列 ready 等待子线程准备完毕。 子线程在创建后立即创建到MySQL数据库的连接，然后设置当前事务隔离级别为Repeatable Read。</p>
+<p>设置完成之后开始快照读事务。在完成这一系列操作之后，子线程才会通过ready队列告诉主线自己程准备完毕。主线程等待全部子线程准备完毕开启一致性读Snapshot事务后才会释放全局只读锁（Unlock Table）。</p>
+<p>如果只有Innodb表，那么只有在创建任务阶段会加锁。但是如果存在MyIsam表或其他不带有MVCC功能的表，那么在这些表的导出任务完成之前都必须对这些表进行加锁。Mydumper本身维护了一个 non_innodb_table 列表，在创建任务阶段会首先为非Innodb表创建任务。同时还维护了一个全局的unlock_table队列以及一个原子计数器 non_innodb_table_counter , 子线程每完成一个非Innodb表的任务便将 non_innodb_table_counter 减一，如果non_innodb_table_counter 值为0 遍通过向 unlock_table 队列push一个消息的方式通知主线程完成了非Innodb表的导出任务可以执行 unlock table操作。</p>
+<p>mydumper支持记录级别的并发导出。在记录级别的导出时，主线程在做任务分配的时候会对表进行拆分，为表的一部分记录创建一个任务。这样做一个好处就是当有某个表特别大的时候可以尽可能的利用多线程并发以免某个线程在导出一个大表而其他线程处于空闲状态。在分割时，首先选取主键（PRIMARY KEY）作为分隔依据，如果没有主键则查找有无唯一索引(UNIQUE KEY)。在以上尝试都失败后，再选取一个区分度比较高的字段做为记录划分的依据(通过 show index 结果集中的cardinality的值确定)。</p>
+<p>划分的方式比较暴力，直接通过 select min(filed),max(filed) from table 获得划分字段的取值范围，通过 explain select filed from table 获取字段记录的行数，然后通过一个确定的步长获得每一个子任务的执行时的where条件。这种计算方式只支持数字类型的字段。</p>
+<p>以上就是mydumper的并发获取一致性数据的方式，其关键在于利用了Innodb表的MVCC功能，可以通过快照读因此只有在任务创建阶段才需要加锁。</p>
+<h3 id="mydumper-参数"><a href="#mydumper-参数" class="headerlink" title="mydumper 参数"></a>mydumper 参数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">01</span><br><span class="line">-B, --database              要备份的数据库，不指定则备份所有库</span><br><span class="line">02.</span><br><span class="line">-T, --tables-list           需要备份的表，名字用逗号隔开</span><br><span class="line">03.</span><br><span class="line">-o, --outputdir             备份文件输出的目录</span><br><span class="line">04.</span><br><span class="line">-s, --statement-size        生成的insert语句的字节数，默认1000000</span><br><span class="line">05.</span><br><span class="line">-r, --rows                  将表按行分块时，指定的块行数，指定这个选项会关闭 --chunk-filesize</span><br><span class="line">06.</span><br><span class="line">-F, --chunk-filesize        将表按大小分块时，指定的块大小，单位是 MB</span><br><span class="line">07.</span><br><span class="line">-c, --compress              压缩输出文件</span><br><span class="line">08.</span><br><span class="line">-e, --build-empty-files     如果表数据是空，还是产生一个空文件（默认无数据则只有表结构文件）</span><br><span class="line">09.</span><br><span class="line">-x, --regex                 是同正则表达式匹配 'db.table'</span><br><span class="line">10.</span><br><span class="line">-i, --ignore-engines        忽略的存储引擎，用都厚分割</span><br><span class="line">11.</span><br><span class="line">-m, --no-schemas            不备份表结构</span><br><span class="line">12.</span><br><span class="line">-k, --no-locks              不使用临时共享只读锁，使用这个选项会造成数据不一致</span><br><span class="line">13.</span><br><span class="line">--less-locking              减少对InnoDB表的锁施加时间（这种模式的机制下文详解）</span><br><span class="line">14.</span><br><span class="line">-l, --long-query-guard      设定阻塞备份的长查询超时时间，单位是秒，默认是60秒（超时后默认mydumper将会退出）</span><br><span class="line">15.</span><br><span class="line">--kill-long-queries         杀掉长查询 (不退出)</span><br><span class="line">16.</span><br><span class="line">-b, --binlogs               导出binlog</span><br><span class="line">17.</span><br><span class="line">-D, --daemon                启用守护进程模式，守护进程模式以某个间隔不间断对数据库进行备份</span><br><span class="line">18.</span><br><span class="line">-I, --snapshot-interval     dump快照间隔时间，默认60s，需要在daemon模式下</span><br><span class="line">19.</span><br><span class="line">-L, --logfile               使用的日志文件名(mydumper所产生的日志), 默认使用标准输出</span><br><span class="line">20.</span><br><span class="line">--tz-utc                    跨时区是使用的选项，不解释了</span><br><span class="line">21.</span><br><span class="line">--skip-tz-utc               同上</span><br><span class="line">22.</span><br><span class="line">--use-savepoints            使用savepoints来减少采集metadata所造成的锁时间，需要 SUPER 权限</span><br><span class="line">23.</span><br><span class="line">--success-on-1146           Not increment error count and Warning instead of Critical in case of table doesn't exist</span><br><span class="line">24.</span><br><span class="line">-h, --host                  连接的主机名</span><br><span class="line">25.</span><br><span class="line">-u, --user                  备份所使用的用户</span><br><span class="line">26.</span><br><span class="line">-p, --pass&lt;a href="http://www.it165.net/edu/ebg/" target="_blank"class="keylink"&gt;word&lt;/a&gt;              密码</span><br><span class="line">27.</span><br><span class="line">-P, --port                  端口</span><br><span class="line">28.</span><br><span class="line">-S, --socket                使用socket通信时的socket文件</span><br><span class="line">29.</span><br><span class="line">-t, --threads               开启的备份线程数，默认是4</span><br><span class="line">30.</span><br><span class="line">-C, --compress-protocol     压缩与mysql通信的数据</span><br><span class="line">31.</span><br><span class="line">-V, --version               显示版本号</span><br><span class="line">32.</span><br><span class="line">-v, --verbose               输出信息模式, 0 = silent, 1 = errors, 2 = warnings, 3= info, 默认为 2</span><br></pre></td></tr></table></figure>
+
+<h3 id="myloader-参数"><a href="#myloader-参数" class="headerlink" title="myloader 参数"></a>myloader 参数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">01</span><br><span class="line">-d, --directory                   备份文件的文件夹</span><br><span class="line">02.</span><br><span class="line">-q, --queries-per-transaction     每次事物执行的查询数量，默认是1000</span><br><span class="line">03.</span><br><span class="line">-o, --overwrite-tables            如果要恢复的表存在，则先drop掉该表，使用该参数，需要备份时候要备份表结构</span><br><span class="line">04.</span><br><span class="line">-B, --database                    需要还原的数据库</span><br><span class="line">05.</span><br><span class="line">-e, --enable-binlog               启用还原数据的二进制日志</span><br><span class="line">06.</span><br><span class="line">-h, --host                        主机</span><br><span class="line">07.</span><br><span class="line">-u, --user                        还原的用户</span><br><span class="line">08.</span><br><span class="line">-p, --pass&lt;a href="http://www.it165.net/edu/ebg/" target="_blank"class="keylink"&gt;word&lt;/a&gt;                    密码</span><br><span class="line">09.</span><br><span class="line">-P, --port                        端口</span><br><span class="line">10.</span><br><span class="line">-S, --socket                      socket文件</span><br><span class="line">11.</span><br><span class="line">-t, --threads                     还原所使用的线程数，默认是4</span><br><span class="line">12.</span><br><span class="line">-C, --compress-protocol           压缩协议</span><br><span class="line">13.</span><br><span class="line">-V, --version                     显示版本</span><br><span class="line">14.</span><br><span class="line">-v, --verbose                     输出模式, 0 = silent, 1 = errors, 2 = warnings,3 = info, 默认为2</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 备份game库到/backup/01文件夹中，并压缩备份文件</span></span><br><span class="line">mydumper -u root -p ### -h localhost -B game -c -o /backup/01</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 备份所有数据库，并备份二进制日志文件，备份至/backup/02文件夹</span></span><br><span class="line"></span><br><span class="line">mydumper -u root -p ### -h localhost -o /backup/02</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 备份game.tb_player表，且不备份表结构，备份至/backup/03文件夹</span></span><br><span class="line"></span><br><span class="line">mydumper -u root -p ### -h localhost -T tb_player -m -o /backup/03</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 还原</span></span><br><span class="line"></span><br><span class="line">mysqlload -u root -p ### -h localhost -B game -d /backup/02</span><br><span class="line"></span><br><span class="line">mydumper的less locking模式</span><br><span class="line"></span><br><span class="line">mydumper使用--less-locking可以减少锁等待时间，此时mydumper的执行机制大致为</span><br></pre></td></tr></table></figure>
+
+<h2 id="mysqldump-mysqlpump-mydumper对比"><a href="#mysqldump-mysqlpump-mydumper对比" class="headerlink" title="mysqldump,mysqlpump,mydumper对比"></a>mysqldump,mysqlpump,mydumper对比</h2><table>
+<thead>
+<tr>
+<th align="left">虚拟机</th>
+<th align="left">IP地址</th>
+<th align="left">软件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">mastera</td>
+<td align="left">172.25.0.11</td>
+<td align="left">mysql server 5.7.17</td>
+</tr>
+<tr>
+<td align="left">workstation</td>
+<td align="left">172.25.0.10</td>
+<td align="left">python python-matplotlib</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">[root@mastera mysql5.7]# ls</span><br><span class="line">mysql-5.7.17-1.el7.x86_64.rpm-bundle.tar                 mysql-community-libs-compat-5.7.17-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-client-5.7.17-1.el7.x86_64.rpm           mysql-community-minimal-debuginfo-5.7.17-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-common-5.7.17-1.el7.x86_64.rpm           mysql-community-server-5.7.17-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-5.7.17-1.el7.x86_64.rpm            mysql-community-server-minimal-5.7.17-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-5.7.17-1.el7.x86_64.rpm         mysql-community-test-5.7.17-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-5.7.17-1.el7.x86_64.rpm  sysbench-master</span><br><span class="line">mysql-community-embedded-devel-5.7.17-1.el7.x86_64.rpm   sysbench-master.zip</span><br><span class="line">mysql-community-libs-5.7.17-1.el7.x86_64.rpm</span><br><span class="line">[root@mastera mysql5.7]# rpm -ivh mysql-community-client-5.7.17-1.el7.x86_64.rpm mysql-community-common-5.7.17-1.el7.x86_64.rpm mysql-community-devel-5.7.17-1.el7.x86_64.rpm mysql-community-server-5.7.17-1.el7.x86_64.rpm mysql-community-libs-5.7.17-1.el7.x86_64.rpm </span><br><span class="line">warning: mysql-community-client-5.7.17-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY</span><br><span class="line">Preparing...                          ################################# [100%]</span><br><span class="line">Updating / installing...</span><br><span class="line">   1:mysql-community-common-5.7.17-1.e################################# [ 20%]</span><br><span class="line">   2:mysql-community-libs-5.7.17-1.el7################################# [ 40%]</span><br><span class="line">   3:mysql-community-client-5.7.17-1.e################################# [ 60%]</span><br><span class="line">   4:mysql-community-server-5.7.17-1.e################################# [ 80%]</span><br><span class="line">   5:mysql-community-devel-5.7.17-1.el################################# [100%]</span><br><span class="line">[root@mastera mysql5.7]# systemctl start mysqld</span><br><span class="line">[root@mastera mysql5.7]# grep password /var/log/mysqld.log</span><br><span class="line">2017-02-09T08:32:17.515190Z 1 [Note] A temporary password is generated for root@localhost: p!hHXls+U6Po</span><br><span class="line">[root@mastera mysql5.7]# mysqladmin -uroot -p'p!hHXls+U6Po' password '(Uploo00king)'</span><br><span class="line">mysqladmin: [Warning] Using a password on the command line interface can be insecure.</span><br><span class="line">Warning: Since password will be sent to server in plain text, use ssl connection to ensure password safety.</span><br><span class="line">[root@mastera mysql5.7]# mysql -uroot -p'(Uploo00king)'</span><br><span class="line">mysql: [Warning] Using a password on the command line interface can be insecure.</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 4</span><br><span class="line">Server version: 5.7.17 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create database db1;</span></span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> use db1;</span></span><br><span class="line">Database changed</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create table t1 (id int primary key auto_increment,num int);</span></span><br><span class="line">Query OK, 0 rows affected (0.06 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create table t2 like t1;</span></span><br><span class="line">Query OK, 0 rows affected (0.24 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create table t3 like t1;</span></span><br><span class="line">Query OK, 0 rows affected (0.04 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create table t4 like t1;</span></span><br><span class="line">Query OK, 0 rows affected (0.34 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> delimiter //</span></span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create procedure booboo_insert (<span class="keyword">in</span> tb_name varchar(20)) begin <span class="built_in">declare</span> i int; <span class="built_in">declare</span> j int; <span class="built_in">declare</span> _sql varchar(100); <span class="built_in">set</span> i=1; <span class="built_in">set</span> j=10000; <span class="built_in">set</span> _sql=concat(<span class="string">'insert into '</span>,tb_name,<span class="string">' set num='</span>,i); <span class="built_in">set</span> @sql=_sql;start transaction; prepare s2 from @sql; <span class="keyword">while</span> i&lt;=j <span class="keyword">do</span> execute s2; <span class="built_in">set</span> i=i+1;end <span class="keyword">while</span>; deallocate prepare s2; commit; end//</span></span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> call booboo_insert(<span class="string">'t1'</span>)//</span></span><br><span class="line">Query OK, 0 rows affected (0.71 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> call booboo_insert(<span class="string">'t2'</span>)//</span></span><br><span class="line">Query OK, 0 rows affected (0.71 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> call booboo_insert(<span class="string">'t3'</span>)//</span></span><br><span class="line">Query OK, 0 rows affected (0.68 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> call booboo_insert(<span class="string">'t4'</span>)//</span></span><br><span class="line">Query OK, 0 rows affected (0.83 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show table status;</span></span><br><span class="line">+------+--------+---------+------------+-------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-------------------+----------+----------------+---------+</span><br><span class="line">| Name | Engine | Version | Row_format | Rows  | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time         | Check_time | Collation         | Checksum | Create_options | Comment |</span><br><span class="line">+------+--------+---------+------------+-------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-------------------+----------+----------------+---------+</span><br><span class="line">| t1   | InnoDB |      10 | Dynamic    | 10000 |             32 |      327680 |               0 |            0 |         0 |          10002 | 2017-02-09 16:40:53 | 2017-02-09 16:43:39 | NULL       | latin1_swedish_ci |     NULL |                |         |</span><br><span class="line">| t2   | InnoDB |      10 | Dynamic    | 10000 |             32 |      327680 |               0 |            0 |         0 |          10001 | 2017-02-09 16:40:58 | 2017-02-09 16:43:59 | NULL       | latin1_swedish_ci |     NULL |                |         |</span><br><span class="line">| t3   | InnoDB |      10 | Dynamic    | 10000 |             32 |      327680 |               0 |            0 |         0 |          10001 | 2017-02-09 16:41:00 | 2017-02-09 16:44:02 | NULL       | latin1_swedish_ci |     NULL |                |         |</span><br><span class="line">| t4   | InnoDB |      10 | Dynamic    | 10000 |             32 |      327680 |               0 |            0 |         0 |          10001 | 2017-02-09 16:41:03 | 2017-02-09 16:44:05 | NULL       | latin1_swedish_ci |     NULL |                |         |</span><br><span class="line">+------+--------+---------+------------+-------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-------------------+----------+----------------+---------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span></span></span><br><span class="line">Bye</span><br><span class="line"></span><br><span class="line">[root@mastera mysql5.7]# du -h /var/lib/mysql</span><br><span class="line">12M	/var/lib/mysql/mysql</span><br><span class="line">1.1M	/var/lib/mysql/performance_schema</span><br><span class="line">676K	/var/lib/mysql/sys</span><br><span class="line">1.6M	/var/lib/mysql/db1</span><br><span class="line">135M	/var/lib/mysql</span><br></pre></td></tr></table></figure>
+
+<p>存储过程</p>
+<p>该存储过程可以循环插入10000条数据，并且可以带参数（表名）调用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">create procedure booboo_insert (in tb_name varchar(20)) </span><br><span class="line">begin </span><br><span class="line">declare i int; </span><br><span class="line">declare j int; </span><br><span class="line">declare _sql varchar(100); </span><br><span class="line">set i=1; set j=10000; </span><br><span class="line">set _sql=concat('insert into ',tb_name,' set num=',i); </span><br><span class="line">set @sql=_sql;</span><br><span class="line">start transaction; </span><br><span class="line">prepare s2 from @sql; </span><br><span class="line">while i&lt;=j do </span><br><span class="line">execute s2; </span><br><span class="line">set i=i+1;</span><br><span class="line">end while; </span><br><span class="line">deallocate prepare s2; </span><br><span class="line">commit; </span><br><span class="line">end//</span><br></pre></td></tr></table></figure>
+
+<p>手动创建了四个测试表，我们可以看到db1库的很小才1.6M，我们来测试一下数据量比较小时，mysqldump和mysqlpump的性能</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@mastera mysql5.7]# time mysqlpump -uroot -p'(Uploo00king)' db1 --default-parallelism=4 &gt; /tmp/mysql.pump4.sql</span><br><span class="line">mysqlpump: [Warning] Using a password on the command line interface can be insecure.</span><br><span class="line">Dump progress: 0/1 tables, 250/10000 rows</span><br><span class="line">Dump completed in 3016 milliseconds</span><br><span class="line"></span><br><span class="line">real	0m3.166s</span><br><span class="line">user	0m0.219s</span><br><span class="line">sys	0m0.475s</span><br><span class="line">[root@mastera mysql5.7]# time mysqlpump -uroot -p'(Uploo00king)' db1  &gt; /tmp/mysql.pump2.sql</span><br><span class="line">mysqlpump: [Warning] Using a password on the command line interface can be insecure.</span><br><span class="line">Dump progress: 0/1 tables, 250/10000 rows</span><br><span class="line">Dump completed in 3703 milliseconds</span><br><span class="line"></span><br><span class="line">real	0m3.871s</span><br><span class="line">user	0m0.307s</span><br><span class="line">sys	0m0.606s</span><br><span class="line">[root@mastera mysql5.7]# time mysqldump -uroot -p'(Uploo00king)' db1 &gt; /tmp/mysql.dump.sql</span><br><span class="line">mysqldump: [Warning] Using a password on the command line interface can be insecure.</span><br><span class="line"></span><br><span class="line">real	0m0.411s</span><br><span class="line">user	0m0.024s</span><br><span class="line">sys	0m0.116s</span><br></pre></td></tr></table></figure>
+
+<p>从结果看，数据量非常小的时候没必要并行复制，mysqlpump反而更慢</p>
+<p>接下来我们试一下数据量比较大的时候</p>
+<p>创建sbtest库，使用sysbench压测工具准备4个1000000行的表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show table status;</span></span><br><span class="line">+---------+--------+---------+------------+--------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-------------------+----------+------------------+---------+</span><br><span class="line">| Name    | Engine | Version | Row_format | Rows   | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time         | Check_time | Collation         | Checksum | Create_options   | Comment |</span><br><span class="line">+---------+--------+---------+------------+--------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-------------------+----------+------------------+---------+</span><br><span class="line">| sbtest1 | InnoDB |      10 | Dynamic    | 986776 |            221 |   218841088 |               0 |            0 |   4194304 |        1000001 | 2017-02-09 17:03:29 | 2017-02-09 17:03:18 | NULL       | latin1_swedish_ci |     NULL | max_rows=1000000 |         |</span><br><span class="line">| sbtest2 | InnoDB |      10 | Dynamic    | 986020 |            234 |   231456768 |               0 |            0 |   6291456 |           NULL | 2017-02-09 17:06:22 | 2017-02-09 17:07:14 | NULL       | latin1_swedish_ci |     NULL |                  |         |</span><br><span class="line">| sbtest3 | InnoDB |      10 | Dynamic    | 986020 |            234 |   231456768 |               0 |            0 |   6291456 |           NULL | 2017-02-09 17:07:25 | 2017-02-09 17:08:11 | NULL       | latin1_swedish_ci |     NULL |                  |         |</span><br><span class="line">| sbtest4 | InnoDB |      10 | Dynamic    | 986559 |            225 |   222019584 |               0 |            0 |   6291456 |           NULL | 2017-02-09 17:08:24 | 2017-02-09 17:09:15 | NULL       | latin1_swedish_ci |     NULL |                  |         |</span><br><span class="line">+---------+--------+---------+------------+--------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-------------------+----------+------------------+---------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">[root@mastera sysbench-master]# du -h /var/lib/mysql</span><br><span class="line">12M	/var/lib/mysql/mysql</span><br><span class="line">1.1M	/var/lib/mysql/performance_schema</span><br><span class="line">676K	/var/lib/mysql/sys</span><br><span class="line">1.6M	/var/lib/mysql/db1</span><br><span class="line">937M	/var/lib/mysql/sbtest</span><br><span class="line">1.2G	/var/lib/mysql</span><br></pre></td></tr></table></figure>
+
+<p>看到当前数据库的数据达到了11G，接下来做备份</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@mastera ~]# time mysqldump -uroot -p'(Uploo00king)' sbtest --single-transaction &gt; /tmp/mysqldump.sbtest.sql</span><br><span class="line">[root@mastera ~]# time mysqlpump -uroot -p'(Uploo00king)' sbtest --single-transaction --default-parallelism=2 &gt; /tmp/mysqlpump.sbtest.sql</span><br></pre></td></tr></table></figure>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">9.6k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
+    <p><span class="copy-title">发布时间:</span>2016-12-24, 21:06:27</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 05:27:17</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/25/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&mysqlpump&mydumper/" title="MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper">http://www.toberoot.com/2016/12/25/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&amp;mysqlpump&amp;mydumper/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'af999a0c30ad557db57d',
+            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+            repo: 'booboowei.github.io',
+            owner: 'booboowei',
+            admin: ['booboowei'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018-2020 BoobooWei</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#宝宝成长','#培训','#LinuxShell脚本','#Linux基础服务','#Linux','#hexo','#锁故障','#数据救援','#SQL优化','#RDS','#主从同步','#MySQL基础管理',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 622px;
+    }
+    .nav.fullscreen {
+        margin-left: -622px;
+    }
+    .nav-left {
+        width: 200px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

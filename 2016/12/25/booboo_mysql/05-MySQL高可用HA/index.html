@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>MySQL 管理课程 第八课 高可用性HA | Amy and Booboo</title>
+  <meta name="keywords" content=" 培训 , MySQL基础管理 ">
+  <meta name="description" content="MySQL 管理课程 第八课 高可用性HA | Amy and Booboo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="schedule">
+<meta property="og:url" content="http://www.toberoot.com/schedule/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="君不见黄河之水天上来，奔流到海不复回。">
+<meta property="article:published_time" content="2020-03-22T11:45:14.000Z">
+<meta property="article:modified_time" content="2020-03-22T03:45:14.331Z">
+<meta property="article:author" content="BoobooWei">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/influx.svg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my.png" />
+</a>
+<div class="author">
+    <span>BoobooWei</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(53)</small></div></li>
+    
+        
+            
+            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(41)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="LinuxShell脚本教程">LinuxShell脚本教程<small>(7)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MySQL基础管理教程">MySQL基础管理教程<small>(11)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="53">
+<input type="hidden" id="yelog_site_word_count" value="305.4k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
+            
+            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
+            
+            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color5">宝宝成长</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">培训</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">LinuxShell脚本</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Linux基础服务</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Linux</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">锁故障</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据救援</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SQL优化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">RDS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">主从同步</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">MySQL基础管理</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
+            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
+            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
+            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
+            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="家长会">家长会</span>
+            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
+            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第一课 简介和变量">LINUX Shell Scripts 第一课 简介和变量</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第二课 流程控制语句">LINUX Shell Scripts 第二课 流程控制语句</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第三课 正则表达式">LINUX Shell Scripts 第三课 正则表达式</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第四课 Sed">LINUX Shell Scripts 第四课 Sed</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第六课 上机考试">LINUX Shell Scripts 第六课 上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第七课 笔试">LINUX Shell Scripts 第七课 笔试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 LinuxShell脚本教程 "
+           href="/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/"
+           data-tag="培训,LinuxShell脚本"
+           data-author="" >
+            <span class="post-title" title="LINUX Shell Scripts 第五课 各种括号的作用">LINUX Shell Scripts 第五课 各种括号的作用</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/01_dns/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/03_nfs/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/02_ftp/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/04_samba/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/05_apache/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/ule-online/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/00-linux_history/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 内核">Linux 内核</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术广角 Hexo "
+           href="/2020/03/22/booboo_others/hello-world/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="锁故障"
+           data-author="" >
+            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
+            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
+            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
+        </a>
+        
+        <a  class="技术广角 Oracle "
+           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
+           data-tag="SQL优化"
+           data-author="" >
+            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
+            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
+           data-tag="RDS,主从同步"
+           data-author="" >
+            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
+            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
+        </a>
+        
+        <a  class="技术广角 MongoDB "
+           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
+            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/00-MySQL%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第一课 课程简介">MySQL 管理课程 第一课 课程简介</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第七课 复制 AB replication">MySQL 管理课程 第七课 复制 AB replication</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/06-MySQL%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7sysbench/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第九课 MySQL压力测试工具sysbench">MySQL 管理课程 第九课 MySQL压力测试工具sysbench</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/03-MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%92%8CInnodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎">MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第八课 高可用性HA">MySQL 管理课程 第八课 高可用性HA</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&mysqlpump&mydumper/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper">MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/07-MySQL5.6%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制">MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/01-MySQL%E5%92%8CMariaDB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍">MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/03-MySQL%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第五课 备份与恢复">MySQL 管理课程 第五课 备份与恢复</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1">MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+        <a  class="技术培训 MySQL基础管理教程 "
+           href="/2016/12/25/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2/"
+           data-tag="培训,MySQL基础管理"
+           data-author="" >
+            <span class="post-title" title="MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2">MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2</span>
+            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-booboo_mysql/05-MySQL高可用HA" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">MySQL 管理课程 第八课 高可用性HA</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="技术培训">技术培训</a>/
+            
+                <a  data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color3">培训</a>
+            
+            <a class="color5">MySQL基础管理</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-03-24 05:27:17'>2016-12-24 21:06</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:9.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是高可用"><span class="toc-text">什么是高可用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导致宕机的原因"><span class="toc-text">导致宕机的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何实现高可用"><span class="toc-text">如何实现高可用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#避免单点故障"><span class="toc-text">避免单点故障</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于复制的冗余"><span class="toc-text">基于复制的冗余</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL-同步复制"><span class="toc-text">MySQL 同步复制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#MySQL-Cluster-集群"><span class="toc-text">MySQL Cluster 集群</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Galera-Cluster-集群"><span class="toc-text">Galera Cluster 集群</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#故障转移和故障恢复"><span class="toc-text">故障转移和故障恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题的提出"><span class="toc-text">问题的提出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案"><span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是数据库代理服务器"><span class="toc-text">什么是数据库代理服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#目前市面上的数据库代理服务器"><span class="toc-text">目前市面上的数据库代理服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#mysql-proxy"><span class="toc-text">mysql-proxy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mycat"><span class="toc-text">mycat</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实战项目"><span class="toc-text">实战项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是高可用"><a href="#什么是高可用" class="headerlink" title="什么是高可用"></a>什么是高可用</h3><p>高可用性实际上有点像神秘的野兽。它通常是以百分比表示，这本身也是一种暗示：高可用性不是绝对的，只有相对更高的可用性。100%的可用性是不可能达到的。可用性的“9”规则是表示可用性目标最普遍的方法。你可能也知道，“5个9”表示99.999%的正常可用时间。换句话说，每年只允许5分钟的宕机时间。对于大多数应用这已经是令人惊叹的数字，尽量还有一些人试图获得更多的“9”。</p>
+<p>每个应用对可用性的需求各不相同。在设定一个可用时间的目标之前，先问问自己，是不是确实需要达到这个目标。可用性每提高一点，所花费的成本都会远超之前；可用性的效果和开销的比例并不是线性的。需要保证多少可用时间，取决于能够承担多少成本。</p>
+<p>高可用实际上是在宕机造成的损失与降低宕机时间所花费的成本之间取一个平衡。换句话说，如果需要花大量金钱去获取更好的可用时间，但所带来的收益却很低，可能就不值得去做。总的来说，应用在超过一定的点以后追求更高的可用性是非常困难的，成本也会很高，因此我们建议设定一个更现实的目标并且避免过渡设计。幸运的是，建立2个9或3个0的可用时间的目标可能并不困难，具体请款取决于应用。</p>
+<h3 id="导致宕机的原因"><a href="#导致宕机的原因" class="headerlink" title="导致宕机的原因"></a>导致宕机的原因</h3><ul>
+<li>在运行环境的问题中，最普遍的问题是磁盘空间耗尽。</li>
+<li>在性能问题中，最普遍的宕机原因确实是运行很糟糕的SQL，但也不一定都是这个原因，比如也有很多问题是由于服务器Bug或错误的行为导致的。</li>
+<li>糟糕的Schema和索引设计是第二大影响性能的问题。</li>
+<li>复制问题通常是由于主备数据不一致导致。</li>
+<li>数据丢失问题通常由于DROP TABLE的误操作导致，并总是伴随着缺少可用备份的问题。</li>
+</ul>
+<p>复制虽然被人们用来改善可用时间，但却也可能导致宕机。这主要是由于不确定的使用导致的，即便如此，它也阐明了一个普遍的情况：许多高可用策略可能会产生反作用。</p>
+<h3 id="如何实现高可用"><a href="#如何实现高可用" class="headerlink" title="如何实现高可用"></a>如何实现高可用</h3><ul>
+<li>降低故障率</li>
+<li>优化架构</li>
+</ul>
+<h3 id="避免单点故障"><a href="#避免单点故障" class="headerlink" title="避免单点故障"></a>避免单点故障</h3><h4 id="基于复制的冗余"><a href="#基于复制的冗余" class="headerlink" title="基于复制的冗余"></a>基于复制的冗余</h4><p>前面我们已经学习MySQL Replication 的内容，如下架构：</p>
+<p><img src="pic/20-ab-replication.jpg" alt="ab"></p>
+<p>MySQL 5.6 下的 semi-sync</p>
+<p>![ab1](pic/06-MySQL 5.6下的semi-sync.png)</p>
+<p>MySQL 5.7 下的 semi-sync</p>
+<p>![ab2](pic/07-MySQL 5.7下的semi-sync.png)</p>
+<h4 id="MySQL-同步复制"><a href="#MySQL-同步复制" class="headerlink" title="MySQL 同步复制"></a>MySQL 同步复制</h4><p>当使用同步复制时，主库的事务只有在至少一个备库上提交才能认为其执行完成。这实现了两个目标：</p>
+<ul>
+<li>当服务器崩溃时没有提交的事务会丢失，并且至少有一个备库有实时的数据副本。</li>
+<li>大多数同步复制架构运行在主动-主动模式，这意味着每个服务器在任何时候都是故障转移的候选者，这使得通过冗余获得高可用性更加容易。</li>
+</ul>
+<p>MySQL 到目前为止，（5.7版本）本身并不支持同步复制，但有两个基于MySQL的集群解决方案支持同步复制。</p>
+<h5 id="MySQL-Cluster-集群"><a href="#MySQL-Cluster-集群" class="headerlink" title="MySQL Cluster 集群"></a>MySQL Cluster 集群</h5><p>MySQL 中的同步复制首先出现在MySQL Clushter （NDB Cluster）。它在所有节点上进行同步的主-主复制。这意味着可以在任何节点上写入；这些节点拥有等同的读写能力。每一行都是冗余存储的，这样即使丢失一个节点，也不丢失数据，并且集群仍然能提供服务。尽管MySQL Cluster还不是适用于所有应用的完美解决方案，但正如我们在前一章提到的，在最近的版本中它做了非常快速的改进，现在已经拥有大量的新特性和功能：非索引数据的磁盘存储、增加数据节点能够在线扩展、使用ndinfo表来管理集群、配置和管理集群的脚本、多线程操作、下推（push-down）的关联操作（现在称为自适应查询本地化）、能够处理BLOB列和很多列的表、集中式的用户管理，以及通过像memcache协议一样的NDB API来实现NoSQL访问。在下一个版本中将包含最终一致运行模型，包括为跨数据中心的主动-主动复制提供事务冲突检测和跨WAN解决方案。简而言之，MySQL Cluster是一项引人注目的技术。</p>
+<p>现在至少有两个为简化集群部署和管理提供附加产品的供应商：Oracle 针对 MySQL Cluster 的服务支持包含了 MySQL Cluster Manager 工具；Serveralines 提供了Cluster Control工具，该工具还能够帮助部署和管理复制集群。</p>
+<h5 id="Galera-Cluster-集群"><a href="#Galera-Cluster-集群" class="headerlink" title="Galera Cluster 集群"></a>Galera Cluster 集群</h5><p>MariaDB作为Mysql的一个分支，在开源项目中已经广泛使用，例如大热的openstack，所以，为了保证服务的高可用性，同时提高系统的负载能力，集群部署是必不可少的。</p>
+<p>MariaDB Galera Cluster 介绍</p>
+<p>MariaDB集群是MariaDB同步多主机集群。它仅支持XtraDB/ InnoDB存储引擎（虽然有对MyISAM实验支持 - 看wsrep_replicate_myisam系统变量）。</p>
+<p>主要功能:</p>
+<ul>
+<li>同步复制</li>
+<li>真正的multi-master，即所有节点可以同时读写数据库</li>
+<li>自动的节点成员控制，失效节点自动被清除</li>
+<li>新节点加入数据自动复制</li>
+<li>真正的并行复制，行级</li>
+<li>用户可以直接连接集群，使用感受上与MySQL完全一致</li>
+</ul>
+<p>优势:</p>
+<ul>
+<li>因为是多主，所以不存在Slavelag(延迟)</li>
+<li>不存在丢失事务的情况</li>
+<li>同时具有读和写的扩展能力</li>
+<li>更小的客户端延迟</li>
+<li>节点间数据是同步的,而Master/Slave模式是异步的,不同slave上的binlog可能是不同的</li>
+</ul>
+<p>技术:</p>
+<p>Galera集群的复制功能基于Galeralibrary实现,为了让MySQL与Galera library通讯，特别针对MySQL开发了wsrep API。</p>
+<p>Galera插件保证集群同步数据，保持数据的一致性，靠的就是可认证的复制，工作原理如下图：</p>
+<p>![](pic/14-Galera Cluster.png)</p>
+<p>当客户端发出一个commit的指令，在事务被提交之前，所有对数据库的更改都会被write-set收集起来,并且将 write-set 纪录的内容发送给其他节点。</p>
+<p>write-set 将在每个节点进行认证测试，测试结果决定着节点是否应用write-set更改数据。</p>
+<p>如果认证测试失败，节点将丢弃 write-set ；如果认证测试成功，则事务提交。</p>
+<blockquote>
+<p>软件的获取</p>
+</blockquote>
+<p><a href="http://classroom.example.com/materials/mariadb-10.2.repo" target="_blank" rel="noopener">http://classroom.example.com/materials/mariadb-10.2.repo</a></p>
+<p><a href="http://classroom.example.com/materials/thirdpart.repo" target="_blank" rel="noopener">http://classroom.example.com/materials/thirdpart.repo</a></p>
+<blockquote>
+<p>集群配置要求</p>
+</blockquote>
+<ol>
+<li>安装4个节点</li>
+<li>关闭第一个节点后重起服务，需要修改配置文件，</li>
+<li>关闭第三个节点，去查看错误日志，在集群中作插入动作，重起服务，看是否能够同步到数据。</li>
+</ol>
+<blockquote>
+<p>详细步骤</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>1.安装软件包</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">galera   25.3.15</span><br><span class="line">jemalloc*                               </span><br><span class="line">MariaDB-client  10.2         </span><br><span class="line">MariaDB-server  10.2     </span><br><span class="line">MariaDB-compat  10.2</span><br></pre></td></tr></table></figure>
+
+<p>需要先卸载mariadb-libs</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> rpm -e mariadb-libs --nodeps</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -e mariadb-common --nodeps</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum install -y galera jemalloc* MariaDB-client  MariaDB-server MariaDB-compat</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>2.初始化MariaDB数据库并启动MariaDB服务，并作安全加固</p>
+</blockquote>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> systemctl start mysql</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql_secure_installation</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl stop mysql</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>3.配置</p>
+</blockquote>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf.d/galera.cnf</span><br><span class="line"></span><br><span class="line">[galera]</span><br><span class="line"><span class="meta">#</span><span class="bash"> Mandatory settings</span></span><br><span class="line">wsrep_on=ON</span><br><span class="line">wsrep_provider=/usr/lib64/galera/libgalera_smm.so</span><br><span class="line"><span class="meta">#</span><span class="bash">启动节点时需要指定galera cluster的地址,作为cluster中第一个启动的节点,wsrep_cluster_address=gcomm://,对于后续启动的节点,wsrep_cluster_address=gcomm://node1,node2,node3</span></span><br><span class="line">wsrep_cluster_address='gcomm://'</span><br><span class="line"><span class="meta">#</span><span class="bash">所有node必须一样</span></span><br><span class="line">wsrep_cluster_name='galera'</span><br><span class="line"><span class="meta">#</span><span class="bash">节点地址</span></span><br><span class="line">wsrep_node_address='172.25.0.11'</span><br><span class="line"><span class="meta">#</span><span class="bash">节点名称</span></span><br><span class="line">wsrep_node_name='galera1'</span><br><span class="line"><span class="meta">#</span><span class="bash">Snapshot State Transter快照状态转移方法:mysqldump/rsync,默认mysqldump</span></span><br><span class="line">wsrep_sst_method=rsync</span><br><span class="line"><span class="meta">#</span><span class="bash">binlog的格式也有三种：STATEMENT，ROW，MIXED</span></span><br><span class="line">binlog_format=row</span><br><span class="line">default_storage_engine=InnoDB</span><br><span class="line"><span class="meta">#</span><span class="bash">调整锁策略的</span></span><br><span class="line">innodb_autoinc_lock_mode=2</span><br><span class="line">bind-address=0.0.0.0</span><br></pre></td></tr></table></figure>
+
+<p>4.启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysql</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看目前mysql的端口</span></span><br><span class="line">netstat -ntpl|grep sql</span><br><span class="line">tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      12877/mysqld        </span><br><span class="line">tcp        0      0 0.0.0.0:4567            0.0.0.0:*               LISTEN      12877/mysqld</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>5.其他节点上做相同配置</p>
+</blockquote>
+</blockquote>
+<p>依次启动其他节点,其他节点会根据配置自动加入集群并同步数据，一定要关闭selinux，或者设为0</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[galera]</span><br><span class="line"><span class="meta">#</span><span class="bash"> Mandatory settings</span></span><br><span class="line">wsrep_on=ON</span><br><span class="line">wsrep_provider=/usr/lib64/galera/libgalera_smm.so</span><br><span class="line">wsrep_cluster_address='gcomm://172.25.0.11'</span><br><span class="line">wsrep_cluster_name='galera'</span><br><span class="line">wsrep_node_address='172.25.0.12'</span><br><span class="line">wsrep_node_name='&lt;注意这里与解析的主机名相同&gt;'</span><br><span class="line">wsrep_sst_method=rsync</span><br><span class="line"></span><br><span class="line">binlog_format=row</span><br><span class="line">default_storage_engine=InnoDB</span><br><span class="line">innodb_autoinc_lock_mode=2</span><br><span class="line">bind-address=0.0.0.0</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>6.观察日志</p>
+</blockquote>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@mastera0 ~]# tail -f /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<blockquote>
+<p>7.在galera上查看集群状态</p>
+</blockquote>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [(none)]&gt; show global status like 'wsrep_cluster%';</span><br><span class="line">+--------------------------+--------------------------------------+</span><br><span class="line">| Variable_name            | Value                                |</span><br><span class="line">+--------------------------+--------------------------------------+</span><br><span class="line">| wsrep_cluster_conf_id    | 14                                   |</span><br><span class="line">| wsrep_cluster_size       | 2                                    |</span><br><span class="line">| wsrep_cluster_state_uuid | ff8cb12b-168a-11e6-ba3c-b36f59743764 |</span><br><span class="line">| wsrep_cluster_status     | Primary                              |</span><br><span class="line">+--------------------------+--------------------------------------+</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; show global status like 'wsrep_cluster%';</span><br><span class="line">+--------------------------+--------------------------------------+</span><br><span class="line">| Variable_name            | Value                                |</span><br><span class="line">+--------------------------+--------------------------------------+</span><br><span class="line">| wsrep_cluster_conf_id    | 15                                   |</span><br><span class="line">| wsrep_cluster_size       | 3                                    |</span><br><span class="line">| wsrep_cluster_state_uuid | ff8cb12b-168a-11e6-ba3c-b36f59743764 |</span><br><span class="line">| wsrep_cluster_status     | Primary                              |</span><br><span class="line">+--------------------------+--------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>8.测试</p>
+</blockquote>
+</blockquote>
+<p>1.在一节点上新建表并插入数据以在其他实例上观测数据是否同步</p>
+<p>2.测试节点故障机恢复A.masterb slavea B.mastera停掉之后，需要修改配置文件，才能重新加入。</p>
+<p>我们可以关注几个关键的参数:</p>
+<ul>
+<li><code>wsrep_connected = on</code> 链接已开启</li>
+<li><code>wsrep_local_index = 1</code> 在集群中的索引值</li>
+<li><code>wsrep_cluster_size =3</code>集群中节点的数量</li>
+<li><code>wsrep_incoming_addresses = 172.25.0.11:3306,172.25.0.12:3306,172.25.0.13:3306</code></li>
+</ul>
+<p>集群中节点的访问地址</p>
+<h3 id="故障转移和故障恢复"><a href="#故障转移和故障恢复" class="headerlink" title="故障转移和故障恢复"></a>故障转移和故障恢复</h3><p>我们回忆一下，一开始我们只有一台数据库服务器，rhel7的操作系统，maraidb-server5.5版本。</p>
+<ul>
+<li>1.1：用户少，数据量也不多，每天用tar打包压缩好，拷贝出来，这种方法每次都要停掉服务；  </li>
+<li>1.2：tar打包太慢了，数据再增长会更慢；用LVM 快照方式，备份的时候要加读锁flush tables with read lock；瞬间完成后解锁unlock tables;再挂在拷贝出来；还原的时候数据大小决定还原时间长短</li>
+<li>1.3：希望备份过程中保持数据一致性和服务可用性；改用mysqldump，结合二进制日志。每天早上8点做全备份；恢复的时候，先导入全备份，然后根据binlog做重演</li>
+<li>1.4：用户数量越来越多，数据库从原来几个G到现在已经变成20个G了，用mysqldump命令太慢了，于是改用percona xtrabackup工具。并且制定了一个备份计划：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">周一8：00 全备份；</span><br><span class="line">周二8：00 增量备份；</span><br><span class="line">周三8：00 增量备份；</span><br><span class="line">周四8：00 增量备份；</span><br><span class="line">周五8：00 增量备份；</span><br><span class="line">周六8：00 增量备份；</span><br><span class="line">周日8：00 增量备份；</span><br><span class="line">恢复的时候，也很方便。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>2.1：服务器宕机了，希望瞬间切换到另一台，于是添加一台服务器slavea，做主从同步。</li>
+<li>2.2：防止从机单点故障，增加一台slaveb</li>
+<li>2.3：如果 master 是单点故障,如何解决？多级主从 multi-source，两个主服务器，两个从服务器，作multi-source,如果一台主服务器宕掉了，那么从服务器会自动去找第二台主服务器。</li>
+</ul>
+<h4 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a>问题的提出</h4><p><strong>两台master是否都能连呢？</strong></p>
+<p>好了，现在我们前面的客户端要来连接数据库，是连接M1，还是M2呢?如果同时对M1和M2执行读写操作，在这个过程中，是否会出问题呢？我们可以来做个小游戏！找一个学生Tom连接M1，另一个学生Jack连接了M2，现在，他们同时对数据库进行写操作，修改db1.t1中的id=4的行，改为99，然后查看一下t1表的结果。</p>
+<p>从结果看，同时多个用户对同一张表的同一个数据进行写操作，会有冲突的。所以写操作每次只给一台服务最好，但是如果用户不多，数据不多，问题也不大。</p>
+<p><strong>当前的困境</strong></p>
+<p>前端的应用程序无法使用多台数据库，前端只能指定一台数据库的ip地址，也就是说，如果你让前端应用连接M1，那么所有的读写操作都是通过M1，那么其他数据库除了热备的作用以外就没有了。这样很浪费性能，而且当我们前端的请求越来越多，一台数据库服务器会非常的吃力，既要响应读请求，还要响应写请求，他的压力会非常的大。如果M1宕机了，还要手动切换到M2，这样的效果并不是我们想要的，我们肯定希望他能瞬间切换。</p>
+<p>另外，让前端应用连接slave就更不行了，如果在从机上触发写操作，那么主从同步将会被断开，因为从机的数据一定要和主机一模一样，不然就会有冲突了。</p>
+<p>所以总结一下，现在我们遇到的困境：</p>
+<ol>
+<li>有多台数据库服务器，但是只能使用一台，不能作负载均衡（将前端用户的请求均衡地分配给后端的服务器）</li>
+<li>如果一台主服务器坏了，那么需要手动切换，不能做到瞬间自动切换</li>
+<li>两台slave只作为备份使用，浪费性能，虽然不能用来写，但是可以用来读取数据</li>
+</ol>
+<p>从上面的总结来看，我们希望在这个架构下，能够实现更多的功能，比如：</p>
+<ol>
+<li>负载均衡    就是说能够均衡地分配前端的用户请求<br> . 读写分离    两台master用来写，两台slave用来读，提升整体性能</li>
+</ol>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p><strong>如何解决呢？</strong></p>
+<ul>
+<li>第一种方案——在应用中处理故障转移，找开发人员作二次开发，将前端应用代码修改，让他能够实现上面的功能；</li>
+<li>第二种方案——中间件解决方案，在前端应用和后台数据库之间添加一台代理服务器。通过数据库的mysql协议去转发sql语句。如果后面数据库是oracle数据库，那么这个反向代理服务器就应该能够支持oracle的协议，监听oracle的端口，能跟oracle进行通信。</li>
+</ul>
+<p>我们来讲第二种方法。</p>
+<h4 id="什么是数据库代理服务器"><a href="#什么是数据库代理服务器" class="headerlink" title="什么是数据库代理服务器"></a>什么是数据库代理服务器</h4><p> 如果一个服务器能够支持数据库的协议，并且能够转发sql语句，我们就把他称之为数据库代理服务器。</p>
+<blockquote>
+<p>负载均衡</p>
+</blockquote>
+<p>数据库代理和web服务器的代理都需要具备一些基本代理服务器的功能，比如，负载均衡，至少要能实现负载均衡，我们后端有多台服务器，那么代理服务器能够将前端用户的请求以相对均衡的方式分担到后端多台服务器上面。</p>
+<blockquote>
+<p>读写分离</p>
+</blockquote>
+<p>如果我们后端的数据库不存在主和从的关系，大家都是master，任何一条语句都能写，那么发给谁都没有太大关系；但是如果后面是master和slave的关系，那么我们说从机是不能进行写操作的，所以在负载均衡，分发sql的过程当中，你的代理服务器要能够识别读和写，然后把读操作都分发给slave，写分发给master，我们把这个功能叫做读写分离。</p>
+<p>负载均衡和读写分离是数据库代理服务器当中最基本的两个功能。你用任何一个数据库代理服务器，都需要这两个功能。如果不具备这两个功能，那基本上没人用。</p>
+<p>作为代理服务器，他存在于我们客户端和数据库服务器之间，后端的数据库服务器不需要知道客户端的ip地址，他只要知道谁来找我的，谁发请求给我的，对于客户端来说，他不需要知道数据库服务器的地址，他只要知道代理就行了，后面怎么执行他不管。也就是说现在客户端不再直接与数据库服务器通信了，而是通过代理服务器进行通讯，代理服务器实现负载均衡，实现读写分离。</p>
+<blockquote>
+<p>分库、分表、分片</p>
+</blockquote>
+<p>进阶级的还会有其他的功能，比如一些优秀的代理服务器，可以实现分库、分表、分片；sql路由并发查询；sql过滤</p>
+<p>举例说明：</p>
+<p>4个库db1 db2 db3 db4，后面4台数据库做主从同步，他们的数据都是相同的，现在用户发起请求要访问db1，db1上有5张表，经过轮询，代理服务器将请求分发给了M1；如果用户再次访问db1，那么代理服务器还会将请求发给M1，M1上刚刚读过一个db1的文件，会产生缓存，所以再读一次的时候速度就很快了；如果轮询没有给到M1，而是给了S1，那么S1就要再读一次db1的文件，产生db1的缓存；如果用户再访问，可能这次分发给了S2，那么S2也要再读一次db1的文件，并产生db1的缓存。最终的结果就是四台机器将相同的数据都缓冲了，最终导致的问题就是我们的内存会有所浪费，因为内存里面缓冲的是一样的数据。而我们后端有4个库，不单单是db1，还有db2，3，4，用户在负载均衡的过程中，最终导致的结果是四台服务器全部把四个库的所有的表都尝试做缓冲，这四台服务器中有大量的数据是重复的，我们认为这是一种非常大的浪费，我们想减少这些性能消耗，怎么做呢？</p>
+<p>在第一台数据只缓冲db1，第二台db2，第三台db3，第四台db4，用户访问哪个库就分给哪台服务器，这是一种比较好的方法。这样的话，能够保证用户发出请求后能够较快地返回结果，服务器的内存缓冲得到充分的利用。不单单提高了性能，还节约了内存，避免了数据的重复。</p>
+<p>相同的理念，刚刚举的是库的例子，同样表也同样适用，不同的服务器缓冲不同的表。</p>
+<p>这是我们将的分库、分表的功能，还有一个分片，指的是什么呢？</p>
+<p>举例说明：只有t1一张表，发给谁呢？四台机器轮询地发，那么t1表的内容被四台机器全部缓冲下来，又会浪费内存。而且机器数量越多，性能浪费越大。那么我们怎么办呢？</p>
+<p>可以这么做：</p>
+<table>
+<thead>
+<tr>
+<th align="left">服务器</th>
+<th align="left">缓冲</th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">m1</td>
+<td align="left">1</td>
+<td align="left">5</td>
+<td align="left">9</td>
+</tr>
+<tr>
+<td align="left">m2</td>
+<td align="left">2</td>
+<td align="left">6</td>
+<td align="left">10</td>
+</tr>
+<tr>
+<td align="left">s1</td>
+<td align="left">3</td>
+<td align="left">7</td>
+<td align="left">11</td>
+</tr>
+<tr>
+<td align="left">s2</td>
+<td align="left">4</td>
+<td align="left">8</td>
+<td align="left">12</td>
+</tr>
+</tbody></table>
+<p>按照行来分发，这样的话问题就解决拉！这就是分片，这样就不会浪费性能，数据就不会重复拉！</p>
+<blockquote>
+<p>sql路由并发查询</p>
+</blockquote>
+<p>案例：如果用户要执行<code>select * from t1 where id=1 or id=8;</code>怎么办呢？代理服务器是分发给m1还是s2呢？</p>
+<p>当这条语句经过代理服务器的时候，被一分为二，一条是<code>select * from t1 where id=1;</code>一条是<code>select * from t1 where id=8;</code> 然后同时发给两台不同的服务器，将查询结果取出来，合并一下，然后返回给前端。这个叫做sql路由并发查询。</p>
+<h4 id="目前市面上的数据库代理服务器"><a href="#目前市面上的数据库代理服务器" class="headerlink" title="目前市面上的数据库代理服务器"></a>目前市面上的数据库代理服务器</h4><p>我们会去讲目前市面上的一些数据库代理服务器。目前数据库代理好用的真心比较少，非常少，包括mysql官方也开发过代理，非常地烂，破东西，开发了好多年了，一直很烂；然后呢，淘宝有自己的代理，但没有开源出来，或者说开源出来了不能用，他的代理要用在他们的那套基础架构上，而基础架构没开源出来，仅程序开源出来没用，没有运行环境；奇虎360对mysql-proxy做了更改，性能做了优化，优化下来的效果还可以，比官方好很多，运行的环境虽然开源出来了，但是不能在el7上跑，el6、el5可以跑，这东西没办法讲，我们知道一下，以后大家做代理不要用el7，用el5、el6可以跑着试试看；然后会去讲另外一个代理mycat，前生是阿里巴巴的数据库代理，阿里巴巴和淘宝用的数据库代理是两套程序，阿里巴巴之前的数据库代理各种坑，坑到他的开发人员实在受不了了，然后就自己组织了一批人，开始重写代码，将各种坑补掉，重写出来的这个开源产品呢就叫mycat，有理由相信mycat以后会越来越好，因为他有一个非常坚实的基础，就是他是拿阿里巴巴的系统，经过线上生产环境验证的一个代理服务器，拿他来改的，而且还补全了他很多的不足，把他变成了一个企业级的产品，目前mycat的用户并不算多，但是他的市场份额一直在逐步增加，从开源领域的代理服务器来讲，这个mycat还是非常不错的。</p>
+<p>我们会举两个例子，mysql官方的 mysql-proxy，其实我是不想讲mysql官方的，讲这东西也没太大用处，他有些自己的缺点，当然了，这些缺点并不是不能克服的，可以解决，解决的前提是你需要会开发，他里面有一些代码要你自己改，因为他官方的代码比较烂。另一个就是mycat。去实现两个功能，负载均衡和读写分离。</p>
+<table>
+<thead>
+<tr>
+<th align="left">DBPROXY</th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Mysql-proxy</td>
+<td align="left">lua脚本</td>
+<td align="left">魔兽世界</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/alibaba/tb_tddl/wiki/TDDL-dynamic-datasource-%E5%85%A5%E9%97%A8%E4%B8%8E%E4%BD%BF%E7%94%A8" target="_blank" rel="noopener">tddl</a></td>
+<td align="left">淘宝的数据库代理</td>
+<td align="left">没有运行环境</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/Qihoo360/Atlas/wiki/Atlas%E7%9A%84%E5%AE%89%E8%A3%85" target="_blank" rel="noopener">atlas</a></td>
+<td align="left">奇虎360的数据库代理[ 希腊神话被罚作苦役的大力神 ]</td>
+<td align="left">rhel7不能用</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/alibaba/cobar" target="_blank" rel="noopener">cobar</a></td>
+<td align="left">阿里巴巴</td>
+<td align="left">测试版不能用</td>
+</tr>
+<tr>
+<td align="left">mycat</td>
+<td align="left">阿里巴巴二次开发</td>
+<td align="left">商业型产品</td>
+</tr>
+</tbody></table>
+<p>首先，我们来看一下我们项目的一个网络架构。</p>
+<p><img src="pic/galera.jpg" alt="DBPROXY"></p>
+<h5 id="mysql-proxy"><a href="#mysql-proxy" class="headerlink" title="mysql-proxy"></a>mysql-proxy</h5><p><img src="pic/12-mysql-proxy.jpg" alt="mysql-proxy"></p>
+<blockquote>
+<p>数据库中间件 mysql-proxy 0.8.5 实现 读写分离负载均衡</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>1.网络拓扑规划</p>
+</blockquote>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">服务器</th>
+<th align="left">IP</th>
+<th align="left">software</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">mastera0</td>
+<td align="left">172.25.0.11</td>
+<td align="left">mariadb5.5</td>
+</tr>
+<tr>
+<td align="left">masterb0</td>
+<td align="left">172.25.0.12</td>
+<td align="left">mariadb5.5</td>
+</tr>
+<tr>
+<td align="left">slavea0</td>
+<td align="left">172.25.0.13</td>
+<td align="left">mariadb5.5</td>
+</tr>
+<tr>
+<td align="left">slaveb0</td>
+<td align="left">172.25.0.14</td>
+<td align="left">mariadb5.5</td>
+</tr>
+<tr>
+<td align="left">dbproxy0</td>
+<td align="left">172.25.0.15</td>
+<td align="left">mysql-proxy0.8.5</td>
+</tr>
+</tbody></table>
+<blockquote>
+<blockquote>
+<p>2.安装软件</p>
+</blockquote>
+</blockquote>
+<p>1）无密码ssh登陆虚拟机</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">for i in 10 11 12 13 14 15 ;do ssh-copy-id root@172.25.0.$i ;done</span><br></pre></td></tr></table></figure>
+
+<p>2）关闭selinux,firewalld</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i in 10 11 12 13 14 15 ;\</span><br><span class="line">do ssh root@172.25.0.$i \</span><br><span class="line">\"sed -i '/^SELINUX/s/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config;\</span><br><span class="line">grep -v "^#" /etc/selinux/config;\</span><br><span class="line">systemctl stop firewalld \";done</span><br></pre></td></tr></table></figure>
+
+<p>3）需要安装的软件包<code>wget，net-tools,rpc-bind,nfs-utils,vim</code></p>
+<p><code>for i in 10 11 12 13 14 ;do ssh root@172.25.0.$i &quot;yum install -y wget net-tools rpc-bind nfs-utils vim &quot;;done</code></p>
+<p>4）查看ip地址<code>ip addr</code></p>
+<p>5）修改yum源，根据实际需求来</p>
+<p>从服务器上下载到/etc/yum.repos.d/目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d &amp;&amp; \</span><br><span class="line">wget http://classroom.example.com/materials/mariadb-10.2.repo;\</span><br><span class="line">wget http://classroom.example.com/materials/mysql-5.7.repo;\</span><br><span class="line">wget http://classroom.example.com/materials/thirdpart.repo</span><br><span class="line"></span><br><span class="line">yum clean all &amp;&amp; yum makecache</span><br></pre></td></tr></table></figure>
+
+<p>6) 安装mariadb-server，并启动服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i in 11 12 13 14 ;do ssh root@172.25.0.$i "yum install -y mariadb-server" ;done</span><br><span class="line">for i in 11 12 13 14 ;do ssh root@172.25.0.$i "systemctl start mariadb" ;done</span><br></pre></td></tr></table></figure>
+
+<p>7) 安装依赖包</p>
+<p><code>yum install gcc* lua lua-devel libevent libevent-devel glib2 glib2-devel pkgconfig mariadb-devel flex</code></p>
+<p>8) 安装mysql-proxy</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://172.25.254.254/content/courses/db100/rhel7.2/materials/mysql-proxy-0.8.5.tar.gz</span><br><span class="line">tar -zxf mysql-proxy-0.8.5.tar.gz</span><br><span class="line">cd mysql-proxy-0.8.5</span><br><span class="line">./configure --prefix=/usr/local/mysql-proxy</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>3.配置</p>
+</blockquote>
+</blockquote>
+<p>设置密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for i in 11 12 13 14 ;do ssh root@172.25.0.$i "mysqladmin -uroot password uplooking" ;done</span><br></pre></td></tr></table></figure>
+
+<p>1）mastera0</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -puplooking</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> create database db1;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> use db1;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> create table t1 (num int not null);</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> insert into t1 values (1);</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> grant all on db1.* to <span class="string">'mysql-proxy'</span>@172.25.0.15 identified by <span class="string">'uplooking'</span>;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> flush privileges;</span></span><br></pre></td></tr></table></figure>
+
+<p>2）slavea0</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -puplooking</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> create database db1;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> use db1;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> create table t1 (num int not null);</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> insert into t1 values (2);</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> grant all on db1.* to <span class="string">'mysql-proxy'</span>@172.25.0.15 identified by <span class="string">'uplooking'</span>;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> flush privileges;</span></span><br></pre></td></tr></table></figure>
+
+<p>3) 进入mysql-proxy的家目录/usr/local/mysql-proxy</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql-proxy/;ls</span><br><span class="line"><span class="meta">#</span><span class="bash"> bin  include  lib  libexec  share</span></span><br><span class="line">cd bin;ls</span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql-binlog-dump  mysql-myisam-dump  mysql-proxy</span></span><br><span class="line">./mysql-proxy --help-all---》查看命令帮助</span><br><span class="line">./mysql-proxy -P 172.25.0.15:3306 -b 172.25.0.11:3306 -b 172.25.0.13:3306 &amp;</span><br><span class="line">netstat -ntalp|grep 3306</span><br><span class="line"><span class="meta">#</span><span class="bash"> tcp        0      0 172.25.0.15:3306        0.0.0.0:*               LISTEN      24483/./mysql-proxy</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>4.测试</p>
+</blockquote>
+</blockquote>
+<p>客户端 172.25.0.10</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql -u'mysql-proxy' -puplooking -h172.25.0.15</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> use db1;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> select * from t1;</span></span><br><span class="line">+-----+</span><br><span class="line">| num |</span><br><span class="line">+-----+</span><br><span class="line">|   1 |</span><br><span class="line">+-----+</span><br></pre></td></tr></table></figure>
+
+<p>将mastera0的服务关闭后，再查看表1中的内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop mariadb</span><br><span class="line"></span><br><span class="line">mysql -u'mysql-proxy' -puplooking -h172.25.0.15</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> select * from t1;</span></span><br><span class="line">ERROR 2013 (HY000): Lost connection to MySQL server during query</span><br><span class="line">MariaDB [db1]&gt; select * from t1;</span><br><span class="line">ERROR 2006 (HY000): MySQL server has gone away</span><br><span class="line">No connection. Trying to reconnect...</span><br><span class="line">Connection id:    5</span><br><span class="line">Current database: db1</span><br><span class="line"></span><br><span class="line">+-----+</span><br><span class="line">| num |</span><br><span class="line">+-----+</span><br><span class="line">|   2 |</span><br><span class="line">+-----+</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>5.配置</p>
+</blockquote>
+</blockquote>
+<p>1）将lua脚本复制到mysql-proxy的家目录</p>
+<p><code>cp ~/mysql-proxy-0.8.5/lib/rw-splitting.lua /usr/local/mysql-proxy/</code></p>
+<p>2) mastera0读写，slavea0只读，通过lua脚本</p>
+<p><code>./mysql-proxy -P 172.25.0.15:3306 -b 172.25.0.11:3306 -r 172.25.0.13:3306 -s /usr/local/mysql-proxy/rw-splitting.lua</code></p>
+<blockquote>
+<blockquote>
+<p>6.测试</p>
+</blockquote>
+</blockquote>
+<p>1）客户端上登陆后插入33；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u'mysql-proxy' -puplooking -h172.25.0.15</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> use db1;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> insert into t1 values (33);</span></span><br></pre></td></tr></table></figure>
+
+<p>2）mastera0查看t1表；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql -u'mysql-proxy' -puplooking -h172.25.0.15</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> use db1;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> select * from t1;</span></span><br><span class="line">+-----+</span><br><span class="line">| num |</span><br><span class="line">+-----+</span><br><span class="line">|   1 |</span><br><span class="line">|  33 |</span><br><span class="line">+-----+</span><br></pre></td></tr></table></figure>
+
+<p>3）slavea0查看t1；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql -u'mysql-proxy' -puplooking -h172.25.0.15</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> select * from t1;</span></span><br><span class="line">+-----+</span><br><span class="line">| num |</span><br><span class="line">+-----+</span><br><span class="line">|   2 |</span><br><span class="line">+-----+</span><br></pre></td></tr></table></figure>
+
+<p>4）客户端查看t1表；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql -u'mysql-proxy' -puplooking -h172.25.0.15</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> select * from t1;</span></span><br><span class="line">+-----+</span><br><span class="line">| num |</span><br><span class="line">+-----+</span><br><span class="line">|   2 |</span><br><span class="line">+-----+</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="mycat"><a href="#mycat" class="headerlink" title="mycat"></a>mycat</h5><p>2013 年阿里的 Cobar 在社区使用过程中出现存在一些比较严重的问题,及其使用限制，经过 Mycat 第一次改良,第一代改良版——Mycat 诞生。 Mycat 开源之后,一些 Cobar 的用户参与了 Mycat 的开发,最终 Mycat 发展成为一个由众多软件公司的实力派架构师和资深开发人员维护的社区型开源软件。</p>
+<ul>
+<li>Mycat 捐赠地址 :<a href="http://www.mycat.io/donate.html" target="_blank" rel="noopener">http://www.mycat.io/donate.html</a></li>
+<li>Mycat 官网网站:<a href="http://www.mycat.io/" target="_blank" rel="noopener">http://www.mycat.io/</a></li>
+<li>Mycat 源码:<a href="https://github.com/MyCATApache/Mycat-Server" target="_blank" rel="noopener">https://github.com/MyCATApache/Mycat-Server</a></li>
+<li>Mycat 下载地址:<a href="https://github.com/MyCATApache/Mycat-download" target="_blank" rel="noopener">https://github.com/MyCATApache/Mycat-download</a></li>
+</ul>
+<p><img src="pic/13-mycat.jpg" alt="mycat"></p>
+<blockquote>
+<blockquote>
+<p>1.网络拓扑规划</p>
+</blockquote>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">服务器</th>
+<th align="left">IP</th>
+<th align="left">software</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">mastera0</td>
+<td align="left">172.25.0.11</td>
+<td align="left">mariadb5.5</td>
+</tr>
+<tr>
+<td align="left">masterb0</td>
+<td align="left">172.25.0.12</td>
+<td align="left">mariadb5.5</td>
+</tr>
+<tr>
+<td align="left">slavea0</td>
+<td align="left">172.25.0.13</td>
+<td align="left">mariadb5.5</td>
+</tr>
+<tr>
+<td align="left">slaveb0</td>
+<td align="left">172.25.0.14</td>
+<td align="left">mariadb5.5</td>
+</tr>
+<tr>
+<td align="left">dbproxy0</td>
+<td align="left">172.25.0.15</td>
+<td align="left">mysql-proxy0.8.5</td>
+</tr>
+</tbody></table>
+<blockquote>
+<blockquote>
+<p>2.安装软件</p>
+</blockquote>
+</blockquote>
+<p><strong>安装jdk软件</strong> 因为mycat是用java语言编写的,并宣告家目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget http://172.25.254.254/content/class/mariadb/mycat/jdk-7u79-linux-x64.rpm</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> wget http://172.25.254.254/content/class/mariadb/mycat/Mycat-server-1.5.1-RELEASE-20160328130228-linux.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -ivh jdk-7u79-liunux-x64.rpm</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -ql jdk|head</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">export</span> JAVA_HOME=<span class="string">'/usr/java/jdk1.7.0_79'</span></span></span><br></pre></td></tr></table></figure>
+
+<p>临时生效，如果要永久生效需要写到bash启动脚本中例如/etc/bashrc</p>
+<p><strong>安装mycat</strong> 直接解压缩即可使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">*************************************</span><br><span class="line">bin	mycat启动脚本</span><br><span class="line">conf	schema.xml	数据库配置</span><br><span class="line">	    server.xml	逻辑库配置</span><br><span class="line">*************************************</span><br><span class="line">[root@dbproxy0 ~]# tar xf Mycat-server-1.5.1-RELEASE-20160328130228-linux.tar.gz -C /usr/local</span><br><span class="line">[root@dbproxy0 ~]# cd /usr/local;ls</span><br><span class="line">[root@dbproxy0 local]# cd mycat;ll</span><br><span class="line">[root@dbproxy0 mycat]# chmod 755 * -R</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>4.配置文件</p>
+</blockquote>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@dbproxy0 mycat]# vim conf/schema.xml</span><br><span class="line">[root@dbproxy0 mycat]# vim conf/server.xml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">server.xml</span><br><span class="line">#用户名、密码、逻辑库名需要自定义</span><br><span class="line">&lt;user name&#x3D;&quot;test&quot;&gt;</span><br><span class="line">	&lt;property name&#x3D;&quot;password&quot;&gt;test&lt;&#x2F;property&gt;   注意：此处test是密码</span><br><span class="line">	&lt;property name&#x3D;&quot;schemas&quot;&gt;TESTDB&lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;user&gt;</span><br><span class="line">&lt;system&gt;</span><br><span class="line">#新增服务端口</span><br><span class="line">	&lt;property name&#x3D;&quot;servicePort&quot;&gt;3306&lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;system&gt;</span><br><span class="line">****************************</span><br><span class="line">&lt;mycat:schema xmlns:mycat&#x3D;&quot;http:&#x2F;&#x2F;org.opencloudb&#x2F;&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;schema name&#x3D;&quot;TESTDB&quot; checkSQLschema&#x3D;&quot;false&quot; sqlMaxLimit&#x3D;&quot;100&quot;&gt;</span><br><span class="line">                &lt;!-- auto sharding by id (long) --&gt;</span><br><span class="line">                &lt;table name&#x3D;&quot;travelrecord&quot; dataNode&#x3D;&quot;dn1,dn2,dn3&quot; rule&#x3D;&quot;auto-sharding-long&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;table name&#x3D;&quot;t1&quot; dataNode&#x3D;&quot;dn1&quot; &#x2F;&gt;</span><br><span class="line">                &lt;!-- global table is auto cloned to all defined data nodes ,so can join</span><br><span class="line">                        with any table whose sharding node is in the same data node --&gt;</span><br><span class="line">                &lt;table name&#x3D;&quot;company&quot; primaryKey&#x3D;&quot;ID&quot; type&#x3D;&quot;global&quot; dataNode&#x3D;&quot;dn1,dn2,dn3&quot; &#x2F;&gt;</span><br><span class="line">                &lt;table name&#x3D;&quot;goods&quot; primaryKey&#x3D;&quot;ID&quot; type&#x3D;&quot;global&quot; dataNode&#x3D;&quot;dn1,dn2&quot; &#x2F;&gt;</span><br><span class="line">                &lt;!-- random sharding using mod sharind rule --&gt;</span><br><span class="line">                &lt;table name&#x3D;&quot;hotnews&quot; primaryKey&#x3D;&quot;ID&quot; dataNode&#x3D;&quot;dn1,dn2,dn3&quot;</span><br><span class="line">                        rule&#x3D;&quot;mod-long&quot; &#x2F;&gt;</span><br><span class="line">                &lt;!-- &lt;table name&#x3D;&quot;dual&quot; primaryKey&#x3D;&quot;ID&quot; dataNode&#x3D;&quot;dnx,dnoracle2&quot; type&#x3D;&quot;global&quot;</span><br><span class="line">                        needAddLimit&#x3D;&quot;false&quot;&#x2F;&gt; &lt;table name&#x3D;&quot;worker&quot; primaryKey&#x3D;&quot;ID&quot; dataNode&#x3D;&quot;jdbc_dn1,jdbc_dn2,jdbc_dn3&quot;</span><br><span class="line">                        rule&#x3D;&quot;mod-long&quot; &#x2F;&gt; --&gt;</span><br><span class="line">                &lt;table name&#x3D;&quot;employee&quot; primaryKey&#x3D;&quot;ID&quot; dataNode&#x3D;&quot;dn1,dn2&quot;</span><br><span class="line">                        rule&#x3D;&quot;sharding-by-intfile&quot; &#x2F;&gt;</span><br><span class="line">                &lt;table name&#x3D;&quot;customer&quot; primaryKey&#x3D;&quot;ID&quot; dataNode&#x3D;&quot;dn1,dn2&quot;</span><br><span class="line">                        rule&#x3D;&quot;sharding-by-intfile&quot;&gt;</span><br><span class="line">                        &lt;childTable name&#x3D;&quot;orders&quot; primaryKey&#x3D;&quot;ID&quot; joinKey&#x3D;&quot;customer_id&quot;</span><br><span class="line">                                parentKey&#x3D;&quot;id&quot;&gt;</span><br><span class="line">                                &lt;childTable name&#x3D;&quot;order_items&quot; joinKey&#x3D;&quot;order_id&quot;</span><br><span class="line">                                        parentKey&#x3D;&quot;id&quot; &#x2F;&gt;</span><br><span class="line">                        &lt;&#x2F;childTable&gt;</span><br><span class="line">			&lt;childTable name&#x3D;&quot;customer_addr&quot; primaryKey&#x3D;&quot;ID&quot; joinKey&#x3D;&quot;customer_id&quot;</span><br><span class="line">                                parentKey&#x3D;&quot;id&quot; &#x2F;&gt;</span><br><span class="line">                &lt;&#x2F;table&gt;</span><br><span class="line">                &lt;!-- &lt;table name&#x3D;&quot;oc_call&quot; primaryKey&#x3D;&quot;ID&quot; dataNode&#x3D;&quot;dn1$0-743&quot; rule&#x3D;&quot;latest-month-calldate&quot;</span><br><span class="line">                        &#x2F;&gt; --&gt;</span><br><span class="line">        &lt;&#x2F;schema&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;dataNode name&#x3D;&quot;dn1&quot; dataHost&#x3D;&quot;localhost1&quot; database&#x3D;&quot;db1&quot; &#x2F;&gt;</span><br><span class="line">&lt;dataHost name&#x3D;&quot;localhost1&quot; maxCon&#x3D;&quot;1000&quot; minCon&#x3D;&quot;10&quot; balance&#x3D;&quot;3&quot;</span><br><span class="line">                writeType&#x3D;&quot;0&quot; dbType&#x3D;&quot;mysql&quot; dbDriver&#x3D;&quot;native&quot; switchType&#x3D;&quot;1&quot;  slaveThreshold&#x3D;&quot;100&quot;&gt;</span><br><span class="line">                &lt;heartbeat&gt;select user()&lt;&#x2F;heartbeat&gt;</span><br><span class="line">                &lt;!-- can have multi write hosts --&gt;</span><br><span class="line">                &lt;writeHost host&#x3D;&quot;mastera&quot; url&#x3D;&quot;172.25.0.11:3306&quot; user&#x3D;&quot;mysqlproxy&quot;</span><br><span class="line">                        password&#x3D;&quot;uplooking&quot;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;readHost host&#x3D;&quot;slavea&quot; url&#x3D;&quot;172.25.0.13:3306&quot; user&#x3D;&quot;mysqlproxy&quot;</span><br><span class="line">                        password&#x3D;&quot;uplooking&quot; &#x2F;&gt;</span><br><span class="line">                &lt;readHost host&#x3D;&quot;slaveb&quot; url&#x3D;&quot;172.25.0.14:3306&quot; user&#x3D;&quot;mysqlproxy&quot;</span><br><span class="line">                        password&#x3D;&quot;uplooking&quot; &#x2F;&gt;</span><br><span class="line">                &lt;&#x2F;writeHost&gt;</span><br><span class="line"></span><br><span class="line">                &lt;writeHost host&#x3D;&quot;masterb&quot; url&#x3D;&quot;172.25.0.12:3306&quot; user&#x3D;&quot;mysqlproxy&quot;</span><br><span class="line">                        password&#x3D;&quot;uplooking&quot;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;readHost host&#x3D;&quot;slavea&quot; url&#x3D;&quot;172.25.0.13:3306&quot; user&#x3D;&quot;mysqlproxy&quot;</span><br><span class="line">                        password&#x3D;&quot;uplooking&quot; &#x2F;&gt;</span><br><span class="line">                &lt;readHost host&#x3D;&quot;slaveb&quot; url&#x3D;&quot;172.25.0.14:3306&quot; user&#x3D;&quot;mysqlproxy&quot;</span><br><span class="line">                        password&#x3D;&quot;uplooking&quot; &#x2F;&gt;</span><br><span class="line">                &lt;&#x2F;writeHost&gt;</span><br><span class="line">&lt;&#x2F;dataHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;mycat:schema&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>5）启动服务</p>
+</blockquote>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@dbproxy0 mycat]# bin/mycat start</span><br><span class="line">[root@dbproxy0 mycat]# netstat -luntp|grep tcp</span><br><span class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1190/sshd           </span><br><span class="line">tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      1853/master         </span><br><span class="line">tcp        0      0 127.0.0.1:32000         0.0.0.0:*               LISTEN      3168/java           </span><br><span class="line">tcp6       0      0 :::3306                 :::*                    LISTEN      3168/java           </span><br><span class="line">tcp6       0      0 :::9066                 :::*                    LISTEN      3168/java           </span><br><span class="line">tcp6       0      0 :::46764                :::*                    LISTEN      3168/java           </span><br><span class="line">tcp6       0      0 :::22                   :::*                    LISTEN      1190/sshd           </span><br><span class="line">tcp6       0      0 ::1:25                  :::*                    LISTEN      1853/master         </span><br><span class="line">tcp6       0      0 :::1984                 :::*                    LISTEN      3168/java           </span><br><span class="line">tcp6       0      0 :::43493                :::*                    LISTEN      3168/java</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>6）测试</p>
+</blockquote>
+</blockquote>
+<p>mycat的master每次之能用一个来写，以这种方法来防止两台master产生冲突。<br>当其中一台master宕机以后，可以自动切换。</p>
+<p><strong>balance 属性</strong></p>
+<p>负载均衡类型有 3 种:</p>
+<ol>
+<li>balance=”0”, master可读可写，slave不使用，也就是不启动读写分离</li>
+<li>balance=”1”,master可读可写，slave只读；stand by writeHost 参与 select 询句癿负载均衡</li>
+<li>balance=”2”,master可读可写，slave只读；所有读操作都随机的在 master和slave上分配。</li>
+<li>balance=”3”,master只写，slave只读；1.4版本以后有</li>
+</ol>
+<p><strong>switchType 属性</strong></p>
+<ul>
+<li>-1 表示不自动切换</li>
+<li>1 默认值,自动切换</li>
+<li>2 基于 MySQL 主从同步的状态决定是否切换</li>
+</ul>
+<p><strong>更多内容</strong> 请查看《Mycat 权威指南》</p>
+<h3 id="实战项目"><a href="#实战项目" class="headerlink" title="实战项目"></a>实战项目</h3><blockquote>
+<p>实战项目1： 数据库中间件 mysql-proxy 0.8.5 实现 读写分离负载均衡，后端数据库服务器为 MySQL 5.7 M-M-S-S Multisource Replication 高可用架构</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br></pre></td><td class="code"><pre><span class="line">软件名	mysql-proxy</span><br><span class="line">	http://classroom.example.com/materials/mysql-proxy-0.8.5.tar.gz</span><br><span class="line">服务启动脚本</span><br><span class="line">	mysql-proxy</span><br><span class="line">		-P, --proxy-address=&lt;host:port&gt; 	4040	指定mysql-proxy运行的位置和端口号</span><br><span class="line">		-b, --proxy-backend-addresses=&lt;host:port&gt;	可读可写</span><br><span class="line">		-r, --proxy-read-only-backend-addresses=&lt;host:port&gt; 只读</span><br><span class="line">		-s, --proxy-lua-script=&lt;file&gt;			lua脚本		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装并启动mysql-proxy</span></span><br><span class="line"></span><br><span class="line">1）依赖关系</span><br><span class="line">yum install -y  gcc* libev lua  lua-devel libevent libevent-devel glib2 glib2-devel pkgconfig mariadb-devel flex</span><br><span class="line">2）源码编译</span><br><span class="line">1.configure</span><br><span class="line">2.make</span><br><span class="line">3.make install</span><br><span class="line">---------------</span><br><span class="line">3）启动服务</span><br><span class="line">mysql-proxy -P 172.25.0.15:3306 -b 172.25.0.11:3306 -b 172.25.0.12:3306 -r 172.25.0.13:3306 -r 172.25.0.14:3306 -s /usr/local/mysql-proxy/rw-splitting.lua</span><br><span class="line"></span><br><span class="line">注意，启动服务之前需要：</span><br><span class="line">	1）关闭所有服务器的selinux和firewalld</span><br><span class="line">	2）后端真实数据库需要给dbproxy授权</span><br><span class="line"></span><br><span class="line">---------------</span><br><span class="line">mysql-proxy详细步骤</span><br><span class="line"></span><br><span class="line">1.网络拓扑规划</span><br><span class="line">mastera0	172.25.0.11	mariadb5.7 	mysql-5.7.repo</span><br><span class="line">masterb0	172.25.0.12 	mariadb5.7 	mysql-5.7.repo</span><br><span class="line">slavea0		172.25.0.13	mariadb5.7 	mysql-5.7.repo</span><br><span class="line">slaveb0		172.25.0.14	mariadb5.7	mysql-5.7.repo</span><br><span class="line">dbproxy0	172.25.0.15	mysql-proxy0.8.5 thirdpart.repo</span><br><span class="line">2.安装软件</span><br><span class="line">1）无密码ssh登陆虚拟机</span><br><span class="line"><span class="meta">#</span><span class="bash"> ssh-keygen -t rsa</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">for</span> i <span class="keyword">in</span> 10 11 12 13 14 15 ;<span class="keyword">do</span> ssh-copy-id root@172.25.0.<span class="variable">$i</span> ;<span class="keyword">done</span></span></span><br><span class="line"></span><br><span class="line">2）关闭selinux,firewalld</span><br><span class="line">for i in 10 11 12 13 14 15 ;\</span><br><span class="line">do ssh root@172.25.0.$i \</span><br><span class="line">"sed -i '/^SELINUX/s/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config;\</span><br><span class="line">grep -v "^#" /etc/selinux/config;\</span><br><span class="line">systemctl stop firewalld;setenforce 0 ";done</span><br><span class="line"></span><br><span class="line">3）需要安装的软件包wget，net-tools,rpc-bind,nfs-utils,vim</span><br><span class="line">for i in 10 11 12 13 14 ;do ssh root@172.25.0.$i "yum install -y wget net-tools rpc-bind nfs-utils vim ";done</span><br><span class="line"></span><br><span class="line">4）查看ip地址ip addr</span><br><span class="line">5）修改yum源，根据实际需求来</span><br><span class="line">从服务器上下载到/etc/yum.repos.d/目录</span><br><span class="line"></span><br><span class="line">6) mastera--slaveb四台数据库服务器，安装mysql5.7，并启动服务,修改初始密码</span><br><span class="line">为了测试中间件的功能，分别创建db1.t1</span><br><span class="line">mastera	db1.t1 (1,'mastera')</span><br><span class="line">masterb db1.t1 (1,'masterb')</span><br><span class="line">slavea db1.t1 (1,'slavea')</span><br><span class="line">slaveb db1.t1 (1,'slaveb')</span><br><span class="line"></span><br><span class="line">7) dbproxy安装依赖包 (需要第三方yum源 thirdpart.repo)</span><br><span class="line">yum install -y  gcc* libev lua  lua-devel libevent libevent-devel glib2 glib2-devel pkgconfig mariadb-devel flex</span><br><span class="line"></span><br><span class="line">8) 安装mysql-proxy</span><br><span class="line"><span class="meta">#</span><span class="bash"> wget http://172.25.254.254/content/courses/db100/rhel7.2/materials/mysql-proxy-0.8.5.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -zxf mysql-proxy-0.8.5.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> mysql-proxy-0.8.5</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ./configure --prefix=/usr/<span class="built_in">local</span>/mysql-proxy</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> make</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> make install</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3) 进入mysql-proxy的家目录/usr/local/mysql-proxy</span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/mysql-proxy/;ls</span></span><br><span class="line">bin  include  lib  libexec  share</span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> bin;ls</span></span><br><span class="line">mysql-binlog-dump  mysql-myisam-dump  mysql-proxy</span><br><span class="line"><span class="meta">#</span><span class="bash"> ./mysql-proxy --<span class="built_in">help</span>-proxy  </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将lua脚本复制到mysql-proxy的家目录</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> cp ~/mysql-proxy-0.8.5/lib/rw-splitting.lua /usr/<span class="built_in">local</span>/mysql-proxy/</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动服务</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql-proxy -P 172.25.0.15:3306 -b 172.25.0.11:3306 -b 172.25.0.12:3306 -r 172.25.0.13:3306 -r 172.25.0.14:3306 -s /usr/<span class="built_in">local</span>/mysql-proxy/rw-splitting.lua</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看mysql-proxy监听端口号</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netstat -ntalp|grep 3306</span></span><br><span class="line">tcp        0      0 172.25.0.15:3306        0.0.0.0:*               LISTEN      24483/./mysql-proxy</span><br><span class="line"></span><br><span class="line">4.workstation测试(需要安装mariadb客户端，或者mysql客户端)</span><br><span class="line">客户端172.25.0.10</span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql -u<span class="string">'dbproxy'</span> -p<span class="string">'Uploo00king'</span> -h172.25.0.15</span></span><br><span class="line">MySQL [(none)]&gt; select * from db1.t1;</span><br><span class="line">+----+---------+</span><br><span class="line">| id | name    |</span><br><span class="line">+----+---------+</span><br><span class="line">|  1 | mastera |</span><br><span class="line">+----+---------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">***************************************</span><br><span class="line"><span class="meta">#</span><span class="bash">将mastera0的服务关闭后，再查看表1中的内容</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl stop mysqld</span></span><br><span class="line">****************************************</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; select * from db1.t1;</span><br><span class="line">ERROR 2013 (HY000): Lost connection to MySQL server during query</span><br><span class="line">MySQL [(none)]&gt; select * from db1.t1;</span><br><span class="line">ERROR 2006 (HY000): MySQL server has gone away</span><br><span class="line">No connection. Trying to reconnect...</span><br><span class="line">Connection id:    9</span><br><span class="line">Current database: *** NONE ***</span><br><span class="line"></span><br><span class="line">+----+---------+</span><br><span class="line">| id | name    |</span><br><span class="line">+----+---------+</span><br><span class="line">|  1 | masterb |</span><br><span class="line">+----+---------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">***************************************</span><br><span class="line"><span class="meta">#</span><span class="bash">插入数据，查看插入到哪个服务器中了</span></span><br><span class="line">****************************************  </span><br><span class="line">MySQL [(none)]&gt; insert into db1.t1 values (2,'test');</span><br><span class="line">Query OK, 1 row affected (0.04 sec)</span><br><span class="line">MySQL [(none)]&gt; select @@hostname;</span><br><span class="line">+----------------------+</span><br><span class="line">| @@hostname           |</span><br><span class="line">+----------------------+</span><br><span class="line">| masterb0.example.com |</span><br><span class="line">+----------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">***************************************</span><br><span class="line"><span class="meta">#</span><span class="bash">将masterb0的服务关闭后，再插入数据</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl stop mysqld</span></span><br><span class="line">****************************************</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; insert into db1.t1 values (100,'oo');</span><br><span class="line">ERROR 2013 (HY000): Lost connection to MySQL server during query</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; select @@hostname;</span><br><span class="line">ERROR 2013 (HY000): Lost connection to MySQL server during query</span><br><span class="line">MySQL [(none)]&gt; select @@hostname;</span><br><span class="line">ERROR 2006 (HY000): MySQL server has gone away</span><br><span class="line">No connection. Trying to reconnect...</span><br><span class="line">Connection id:    7</span><br><span class="line">Current database: *** NONE ***</span><br><span class="line"></span><br><span class="line">+---------------------+</span><br><span class="line">| @@hostname          |</span><br><span class="line">+---------------------+</span><br><span class="line">| slavea0.example.com |</span><br><span class="line">+---------------------+</span><br><span class="line">1 row in set (0.01 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">***************************************</span><br><span class="line"><span class="meta">#</span><span class="bash">将mastera0的服务启动后，再插入数据</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl start mysqld</span></span><br><span class="line">****************************************</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; begin;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; select @@hostname;</span><br><span class="line">+----------------------+</span><br><span class="line">| @@hostname           |</span><br><span class="line">+----------------------+</span><br><span class="line">| mastera0.example.com |</span><br><span class="line">+----------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; insert into db1.t1 values (101,'oo');</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; commit;</span><br><span class="line">Query OK, 0 rows affected (0.07 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; select @@hostname;</span><br><span class="line">+---------------------+</span><br><span class="line">| @@hostname          |</span><br><span class="line">+---------------------+</span><br><span class="line">| slavea0.example.com |</span><br><span class="line">+---------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; select * from db1.t1;</span><br><span class="line">+----+--------+</span><br><span class="line">| id | name   |</span><br><span class="line">+----+--------+</span><br><span class="line">|  1 | slavea |</span><br><span class="line">+----+--------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">***************************************</span><br><span class="line"><span class="meta">#</span><span class="bash">此时发现，写操作连接mastera，读操作连接slavea</span></span><br><span class="line">****************************************</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>实战项目2：数据库中间件 mysql-proxy 0.8.5 实现 读写分离负载均衡，后端数据库服务器为 Mariadb 10.2 Galera Cluster 同步复制高可用架构</p>
+</blockquote>
+<blockquote>
+<p>实战项目3: 数据库中间件 Mycat 实现 读写分离负载均衡，后端数据库服务器为 Mariadb 10.2 Galera Cluster 同步复制高可用架构</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>Galera Cluster是MariaDB的一个双活多主集群,其可以使得MariDB的所有节点保持同步,Galera为MariaDB提供了同步复制(相对于原生的异步复制),因此其可以保证HA,且其当前仅支持XtraDB/InnoDB存储引擎(扩展支持MyISAM),并且只可在Linux下使用。</li>
+<li>mariadb10.2的galera版本和之前版本有所区别，需要注意</li>
+<li>mysql-proxy还没有正式版，问题比较多，安装需要源码编译，使用lua脚本实现读写分离；</li>
+<li>mycat是目前开源里面做的最好的数据库代理服务器，tar包解压到制定目录就能使用，但是注意需要安装jdk，并宣告java家目录的位置。</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>MySQL 管理课程 第八课 高可用性HA</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">9.4k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
+    <p><span class="copy-title">发布时间:</span>2016-12-24, 21:06:27</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 05:27:17</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/25/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/" title="MySQL 管理课程 第八课 高可用性HA">http://www.toberoot.com/2016/12/25/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'af999a0c30ad557db57d',
+            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+            repo: 'booboowei.github.io',
+            owner: 'booboowei',
+            admin: ['booboowei'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018-2020 BoobooWei</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#宝宝成长','#培训','#LinuxShell脚本','#Linux基础服务','#Linux','#hexo','#锁故障','#数据救援','#SQL优化','#RDS','#主从同步','#MySQL基础管理',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 622px;
+    }
+    .nav.fullscreen {
+        margin-left: -622px;
+    }
+    .nav-left {
+        width: 200px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
