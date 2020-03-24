@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Linux 内核 | Amy and Booboo</title>
-  <meta name="keywords" content=" 培训 , Linux ">
-  <meta name="description" content="Linux 内核 | Amy and Booboo">
+  <title>CentOS6.5配置python3.7安装后ssl问题 | Amy and Booboo</title>
+  <meta name="keywords" content=" python ">
+  <meta name="description" content="CentOS6.5配置python3.7安装后ssl问题 | Amy and Booboo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
 <meta property="og:type" content="website">
@@ -746,9 +746,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-booboo_linux_base/11-Linux内核" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-booboo_others/CentOS6.5配置python3.7安装后ssl问题" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Linux 内核</h1>
+        <h1 class="article-title">CentOS6.5配置python3.7安装后ssl问题</h1>
     
     <div class="article-meta">
         
@@ -756,30 +756,28 @@
         
         <span class="book">
             
-                <a  data-rel="技术培训">技术培训</a>/
+                <a  data-rel="技术广角">技术广角</a>/
             
-                <a  data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                <a  data-rel="Python">Python</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a class="color3">培训</a>
-            
-            <a class="color1">Linux</a>
+            <a class="color2">python</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-23 06:24:25'>2016-12-21 20:06</time>
+        创建时间:<time class="date" title='更新时间: 2020-03-24 12:30:02'>2020-03-22 14:23</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2.2k</span>
+        <span>字数:211</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -809,7 +807,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#WHERE"><span class="toc-text">WHERE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WHAT"><span class="toc-text">WHAT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#moudules-dep-文件"><span class="toc-text">moudules.dep 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#depmod-命令"><span class="toc-text">depmod 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#depmod-实验"><span class="toc-text">depmod 实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lsmod-命令"><span class="toc-text">lsmod 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modinfo-命令"><span class="toc-text">modinfo 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内核模块的观察实验"><span class="toc-text">内核模块的观察实验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内核模块的加载与移除-insmod-modprobe-rmmod"><span class="toc-text">内核模块的加载与移除:insmod, modprobe, rmmod</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#insmod-命令"><span class="toc-text">insmod 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modprobe-命令"><span class="toc-text">modprobe 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rmmod-命令"><span class="toc-text">rmmod 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内核模块的加载与移除实验"><span class="toc-text">内核模块的加载与移除实验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内核模块的额外参数设定-etc-modprobe-d-conf"><span class="toc-text">内核模块的额外参数设定:&#x2F;etc&#x2F;modprobe.d&#x2F;*.conf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内核升级"><span class="toc-text">内核升级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源码编译"><span class="toc-text">源码编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rpm-包安装"><span class="toc-text">rpm 包安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#rhel6-5-内核升级-——-yum-方式-有网"><span class="toc-text">rhel6.5 内核升级 —— yum 方式(有网)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rhel7-2-内核升级-——-本地-rpm-安装-没网"><span class="toc-text">rhel7.2 内核升级 —— 本地 rpm 安装(没网)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-内核作业"><span class="toc-text">Linux 内核作业</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#报错明细"><span class="toc-text">报错明细</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#详细记录"><span class="toc-text">详细记录</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -825,132 +823,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="WHERE"><a href="#WHERE" class="headerlink" title="WHERE"></a>WHERE</h2><p>内核与内核模块在哪里呢?内核模块都有哪些呢?下面的表中都列出来了:</p>
-<ul>
-<li>内核 /boot/vmlinuz-version</li>
-<li>内核解压缩所需 RAM Disk /boot/initrd-version</li>
-<li>内核模块 /lib/modules/$(uname -r)/kernel</li>
-</ul>
-<h3 id="WHAT"><a href="#WHAT" class="headerlink" title="WHAT"></a>WHAT</h3><p>开机时,内核第一任务就是驱动硬件,激活机器。相关的驱动模块放在 <code>/lib/modules/$(uname -r)/</code> 目录下,下面以 rhel6 为例,看看该目录下都有些什么:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# ls /lib/modules/2.6.32-431.el6.x86_64</span><br><span class="line">build</span><br><span class="line">modules.dep</span><br><span class="line">modules.networking modules.usbmap</span><br><span class="line">extra</span><br><span class="line">modules.dep.bin</span><br><span class="line">modules.ofmap</span><br><span class="line">source</span><br><span class="line">kernel</span><br><span class="line">modules.drm</span><br><span class="line">modules.order</span><br><span class="line">updates</span><br><span class="line">modules.alias</span><br><span class="line">modules.ieee1394map modules.pcimap</span><br><span class="line">vdso</span><br><span class="line">modules.alias.bin modules.inputmap modules.seriomap weak-updates</span><br><span class="line">modules.block</span><br><span class="line">modules.isapnpmap modules.symbols</span><br><span class="line">modules.ccwmap modules.modesetting modules.symbols.bin</span><br><span class="line">[root@rhel6 ~]# ls /lib/modules/2.6.32-431.el6.x86_64/kernel/</span><br><span class="line">arch crypto drivers fs kernel lib mm net sound</span><br><span class="line">[root@rhel6 ~]# ls /lib/modules/2.6.32-431.el6.x86_64/kernel/drivers/</span><br><span class="line">acpi</span><br><span class="line">cpufreq hid</span><br><span class="line">leds</span><br><span class="line">net</span><br><span class="line">rtc</span><br><span class="line">vhost</span><br><span class="line">ata</span><br><span class="line">crypto hv</span><br><span class="line">md</span><br><span class="line">parport scsi video</span><br><span class="line">atm</span><br><span class="line">dca</span><br><span class="line">hwmon</span><br><span class="line">media pci</span><br><span class="line">serial virtio</span><br><span class="line">auxdisplay dma</span><br><span class="line">i2c</span><br><span class="line">memstick pcmcia ssb</span><br><span class="line">watchdog</span><br><span class="line">bcma</span><br><span class="line">edac idle</span><br><span class="line">message platform staging xen</span><br><span class="line">block</span><br><span class="line">firewire ieee802154 mfd</span><br><span class="line">power</span><br><span class="line">target</span><br><span class="line">bluetooth firmware infiniband misc</span><br><span class="line">pps</span><br><span class="line">uio</span><br><span class="line">cdrom</span><br><span class="line">gpio</span><br><span class="line">input</span><br><span class="line">mmc</span><br><span class="line">ptp</span><br><span class="line">usb</span><br><span class="line">char</span><br><span class="line">gpu</span><br><span class="line">isdn</span><br><span class="line">mtd</span><br><span class="line">regulator uwb</span><br><span class="line">[root@rhel6 ~]# ls /lib/modules/2.6.32-431.el6.x86_64/kernel/drivers/net</span><br><span class="line">3c59x.ko dl2k.ko</span><br><span class="line">macvtap.ko</span><br><span class="line">pppox.ko</span><br><span class="line">sunhme.ko</span><br><span class="line">8139cp.ko dnet.ko</span><br><span class="line">mdio.ko</span><br><span class="line">ppp_synctty.ko tehuti.ko</span><br></pre></td></tr></table></figure>
+        <h2 id="报错明细"><a href="#报错明细" class="headerlink" title="报错明细"></a>报错明细</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip is configured with locations that require TLS/SSL, however the ssl module <span class="keyword">in</span> Python is not available.</span><br></pre></td></tr></table></figure>
 
-<p>/lib/modules/2.6.32-431.el6.x86_64/kernel/ 该目录下的文件解释</p>
-<ul>
-<li>arch    与硬件平台有关的项目 , 例如 CPU 的等级等等 ;</li>
-<li>crypto 内核所支持的加密的技术 , 例如 md5 、 des 等等 ;</li>
-<li>drivers 硬件的驱动程序 , 例如显示适配器、网络卡、 PCI 相关硬件</li>
-<li>fs 内核所支持的 filesystems , 例如 ext4, vfat, reiserfs, nfs 等等 ;</li>
-<li>kernel 内核的程序、内核状态、线程、程序的排程 (schedule) 、程序的 signle 等</li>
-<li>lib 函式库</li>
-<li>mm 内存单元有关的各项数据</li>
-<li>net 与网络有关的各项协议数据,还有防火墙模块</li>
-<li>sound 音效有关的各项模块2 内核模块的相依性: depmod</li>
-</ul>
-<h3 id="moudules-dep-文件"><a href="#moudules-dep-文件" class="headerlink" title="moudules.dep 文件"></a>moudules.dep 文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 etc]# head /lib/modules/$(uname -r)/modules.dep</span><br><span class="line">kernel/arch/x86/kernel/cpu/mcheck/mce-inject.ko:</span><br><span class="line">kernel/arch/x86/kernel/cpu/cpufreq/powernow-k8.ko: kernel/drivers/cpufreq/freq_table.ko</span><br><span class="line">kernel/arch/x86/kernel/cpu/cpufreq/mperf.ko</span><br><span class="line">kernel/arch/x86/kernel/cpu/cpufreq/mperf.ko:</span><br><span class="line">kernel/arch/x86/kernel/cpu/cpufreq/acpi-cpufreq.ko: kernel/drivers/cpufreq/freq_table.ko</span><br><span class="line">kernel/arch/x86/kernel/cpu/cpufreq/mperf.ko</span><br><span class="line">kernel/arch/x86/kernel/cpu/cpufreq/pcc-cpufreq.ko:</span><br><span class="line">kernel/arch/x86/kernel/cpu/cpufreq/speedstep-lib.ko:</span><br><span class="line">kernel/arch/x86/kernel/cpu/cpufreq/p4-clockmod.ko: kernel/drivers/cpufreq/freq_table.ko</span><br><span class="line">kernel/arch/x86/kernel/cpu/cpufreq/speedstep-lib.ko</span><br><span class="line">kernel/arch/x86/kernel/cpu/cpufreq/intel_pstate.ko:</span><br><span class="line">kernel/arch/x86/kernel/test_nx.ko:</span><br><span class="line">kernel/arch/x86/kernel/microcode.ko:</span><br></pre></td></tr></table></figure>
-
-<h3 id="depmod-命令"><a href="#depmod-命令" class="headerlink" title="depmod 命令"></a>depmod 命令</h3><p>depmod [-Ane]</p>
-<p>选项与参数 :</p>
-<ul>
-<li>-A : 不加任何参数时 , depmod 会主动的去分析目前内核的模块 , 并且重新写入<code>/lib/modules/$(uname -r)/modules.dep</code> 当中更新。若加入 -A 参数时 , 则 depmod 会去搜寻比 modules.dep 内还要新的模块,若找到新模块则</li>
-<li>-n : 不写入 modules.dep , 而是将结果输出到屏幕上 (standard out);</li>
-<li>-e : 显示出目前已加载的不可执行的模块名称</li>
-</ul>
-<h3 id="depmod-实验"><a href="#depmod-实验" class="headerlink" title="depmod 实验"></a>depmod 实验</h3><p>假设已经做好一个网卡驱动程序 , 档名为 a.ko, 请更新内核的相依性。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# cp a.ko /lib/modules/2.6.32-</span><br><span class="line">431.el6.x86_64/kernel/drivers/net</span><br><span class="line">[root@rhel6 ~]# depmod3 内核模块的观察: lsmod, modinfo</span><br></pre></td></tr></table></figure>
-
-<h3 id="lsmod-命令"><a href="#lsmod-命令" class="headerlink" title="lsmod 命令"></a>lsmod 命令</h3><p>作用:显示出目前已经存在于内核当中的模块 , 显示的内容包括 :</p>
-<ol>
-<li>模块名称 (Module);</li>
-<li>模块的大小 (size);</li>
-<li>此模块是否被其他模块所使用 (Used by) 。</li>
-</ol>
-<h3 id="modinfo-命令"><a href="#modinfo-命令" class="headerlink" title="modinfo 命令"></a>modinfo 命令</h3><p>用法:</p>
-<p>modinfo [-adln] [module_name|filename]</p>
-<p>选项与参数 :</p>
-<ul>
-<li>-a : 仅列出作者名称 ;</li>
-<li>-d : 仅列出该 modules 的说明 (description);</li>
-<li>-l : 仅列出授权 (license);</li>
-<li>-n : 仅列出该模块的详细路径。</li>
-</ul>
-<h3 id="内核模块的观察实验"><a href="#内核模块的观察实验" class="headerlink" title="内核模块的观察实验"></a>内核模块的观察实验</h3><p>首先查看目前已存在于内核中的模块,随便选择一个模块并查看该模块的详细信息。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# [root@rhel6 ~]# lsmod</span><br><span class="line">Module</span><br><span class="line">Size</span><br><span class="line">Used by</span><br><span class="line">autofs4 26513 3</span><br><span class="line">8021q 25349 0</span><br><span class="line">garp</span><br><span class="line">7152</span><br><span class="line">1 8021q</span><br><span class="line">[root@rhel6 ~]# modinfo autofs4</span><br><span class="line">filename:</span><br><span class="line">/lib/modules/2.6.32-</span><br><span class="line">431.el6.x86_64/kernel/fs/autofs4/autofs4.ko</span><br><span class="line">license: GPL</span><br><span class="line">srcversion: 948FC9C8D4043379272927C</span><br><span class="line">depends:</span><br><span class="line">vermagic:</span><br><span class="line">2.6.32-431.el6.x86_64 SMP mod_unload modversions</span><br></pre></td></tr></table></figure>
-
-<h2 id="内核模块的加载与移除-insmod-modprobe-rmmod"><a href="#内核模块的加载与移除-insmod-modprobe-rmmod" class="headerlink" title="内核模块的加载与移除:insmod, modprobe, rmmod"></a>内核模块的加载与移除:insmod, modprobe, rmmod</h2><p>modprobe 加载模块会主动去搜寻 modules.dep 的内容 , 先解决模块的相依性后 , 再决定需要加载的模块有哪些,很方便; insmod 则完全由使用者自行加载一个完整文件名的模块 , 不会主动分析模块相依性</p>
-<h3 id="insmod-命令"><a href="#insmod-命令" class="headerlink" title="insmod 命令"></a>insmod 命令</h3><p>insmod [/full/path/module_name] [parameters]</p>
-<h3 id="modprobe-命令"><a href="#modprobe-命令" class="headerlink" title="modprobe 命令"></a>modprobe 命令</h3><p>modprobe [-lcfr] module_name</p>
-<p>选项与参数 :</p>
-<ul>
-<li>-c : 列出目前系统所有的模块 !( 更详细的代号对应表 )</li>
-<li>-l : 列出目前在 /lib/modules/<code>uname -r</code>/kernel 当中的所有模块完整文件 名 ;</li>
-<li>-f : 强制加载该模块 ;</li>
-<li>-r : 类似 rmmod , 移除某个模块</li>
-</ul>
-<h3 id="rmmod-命令"><a href="#rmmod-命令" class="headerlink" title="rmmod 命令"></a>rmmod 命令</h3><p>rmmod [-fw] module_name</p>
-<p>选项与参数 :</p>
-<ul>
-<li>-f : 强制将该模块移除掉 , 不管是否正被使用 ;</li>
-<li>-w : 若该模块正被使用 , 则等该模块被使用完毕后 , 再移除</li>
-</ul>
-<h3 id="内核模块的加载与移除实验"><a href="#内核模块的加载与移除实验" class="headerlink" title="内核模块的加载与移除实验"></a>内核模块的加载与移除实验</h3><p>加载模块;查看该模块是否已成功加载,并查看详细信息;移除该模块。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 net]# modprobe dnet</span><br><span class="line">[root@rhel6 net]# modinfo dnet</span><br><span class="line">filename:</span><br><span class="line">/lib/modules/2.6.32-431.el6.x86_64/kernel/drivers/net/dnet.ko</span><br><span class="line">author:</span><br><span class="line">Ilya Yanok &lt;yanok@emcraft.com&gt;, Matteo Vit &lt;matteo.vit@dave.eu&gt;</span><br><span class="line">description: Dave DNET Ethernet driver</span><br><span class="line">license:</span><br><span class="line">GPL</span><br><span class="line">srcversion: 9D532980E04E93088A9DFC1</span><br><span class="line">depends:</span><br><span class="line">vermagic:</span><br><span class="line">2.6.32-431.el6.x86_64 SMP mod_unload modversions</span><br><span class="line">[root@rhel6 net]# lsmod | grep dnet</span><br><span class="line">dnet</span><br><span class="line">16103 0</span><br><span class="line">[root@rhel6 net]# rmmod dnet</span><br><span class="line">[root@rhel6 net]# lsmod | grep dnet</span><br></pre></td></tr></table></figure>
-
-<h2 id="内核模块的额外参数设定-etc-modprobe-d-conf"><a href="#内核模块的额外参数设定-etc-modprobe-d-conf" class="headerlink" title="内核模块的额外参数设定:/etc/modprobe.d/*.conf"></a>内核模块的额外参数设定:/etc/modprobe.d/*.conf</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# ls /etc/modprobe.d/</span><br><span class="line">anaconda.conf dist-alsa.conf dist-oss.conf</span><br><span class="line">blacklist.conf dist.conf</span><br><span class="line">openfwwf.conf</span><br><span class="line">[root@rhel6 ~]# cat /etc/modprobe.d/dist.conf</span><br><span class="line"><span class="meta">#</span><span class="bash"> default modutils aliases</span></span><br><span class="line">alias binfmt-204 binfmt_aout</span><br><span class="line">alias binfmt-263 binfmt_aout</span><br><span class="line">alias binfmt-264 binfmt_aout</span><br><span class="line">alias binfmt-267 binfmt_aout</span><br><span class="line">alias binfmt-387 binfmt_aout</span><br><span class="line">alias block-major-1-* rd</span><br><span class="line">alias block-major-3-* ide-probe-mod</span><br><span class="line">alias block-major-8-* sd_mod</span><br><span class="line">alias block-major-9-* md</span><br><span class="line">alias block-major-11-* sr_mod</span><br><span class="line">alias block-major-13-* xd</span><br><span class="line">alias block-major-15-* cdu31a</span><br><span class="line">alias block-major-16-* gscd</span><br><span class="line">alias block-major-17-* optcd</span><br><span class="line">alias block-major-18-* sjcd</span><br><span class="line">alias block-major-20-* mcdx</span><br><span class="line">alias block-major-22-* ide-probe-mod</span><br><span class="line">alias block-major-23-* mcd</span><br><span class="line">alias block-major-24-* sonycd535</span><br><span class="line">alias block-major-25-* sbpcd</span><br><span class="line">alias block-major-26-* sbpcd</span><br><span class="line">alias block-major-27-* sbpcd</span><br><span class="line">alias block-major-29-* aztcd</span><br><span class="line">alias block-major-32-* cm206</span><br><span class="line">alias block-major-33-* ide-probe-mod</span><br><span class="line">alias block-major-34-* ide-probe-mod</span><br><span class="line">alias block-major-37-* ide-tape</span><br><span class="line">alias block-major-44-* ftl</span><br><span class="line">alias block-major-46-* pcd</span><br><span class="line">alias block-major-47-* pf</span><br></pre></td></tr></table></figure>
-
-<h2 id="内核升级"><a href="#内核升级" class="headerlink" title="内核升级"></a>内核升级</h2><h3 id="源码编译"><a href="#源码编译" class="headerlink" title="源码编译"></a>源码编译</h3><p>Linux 内核官网 <a href="https://www.kernel.org/" target="_blank" rel="noopener">https://www.kernel.org/</a> 提供的是源码,需要编译使用。</p>
-<p><img src="pic/44.png" alt="44"></p>
-<p>Linux 内核版本有两种 : 稳定版和开发版 ,Linux 内核版本号由 3 个数字组成 :r.x.y</p>
-<ul>
-<li>r: 主版本号</li>
-<li>x: 次版本号 , 偶数表示稳定版本 ; 奇数表示开发中版本。</li>
-<li>y: 修订版本号 , 表示修改的次数</li>
-</ul>
-<p>去 <a href="http://www.kernel.org" target="_blank" rel="noopener">http://www.kernel.org</a> 首页 , 可以看到有 stable, longterm 等版本 ,longterm 是比stable 更稳定的版本 , 会长时间更新。</p>
-<p>源码编译不做要求。</p>
-<h3 id="rpm-包安装"><a href="#rpm-包安装" class="headerlink" title="rpm 包安装"></a>rpm 包安装</h3><p>在工作中应该去操作系统的发行公司的官网下载已经编译好的内核。我们使用的是红帽的,那么就去红帽的官网 <a href="https://www.redhat.com/en/global/china" target="_blank" rel="noopener">https://www.redhat.com/en/global/china</a></p>
-<p>这里使用一个免费的源 ELRepo 源</p>
-<p><img src="pic/45.png" alt="45"></p>
-<h4 id="rhel6-5-内核升级-——-yum-方式-有网"><a href="#rhel6-5-内核升级-——-yum-方式-有网" class="headerlink" title="rhel6.5 内核升级 —— yum 方式(有网)"></a>rhel6.5 内核升级 —— yum 方式(有网)</h4><p>在 yum 的 ELRepo 源中 , 选择 kernel-lt-3.10.102-1.el6.elrepo.x86_64.rpm 这个版<br>本。</p>
-<p><img src="pic/46.png" alt="46"></p>
-<p>重新启动后的 grub 界面</p>
-<p><img src="pic/47.png" alt="47"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[#</span><span class="bash">1<span class="comment">#root@rhel6 ~]#uname -r</span></span></span><br><span class="line">3.10.102-1.el6.elrepo.x86_64</span><br></pre></td></tr></table></figure>
-
-<h4 id="rhel7-2-内核升级-——-本地-rpm-安装-没网"><a href="#rhel7-2-内核升级-——-本地-rpm-安装-没网" class="headerlink" title="rhel7.2 内核升级 —— 本地 rpm 安装(没网)"></a>rhel7.2 内核升级 —— 本地 rpm 安装(没网)</h4><p>此处是在 <a href="http://rpm.pbone.net" target="_blank" rel="noopener">http://rpm.pbone.net</a> 上下载的,实际工作中应该到红帽官网下载。</p>
-<p><img src="pic/48.png" alt="48"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# ls</span><br><span class="line">anaconda-ks.cfg Downloads</span><br><span class="line">Music Templates</span><br><span class="line">Desktop</span><br><span class="line">initial-setup-ks.cfg</span><br><span class="line">Pictures Videos</span><br><span class="line">Documents</span><br><span class="line">kernel-lt-3.10.102-1.el6.elrepo.x86_64.rpm Public</span><br></pre></td></tr></table></figure>
-<p>查看但前系统内核版本</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# uname -r</span><br><span class="line">3.10.0-123.el7.x86_64</span><br></pre></td></tr></table></figure>
-
-<p>安装新内核并保留原内核</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# rpm -ivh kernel-lt-3.10.102-1.el6.elrepo.x86_64.rpm</span><br><span class="line">Preparing...</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">################################ [100%]</span></span></span><br><span class="line">Updating / installing...</span><br><span class="line">1:kernel-lt-3.10.102-1.el6.elrepo ################################# [100%]</span><br><span class="line">[root@rhel7 ~]# cd /boot/grub2/</span><br><span class="line">[root@rhel7 grub2]# ll /etc/grub2.cfg</span><br><span class="line">lrwxrwxrwx. 1 root root 22 Jul 2 2015 /etc/grub2.cfg -&gt; ../boot/grub2/grub.cfg</span><br></pre></td></tr></table></figure>
-
-<p>查看当前默认启动内核</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 grub2]# grub2-editenv list</span><br><span class="line">saved_entry=Red Hat Enterprise Linux Linux, with Linux 3.10.0-123.el7.x86_64</span><br></pre></td></tr></table></figure>
-
-<p>查看配置文件中有几个启动项</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 grub2]# grep "menuentry" /boot/grub2/grub.cfg</span><br><span class="line">if [ x"$&#123;feature_menuentry_id&#125;" = xy ]; then</span><br><span class="line">menuentry_id_option="--id"</span><br><span class="line">menuentry_id_option=""</span><br><span class="line">export menuentry_id_option</span><br><span class="line">menuentry 'Red Hat Enterprise Linux Server (3.10.102-1.el6.elrepo.x86_64) 7.0 (Maipo)' --class red</span><br><span class="line">--class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option 'gnulinux-3.10.0-</span><br><span class="line">123.el7.x86_64-advanced-5220f38d-edd6-45e5-a257-f1e9e6c80b4e' &#123;</span><br><span class="line">menuentry 'Red Hat Enterprise Linux Server, with Linux 3.10.0-123.el7.x86_64' --class red --class</span><br><span class="line">gnu-linux --class gnu --class os --unrestricted $menuentry_id_option 'gnulinux-3.10.0-</span><br><span class="line">123.el7.x86_64-advanced-5220f38d-edd6-45e5-a257-f1e9e6c80b4e' &#123;</span><br><span class="line">menuentry 'Red Hat Enterprise Linux Server, with Linux 0-rescue-14d17f362db9498eaa56aac326570c37' --class red --class gnu-linux --class gnu --class os</span><br><span class="line">--unrestricted $menuentry_id_option 'gnulinux-0-rescue-14d17f362db9498eaa56aac326570c37-</span><br><span class="line">advanced-5220f38d-edd6-45e5-a257-f1e9e6c80b4e' &#123;</span><br></pre></td></tr></table></figure>
-
-<p>设置默认启动内核</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 grub2]# grub2-set-default 'Red Hat Enterprise Linux Server (3.10.102-</span><br><span class="line">1.el6.elrepo.x86_64) 7.0 (Maipo)'</span><br></pre></td></tr></table></figure>
-
-<p>查看当前默认启动内核</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 grub2]# grub2-editenv list</span><br><span class="line">saved_entry=Red Hat Enterprise Linux Server (3.10.102-1.el6.elrepo.x86_64) 7.0 (Maipo)</span><br></pre></td></tr></table></figure>
-
-<p>更新一下配置 , 让新的内核启动生效</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 grub2]# grub2-mkconfig -o /boot/grub2/grub.cfg</span><br><span class="line">Generating grub configuration file ...</span><br><span class="line">Found linux image: /boot/vmlinuz-3.10.102-1.el6.elrepo.x86_64</span><br><span class="line">Found initrd image: /boot/initramfs-3.10.102-1.el6.elrepo.x86_64.img</span><br><span class="line">Found linux image: /boot/vmlinuz-3.10.0-123.el7.x86_64</span><br><span class="line">Found initrd image: /boot/initramfs-3.10.0-123.el7.x86_64.img</span><br><span class="line">Found linux image: /boot/vmlinuz-0-rescue-14d17f362db9498eaa56aac326570c37</span><br><span class="line">Found initrd image: /boot/initramfs-0-rescue-14d17f362db9498eaa56aac326570c37.img</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-
-<p>重新启动</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 grub2]# reboot</span><br></pre></td></tr></table></figure>
-
-<p>查看当前内核版本</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# uname -r</span><br><span class="line">3.10.102-1.el6.elrepo.x86_64</span><br></pre></td></tr></table></figure>
-
-<h2 id="Linux-内核作业"><a href="#Linux-内核作业" class="headerlink" title="Linux 内核作业"></a>Linux 内核作业</h2><ol>
-<li>到共享当中下载 linux 内核 kernel-lt-3.10.102-1.el6.elrepo.x86_64.rpm</li>
-<li>rhel6.5 进行内核升级,保留原内核</li>
-<li>rhel7.2 进行内核升级,保留原内核</li>
-</ol>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>由于AIA系统是CentOS release 6.7，所有openssl的版本为 OpenSSL 1.0.1e ,而python3.7需要的openssl的版本为 1.0.2 或者 1.1.x,需要对openssl进行升级，并重新编译python3.7.0</p>
+<h2 id="详细记录"><a href="#详细记录" class="headerlink" title="详细记录"></a>详细记录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@CNACLQLJMP010 install]<span class="comment"># rpm -qa|grep openssl</span></span><br><span class="line">openssl-devel-1.0.1e-58.el6_10.x86_64</span><br><span class="line">openssl-1.0.1e-58.el6_10.x86_64</span><br><span class="line">openssl-static-1.0.1e-58.el6_10.x86_64</span><br><span class="line">[root@CNACLQLJMP010 install]<span class="comment"># openssl version</span></span><br><span class="line">OpenSSL 1.0.1e-fips 11 Feb 2013</span><br><span class="line"></span><br><span class="line">wget https://www.openssl.org/<span class="built_in">source</span>/openssl-1.1.1-pre8.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openssl-1.1.1-pre8</span><br><span class="line">./config --prefix=/usr/<span class="built_in">local</span>/openssl no-zlib <span class="comment">#不需要zlib</span></span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">mv /usr/bin/openssl /usr/bin/openssl.bak</span><br><span class="line">mv /usr/include/openssl/ /usr/include/openssl.bak</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/include/openssl /usr/include/openssl</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/lib/libssl.so.1.1 /usr/<span class="built_in">local</span>/lib64/libssl.so</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/bin/openssl /usr/bin/openssl</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/usr/local/openssl/lib"</span> &gt;&gt; /etc/ld.so.conf</span><br><span class="line">ldconfig -v</span><br><span class="line"></span><br><span class="line">openssl version</span><br></pre></td></tr></table></figure>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
@@ -964,12 +840,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Linux 内核</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">2.2k</span></p>
+    <p><span class="copy-title">文章标题:</span>CentOS6.5配置python3.7安装后ssl问题</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">211</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
-    <p><span class="copy-title">发布时间:</span>2016-12-21, 20:06:27</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-23, 06:24:25</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/" title="Linux 内核">http://www.toberoot.com/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/</a>
+    <p><span class="copy-title">发布时间:</span>2020-03-22, 14:23:51</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 12:30:02</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/03/22/booboo_others/CentOS6.5%E9%85%8D%E7%BD%AEpython3.7%E5%AE%89%E8%A3%85%E5%90%8Essl%E9%97%AE%E9%A2%98/" title="CentOS6.5配置python3.7安装后ssl问题">http://www.toberoot.com/2020/03/22/booboo_others/CentOS6.5%E9%85%8D%E7%BD%AEpython3.7%E5%AE%89%E8%A3%85%E5%90%8Essl%E9%97%AE%E9%A2%98/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

@@ -26,6 +26,22 @@
       </tags>
   </entry>
   <entry>
+    <title>CentOS6.5配置python3.7安装后ssl问题</title>
+    <url>/2020/03/22/booboo_others/CentOS6.5%E9%85%8D%E7%BD%AEpython3.7%E5%AE%89%E8%A3%85%E5%90%8Essl%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="报错明细"><a href="#报错明细" class="headerlink" title="报错明细"></a>报错明细</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip is configured with locations that require TLS/SSL, however the ssl module <span class="keyword">in</span> Python is not available.</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>由于AIA系统是CentOS release 6.7，所有openssl的版本为 OpenSSL 1.0.1e ,而python3.7需要的openssl的版本为 1.0.2 或者 1.1.x,需要对openssl进行升级，并重新编译python3.7.0</p>
+<h2 id="详细记录"><a href="#详细记录" class="headerlink" title="详细记录"></a>详细记录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@CNACLQLJMP010 install]<span class="comment"># rpm -qa|grep openssl</span></span><br><span class="line">openssl-devel-1.0.1e-58.el6_10.x86_64</span><br><span class="line">openssl-1.0.1e-58.el6_10.x86_64</span><br><span class="line">openssl-static-1.0.1e-58.el6_10.x86_64</span><br><span class="line">[root@CNACLQLJMP010 install]<span class="comment"># openssl version</span></span><br><span class="line">OpenSSL 1.0.1e-fips 11 Feb 2013</span><br><span class="line"></span><br><span class="line">wget https://www.openssl.org/<span class="built_in">source</span>/openssl-1.1.1-pre8.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openssl-1.1.1-pre8</span><br><span class="line">./config --prefix=/usr/<span class="built_in">local</span>/openssl no-zlib <span class="comment">#不需要zlib</span></span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">mv /usr/bin/openssl /usr/bin/openssl.bak</span><br><span class="line">mv /usr/include/openssl/ /usr/include/openssl.bak</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/include/openssl /usr/include/openssl</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/lib/libssl.so.1.1 /usr/<span class="built_in">local</span>/lib64/libssl.so</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/openssl/bin/openssl /usr/bin/openssl</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/usr/local/openssl/lib"</span> &gt;&gt; /etc/ld.so.conf</span><br><span class="line">ldconfig -v</span><br><span class="line"></span><br><span class="line">openssl version</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术广角</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>国庆前学洗手</title>
     <url>/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/</url>
     <content><![CDATA[<p>今天人少，我们坐小月亮，然后给他们每人用了免洗洗手液，洗小手，国庆节出去不要忘记带哦</p>
