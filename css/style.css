@@ -107,7 +107,7 @@ div.ac > ul.tag > li:before {
   width: 440px;
   height: 440px;
   padding: 10px;
-  background-image: url("https://www.changhai.org/files/images/bg1.gif");
+  background-image: url("../../img/bg1.gif");
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-border-radius: 10px;
   border-radius: 10px;
@@ -642,7 +642,7 @@ div.ac > ul > li:before,
   height: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  background-image: url("https://www.changhai.org/files/images/bg1.gif");
+  background-image: url("../../img/bg1.gif");
   box-shadow: inset -15px 0 15px -15px #222;
   float: left;
   position: relative;
@@ -812,7 +812,7 @@ div.ac > ul > li:before,
   width: 420px;
   height: 100%;
   font-size: 14px;
-  background-image: url("https://www.changhai.org/files/images/bg1.gif");
+  background-image: url("../../img/bg1.gif");
   overflow: hidden;
   float: left;
   position: relative;
@@ -1285,7 +1285,7 @@ div.ac > ul > li:before,
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
-  background-image: url("https://www.changhai.org/files/images/bg1.gif");
+  background-image: url("../../img/bg1.gif");
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -1735,7 +1735,7 @@ h6 {
   height: 40px;
   position: absolute;
   z-index: 30;
-  left: 542px;
+  left: 622px;
   top: 50vh;
   overflow: hidden;
   transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);

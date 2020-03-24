@@ -2,6 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/02_ftp/</loc>
+    
+    <lastmod>2020-03-24T05:02:31.715Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/05_apache/</loc>
+    
+    <lastmod>2020-03-24T05:02:31.712Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/03_nfs/</loc>
+    
+    <lastmod>2020-03-24T05:02:31.709Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/06_ntp_chrony/</loc>
+    
+    <lastmod>2020-03-24T05:02:31.706Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/ule-online/</loc>
+    
+    <lastmod>2020-03-24T05:02:31.704Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/04_samba/</loc>
+    
+    <lastmod>2020-03-24T05:02:31.702Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/00_linux_classroom_env/</loc>
+    
+    <lastmod>2020-03-24T05:02:31.699Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/07_iptables_firewalld/</loc>
+    
+    <lastmod>2020-03-24T05:02:31.697Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/01_dns/</loc>
+    
+    <lastmod>2020-03-24T05:02:31.694Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/</loc>
     
     <lastmod>2020-03-23T06:24:25.955Z</lastmod>
@@ -107,84 +170,84 @@
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2020/03/22/hello-world/</loc>
+    <loc>http://www.toberoot.com/2020/03/22/booboo_others/hello-world/</loc>
     
     <lastmod>2020-03-22T14:23:51.136Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2018/05/17/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/</loc>
+    <loc>http://www.toberoot.com/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/</loc>
     
     <lastmod>2020-03-22T08:32:42.588Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2018/08/03/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://www.toberoot.com/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2020-03-22T08:32:42.584Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2018/08/22/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/</loc>
+    <loc>http://www.toberoot.com/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/</loc>
     
     <lastmod>2020-03-22T08:32:42.581Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2017/08/19/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/</loc>
+    <loc>http://www.toberoot.com/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/</loc>
     
     <lastmod>2020-03-22T08:32:42.577Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2018/05/29/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/</loc>
+    <loc>http://www.toberoot.com/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/</loc>
     
     <lastmod>2020-03-22T08:32:42.573Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2018/09/30/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/</loc>
+    <loc>http://www.toberoot.com/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/</loc>
     
     <lastmod>2020-03-22T08:31:38.472Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2018/09/20/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/</loc>
+    <loc>http://www.toberoot.com/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/</loc>
     
     <lastmod>2020-03-22T08:31:38.469Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2018/09/19/%E5%AE%B6%E9%95%BF%E4%BC%9A/</loc>
+    <loc>http://www.toberoot.com/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/</loc>
     
     <lastmod>2020-03-22T08:31:38.466Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2018/09/10/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/</loc>
+    <loc>http://www.toberoot.com/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/</loc>
     
     <lastmod>2020-03-22T08:31:38.463Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2018/09/21/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/</loc>
+    <loc>http://www.toberoot.com/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/</loc>
     
     <lastmod>2020-03-22T08:31:38.460Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2018/09/29/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/</loc>
+    <loc>http://www.toberoot.com/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/</loc>
     
     <lastmod>2020-03-22T08:31:38.457Z</lastmod>
     

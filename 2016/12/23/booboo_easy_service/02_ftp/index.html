@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FTP文件共享服务 | Amy and Booboo</title>
+  <meta name="keywords" content=" 培训 , Linux基础服务 ">
+  <meta name="description" content="FTP文件共享服务 | Amy and Booboo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amy and Booboo">
+<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta property="article:published_time" content="2020-03-22T14:48:00.876Z">
+<meta property="article:modified_time" content="2020-03-22T14:48:00.875Z">
+<meta property="article:author" content="BoobooWei">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/influx.svg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my.png" />
+</a>
+<div class="author">
+    <span>BoobooWei</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(35)</small></div></li>
+    
+        
+            
+            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(23)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="35">
+<input type="hidden" id="yelog_site_word_count" value="129.1k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
+            
+            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
+            
+            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color5">宝宝成长</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">培训</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Linux基础服务</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Linux</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据救援</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SQL优化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">锁故障</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">RDS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">主从同步</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
+            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
+            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
+            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
+            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="家长会">家长会</span>
+            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
+            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/02_ftp/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/03_nfs/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/01_dns/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/04_samba/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/05_apache/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/ule-online/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/00-linux_history/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 内核">Linux 内核</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
+            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
+        </a>
+        
+        <a  class="技术广角 Hexo "
+           href="/2020/03/22/booboo_others/hello-world/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
+        </a>
+        
+        <a  class="技术广角 Oracle "
+           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
+           data-tag="SQL优化"
+           data-author="" >
+            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
+            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="锁故障"
+           data-author="" >
+            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
+            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
+           data-tag="RDS,主从同步"
+           data-author="" >
+            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
+            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
+        </a>
+        
+        <a  class="技术广角 MongoDB "
+           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
+            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-booboo_easy_service/02_ftp" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">FTP文件共享服务</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="技术培训">技术培训</a>/
+            
+                <a  data-rel="Linux简易服务教程">Linux简易服务教程</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color3">培训</a>
+            
+            <a class="color5">Linux基础服务</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-03-24 05:02:31'>2016-12-22 21:06</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:11.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#FTP服务"><span class="toc-text">FTP服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FTP原理"><span class="toc-text">FTP原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VSFTPD-软件"><span class="toc-text">VSFTPD 软件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是vsftpd"><span class="toc-text">什么是vsftpd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践1-设置vsftpd服务匿名用户能够对-var-ftp-pub-目录有上传下载的权限"><span class="toc-text">项目实践1: 设置vsftpd服务匿名用户能够对&#x2F;var&#x2F;ftp&#x2F;pub&#x2F;目录有上传下载的权限</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#实验准备阶段"><span class="toc-text">实验准备阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#具体步骤"><span class="toc-text">具体步骤</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践2-真实用户（系统用户）能够访问家目录，上传下载删除"><span class="toc-text">项目实践2: 真实用户（系统用户）能够访问家目录，上传下载删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践3-除了系统用户student有chroot的权限，其他系统用户没有chroot的权限"><span class="toc-text">项目实践3: 除了系统用户student有chroot的权限，其他系统用户没有chroot的权限</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#拓展内容"><span class="toc-text">拓展内容</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#了解vsftpd的配置文件"><span class="toc-text">了解vsftpd的配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#vsftpd的主配置文件-etc-vsftpd-vsftpd-conf说明"><span class="toc-text">vsftpd的主配置文件&#x2F;etc&#x2F;vsftpd&#x2F;vsftpd.conf说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#vsftpd的日志"><span class="toc-text">vsftpd的日志</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#常见的FTP命令，以及FTP数字代码的意义"><span class="toc-text">常见的FTP命令，以及FTP数字代码的意义</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目实践"><span class="toc-text">项目实践</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>课程要求</p>
+</blockquote>
+<ol>
+<li>设置vsftpd服务匿名用户能够对/var/ftp/pub/目录有上传下载的权限。</li>
+<li>系统用户能够访问家目录，上传下载删除</li>
+<li>除了系统用户student有chroot的权限，其他系统用户没有chroot的权限</li>
+</ol>
+<h3 id="FTP服务"><a href="#FTP服务" class="headerlink" title="FTP服务"></a>FTP服务</h3><p>FTP 是File Transfer Protocol（文件传输协议）的英文简称，而中文简称为“文传协议”。用于<br>Internet上的控制文件的双向传输。同时，它也是一个应用程序（Application）。基于不同的操作系统有<br>不同的FTP应用程序，而所有这些应用程序都遵守同一种协议以传输文件。在FTP的使用当中，用户经常遇到两<br>个概念：”下载”（Download）和”上传”（Upload）。”下载”文件就是从远程主机拷贝文件至自己的计算机<br>上；”上传”文件就是将文件从自己的计算机中拷贝至远程主机上。用Internet语言来说，用户可通过客户机程<br>序向（从）远程主机上传（下载）文件。</p>
+<h3 id="FTP原理"><a href="#FTP原理" class="headerlink" title="FTP原理"></a>FTP原理</h3><p>FTP只通过TCP连接,没有用于FTP的UDP组件。</p>
+<p>FTP不同于其他服务的是它使用了两个端口, 一个数据端口和一个命令端口(或称为控制端口)。</p>
+<p>通常21端口是命令端口，20端口是数据端口。当混入主动/被动模式的概念时，数据端口就有可能不是20了。</p>
+<p><strong>工作模式</strong> FTP支持两种模式：</p>
+<ul>
+<li>Standard (PORT方式，主动方式)</li>
+<li>Passive (PASV，被动方式)。</li>
+</ul>
+<p><strong>Port模式</strong></p>
+<p>主动模式下，FTP客户端从任意的非特殊的端口（N &gt; 1023）连入到FTP服务器的命令端口–21端口。然后客户端在N+1（N+1 &gt;= 1024）端口监听，并且通过N+1（N+1 &gt;= 1024）端口发送命令给FTP服务器。服务器会反过来连接用户本地指定的数据端口，比如20端口。</p>
+<p>以服务器端防火墙为立足点，要支持主动模式FTP需要打开如下交互中使用到的端口：</p>
+<ul>
+<li>FTP服务器命令（21）端口接受客户端任意端口（客户端初始连接）</li>
+<li>FTP服务器命令（21）端口到客户端端口（&gt;1023）（服务器响应客户端命令）</li>
+<li>FTP服务器数据（20）端口到客户端端口（&gt;1023）（服务器初始化数据连接到客户端数据端口）</li>
+<li>FTP服务器数据（20）端口接受客户端端口（&gt;1023）（客户端发送ACK包到服务器的数据端口）</li>
+</ul>
+<p>用图表示如下：</p>
+<p><img src="pic/15.jpg" alt="15"></p>
+<p>在第1步中，客户端的命令端口与FTP服务器的命令端口建立连接，并发送命令“PORT 1027”。然后在第2步中，FTP服务器给客户端的命令端口返回一个”ACK”。在第3步中，FTP服务器发起一个从它自己的数据端口（20）到客户端先前指定的数据端口（1027）的连接，最后客户端在第4步中给服务器端返回一个”ACK”。</p>
+<p>主动方式FTP的主要问题实际上在于客户端。FTP的客户端并没有实际建立一个到服务器数据端口的连接，它只是简单的告诉服务器自己监听的端口号，服务器再回来连接客户端这个指定的端口。对于客户端的防火墙来说，这是从外部系统建立到内部客户端的连接，这是通常会被阻塞的。</p>
+<p><strong>Passive模式</strong></p>
+<p>为了解决服务器发起到客户的连接的问题，人们开发了一种不同的FTP连接方式。这就是所谓的被动方式，或者叫做PASV，当客户端通知服务器它处于被动模式时才启用。</p>
+<p>在被动方式FTP中，命令连接和数据连接都由客户端，这样就可以解决从服务器到客户端的数据端口的入方向连接被防火墙过滤掉的问题。当开启一个FTP连接时，客户端打开两个任意的非特权本地端口（N &gt;; 1024和N+1）。第一个端口连接服务器的21端口，但与主动方式的FTP不同，客户端不会提交PORT命令并允许服务器来回连它的数据端口，而是提交PASV命令。这样做的结果是服务器会开启一个任意的非特权端口（P &gt;; 1024），并发送PORT P命令给客户端。然后客户端发起从本地端口N+1到服务器的端口P的连接用来传送数据。</p>
+<p>对于服务器端的防火墙来说，必须允许下面的通讯才能支持被动方式的FTP:</p>
+<ul>
+<li>FTP服务器命令（21）端口接受客户端任意端口（客户端初始连接）</li>
+<li>FTP服务器命令（21）端口到客户端端口（&gt;1023）（服务器响应客户端命令）</li>
+<li>FTP服务器数据端口（&gt;1023）接受客户端端口（&gt;1023）（客户端初始化数据连接到服务器指定的任意端口）</li>
+<li>FTP服务器数据端口（&gt;1023）到客户端端口（&gt;1023）（服务器发送ACK响应和数据到客户端的数据端口）</li>
+</ul>
+<p>用图表示如下：</p>
+<p><img src="pic/16.jpg" alt="16"></p>
+<p>在第1步中，客户端的命令端口与服务器的命令端口建立连接，并发送命令“PASV”。然后在第2步中，服务器返回命令”PORT 2024”，告诉客户端（服务器）用哪个端口侦听数据连接。在第3步中，客户端初始化一个从自己的数据端口到服务器端指定的数据端口的数据连接。最后服务器在第4 步中给客户端的数据端口返回一个”ACK”响应。</p>
+<p>被动方式的FTP解决了客户端的许多问题，但同时给服务器端带来了更多的问题。最大的问题是需要允许从任意远程终端到服务器高位端口的连接。幸运的是，许多FTP守护程序，包括流行的WU-FTPD允许管理员指定FTP服务器使用的端口范围。详细内容参看附录1。</p>
+<p>第二个问题是客户端有的支持被动模式，有的不支持被动模式，必须考虑如何能支持这些客户端，以及为他们提供解决办法。例如，Solaris提供的FTP命令行工具就不支持被动模式，需要第三方的FTP客户端，比如ncftp。</p>
+<p>随着WWW的广泛流行，许多人习惯用web浏览器作为FTP客户端。大多数浏览器只在访问ftp://这样的URL时才支持被动模式。这到底是好还是坏取决于服务器和防火墙的配置。</p>
+<p>下面的图表会帮助管理员们记住每种FTP方式是怎样工作的：</p>
+<p><strong>主动FTP：</strong></p>
+<ol>
+<li>命令连接：客户端 &gt;1023端口 -&gt; 服务器 21端口</li>
+<li>数据连接：客户端 &gt;1023端口 &lt;- 服务器 20端口</li>
+</ol>
+<p><strong>被动FTP：</strong></p>
+<ol>
+<li>命令连接：客户端 &gt;1023端口 -&gt; 服务器 21端口</li>
+<li>数据连接：客户端 &gt;1023端口 -&gt; 服务器 &gt;1023端口</li>
+</ol>
+<p>下面是主动与被动FTP优缺点的简要总结：</p>
+<p>主动FTP对FTP服务器的管理有利，但对客户端的管理不利。因为FTP服务器企图与客户端的高位随机端口建立连接，而这个端口很有可能被客户端的防火墙阻塞掉。被动FTP对FTP客户端的管理有利，但对服务器端的管理不利。因为客户端要与服务器端建立两个连接，其中一个连到一个高位随机端口，而这个端口很有可能被服务器端的防火墙阻塞掉。</p>
+<p>幸运的是，有折衷的办法。既然FTP服务器的管理员需要他们的服务器有最多的客户连接，那么必须得支持被动FTP。我们可以通过为FTP服务器指定一个有限的端口范围来减小服务器高位端口的暴露。这样，不在这个范围的任何端口会被服务器的防火墙阻塞。虽然这没有消除所有针对服务器的危险，但它大大减少了危险。</p>
+<h3 id="VSFTPD-软件"><a href="#VSFTPD-软件" class="headerlink" title="VSFTPD 软件"></a>VSFTPD 软件</h3><p>如果你想在你的Linux/Unix服务器上搭建一个安全、高性能、稳定性好的FTP服务器，那么vsftpd可能是你的首选应用。vsftpd意思为“very secure FTP daemon(非常安全的FTP进程)”，是一个基于GPL发布的类UNIX类操作系统上运行的服务器的名字（是一种守护进程），可以运行在诸如Linux、BSD、Solaris、HP-UX以及Irix等系统上面。vsftpd支持很多其他传统的FTP服务器不支持的良好特性。</p>
+<p>最新的vsftpd版本可在其官网获取：<a href="www.vsftpd.org">www.vsftpd.org</a></p>
+<p>vsftpd 是“very secure FTP daemon”的缩写，安全性是它的一个最大的特点。vsftpd 是一个 UNIX 类操作系统上运行的服务器的名字，它可以运行在诸如 Linux、BSD、Solaris、 HP-UNIX等系统上面，是一个完全免费的、开发源代码的ftp服务器软件，支持很多其他的 FTP 服务器所不支持的特征。比如：非常高的安全性需求、带宽限制、良好的可伸缩性、可创建虚拟用户、支持IPv6、速率高等。</p>
+<p>看看都有哪些网站在使用vsftpd吧：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">ftp.RedHat.com</span><br><span class="line">ftp.SUSE.com</span><br><span class="line">ftp.debian.org</span><br><span class="line">ftp.openbsd.org</span><br><span class="line">ftp.freebsd.org</span><br><span class="line">ftp.gnu.org</span><br><span class="line">ftp.gnome.org</span><br><span class="line">ftp.kde.org</span><br><span class="line">ftp.kernel.org</span><br><span class="line">rpmfind.net</span><br><span class="line">ftp.linux.org.uk</span><br><span class="line">ftp.gimp.org</span><br><span class="line">ftp-stud.fht-esslingen.de</span><br><span class="line">gd.tuwien.ac.at</span><br><span class="line">ftp.sunet.se</span><br><span class="line">ftp.ximian.com</span><br><span class="line">ftp.engardelinux.org</span><br><span class="line">ftp.sunsite.org.uk</span><br><span class="line">ftp.isc.org</span><br></pre></td></tr></table></figure>
+
+<h4 id="什么是vsftpd"><a href="#什么是vsftpd" class="headerlink" title="什么是vsftpd"></a>什么是vsftpd</h4><p>Vsftpd是一种在GPL许可下开放源代码的FTP服务器，用于多种UNIX系统和Linux系统。Vsftpd也称为Very Secure FTP Daemon，它是一种安全、快速、稳定的FTP服务器，能够高效地处理大量的并发连接。</p>
+<p>Vsftpd的主要特点包括：</p>
+<ul>
+<li>提供安全的体系结构，根据任务的最低特权需求单独执行每个任务。</li>
+<li>支持虚拟IP配置，可以在提供一个IP地址的情况下，在域中用该地址建立多个FTP服务器。</li>
+<li>允许配置并使用虚拟用户，从而与系统用户账户分离。</li>
+<li>支持TCP封装。</li>
+<li>允许配置匿名服务器，用户可以在不需要身份验证的情况下上传和下载文件。</li>
+<li>性能稳定，可以处理大量的并发连接。</li>
+<li>可以配置为独立的服务器。</li>
+<li>Vsftpd服务器支持带宽控制。</li>
+</ul>
+<blockquote>
+<p>用户类型</p>
+</blockquote>
+<p><strong>r 真实用户</strong></p>
+<p>这类用户是指在FTP服务上拥有帐号，即/etc/passwd里的用户。当这类用户登录FTP服务器的时候，其默认的主目录就是其帐号命名的目录。但是，其还可以变更到其他目录中去。如系统的主目录等等。</p>
+<p><strong>g 来宾用户</strong></p>
+<p>在vsFTP软件里没有这类用户，但是在FTP服务器中有，我们往往会给不同的部门或者某个特定的用户设置一个帐户。但是，这个账户有个特点，就是其只能够访问自己的主目录。服务器通过这种方式来保障FTP服务上其他文件的安全性。这类帐户，在Vsftpd软件中就叫做Guest用户。拥有这类用户的帐户，只能够访问其主目录下的目录，而不得访问主目录以外的文件。</p>
+<p><strong>a 匿名用户</strong></p>
+<p>Anonymous（匿名）用户，这也是我们通常所说的匿名访问。这类用户是指在FTP服务器中没有指定帐户，但是其仍然可以进行匿名访问某些公开的资源。<br>在组建FTP服务器的时候，我们就需要根据用户的类型，对用户进行归类。默认情况下，Vsftpd服务器会把建立的所有帐户都归属为Real用户。但是，这往往不符合企业安全的需要。因为这类用户不仅可以访问自己的主目录，而且，还可以访问其他用户的目录。这就给其他用户所在的空间带来一定的安全隐患。所以，企业要根据实际情况，修改用户所在的类别。</p>
+<hr>
+<h4 id="项目实践1-设置vsftpd服务匿名用户能够对-var-ftp-pub-目录有上传下载的权限"><a href="#项目实践1-设置vsftpd服务匿名用户能够对-var-ftp-pub-目录有上传下载的权限" class="headerlink" title="项目实践1: 设置vsftpd服务匿名用户能够对/var/ftp/pub/目录有上传下载的权限"></a>项目实践1: 设置vsftpd服务匿名用户能够对/var/ftp/pub/目录有上传下载的权限</h4><h5 id="实验准备阶段"><a href="#实验准备阶段" class="headerlink" title="实验准备阶段"></a>实验准备阶段</h5><ol>
+<li>网络拓扑图</li>
+<li>规划软件安装</li>
+<li>修改配置文件</li>
+<li>启动服务</li>
+<li>注意防火墙关闭</li>
+<li>客户端测试服务        </li>
+</ol>
+<blockquote>
+<p>网络拓扑图</p>
+</blockquote>
+<p><img src="pic/17.png" alt="17"></p>
+<blockquote>
+<p>规划软件安装</p>
+</blockquote>
+<p><img src="pic/18.png" alt="18"></p>
+<h5 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h5><p>Linux几乎所有的发行版本都内置了Vsftpd服务。</p>
+<p><strong>服务器端rhel6</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# yum install -y vsftpd</span><br><span class="line">Loaded plugins: product-id, refresh-packagekit, security, subscription-manager</span><br><span class="line">This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.</span><br><span class="line">Setting up Install Process</span><br><span class="line">Resolving Dependencies</span><br><span class="line"><span class="meta">--&gt;</span><span class="bash"> Running transaction check</span></span><br><span class="line"><span class="meta">---&gt;</span><span class="bash"> Package vsftpd.x86_64 0:2.2.2-11.el6_4.1 will be installed</span></span><br><span class="line"><span class="meta">--&gt;</span><span class="bash"> Finished Dependency Resolution</span></span><br><span class="line"></span><br><span class="line">Dependencies Resolved</span><br><span class="line"></span><br><span class="line">=============================================================================================</span><br><span class="line"> Package            Arch               Version                      Repository          Size</span><br><span class="line">=============================================================================================</span><br><span class="line">Installing:</span><br><span class="line"> vsftpd             x86_64             2.2.2-11.el6_4.1             server             151 k</span><br><span class="line"></span><br><span class="line">Transaction Summary</span><br><span class="line">=============================================================================================</span><br><span class="line">Install       1 Package(s)</span><br><span class="line"></span><br><span class="line">Total download size: 151 k</span><br><span class="line">Installed size: 331 k</span><br><span class="line">Downloading Packages:</span><br><span class="line">vsftpd-2.2.2-11.el6_4.1.x86_64.rpm                                    | 151 kB     00:00     </span><br><span class="line">Running rpm_check_debug</span><br><span class="line">Running Transaction Test</span><br><span class="line">Transaction Test Succeeded</span><br><span class="line">Running Transaction</span><br><span class="line">  Installing : vsftpd-2.2.2-11.el6_4.1.x86_64                                            1/1</span><br><span class="line">  Verifying  : vsftpd-2.2.2-11.el6_4.1.x86_64                                            1/1</span><br><span class="line"></span><br><span class="line">Installed:</span><br><span class="line">  vsftpd.x86_64 0:2.2.2-11.el6_4.1                                                           </span><br><span class="line"></span><br><span class="line">Complete!</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# service iptables stop</span><br><span class="line">iptables: Setting chains to policy ACCEPT: filter          [  OK  ]</span><br><span class="line">iptables: Flushing firewall rules:                         [  OK  ]</span><br><span class="line">iptables: Unloading modules:                               [  OK  ]</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# getenforce</span><br><span class="line">Enforcing</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# rpm -q vsftpd</span><br><span class="line">vsftpd-2.2.2-11.el6_4.1.x86_64</span><br><span class="line">[root@rhel6 ~]# rpm -ql vsftpd</span><br><span class="line">/etc/logrotate.d/vsftpd</span><br><span class="line">/etc/pam.d/vsftpd</span><br><span class="line">/etc/rc.d/init.d/vsftpd</span><br><span class="line">/etc/vsftpd</span><br><span class="line">/etc/vsftpd/ftpusers</span><br><span class="line">/etc/vsftpd/user_list</span><br><span class="line">/etc/vsftpd/vsftpd.conf</span><br><span class="line">/etc/vsftpd/vsftpd_conf_migrate.sh</span><br><span class="line">/usr/sbin/vsftpd</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/AUDIT</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/BENCHMARKS</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/BUGS</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/COPYING</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/Changelog</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/INTERNET_SITE</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/INTERNET_SITE/README</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/INTERNET_SITE/README.configuration</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/INTERNET_SITE/vsftpd.conf</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/INTERNET_SITE/vsftpd.xinetd</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/INTERNET_SITE_NOINETD</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/INTERNET_SITE_NOINETD/README</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/INTERNET_SITE_NOINETD/README.configuration</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/INTERNET_SITE_NOINETD/vsftpd.conf</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/PER_IP_CONFIG</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/PER_IP_CONFIG/README</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/PER_IP_CONFIG/README.configuration</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/PER_IP_CONFIG/hosts.allow</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/README</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/VIRTUAL_HOSTS</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/VIRTUAL_HOSTS/README</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/VIRTUAL_USERS</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/VIRTUAL_USERS/README</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/VIRTUAL_USERS/README.configuration</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/VIRTUAL_USERS/logins.txt</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/VIRTUAL_USERS/vsftpd.conf</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/VIRTUAL_USERS/vsftpd.pam</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/VIRTUAL_USERS_2</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/EXAMPLE/VIRTUAL_USERS_2/README</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/FAQ</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/INSTALL</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/LICENSE</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/README</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/README.security</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/REWARD</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/SECURITY</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/SECURITY/DESIGN</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/SECURITY/IMPLEMENTATION</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/SECURITY/OVERVIEW</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/SECURITY/TRUST</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/SIZE</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/SPEED</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/TODO</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/TUNING</span><br><span class="line">/usr/share/doc/vsftpd-2.2.2/vsftpd.xinetd</span><br><span class="line">/usr/share/man/man5/vsftpd.conf.5.gz</span><br><span class="line">/usr/share/man/man8/vsftpd.8.gz</span><br><span class="line">/var/ftp</span><br><span class="line">/var/ftp/pub</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# service vsftpd start</span><br><span class="line">Starting vsftpd for vsftpd:                                [  OK  ]</span><br><span class="line">[root@rhel6 ~]# netstat -luntp|grep vsftpd</span><br><span class="line">tcp        0      0 0.0.0.0:21                  0.0.0.0:*                   LISTEN      2940/vsftpd</span><br></pre></td></tr></table></figure>
+
+<p><strong>客户端 rhel7</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# yum install -y lftp</span><br><span class="line">Loaded plugins: langpacks, product-id, subscription-manager</span><br><span class="line">This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.</span><br><span class="line">server                                                                | 4.1 kB  00:00:00     </span><br><span class="line">(1/2): server/group_gz                                                | 134 kB  00:00:00     </span><br><span class="line">(2/2): server/primary_db                                              | 3.4 MB  00:00:00     </span><br><span class="line">Resolving Dependencies</span><br><span class="line"><span class="meta">--&gt;</span><span class="bash"> Running transaction check</span></span><br><span class="line"><span class="meta">---&gt;</span><span class="bash"> Package lftp.x86_64 0:4.4.8-3.el7 will be installed</span></span><br><span class="line"><span class="meta">--&gt;</span><span class="bash"> Finished Dependency Resolution</span></span><br><span class="line"></span><br><span class="line">Dependencies Resolved</span><br><span class="line"></span><br><span class="line">=============================================================================================</span><br><span class="line"> Package           Arch                Version                     Repository           Size</span><br><span class="line">=============================================================================================</span><br><span class="line">Installing:</span><br><span class="line"> lftp              x86_64              4.4.8-3.el7                 server              749 k</span><br><span class="line"></span><br><span class="line">Transaction Summary</span><br><span class="line">=============================================================================================</span><br><span class="line">Install  1 Package</span><br><span class="line"></span><br><span class="line">Total download size: 749 k</span><br><span class="line">Installed size: 2.4 M</span><br><span class="line">Downloading packages:</span><br><span class="line">lftp-4.4.8-3.el7.x86_64.rpm                                           | 749 kB  00:00:00     </span><br><span class="line">Running transaction check</span><br><span class="line">Running transaction test</span><br><span class="line">Transaction test succeeded</span><br><span class="line">Running transaction</span><br><span class="line">  Installing : lftp-4.4.8-3.el7.x86_64                                                   1/1</span><br><span class="line">server/productid                                                      | 1.6 kB  00:00:00     </span><br><span class="line">  Verifying  : lftp-4.4.8-3.el7.x86_64                                                   1/1</span><br><span class="line"></span><br><span class="line">Installed:</span><br><span class="line">  lftp.x86_64 0:4.4.8-3.el7                                                                  </span><br><span class="line"></span><br><span class="line">Complete!</span><br><span class="line">[root@rhel7 ~]# systemctl stop firewalld</span><br><span class="line">[root@rhel7 ~]# getenforce</span><br><span class="line">Enforcing</span><br><span class="line"></span><br><span class="line">[root@rhel7 ~]# rpm -ql lftp</span><br><span class="line">/etc/lftp.conf</span><br><span class="line">/usr/bin/lftp</span><br><span class="line">/usr/bin/lftpget</span><br><span class="line">/usr/lib64/lftp</span><br><span class="line">/usr/lib64/lftp/4.4.8</span><br><span class="line">/usr/lib64/lftp/4.4.8/cmd-mirror.so</span><br><span class="line">/usr/lib64/lftp/4.4.8/cmd-sleep.so</span><br><span class="line">/usr/lib64/lftp/4.4.8/cmd-torrent.so</span><br><span class="line">/usr/lib64/lftp/4.4.8/liblftp-network.so</span><br><span class="line">/usr/lib64/lftp/4.4.8/liblftp-pty.so</span><br><span class="line">/usr/lib64/lftp/4.4.8/proto-file.so</span><br><span class="line">/usr/lib64/lftp/4.4.8/proto-fish.so</span><br><span class="line">/usr/lib64/lftp/4.4.8/proto-ftp.so</span><br><span class="line">/usr/lib64/lftp/4.4.8/proto-http.so</span><br><span class="line">/usr/lib64/lftp/4.4.8/proto-sftp.so</span><br><span class="line">/usr/lib64/liblftp-jobs.so.0</span><br><span class="line">/usr/lib64/liblftp-jobs.so.0.0.0</span><br><span class="line">/usr/lib64/liblftp-tasks.so.0</span><br><span class="line">/usr/lib64/liblftp-tasks.so.0.0.0</span><br><span class="line">/usr/share/doc/lftp-4.4.8</span><br><span class="line">/usr/share/doc/lftp-4.4.8/BUGS</span><br><span class="line">/usr/share/doc/lftp-4.4.8/COPYING</span><br><span class="line">/usr/share/doc/lftp-4.4.8/ChangeLog</span><br><span class="line">/usr/share/doc/lftp-4.4.8/FAQ</span><br><span class="line">/usr/share/doc/lftp-4.4.8/FEATURES</span><br><span class="line">/usr/share/doc/lftp-4.4.8/NEWS</span><br><span class="line">/usr/share/doc/lftp-4.4.8/README</span><br><span class="line">/usr/share/doc/lftp-4.4.8/README.debug-levels</span><br><span class="line">/usr/share/doc/lftp-4.4.8/README.dnssec</span><br><span class="line">/usr/share/doc/lftp-4.4.8/README.modules</span><br><span class="line">/usr/share/doc/lftp-4.4.8/THANKS</span><br><span class="line">/usr/share/doc/lftp-4.4.8/TODO</span><br><span class="line">/usr/share/locale/cs/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/de/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/es/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/fr/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/it/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/ja/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/ko/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/pl/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/pt_BR/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/ru/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/zh_CN/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/zh_HK/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/locale/zh_TW/LC_MESSAGES/lftp.mo</span><br><span class="line">/usr/share/man/man1/lftp.1.gz</span><br><span class="line">/usr/share/man/man1/lftpget.1.gz</span><br><span class="line">/usr/share/man/man5/lftp.conf.5.gz</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>1.从客户端以匿名用户来访问ftp服务</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# lftp 172.25.0.11</span><br><span class="line">lftp 172.25.0.11:~&gt; cd pub</span><br><span class="line">cd ok, cwd=/pub</span><br><span class="line">lftp 172.25.0.11:/pub&gt; ls</span><br><span class="line">lftp 172.25.0.11:/pub&gt; put rhel7</span><br><span class="line">put: Access failed: 550 Permission denied. (rhel7)</span><br></pre></td></tr></table></figure>
+
+<p><strong>当前的情况</strong></p>
+<p>匿名用户能够访问/var/ftp/pub，能够查看文件内容，能够下载；不能上传文件,不能删除文件。</p>
+<p><strong>问题的解决</strong></p>
+<p>报错550，没有权限上传文件</p>
+<p>我们要分析权限有哪些？</p>
+<ol>
+<li>vsftpd的配置文件</li>
+<li>UGO、特殊、隐藏、ACL、</li>
+<li>SELINUX</li>
+</ol>
+<p><strong>1.修改主配置文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/vsftpd/vsftpd.conf</span><br><span class="line">anon_upload_enable=YES</span><br></pre></td></tr></table></figure>
+
+<p><strong>2./var/ftp/pub 目录o-rwx</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 pub]# ll -d /var/ftp/pub</span><br><span class="line">drwxr-xrwx. 2 root root 4096 Aug  3 10:35 /var/ftp/pub</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.测试</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lftp 172.25.0.11:/pub&gt; put rhel7</span><br><span class="line">put: Access failed: 553 Could not create file. (rhel7)</span><br></pre></td></tr></table></figure>
+
+<p>目前修改了配置文件和ugo权限还是报错553，不能create file</p>
+<p>我们分析一下，只有selinux的权限问题了</p>
+<p><strong>4.SELINUX</strong></p>
+<p>如何确定是否是selinux的原因，可以通过以下步骤：</p>
+<ul>
+<li>1)先关闭selinux，测试ok的</li>
+<li>2)开启selinux，测试no的</li>
+</ul>
+<p>我们需要去分析selinux的记录，分析工具是<code>sealert</code>,由<code>setroubleshoot</code>软件安装。</p>
+<ol>
+<li>查看当前系统中是否有sealert工具    <code>which sealert</code></li>
+<li>安装setroubleshoot        <code>yum install -y setroubleshoot</code></li>
+<li>分析selinux记录        <code>sealert -a /var/log/audit/audit.log</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">*****  Plugin allow_anon_write (53.1 confidence) suggests  *******************</span><br><span class="line"></span><br><span class="line">If you want to allow /usr/sbin/vsftpd to be able to write to shared public content</span><br><span class="line">Then you need to change the label on pub to public_content_rw_t, and potentially turn on the</span><br><span class="line">allow_httpd_sys_script_anon_write boolean.</span><br><span class="line">Do</span><br><span class="line"><span class="meta">#</span><span class="bash"> semanage fcontext -a -t public_content_rw_t pub</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> restorecon -R -v pub</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> setsebool -P allow_ftpd_anon_write 1</span></span><br><span class="line"></span><br><span class="line">[root@rhel6 pub]# semanage fcontext -a -t public_content_rw_t /var/ftp/pub</span><br><span class="line">[root@rhel6 pub]# restorecon -R -v /var/ftp/pub</span><br><span class="line">[root@rhel6 pub]# ll -Zd /var/ftp/pub</span><br><span class="line">drwxr-xrwx. root root system_u:object_r:public_content_rw_t:s0 /var/ftp/pub</span><br></pre></td></tr></table></figure>
+
+<p><strong>5.再测试</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lftp 172.25.0.11:/pub&gt; put rhel7</span><br><span class="line">lftp 172.25.0.11:/pub&gt; ls</span><br><span class="line">-rw-------    1 14       50              0 Aug 03 05:53 rhel7</span><br><span class="line">lftp 172.25.0.11:/pub&gt; exit</span><br></pre></td></tr></table></figure>
+
+<p>此时，我们发现匿名用户已经可以成功地对/var/ftp/pub目录进行上传下载了！</p>
+<hr>
+<h4 id="项目实践2-真实用户（系统用户）能够访问家目录，上传下载删除"><a href="#项目实践2-真实用户（系统用户）能够访问家目录，上传下载删除" class="headerlink" title="项目实践2: 真实用户（系统用户）能够访问家目录，上传下载删除"></a>项目实践2: 真实用户（系统用户）能够访问家目录，上传下载删除</h4><p>在项目实践1的基础上完成。</p>
+<p><strong>服务端 rhel6</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ftp]# id student</span><br><span class="line">uid=500(student) gid=500(student) groups=500(student)</span><br><span class="line">[root@rhel6 ftp]# passwd student</span><br><span class="line">Changing password for user student.</span><br><span class="line">New password:</span><br><span class="line">BAD PASSWORD: it is based on a dictionary word</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br><span class="line"></span><br><span class="line">[root@rhel6 ftp]# su - student</span><br><span class="line">[student@rhel6 ~]$ pwd</span><br><span class="line">/home/student</span><br><span class="line">[student@rhel6 ~]$ touch file1</span><br><span class="line">[student@rhel6 ~]$ echo aaa &gt; file1</span><br></pre></td></tr></table></figure>
+
+<p><strong>客户端 rhel7</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# lftp student@172.25.0.11</span><br><span class="line">Password:</span><br><span class="line">lftp student@172.25.0.11:~&gt; ls      </span><br><span class="line">ls: Login failed: 500 OOPS: cannot change directory:/home/student</span><br></pre></td></tr></table></figure>
+
+<p><strong>当前的情况</strong> 系统用户student不能访问家目录。</p>
+<p><strong>问题的解决</strong></p>
+<p>报错500，没有权限进入用户家目录</p>
+<p>配置文件没有问题，ugo权限没有问题，只剩下selinux，需要分析</p>
+<p><strong>1.分析selinux</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 服务器端</span></span><br><span class="line">[root@rhel6 ftp]# sealert -a /var/log/audit/audit.log</span><br><span class="line"></span><br><span class="line">*****  Plugin catchall_boolean (47.5 confidence) suggests  *******************</span><br><span class="line"></span><br><span class="line">If you want to allow ftp to read and write files in the user home directories</span><br><span class="line">Then you must tell SELinux about this by enabling the 'ftp_home_dir'boolean.</span><br><span class="line">Do</span><br><span class="line">setsebool -P ftp_home_dir 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.修改布尔值</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ftp]# setsebool -P ftp_home_dir 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.测试</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 客户端</span></span><br><span class="line">lftp student@172.25.0.11:~&gt; ls</span><br><span class="line">lftp student@172.25.0.11:~&gt; pwd  </span><br><span class="line">ftp://student@172.25.0.11/%2Fhome/student</span><br><span class="line">lftp student@172.25.0.11:~&gt; ls</span><br><span class="line">-rw-rw-r--    1 500      500             4 Aug 03 07:13 file1</span><br><span class="line">lftp student@172.25.0.11:~&gt; cat file1</span><br><span class="line">aaa</span><br><span class="line">4 bytes transferred</span><br><span class="line">lftp student@172.25.0.11:~&gt; get file1</span><br><span class="line">4 bytes transferred</span><br><span class="line">lftp student@172.25.0.11:~&gt; put</span><br><span class="line">.ICEauthority  .bashrc	 .dbus/     .tcshrc	Music/	    Videos/		  rhel7</span><br><span class="line">.bash_history  .cache/	 .esd_auth  Desktop/	Pictures/   anaconda-ks.cfg	  test1</span><br><span class="line">.bash_logout   .config/  .local/    Documents/	Public/     file1</span><br><span class="line">.bash_profile  .cshrc	 .ssh/	    Downloads/	Templates/  initial-setup-ks.cfg</span><br><span class="line">lftp student@172.25.0.11:~&gt; put rhel7</span><br><span class="line">lftp student@172.25.0.11:~&gt; ls</span><br><span class="line">-rw-rw-r--    1 500      500             4 Aug 03 07:13 file1</span><br><span class="line">-rw-r--r--    1 500      500             0 Aug 03 07:13 rhel7</span><br><span class="line">lftp student@172.25.0.11:~&gt; rm file1</span><br><span class="line">rm ok, \`file1\' removed</span><br><span class="line">lftp student@172.25.0.11:~&gt; ls</span><br><span class="line">-rw-r--r--    1 500      500             0 Aug 03 07:13 rhel7</span><br></pre></td></tr></table></figure>
+
+<p>系统用户已经可以实现能够访问家目录，并且能够下载、上传、删除了！</p>
+<hr>
+<h4 id="项目实践3-除了系统用户student有chroot的权限，其他系统用户没有chroot的权限"><a href="#项目实践3-除了系统用户student有chroot的权限，其他系统用户没有chroot的权限" class="headerlink" title="项目实践3: 除了系统用户student有chroot的权限，其他系统用户没有chroot的权限"></a>项目实践3: 除了系统用户student有chroot的权限，其他系统用户没有chroot的权限</h4><ul>
+<li>匿名用户的根目录    /var/ftp/</li>
+<li>系统用户的根目录    /home/student/</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">chroot_local_user=YES</th>
+<th align="left">chroot_local_user=NO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">chroot_list_enable=YES</td>
+<td align="left">不能换根，有例外</td>
+<td align="left">都能换根，有例外</td>
+</tr>
+<tr>
+<td align="left">chroot_list_enable=NO</td>
+<td align="left">不能换根，没例外</td>
+<td align="left">都能换根，没例外</td>
+</tr>
+</tbody></table>
+<p>如果指定 <code>chroot_list_enable=YES</code> 则需要指定文件位置 <code>chroot_list_file=/etc/vsftpd/chroot_list</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# lftp batman@172.25.0.11</span><br><span class="line">Password:</span><br><span class="line">lftp batman@172.25.0.11:~&gt; ls       </span><br><span class="line">lftp batman@172.25.0.11:~&gt; cd /tmp</span><br><span class="line">cd ok, cwd=/tmp</span><br><span class="line">lftp batman@172.25.0.11:/tmp&gt; pwd</span><br><span class="line">ftp://batman@172.25.0.11/%2Ftmp</span><br><span class="line">lftp batman@172.25.0.11:/tmp&gt; exit</span><br></pre></td></tr></table></figure>
+
+<p><strong>当前的情况</strong> 所有的系统用户都能够chroot，而要求除了student用户之外的所有系统用户都不能chroot。</p>
+<p><strong>解决方法</strong></p>
+<p>可以选择<code>不能换根，有例外</code></p>
+<p><strong>1.修改配置文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 服务器端</span></span><br><span class="line">[root@rhel6 ~]# vim /etc/vsftpd/vsftpd.conf</span><br><span class="line">chroot_local_user=YES</span><br><span class="line">chroot_list_enable=YES</span><br><span class="line">chroot_list_file=/etc/vsftpd/chroot_list</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.创建chroot_list</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# vim /etc/vsftpd/chroot_list</span><br><span class="line">[root@rhel6 ~]# cat /etc/vsftpd/chroot_list</span><br><span class="line">student</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.重启服务</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# service vsftpd restart</span><br><span class="line">Shutting down vsftpd:                                      [  OK  ]</span><br><span class="line">Starting vsftpd for vsftpd:                                [  OK  ]</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.测试</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 客户端    </span></span><br><span class="line">[root@rhel7 ~]# lftp batman@172.25.0.11</span><br><span class="line">Password:</span><br><span class="line">lftp batman@172.25.0.11:~&gt; cd /etc/</span><br><span class="line">cd: Access failed: 550 Failed to change directory. (/etc)</span><br><span class="line">lftp batman@172.25.0.11:/&gt; exit</span><br><span class="line">[root@rhel7 ~]# lftp student@172.25.0.11</span><br><span class="line">Password:</span><br><span class="line">lftp student@172.25.0.11:~&gt; cd /etc</span><br><span class="line">cd ok, cwd=/etc                  </span><br><span class="line">lftp student@172.25.0.11:/etc&gt; exit</span><br></pre></td></tr></table></figure>
+
+<p><strong>当前的情况</strong></p>
+<p>系统用户student可以切换根目录，而batman不在chroot_list文件中所以不能切换根目录。</p>
+<h5 id="拓展内容"><a href="#拓展内容" class="headerlink" title="拓展内容"></a>拓展内容</h5><p><strong>为什么root用户不能通过ftp协议访问服务器？</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# lftp root@172.25.0.11</span><br><span class="line">Password:</span><br><span class="line">lftp root@172.25.0.11:~&gt; ls         </span><br><span class="line">ls: Login failed: 530 Permission denied.</span><br></pre></td></tr></table></figure>
+
+<p>因为有用户访问控制列表<code>/etc/vsftpd/user_list</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# grep userlist_enable /etc/vsftpd/vsftpd.conf</span><br><span class="line">userlist_enable=YES</span><br><span class="line"></span><br><span class="line">[root@rhel6 ftp]# cat /etc/vsftpd/user_list</span><br><span class="line"><span class="meta">#</span><span class="bash"> vsftpd userlist</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> If userlist_deny=NO, only allow users <span class="keyword">in</span> this file</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> If userlist_deny=YES (default), never allow users <span class="keyword">in</span> this file, and</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">do</span> not even prompt <span class="keyword">for</span> a password.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Note that the default vsftpd pam config also checks /etc/vsftpd/ftpusers</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">for</span> users that are denied.</span></span><br><span class="line">root</span><br><span class="line">bin</span><br><span class="line">daemon</span><br><span class="line">adm</span><br><span class="line">lp</span><br><span class="line">sync</span><br><span class="line">shutdown</span><br><span class="line">halt</span><br><span class="line">mail</span><br><span class="line">news</span><br><span class="line">uucp</span><br><span class="line">operator</span><br><span class="line">games</span><br><span class="line">nobody</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="了解vsftpd的配置文件"><a href="#了解vsftpd的配置文件" class="headerlink" title="了解vsftpd的配置文件"></a>了解vsftpd的配置文件</h4><table>
+<thead>
+<tr>
+<th align="left">配置文件</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">/etc/vsftpd/vsftpd.conf</td>
+<td align="left">主配置文件</td>
+</tr>
+<tr>
+<td align="left">/usr/sbin/vsftpd</td>
+<td align="left">Vsftpd的主程序</td>
+</tr>
+<tr>
+<td align="left">/etc/rc.d/init.d/vsftpd</td>
+<td align="left">启动脚本</td>
+</tr>
+<tr>
+<td align="left">/etc/pam.d/vsftpd</td>
+<td align="left">PAM认证文件（此文件中file=/etc/vsftpd/ftpusers字段，指明阻止访问的用户来自/etc/vsftpd/ftpusers文件中的用户）</td>
+</tr>
+<tr>
+<td align="left">/etc/vsftpd/ftpusers</td>
+<td align="left">禁止使用vsftpd的用户列表文件。记录不允许访问FTP服务器的用户名单，管理员可以把一些对系统安全有威胁的用户账号记录在此文件中，以免用户从FTP登录后获得大于上传下载操作的权利，而对系统造成损坏。</td>
+</tr>
+<tr>
+<td align="left">/etc/vsftpd/user_list</td>
+<td align="left">禁止或允许使用vsftpd的用户列表文件。这个文件中指定的用户缺省情况（即在/etc/vsftpd/vsftpd.conf中设置userlist_deny=YES）下也不能访问FTP服务器，在设置了userlist_deny=NO时,仅允许user_list中指定的用户访问FTP服务器。</td>
+</tr>
+<tr>
+<td align="left">/var/ftp</td>
+<td align="left">匿名用户主目录；本地用户主目录为：/home/用户主目录，即登录后进入自己家目录</td>
+</tr>
+<tr>
+<td align="left">/var/ftp/pub</td>
+<td align="left">匿名用户的下载目录，此目录需赋权根chmod 1777 pub（1为特殊权限，使上载后无法删除）</td>
+</tr>
+<tr>
+<td align="left">/etc/logrotate.d/vsftpd.log</td>
+<td align="left">Vsftpd的日志文件</td>
+</tr>
+</tbody></table>
+<h5 id="vsftpd的主配置文件-etc-vsftpd-vsftpd-conf说明"><a href="#vsftpd的主配置文件-etc-vsftpd-vsftpd-conf说明" class="headerlink" title="vsftpd的主配置文件/etc/vsftpd/vsftpd.conf说明"></a>vsftpd的主配置文件/etc/vsftpd/vsftpd.conf说明</h5><p>和Linux系统中的大多数配置文件一样，vsftpd的配置文件中以#开始注释。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line">是否允许匿名登录FTP服务器，默认设置为YES允许</span><br><span class="line"><span class="meta">#</span><span class="bash"> 用户可使用用户名ftp或anonymous进行ftp登录，口令为用户的E-mail地址。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如不允许匿名访问则设置为NO</span></span><br><span class="line">anonymous_enable=YES</span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否允许本地用户(即linux系统中的用户帐号)登录FTP服务器，默认设置为YES允许</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 本地用户登录后会进入用户主目录，而匿名用户登录后进入匿名用户的下载目录/var/ftp/pub</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 若只允许匿名用户访问，前面加上<span class="comment">#注释掉即可阻止本地用户访问FTP服务器</span></span></span><br><span class="line">local_enable=YES</span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否允许本地用户对FTP服务器文件具有写权限，默认设置为YES允许</span></span><br><span class="line">write_enable=YES</span><br><span class="line"><span class="meta">#</span><span class="bash"> 掩码，本地用户默认掩码为077</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 你可以设置本地用户的文件掩码为缺省022，也可根据个人喜好将其设置为其他值</span></span><br><span class="line"><span class="meta">#</span><span class="bash">local_umask=022</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否允许匿名用户上传文件，须将全局的write_enable=YES。默认为YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash">anon_upload_enable=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否允许匿名用户创建新文件夹</span></span><br><span class="line"><span class="meta">#</span><span class="bash">anon_mkdir_write_enable=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否激活目录欢迎信息功能</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当用户用CMD模式首次访问服务器上某个目录时，FTP服务器将显示欢迎信息</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 默认情况下，欢迎信息是通过该目录下的.message文件获得的</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 此文件保存自定义的欢迎信息，由用户自己建立</span></span><br><span class="line"><span class="meta">#</span><span class="bash">dirmessage_enable=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否让系统自动维护上传和下载的日志文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 默认情况该日志文件为/var/<span class="built_in">log</span>/vsftpd.log,也可以通过下面的xferlog_file选项对其进行设定</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 默认值为NO</span></span><br><span class="line">xferlog_enable=YES</span><br><span class="line"><span class="meta">#</span><span class="bash"> Make sure PORT transfer connections originate from port 20 (ftp-data).</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否设定FTP服务器将启用FTP数据端口的连接请求</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ftp-data数据传输，21为连接控制端口</span></span><br><span class="line">connect_from_port_20=YES</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设定是否允许改变上传文件的属主，与下面一个设定项配合使用</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 注意，不推荐使用root用户上传文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash">chown_uploads=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置想要改变的上传文件的属主，如果需要，则输入一个系统用户名</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 可以把上传的文件都改成root属主。whoever：任何人</span></span><br><span class="line"><span class="meta">#</span><span class="bash">chown_username=whoever</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设定系统维护记录FTP服务器上传和下载情况的日志文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> /var/<span class="built_in">log</span>/vsftpd.log是默认的，也可以另设其它</span></span><br><span class="line"><span class="meta">#</span><span class="bash">xferlog_file=/var/<span class="built_in">log</span>/vsftpd.log</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否以标准xferlog的格式书写传输日志文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 默认为/var/<span class="built_in">log</span>/xferlog，也可以通过xferlog_file选项对其进行设定</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 默认值为NO</span></span><br><span class="line"><span class="meta">#</span><span class="bash">xferlog_std_format=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 以下是附加配置，添加相应的选项将启用相应的设置</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否生成两个相似的日志文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 默认在/var/<span class="built_in">log</span>/xferlog和/var/<span class="built_in">log</span>/vsftpd.log目录下</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 前者是wu_ftpd类型的传输日志，可以利用标准日志工具对其进行分析；后者是vsftpd类型的日志</span></span><br><span class="line"><span class="meta">#</span><span class="bash">dual_log_enable</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否将原本输出到/var/<span class="built_in">log</span>/vsftpd.log中的日志，输出到系统日志</span></span><br><span class="line"><span class="meta">#</span><span class="bash">syslog_enable</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置数据传输中断间隔时间，此语句表示空闲的用户会话中断时间为600秒</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 即当数据传输结束后，用户连接FTP服务器的时间不应超过600秒。可以根据实际情况对该值进行修改</span></span><br><span class="line"><span class="meta">#</span><span class="bash">idle_session_timeout=600</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置数据连接超时时间，该语句表示数据连接超时时间为120秒，可根据实际情况对其个修改</span></span><br><span class="line"><span class="meta">#</span><span class="bash">data_connection_timeout=120</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 运行vsftpd需要的非特权系统用户，缺省是nobody</span></span><br><span class="line"><span class="meta">#</span><span class="bash">nopriv_user=ftpsecure</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否识别异步ABOR请求。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果FTP client会下达“async ABOR”这个指令时，这个设定才需要启用</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 而一般此设定并不安全，所以通常将其取消</span></span><br><span class="line"><span class="meta">#</span><span class="bash">async_abor_enable=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否以ASCII方式传输数据。默认情况下，服务器会忽略ASCII方式的请求。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启用此选项将允许服务器以ASCII方式传输数据</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 不过，这样可能会导致由<span class="string">"SIZE /big/file"</span>方式引起的DoS攻击</span></span><br><span class="line"><span class="meta">#</span><span class="bash">ascii_upload_enable=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash">ascii_download_enable=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 登录FTP服务器时显示的欢迎信息</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如有需要，可在更改目录欢迎信息的目录下创建名为.message的文件，并写入欢迎信息保存后</span></span><br><span class="line"><span class="meta">#</span><span class="bash">ftpd_banner=Welcome to blah FTP service.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 黑名单设置。如果很讨厌某些email address，就可以使用此设定来取消他的登录权限</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 可以将某些特殊的email address抵挡住。</span></span><br><span class="line"><span class="meta">#</span><span class="bash">deny_email_enable=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当上面的deny_email_enable=YES时，可以利用这个设定项来规定哪些邮件地址不可登录vsftpd服务器</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 此文件需用户自己创建，一行一个email address即可</span></span><br><span class="line"><span class="meta">#</span><span class="bash">banned_email_file=/etc/vsftpd/banned_emails</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 用户登录FTP服务器后是否具有访问自己目录以外的其他文件的权限</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置为YES时，用户被锁定在自己的home目录中，vsftpd将在下面chroot_list_file选项值的位置寻找chroot_list文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 必须与下面的设置项配合</span></span><br><span class="line"><span class="meta">#</span><span class="bash">chroot_list_enable=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 被列入此文件的用户，在登录后将不能切换到自己目录以外的其他目录</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 从而有利于FTP服务器的安全管理和隐私保护。此文件需自己建立</span></span><br><span class="line"><span class="meta">#</span><span class="bash">chroot_list_file=/etc/vsftpd/chroot_list</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否允许递归查询。默认为关闭，以防止远程用户造成过量的I/O</span></span><br><span class="line"><span class="meta">#</span><span class="bash">ls_recurse_enable=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否允许监听。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果设置为YES，则vsftpd将以独立模式运行，由vsftpd自己监听和处理IPv4端口的连接请求</span></span><br><span class="line">listen=YES</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设定是否支持IPV6。如要同时监听IPv4和IPv6端口，</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 则必须运行两套vsftpd，采用两套配置文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 同时确保其中有一个监听选项是被注释掉的</span></span><br><span class="line"><span class="meta">#</span><span class="bash">listen_ipv6=YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置PAM外挂模块提供的认证服务所使用的配置文件名，即/etc/pam.d/vsftpd文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 此文件中file=/etc/vsftpd/ftpusers字段，说明了PAM模块能抵挡的帐号内容来自文件/etc/vsftpd/ftpusers中</span></span><br><span class="line"><span class="meta">#</span><span class="bash">pam_service_name=vsftpd</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否允许ftpusers文件中的用户登录FTP服务器，默认为NO</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 若此项设为YES，则user_list文件中的用户允许登录FTP服务器</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 而如果同时设置了userlist_deny=YES，则user_list文件中的用户将不允许登录FTP服务器，甚至连输入密码提示信息都没有</span></span><br><span class="line"><span class="meta">#</span><span class="bash">userlist_enable=YES/NO</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置是否阻扯user_list文件中的用户登录FTP服务器，默认为YES</span></span><br><span class="line"><span class="meta">#</span><span class="bash">userlist_deny=YES/NO</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否使用tcp_wrappers作为主机访问控制方式。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tcp_wrappers可以实现linux系统中网络服务的基于主机地址的访问控制</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在/etc目录中的hosts.allow和hosts.deny两个文件用于设置tcp_wrappers的访问控制</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 前者设置允许访问记录，后者设置拒绝访问记录。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如想限制某些主机对FTP服务器192.168.57.2的匿名访问，编缉/etc/hosts.allow文件，如在下面增加两行命令：</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> vsftpd:192.168.57.1:DENY 和vsftpd:192.168.57.9:DENY</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 表明限制IP为192.168.57.1/192.168.57.9主机访问IP为192.168.57.2的FTP服务器</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 此时FTP服务器虽可以PING通，但无法连接</span></span><br><span class="line">tcp_wrappers=YES</span><br></pre></td></tr></table></figure>
+
+<p>除了上述那些基本设定，我们还可以在vsftpd.conf文件中添加更多的安全选项。其中几个常用的如下：</p>
+<p>限制最大连接数和传输速率</p>
+<p>在FTP服务器的管理中，无论对本地用户还是匿名用户，对于FTP服务器资源的使用都需要进行控控制，避免由于负担过大造成FTP服务器运行异常，可以添加以下配置项对FTP客户机使用FTP服务器资源进行控制：</p>
+<ul>
+<li><code>max_client</code>设置项 用于设置FTP服务器所允许的最大客户端连接数，值为0时表示不限制。例如<code>max_client=100</code>表示FTP服务器的所有客户端最大连接数不超过100个。</li>
+<li><code>max_per_ip</code>设置项 用于设置对于同一IP地址允许的最大客户端连接数，值为0时表示不限制。例如<code>max_per_ip=5</code>表示同一IP地址的FTP客户机与FTP服务器建立的最大连接数不超过5个。</li>
+<li><code>local_max_rate</code>设置项 用于设置本地用户的最大传输速率，单位为B/s，值为0时表示不限制。例如<code>local_max_rate=500000</code>表示FTP服务器的本地用户最大传输速率设置为500KB/s.</li>
+<li><code>anon_max_rate</code>设置项 用于设置匿名用户的最大传输速率，单位为B/s,值为0表示不限制。例如<code>ano_max_rate=200000</code>，表示FTP服务器的匿名用户最大传输速率设置为200KB/s.</li>
+</ul>
+<p>指定用户的权限设置</p>
+<p><code>vsftpd.user_list</code>文件需要与<code>vsftpd.conf</code>文件中的配置项结合来实现对于<code>vsftpd.user_list</code>文件中指定用户账号的访问控制：</p>
+<p>（1）设置禁止登录的用户账号</p>
+<p>当<code>vsftpd.conf</code>配置文件中包括以下设置时，<code>vsftpd.user_list</code>文件中的用户账号被禁止进行FTP登录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">userlist_enable=YES</span><br><span class="line">userlist_deny=YES</span><br></pre></td></tr></table></figure>
+
+<p><code>userlist_enable</code>设置项设置使用<code>vsftpd.user_list</code>文件，<code>userlist_deny</code>设置为<code>YES</code>表示<code>vsftpd.user_list</code>文件用于设置禁止的用户账号。</p>
+<p>（2）设置只允许登录的用户账号</p>
+<p>当vsftpd.conf配置文件中包括以下设置时，只有<code>vsftpd.user_list</code>文件中的用户账号能够进行FTP登录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">userlist_enable=YES</span><br><span class="line">userlist_deny=NO</span><br></pre></td></tr></table></figure>
+
+<p><code>userlist_enable</code>设置项设置使用vsftpd.user_list文件，<code>userlist _deny</code>设置为<code>NO</code>表示<code>vsftpd.usre_list</code>文件用于设置只允许登录的用户账号，文件中未包括的用户账号被禁止FTP登录。</p>
+<p><code>userlist_deny</code>和<code>userlist_enable</code>选项限制用户登录FTP服务器（使用<code>userlist_deny</code>选项和<code>user_list</code>文件一起能有效阻止<code>root,apache,www</code>等系统用户登录FTP服务器，从而保证FTP服务器的分级安全性）。以下是两个选项的具体表现形式和两种搭配使用方式的效果：</p>
+<table>
+<thead>
+<tr>
+<th align="left">配置</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Userlist_enable=YES</td>
+<td align="left">Ftpusers中用户允许访问;User_list中用户允许访问</td>
+</tr>
+<tr>
+<td align="left">Userlist_enable=NO</td>
+<td align="left">Ftpusers中用户禁止访问;User_list中用户允许访问</td>
+</tr>
+<tr>
+<td align="left">Userlist_deny=YES</td>
+<td align="left">Ftpusers中用户禁止访问（登录时可以看到密码输入提示，但仍无法访问）;user_list 中用户禁止访问</td>
+</tr>
+<tr>
+<td align="left">Userlist_deny=NO</td>
+<td align="left">ftpusers中用户禁止访问;user_list中用户允许访</td>
+</tr>
+<tr>
+<td align="left">Userlist_enable=YES 并且Userlist_deny=YES</td>
+<td align="left">Ftpusers中用户禁止访问;User_list中用户禁止访问（登录时不会出现密码提示，直接被服务器拒绝）</td>
+</tr>
+<tr>
+<td align="left">Userlist_enable=YES 并且Userlist_deny=NO</td>
+<td align="left">Ftpusers中用户禁止访问;User_list中用户允许访问</td>
+</tr>
+</tbody></table>
+<p>修改默认端口</p>
+<p>默认FTP服务器端口号是21，出于安全目的，有时需修改默认端口号，修改/etc/vsftpd/vsftpd.conf，添加语句(例)：</p>
+<p><code>listen_port=4449</code></p>
+<p>语句指定了修改后FTP服务器的端口号，应尽量大于4000。修改后访问</p>
+<p><code>#ftp 192.168.57.2 4449</code></p>
+<p>注意这里需加上正确的端口号了，否则不能正常连接。</p>
+<p>设置用户组</p>
+<p>有关FTP用户和用户组的重要性，我们在之前介绍vsftpd的时候便已经提到过。这里主要是简单的说明用户组的技术实现，至于具体如何应用，还是具体需求具体对待。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /home/try  递归创建新目录</span><br><span class="line">groupadd try        新建组</span><br><span class="line">useradd -g try -d /home/try try1 新建用户try1并指定家目录和属组</span><br><span class="line">useradd -g try -d /home/try try2 新建用户try2并指定家目录和属组</span><br><span class="line">useradd -g try -d /home/try try3 新建用户try3并指定家目录和属组</span><br><span class="line">passwd try1  为新用户设密码</span><br><span class="line">passwd try2  为新用户设密码</span><br><span class="line">passwd try3  为新用户设密码</span><br><span class="line">chown try1 /home/try 设置目录属主为用户try1</span><br><span class="line">chown .try /home/try 设置目录属组为组try</span><br><span class="line">chmod 750 /home/try  设置目录访问权限try1为读，写，执行；try2，try3为读，执行</span><br></pre></td></tr></table></figure>
+
+<p>由于本地用户登录FTP服务器后进入自己主目录，而try1,try2 try3对主目录/home/try分配的权限不同，所以通过FTP访问的权限也不同，try1访问权限为：上传，下载，建目录；try2，try3访问权限为下载，浏览，不能建目录和上传。实现了群组中用户不同访问级别，加强了对FTP服务器的分级安全管理。</p>
+<p>连接超时（本部分内容由李洋提供）</p>
+<p>配置空闲的用户会话的中断时间：如下配置将在用户会话空闲5分钟后被中断，以释放服务器的资源</p>
+<p><code>Idle_session_timeout=300</code></p>
+<p>配置空闲的数据连接的中断时间：如下配置将在数据空闲连接1分钟后被中断，同样也是为了释放服务器的资源</p>
+<p><code>Data_connection_timeout=60</code></p>
+<p>配置客户端空闲时的自动中断和激活连接的时间：如下配置将使客户端空闲1分钟后自动中断连接，并在30秒后自动激活连接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Accept_timeout=60</span><br><span class="line">Connect_timeout=30</span><br></pre></td></tr></table></figure>
+
+<h5 id="vsftpd的日志"><a href="#vsftpd的日志" class="headerlink" title="vsftpd的日志"></a>vsftpd的日志</h5><p>常见的vsftpd日志解决方案</p>
+<p>在vsftpd.conf中有如下内容定义了日志的记录方式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 表明FTP服务器记录上传下载的情况</span></span><br><span class="line">xferlog_enable=YES</span><br><span class="line"><span class="meta">#</span><span class="bash"> 表明将记录的上传下载情况写在xferlog_file所指定的文件中，即xferlog_file选项指定的文件中</span></span><br><span class="line">xferlog_std_format=YES</span><br><span class="line">xferlog_file=/var/log/xferlog</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启用双份日志。在用xferlog文件记录服务器上传下载情况的同时，</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> vsftpd_log_file所指定的文件，即/var/<span class="built_in">log</span>/vsftpd.log也将用来记录服务器的传输情况</span></span><br><span class="line">dual_log_enable=YES</span><br><span class="line">vsftpd_log_file=/var/log/vsftpd.log</span><br></pre></td></tr></table></figure>
+
+<p>vsftpd的两个日志文件分析如下：</p>
+<p>/var/log/xferlog</p>
+<p>记录内容举例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thu Sep 6 09:07:48 2007 7 192.168.57.1 4323279 /home/student/phpMyadmin-2.11.0-all-languages.tar.gz b -i r student ftp 0 * c</span><br></pre></td></tr></table></figure>
+
+<p>/var/log/vsftpd.log</p>
+<p>记录内容举例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Tue Sep 11 14:59:03 2007 [pid 3460]    CONNECT: Client "127.0.0.1"</span><br><span class="line">Tue Sep 11 14:59:24 2007 [pid 3459] [ftp] OK LOGIN;Client "127.0.0.1" ,anon password ”</span><br></pre></td></tr></table></figure>
+
+<p>/var/log/xferlog日志文件中数据的分析和参数说明</p>
+<p>|记录数据|参数名称|参数说明|<br>|Thu Sep 6 09:07:48 2007|当前时间|当前服务器本地时间，格式为： DDD MMM dd hh:mm:ss YYY|<br>|7|传输时间|传送文件所用时间，单位为秒|<br>|192.168.57.1|远程主机名称/IP|远程主机名称/IP|<br>|4323279|文件大小|传送文件的大小，单位为byte|<br>|/home/student/phpMyadmin-2.11.0-all-languages.tar.gz|文件名|传输文件名，包括路径|<br>|b|传输类型|传输方式的类型，包括两种：a以ASCII传输 b以二进制文件传输|<br>|–|特殊处理标志|特殊处理的标志位，可能的值包括：_ 不做任何特殊处理；C 文件是压缩格式；U 文件是非压缩格式；T 文件是tar格式|<br>|i|传输方向|文件传输方向，包括两种：o 从FTP服务器向客户端传输；i 从客户端向FTP服务器传输|<br>|r|访问模式|用户访问模式，包括：a 匿名用户；g 来宾用户；r 真实用户，即系统中的用户|<br>|student|用户名|用户名称|<br>|ftp|服务名|所使用的服务名称，一般为FTP|<br>|0|认证方式|认证方式，包括：0 无；1 RFC931认证|<br>|<em>|认证用户id|认证用户的id，如果使用</em>，则表示无法获得该id|<br>|c|完成状态|传输的状态：c 表示传输已完成；i 表示传输示完成|</p>
+<h5 id="常见的FTP命令，以及FTP数字代码的意义"><a href="#常见的FTP命令，以及FTP数字代码的意义" class="headerlink" title="常见的FTP命令，以及FTP数字代码的意义"></a>常见的FTP命令，以及FTP数字代码的意义</h5><p>命令格式如下显示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FTP命令</span><br><span class="line">  	功能</span><br><span class="line">  	FTP命令</span><br><span class="line">  	功能</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">	显示服务器上的目录</span><br><span class="line">  	ls [remote-dir][local-file]</span><br><span class="line">  	显示远程目录remote-dir，并存入本地文件local-file</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">get remote-file [local-file]</span><br><span class="line">	从服务器下载指定文件到客户端</span><br><span class="line">  	mget remote-files</span><br><span class="line">  	下载多个远程文件(mget命令允许用通配符下载多个文件)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">put local-file [remote-file]</span><br><span class="line">	从客户端上传指定文件到服务器</span><br><span class="line">  	mput local-file</span><br><span class="line">  	将多个文件上传至远程主机(mput命令允许用通配符上传多个文件)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">open</span><br><span class="line">	连接FTP服务器</span><br><span class="line">  	mdelete [remote-file]</span><br><span class="line">  	删除远程主机文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">close</span><br><span class="line">	中断与远程服务器的ftp会话（与open对应）</span><br><span class="line">  	mkdir dir-name</span><br><span class="line">  	在远程主机中创建目录</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">open host[port]</span><br><span class="line">	建立指定的ftp服务器连接，可指定连接端口</span><br><span class="line">  	newer file-name</span><br><span class="line">  	如果远程主机中file-name的修改时间比本地硬盘同名文件的时间更近，则重传该文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cd directory</span><br><span class="line">	改变服务器的工作目录</span><br><span class="line">  	rename [from][to]</span><br><span class="line">  	更改远程主机的文件名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">lcd directory</span><br><span class="line">	在客户端上(本地)改变工作目录</span><br><span class="line">  	pwd</span><br><span class="line">  	显示远程主机的当前工作目录</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bye</span><br><span class="line">	退出FTP命令状态</span><br><span class="line">  	quit</span><br><span class="line">  	同bye,退出ftp会话</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ascii</span><br><span class="line">	设置文件传输方式为ASCII模式</span><br><span class="line">  	reget remote-file [local-file]</span><br><span class="line">  	类似于get,但若local-file存在，则从上次传输中断处续传</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">binary</span><br><span class="line">	设置文件传输方式为二进制模式</span><br><span class="line">  	rhelp [cmd-name]</span><br><span class="line">  	请求获得远程主机的帮助</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">![cmd [args]]</span><br><span class="line">	在本地主机中交互shell后退回到ftp环境，如:!ls *.zip</span><br><span class="line">  	rstatus [file-name]</span><br><span class="line">  	若未指定文件名，则显示远程主机的状态，否则显示文件状态</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">accout [password]</span><br><span class="line">	提供登录远程系统成功后访问系统资源所需的密码</span><br><span class="line">  	hash</span><br><span class="line">  	每传输1024字节，显示一个hash符号（#）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">append local-file [remote-file]</span><br><span class="line">	将本地文件追加到远程系统主机，若未指定远程系统文件名，则使用本地文件名</span><br><span class="line">  	restart marker</span><br><span class="line">  	从指定的标志marker处，重新开始get或put，如restart 130</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bye</span><br><span class="line">	退出ftp会话过程</span><br><span class="line">  	rmdir dir-name</span><br><span class="line">  	删除远程主机目录</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">case</span><br><span class="line">	在使用mget命令时，将远程主机文件名中的大写转为小写字母</span><br><span class="line">  	size file-name</span><br><span class="line">  	显示远程主机文件大小，如：</span><br><span class="line">size idle 7200</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cd remote-dir</span><br><span class="line">	进入远程主机目录</span><br><span class="line">  	status</span><br><span class="line">  	显示当前ftp状态</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cdup</span><br><span class="line">	进入远程主机目录的父目录</span><br><span class="line">  	system</span><br><span class="line">  	显示远程主机的操作系统</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">delete remote-file</span><br><span class="line">	删除远程主机文件</span><br><span class="line">  	user user-name [password][account]</span><br><span class="line">  	向远程主机表明自己的身份，需要密码时，必须输入密码，如:user anonymous my@email</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dir [remote-dir][local-file]</span><br><span class="line">	显示远程主机目录，并将结果存入本地文件</span><br><span class="line">  	help [cmd]</span><br><span class="line">  	显示ftp内部命令cmd的帮助信息，如help get</span><br></pre></td></tr></table></figure>
+
+<p><strong>FTP数字代码的意义</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">110 重新启动标记应答。</span><br><span class="line">120 服务在多久时间内ready。</span><br><span class="line">125 数据链路端口开启，准备传送。</span><br><span class="line">150 文件状态正常，开启数据连接端口。</span><br><span class="line">200 命令执行成功。</span><br><span class="line">202 命令执行失败。</span><br><span class="line">211 系统状态或是系统求助响应。</span><br><span class="line">212 目录的状态。</span><br><span class="line">213 文件的状态。</span><br><span class="line">214 求助的讯息。</span><br><span class="line">215 名称系统类型。</span><br><span class="line">220 新的联机服务ready。</span><br><span class="line">221 服务的控制连接端口关闭，可以注销。</span><br><span class="line">225 数据连结开启，但无传输动作。</span><br><span class="line">226 关闭数据连接端口，请求的文件操作成功。</span><br><span class="line">227 进入passive mode。</span><br><span class="line">230 使用者登入。</span><br><span class="line">250 请求的文件操作完成。</span><br><span class="line">257 显示目前的路径名称。</span><br><span class="line">331 用户名称正确，需要密码。</span><br><span class="line">332 登入时需要账号信息。</span><br><span class="line">350 请求的操作需要进一部的命令。</span><br><span class="line">421 无法提供服务，关闭控制连结。</span><br><span class="line">425 无法开启数据链路。</span><br><span class="line">426 关闭联机，终止传输。</span><br><span class="line">450 请求的操作未执行。</span><br><span class="line">451 命令终止:有本地的错误。</span><br><span class="line">452 未执行命令:磁盘空间不足。</span><br><span class="line">500 格式错误，无法识别命令。</span><br><span class="line">501 参数语法错误。</span><br><span class="line">502 命令执行失败。</span><br><span class="line">503 命令顺序错误。</span><br><span class="line">504 命令所接的参数不正确。</span><br><span class="line">530 未登入。</span><br><span class="line">532 储存文件需要账户登入。</span><br><span class="line">550 未执行请求的操作。</span><br><span class="line">551 请求的命令终止，类型未知。</span><br><span class="line">552 请求的文件终止，储存位溢出。  </span><br><span class="line">553 未执行请求的的命令，名称不正确。</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h3><ol>
+<li>设置vsftpd服务匿名用户能够对/var/ftp/test/目录有上传下载的权限。</li>
+<li>系统用户能够访问家目录，上传下载删除</li>
+<li>除了系统用户batman有chroot的权限，其他系统用户没有chroot的权限</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="pic/05.png" alt="05"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>FTP文件共享服务</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">11.3k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
+    <p><span class="copy-title">发布时间:</span>2016-12-22, 21:06:27</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 05:02:31</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/23/booboo_easy_service/02_ftp/" title="FTP文件共享服务">http://www.toberoot.com/2016/12/23/booboo_easy_service/02_ftp/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'af999a0c30ad557db57d',
+            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+            repo: 'booboowei.github.io',
+            owner: 'booboowei',
+            admin: ['booboowei'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018-2020 BoobooWei</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#宝宝成长','#培训','#Linux基础服务','#Linux','#数据救援','#hexo','#SQL优化','#锁故障','#RDS','#主从同步',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 622px;
+    }
+    .nav.fullscreen {
+        margin-left: -622px;
+    }
+    .nav-left {
+        width: 200px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

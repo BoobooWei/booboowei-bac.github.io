@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>APACHE WEB服务 | Amy and Booboo</title>
+  <meta name="keywords" content=" 培训 , Linux基础服务 ">
+  <meta name="description" content="APACHE WEB服务 | Amy and Booboo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amy and Booboo">
+<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta property="article:published_time" content="2020-03-22T14:48:00.876Z">
+<meta property="article:modified_time" content="2020-03-22T14:48:00.875Z">
+<meta property="article:author" content="BoobooWei">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/influx.svg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my.png" />
+</a>
+<div class="author">
+    <span>BoobooWei</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(35)</small></div></li>
+    
+        
+            
+            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(23)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="35">
+<input type="hidden" id="yelog_site_word_count" value="129.1k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
+            
+            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
+            
+            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color5">宝宝成长</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">培训</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Linux基础服务</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Linux</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据救援</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SQL优化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">锁故障</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">RDS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">主从同步</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
+            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
+            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
+            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
+            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="家长会">家长会</span>
+            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
+            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/02_ftp/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/03_nfs/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/01_dns/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/04_samba/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/05_apache/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/ule-online/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/00-linux_history/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 内核">Linux 内核</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
+            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
+        </a>
+        
+        <a  class="技术广角 Hexo "
+           href="/2020/03/22/booboo_others/hello-world/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
+        </a>
+        
+        <a  class="技术广角 Oracle "
+           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
+           data-tag="SQL优化"
+           data-author="" >
+            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
+            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="锁故障"
+           data-author="" >
+            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
+            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
+           data-tag="RDS,主从同步"
+           data-author="" >
+            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
+            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
+        </a>
+        
+        <a  class="技术广角 MongoDB "
+           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
+            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-booboo_easy_service/05_apache" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">APACHE WEB服务</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="技术培训">技术培训</a>/
+            
+                <a  data-rel="Linux简易服务教程">Linux简易服务教程</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color3">培训</a>
+            
+            <a class="color5">Linux基础服务</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-03-24 05:02:31'>2016-12-22 21:06</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:5.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web基础"><span class="toc-text">Web基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache的简介"><span class="toc-text">Apache的简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache的软件结构"><span class="toc-text">Apache的软件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache虚拟主机方案"><span class="toc-text">Apache虚拟主机方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache实践"><span class="toc-text">Apache实践</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践1：配置基于端口的虚拟主机"><span class="toc-text">项目实践1：配置基于端口的虚拟主机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践2：配置基于名称的虚拟主机"><span class="toc-text">项目实践2：配置基于名称的虚拟主机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践3：配置基于名称的虚拟主机针对某一个目录做限制"><span class="toc-text">项目实践3：配置基于名称的虚拟主机针对某一个目录做限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践4：配置基于名称的虚拟主机-别名"><span class="toc-text">项目实践4：配置基于名称的虚拟主机_别名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践4：配置基于名称的虚拟主机-用户名和密码访问"><span class="toc-text">项目实践4：配置基于名称的虚拟主机_用户名和密码访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践5：在rhel7中搭建apahce，实现以下功能"><span class="toc-text">项目实践5：在rhel7中搭建apahce，实现以下功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache配置文件-etc-httpd-conf-httpd-conf"><span class="toc-text">Apache配置文件&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;httpd.conf</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Web基础"><a href="#Web基础" class="headerlink" title="Web基础"></a>Web基础</h3><p>我们平时上网的时候，输入网址的时候都会输入什么，<a href="http://www.baidu.com，对不对，那么这个www是什么呢？这个www代表的是world">www.baidu.com，对不对，那么这个www是什么呢？这个www代表的是world</a> wide web，WWW可以让Web客户端（常用浏览器）访问浏览Web服务器上的页面。 它是一个由许多互相链接的超文本组成的系统，通过互联网访问，在这个系统中，每个有用的事物，称为一样“资源”；并且由一个全局“统一资源标识符”（URL）标识；这些资源通过超文本传输协议（Hypertext Transfer Protocol）传送给用户，而后者通过点击链接来获得资源。</p>
+<p>HTTP是Hypertext Transfer Protocol的缩写，即超文本传输协议。 顾名思义，HTTP提供了访问超文本信息的功能，是WWW浏览器和WWW服务器之间的应用层通信协议。HTTP协议是用于分布式协作超文本信息系统的、通用的、面向对象的协议。通过扩展命令，它可用于类似的任务，如域名服务或分布式面向对象系统。WWW使用HTTP协议传输各种超文本页面和数据。</p>
+<p>网页文件是用HTML（标准通用标记语言下的一个应用）编写的，可在WWW上传输，能被浏览器识别显示的文本文件。其扩展名是.htm和.html。</p>
+<p>Web的服务器最常见的有windows上的IIS，还有linux上的apache。另外还有例如nginx等的轻量级服务器。都是比较常用的一些服务器。我们基础课主要简单介绍一些apache的一个简单搭建。</p>
+<h3 id="Apache的简介"><a href="#Apache的简介" class="headerlink" title="Apache的简介"></a>Apache的简介</h3><ul>
+<li>HTTP (Web) server、开源、1995年</li>
+<li>官网： <a href="http://httpd.apache.org/" target="_blank" rel="noopener">http://httpd.apache.org/</a></li>
+</ul>
+<p>Apache 起初由 Illinois 大学 Urbana-Champaign 的国家高级计算程序中心开发。此后，Apache 被开放源代码团体的成员不断的发展和加强。Apache 服务器拥有牢靠可信的美誉，已用在超过半数的因特网站中－特别是几乎所有最热门和访问量最大的网站。</p>
+<p>开始，Apache只是Netscape网页服务器（现在是Sun ONE）的之外的开放源代码选择。渐渐的，它开始在功能和速度。超越其他的基于Unix的HTTP服务器。1996年4月以来，Apache一直是Internet上最流行的HTTP服务器: 1999年5月它在 57% 的网页服务器上运行；到了2005年7月这个比例上升到了69%。</p>
+<p>作者宣称因为这个名字好记才在最初选择它，但是流传最广的解释是（也是最显而易见的）:这个名字来自这么一个事实:当Apache在1995年初开发的时候，它是由当时最流行的HTTP服务器NCSA HTTPd 1.3 的代码修改而成的，因此是“一个修补的（a patchy）”服务器。然而在服务器官方网站的FAQ中是这么解释的:“‘Apache’这个名字是为了纪念名为Apache(印地语)的美洲印第安人土著的一支，众所周知他们拥有高超的作战策略和无穷的耐性”。</p>
+<p>Apache的软件名称就叫做httpd，这里要注意一下，这里我们以el6作为服务器，el7作为客户端。</p>
+<h3 id="Apache的软件结构"><a href="#Apache的软件结构" class="headerlink" title="Apache的软件结构"></a>Apache的软件结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apache</span><br><span class="line">软件			 httpd</span><br><span class="line">					rhel6	httpd-2.2.15-29.el6_4.x86_64</span><br><span class="line">					rhel7	httpd-2.4.6-17.el7.x86_64</span><br><span class="line">service		httpd</span><br><span class="line">daemon		httpd</span><br><span class="line">端口			80</span><br><span class="line">配置文件	/etc/httpd/conf/httpd.conf</span><br><span class="line">				/etc/httpd/conf.d/*.conf</span><br><span class="line">数据文件	/var/www/</span><br><span class="line">				/var/www/uplooking/	www.uplooking.com----网站根目录</span><br><span class="line">日志文件	/var/log/httpd</span><br></pre></td></tr></table></figure>
+
+<h3 id="Apache虚拟主机方案"><a href="#Apache虚拟主机方案" class="headerlink" title="Apache虚拟主机方案"></a>Apache虚拟主机方案</h3><ol>
+<li>基于端口的虚拟主机<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www.uplooking.com:80	----&gt;	/var/www/uplooking.com/</span><br><span class="line">www.uplooking.com:8080	----&gt;	/var/www/abc.com/</span><br></pre></td></tr></table></figure></li>
+<li>基于名称的虚拟主机<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www.uplooking.com----/var/www/uplooking.com/</span><br><span class="line">www.abc.com----/var/www/abc.com/</span><br></pre></td></tr></table></figure>
+<h3 id="Apache实践"><a href="#Apache实践" class="headerlink" title="Apache实践"></a>Apache实践</h3></li>
+</ol>
+<h4 id="项目实践1：配置基于端口的虚拟主机"><a href="#项目实践1：配置基于端口的虚拟主机" class="headerlink" title="项目实践1：配置基于端口的虚拟主机"></a>项目实践1：配置基于端口的虚拟主机</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">	8080---&gt;</span><span class="bash">/var/www/8080.com/</span></span><br><span class="line">*******************************************</span><br><span class="line">1)修改主配置文件，打开要监听的端口号</span><br><span class="line">[root@rhel6 ~]# vim /etc/httpd/conf/httpd.conf</span><br><span class="line">Listen 80</span><br><span class="line">Listen 8080</span><br><span class="line">2)为不同的虚拟主机创建配置文件</span><br><span class="line">[root@rhel6 conf.d]# pwd</span><br><span class="line">/etc/httpd/conf.d</span><br><span class="line">[root@rhel6 conf.d]# vim 8080.conf</span><br><span class="line">&lt;VirtualHost *:8080&gt;</span><br><span class="line">    ServerAdmin booboo@8080.com</span><br><span class="line">    DocumentRoot /var/www/8080.com</span><br><span class="line">    ServerName www.8080.com</span><br><span class="line">    ErrorLog logs/8080.com-error_log</span><br><span class="line">    CustomLog logs/8080.com-access_log common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">3.创建网站根目录，并创建网站默认首页</span><br><span class="line">[root@rhel6 conf.d]# mkdir /var/www/8080.com</span><br><span class="line">[root@rhel6 conf.d]# echo 8080.com &gt; /var/www/8080.com/index.html</span><br><span class="line">4.重启服务</span><br><span class="line">[root@rhel6 conf.d]# service httpd start</span><br></pre></td></tr></table></figure>
+
+<p>拓展8081和8082端口</p>
+<ol>
+<li>关闭selinux</li>
+<li>配置selinux安全上下文，允许httpd监听8081和8082端口<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 conf.d]# semanage port -l|grep http</span><br><span class="line">http_cache_port_t              tcp      3128, 8080, 8118, 8123, 10001-10010</span><br><span class="line">http_cache_port_t              udp      3130</span><br><span class="line">http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000</span><br><span class="line">pegasus_http_port_t            tcp      5988</span><br><span class="line">pegasus_https_port_t           tcp      5989</span><br><span class="line"></span><br><span class="line">[root@rhel6 conf.d]# semanage port -a -t http_port_t -p tcp 8081</span><br><span class="line">[root@rhel6 conf.d]# semanage port -a -t http_port_t -p tcp 8082</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="项目实践2：配置基于名称的虚拟主机"><a href="#项目实践2：配置基于名称的虚拟主机" class="headerlink" title="项目实践2：配置基于名称的虚拟主机"></a>项目实践2：配置基于名称的虚拟主机</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">	www.taobao.com		/var/www/taobao.com/</span><br><span class="line">	www.abc.com		/var/www/abc.com/</span><br><span class="line">*******************************************************</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">服务端</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">1.修改主配置文件</span><br><span class="line">[root@rhel6 conf.d]# vim /etc/httpd/conf/httpd.conf</span><br><span class="line">NameVirtualHost *:80</span><br><span class="line">2.创建拓展配置文件</span><br><span class="line">[root@rhel6 conf.d]# vim taobao.conf</span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerAdmin booboo@taobao.com</span><br><span class="line">    DocumentRoot /var/www/taobao.com</span><br><span class="line">    ServerName www.taobao.com</span><br><span class="line">    ErrorLog logs/taobao.com-error_log</span><br><span class="line">    CustomLog logs/taobao.com-access_log common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory "/var/www/taobao.com/"&gt;</span><br><span class="line">    Options Indexes ==&gt;如果没有对应的index文件，就将该目录下的其他文件罗列出来。</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">[root@rhel6 conf.d]# vim abc.conf</span><br><span class="line">[root@rhel6 conf.d]# cat abc.conf</span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerAdmin booboo@abc.com</span><br><span class="line">    DocumentRoot /var/www/abc.com</span><br><span class="line">    ServerName www.abc.com</span><br><span class="line">    ErrorLog logs/abc.com-error_log</span><br><span class="line">    CustomLog logs/abc.com-access_log common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory "/var/www/abc.com/"&gt;</span><br><span class="line">    Options Indexes</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">[root@rhel6 conf.d]# mkdir /var/www/taobao.com</span><br><span class="line">[root@rhel6 conf.d]# mkdir /var/www/abc.com</span><br><span class="line">[root@rhel6 conf.d]# echo www.taobao.com &gt; /var/www/taobao.com/index.html</span><br><span class="line">[root@rhel6 conf.d]# echo www.abc.com &gt; /var/www/abc.com/index.html</span><br><span class="line">[root@rhel6 conf.d]# service httpd restart</span><br><span class="line">==================================================================================================</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">客户端</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">1.安装elinks软件，bash下的一个网站浏览软件</span><br><span class="line">[root@rhel7 mnt]# yum install -y elinks</span><br><span class="line">2.添加域名解析</span><br><span class="line">[root@rhel7 mnt]# cat /etc/hosts</span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line">172.25.0.11	www.taobao.com</span><br><span class="line">172.25.0.11	www.abc.com</span><br><span class="line">3.通过links命令访问www.taobao.com和www.abc.com</span><br><span class="line">[root@rhel7 mnt]# links www.taobao.com</span><br><span class="line">[root@rhel7 mnt]# links www.abc.com</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">-X 带图形化界面的远程登录</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">[kiosk@foundation0 Desktop]$ ssh root@172.25.0.10 -X</span><br><span class="line">Last login: Fri Aug  5 03:14:10 2016</span><br><span class="line">/usr/bin/xauth:  file /root/.Xauthority does not exist</span><br><span class="line">[root@rhel7 ~]# firefox</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="项目实践3：配置基于名称的虚拟主机针对某一个目录做限制"><a href="#项目实践3：配置基于名称的虚拟主机针对某一个目录做限制" class="headerlink" title="项目实践3：配置基于名称的虚拟主机针对某一个目录做限制"></a>项目实践3：配置基于名称的虚拟主机针对某一个目录做限制</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Directory是针对某一个目录做限制的意思。</span><br><span class="line">	Options</span><br><span class="line">		Indexes的意思代表如果没有对应的index文件，就将该目录下的其他文件罗列出来。</span><br><span class="line">		Multiview代表的是多视图</span><br><span class="line">		Follow sysmlink代表允许连接到其他目录。</span><br><span class="line">	AllowOverride None</span><br><span class="line">	最常用的是：</span><br><span class="line">	Order allow,deny</span><br><span class="line">	Allow from All</span><br><span class="line">	deny from 172.25.0.10==&gt;该目录允许所有人，除了172.25.0.11</span><br><span class="line">	或者</span><br><span class="line">	Order deny,allow</span><br><span class="line">	deny from All</span><br><span class="line">	allow from 172.25.0.10==&gt;该目录不允许所有人，除了172.25.0.11</span><br></pre></td></tr></table></figure>
+
+<h4 id="项目实践4：配置基于名称的虚拟主机-别名"><a href="#项目实践4：配置基于名称的虚拟主机-别名" class="headerlink" title="项目实践4：配置基于名称的虚拟主机_别名"></a>项目实践4：配置基于名称的虚拟主机_别名</h4><ul>
+<li>别名        alias<ul>
+<li>作用在访问该目录的时候,无论之前的虚拟主机站点名是什么,会统一转到某一个指定的目录。</li>
+</ul>
+</li>
+</ul>
+<p><code>Alias /download/ /&quot;var/www/soft/&quot;</code></p>
+<p>访问 download 目录时,无论站点名是什么,都会交给 var/www/soft/ 去处理,注意:代表目录时,最后一个 / 不能省略</p>
+<h4 id="项目实践4：配置基于名称的虚拟主机-用户名和密码访问"><a href="#项目实践4：配置基于名称的虚拟主机-用户名和密码访问" class="headerlink" title="项目实践4：配置基于名称的虚拟主机_用户名和密码访问"></a>项目实践4：配置基于名称的虚拟主机_用户名和密码访问</h4><ul>
+<li>1）配置文件中添加认证    AllowOverride AuthConfig<ul>
+<li>2）创建认证文件和用户密码    htpasswd -cmb /etc/httpd/test booboo uplooking</li>
+<li>3）新增用户和密码        htpasswd -bm /etc/httpd/test tom uplooking</li>
+<li>4）删除用户        htpasswd -D /etc/httpd/test jack</li>
+<li>5）修改密码        先删除再创建</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">设置用户和密码</span><br><span class="line">&lt;Directory "/var/www/booboo.com/football/"&gt;</span><br><span class="line">Options Indexes MultiViews FollowSymLinks</span><br><span class="line">AllowOverride AuthConfig</span><br><span class="line"><span class="meta">#</span><span class="bash">仅有网页认证 ( 账号密码 ) 可覆写 ;</span></span><br><span class="line">AuthName "student"</span><br><span class="line"><span class="meta">#</span><span class="bash">在要你输入账号与密码的对话窗口中 , 出现的『提示字符』</span></span><br><span class="line">AuthType basic</span><br><span class="line"><span class="meta">#</span><span class="bash"> 认证的类型</span></span><br><span class="line">AuthUserFile "/etc/httpd/test"</span><br><span class="line"><span class="meta">#</span><span class="bash"> 这个目录所使用的账号密码配置文件</span></span><br><span class="line">Require valid-user</span><br><span class="line"><span class="meta">#</span><span class="bash"> 后面接可以使用的账号 , 此处是让该密码文件内的用户都能够登入</span></span><br><span class="line">Order allow,deny</span><br><span class="line">Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 通过htpasswd添加用户和密码</span></span><br><span class="line">[root@rhel6 conf.d]# htpasswd -cmb /etc/httpd/test booboo uplooking</span><br><span class="line">Adding password for user student</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再添加一个用户和密码</span></span><br><span class="line">[root@rhel6 www]# htpasswd -bm /etc/httpd/test tom uplooking</span><br><span class="line">Adding password for user tom</span><br><span class="line">[root@rhel6 www]# htpasswd -bm /etc/httpd/test jack uplooking</span><br><span class="line">Adding password for user jack</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看保存apache用户名和密码的文件内容</span></span><br><span class="line">[root@rhel6 www]# cat /etc/httpd/test</span><br><span class="line">booboo:$apr1$y6g/XYrn$eEOR4WeAPfONSLExj7x2D1</span><br><span class="line">tom:$apr1$epxVgzER$Or7.R0.5s3z8FbPKrOS1e1</span><br><span class="line">jack:$apr1$Alo3.7mf$3CmcCG9mXp7eEALUsa3YY1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除用户</span></span><br><span class="line">[root@rhel6 www]# htpasswd -D /etc/httpd/test jack</span><br><span class="line">Deleting password for user jack</span><br><span class="line">[root@rhel6 www]# cat /etc/httpd/test</span><br><span class="line">booboo:$apr1$y6g/XYrn$eEOR4WeAPfONSLExj7x2D1</span><br><span class="line">tom:$apr1$epxVgzER$Or7.R0.5s3z8FbPKrOS1e1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改用户密码只能先删除再创建</span></span><br><span class="line">[root@rhel6 abc.com]# htpasswd --help</span><br><span class="line">Usage:</span><br><span class="line">	htpasswd [-cmdpsD] passwordfile username</span><br><span class="line">	htpasswd -b[cmdpsD] passwordfile username password</span><br><span class="line"></span><br><span class="line">	htpasswd -n[mdps] username</span><br><span class="line">	htpasswd -nb[mdps] username password</span><br><span class="line"> -c  Create a new file.</span><br><span class="line"> -n  Don\'t update file; display results on stdout.</span><br><span class="line"> -m  Force MD5 encryption of the password.</span><br><span class="line"> -d  Force CRYPT encryption of the password (default).</span><br><span class="line"> -p  Do not encrypt the password (plaintext).</span><br><span class="line"> -s  Force SHA encryption of the password.</span><br><span class="line"> -b  Use the password from the command line rather than prompting for it.</span><br><span class="line"> -D  Delete the specified user.</span><br><span class="line">On Windows, NetWare and TPF systems the '-m' flag is used by default.</span><br><span class="line">On all other systems, the '-p' flag will probably not work.</span><br></pre></td></tr></table></figure>
+<h4 id="项目实践5：在rhel7中搭建apahce，实现以下功能"><a href="#项目实践5：在rhel7中搭建apahce，实现以下功能" class="headerlink" title="项目实践5：在rhel7中搭建apahce，实现以下功能"></a>项目实践5：在rhel7中搭建apahce，实现以下功能</h4><ul>
+<li><p>配置基于名称的虚拟主机 <a href="http://www.abc.com" target="_blank" rel="noopener">www.abc.com</a> 和 <a href="http://www.uplooking.com" target="_blank" rel="noopener">www.uplooking.com</a></p>
+</li>
+<li><p>只允许rhel6 172.25.0.11 能够访问 <a href="http://www.uplooking.com" target="_blank" rel="noopener">www.uplooking.com</a> </p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">rhel6	rhel7</span><br><span class="line">2.2	2.4</span><br><span class="line">order	require</span><br><span class="line"></span><br><span class="line">》eg1:所有请求都被拒绝</span><br><span class="line">order deny,allow //先拒绝，后允许</span><br><span class="line">deny from all	//拒绝所有</span><br><span class="line">------------------------------</span><br><span class="line">require all denied //拒绝所有</span><br><span class="line"></span><br><span class="line">》eg2：所有请求都允许</span><br><span class="line">order allow，deny //先允许，后拒绝</span><br><span class="line">allow from all</span><br><span class="line">------------------------------------</span><br><span class="line">require all granted</span><br><span class="line"></span><br><span class="line">》拒绝172.25.0.10/test.uplooking.com 的请求</span><br><span class="line">order allow，deny //先允许，后拒绝</span><br><span class="line">allow from all</span><br><span class="line">deny from 172.25.0.10</span><br><span class="line">-------------------------------------</span><br><span class="line">require  all granted</span><br><span class="line">require no ip 172.25.0.10</span><br><span class="line">require no host test.uplooking.com</span><br><span class="line"></span><br><span class="line">》只允许172.25.3.10和172.25.0.0/24 uplooking.com 的请求</span><br><span class="line">order deny，allow //先决绝，后允许</span><br><span class="line">deny from all</span><br><span class="line">allow from 172.25.3.10</span><br><span class="line">allow from 172.25.0.0/24</span><br><span class="line">-------------------------------------</span><br><span class="line">require all denied</span><br><span class="line">require ip 172.25.3.10 172.25.0</span><br><span class="line">require host  uplooking.com</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Apache配置文件-etc-httpd-conf-httpd-conf"><a href="#Apache配置文件-etc-httpd-conf-httpd-conf" class="headerlink" title="Apache配置文件/etc/httpd/conf/httpd.conf"></a>Apache配置文件/etc/httpd/conf/httpd.conf</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">1）</span><br><span class="line"><span class="meta">#</span><span class="bash"> ServerRoot “/etc/httpd“</span></span><br><span class="line">	ServerRoot用于指定守护进程httpd的运行目录，httpd在启动之后将自动将进程的当前目录改变为这个目录，因此如果设置文件中指定的文件或目录是相对路径，那么真实路径就位于这个ServerR oot定义的路径之下。</span><br><span class="line"></span><br><span class="line">2）</span><br><span class="line">hhhidFile /var/run/httpd.pid</span><br><span class="line">	PidFile指定的文件将记录httpd守护进程的进程号，由于httpd能自动复制其自身，因此系统中有多个httpd进程，但只有一个进程为最初启动的进程，它为其他进程的父进程，对这个进程发送信号将影响所有的httpd进程。PidFILE定义的文件中就记录httpd父进程的进程号。</span><br><span class="line">　　</span><br><span class="line"><span class="meta">#</span><span class="bash"> Timeout 300</span></span><br><span class="line">	Timeout定义客户程序和服务器连接的超时间隔，超过这个时间间隔（秒）后服务器将断开与客户机的连接。</span><br><span class="line"><span class="meta">#</span><span class="bash"> KeepAlive On</span></span><br><span class="line">	在HTTP 1.0中，一次连接只能作传输一次HTTP请求，而KeepAlive参数用于支持HTTP 1.1版本的一次连接、多次传输功能，这样就可以在一次连接中传递多个HTTP请求。不过只有较新的浏览器才支持这个功能</span><br><span class="line"><span class="meta">#</span><span class="bash"> MaxKeepAliveRequests 100</span></span><br><span class="line">	MaxKeepAliveRequests为一次连接可以进行的HTTP请求的最大请求次数。将其值设为0将支持在一次连接内进行无限次的传输请求。事实上没有客户程序在一次连接中请求太多的页面，通常达不到这个上限就完成连接了。</span><br><span class="line"><span class="meta">#</span><span class="bash"> KeepAliveTimeout 15</span></span><br><span class="line">	KeepAliveTimeout测试一次连接中的多次请求传输之间的时间，如果服务器已经完成了一次请求，但一直没有接收到客户程序的下一次请求，在间隔超过了这个参数设置的值之后，服务器就断开连接。</span><br><span class="line"><span class="meta">#</span><span class="bash"> ThreadsPerChild 50</span></span><br><span class="line">	设置服务器使用进程的数目。这是以服务器的响应速度为准的, 数目太大则会变慢</span><br><span class="line"><span class="meta">#</span><span class="bash"> MaxRequestsPerChild 30</span></span><br><span class="line">	使用子进程的方式提供服务的Web服务，常用的方式是一个子进程为一次连接服务，这样造成的问题就是每次连接都需要生成、退出子进程的系统操作，使得这些额外的处理过程占据了计算机的大量处理能力。因此最好的方式是一个子进程可以为多次连接请求服务，这样就不需要这些生成、退出进程的系统消耗，Apache就采用了这样的方式，一次连接结束后，子进程并不退出，而是停留在系统中等待下一次服务请求，这样就极大的提高了性能。但由于在处理过程中子进程要不断的申请和释放内存，次数多了就会造成一些内存垃圾，就会影响系统的稳定性，并且影响系统资源的有效利用。因此在一个副本处理过一定次数的请求之后，就可以让这个子进程副本退出，再从原始的htt pd进程中重新复制一个干净的副本，这样就能提高系统的稳定性。这样，每个子进程处理服务请求次数由MaxRe questPerChild定义。 缺省的设置值为30，这个值对于具备高稳定性特点的FreeBSD系统来讲是过于保守的设置，可以设置为1000甚至更高，设置为0支持每个副本进行无限次的服务处理。　　　　</span><br><span class="line"><span class="meta">#</span><span class="bash"> ServerAdmin root@localhost</span></span><br><span class="line">	配置文件中应该改变的也许只有ServerAdmin， 这一项用于配置WWW服务器的管理员的email地址，这将在HTTP服务出现错误的条件下返回给浏览器，以便让Web使用者和管理员联系，报告错误。习惯上使用服务器上的webmaster作为WWW服务器的管理员，通过邮件服务器的别名机制，将发送到webmaster 的电子邮件发送给真正的Web管理员。</span><br><span class="line"><span class="meta">#</span><span class="bash"> ServerName localhost</span></span><br><span class="line">	缺省情况下，并不需要指定这个ServerName参数，服务器将自动通过名字解析过程来获得自己的名字，但如果服务器的名字解析有问题（通常为反向解析不正确），或者没有正式的DNS名字，也可以在这里指定I P地址。当ServerName设置不正确的时候，服务器不能正常启动。</span><br><span class="line">通常一个Web服务器可以具有多个名字，客户浏览器可以使用所有这些名字或IP地址来访问这台服务器，但在没有定义虚拟主机的情况下，服务器总是以自己的正式名字回应浏览器。ServerName就定义了Web服务器自己承认的正式名字，例如一台服务器名字（在DNS中定义了A类型）为freebsd.exmaple.org.cn，同时为了方便记忆还定义了一个别名（CNAME记录）为www.exmaple.org.cn，那么Apache自动解析得到的名字就为freebsd.example.org.cn，这样不管客户浏览器使用哪个名字发送请求，服务器总是告诉客户程序自己为freebsd.example.org.cn。虽然这一般并不会造成什么问题，但是考虑到某一天服务器可能迁移到其他计算机上，而只想通过更改DNS中的www别名配置就完成迁移任务，所以不想让客户在其书签中使用 freebsd记录下这个服务器的地址，就必须使用ServerName来重新指定服务器的正式名字。</span><br><span class="line">　　</span><br><span class="line">3）</span><br><span class="line"><span class="meta">#</span><span class="bash"> DocumentRoot “/var/www/html“</span></span><br><span class="line">	DocumentRoot定义这个服务器对外发布的超文本文档存放的路径，客户程序请求的UR L就被映射为这个目录下的网页文件。这个目录下的子目录，以及使用符号连接指出的文件和目录都能被浏览器访问，只是要在URL上使用同样的相对目录名。注意，符号连接虽然逻辑上位于根文档目录之下，但实际上可以位于计算机上的任意目录中，因此可以使客户程序能访问那些根文档目录之外的目录，这在增加了灵活性的同时但减少了安全性。Apache在目录的访问控制中提供了FollowSymLinks选项来打开或关闭支持符号连接的特性。</span><br><span class="line">4）</span><br><span class="line"><span class="meta">#</span><span class="bash"> &lt;Directory /&gt;</span></span><br><span class="line">　　 Options FollowSymLinks</span><br><span class="line">　　 AllowOverride None</span><br><span class="line">　　&lt;/Directory&gt;</span><br><span class="line">	Apache服务器可以针对目录进行文档的访问控制，然而访问控制可以通过两种方式来实现，一个是在设置文件 httpd.conf（或access.conf）中针对每个目录进行设置，另一个方法是在每个目录下设置访问控制文件，通常访问控制文件名字为.htaccess。虽然使用这两个方式都能用于控制浏览器的访问，然而使用配置文件的方法要求每次改动后重新启动httpd守护进程，比较不灵活，因此主要用于配置服务器系统的整体安全控制策略，而使用每个目录下的.htaccess文件设置具体目录的访问控制更为灵活方便.</span><br><span class="line">　	由于Apache对一个目录的访问控制设置是能够被下一级目录继承的，因此对根目录的设置将影响到它的下级目录。注意由于AllowOverride None的设置，使得Apache服务器不需要查看根目录下的访问控制文件，也不需要查看以下各级目录下的访问控制文件，直至httpd.conf（或access.conf ）中为某个目录指定了允许Alloworride，即允许查看访问控制文件。由于Apache对目录访问控制是采用的继承方式，如果从根目录就允许查看访问控制文件，那么Apache就必须一级一级的查看访问控制文件，对系统性能会造成影响。而缺省关闭了根目录的这个特性，就使得Apache从httpd.conf中具体指定的目录向下搜寻，减少了搜寻的级数，增加了系统性能。因此对于系统根目录设置AllowOverride None不但对于系统安全有帮助，也有益于系统性能。</span><br><span class="line">　　&lt;Directory /&gt;</span><br><span class="line">   Options Indexes FollowSymLinks</span><br><span class="line">　　 AllowOverride None</span><br><span class="line">　　 Order allow,deny</span><br><span class="line">　　 Allow from all</span><br><span class="line">　　&lt;/Directory&gt;</span><br><span class="line">	这里定义的是系统对外发布文档的目录的访问设置，设置不同的AllowOverride选项，以定义配置文件中的目录设置和用户目录下的安全控制文件的关系，而Options选项用于定义该目录的特性。</span><br><span class="line"><span class="meta">#</span><span class="bash">  ErrorLog /var/<span class="built_in">log</span>/httpd-error.log</span></span><br><span class="line">　　LogLevel warn</span><br><span class="line">　　LogFormat “%h %l %u %t \“%r\“ %&gt;s %b \“%&#123;Referer&#125;i\“ \“%&#123;User-Agent&#125;i\““ combined</span><br><span class="line">　　LogFormat “%h %l %u %t \“%r\“ %&gt;s %b“ common</span><br><span class="line">　　LogFormat “%&#123;Referer&#125;i -&gt; %U“ referer</span><br><span class="line">　　LogFormat “%&#123;User-agent&#125;i“ agent</span><br><span class="line"><span class="meta">　　#</span><span class="bash">CustomLog /var/<span class="built_in">log</span>/httpd-access.log common</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash">CustomLog /var/<span class="built_in">log</span>/httpd-referer.log referer</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash">CustomLog /var/<span class="built_in">log</span>/httpd-agent.log agent</span></span><br><span class="line">　　CustomLog /var/log/httpd-access.log combined</span><br><span class="line">	这里定义了系统日志的形式，对于服务器错误记录，由ErrorLog、LogLevel 来定义不同的错误日志文件及其记录内容。 这是通过在 CustomLog中指定不同的记录类型来完成的。common表示普通的对单页面请求访问记录，referer表示每个页面的引用记录，可以看出一个页面中包含的请求数，agent表示对客户机的类型记录，显然可以将现有的combined 定义的设置行注释掉，并使用common、referer和agent作为CustomLog的参数，来为不同种类的日志分别指定日志记录文件。显然，LogFormat是用于定义不同类型的日志进行记录时使用的格式， 这里使用了以%开头的宏定义，以记录不同的内容。</span><br><span class="line">如果这些参数指定的文件使用的是相对路径，那么就是相对于ServerRoot的路径。</span><br><span class="line"><span class="meta">#</span><span class="bash"> Alias /icons/ “/usr/<span class="built_in">local</span>/www/icons/“</span></span><br><span class="line">　　 Options Indexes MultiViews</span><br><span class="line">　　 AllowOverride None</span><br><span class="line">　　 Order allow,deny</span><br><span class="line">　　 Allow from all</span><br><span class="line">	Alias参数用于将URL与服务器文件系统中的真实位置进行直接映射，一般的文档将在DocumentRoot 中进行查询，然而使用Alias定义的路径将直接映射到相应目录下，而不再到DocumentRoot 下面进行查询。因此Alias可以用来映射一些公用文件的路径，例如保存了各种常用图标的icons路径。这样使得除了使用符号连接之外，文档根目录（DocumentRoot）外的目录也可以通过使用了Alias映射，提供给浏览器访问。</span><br><span class="line">定义好映射的路径之后，应该需要使用Directory语句设置访问限制。</span><br><span class="line"><span class="meta">　　#</span><span class="bash">NameVirtualHost 12.34.56.78:80</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash">NameVirtualHost 12.34.56.78</span></span><br><span class="line"><span class="meta">　　#</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash"> ServerAdmin webmaster@host.some_domain.com</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash"> DocumentRoot /www/docs/host.some_domain.com</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash"> ServerName host.some_domain.com</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash"> ErrorLog logs/host.some_domain.com-error_log</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash"> CustomLog logs/host.some_domain.com-access_log common</span></span><br><span class="line"><span class="meta">　　#</span></span><br><span class="line">	这个字段是虚拟主机的相关内容，虚拟主机是在一台Web服务器上，可以为多个单独域名提供Web服务，并且每个域名都完全独立，包括具有完全独立的文档目录结构及设置，这样域名之间完全独立，不但使用每个域名访问到的内容完全独立，并且使用另一个域名无法访问其他域名提供的网页内容。</span><br></pre></td></tr></table></figure>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>APACHE WEB服务</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">5.4k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
+    <p><span class="copy-title">发布时间:</span>2016-12-22, 21:06:27</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 05:02:31</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/23/booboo_easy_service/05_apache/" title="APACHE WEB服务">http://www.toberoot.com/2016/12/23/booboo_easy_service/05_apache/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'af999a0c30ad557db57d',
+            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+            repo: 'booboowei.github.io',
+            owner: 'booboowei',
+            admin: ['booboowei'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018-2020 BoobooWei</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#宝宝成长','#培训','#Linux基础服务','#Linux','#数据救援','#hexo','#SQL优化','#锁故障','#RDS','#主从同步',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 622px;
+    }
+    .nav.fullscreen {
+        margin-left: -622px;
+    }
+    .nav-left {
+        width: 200px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NFS文件共享服务 | Amy and Booboo</title>
+  <meta name="keywords" content=" 培训 , Linux基础服务 ">
+  <meta name="description" content="NFS文件共享服务 | Amy and Booboo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amy and Booboo">
+<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+<meta property="article:published_time" content="2020-03-22T14:48:00.876Z">
+<meta property="article:modified_time" content="2020-03-22T14:48:00.875Z">
+<meta property="article:author" content="BoobooWei">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/influx.svg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my.png" />
+</a>
+<div class="author">
+    <span>BoobooWei</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(35)</small></div></li>
+    
+        
+            
+            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(23)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="35">
+<input type="hidden" id="yelog_site_word_count" value="129.1k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
+            
+            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
+            
+            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color5">宝宝成长</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">培训</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Linux基础服务</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Linux</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据救援</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SQL优化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">锁故障</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">RDS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">主从同步</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
+            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
+            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
+            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
+            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="家长会">家长会</span>
+            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
+        </a>
+        
+        <a  class="往昔追忆 小二班 "
+           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
+           data-tag="宝宝成长"
+           data-author="" >
+            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
+            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/02_ftp/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/03_nfs/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/01_dns/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/04_samba/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/05_apache/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux简易服务教程 "
+           href="/2016/12/23/booboo_easy_service/ule-online/"
+           data-tag="培训,Linux基础服务"
+           data-author="" >
+            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
+            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/00-linux_history/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 内核">Linux 内核</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术培训 Linux系统基础培训 "
+           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="培训,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
+            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
+            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
+        </a>
+        
+        <a  class="技术广角 Hexo "
+           href="/2020/03/22/booboo_others/hello-world/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
+        </a>
+        
+        <a  class="技术广角 Oracle "
+           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
+           data-tag="SQL优化"
+           data-author="" >
+            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
+            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag="锁故障"
+           data-author="" >
+            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
+            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
+        </a>
+        
+        <a  class="技术广角 MySQL "
+           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
+           data-tag="RDS,主从同步"
+           data-author="" >
+            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
+            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
+        </a>
+        
+        <a  class="技术广角 MongoDB "
+           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
+           data-tag="数据救援"
+           data-author="" >
+            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
+            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-booboo_easy_service/03_nfs" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">NFS文件共享服务</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="技术培训">技术培训</a>/
+            
+                <a  data-rel="Linux简易服务教程">Linux简易服务教程</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color3">培训</a>
+            
+            <a class="color5">Linux基础服务</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-03-24 05:02:31'>2016-12-22 21:06</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:5.5k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#NFS是什么"><span class="toc-text">NFS是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFS的原理"><span class="toc-text">NFS的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFS的用处"><span class="toc-text">NFS的用处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目实践1：配置NFS网络共享文件服务器"><span class="toc-text">项目实践1：配置NFS网络共享文件服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#实验准备阶段"><span class="toc-text">实验准备阶段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件详解"><span class="toc-text">配置文件详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主配置文件-etc-exports"><span class="toc-text">主配置文件&#x2F;etc&#x2F;exports</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目实践2：自动挂接NFS"><span class="toc-text">项目实践2：自动挂接NFS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#etc-fstab"><span class="toc-text">&#x2F;etc&#x2F;fstab</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#etc-bashrc"><span class="toc-text">&#x2F;etc&#x2F;bashrc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#autofs-自动挂接服务"><span class="toc-text">autofs 自动挂接服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="NFS是什么"><a href="#NFS是什么" class="headerlink" title="NFS是什么"></a>NFS是什么</h3><p>NFS（Network File System）即网络文件系统，SUN公司开发的,是FreeBSD支持的文件系统中的一种，它允许网络中的计算机之间通过TCP/IP网络共享资源。在NFS的应用中，本地NFS的客户端应用可以透明地读写位于远端NFS服务器上的文件，就像访问本地文件一样。</p>
+<h3 id="NFS的原理"><a href="#NFS的原理" class="headerlink" title="NFS的原理"></a>NFS的原理</h3><p>假设我们有一个服务器，两个客户端。客户端可以将网络中的NFS服务器共享的目录挂载到本地端的文件系统中，而在本地端的系统中看来，那个远程主机的目录就好像自己的一个磁盘分区一样。</p>
+<p>比如将配置好的NFS服务器上的<code>/var/share/student1</code>目录挂在到A客户端的<code>/home/share/student1</code>上面，那在客户端A上面进入<code>/home/share/student1</code>内，就可以看到NFS服务器系统中<code>/var/share/student1</code>目录下所有的内容了，并且可以执行<code>cd，cp，mv，rm</code>等命令。当然，权限要足够。这个<code>/var/share/student1</code>就好像NFS客户端的一个文件系统一样。所以，NFS也可以简单的看做是一个文件服务器（file system）</p>
+<p>只要权限足够，客户端也可以对该目录下的内容进行读写操作等等。</p>
+<p><strong>NFS指的是一种服务</strong> 既然是服务，肯定会用到一些监听端口，那NFS用的是什么端口进行数据传输的？我也不知道，谁都不知道。基本上NFS这个服务的端口开在2049端口，但由于文件系统非常复杂，NFS支持的功能又相当的多，每一个功能就会启用一些端口来传输数据，所以，NFS需要调用额外的端口，那额外的端口号又是什么呢？额外的端口号并不固定。因为NFS默认传输的端口是随机取用未被使用的小于1024的端口用于传输。但如此一来，客户端连接服务器又成了问题，客户端并不知道我要链接那些端口。这时候就需要用到远程过程调用RPC服务了 remote procedure call。</p>
+<p>RPC就是指定NFS各功能对应的端口号，然后通知给客户端，让客户端可以连接到正确的端口上。</p>
+<p><img src="pic/20.png" alt="20"></p>
+<p>对于服务端来说，在NFS启动的时候，会自动向RPC注册其各个功能所需要的随机端口号，让RPC了解NFS各项功能的端口号，PID，NFS所监听的IP等等。当客户端通过111端口号向server端RPC发出NFS访问请求时候，RPC就会找到对应已注册的端口号，并返还给客户端，客户端就可以通过这些端口号与NFS发起链接。比如说我是NFS，我在启动的时候，就会告诉RPC，我的A端口用于做什么事情，我的B端口用于做什么事情，RPC就会将其端口注册信息登记，等客户端发起请求的时候就可以直接找到RPC，而不是直接找我NFS，RPC可以直接告知客户端所需请求对应的正确的端口号。</p>
+<p>当客户端执行操作文件系统的各项命令时候，会转交给客户端的RPC，客户端RPC负责接受各个程序与对应的端口后负责对主机进行解析。所以要使用NFS时，无论是客户端还是服务端，都需要启动RPC。</p>
+<p>启动NFS之前，RPC就要先启动了，不然NFS无法向RPC注册，并且，RPC重启以后，原来注册的数据就没有了，所以RPC重新启动后，NFS也要重启，重新想RPC注册才行。</p>
+<p>同样，A客户端对NFS服务器上的共享文件进行了修改后，B服务器能看到改后的文件，也就完成了各个主机之间文件的共享。所以如果重启了rpc，nfs也必须要重新启动，以便于重新像rpc注册相应的端口号。</p>
+<ul>
+<li>NFS：处理客户端数据请求，</li>
+<li>RPC：处理客户端链接请求。</li>
+</ul>
+<h3 id="NFS的用处"><a href="#NFS的用处" class="headerlink" title="NFS的用处"></a>NFS的用处</h3><ul>
+<li>存储共享方案</li>
+<li>网络共享文件系统</li>
+</ul>
+<h3 id="项目实践1：配置NFS网络共享文件服务器"><a href="#项目实践1：配置NFS网络共享文件服务器" class="headerlink" title="项目实践1：配置NFS网络共享文件服务器"></a>项目实践1：配置NFS网络共享文件服务器</h3><p>要求rhel7 172.25.X.10 作为NFS网络共享文件服务器：</p>
+<ol>
+<li>允许172.25.X.11这个客户端来挂接使用/tmp目录，有读写权限。</li>
+<li>将读写权限改成只读权限；(ro)</li>
+<li>允许172.25.X.0/24网段挂接/tmp目录，有读写权限；</li>
+<li>服务器上创建uid=1200的用户tom，并使用tom用户创建/tmp/tomfile；在客户端创建uid=1200的用户jack，尝试去删除tomfile目录;</li>
+<li>为什么不建议使用(rw,no_root_squash)</li>
+</ol>
+<h5 id="实验准备阶段"><a href="#实验准备阶段" class="headerlink" title="实验准备阶段"></a>实验准备阶段</h5><ol>
+<li>网络拓扑图</li>
+<li>规划软件安装</li>
+<li>修改配置文件</li>
+<li>启动服务</li>
+<li>客户端测试服务        </li>
+</ol>
+<blockquote>
+<p>网络拓扑图</p>
+</blockquote>
+<p><img src="pic/12.png" alt="12"></p>
+<blockquote>
+<p>规划软件安装</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">主机名</th>
+<th align="left">ip地址</th>
+<th align="left">软件</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">rhel6</td>
+<td align="left">172.25.0.11</td>
+<td align="left">rpcbind nfs-utils</td>
+<td align="left">服务端</td>
+</tr>
+<tr>
+<td align="left">rhel7</td>
+<td align="left">172.25.0.10</td>
+<td align="left">rpcbind nfs-utils</td>
+<td align="left">客户端</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# yum install -y nfs-utils rpcbind</span><br><span class="line">Loaded plugins: product-id, refresh-packagekit, security, subscription-manager</span><br><span class="line">This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.</span><br><span class="line">server                                                                                    | 3.9 kB     00:00     </span><br><span class="line">server/primary_db                                                                         | 3.1 MB     00:00     </span><br><span class="line">Setting up Install Process</span><br><span class="line">Package 1:nfs-utils-1.2.3-39.el6.x86_64 already installed and latest version</span><br><span class="line">Package rpcbind-0.2.0-11.el6.x86_64 already installed and latest version</span><br><span class="line">Nothing to do</span><br></pre></td></tr></table></figure>
+<p>rpcbind</p>
+<ul>
+<li>rpc:管理客户端和服务端的ip和端口号—连接</li>
+<li>remote    procedure call——远程过程调用协议</li>
+</ul>
+<p>nfs-utils</p>
+<ul>
+<li>nfs:传输数据</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# rpm -qf /etc/exports</span><br><span class="line">setup-2.8.14-20.el6_4.1.noarch</span><br><span class="line">[root@rhel6 ~]# rpm -ql rpcbind</span><br><span class="line">/etc/rc.d/init.d/rpcbind</span><br><span class="line">/sbin/rpcbind</span><br><span class="line">/usr/sbin/rpcinfo</span><br><span class="line">/usr/share/doc/rpcbind-0.2.0</span><br><span class="line">/usr/share/doc/rpcbind-0.2.0/AUTHORS</span><br><span class="line">/usr/share/doc/rpcbind-0.2.0/ChangeLog</span><br><span class="line">/usr/share/doc/rpcbind-0.2.0/README</span><br><span class="line">/usr/share/man/man8/rpcbind.8.gz</span><br><span class="line">/usr/share/man/man8/rpcinfo.8.gz</span><br><span class="line">/var/cache/rpcbind</span><br><span class="line">[root@rhel6 ~]# rpm -ql nfs-utils</span><br><span class="line">/etc/nfsmount.conf</span><br><span class="line">/etc/rc.d/init.d/nfs</span><br><span class="line">/etc/rc.d/init.d/nfslock</span><br><span class="line">/etc/rc.d/init.d/rpcgssd</span><br><span class="line">/etc/rc.d/init.d/rpcidmapd</span><br><span class="line">/etc/rc.d/init.d/rpcsvcgssd</span><br><span class="line">/etc/request-key.d/id_resolver.conf</span><br><span class="line">/etc/sysconfig/nfs</span><br><span class="line">/sbin/mount.nfs</span><br><span class="line">/sbin/mount.nfs4</span><br><span class="line">/sbin/nfs_cache_getent</span><br><span class="line">/sbin/rpc.statd</span><br><span class="line">/sbin/umount.nfs</span><br><span class="line">/sbin/umount.nfs4</span><br><span class="line">/usr/sbin/exportfs</span><br><span class="line">/usr/sbin/mountstats</span><br><span class="line">/usr/sbin/nfsidmap</span><br><span class="line">/usr/sbin/nfsiostat</span><br><span class="line">/usr/sbin/nfsstat</span><br><span class="line">/usr/sbin/rpc.gssd</span><br><span class="line">/usr/sbin/rpc.idmapd</span><br><span class="line">/usr/sbin/rpc.mountd</span><br><span class="line">/usr/sbin/rpc.nfsd</span><br><span class="line">/usr/sbin/rpc.svcgssd</span><br><span class="line">/usr/sbin/rpcdebug</span><br><span class="line">/usr/sbin/showmount</span><br><span class="line">/usr/sbin/sm-notify</span><br><span class="line">/usr/sbin/start-statd</span><br><span class="line">/usr/share/doc/n7/nfsd.7.gz</span><br><span class="line">... ...</span><br><span class="line">/var/lib/nfs</span><br><span class="line">/var/lib/nfs/etab</span><br><span class="line">/var/lib/nfs/rmtab</span><br><span class="line">/var/lib/nfs/rpc_pipefs</span><br><span class="line">/var/lib/nfs/statd</span><br><span class="line">/var/lib/nfs/statd/sm</span><br><span class="line">/var/lib/nfs/statd/sm.bak</span><br><span class="line">/var/lib/nfs/state</span><br><span class="line">/var/lib/nfs/v4recovery</span><br><span class="line">/var/lib/nfs/xtab</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>修改配置文件</p>
+</blockquote>
+<p><strong>主配置文件</strong> <code>/etc/exports</code></p>
+<p><strong>服务名</strong> <code>rpcbind</code> <code>nfs</code></p>
+<p>根据要求，允许172.25.X.10这个客户端来挂接使用/tmp目录，有读写权限。配置<code>/etc/exports</code>内容为<code>/tmp 172.25.0.10(rw)</code>后，根据服务名来打开相应的服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# vim /etc/exports</span><br><span class="line">[root@rhel6 ~]# cat /etc/exports</span><br><span class="line">/tmp 172.25.0.10(rw)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>启动服务</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# service rpcbind start</span><br><span class="line">[root@rhel6 ~]# service nfs start</span><br><span class="line">Starting NFS services:                                     [  OK  ]</span><br><span class="line">Starting NFS quotas:                                       [  OK  ]</span><br><span class="line">Starting NFS mountd:                                       [  OK  ]</span><br><span class="line">Starting NFS daemon:                                       [  OK  ]</span><br><span class="line">Starting RPC idmapd:                                       [  OK  ]</span><br><span class="line">[root@rhel6 ~]# netstat -luntp |grep rpcbind</span><br><span class="line">tcp        0      0 0.0.0.0:111                 0.0.0.0:*                   LISTEN      1174/rpcbind        </span><br><span class="line">tcp        0      0 :::111                      :::*                        LISTEN      1174/rpcbind        </span><br><span class="line">udp        0      0 0.0.0.0:111                 0.0.0.0:*                               1174/rpcbind        </span><br><span class="line">udp        0      0 0.0.0.0:925                 0.0.0.0:*                               1174/rpcbind        </span><br><span class="line">udp        0      0 :::111                      :::*                                    1174/rpcbind        </span><br><span class="line">udp        0      0 :::925                      :::*                                    1174/rpcbind        </span><br><span class="line">[root@rhel6 ~]# netstat -luntp |grep nfs</span><br><span class="line">[root@rhel6 ~]# ps -ef|grep nfs</span><br><span class="line">root      1888     2  0 15:20 ?        00:00:00 [nfsd4]</span><br><span class="line">root      1889     2  0 15:20 ?        00:00:00 [nfsd4_callbacks]</span><br><span class="line">root      1890     2  0 15:20 ?        00:00:00 [nfsd]</span><br><span class="line">root      1891     2  0 15:20 ?        00:00:00 [nfsd]</span><br><span class="line">root      1892     2  0 15:20 ?        00:00:00 [nfsd]</span><br><span class="line">root      1893     2  0 15:20 ?        00:00:00 [nfsd]</span><br><span class="line">root      1894     2  0 15:20 ?        00:00:00 [nfsd]</span><br><span class="line">root      1895     2  0 15:20 ?        00:00:00 [nfsd]</span><br><span class="line">root      1896     2  0 15:20 ?        00:00:00 [nfsd]</span><br><span class="line">root      1897     2  0 15:20 ?        00:00:00 [nfsd]</span><br><span class="line">root      1928  1745  0 15:20 pts/0    00:00:00 grep nfs</span><br><span class="line">[root@rhel6 ~]# service iptables stop</span><br><span class="line">iptables: Setting chains to policy ACCEPT: filter          [  OK  ]</span><br><span class="line">iptables: Flushing firewall rules:                         [  OK  ]</span><br><span class="line">iptables: Unloading modules:                               [  OK  ]</span><br></pre></td></tr></table></figure>
+
+<p><strong>守护进程daemon</strong> <code>rpcbind</code> <code>nfsd</code></p>
+<p><strong>监听端口号</strong> 111 925</p>
+<blockquote>
+<p>客户端测试使用</p>
+</blockquote>
+<p>查看服务器共享目录的情况 <code>showmount -e 172.25.0.11</code></p>
+<p>远程挂载 <code>mount 172.25.0.10:/tmp /mnt</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# yum install -y nfs-utils rpcbind</span><br><span class="line">Loaded plugins: langpacks, product-id, subscription-manager</span><br><span class="line">This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.</span><br><span class="line">Package 1:nfs-utils-1.3.0-0.el7.x86_64 already installed and latest version</span><br><span class="line">Package rpcbind-0.2.0-23.el7.x86_64 already installed and latest version</span><br><span class="line">Nothing to do</span><br><span class="line">[root@rhel7 ~]# showmount -e 172.25.0.11</span><br><span class="line">Export list for 172.25.0.11:</span><br><span class="line">/tmp 172.25.0.10</span><br><span class="line">[root@rhel7 ~]# mount 172.25.0.11:/tmp /mnt</span><br><span class="line">[root@rhel7 ~]# mount |tail -n 1</span><br><span class="line">172.25.0.11:/tmp on /mnt type nfs4 (rw,relatime,vers=4.0,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,clientaddr=172.25.0.10,local_lock=none,addr=172.25.0.11)</span><br><span class="line">[root@rhel7 mnt]# touch rhel7test</span><br><span class="line">[root@rhel7 mnt]# ll</span><br><span class="line">total 12</span><br><span class="line">drwx------. 2 gdm       gdm       4096 Sep 25 02:59 orbit-gdm</span><br><span class="line">drwx------. 2 root      root      4096 Jul  2  2015 pulse-oCBy0hGD1JT6</span><br><span class="line">drwx------. 2 gdm       gdm       4096 Sep 25 02:59 pulse-q5sECpImz7Ju</span><br><span class="line">-rw-r--r--. 1 nfsnobody nfsnobody    0 Sep 25  2016 rhel7test</span><br><span class="line">[root@rhel7 mnt]# cd</span><br><span class="line">[root@rhel7 ~]# umount /mnt</span><br></pre></td></tr></table></figure>
+<p><strong>nfsnobody</strong> 以 root 用户创建的文件被映射成 nfsnobody 用户 , 因为在服务器上没有指定 no_root_squash</p>
+<blockquote>
+<p>将读写权限改成只读权限；(ro)</p>
+</blockquote>
+<p>服务器端修改配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# vim /etc/exports</span><br><span class="line">[root@rhel6 ~]# cat /etc/exports</span><br><span class="line">/tmp 172.25.0.10(ro)</span><br><span class="line">[root@rhel6 ~]# service rpcbind restart</span><br><span class="line">Stopping rpcbind:                                          [  OK  ]</span><br><span class="line">Starting rpcbind:                                          [  OK  ]</span><br><span class="line">[root@rhel6 ~]# service nfs restart</span><br><span class="line">Shutting down NFS daemon:                                  [  OK  ]</span><br><span class="line">Shutting down NFS mountd:                                  [  OK  ]</span><br><span class="line">Shutting down NFS quotas:                                  [  OK  ]</span><br><span class="line">Shutting down NFS services:                                [  OK  ]</span><br><span class="line">Shutting down RPC idmapd:                                  [  OK  ]</span><br><span class="line">Starting NFS services:                                     [  OK  ]</span><br><span class="line">Starting NFS quotas:                                       [  OK  ]</span><br><span class="line">Starting NFS mountd:                                       [  OK  ]</span><br><span class="line">Starting NFS daemon:                                       [  OK  ]</span><br><span class="line">Starting RPC idmapd:                                       [  OK  ]</span><br></pre></td></tr></table></figure>
+
+<p>客户端rhel7</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# mount 172.25.0.11:/tmp /mnt</span><br><span class="line">[root@rhel7 ~]# touch /mnt/rhel7test2</span><br><span class="line">touch: cannot touch ‘/mnt/rhel7test2’: Read-only file system</span><br><span class="line">[root@rhel7 ~]# umount /mnt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>允许172.25.X.0/24网段挂接/tmp目录，有读写权限；</p>
+</blockquote>
+<p>修改配置文件为 <code>/tmp 172.25.0.0/24(rw)</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# vim /etc/exports</span><br><span class="line">[root@rhel6 ~]# cat /etc/exports</span><br><span class="line">/tmp 172.25.0.0/24(rw)</span><br><span class="line">[root@rhel6 ~]# service rpcbind restart</span><br><span class="line">Stopping rpcbind:                                          [  OK  ]</span><br><span class="line">Starting rpcbind:                                          [  OK  ]</span><br><span class="line">[root@rhel6 ~]# service nfs restart</span><br><span class="line">Shutting down NFS daemon:                                  [  OK  ]</span><br><span class="line">Shutting down NFS mountd:                                  [  OK  ]</span><br><span class="line">Shutting down NFS quotas:                                  [  OK  ]</span><br><span class="line">Shutting down NFS services:                                [  OK  ]</span><br><span class="line">Shutting down RPC idmapd:                                  [  OK  ]</span><br><span class="line">Starting NFS services:                                     [  OK  ]</span><br><span class="line">Starting NFS quotas:                                       [  OK  ]</span><br><span class="line">Starting NFS mountd:                                       [  OK  ]</span><br><span class="line">Starting NFS daemon:                                       [  OK  ]</span><br><span class="line">Starting RPC idmapd:                                       [  OK  ]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>分别在客户端和服务器上都创建一个id=1200的用户tom，在客户端用tom用户新建一个文件rhel7tomfile，并查看属性，再到服务器上去查看该文件的属性；在服务器上用tom用户去创建rhel6tomfile，查看属性，再到客户端上查看属性。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 服务端rhel6</span></span><br><span class="line">[root@rhel6 ~]# useradd -u 1200 tom</span><br><span class="line">[root@rhel6 ~]# echo uplooking|passwd --stdin tom</span><br><span class="line">Changing password for user tom.</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br><span class="line">[root@rhel6 ~]# su - tom</span><br><span class="line">[tom@rhel6 ~]$ touch /tmp/tomfile</span><br><span class="line">[tom@rhel6 ~]$ ll /tmp/tomfile</span><br><span class="line">-rw-rw-r--. 1 tom tom 0 Sep 25 15:55 /tmp/tomfile</span><br><span class="line">[tom@rhel6 tmp]$ touch rhel6tomfile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端rhel7</span></span><br><span class="line">[tom@rhel7 mnt]$ touch rhel7tomfile</span><br><span class="line">[tom@rhel7 mnt]$ ll</span><br><span class="line">total 12</span><br><span class="line">-rw-rw-r--. 1 nobody nobody    0 Sep 25 04:03 4913</span><br><span class="line">drwx------. 2 gdm    gdm    4096 Sep 25 02:59 orbit-gdm</span><br><span class="line">drwx------. 2 root   root   4096 Jul  2  2015 pulse-oCBy0hGD1JT6</span><br><span class="line">drwx------. 2 gdm    gdm    4096 Sep 25 02:59 pulse-q5sECpImz7Ju</span><br><span class="line">-rw-rw-r--. 1 nobody nobody    0 Sep 25 04:07 rhel7tomfile</span><br><span class="line">-rw-rw-r--. 1 nobody nobody    0 Sep 25 04:06 tomfile</span><br><span class="line">[tom@rhel7 mnt]$ rm -rf rhel7tomfile</span><br><span class="line">rm: cannot remove ‘rhel7tomfile’: Operation not permitted</span><br><span class="line">[tom@rhel7 mnt]$ rm -rf rhel6tomfile</span><br><span class="line">rm: cannot remove ‘rhel6tomfile’: Operation not permitted</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 服务端rhel6</span></span><br><span class="line">[tom@rhel6 tmp]$ ll</span><br><span class="line">total 12</span><br><span class="line">-rw-rw-r--. 1 tom  tom     0 Sep 25 16:03 4913</span><br><span class="line">drwx------. 2 gdm  gdm  4096 Sep 25 14:59 orbit-gdm</span><br><span class="line">drwx------. 2 root root 4096 Jul  2  2015 pulse-oCBy0hGD1JT6</span><br><span class="line">drwx------. 2 gdm  gdm  4096 Sep 25 14:59 pulse-q5sECpImz7Ju</span><br><span class="line">-rw-rw-r--. 1 tom  tom     0 Sep 25 16:10 rhel6tomfile</span><br><span class="line">-rw-rw-r--. 1 tom  tom     0 Sep 25 16:07 rhel7tomfile</span><br></pre></td></tr></table></figure>
+
+<p>两个新文件在客户端均显示属于nobody，而在服务器端显示属于tom用户，并且会发现在客户端由tom用户创建出来的文件也没有办法删除。</p>
+<p>这是由于当前服务器版本比客户端低的缘故。</p>
+<p>如果将rhel7作为服务端，rhel6作为客户端，就不会出现上述问题了。如下所示：</p>
+<table>
+<thead>
+<tr>
+<th align="left">主机名</th>
+<th align="left">ip地址</th>
+<th align="left">软件</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">rhel6</td>
+<td align="left">172.25.0.11</td>
+<td align="left">rpcbind nfs-utils</td>
+<td align="left">客户端</td>
+</tr>
+<tr>
+<td align="left">rhel7</td>
+<td align="left">172.25.0.10</td>
+<td align="left">rpcbind nfs-utils</td>
+<td align="left">服务端</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 服务端rhel7</span></span><br><span class="line">[root@rhel7 ~]# vim /etc/exports</span><br><span class="line">[root@rhel7 ~]# systemctl stop firewalld</span><br><span class="line">[root@rhel7 ~]# systemctl start rpcbind</span><br><span class="line">[root@rhel7 ~]# systemctl start nfs</span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端rhel6</span></span><br><span class="line">[root@rhel6 tmp]# mount 172.25.0.10:/tmp /mnt</span><br><span class="line">[root@rhel6 tmp]# cd /mnt</span><br><span class="line">[tom@rhel6 mnt]$ touch rhel6tomfile</span><br><span class="line">[tom@rhel6 mnt]$ ll</span><br><span class="line">total 0</span><br><span class="line">-rw-rw-r--. 1 tom  tom   0 Sep 25 16:22 rhel6tomfile</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:58 systemd-private-jFcaMN</span><br><span class="line"><span class="meta">#</span><span class="bash"> 服务端rhel7</span></span><br><span class="line">[tom@rhel7 tmp]$ touch rhel7tomfile</span><br><span class="line">[tom@rhel7 tmp]$ ll</span><br><span class="line">total 0</span><br><span class="line">-rw-rw-r--. 1 tom  tom   0 Sep 25 04:22 rhel6tomfile</span><br><span class="line">-rw-rw-r--. 1 tom  tom   0 Sep 25 04:24 rhel7tomfile</span><br><span class="line">drwx------. 3 root root 16 Sep 25 02:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root root 16 Sep 25 02:58 systemd-private-jFcaMN</span><br><span class="line"><span class="meta">#</span><span class="bash"> 客户端rhel6</span></span><br><span class="line">[tom@rhel6 mnt]$ ll</span><br><span class="line">total 0</span><br><span class="line">-rw-rw-r--. 1 tom  tom   0 Sep 25 16:22 rhel6tomfile</span><br><span class="line">-rw-rw-r--. 1 tom  tom   0 Sep 25 16:24 rhel7tomfile</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:58 systemd-private-jFcaMN</span><br><span class="line">[tom@rhel6 mnt]$ rm -rf rhel6tomfile</span><br><span class="line">[tom@rhel6 mnt]$ rm -rf rhel7tomfile</span><br><span class="line">[tom@rhel6 mnt]$ ll</span><br><span class="line">total 0</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:58 systemd-private-jFcaMN</span><br></pre></td></tr></table></figure>
+
+<p><strong>文件所属者和所属组是根据uid和gid来匹配的。</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 服务器rhel7</span></span><br><span class="line">[root@rhel7 ~]# useradd -u 1003 batman</span><br><span class="line">[root@rhel7 ~]# echo uplooking|passwd --stdin batman</span><br><span class="line">Changing password for user batman.</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br><span class="line">[root@rhel7 ~]# id batman</span><br><span class="line">uid=1003(batman) gid=1003(batman) groups=1003(batman)</span><br><span class="line">[root@rhel7 ~]# su batman</span><br><span class="line">[batman@rhel7 root]$ cd /tmp</span><br><span class="line">[batman@rhel7 tmp]$ ll</span><br><span class="line">total 0</span><br><span class="line">drwx------. 3 root root 16 Sep 25 02:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root root 16 Sep 25 02:58 systemd-private-jFcaMN</span><br><span class="line">[batman@rhel7 tmp]$ touch rhel7batmanfile</span><br><span class="line">[batman@rhel7 tmp]$ ll</span><br><span class="line">total 0</span><br><span class="line">-rw-rw-r--. 1 batman batman  0 Sep 25 04:27 rhel7batmanfile</span><br><span class="line">drwx------. 3 root   root   16 Sep 25 02:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root   root   16 Sep 25 02:58 systemd-private-jFcaMN</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@rhel6 mnt]# ll</span><br><span class="line">total 0</span><br><span class="line">-rw-rw-r--. 1 1003 1003  0 Sep 25 16:27 rhel7batmanfile</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:58 systemd-private-jFcaMN</span><br><span class="line">[root@rhel6 mnt]# useradd -u 1003 superman</span><br><span class="line">[root@rhel6 mnt]# echo uplooking|passwd --stdin superman</span><br><span class="line">Changing password for user superman.</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br><span class="line">[root@rhel6 mnt]# ll</span><br><span class="line">total 0</span><br><span class="line">-rw-rw-r--. 1 superman superman  0 Sep 25 16:27 rhel7batmanfile</span><br><span class="line">drwx------. 3 root     root     16 Sep 25 14:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root     root     16 Sep 25 14:58 systemd-private-jFcaMN</span><br><span class="line">[root@rhel6 mnt]# su  superman</span><br><span class="line">[superman@rhel6 mnt]$ ll</span><br><span class="line">total 0</span><br><span class="line">-rw-rw-r--. 1 superman superman  0 Sep 25 16:27 rhel7batmanfile</span><br><span class="line">drwx------. 3 root     root     16 Sep 25 14:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root     root     16 Sep 25 14:58 systemd-private-jFcaMN</span><br><span class="line">[superman@rhel6 mnt]$ rm -rf rhel7batmanfile</span><br><span class="line">[superman@rhel6 mnt]$ ll</span><br><span class="line">total 0</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:58 systemd-private-jFcaMN</span><br></pre></td></tr></table></figure>
+
+<p>在服务器上以 batman 用户创建的文件被映射成客户端的 superman 用户 , 因为在服务器上 batman 的 id 与 superman 的 id 相同</p>
+<blockquote>
+<p>为什么不建议使用(rw,no_root_squash)</p>
+</blockquote>
+<p><strong>面试题</strong></p>
+<ol>
+<li>客户说为什么我是root，却不能删除root的文件呢（前提是该文件是nfs服务挂接使用的）？</li>
+</ol>
+<ul>
+<li>1）考虑到安全，当前我们nfs的配置中就设置为本地的root用户是没有权限删除服务器端的root用户文件的。</li>
+<li>2）如果客户你一定要去有这个权限，那么你可以修改配置，添加一个no_root_squash；不建议这么做。</li>
+</ul>
+<ol start="2">
+<li>客户电话咨询说服务器出故障了，</li>
+</ol>
+<ul>
+<li>1）挂接目录执行任何操作就卡死了，然后我重启，就卡在哪里了，/mnt</li>
+<li>2）前一天还正常，今天上班开不了机了</li>
+<li>3）mount查看当前挂接目录，卡在哪里，杀掉进程，再mount还是卡在那里</li>
+</ul>
+<p>以上都有可能是nfs服务器连接出现问题了，应该去检查一下nfs服务器的运行情况。再排错。</p>
+<h3 id="配置文件详解"><a href="#配置文件详解" class="headerlink" title="配置文件详解"></a>配置文件详解</h3><h4 id="主配置文件-etc-exports"><a href="#主配置文件-etc-exports" class="headerlink" title="主配置文件/etc/exports"></a>主配置文件/etc/exports</h4><p>关于exports的写法，我们可以通过  <code>man 5 exports</code> 来查看 <code>EXAMPLES</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> sample /etc/exports file</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      共享目录             客户端列表（权限）</span></span><br><span class="line">       /               master(rw) trusty(rw,no_root_squash)</span><br><span class="line">       /projects       proj*.local.domain(rw)</span><br><span class="line">       /usr            *.local.domain(ro) @trusted(rw)</span><br><span class="line">       /home/joe       pc001(rw,all_squash,anonuid=150,anongid=100)</span><br><span class="line">       /pub            *(ro,insecure,all_squash)</span><br><span class="line">       /srv/www        -sync,rw server @trusted @external(ro)</span><br><span class="line">       /foo            2001:db8:9:e54::/64(rw) 192.0.2.0/24(rw)</span><br><span class="line">       /build          buildhost[0-9].local.domain(rw)</span><br></pre></td></tr></table></figure>
+
+<p>详细参数解释如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">rw</td>
+<td align="left">可读可写</td>
+</tr>
+<tr>
+<td align="left">ro</td>
+<td align="left">只读</td>
+</tr>
+<tr>
+<td align="left">sync</td>
+<td align="left">数据同步写入内存缓冲区与磁盘中，虽然这样做效率较低，但可以保证数据的一致性（适合于小文件传输）</td>
+</tr>
+<tr>
+<td align="left">async</td>
+<td align="left">数据先暂时放于内存，而非直接写入硬盘，等到必要时才写入磁盘（适合于大文件传输）</td>
+</tr>
+<tr>
+<td align="left">no_root_squash</td>
+<td align="left">使用nfs时，如果用户是root，不进行权限压缩，即root用户在nfs上创建的文件   属组和属主仍然是root（不安全，不建议使用）</td>
+</tr>
+<tr>
+<td align="left">root_squash</td>
+<td align="left">使用nfs时，如果用户是root，则进行权限压缩，即把root用户在nfs上创建的文件   属组和属主修改为nfsnobody</td>
+</tr>
+<tr>
+<td align="left">all_squash</td>
+<td align="left">所有的普通用户使用nfs都将使用权限压缩，即：将远程访问的所有普通用户及所属用户组都映射为匿名用户或者用户组（一般均为nfsnobody）</td>
+</tr>
+<tr>
+<td align="left">no_all_squash</td>
+<td align="left">所有的普通用户使用nfs都不使用权限压缩，即：不将远程访问的所有普通用户及所属用户组都映射为匿名用户或者用户组（默认设置）</td>
+</tr>
+<tr>
+<td align="left">anonuid=XXX</td>
+<td align="left">anon即anonymous(匿名者)，前面关于*_squash提到的匿名用户的uid的设置值，通常为nobody或者nfsnobody，使用这个参数可以自行设定这个uid值，这个uid必须存在 于/etc/passwd</td>
+</tr>
+<tr>
+<td align="left">anongid=XXX</td>
+<td align="left">将远程访问的所有用户组都映身为匿名用户组账户，并指定该匿名用户组账户为本地用户组账户（GID=XXX）</td>
+</tr>
+<tr>
+<td align="left">insecure</td>
+<td align="left">允许客户端从大于1024的TCP/IP端口连NFS服务器</td>
+</tr>
+<tr>
+<td align="left">secure</td>
+<td align="left">限制客户端只能从小于1024的TCP/IP端口连接NFS服务器(默认设置)</td>
+</tr>
+<tr>
+<td align="left">wdelay</td>
+<td align="left">检查是否有相关的写操作，如果有则将这些写操作一起执行，这样可提高效率(默认设置)</td>
+</tr>
+<tr>
+<td align="left">no_wdelay</td>
+<td align="left">若有写操作则立即执行（应与sync配置）</td>
+</tr>
+<tr>
+<td align="left">subtree_check</td>
+<td align="left">若输出目录是一个子目录，则NFSW:务器将检查其父目录的权限(默认设置)</td>
+</tr>
+<tr>
+<td align="left">no_subtree_check</td>
+<td align="left">即使输出目录是一个子目录，NFS服务器也不检查其父目录的权限，这样做可提高效率</td>
+</tr>
+</tbody></table>
+<p><strong>设置实例</strong></p>
+<p><code>/tmp *(rw,no_root_squash)</code></p>
+<p>在所有的IP（主机）上登录的用户都可对NFS服务器上的共享目录/tmp拥有rw操作权限，同时如果是root用户访问该共享目录，那么不将root用户及所属用户组都映射为匿名用户或用户组（*表示所有的主机或者IP）</p>
+<p><code>/tmp *(rw)</code></p>
+<p>在所有的IP（主机）登录的用户都可对NFS服务器上的共享目录/tmp拥有rw操作权限</p>
+<p><code>/home/public 192.168.0.*(rw)   *(ro)</code>  或者 <code>/home/public 192.168.0.0/24(rw) *(ro)</code></p>
+<p>除了在<code>192. 168. 0.0/24</code>这个网段内的主机上登录的用户，可对NFS服务器共享目录<code>/home/public</code>进行<code>rw</code>操作权限，而其它网段的主机上登录的用户，对NFS服务器共享目录<code>/home/public</code>只能进行<code>r</code>操作</p>
+<p><code>/home/test 192.168.0.100(rw)</code></p>
+<p>只对<code>192.168.0.100</code>该台主机设置权限，即：使在该台主机登录的用户都可对NFS服务器上的共享目录<code>/home/test</code>拥有读与写的操作</p>
+<p><code>/home/linux *.linux.org(rw,all_squash,anonuid=40,anongid=40)</code></p>
+<p>当<code>*.linux.org</code>（加入域<code>linux.org</code>的所有主机） 登陆此NFS主机，并且在<code>/home/linux</code>下面写入档案时，该档案的所有人与所有组，就会变成NFS服务器上的<code>/etc/passwd</code>文件里面对应的<code>UID</code>为40的那个身份的使用者了（因为指定了参数：<code>all_squash，anonuid=40，anongid=40</code>）</p>
+<hr>
+<h3 id="项目实践2：自动挂接NFS"><a href="#项目实践2：自动挂接NFS" class="headerlink" title="项目实践2：自动挂接NFS"></a>项目实践2：自动挂接NFS</h3><p>要求分别通过下面三种方法实现自动挂接<br>    *    /etc/fstab（容易出问题）<br>    * /etc/bashrc<br>    * autofs服务</p>
+<h4 id="etc-fstab"><a href="#etc-fstab" class="headerlink" title="/etc/fstab"></a>/etc/fstab</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# vim /etc/fstab</span><br><span class="line">172.25.0.10:/tmp        /mnt                    nfs     defaults        0 0</span><br><span class="line">[root@rhel6 ~]# mount -a</span><br><span class="line">[root@rhel6 ~]# mount |tail -n 1</span><br><span class="line">172.25.0.10:/tmp on /mnt type nfs (rw,vers=4,addr=172.25.0.10,clientaddr=172.25.0.11)</span><br></pre></td></tr></table></figure>
+
+<p>如果nfs服务器出现问题，导致客户端无法挂接，此时就会出现开机启动失败的情况。因此不建议这么做。</p>
+<h4 id="etc-bashrc"><a href="#etc-bashrc" class="headerlink" title="/etc/bashrc"></a>/etc/bashrc</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# vim /etc/bashrc</span><br><span class="line">[root@rhel6 ~]# grep mount /etc/bashrc</span><br><span class="line">mount 172.25.0.10:/tmp /mnt</span><br><span class="line">[root@rhel6 ~]# reboot</span><br><span class="line"></span><br><span class="line">Broadcast message from root@rhel6</span><br><span class="line">	(/dev/pts/0) at 16:53 ...</span><br><span class="line"></span><br><span class="line">The system is going down for reboot NOW!</span><br><span class="line">[root@rhel6 ~]# Connection to 172.25.0.11 closed by remote host.</span><br><span class="line">Connection to 172.25.0.11 closed.</span><br><span class="line">[root@foundation0 ~]# ssh root@172.25.0.11</span><br><span class="line">Last login: Sun Sep 25 16:52:03 2016 from 172.25.0.250</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mount.nfs: Connection timed out</span><br></pre></td></tr></table></figure>
+
+<p>如果将挂接的命令放在开机启动后的终端启动脚本中，那么只会有一个报错而已。</p>
+<h4 id="autofs-自动挂接服务"><a href="#autofs-自动挂接服务" class="headerlink" title="autofs 自动挂接服务"></a>autofs 自动挂接服务</h4><p>使用的时候挂接，不使用等待5分钟后卸载，而等待的时间时可以调整的，在<code>/etc/sysconfig/autofs</code>配置文件中通过<code>TIMEOUT</code>参数调整，例如<code>TIMEOUT=300</code>。</p>
+<ol>
+<li><p>软件        autofs</p>
+</li>
+<li><p>service        autofs</p>
+</li>
+<li><p>daemon        automount        </p>
+</li>
+<li><p>配置文件</p>
+<ul>
+<li>/etc/auto.master    父挂接点</li>
+<li>/etc/auto.booboo    子挂接点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">172.25.0.10:&#x2F;tmp &#x2F;mnt&#x2F;share</span><br><span class="line">		&#x2F;mnt	父挂接点</span><br><span class="line">		share	子挂接点</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>配置文件格式</p>
+</li>
+</ol>
+<p>可以通过<code>man 5 autofs</code>查看配置文件的格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;auto.master</span><br><span class="line">&#x2F;mnt	&#x2F;etc&#x2F;auto.booboo</span><br><span class="line"></span><br><span class="line">&#x2F;etc&#x2F;auto.booboo</span><br><span class="line">share	-rw	172.25.0.10:&#x2F;tmp</span><br></pre></td></tr></table></figure>
+
+<p><strong>自动挂接autofs场景</strong></p>
+<p>rhel7 作为nfs网络共享文件系统服务；rhel6作为nfs的客户端现在想自动挂接rhel7的/tmp目录使用，可以通过autofs。</p>
+<table>
+<thead>
+<tr>
+<th align="left">主机名</th>
+<th align="left">ip地址</th>
+<th align="left">软件</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">rhel6</td>
+<td align="left">172.25.0.11</td>
+<td align="left">rpcbind nfs-utils</td>
+<td align="left">nfs客户端；autofs服务端</td>
+</tr>
+<tr>
+<td align="left">rhel7</td>
+<td align="left">172.25.0.10</td>
+<td align="left">rpcbind nfs-utils</td>
+<td align="left">nfs服务端</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# yum install -y autofs</span><br><span class="line">Loaded plugins: product-id, refresh-packagekit, security, subscription-manager</span><br><span class="line">This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.</span><br><span class="line">Setting up Install Process</span><br><span class="line">Package 1:autofs-5.0.5-88.el6.x86_64 already installed and latest version</span><br><span class="line">Nothing to do</span><br><span class="line">[root@rhel6 ~]# rpm -ql autofs</span><br><span class="line">/etc/auto.master</span><br><span class="line">/etc/auto.misc</span><br><span class="line">/etc/auto.net</span><br><span class="line">/etc/auto.smb</span><br><span class="line">/etc/autofs_ldap_auth.conf</span><br><span class="line">/etc/rc.d/init.d/autofs</span><br><span class="line">/etc/sysconfig/autofs</span><br><span class="line">/misc</span><br><span class="line">/net</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# vim /etc/auto.master</span><br><span class="line">/mnt    /etc/auto.booboo</span><br><span class="line">[root@rhel6 ~]# vim /etc/auto.booboo</span><br><span class="line">share   -rw     172.25.0.10:/tmp</span><br><span class="line"></span><br><span class="line">[root@rhel6 ~]# mkdir /mnt/share</span><br><span class="line">[root@rhel6 ~]# service autofs start</span><br><span class="line">Starting automount:                                        [  OK  ]</span><br><span class="line">[root@rhel6 ~]# ll /mnt/share</span><br><span class="line">total 0</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:59 systemd-private-hPL7GQ</span><br><span class="line">drwx------. 3 root root 16 Sep 25 14:58 systemd-private-jFcaMN</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="pic/06.png" alt="06"></p>
+<p><img src="pic/07.png" alt="07"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>NFS文件共享服务</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">5.5k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
+    <p><span class="copy-title">发布时间:</span>2016-12-22, 21:06:27</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 05:02:31</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/23/booboo_easy_service/03_nfs/" title="NFS文件共享服务">http://www.toberoot.com/2016/12/23/booboo_easy_service/03_nfs/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'af999a0c30ad557db57d',
+            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+            repo: 'booboowei.github.io',
+            owner: 'booboowei',
+            admin: ['booboowei'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018-2020 BoobooWei</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#宝宝成长','#培训','#Linux基础服务','#Linux','#数据救援','#hexo','#SQL优化','#锁故障','#RDS','#主从同步',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 622px;
+    }
+    .nav.fullscreen {
+        margin-left: -622px;
+    }
+    .nav-left {
+        width: 200px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
