@@ -642,7 +642,7 @@ div.ac > ul > li:before,
   height: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  background-image: url("../../img/bg1.gif");
+  background: #ffa;
   box-shadow: inset -15px 0 15px -15px #222;
   float: left;
   position: relative;
@@ -814,7 +814,7 @@ div.ac > ul > li:before,
   width: 420px;
   height: 100%;
   font-size: 14px;
-  background-image: url("../../img/bg1.gif");
+  background: #fdfdfd;
   overflow: hidden;
   float: left;
   position: relative;
@@ -1287,7 +1287,7 @@ div.ac > ul > li:before,
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
-  background: #fff;
+  background-image: url("../../img/bg1.gif");
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -1476,6 +1476,7 @@ div.ac > ul > li:before,
   margin: 0;
   padding: 10px 0;
   text-align: left;
+  color: #4d5763;
 }
 .post .pjax article img {
   max-width: 95%;
@@ -1660,13 +1661,13 @@ thead {
 }
 table tr th {
   font-weight: bold;
-  border: 0.2px solid #444;
+  border: 0.1px solid #f5f6fa;
   border-bottom: 0;
   margin: 0;
   padding: 6px 13px;
 }
 table tr td {
-  border: 0.2px solid #444;
+  border: 0.2px solid #f5f6fa;
   margin: 0;
   padding: 6px 13px;
 }
