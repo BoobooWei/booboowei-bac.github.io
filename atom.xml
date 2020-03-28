@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Amy and Booboo</title>
+  <title>归去来兮辞</title>
   
-  
+  <subtitle>Amy Booboo Sage</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.toberoot.com/"/>
