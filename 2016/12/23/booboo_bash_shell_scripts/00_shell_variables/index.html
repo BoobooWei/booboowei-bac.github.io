@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="&amp;#x6559;&amp;#x5B66;&amp;#x73AF;&amp;#x5883;&amp;#x4ECB;&amp;#x7ECD; client rhel7.2 172.25.0.10 server rhel7.2 172.25.0.11  &amp;#x5982;&amp;#x679C;&amp;#x771F;&amp;#x7684;&amp;#x60F3;&amp;#x8D70;IT&amp;#x8FD9;&amp;#x6761;&amp;#x8DEF;&amp;#xFF0C;&amp;#x60F3;&amp;#x771">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/03.png">
 <meta property="article:published_time" content="2016-12-22T21:06:27.000Z">
 <meta property="article:modified_time" content="2020-03-28T09:17:03.508Z">
@@ -108,13 +109,113 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6559;&amp;#x5B66;&amp;#x73AF;&amp;#x5883;&amp;#x4ECB;&amp;#x7ECD;">1&nbsp;&nbsp;<b>&amp;amp;#x6559;&amp;amp;#x5B66;&amp;amp;#x73AF;&amp;amp;#x5883;&amp;amp;#x4ECB;&amp;amp;#x7ECD;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#shell-&amp;#x7B80;&amp;#x4ECB;">2&nbsp;&nbsp;<b>shell &amp;amp;#x7B80;&amp;amp;#x4ECB;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;-shell">2.1&nbsp;&nbsp;&amp;amp;#x4EC0;&amp;amp;#x4E48;&amp;amp;#x662F; shell</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#shell-&amp;#x5386;&amp;#x53F2;">2.2&nbsp;&nbsp;shell &amp;amp;#x5386;&amp;amp;#x53F2;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5E38;&amp;#x89C1;&amp;#x7684;-shell">2.3&nbsp;&nbsp;&amp;amp;#x5E38;&amp;amp;#x89C1;&amp;amp;#x7684; shell</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4E3A;&amp;#x4EC0;&amp;#x4E48;-Shell">2.4&nbsp;&nbsp;&amp;amp;#x4E3A;&amp;amp;#x4EC0;&amp;amp;#x4E48; Shell</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#shell&amp;#x7684;&amp;#x53D8;&amp;#x91CF;&amp;#x529F;&amp;#x80FD;">3&nbsp;&nbsp;<b>shell&amp;amp;#x7684;&amp;amp;#x53D8;&amp;amp;#x91CF;&amp;amp;#x529F;&amp;amp;#x80FD;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x53D8;&amp;#x91CF;">3.1&nbsp;&nbsp;&amp;amp;#x4EC0;&amp;amp;#x4E48;&amp;amp;#x662F;&amp;amp;#x53D8;&amp;amp;#x91CF;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x53D8;&amp;#x91CF;&amp;#x7684;&amp;#x8BBE;&amp;#x7F6E;&amp;#x3001;&amp;#x67E5;&amp;#x770B;&amp;#x548C;&amp;#x53D6;&amp;#x6D88;-echo-unset">3.2&nbsp;&nbsp;&amp;amp;#x53D8;&amp;amp;#x91CF;&amp;amp;#x7684;&amp;amp;#x8BBE;&amp;amp;#x7F6E;&amp;amp;#x3001;&amp;amp;#x67E5;&amp;amp;#x770B;&amp;amp;#x548C;&amp;amp;#x53D6;&amp;amp;#x6D88; echo unset</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8BFE;&amp;#x5802;&amp;#x7EC3;&amp;#x4E60;">3.2.1&nbsp;&nbsp;&amp;amp;#x8BFE;&amp;amp;#x5802;&amp;amp;#x7EC3;&amp;amp;#x4E60;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x53D8;&amp;#x91CF;&amp;#x7684;&amp;#x5206;&amp;#x7C7B;&amp;#xFF1A;&amp;#x5C40;&amp;#x90E8;&amp;#x53D8;&amp;#x91CF;&amp;#x548C;&amp;#x5168;&amp;#x5C40;&amp;#x53D8;&amp;#x91CF;-env-set-export">3.3&nbsp;&nbsp;&amp;amp;#x53D8;&amp;amp;#x91CF;&amp;amp;#x7684;&amp;amp;#x5206;&amp;amp;#x7C7B;&amp;amp;#xFF1A;&amp;amp;#x5C40;&amp;amp;#x90E8;&amp;amp;#x53D8;&amp;amp;#x91CF;&amp;amp;#x548C;&amp;amp;#x5168;&amp;amp;#x5C40;&amp;amp;#x53D8;&amp;amp;#x91CF; env set export</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8BFE;&amp;#x5802;&amp;#x7EC3;&amp;#x4E60;-1">3.3.1&nbsp;&nbsp;&amp;amp;#x8BFE;&amp;amp;#x5802;&amp;amp;#x7EC3;&amp;amp;#x4E60;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x53D8;&amp;#x91CF;&amp;#x8BFB;&amp;#x53D6;&amp;#x3001;&amp;#x6570;&amp;#x7EC4;&amp;#x4E0E;&amp;#x5BA3;&amp;#x544A;-read-array-declare">3.4&nbsp;&nbsp;&amp;amp;#x53D8;&amp;amp;#x91CF;&amp;amp;#x8BFB;&amp;amp;#x53D6;&amp;amp;#x3001;&amp;amp;#x6570;&amp;amp;#x7EC4;&amp;amp;#x4E0E;&amp;amp;#x5BA3;&amp;amp;#x544A; read array declare</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8BFE;&amp;#x5802;&amp;#x7EC3;&amp;#x4E60;-2">3.4.1&nbsp;&nbsp;&amp;amp;#x8BFE;&amp;amp;#x5802;&amp;amp;#x7EC3;&amp;amp;#x4E60;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6570;&amp;#x636E;&amp;#x6D41;&amp;#x91CD;&amp;#x5BFC;&amp;#x5411;redirection">4&nbsp;&nbsp;<b>&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x6D41;&amp;amp;#x91CD;&amp;amp;#x5BFC;&amp;amp;#x5411;redirection</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4F55;&amp;#x8C13;&amp;#x6570;&amp;#x636E;&amp;#x6D41;&amp;#x91CD;&amp;#x5BFC;&amp;#x5411;">4.1&nbsp;&nbsp;&amp;amp;#x4F55;&amp;amp;#x8C13;&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x6D41;&amp;amp;#x91CD;&amp;amp;#x5BFC;&amp;amp;#x5411;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8BFE;&amp;#x5802;&amp;#x7EC3;&amp;#x4E60;-3">4.1.1&nbsp;&nbsp;&amp;amp;#x8BFE;&amp;amp;#x5802;&amp;amp;#x7EC3;&amp;amp;#x4E60;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x547D;&amp;#x4EE4;&amp;#x6267;&amp;#x884C;&amp;#x7684;&amp;#x5224;&amp;#x65AD;&amp;#x4F9D;&amp;#x636E;-amp-amp">4.2&nbsp;&nbsp;&amp;amp;#x547D;&amp;amp;#x4EE4;&amp;amp;#x6267;&amp;amp;#x884C;&amp;amp;#x7684;&amp;amp;#x5224;&amp;amp;#x65AD;&amp;amp;#x4F9D;&amp;amp;#x636E; ; &amp;amp;amp;&amp;amp;amp; ||</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8BFE;&amp;#x5802;&amp;#x5B9E;&amp;#x9A8C;">4.2.1&nbsp;&nbsp;&amp;amp;#x8BFE;&amp;amp;#x5802;&amp;amp;#x5B9E;&amp;amp;#x9A8C;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x7BA1;&amp;#x9053;&amp;#x547D;&amp;#x4EE4;pipe">4.3&nbsp;&nbsp;&amp;amp;#x7BA1;&amp;amp;#x9053;&amp;amp;#x547D;&amp;amp;#x4EE4;pipe</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#shell&amp;#x4E0B;&amp;#x7684;&amp;#x7279;&amp;#x6B8A;&amp;#x7B26;&amp;#x53F7;">4.4&nbsp;&nbsp;shell&amp;amp;#x4E0B;&amp;amp;#x7684;&amp;amp;#x7279;&amp;amp;#x6B8A;&amp;amp;#x7B26;&amp;amp;#x53F7;</a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -147,7 +248,7 @@
         <span class="column is-narrow">
             
             
-            25 分钟 lesen (Über 3681 Wörter)
+            25 分钟 读完 (约 3681 字)
         </span>
         
     </div>
@@ -267,12 +368,12 @@ $    &#x53D6;&#x7528;&#x53D8;&#x91CF;&#x7B26;
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/">LINUX Shell Scripts 第三课 正则表达式</a>
+            <a href="/2016/12/25/booboo_mysql/00-MySQL-Management-Course-Introduction/">MySQL 管理课程 第一课 课程简介</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2016/12/23/booboo_bash_shell_scripts/shell-test01/">LINUX Shell Scripts 第六课 上机考试</a>
+            <a href="/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/">LINUX Shell Scripts 第二课 流程控制语句</a>
             
         </span>
     </div>
@@ -290,7 +391,7 @@ $    &#x53D6;&#x7528;&#x53D8;&#x91CF;&#x7B26;
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -327,7 +428,7 @@ $    &#x53D6;&#x7528;&#x53D8;&#x91CF;&#x7B26;
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -491,7 +592,7 @@ $    &#x53D6;&#x7528;&#x53D8;&#x91CF;&#x7B26;
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -503,11 +604,11 @@ $    &#x53D6;&#x7528;&#x53D8;&#x91CF;&#x7B26;
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

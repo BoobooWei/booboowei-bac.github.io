@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/03-Linux-file/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="Linux &amp;#x76EE;&amp;#x5F55;Linux &amp;#x76EE;&amp;#x5F55;&amp;#x914D;&amp;#x7F6E;&amp;#x7684;&amp;#x4F9D;&amp;#x636E; &amp;#x2013;FHS&amp;#x56E0;&amp;#x4E3A;&amp;#x5229;&amp;#x7528; Linux &amp;#x6765;&amp;#x5F00;&amp;#x53D1;&amp;#x4EA7;&amp;#x54C1;&amp;#x6216; distributions &amp;#">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/03-Linux-file/02.png">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/03-Linux-file/04.png">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/03-Linux-file/07.png">
@@ -112,13 +113,175 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Linux-&amp;#x76EE;&amp;#x5F55;">1&nbsp;&nbsp;<b>Linux &amp;amp;#x76EE;&amp;amp;#x5F55;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Linux-&amp;#x76EE;&amp;#x5F55;&amp;#x914D;&amp;#x7F6E;&amp;#x7684;&amp;#x4F9D;&amp;#x636E;-&amp;#x2013;FHS">1.1&nbsp;&nbsp;Linux &amp;amp;#x76EE;&amp;amp;#x5F55;&amp;amp;#x914D;&amp;amp;#x7F6E;&amp;amp;#x7684;&amp;amp;#x4F9D;&amp;amp;#x636E; &amp;amp;#x2013;FHS</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x76EE;&amp;#x5F55;&amp;#x6811;">1.2&nbsp;&nbsp;&amp;amp;#x76EE;&amp;amp;#x5F55;&amp;amp;#x6811;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6587;&amp;#x4EF6;&amp;#x5C5E;&amp;#x6027;">2&nbsp;&nbsp;<b>&amp;amp;#x6587;&amp;amp;#x4EF6;&amp;amp;#x5C5E;&amp;amp;#x6027;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6587;&amp;#x4EF6;&amp;#x7684;&amp;#x5206;&amp;#x7C7B;">2.1&nbsp;&nbsp;&amp;amp;#x6587;&amp;amp;#x4EF6;&amp;amp;#x7684;&amp;amp;#x5206;&amp;amp;#x7C7B;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4E00;&amp;#x822C;&amp;#x6743;&amp;#x9650;-UGO">2.2&nbsp;&nbsp;&amp;amp;#x4E00;&amp;amp;#x822C;&amp;amp;#x6743;&amp;amp;#x9650; UGO</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x7279;&amp;#x6B8A;&amp;#x6743;&amp;#x9650;-suid-sgid-sticky">2.3&nbsp;&nbsp;&amp;amp;#x7279;&amp;amp;#x6B8A;&amp;amp;#x6743;&amp;amp;#x9650; suid\sgid\sticky</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9690;&amp;#x85CF;&amp;#x5C5E;&amp;#x6027;-ATTR">2.4&nbsp;&nbsp;&amp;amp;#x9690;&amp;amp;#x85CF;&amp;amp;#x5C5E;&amp;amp;#x6027; ATTR</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6587;&amp;#x4EF6;&amp;#x8BBF;&amp;#x95EE;&amp;#x63A7;&amp;#x5236;&amp;#x5217;&amp;#x8868;-ACL">2.5&nbsp;&nbsp;&amp;amp;#x6587;&amp;amp;#x4EF6;&amp;amp;#x8BBF;&amp;amp;#x95EE;&amp;amp;#x63A7;&amp;amp;#x5236;&amp;amp;#x5217;&amp;amp;#x8868; ACL</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6587;&amp;#x4EF6;&amp;#x76F8;&amp;#x5173;&amp;#x7684;&amp;#x547D;&amp;#x4EE4;">3&nbsp;&nbsp;<b>&amp;amp;#x6587;&amp;amp;#x4EF6;&amp;amp;#x76F8;&amp;amp;#x5173;&amp;amp;#x7684;&amp;amp;#x547D;&amp;amp;#x4EE4;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6743;&amp;#x9650;&amp;#x7684;&amp;#x4FEE;&amp;#x6539;-chmod-chown-chgrp-umask">3.1&nbsp;&nbsp;&amp;amp;#x6743;&amp;amp;#x9650;&amp;amp;#x7684;&amp;amp;#x4FEE;&amp;amp;#x6539; chmod chown chgrp umask</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#chmod">3.1.1&nbsp;&nbsp;chmod</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#chgrp">3.1.2&nbsp;&nbsp;chgrp</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#umask">3.1.3&nbsp;&nbsp;umask</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x76F8;&amp;#x5173;&amp;#x6587;&amp;#x6863;-etc-profile-bash-profile">3.1.4&nbsp;&nbsp;&amp;amp;#x76F8;&amp;amp;#x5173;&amp;amp;#x6587;&amp;amp;#x6863; /etc/profile ~/.bash_profile</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#ATTR-&amp;#x6743;&amp;#x9650;&amp;#x547D;&amp;#x4EE4;-chattr-lsattr">3.2&nbsp;&nbsp;ATTR &amp;amp;#x6743;&amp;amp;#x9650;&amp;amp;#x547D;&amp;amp;#x4EE4; chattr lsattr</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#chattr">3.2.1&nbsp;&nbsp;chattr</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#lsattr">3.2.2&nbsp;&nbsp;lsattr</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#ACL-&amp;#x6743;&amp;#x9650;&amp;#x547D;&amp;#x4EE4;">3.3&nbsp;&nbsp;ACL &amp;amp;#x6743;&amp;amp;#x9650;&amp;amp;#x547D;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#ACL-&amp;#x6743;&amp;#x9650;&amp;#x6982;&amp;#x5FF5;">3.3.1&nbsp;&nbsp;ACL &amp;amp;#x6743;&amp;amp;#x9650;&amp;amp;#x6982;&amp;amp;#x5FF5;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#getfacl">3.3.2&nbsp;&nbsp;getfacl</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#setfacl">3.3.3&nbsp;&nbsp;setfacl</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6587;&amp;#x4EF6;&amp;#x5B58;&amp;#x50A8;&amp;#x7ED3;&amp;#x6784;">4&nbsp;&nbsp;<b>&amp;amp;#x6587;&amp;amp;#x4EF6;&amp;amp;#x5B58;&amp;amp;#x50A8;&amp;amp;#x7ED3;&amp;amp;#x6784;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8F6F;&amp;#x786C;&amp;#x65B9;&amp;#x5F0F;&amp;#x94FE;&amp;#x63A5;">5&nbsp;&nbsp;<b>&amp;amp;#x8F6F;&amp;amp;#x786C;&amp;amp;#x65B9;&amp;amp;#x5F0F;&amp;amp;#x94FE;&amp;amp;#x63A5;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6307;&amp;#x4EE4;&amp;#x548C;&amp;#x6587;&amp;#x4EF6;&amp;#x7684;&amp;#x641C;&amp;#x7D22;">6&nbsp;&nbsp;<b>&amp;amp;#x6307;&amp;amp;#x4EE4;&amp;amp;#x548C;&amp;amp;#x6587;&amp;amp;#x4EF6;&amp;amp;#x7684;&amp;amp;#x641C;&amp;amp;#x7D22;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8089;&amp;#x773C;&amp;#x67E5;&amp;#x627E;-ls-R">6.1&nbsp;&nbsp;&amp;amp;#x8089;&amp;amp;#x773C;&amp;amp;#x67E5;&amp;amp;#x627E; : ls -R</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6587;&amp;#x4EF6;&amp;#x540D;&amp;#x7684;&amp;#x641C;&amp;#x5BFB;-whereis-locate-find">6.2&nbsp;&nbsp;&amp;amp;#x6587;&amp;amp;#x4EF6;&amp;amp;#x540D;&amp;amp;#x7684;&amp;amp;#x641C;&amp;amp;#x5BFB; :whereis, locate, find</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#whereis">6.2.1&nbsp;&nbsp;whereis</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#locate">6.2.2&nbsp;&nbsp;locate</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#find">6.2.3&nbsp;&nbsp;find</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Linux-&amp;#x6587;&amp;#x4EF6;&amp;#x548C;&amp;#x76EE;&amp;#x5F55;&amp;#x4F5C;&amp;#x4E1A;">7&nbsp;&nbsp;<b>Linux &amp;amp;#x6587;&amp;amp;#x4EF6;&amp;amp;#x548C;&amp;amp;#x76EE;&amp;amp;#x5F55;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#UGO-&amp;#x6743;&amp;#x9650;&amp;#x4F5C;&amp;#x4E1A;">7.1&nbsp;&nbsp;UGO &amp;amp;#x6743;&amp;amp;#x9650;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x7279;&amp;#x6B8A;&amp;#x6743;&amp;#x9650;&amp;#x4F5C;&amp;#x4E1A;">7.2&nbsp;&nbsp;&amp;amp;#x7279;&amp;amp;#x6B8A;&amp;amp;#x6743;&amp;amp;#x9650;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#ATTR-&amp;#x6743;&amp;#x9650;&amp;#x4F5C;&amp;#x4E1A;">7.3&nbsp;&nbsp;ATTR &amp;amp;#x6743;&amp;amp;#x9650;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#ACL-&amp;#x6743;&amp;#x9650;&amp;#x4F5C;&amp;#x4E1A;">7.4&nbsp;&nbsp;ACL &amp;amp;#x6743;&amp;amp;#x9650;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -151,7 +314,7 @@
         <span class="column is-narrow">
             
             
-            44 分钟 lesen (Über 6616 Wörter)
+            44 分钟 读完 (约 6616 字)
         </span>
         
     </div>
@@ -955,12 +1118,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2016/12/22/booboo_linux_base/02-Linux-user-and-group/">Linux 用户和组</a>
+            <a href="/2016/12/22/booboo_linux_base/04-Linux-tar/">Linux 压缩打包</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2016/12/22/booboo_linux_base/06-Vim/">Linux Vim 编辑器</a>
+            <a href="/2016/12/22/booboo_linux_base/01-Linux-basic-command/">Linux 基础命令</a>
             
         </span>
     </div>
@@ -978,7 +1141,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -1015,7 +1178,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -1179,7 +1342,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -1191,11 +1354,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/13-pid/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="&amp;#x8FDB;&amp;#x7A0B; &amp;#x8FDB;&amp;#x7A0B;&amp;#xFF1A; &amp;#x8FD0;&amp;#x884C;&amp;#x5728;&amp;#x5185;&amp;#x5B58;&amp;#x4E2D;&amp;#x7A0B;&amp;#x5E8F;&amp;#x5B9E;&amp;#x4F8B; , &amp;#x8FDB;&amp;#x7A0B;&amp;#x662F;&amp;#x7A0B;&amp;#x5E8F;&amp;#x8FD0;&amp;#x884C;&amp;#x7684;&amp;#x4E00;&amp;#x">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-12-21T20:06:27.000Z">
 <meta property="article:modified_time" content="2020-03-28T09:39:25.223Z">
 <meta property="article:author" content="BoobooWei">
@@ -106,13 +107,93 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8FDB;&amp;#x7A0B;">1&nbsp;&nbsp;<b>&amp;amp;#x8FDB;&amp;amp;#x7A0B;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#pstree-&amp;#x547D;&amp;#x4EE4;">1.1&nbsp;&nbsp;pstree &amp;amp;#x547D;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9759;&amp;#x6001;&amp;#x67E5;&amp;#x770B;&amp;#x8FDB;&amp;#x7A0B;&amp;#x4FE1;&amp;#x606F;">1.2&nbsp;&nbsp;&amp;amp;#x9759;&amp;amp;#x6001;&amp;amp;#x67E5;&amp;amp;#x770B;&amp;amp;#x8FDB;&amp;amp;#x7A0B;&amp;amp;#x4FE1;&amp;amp;#x606F;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#ps">1.2.1&nbsp;&nbsp;ps</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#pgrep">1.2.2&nbsp;&nbsp;pgrep</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x52A8;&amp;#x6001;&amp;#x67E5;&amp;#x770B;&amp;#x8FDB;&amp;#x7A0B;&amp;#x4FE1;&amp;#x606F;">2&nbsp;&nbsp;<b>&amp;amp;#x52A8;&amp;amp;#x6001;&amp;amp;#x67E5;&amp;amp;#x770B;&amp;amp;#x8FDB;&amp;amp;#x7A0B;&amp;amp;#x4FE1;&amp;amp;#x606F;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#top-&amp;#x7EC8;&amp;#x7AEF;&amp;#x63D0;&amp;#x793A;&amp;#x7B26;&amp;#x4E0D;&amp;#x663E;&amp;#x793A;">2.1&nbsp;&nbsp;top &amp;amp;#x7EC8;&amp;amp;#x7AEF;&amp;amp;#x63D0;&amp;amp;#x793A;&amp;amp;#x7B26;&amp;amp;#x4E0D;&amp;amp;#x663E;&amp;amp;#x793A;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x505C;&amp;#x6B62;&amp;#x8FDB;&amp;#x7A0B;">2.2&nbsp;&nbsp;&amp;amp;#x505C;&amp;amp;#x6B62;&amp;amp;#x8FDB;&amp;amp;#x7A0B;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#killall">2.3&nbsp;&nbsp;killall</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#pkill">2.4&nbsp;&nbsp;pkill</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#xkill">2.5&nbsp;&nbsp;xkill</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8FDB;&amp;#x7A0B;&amp;#x4F18;&amp;#x5148;&amp;#x7EA7;">2.6&nbsp;&nbsp;&amp;amp;#x8FDB;&amp;amp;#x7A0B;&amp;amp;#x4F18;&amp;amp;#x5148;&amp;amp;#x7EA7;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6307;&amp;#x5B9A;&amp;#x4F18;&amp;#x5148;&amp;#x7EA7;">2.7&nbsp;&nbsp;&amp;amp;#x6307;&amp;amp;#x5B9A;&amp;amp;#x4F18;&amp;amp;#x5148;&amp;amp;#x7EA7;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8C03;&amp;#x6574;&amp;#x4F18;&amp;#x5148;&amp;#x7EA7;">2.8&nbsp;&nbsp;&amp;amp;#x8C03;&amp;amp;#x6574;&amp;amp;#x4F18;&amp;amp;#x5148;&amp;amp;#x7EA7;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x524D;&amp;#x540E;&amp;#x53F0;&amp;#x4F5C;&amp;#x4E1A;">3&nbsp;&nbsp;<b>&amp;amp;#x524D;&amp;amp;#x540E;&amp;amp;#x53F0;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8FDB;&amp;#x7A0B;&amp;#x7BA1;&amp;#x7406;&amp;#x8BFE;&amp;#x540E;&amp;#x4F5C;&amp;#x4E1A;">4&nbsp;&nbsp;<b>&amp;amp;#x8FDB;&amp;amp;#x7A0B;&amp;amp;#x7BA1;&amp;amp;#x7406;&amp;amp;#x8BFE;&amp;amp;#x540E;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</b></a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -145,7 +226,7 @@
         <span class="column is-narrow">
             
             
-            17 分钟 lesen (Über 2562 Wörter)
+            17 分钟 读完 (约 2562 字)
         </span>
         
     </div>
@@ -322,12 +403,10 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2016/12/22/booboo_linux_base/09-Linux-disk/">Linux 文件系统和磁盘管理</a>
+            <a href="/2016/12/22/booboo_linux_base/12-SELINUX/">Linux SELINUX</a>
             
         </span>
-        <span class="column is-12-mobile is-half-desktop  article-nav-next">
-            
-            <a href="/2016/12/22/booboo_linux_base/12-SELINUX/">Linux SELINUX</a>
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-next">
             
         </span>
     </div>
@@ -345,7 +424,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -382,7 +461,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -546,7 +625,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -558,11 +637,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

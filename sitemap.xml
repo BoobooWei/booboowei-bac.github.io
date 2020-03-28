@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/about/index.html</loc>
+    
+    <lastmod>2020-03-28T11:16:20.675Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/tools/index.html</loc>
     
     <lastmod>2020-03-28T10:08:15.530Z</lastmod>
@@ -362,13 +369,6 @@
     <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/02-Linux-user-and-group/</loc>
     
     <lastmod>2020-03-23T06:24:25.927Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/about/index.html</loc>
-    
-    <lastmod>2020-03-22T14:48:00.875Z</lastmod>
     
   </url>
   

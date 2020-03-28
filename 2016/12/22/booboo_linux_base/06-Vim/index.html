@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/06-Vim/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="Vim &amp;#x7B80;&amp;#x4ECB; Vim &amp;#x662F; Linux &amp;#x7CFB;&amp;#x7EDF;&amp;#x4E0A;&amp;#x7684;&amp;#x6700;&amp;#x8457;&amp;#x540D;&amp;#x7684;&amp;#x6587;&amp;#x672C;&#x2F; &amp;#x4EE3;&amp;#x7801;&amp;#x7F16;&amp;#x8F91;&amp;#x5668;,&amp;#x4E5F;&amp;#x662F;&amp;#x65E9;&amp;#x5E74;&amp;#x76">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/06-Vim/10.png">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/06-Vim/11.png">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/06-Vim/12.png">
@@ -117,13 +118,111 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Vim-&amp;#x7B80;&amp;#x4ECB;">1&nbsp;&nbsp;<b>Vim &amp;amp;#x7B80;&amp;amp;#x4ECB;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Vim-&amp;#x96BE;&amp;#x4EE5;&amp;#x9A7E;&amp;#x9A6D;&amp;#x7684;&amp;#x795E;&amp;#x5668;">1.1&nbsp;&nbsp;Vim - &amp;amp;#x96BE;&amp;amp;#x4EE5;&amp;amp;#x9A7E;&amp;amp;#x9A6D;&amp;amp;#x7684;&amp;amp;#x795E;&amp;amp;#x5668;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Vim-&amp;#x5165;&amp;#x95E8;&amp;#x5E2E;&amp;#x52A9;">1.2&nbsp;&nbsp;Vim &amp;amp;#x5165;&amp;amp;#x95E8;&amp;amp;#x5E2E;&amp;amp;#x52A9;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Vim-&amp;#x6A21;&amp;#x5F0F;&amp;#x4ECB;&amp;#x7ECD;">1.3&nbsp;&nbsp;Vim &amp;amp;#x6A21;&amp;amp;#x5F0F;&amp;amp;#x4ECB;&amp;amp;#x7ECD;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6B63;&amp;#x5E38;&amp;#x6A21;&amp;#x5F0F;">1.4&nbsp;&nbsp;&amp;amp;#x6B63;&amp;amp;#x5E38;&amp;amp;#x6A21;&amp;amp;#x5F0F;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x547D;&amp;#x4EE4;&amp;#x6A21;&amp;#x5F0F;">1.5&nbsp;&nbsp;&amp;amp;#x547D;&amp;amp;#x4EE4;&amp;amp;#x6A21;&amp;amp;#x5F0F;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x63D2;&amp;#x5165;&amp;#x6A21;&amp;#x5F0F;">1.6&nbsp;&nbsp;&amp;amp;#x63D2;&amp;amp;#x5165;&amp;amp;#x6A21;&amp;amp;#x5F0F;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Vim-&amp;#x5B9E;&amp;#x4F8B;">2&nbsp;&nbsp;<b>Vim &amp;amp;#x5B9E;&amp;amp;#x4F8B;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Vim-&amp;#x7B2C;&amp;#x4E00;&amp;#x6B65;">2.1&nbsp;&nbsp;Vim &amp;amp;#x7B2C;&amp;amp;#x4E00;&amp;amp;#x6B65;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9996;&amp;#x6B21;&amp;#x8FD0;&amp;#x884C;-Vim">2.1.1&nbsp;&nbsp;&amp;amp;#x9996;&amp;amp;#x6B21;&amp;amp;#x8FD0;&amp;amp;#x884C; Vim</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x63D2;&amp;#x5165;&amp;#x6587;&amp;#x672C;">2.1.2&nbsp;&nbsp;&amp;amp;#x63D2;&amp;amp;#x5165;&amp;amp;#x6587;&amp;amp;#x672C;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x79FB;&amp;#x52A8;&amp;#x5149;&amp;#x6807;">2.1.3&nbsp;&nbsp;&amp;amp;#x79FB;&amp;amp;#x52A8;&amp;amp;#x5149;&amp;amp;#x6807;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5220;&amp;#x9664;&amp;#x5B57;&amp;#x7B26;">2.1.4&nbsp;&nbsp;&amp;amp;#x5220;&amp;amp;#x9664;&amp;amp;#x5B57;&amp;amp;#x7B26;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5176;&amp;#x5B83;&amp;#x7F16;&amp;#x8F91;&amp;#x547D;&amp;#x4EE4;">2.1.5&nbsp;&nbsp;&amp;amp;#x5176;&amp;amp;#x5B83;&amp;amp;#x7F16;&amp;amp;#x8F91;&amp;amp;#x547D;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9000;&amp;#x51FA;">2.1.6&nbsp;&nbsp;&amp;amp;#x9000;&amp;amp;#x51FA;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5149;&amp;#x6807;&amp;#x7684;&amp;#x6307;&amp;#x5B9A;&amp;#x79FB;&amp;#x52A8;">2.1.7&nbsp;&nbsp;&amp;amp;#x5149;&amp;amp;#x6807;&amp;amp;#x7684;&amp;amp;#x6307;&amp;amp;#x5B9A;&amp;amp;#x79FB;&amp;amp;#x52A8;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x7B80;&amp;#x5355;&amp;#x641C;&amp;#x7D22;">2.1.8&nbsp;&nbsp;&amp;amp;#x7B80;&amp;amp;#x5355;&amp;amp;#x641C;&amp;amp;#x7D22;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x7C98;&amp;#x8D34;">2.1.9&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x7C98;&amp;amp;#x8D34;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x66FF;&amp;#x6362;&amp;#x5B57;&amp;#x7B26;">2.1.10&nbsp;&nbsp;&amp;amp;#x66FF;&amp;amp;#x6362;&amp;amp;#x5B57;&amp;amp;#x7B26;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Vim-&amp;#x7684;&amp;#x4FDD;&amp;#x62A4;&amp;#x673A;&amp;#x5236;">2.2&nbsp;&nbsp;Vim &amp;amp;#x7684;&amp;amp;#x4FDD;&amp;amp;#x62A4;&amp;amp;#x673A;&amp;amp;#x5236;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Vim-&amp;#x7F16;&amp;#x8F91;&amp;#x5668;&amp;#x8BFE;&amp;#x540E;&amp;#x4F5C;&amp;#x4E1A;">3&nbsp;&nbsp;<b>Vim &amp;amp;#x7F16;&amp;amp;#x8F91;&amp;amp;#x5668;&amp;amp;#x8BFE;&amp;amp;#x540E;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</b></a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -156,7 +255,7 @@
         <span class="column is-narrow">
             
             
-            35 分钟 lesen (Über 5322 Wörter)
+            35 分钟 读完 (约 5322 字)
         </span>
         
     </div>
@@ -344,12 +443,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2016/12/22/booboo_linux_base/03-Linux-file/">Linux 文件和目录</a>
+            <a href="/2016/12/22/booboo_linux_base/05-Linux-software/">Linux 软件安装</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2016/12/22/booboo_linux_base/01-Linux-basic-command/">Linux 基础命令</a>
+            <a href="/2016/12/22/booboo_linux_base/04-Linux-tar/">Linux 压缩打包</a>
             
         </span>
     </div>
@@ -367,7 +466,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -404,7 +503,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -568,7 +667,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -580,11 +679,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

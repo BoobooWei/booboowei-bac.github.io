@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/11-Linux-kernel/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="WHERE&amp;#x5185;&amp;#x6838;&amp;#x4E0E;&amp;#x5185;&amp;#x6838;&amp;#x6A21;&amp;#x5757;&amp;#x5728;&amp;#x54EA;&amp;#x91CC;&amp;#x5462;?&amp;#x5185;&amp;#x6838;&amp;#x6A21;&amp;#x5757;&amp;#x90FD;&amp;#x6709;&amp;#x54EA;&amp;#x4E9B;&amp;#x5462;?&amp;#x4E0B;&amp;#x9762;&amp;#x7684;&amp;#x8868;&amp;">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/11-Linux-kernel/44.png">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/11-Linux-kernel/45.png">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/11-Linux-kernel/46.png">
@@ -112,13 +113,111 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#WHERE">1&nbsp;&nbsp;<b>WHERE</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#WHAT">1.1&nbsp;&nbsp;WHAT</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#moudules-dep-&amp;#x6587;&amp;#x4EF6;">1.2&nbsp;&nbsp;moudules.dep &amp;amp;#x6587;&amp;amp;#x4EF6;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#depmod-&amp;#x547D;&amp;#x4EE4;">1.3&nbsp;&nbsp;depmod &amp;amp;#x547D;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#depmod-&amp;#x5B9E;&amp;#x9A8C;">1.4&nbsp;&nbsp;depmod &amp;amp;#x5B9E;&amp;amp;#x9A8C;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#lsmod-&amp;#x547D;&amp;#x4EE4;">1.5&nbsp;&nbsp;lsmod &amp;amp;#x547D;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#modinfo-&amp;#x547D;&amp;#x4EE4;">1.6&nbsp;&nbsp;modinfo &amp;amp;#x547D;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5185;&amp;#x6838;&amp;#x6A21;&amp;#x5757;&amp;#x7684;&amp;#x89C2;&amp;#x5BDF;&amp;#x5B9E;&amp;#x9A8C;">1.7&nbsp;&nbsp;&amp;amp;#x5185;&amp;amp;#x6838;&amp;amp;#x6A21;&amp;amp;#x5757;&amp;amp;#x7684;&amp;amp;#x89C2;&amp;amp;#x5BDF;&amp;amp;#x5B9E;&amp;amp;#x9A8C;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5185;&amp;#x6838;&amp;#x6A21;&amp;#x5757;&amp;#x7684;&amp;#x52A0;&amp;#x8F7D;&amp;#x4E0E;&amp;#x79FB;&amp;#x9664;-insmod-modprobe-rmmod">2&nbsp;&nbsp;<b>&amp;amp;#x5185;&amp;amp;#x6838;&amp;amp;#x6A21;&amp;amp;#x5757;&amp;amp;#x7684;&amp;amp;#x52A0;&amp;amp;#x8F7D;&amp;amp;#x4E0E;&amp;amp;#x79FB;&amp;amp;#x9664;:insmod, modprobe, rmmod</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#insmod-&amp;#x547D;&amp;#x4EE4;">2.1&nbsp;&nbsp;insmod &amp;amp;#x547D;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#modprobe-&amp;#x547D;&amp;#x4EE4;">2.2&nbsp;&nbsp;modprobe &amp;amp;#x547D;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#rmmod-&amp;#x547D;&amp;#x4EE4;">2.3&nbsp;&nbsp;rmmod &amp;amp;#x547D;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5185;&amp;#x6838;&amp;#x6A21;&amp;#x5757;&amp;#x7684;&amp;#x52A0;&amp;#x8F7D;&amp;#x4E0E;&amp;#x79FB;&amp;#x9664;&amp;#x5B9E;&amp;#x9A8C;">2.4&nbsp;&nbsp;&amp;amp;#x5185;&amp;amp;#x6838;&amp;amp;#x6A21;&amp;amp;#x5757;&amp;amp;#x7684;&amp;amp;#x52A0;&amp;amp;#x8F7D;&amp;amp;#x4E0E;&amp;amp;#x79FB;&amp;amp;#x9664;&amp;amp;#x5B9E;&amp;amp;#x9A8C;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5185;&amp;#x6838;&amp;#x6A21;&amp;#x5757;&amp;#x7684;&amp;#x989D;&amp;#x5916;&amp;#x53C2;&amp;#x6570;&amp;#x8BBE;&amp;#x5B9A;-etc-modprobe-d-conf">3&nbsp;&nbsp;<b>&amp;amp;#x5185;&amp;amp;#x6838;&amp;amp;#x6A21;&amp;amp;#x5757;&amp;amp;#x7684;&amp;amp;#x989D;&amp;amp;#x5916;&amp;amp;#x53C2;&amp;amp;#x6570;&amp;amp;#x8BBE;&amp;amp;#x5B9A;:/etc/modprobe.d/*.conf</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5185;&amp;#x6838;&amp;#x5347;&amp;#x7EA7;">4&nbsp;&nbsp;<b>&amp;amp;#x5185;&amp;amp;#x6838;&amp;amp;#x5347;&amp;amp;#x7EA7;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6E90;&amp;#x7801;&amp;#x7F16;&amp;#x8BD1;">4.1&nbsp;&nbsp;&amp;amp;#x6E90;&amp;amp;#x7801;&amp;amp;#x7F16;&amp;amp;#x8BD1;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#rpm-&amp;#x5305;&amp;#x5B89;&amp;#x88C5;">4.2&nbsp;&nbsp;rpm &amp;amp;#x5305;&amp;amp;#x5B89;&amp;amp;#x88C5;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#rhel6-5-&amp;#x5185;&amp;#x6838;&amp;#x5347;&amp;#x7EA7;-&amp;#x2014;&amp;#x2014;-yum-&amp;#x65B9;&amp;#x5F0F;-&amp;#x6709;&amp;#x7F51;">4.2.1&nbsp;&nbsp;rhel6.5 &amp;amp;#x5185;&amp;amp;#x6838;&amp;amp;#x5347;&amp;amp;#x7EA7; &amp;amp;#x2014;&amp;amp;#x2014; yum &amp;amp;#x65B9;&amp;amp;#x5F0F;(&amp;amp;#x6709;&amp;amp;#x7F51;)</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#rhel7-2-&amp;#x5185;&amp;#x6838;&amp;#x5347;&amp;#x7EA7;-&amp;#x2014;&amp;#x2014;-&amp;#x672C;&amp;#x5730;-rpm-&amp;#x5B89;&amp;#x88C5;-&amp;#x6CA1;&amp;#x7F51;">4.2.2&nbsp;&nbsp;rhel7.2 &amp;amp;#x5185;&amp;amp;#x6838;&amp;amp;#x5347;&amp;amp;#x7EA7; &amp;amp;#x2014;&amp;amp;#x2014; &amp;amp;#x672C;&amp;amp;#x5730; rpm &amp;amp;#x5B89;&amp;amp;#x88C5;(&amp;amp;#x6CA1;&amp;amp;#x7F51;)</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Linux-&amp;#x5185;&amp;#x6838;&amp;#x4F5C;&amp;#x4E1A;">5&nbsp;&nbsp;<b>Linux &amp;amp;#x5185;&amp;amp;#x6838;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</b></a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -151,7 +250,7 @@
         <span class="column is-narrow">
             
             
-            15 分钟 lesen (Über 2302 Wörter)
+            15 分钟 读完 (约 2302 字)
         </span>
         
     </div>
@@ -285,7 +384,9 @@
             <a href="/2016/12/22/booboo_linux_base/10-Linux-startup-process/">Linux 开机启动流程</a>
             
         </span>
-        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-next">
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2016/12/22/booboo_linux_base/12-SELINUX/">Linux SELINUX</a>
             
         </span>
     </div>
@@ -303,7 +404,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -340,7 +441,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -504,7 +605,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -516,11 +617,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/23/booboo_easy_service/07_iptables_firewalld/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="&amp;#x9632;&amp;#x706B;&amp;#x5899;&amp;#x7684;&amp;#x4F5C;&amp;#x7528;&amp;#x9632;&amp;#x706B;&amp;#x5899;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x7EC4;&amp;#x4EF6;&amp;#xFF0C;&amp;#x5DE5;&amp;#x4F5C;&amp;#x5728;&amp;#x7F51;&amp;#x7EDC;&amp;#x8FB9;&amp;#x7F18;&amp;#xFF08;&amp;#x4E3B;&amp;#x673A;">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/23/booboo_easy_service/07_iptables_firewalld/21.png">
 <meta property="article:published_time" content="2016-12-22T21:06:27.000Z">
 <meta property="article:modified_time" content="2020-03-28T09:27:32.549Z">
@@ -108,13 +109,91 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9632;&amp;#x706B;&amp;#x5899;&amp;#x7684;&amp;#x4F5C;&amp;#x7528;">1&nbsp;&nbsp;<b>&amp;amp;#x9632;&amp;amp;#x706B;&amp;amp;#x5899;&amp;amp;#x7684;&amp;amp;#x4F5C;&amp;amp;#x7528;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9632;&amp;#x706B;&amp;#x5899;&amp;#x7C7B;&amp;#x578B;">2&nbsp;&nbsp;<b>&amp;amp;#x9632;&amp;amp;#x706B;&amp;amp;#x5899;&amp;amp;#x7C7B;&amp;amp;#x578B;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8F6F;&amp;#x4EF6;&amp;#x9632;&amp;#x706B;&amp;#x5899;">3&nbsp;&nbsp;<b>&amp;amp;#x8F6F;&amp;amp;#x4EF6;&amp;amp;#x9632;&amp;amp;#x706B;&amp;amp;#x5899;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#iptables&amp;#x8BED;&amp;#x6CD5;">4&nbsp;&nbsp;<b>iptables&amp;amp;#x8BED;&amp;amp;#x6CD5;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8868;table">4.1&nbsp;&nbsp;&amp;amp;#x8868;table</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#CMD&amp;#x52A8;&amp;#x4F5C;">4.2&nbsp;&nbsp;CMD&amp;amp;#x52A8;&amp;amp;#x4F5C;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8868;&amp;#x5F53;&amp;#x4E2D;&amp;#x5305;&amp;#x542B;&amp;#x94FE;chain">4.3&nbsp;&nbsp;&amp;amp;#x8868;&amp;amp;#x5F53;&amp;amp;#x4E2D;&amp;amp;#x5305;&amp;amp;#x542B;&amp;amp;#x94FE;chain</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x89C4;&amp;#x5219;rule">4.4&nbsp;&nbsp;&amp;amp;#x89C4;&amp;amp;#x5219;rule</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6267;&amp;#x884C;&amp;#x64CD;&amp;#x4F5C;target">4.5&nbsp;&nbsp;&amp;amp;#x6267;&amp;amp;#x884C;&amp;amp;#x64CD;&amp;amp;#x4F5C;target</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5E94;&amp;#x7528;&amp;#x5B9E;&amp;#x4F8B;">5&nbsp;&nbsp;<b>&amp;amp;#x5E94;&amp;amp;#x7528;&amp;amp;#x5B9E;&amp;amp;#x4F8B;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8BFE;&amp;#x5802;&amp;#x7EC3;&amp;#x4E60;&amp;#x9898;&amp;#x76EE;">6&nbsp;&nbsp;<b>&amp;amp;#x8BFE;&amp;amp;#x5802;&amp;amp;#x7EC3;&amp;amp;#x4E60;&amp;amp;#x9898;&amp;amp;#x76EE;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Firewalld&amp;#x7684;&amp;#x7528;&amp;#x6CD5;">7&nbsp;&nbsp;<b>Firewalld&amp;amp;#x7684;&amp;amp;#x7528;&amp;amp;#x6CD5;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Firewall-config">7.1&nbsp;&nbsp;Firewall-config</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#firewall-cmd">7.2&nbsp;&nbsp;firewall-cmd</a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -147,7 +226,7 @@
         <span class="column is-narrow">
             
             
-            8 分钟 lesen (Über 1243 Wörter)
+            8 分钟 读完 (约 1243 字)
         </span>
         
     </div>
@@ -314,7 +393,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -351,7 +430,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -515,7 +594,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -527,11 +606,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

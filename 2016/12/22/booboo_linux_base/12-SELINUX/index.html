@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/12-SELINUX/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="SELinuxSecurity Enhanced Linux &amp;#x5B89;&amp;#x5168;&amp;#x5F3A;&amp;#x5316;&amp;#x7684; Linux &amp;#x4F5C;&amp;#x7528;&amp;#x5F3A;&amp;#x5236;&amp;#x9650;&amp;#x5236;&amp;#x67D0;&amp;#x4E9B;&amp;#x64CD;&amp;#x4F5C; , &amp;#x5C5E;&amp;#x4E8E;&amp;#x6743;&amp;#x9650;&amp;#x7684">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-12-21T20:06:27.000Z">
 <meta property="article:modified_time" content="2020-03-23T06:24:25.945Z">
 <meta property="article:author" content="BoobooWei">
@@ -106,13 +107,51 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#SELinux">1&nbsp;&nbsp;<b>SELinux</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4F5C;&amp;#x7528;">1.1&nbsp;&nbsp;&amp;amp;#x4F5C;&amp;amp;#x7528;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;">1.2&nbsp;&nbsp;&amp;amp;#x914D;&amp;amp;#x7F6E;&amp;amp;#x6587;&amp;amp;#x4EF6;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x76F8;&amp;#x5173;&amp;#x6307;&amp;#x4EE4;">1.3&nbsp;&nbsp;&amp;amp;#x76F8;&amp;amp;#x5173;&amp;amp;#x6307;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x64CD;&amp;#x4F5C;&amp;#x9650;&amp;#x5236;&amp;#x7684;&amp;#x5B9E;&amp;#x73B0;&amp;#x65B9;&amp;#x6CD5;">1.4&nbsp;&nbsp;&amp;amp;#x64CD;&amp;amp;#x4F5C;&amp;amp;#x9650;&amp;amp;#x5236;&amp;amp;#x7684;&amp;amp;#x5B9E;&amp;amp;#x73B0;&amp;amp;#x65B9;&amp;amp;#x6CD5;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#auditd">1.4.1&nbsp;&nbsp;auditd</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#selinux-policy-devel">1.5&nbsp;&nbsp;selinux-policy-devel</a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -145,7 +184,7 @@
         <span class="column is-narrow">
             
             
-            9 分钟 lesen (Über 1415 Wörter)
+            9 分钟 读完 (约 1415 字)
         </span>
         
     </div>
@@ -202,12 +241,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2016/12/22/booboo_linux_base/13-pid/">Linux 进程管理</a>
+            <a href="/2016/12/22/booboo_linux_base/11-Linux-kernel/">Linux 内核</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2016/12/22/booboo_linux_base/10-Linux-startup-process/">Linux 开机启动流程</a>
+            <a href="/2016/12/22/booboo_linux_base/13-pid/">Linux 进程管理</a>
             
         </span>
     </div>
@@ -225,7 +264,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -262,7 +301,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -426,7 +465,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -438,11 +477,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

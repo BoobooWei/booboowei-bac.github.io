@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2018/09/19/amy_life/2018-09-19-amy/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="&amp;#x6458;&amp;#x8981;&amp;#xFF1A;&amp;#x5E7C;&amp;#x513F;&amp;#x56ED;&amp;#x5F00;&amp;#x5B66;&amp;#x7B2C;10&amp;#x5929;&amp;#xFF0C;&amp;#x5B9D;&amp;#x5B9D;&amp;#x4EEC;&amp;#x9010;&amp;#x6E10;&amp;#x7A33;&amp;#x5B9A;&amp;#xFF0C;&amp;#x878D;&amp;#x5165;&amp;#x8FD9;&amp;#x4E2A;&amp;#x5927;&amp;#x5BB">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.toberoot.com/2018/09/19/amy_life/2018-09-19-amy/001.jpg">
 <meta property="og:image" content="http://www.toberoot.com/2018/09/19/amy_life/2018-09-19-amy/002.jpg">
 <meta property="og:image" content="http://www.toberoot.com/2018/09/19/amy_life/2018-09-19-amy/003.jpg">
@@ -135,13 +136,23 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -174,7 +185,7 @@
         <span class="column is-narrow">
             
             
-            1 分钟 lesen (Über 128 Wörter)
+            1 分钟 读完 (约 128 字)
         </span>
         
     </div>
@@ -249,7 +260,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -286,7 +297,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -450,7 +461,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -462,11 +473,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

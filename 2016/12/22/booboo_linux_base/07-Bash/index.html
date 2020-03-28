@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/07-Bash/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="SHELLshell &amp;#x7B80;&amp;#x4ECB;Shell &amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x547D;&amp;#x4EE4;&amp;#x89E3;&amp;#x91CA;&amp;#x5668;, &amp;#x662F;&amp;#x4EBA;&amp;#x4E0E;&amp;#x64CD;&amp;#x4F5C;&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E4B;&amp;#x95F4;&amp;#x7684;&amp;#x6865;&amp;#x6881;&amp;#x30">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-12-21T20:06:27.000Z">
 <meta property="article:modified_time" content="2020-03-23T06:24:25.931Z">
 <meta property="article:author" content="BoobooWei">
@@ -106,13 +107,89 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#SHELL">1&nbsp;&nbsp;<b>SHELL</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#shell-&amp;#x7B80;&amp;#x4ECB;">1.1&nbsp;&nbsp;shell &amp;amp;#x7B80;&amp;amp;#x4ECB;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#shell-&amp;#x5386;&amp;#x53F2;">1.2&nbsp;&nbsp;shell &amp;amp;#x5386;&amp;amp;#x53F2;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5E38;&amp;#x89C1;&amp;#x7684;-shell">1.3&nbsp;&nbsp;&amp;amp;#x5E38;&amp;amp;#x89C1;&amp;amp;#x7684; shell</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4E3A;&amp;#x4EC0;&amp;#x4E48;-Shell">1.4&nbsp;&nbsp;&amp;amp;#x4E3A;&amp;amp;#x4EC0;&amp;amp;#x4E48; Shell</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#etc-shells">1.5&nbsp;&nbsp;/etc/shells</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#bash-&amp;#x529F;&amp;#x80FD;">2&nbsp;&nbsp;<b>bash &amp;amp;#x529F;&amp;amp;#x80FD;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#history-&amp;#x529F;&amp;#x80FD;">2.1&nbsp;&nbsp;history &amp;amp;#x529F;&amp;amp;#x80FD;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x522B;&amp;#x540D;-alias">2.2&nbsp;&nbsp;&amp;amp;#x522B;&amp;amp;#x540D; alias</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#tab-&amp;#x952E;&amp;#x8865;&amp;#x5168;&amp;#x529F;&amp;#x80FD;">2.3&nbsp;&nbsp;tab &amp;amp;#x952E;&amp;amp;#x8865;&amp;amp;#x5168;&amp;amp;#x529F;&amp;amp;#x80FD;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5FEB;&amp;#x6377;&amp;#x952E;">2.4&nbsp;&nbsp;&amp;amp;#x5FEB;&amp;amp;#x6377;&amp;amp;#x952E;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x7528;&amp;#x6237;&amp;#x767B;&amp;#x5F55;&amp;#x6D41;&amp;#x7A0B;">3&nbsp;&nbsp;<b>&amp;amp;#x7528;&amp;amp;#x6237;&amp;amp;#x767B;&amp;amp;#x5F55;&amp;amp;#x6D41;&amp;amp;#x7A0B;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#PATH-&amp;#x53D8;&amp;#x91CF;">3.1&nbsp;&nbsp;PATH &amp;amp;#x53D8;&amp;amp;#x91CF;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#PS1-&amp;#x53D8;&amp;#x91CF;">3.2&nbsp;&nbsp;PS1 &amp;amp;#x53D8;&amp;amp;#x91CF;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Bash&amp;#x7B80;&amp;#x4ECB;&amp;#x8BFE;&amp;#x540E;&amp;#x4F5C;&amp;#x4E1A;">4&nbsp;&nbsp;<b>Bash&amp;amp;#x7B80;&amp;amp;#x4ECB;&amp;amp;#x8BFE;&amp;amp;#x540E;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</b></a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -145,7 +222,7 @@
         <span class="column is-narrow">
             
             
-            27 分钟 lesen (Über 4064 Wörter)
+            27 分钟 读完 (约 4064 字)
         </span>
         
     </div>
@@ -300,7 +377,7 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2016/12/22/booboo_linux_base/05-Linux-software/">Linux 软件安装</a>
+            <a href="/2016/12/22/booboo_linux_base/01-Linux-basic-command/">Linux 基础命令</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
@@ -323,7 +400,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -360,7 +437,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -524,7 +601,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -536,11 +613,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

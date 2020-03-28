@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="&amp;#x6458;&amp;#x8981;&amp;#xFF1A;MetaData Lock&amp;#x5373;&amp;#x5143;&amp;#x6570;&amp;#x636E;&amp;#x9501;&amp;#xFF0C;&amp;#x5728;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x4E2D;&amp;#x5143;&amp;#x6570;&amp;#x636E;&amp;#x5373;&amp;#x6570;&amp;#x636E;&amp;#x5B57;&amp;#x5178;&amp;#x4FE1;&amp;#x">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/2017-08-18-tec-mysql%5Cmdl01.png">
 <meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl02.png">
 <meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl03.png">
@@ -118,13 +119,89 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;metadata-lock&amp;#xFF1F;">1&nbsp;&nbsp;<b>&amp;amp;#x4EC0;&amp;amp;#x4E48;&amp;amp;#x662F;metadata lock&amp;amp;#xFF1F;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#MetaData-Lock&amp;#x7684;&amp;#x524D;&amp;#x4E16;&amp;#x4ECA;&amp;#x751F;">1.1&nbsp;&nbsp;MetaData Lock&amp;amp;#x7684;&amp;amp;#x524D;&amp;amp;#x4E16;&amp;amp;#x4ECA;&amp;amp;#x751F;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#DDL&amp;#x64CD;&amp;#x4F5C;&amp;#x4E0E;MetaData-Lock">1.2&nbsp;&nbsp;DDL&amp;amp;#x64CD;&amp;amp;#x4F5C;&amp;amp;#x4E0E;MetaData Lock</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Alter-table-&amp;#x4F1A;&amp;#x53D1;&amp;#x751F;&amp;#x9501;&amp;#x7684;&amp;#x4E09;&amp;#x79CD;&amp;#x573A;&amp;#x666F;">2&nbsp;&nbsp;<b>Alter table &amp;amp;#x4F1A;&amp;amp;#x53D1;&amp;amp;#x751F;&amp;amp;#x9501;&amp;amp;#x7684;&amp;amp;#x4E09;&amp;amp;#x79CD;&amp;amp;#x573A;&amp;amp;#x666F;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x573A;&amp;#x666F;1">2.1&nbsp;&nbsp;&amp;amp;#x573A;&amp;amp;#x666F;1</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x573A;&amp;#x666F;2">2.2&nbsp;&nbsp;&amp;amp;#x573A;&amp;amp;#x666F;2</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x573A;&amp;#x666F;3">2.3&nbsp;&nbsp;&amp;amp;#x573A;&amp;amp;#x666F;3</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5C0F;&amp;#x77E5;&amp;#x8BC6;&amp;#x70B9;&amp;#x603B;&amp;#x7ED3;">3&nbsp;&nbsp;<b>&amp;amp;#x5C0F;&amp;amp;#x77E5;&amp;amp;#x8BC6;&amp;amp;#x70B9;&amp;amp;#x603B;&amp;amp;#x7ED3;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4E09;&amp;#x5F20;&amp;#x8868;&amp;#x7684;&amp;#x5173;&amp;#x7CFB;">3.1&nbsp;&nbsp;&amp;amp;#x4E09;&amp;amp;#x5F20;&amp;amp;#x8868;&amp;amp;#x7684;&amp;amp;#x5173;&amp;amp;#x7CFB;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6211;&amp;#x7684;&amp;#x7406;&amp;#x89E3;">3.2&nbsp;&nbsp;&amp;amp;#x6211;&amp;amp;#x7684;&amp;amp;#x7406;&amp;amp;#x89E3;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8D44;&amp;#x6599;&amp;#x53C2;&amp;#x8003;">3.3&nbsp;&nbsp;&amp;amp;#x8D44;&amp;amp;#x6599;&amp;amp;#x53C2;&amp;amp;#x8003;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4E0D;&amp;#x540C;&amp;#x7248;&amp;#x672C;">3.4&nbsp;&nbsp;&amp;amp;#x4E0D;&amp;amp;#x540C;&amp;amp;#x7248;&amp;amp;#x672C;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#MDL&amp;#x6545;&amp;#x969C;&amp;#x81EA;&amp;#x6108;">4&nbsp;&nbsp;<b>MDL&amp;amp;#x6545;&amp;amp;#x969C;&amp;amp;#x81EA;&amp;amp;#x6108;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#kill&amp;#x6240;&amp;#x6709;&amp;#x4F1A;&amp;#x8BDD;">4.1&nbsp;&nbsp;kill&amp;amp;#x6240;&amp;amp;#x6709;&amp;amp;#x4F1A;&amp;amp;#x8BDD;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#MDL&amp;#x6545;&amp;#x969C;&amp;#x6392;&amp;#x67E5;&amp;#x548C;&amp;#x89E3;&amp;#x51B3;">4.2&nbsp;&nbsp;MDL&amp;amp;#x6545;&amp;amp;#x969C;&amp;amp;#x6392;&amp;amp;#x67E5;&amp;amp;#x548C;&amp;amp;#x89E3;&amp;amp;#x51B3;</a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -157,7 +234,7 @@
         <span class="column is-narrow">
             
             
-            35 分钟 lesen (Über 5275 Wörter)
+            35 分钟 读完 (约 5275 字)
         </span>
         
     </div>
@@ -345,7 +422,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -382,7 +459,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -546,7 +623,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -558,11 +635,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

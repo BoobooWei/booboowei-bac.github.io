@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2017/01/05/booboo_mysql/08-MySQL-mysqldump-mysqlpump-mydumper/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="mysqldumpmysql&amp;#x7ECF;&amp;#x5178;&amp;#x903B;&amp;#x8F91;&amp;#x5907;&amp;#x4EFD;&amp;#x5DE5;&amp;#x5177; &amp;#x53C2;&amp;#x6570;&amp;#x8BF4;&amp;#x660E;&amp;#xFF0C;&amp;#x5177;&amp;#x4F53;&amp;#x7684;&amp;#x53C2;&amp;#x6570;&amp;#x53EF;&amp;#x4EE5;&amp;#x7528;mysqldump &amp;#x2013">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.toberoot.com/2017/01/05/booboo_mysql/08-MySQL-mysqldump-mysqlpump-mydumper/71.png">
 <meta property="og:image" content="http://www.toberoot.com/2017/01/05/booboo_mysql/08-MySQL-mysqldump-mysqlpump-mydumper/72.png">
 <meta property="article:published_time" content="2017-01-04T21:06:27.000Z">
@@ -109,13 +110,69 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#mysqldump">1&nbsp;&nbsp;<b>mysqldump</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#mysqlpump">2&nbsp;&nbsp;<b>mysqlpump</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x53C2;&amp;#x6570;">2.1&nbsp;&nbsp;&amp;amp;#x53C2;&amp;amp;#x6570;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4F7F;&amp;#x7528;&amp;#x8BF4;&amp;#x660E;">2.2&nbsp;&nbsp;&amp;amp;#x4F7F;&amp;amp;#x7528;&amp;amp;#x8BF4;&amp;amp;#x660E;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#mydumper">3&nbsp;&nbsp;<b>mydumper</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#mydumper&amp;#x5907;&amp;#x4EFD;&amp;#x539F;&amp;#x7406;">3.1&nbsp;&nbsp;mydumper&amp;amp;#x5907;&amp;amp;#x4EFD;&amp;amp;#x539F;&amp;amp;#x7406;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#mydumper-&amp;#x53C2;&amp;#x6570;">3.2&nbsp;&nbsp;mydumper &amp;amp;#x53C2;&amp;amp;#x6570;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#myloader-&amp;#x53C2;&amp;#x6570;">3.3&nbsp;&nbsp;myloader &amp;amp;#x53C2;&amp;amp;#x6570;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4F7F;&amp;#x7528;&amp;#x6848;&amp;#x4F8B;">3.4&nbsp;&nbsp;&amp;amp;#x4F7F;&amp;amp;#x7528;&amp;amp;#x6848;&amp;amp;#x4F8B;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#mysqldump-mysqlpump-mydumper&amp;#x5BF9;&amp;#x6BD4;">4&nbsp;&nbsp;<b>mysqldump,mysqlpump,mydumper&amp;amp;#x5BF9;&amp;amp;#x6BD4;</b></a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -148,7 +205,7 @@
         <span class="column is-narrow">
             
             
-            1 小时 lesen (Über 10003 Wörter)
+            1 小时 读完 (约 10003 字)
         </span>
         
     </div>
@@ -513,7 +570,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -550,7 +607,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -714,7 +771,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -726,11 +783,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

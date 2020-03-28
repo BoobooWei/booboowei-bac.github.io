@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/26/booboo_mysql/01-Introduction-to-MySQL-and-MariaDB-databases/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x7684;&amp;#x57FA;&amp;#x7840;&amp;#x6982;&amp;#x5FF5;&amp;#x6570;&amp;#x636E;&amp;#x5E93;(database):  &amp;#x4FDD;&amp;#x5B58;&amp;#x6709;&amp;#x7EC4;&amp;#x7EC7;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x7684;&amp;#x5BB9;&amp;#x5668;(&amp;#x901A;&amp;#">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/26/booboo_mysql/01-Introduction-to-MySQL-and-MariaDB-databases/mysqlgw.png">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/26/booboo_mysql/01-Introduction-to-MySQL-and-MariaDB-databases/15-phpmyadmin.png">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/26/booboo_mysql/01-Introduction-to-MySQL-and-MariaDB-databases/33.png">
@@ -132,13 +133,143 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x7684;&amp;#x57FA;&amp;#x7840;&amp;#x6982;&amp;#x5FF5;">1.1.1&nbsp;&nbsp;&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5E93;&amp;amp;#x7684;&amp;amp;#x57FA;&amp;amp;#x7840;&amp;amp;#x6982;&amp;amp;#x5FF5;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x7684;&amp;#x5206;&amp;#x7C7B;">1.1.2&nbsp;&nbsp;&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5E93;&amp;amp;#x7684;&amp;amp;#x5206;&amp;amp;#x7C7B;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;MySQL">1.1.3&nbsp;&nbsp;&amp;amp;#x4EC0;&amp;amp;#x4E48;&amp;amp;#x662F;MySQL</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5982;&amp;#x4F55;&amp;#x83B7;&amp;#x5F97;MySQL&amp;#x76F8;&amp;#x5173;&amp;#x8D44;&amp;#x6E90;">1.1.4&nbsp;&nbsp;&amp;amp;#x5982;&amp;amp;#x4F55;&amp;amp;#x83B7;&amp;amp;#x5F97;MySQL&amp;amp;#x76F8;&amp;amp;#x5173;&amp;amp;#x8D44;&amp;amp;#x6E90;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#MySQL&amp;#x5728;&amp;#x4F01;&amp;#x4E1A;&amp;#x4E2D;&amp;#x7684;&amp;#x5E94;&amp;#x7528;&amp;#x573A;&amp;#x666F;">1.1.5&nbsp;&nbsp;MySQL&amp;amp;#x5728;&amp;amp;#x4F01;&amp;amp;#x4E1A;&amp;amp;#x4E2D;&amp;amp;#x7684;&amp;amp;#x5E94;&amp;amp;#x7528;&amp;amp;#x573A;&amp;amp;#x666F;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#MySQL-&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x5B89;&amp;#x88C5;">1.1.6&nbsp;&nbsp;MySQL &amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5E93;&amp;amp;#x5B89;&amp;amp;#x88C5;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#MySQL&amp;#x5BA2;&amp;#x6237;&amp;#x7AEF;&amp;#x8FDE;&amp;#x63A5;&amp;#x6570;&amp;#x636E;&amp;#x5E93;">1.1.7&nbsp;&nbsp;MySQL&amp;amp;#x5BA2;&amp;amp;#x6237;&amp;amp;#x7AEF;&amp;amp;#x8FDE;&amp;amp;#x63A5;&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5E93;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;MySQLdb">2&nbsp;&nbsp;<b>&amp;amp;#x4EC0;&amp;amp;#x4E48;&amp;amp;#x662F;MySQLdb?</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5982;&amp;#x4F55;&amp;#x5B89;&amp;#x88C5;MySQLdb">3&nbsp;&nbsp;<b>&amp;amp;#x5982;&amp;amp;#x4F55;&amp;amp;#x5B89;&amp;amp;#x88C5;MySQLdb?</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4E0B;&amp;#x8F7D;&amp;#x5B89;&amp;#x88C5;&amp;#x5305;">3.1&nbsp;&nbsp;&amp;amp;#x4E0B;&amp;amp;#x8F7D;&amp;amp;#x5B89;&amp;amp;#x88C5;&amp;amp;#x5305;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x7F3A;&amp;#x5C11;mysql-config&amp;#x547D;&amp;#x4EE4;">3.2&nbsp;&nbsp;&amp;amp;#x7F3A;&amp;amp;#x5C11;mysql_config&amp;amp;#x547D;&amp;amp;#x4EE4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5F00;&amp;#x59CB;&amp;#x7F16;&amp;#x8BD1;&amp;#x5B89;&amp;#x88C5;">3.3&nbsp;&nbsp;&amp;amp;#x5F00;&amp;amp;#x59CB;&amp;amp;#x7F16;&amp;amp;#x8BD1;&amp;amp;#x5B89;&amp;amp;#x88C5;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x52A0;&amp;#x8F7D;&amp;#x6A21;&amp;#x5757;">3.4&nbsp;&nbsp;&amp;amp;#x52A0;&amp;amp;#x8F7D;&amp;amp;#x6A21;&amp;amp;#x5757;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x8FDE;&amp;#x63A5;">4&nbsp;&nbsp;<b>&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5E93;&amp;amp;#x8FDE;&amp;amp;#x63A5;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5B9E;&amp;#x4F8B;1&amp;#xFF1A;&amp;#x8FDE;&amp;#x63A5;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x83B7;&amp;#x53D6;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x7248;&amp;#x672C;&amp;#x4FE1;&amp;#x606F;">4.1&nbsp;&nbsp;&amp;amp;#x5B9E;&amp;amp;#x4F8B;1&amp;amp;#xFF1A;&amp;amp;#x8FDE;&amp;amp;#x63A5;&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5E93;&amp;amp;#x83B7;&amp;amp;#x53D6;&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5E93;&amp;amp;#x7248;&amp;amp;#x672C;&amp;amp;#x4FE1;&amp;amp;#x606F;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5B9E;&amp;#x4F8B;2&amp;#xFF1A;&amp;#x67E5;&amp;#x8BE2;mysql&amp;#x4E2D;&amp;#x7684;db1-t1&amp;#x8868;&amp;#x7684;&amp;#x7ED3;&amp;#x6784;&amp;#xFF08;&amp;#x6570;&amp;#x636E;&amp;#x5B57;&amp;#x5178;&amp;#xFF09;&amp;#x4FE1;&amp;#x606F;">4.2&nbsp;&nbsp;&amp;amp;#x5B9E;&amp;amp;#x4F8B;2&amp;amp;#xFF1A;&amp;amp;#x67E5;&amp;amp;#x8BE2;mysql&amp;amp;#x4E2D;&amp;amp;#x7684;db1.t1&amp;amp;#x8868;&amp;amp;#x7684;&amp;amp;#x7ED3;&amp;amp;#x6784;&amp;amp;#xFF08;&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5B57;&amp;amp;#x5178;&amp;amp;#xFF09;&amp;amp;#x4FE1;&amp;amp;#x606F;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5B9E;&amp;#x4F8B;3&amp;#xFF1A;&amp;#x83B7;&amp;#x53D6;mysql&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x7684;&amp;#x53D8;&amp;#x91CF;&amp;#x503C;">4.3&nbsp;&nbsp;&amp;amp;#x5B9E;&amp;amp;#x4F8B;3&amp;amp;#xFF1A;&amp;amp;#x83B7;&amp;amp;#x53D6;mysql&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5E93;&amp;amp;#x7684;&amp;amp;#x53D8;&amp;amp;#x91CF;&amp;amp;#x503C;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5B9E;&amp;#x4F8B;4&amp;#xFF1A;&amp;#x521B;&amp;#x5EFA;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x8868;">4.4&nbsp;&nbsp;&amp;amp;#x5B9E;&amp;amp;#x4F8B;4&amp;amp;#xFF1A;&amp;amp;#x521B;&amp;amp;#x5EFA;&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5E93;&amp;amp;#x8868;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5B9E;&amp;#x4F8B;5&amp;#xFF1A;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x63D2;&amp;#x5165;&amp;#x64CD;&amp;#x4F5C;">4.5&nbsp;&nbsp;&amp;amp;#x5B9E;&amp;amp;#x4F8B;5&amp;amp;#xFF1A;&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x5E93;&amp;amp;#x63D2;&amp;amp;#x5165;&amp;amp;#x64CD;&amp;amp;#x4F5C;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5B9E;&amp;#x4F8B;6&amp;#xFF1A;&amp;#x5220;&amp;#x9664;&amp;#x64CD;&amp;#x4F5C;">4.6&nbsp;&nbsp;&amp;amp;#x5B9E;&amp;amp;#x4F8B;6&amp;amp;#xFF1A;&amp;amp;#x5220;&amp;amp;#x9664;&amp;amp;#x64CD;&amp;amp;#x4F5C;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5B9E;&amp;#x4F8B;7&amp;#xFF1A;&amp;#x6267;&amp;#x884C;&amp;#x4E8B;&amp;#x52A1;">4.7&nbsp;&nbsp;&amp;amp;#x5B9E;&amp;amp;#x4F8B;7&amp;amp;#xFF1A;&amp;amp;#x6267;&amp;amp;#x884C;&amp;amp;#x4E8B;&amp;amp;#x52A1;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9519;&amp;#x8BEF;&amp;#x5904;&amp;#x7406;">5&nbsp;&nbsp;<b>&amp;amp;#x9519;&amp;amp;#x8BEF;&amp;amp;#x5904;&amp;amp;#x7406;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x603B;&amp;#x7ED3;">6&nbsp;&nbsp;<b>&amp;amp;#x603B;&amp;amp;#x7ED3;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#SQL-Development&amp;#x7684;&amp;#x57FA;&amp;#x672C;&amp;#x64CD;&amp;#x4F5C;">7&nbsp;&nbsp;<b>SQL Development&amp;amp;#x7684;&amp;amp;#x57FA;&amp;amp;#x672C;&amp;amp;#x64CD;&amp;amp;#x4F5C;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Data-Modeling&amp;#x7684;&amp;#x57FA;&amp;#x672C;&amp;#x64CD;&amp;#x4F5C;">8&nbsp;&nbsp;<b>Data Modeling&amp;amp;#x7684;&amp;amp;#x57FA;&amp;amp;#x672C;&amp;amp;#x64CD;&amp;amp;#x4F5C;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Server-Administration&amp;#x7684;&amp;#x57FA;&amp;#x672C;&amp;#x64CD;&amp;#x4F5C;">9&nbsp;&nbsp;<b>Server Administration&amp;amp;#x7684;&amp;amp;#x57FA;&amp;amp;#x672C;&amp;amp;#x64CD;&amp;amp;#x4F5C;</b></a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -171,7 +302,7 @@
         <span class="column is-narrow">
             
             
-            2 小时 lesen (Über 15658 Wörter)
+            2 小时 读完 (约 15658 字)
         </span>
         
     </div>
@@ -818,7 +949,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -855,7 +986,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -1019,7 +1150,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -1031,11 +1162,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

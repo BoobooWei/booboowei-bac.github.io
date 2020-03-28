@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/02-Linux-user-and-group/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="&amp;#x8BFE;&amp;#x5802;&amp;#x4F5C;&amp;#x4E1A; &amp;#x6DFB;&amp;#x52A0;2&amp;#x4E2A;&amp;#x7EC4;&amp;#xFF0C;&amp;#x4E00;&amp;#x4E2A;&amp;#x7EC4;&amp;#x540D;&amp;#x4E3A;justice&amp;#xFF0C;&amp;#x53E6;&amp;#x5916;&amp;#x4E00;&amp;#x4E2A;&amp;#x7EC4;&amp;#x540D;&amp;#x4E3A;ninja&amp;#x3002; &amp;">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-12-21T20:06:27.000Z">
 <meta property="article:modified_time" content="2020-03-23T06:24:25.927Z">
 <meta property="article:author" content="BoobooWei">
@@ -106,13 +107,159 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8BFE;&amp;#x5802;&amp;#x4F5C;&amp;#x4E1A;">1&nbsp;&nbsp;<b>&amp;amp;#x8BFE;&amp;amp;#x5802;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x7528;&amp;#x6237;&amp;#x548C;&amp;#x7EC4;&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x6587;&amp;#x4EF6;">2&nbsp;&nbsp;<b>&amp;amp;#x7528;&amp;amp;#x6237;&amp;amp;#x548C;&amp;amp;#x7EC4;&amp;amp;#x7684;&amp;amp;#x76F8;&amp;amp;#x5173;&amp;amp;#x6587;&amp;amp;#x4EF6;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#etc-passwd">2.1&nbsp;&nbsp;/etc/passwd</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#etc-shadow">2.2&nbsp;&nbsp;/etc/shadow</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#etc-group">2.3&nbsp;&nbsp;/etc/group</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#etc-gshadow">2.4&nbsp;&nbsp;/etc/gshadow</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#etc-default-useradd">2.5&nbsp;&nbsp;/etc/default/useradd</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#etc-skel">2.6&nbsp;&nbsp;/etc/skel/</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#etc-login-defs">2.7&nbsp;&nbsp;/etc/login.defs</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#etc-shells">2.8&nbsp;&nbsp;/etc/shells</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x7528;&amp;#x6237;&amp;#x548C;&amp;#x7EC4;&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x547D;&amp;#x4EE4;">3&nbsp;&nbsp;<b>&amp;amp;#x7528;&amp;amp;#x6237;&amp;amp;#x548C;&amp;amp;#x7EC4;&amp;amp;#x7684;&amp;amp;#x76F8;&amp;amp;#x5173;&amp;amp;#x547D;&amp;amp;#x4EE4;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x65B0;&amp;#x5EFA;&amp;#x7528;&amp;#x6237;&amp;#x548C;&amp;#x7EC4;">3.1&nbsp;&nbsp;&amp;amp;#x65B0;&amp;amp;#x5EFA;&amp;amp;#x7528;&amp;amp;#x6237;&amp;amp;#x548C;&amp;amp;#x7EC4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#groupadd">3.1.1&nbsp;&nbsp;groupadd</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#useradd">3.1.2&nbsp;&nbsp;useradd</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#passwd">3.1.3&nbsp;&nbsp;passwd</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x4FEE;&amp;#x6539;&amp;#x7528;&amp;#x6237;&amp;#x548C;&amp;#x7EC4;&amp;#x5C5E;&amp;#x6027;">3.2&nbsp;&nbsp;&amp;amp;#x4FEE;&amp;amp;#x6539;&amp;amp;#x7528;&amp;amp;#x6237;&amp;amp;#x548C;&amp;amp;#x7EC4;&amp;amp;#x5C5E;&amp;amp;#x6027;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#groupmod">3.2.1&nbsp;&nbsp;groupmod</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#usermod">3.2.2&nbsp;&nbsp;usermod</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#chage">3.2.3&nbsp;&nbsp;chage</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#chsh">3.2.4&nbsp;&nbsp;chsh</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5220;&amp;#x9664;&amp;#x7528;&amp;#x6237;&amp;#x548C;&amp;#x7EC4;">3.3&nbsp;&nbsp;&amp;amp;#x5220;&amp;amp;#x9664;&amp;amp;#x7528;&amp;amp;#x6237;&amp;amp;#x548C;&amp;amp;#x7EC4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#groupdel">3.3.1&nbsp;&nbsp;groupdel</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#userdel">3.3.2&nbsp;&nbsp;userdel</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x67E5;&amp;#x770B;&amp;#x7528;&amp;#x6237;&amp;#x548C;&amp;#x7EC4;&amp;#x4FE1;&amp;#x606F;">3.4&nbsp;&nbsp;&amp;amp;#x67E5;&amp;amp;#x770B;&amp;amp;#x7528;&amp;amp;#x6237;&amp;amp;#x548C;&amp;amp;#x7EC4;&amp;amp;#x4FE1;&amp;amp;#x606F;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#id">3.4.1&nbsp;&nbsp;id</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#groups">3.4.2&nbsp;&nbsp;groups</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x7528;&amp;#x6237;&amp;#x8EAB;&amp;#x4EFD;&amp;#x5207;&amp;#x6362;-sudo-su">4&nbsp;&nbsp;<b>&amp;amp;#x7528;&amp;amp;#x6237;&amp;amp;#x8EAB;&amp;amp;#x4EFD;&amp;amp;#x5207;&amp;amp;#x6362; sudo / su</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#su">4.1&nbsp;&nbsp;su</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#sudo">4.2&nbsp;&nbsp;sudo</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#sudo-&amp;#x6267;&amp;#x884C;&amp;#x6D41;&amp;#x7A0B;">4.2.1&nbsp;&nbsp;sudo &amp;amp;#x6267;&amp;amp;#x884C;&amp;amp;#x6D41;&amp;amp;#x7A0B;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6DFB;&amp;#x52A0;&amp;#x7528;&amp;#x6237;-sudo-&amp;#x6267;&amp;#x884C;&amp;#x6743;&amp;#x9650;&amp;#x7684;&amp;#x65B9;&amp;#x6CD5;">4.2.2&nbsp;&nbsp;&amp;amp;#x6DFB;&amp;amp;#x52A0;&amp;amp;#x7528;&amp;amp;#x6237; sudo &amp;amp;#x6267;&amp;amp;#x884C;&amp;amp;#x6743;&amp;amp;#x9650;&amp;amp;#x7684;&amp;amp;#x65B9;&amp;amp;#x6CD5;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Linux&amp;#x7528;&amp;#x6237;&amp;#x548C;&amp;#x7EC4;&amp;#x8BFE;&amp;#x540E;&amp;#x4F5C;&amp;#x4E1A;">5&nbsp;&nbsp;<b>Linux&amp;amp;#x7528;&amp;amp;#x6237;&amp;amp;#x548C;&amp;amp;#x7EC4;&amp;amp;#x8BFE;&amp;amp;#x540E;&amp;amp;#x4F5C;&amp;amp;#x4E1A;</b></a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -145,7 +292,7 @@
         <span class="column is-narrow">
             
             
-            28 分钟 lesen (Über 4140 Wörter)
+            28 分钟 读完 (约 4140 字)
         </span>
         
     </div>
@@ -435,7 +582,7 @@
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2016/12/22/booboo_linux_base/03-Linux-file/">Linux 文件和目录</a>
+            <a href="/2016/12/22/booboo_linux_base/05-Linux-software/">Linux 软件安装</a>
             
         </span>
     </div>
@@ -453,7 +600,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -490,7 +637,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -654,7 +801,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -666,11 +813,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

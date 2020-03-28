@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://www.toberoot.com/2016/12/31/booboo_mysql/04-MySQL-replication/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
 <meta property="og:description" content="&amp;#x672C;&amp;#x8BB2;&amp;#x4E49;&amp;#x53C2;&amp;#x8003; &amp;#x300A; HA mysql &amp;#x300B; &amp;#x9AD8;&amp;#x53EF;&amp;#x7528;MySQL:&amp;#x7B2C;2&amp;#x7248; &#x2F;(&amp;#x7F8E;)&amp;#x8D1D;&amp;#x5C14;(Bell,C.),(&amp;#x7F8E;)&amp;#x80AF;&amp;#x5FB7;&amp;#x5C14;(Kindahl,M.)">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/31/booboo_mysql/04-MySQL-replication/23-replication-how.png">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/31/booboo_mysql/04-MySQL-replication/62.jpg">
 <meta property="og:image" content="http://www.toberoot.com/2016/12/31/booboo_mysql/04-MySQL-replication/63.jpg">
@@ -122,13 +123,161 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Suche" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x6982;&amp;#x8FF0;">1.1&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x6982;&amp;amp;#x8FF0;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x89E3;&amp;#x51B3;&amp;#x7684;&amp;#x95EE;&amp;#x9898;">1.2&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x89E3;&amp;amp;#x51B3;&amp;amp;#x7684;&amp;amp;#x95EE;&amp;amp;#x9898;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x7684;&amp;#x539F;&amp;#x7406;">1.3&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x7684;&amp;amp;#x539F;&amp;amp;#x7406;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9879;&amp;#x76EE;&amp;#x5B9E;&amp;#x6218;1&amp;#xFF1A;mariadb-server-5-5-&amp;#x5355;&amp;#x4E3B;&amp;#x4ECE;&amp;#x67B6;&amp;#x6784;">1.3.1&nbsp;&nbsp;&amp;amp;#x9879;&amp;amp;#x76EE;&amp;amp;#x5B9E;&amp;amp;#x6218;1&amp;amp;#xFF1A;mariadb server 5.5 &amp;amp;#x5355;&amp;amp;#x4E3B;&amp;amp;#x4ECE;&amp;amp;#x67B6;&amp;amp;#x6784;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9879;&amp;#x76EE;&amp;#x5B9E;&amp;#x6218;2&amp;#xFF1A;mysql-server-5-7-&amp;#x57FA;&amp;#x4E8E;GTID&amp;#x7684;&amp;#x5355;&amp;#x4E3B;&amp;#x4ECE;&amp;#x67B6;&amp;#x6784;">1.3.2&nbsp;&nbsp;&amp;amp;#x9879;&amp;amp;#x76EE;&amp;amp;#x5B9E;&amp;amp;#x6218;2&amp;amp;#xFF1A;mysql server 5.7 &amp;amp;#x57FA;&amp;amp;#x4E8E;GTID&amp;amp;#x7684;&amp;amp;#x5355;&amp;amp;#x4E3B;&amp;amp;#x4ECE;&amp;amp;#x67B6;&amp;amp;#x6784;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x4E2D;&amp;#x7684;&amp;#x5EF6;&amp;#x8FDF;&amp;#x95EE;&amp;#x9898;-&amp;#x91CD;&amp;#x6F14;&amp;#x5EF6;&amp;#x8FDF;">1.4&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x4E2D;&amp;amp;#x7684;&amp;amp;#x5EF6;&amp;amp;#x8FDF;&amp;amp;#x95EE;&amp;amp;#x9898;_&amp;amp;#x91CD;&amp;amp;#x6F14;&amp;amp;#x5EF6;&amp;amp;#x8FDF;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9879;&amp;#x76EE;&amp;#x5B9E;&amp;#x6218;3&amp;#xFF1A;mysql-server-5-7-&amp;#x57FA;&amp;#x4E8E;GTID&amp;#x7684;&amp;#x5E76;&amp;#x884C;MTS&amp;#x5355;&amp;#x4E3B;&amp;#x4ECE;&amp;#x67B6;&amp;#x6784;">1.4.1&nbsp;&nbsp;&amp;amp;#x9879;&amp;amp;#x76EE;&amp;amp;#x5B9E;&amp;amp;#x6218;3&amp;amp;#xFF1A;mysql server 5.7 &amp;amp;#x57FA;&amp;amp;#x4E8E;GTID&amp;amp;#x7684;&amp;amp;#x5E76;&amp;amp;#x884C;MTS&amp;amp;#x5355;&amp;amp;#x4E3B;&amp;amp;#x4ECE;&amp;amp;#x67B6;&amp;amp;#x6784;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8BBE;&amp;#x7F6E;&amp;#x91CD;&amp;#x6F14;&amp;#x6A21;&amp;#x5F0F;slave-parallel-type">1.4.2&nbsp;&nbsp;&amp;amp;#x8BBE;&amp;amp;#x7F6E;&amp;amp;#x91CD;&amp;amp;#x6F14;&amp;amp;#x6A21;&amp;amp;#x5F0F;slave-parallel-type</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8BBE;&amp;#x7F6E;&amp;#x91CD;&amp;#x6F14;&amp;#x7EBF;&amp;#x7A0B;&amp;#x6570;slave-parallel-workers">1.4.3&nbsp;&nbsp;&amp;amp;#x8BBE;&amp;amp;#x7F6E;&amp;amp;#x91CD;&amp;amp;#x6F14;&amp;amp;#x7EBF;&amp;amp;#x7A0B;&amp;amp;#x6570;slave_parallel_workers</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Enhanced-Multi-Threaded-Slave&amp;#x914D;&amp;#x7F6E;&amp;#x603B;&amp;#x7ED3;">1.4.4&nbsp;&nbsp;Enhanced Multi-Threaded Slave&amp;amp;#x914D;&amp;amp;#x7F6E;&amp;amp;#x603B;&amp;amp;#x7ED3;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x8F6F;&amp;#x4EF6;&amp;#x5B89;&amp;#x88C5;">1.4.5&nbsp;&nbsp;&amp;amp;#x8F6F;&amp;amp;#x4EF6;&amp;amp;#x5B89;&amp;amp;#x88C5;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;">1.4.6&nbsp;&nbsp;&amp;amp;#x914D;&amp;amp;#x7F6E;&amp;amp;#x6587;&amp;amp;#x4EF6;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x603B;&amp;#x7ED3;">1.4.7&nbsp;&nbsp;&amp;amp;#x603B;&amp;amp;#x7ED3;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9879;&amp;#x76EE;&amp;#x5B9E;&amp;#x6218;4&amp;#xFF1A;mysql-server-5-7-&amp;#x57FA;&amp;#x4E8E;GTID&amp;#x7684;&amp;#x5E76;&amp;#x884C;MTS&amp;#x5355;&amp;#x4E3B;&amp;#x4ECE;&amp;#x67B6;&amp;#x6784;crash-safe&amp;#x53C2;&amp;#x6570;&amp;#x8C03;&amp;#x4F18;">1.4.8&nbsp;&nbsp;&amp;amp;#x9879;&amp;amp;#x76EE;&amp;amp;#x5B9E;&amp;amp;#x6218;4&amp;amp;#xFF1A;mysql server 5.7 &amp;amp;#x57FA;&amp;amp;#x4E8E;GTID&amp;amp;#x7684;&amp;amp;#x5E76;&amp;amp;#x884C;MTS&amp;amp;#x5355;&amp;amp;#x4E3B;&amp;amp;#x4ECE;&amp;amp;#x67B6;&amp;amp;#x6784;crash safe&amp;amp;#x53C2;&amp;amp;#x6570;&amp;amp;#x8C03;&amp;amp;#x4F18;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;-1">1.4.9&nbsp;&nbsp;&amp;amp;#x914D;&amp;amp;#x7F6E;&amp;amp;#x6587;&amp;amp;#x4EF6;</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x603B;&amp;#x7ED3;-1">2&nbsp;&nbsp;<b>&amp;amp;#x603B;&amp;amp;#x7ED3;</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x4E2D;&amp;#x7684;&amp;#x5EF6;&amp;#x8FDF;&amp;#x95EE;&amp;#x9898;-&amp;#x8BFB;&amp;#x5199;&amp;#x5206;&amp;#x79BB;">2.1&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x4E2D;&amp;amp;#x7684;&amp;amp;#x5EF6;&amp;amp;#x8FDF;&amp;amp;#x95EE;&amp;amp;#x9898;_&amp;amp;#x8BFB;&amp;amp;#x5199;&amp;amp;#x5206;&amp;amp;#x79BB;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x534A;&amp;#x540C;&amp;#x6B65;&amp;#x590D;&amp;#x5236;&amp;#x7684;&amp;#x6F5C;&amp;#x5728;&amp;#x95EE;&amp;#x9898;">2.1.1&nbsp;&nbsp;&amp;amp;#x534A;&amp;amp;#x540C;&amp;amp;#x6B65;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x7684;&amp;amp;#x6F5C;&amp;amp;#x5728;&amp;amp;#x95EE;&amp;amp;#x9898;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x65E0;&amp;#x6570;&amp;#x636E;&amp;#x4E22;&amp;#x5931;&amp;#x7684;&amp;#x534A;&amp;#x540C;&amp;#x6B65;&amp;#x590D;&amp;#x5236;">2.1.2&nbsp;&nbsp;&amp;amp;#x65E0;&amp;amp;#x6570;&amp;amp;#x636E;&amp;amp;#x4E22;&amp;amp;#x5931;&amp;amp;#x7684;&amp;amp;#x534A;&amp;amp;#x540C;&amp;amp;#x6B65;&amp;amp;#x590D;&amp;amp;#x5236;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x9879;&amp;#x76EE;&amp;#x5B9E;&amp;#x6218;5&amp;#xFF1A;mysql-server-5-7-&amp;#x57FA;&amp;#x4E8E;GTID&amp;#x7684;&amp;#x5E76;&amp;#x884C;MTS&amp;#x5355;&amp;#x4E3B;&amp;#x4ECE;&amp;#x534A;&amp;#x540C;&amp;#x6B65;&amp;#x67B6;&amp;#x6784;">2.1.3&nbsp;&nbsp;&amp;amp;#x9879;&amp;amp;#x76EE;&amp;amp;#x5B9E;&amp;amp;#x6218;5&amp;amp;#xFF1A;mysql server 5.7 &amp;amp;#x57FA;&amp;amp;#x4E8E;GTID&amp;amp;#x7684;&amp;amp;#x5E76;&amp;amp;#x884C;MTS&amp;amp;#x5355;&amp;amp;#x4E3B;&amp;amp;#x4ECE;&amp;amp;#x534A;&amp;amp;#x540C;&amp;amp;#x6B65;&amp;amp;#x67B6;&amp;amp;#x6784;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x5B89;&amp;#x88C5;&amp;#x63D2;&amp;#x4EF6;">2.1.4&nbsp;&nbsp;&amp;amp;#x5B89;&amp;amp;#x88C5;&amp;amp;#x63D2;&amp;amp;#x4EF6;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;-2">2.1.5&nbsp;&nbsp;&amp;amp;#x914D;&amp;amp;#x7F6E;&amp;amp;#x6587;&amp;amp;#x4EF6;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x6D4B;&amp;#x8BD5;&amp;#x534A;&amp;#x540C;&amp;#x6B65;&amp;#x590D;&amp;#x5236;&amp;#x8D85;&amp;#x65F6;&amp;#x540E;&amp;#x81EA;&amp;#x52A8;&amp;#x5207;&amp;#x6362;&amp;#x56DE;&amp;#x5F02;&amp;#x6B65;&amp;#x6A21;&amp;#x5F0F;">2.1.6&nbsp;&nbsp;&amp;amp;#x6D4B;&amp;amp;#x8BD5;&amp;amp;#x534A;&amp;amp;#x540C;&amp;amp;#x6B65;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x8D85;&amp;amp;#x65F6;&amp;amp;#x540E;&amp;amp;#x81EA;&amp;amp;#x52A8;&amp;amp;#x5207;&amp;amp;#x6362;&amp;amp;#x56DE;&amp;amp;#x5F02;&amp;amp;#x6B65;&amp;amp;#x6A21;&amp;amp;#x5F0F;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x76D1;&amp;#x63A7;&amp;#x4E3B;&amp;#x4ECE;&amp;#x662F;&amp;#x5426;&amp;#x8FD0;&amp;#x884C;&amp;#x5728;&amp;#x534A;&amp;#x540C;&amp;#x6B65;&amp;#x590D;&amp;#x5236;&amp;#x6A21;&amp;#x5F0F;&amp;#x4E0B;">2.1.7&nbsp;&nbsp;&amp;amp;#x76D1;&amp;amp;#x63A7;&amp;amp;#x4E3B;&amp;amp;#x4ECE;&amp;amp;#x662F;&amp;amp;#x5426;&amp;amp;#x8FD0;&amp;amp;#x884C;&amp;amp;#x5728;&amp;amp;#x534A;&amp;amp;#x540C;&amp;amp;#x6B65;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x6A21;&amp;amp;#x5F0F;&amp;amp;#x4E0B;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x73AF;&amp;#x5883;&amp;#x53D8;&amp;#x91CF;">2.1.8&nbsp;&nbsp;&amp;amp;#x73AF;&amp;amp;#x5883;&amp;amp;#x53D8;&amp;amp;#x91CF;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x72B6;&amp;#x6001;&amp;#x53D8;&amp;#x91CF;">2.1.9&nbsp;&nbsp;&amp;amp;#x72B6;&amp;amp;#x6001;&amp;amp;#x53D8;&amp;amp;#x91CF;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x603B;&amp;#x7ED3;-2">2.2&nbsp;&nbsp;&amp;amp;#x603B;&amp;amp;#x7ED3;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x4E2D;&amp;#x7684;&amp;#x5355;&amp;#x70B9;&amp;#x6545;&amp;#x969C;&amp;#x95EE;&amp;#x9898;">2.3&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x4E2D;&amp;amp;#x7684;&amp;amp;#x5355;&amp;amp;#x70B9;&amp;amp;#x6545;&amp;amp;#x969C;&amp;amp;#x95EE;&amp;amp;#x9898;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x62D3;&amp;#x6251;-&amp;#x914D;&amp;#x7F6E;M-S-S">2.3.1&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x62D3;&amp;amp;#x6251;_&amp;amp;#x914D;&amp;amp;#x7F6E;M-S-S</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x62D3;&amp;#x6251;-&amp;#x914D;&amp;#x7F6E;M-M">2.3.2&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x62D3;&amp;amp;#x6251;_&amp;amp;#x914D;&amp;amp;#x7F6E;M-M</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x62D3;&amp;#x6251;-&amp;#x914D;&amp;#x7F6E;M-s-M-s">2.3.3&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x62D3;&amp;amp;#x6251;_&amp;amp;#x914D;&amp;amp;#x7F6E;M(s)-M(s)</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x590D;&amp;#x5236;&amp;#x62D3;&amp;#x6251;-&amp;#x914D;&amp;#x7F6E;M-M-S-S">2.3.4&nbsp;&nbsp;&amp;amp;#x590D;&amp;amp;#x5236;&amp;amp;#x62D3;&amp;amp;#x6251;_&amp;amp;#x914D;&amp;amp;#x7F6E;M-M-S-S</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#M-M-S-S&amp;#x6B65;&amp;#x9AA4;">2.4&nbsp;&nbsp;M-M-S-S&amp;amp;#x6B65;&amp;amp;#x9AA4;</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#&amp;#x603B;&amp;#x7ED3;-3">2.5&nbsp;&nbsp;&amp;amp;#x603B;&amp;amp;#x7ED3;</a>
+                    
+                </div>
+            </div>
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -161,7 +310,7 @@
         <span class="column is-narrow">
             
             
-            1 小时 lesen (Über 9786 Wörter)
+            1 小时 读完 (约 9786 字)
         </span>
         
     </div>
@@ -671,7 +820,7 @@
 
 
 <div class="comments">
-    <h3 class="title is-4">Kommentare</h3>
+    <h3 class="title is-4">评论</h3>
     
 <div id="comment-container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -708,7 +857,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -872,7 +1021,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -884,11 +1033,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Seiten',
-                CATEGORIES: 'Kategorien',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };
