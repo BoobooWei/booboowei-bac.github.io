@@ -1,1164 +1,472 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
 <head>
-  <meta charset="utf-8">
-  <title>APACHE WEB服务 | Amy and Booboo</title>
-  <meta name="keywords" content=" 培训 , Linux基础服务 ">
-  <meta name="description" content="APACHE WEB服务 | Amy and Booboo">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Amy and Booboo">
-<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+    <meta charset="utf-8">
+<title>APACHE WEB服务 - Amy and Booboo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
+
+
+
+
+
+    <meta name="description" content="Web&amp;#x57FA;&amp;#x7840;&amp;#x6211;&amp;#x4EEC;&amp;#x5E73;&amp;#x65F6;&amp;#x4E0A;&amp;#x7F51;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x8F93;&amp;#x5165;&amp;#x7F51;&amp;#x5740;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x90FD;&amp;#x4F1A;&amp;#x8F93;&amp;#x5165;&amp;#x4EC0;&amp;#x4E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="APACHE WEB服务">
+<meta property="og:url" content="http://www.toberoot.com/2016/12/23/booboo_easy_service/05_apache/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
-<meta property="og:description" content="除了自己的无知，我什么都不懂。－苏格拉底">
-<meta property="article:published_time" content="2020-03-22T14:48:00.876Z">
-<meta property="article:modified_time" content="2020-03-22T14:48:00.875Z">
+<meta property="og:description" content="Web&amp;#x57FA;&amp;#x7840;&amp;#x6211;&amp;#x4EEC;&amp;#x5E73;&amp;#x65F6;&amp;#x4E0A;&amp;#x7F51;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x8F93;&amp;#x5165;&amp;#x7F51;&amp;#x5740;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x90FD;&amp;#x4F1A;&amp;#x8F93;&amp;#x5165;&amp;#x4EC0;&amp;#x4E">
+<meta property="article:published_time" content="2016-12-22T21:06:27.000Z">
+<meta property="article:modified_time" content="2020-03-24T05:02:31.712Z">
 <meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="培训">
+<meta property="article:tag" content="Linux基础服务">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="icon" href="/img/influx.svg">
-
-<link href="/css/style.css?v=1.0.1" rel="stylesheet">
-
-<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
-
-<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
-
-<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script>
-    hljs.initHighlightingOnLoad();
-</script>
-
-<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
 
 
 
-<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+<link rel="icon" href="/favicon.png">
 
-<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
 </head>
-<div style="display: none">
-  <input class="theme_disqus_on" value="false">
-  <input class="theme_preload_comment" value="false">
-  <input class="theme_blog_path" value="">
-</div>
-
 <body>
-<aside class="nav">
-    <div class="nav-left">
-        <a href="/" class="avatar_target">
-    <img class="avatar" src="/img/my.png" />
-</a>
-<div class="author">
-    <span>BoobooWei</span>
-</div>
-
-<div class="icon">
     
-        
-        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-email"></use>
-                </svg>
-            
-        </a>
-        
-    
-</div>
-
-
-
-
-<ul>
-    <li><div class="all active">全部文章<small>(54)</small></div></li>
-    
-        
-            
-            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
                 
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
+                    
+                    <img src="/images/influx.svg" alt="" height="28">
+                    
                 
-            </li>
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
             
-        
-    
-        
+            <a class="navbar-item "
+               href="/archives">Archives</a>
             
-        
-    
-        
+            <a class="navbar-item "
+               href="/categories">Categories</a>
             
-            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(41)</small></div>
+            <a class="navbar-item "
+               href="/tools">Tools</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Suche" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
                 
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="LinuxShell脚本教程">LinuxShell脚本教程<small>(7)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MySQL基础管理教程">MySQL基础管理教程<small>(11)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
+                <i class="fab fa-github"></i>
                 
-            </li>
+            </a>
+               
             
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(7)</small></div>
-                
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="Python">Python<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
-                
-            </li>
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-</ul>
-<div class="left-bottom">
-    <div class="menus">
-    
-    </div>
-    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
-</div>
-<input type="hidden" id="yelog_site_posts_number" value="54">
-<input type="hidden" id="yelog_site_word_count" value="305.8k">
-<div style="display: none">
-    <span id="busuanzi_value_site_uv"></span>
-    <span id="busuanzi_value_site_pv"></span>
-</div>
-
-    </div>
-    <div class="nav-right">
-        <div class="friends-area">
-    <div class="friends-title">
-        友情链接
-        <i class="back-title-list"></i>
-    </div>
-    <div class="friends-content">
-        <ul>
-            
-            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
-            
-            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
-            
-            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
-            
-            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
-            
-        </ul>
-    </div>
-</div>
-        <div class="title-list">
-    <form onkeydown="if(event.keyCode === 13){return false;}">
-        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
-        <i class="cross"></i>
-        <span>
-            <label for="tagswitch">Tags:</label>
-            <input id="tagswitch" type="checkbox" style="display: none" />
-            <i id="tagsWitchIcon"></i>
-        </span>
-    </form>
-    <div class="tags-list">
-    
-    <li class="article-tag-list-item">
-        <a class="color5">宝宝成长</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color3">培训</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color3">LinuxShell脚本</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">Linux基础服务</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color1">Linux</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">MySQL基础管理</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color2">python</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">数据救援</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">hexo</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color1">SQL优化</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">锁故障</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">RDS</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">主从同步</a>
-    </li>
-    
-    <div class="clearfix"></div>
-</div>
-
-    
-    <nav id="title-list-nav">
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
-            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
-            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
-            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
-            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="家长会">家长会</span>
-            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
-            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第一课 简介和变量">LINUX Shell Scripts 第一课 简介和变量</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第二课 流程控制语句">LINUX Shell Scripts 第二课 流程控制语句</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第三课 正则表达式">LINUX Shell Scripts 第三课 正则表达式</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第四课 Sed">LINUX Shell Scripts 第四课 Sed</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第五课 各种括号的作用">LINUX Shell Scripts 第五课 各种括号的作用</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第六课 上机考试">LINUX Shell Scripts 第六课 上机考试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第七课 笔试">LINUX Shell Scripts 第七课 笔试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/01_dns/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/02_ftp/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/03_nfs/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/04_samba/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/05_apache/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/ule-online/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/00-linux_history/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 内核">Linux 内核</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/25/booboo_mysql/00-MySQL%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第一课 课程简介">MySQL 管理课程 第一课 课程简介</span>
-            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/30/booboo_mysql/03-MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%92%8CInnodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎">MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎</span>
-            <span class="post-date" title="2016-12-29 21:06:27">2016/12/29</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/31/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第七课 复制 AB replication">MySQL 管理课程 第七课 复制 AB replication</span>
-            <span class="post-date" title="2016-12-30 21:06:27">2016/12/30</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/02/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第八课 高可用性HA">MySQL 管理课程 第八课 高可用性HA</span>
-            <span class="post-date" title="2017-01-01 21:06:27">2017/01/01</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/04/booboo_mysql/07-MySQL5.6%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制">MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制</span>
-            <span class="post-date" title="2017-01-03 21:06:27">2017/01/03</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/03/booboo_mysql/06-MySQL%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7sysbench/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第九课 MySQL压力测试工具sysbench">MySQL 管理课程 第九课 MySQL压力测试工具sysbench</span>
-            <span class="post-date" title="2017-01-02 21:06:27">2017/01/02</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/05/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&mysqlpump&mydumper/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper">MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</span>
-            <span class="post-date" title="2017-01-04 21:06:27">2017/01/04</span>
-        </a>
-        
-        <a  class="技术广角 Python "
-           href="/2020/03/22/booboo_others/CentOS6.5%E9%85%8D%E7%BD%AEpython3.7%E5%AE%89%E8%A3%85%E5%90%8Essl%E9%97%AE%E9%A2%98/"
-           data-tag="python"
-           data-author="" >
-            <span class="post-title" title="CentOS6.5配置python3.7安装后ssl问题">CentOS6.5配置python3.7安装后ssl问题</span>
-            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
-           data-tag="数据救援"
-           data-author="" >
-            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
-            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
-        </a>
-        
-        <a  class="技术广角 Hexo "
-           href="/2020/03/22/booboo_others/hello-world/"
-           data-tag="hexo"
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
-        </a>
-        
-        <a  class="技术广角 Oracle "
-           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
-           data-tag="SQL优化"
-           data-author="" >
-            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
-            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
-           data-tag="锁故障"
-           data-author="" >
-            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
-            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
-           data-tag="RDS,主从同步"
-           data-author="" >
-            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
-            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
-        </a>
-        
-        <a  class="技术广角 MongoDB "
-           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
-           data-tag="数据救援"
-           data-author="" >
-            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
-            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/29/booboo_mysql/03-MySQL%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第五课 备份与恢复">MySQL 管理课程 第五课 备份与恢复</span>
-            <span class="post-date" title="2016-12-28 21:06:27">2016/12/28</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/26/booboo_mysql/01-MySQL%E5%92%8CMariaDB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍">MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍</span>
-            <span class="post-date" title="2016-12-25 21:06:27">2016/12/25</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/27/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1">MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1</span>
-            <span class="post-date" title="2016-12-26 21:06:27">2016/12/26</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/28/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2">MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2</span>
-            <span class="post-date" title="2016-12-27 21:06:27">2016/12/27</span>
-        </a>
-        
-    </nav>
-</div>
-    </div>
-    <div class="hide-list">
-        <div class="semicircle">
-            <div class="brackets first"><</div>
-            <div class="brackets">&gt;</div>
         </div>
     </div>
-</aside>
-<div class="post">
-    <div class="pjax">
-        <article id="post-booboo_easy_service/05_apache" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">APACHE WEB服务</h1>
-    
-    <div class="article-meta">
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
+            APACHE WEB服务
         
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2016-12-22T21:06:27.000Z" itemprop="datePublished">12月 23 2016</time>
+        </span>
         
-        <span class="book">
-            
-                <a  data-rel="技术培训">技术培训</a>/
-            
-                <a  data-rel="Linux简易服务教程">Linux简易服务教程</a>
-            
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/">技术培训</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/">Linux简易服务教程</a>
         </span>
         
         
-        <span class="tag">
+        <span class="column is-narrow">
             
-            <a class="color3">培训</a>
             
-            <a class="color5">Linux基础服务</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-        创建时间:<time class="date" title='更新时间: 2020-03-24 05:02:31'>2016-12-22 21:06</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字数:5.4k</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            阅读:<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
-        
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                评论:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
+            38 分钟 lesen (Über 5660 Wörter)
         </span>
         
     </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-    <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web基础"><span class="toc-text">Web基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache的简介"><span class="toc-text">Apache的简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache的软件结构"><span class="toc-text">Apache的软件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache虚拟主机方案"><span class="toc-text">Apache虚拟主机方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache实践"><span class="toc-text">Apache实践</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践1：配置基于端口的虚拟主机"><span class="toc-text">项目实践1：配置基于端口的虚拟主机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践2：配置基于名称的虚拟主机"><span class="toc-text">项目实践2：配置基于名称的虚拟主机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践3：配置基于名称的虚拟主机针对某一个目录做限制"><span class="toc-text">项目实践3：配置基于名称的虚拟主机针对某一个目录做限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践4：配置基于名称的虚拟主机-别名"><span class="toc-text">项目实践4：配置基于名称的虚拟主机_别名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践4：配置基于名称的虚拟主机-用户名和密码访问"><span class="toc-text">项目实践4：配置基于名称的虚拟主机_用户名和密码访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目实践5：在rhel7中搭建apahce，实现以下功能"><span class="toc-text">项目实践5：在rhel7中搭建apahce，实现以下功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache配置文件-etc-httpd-conf-httpd-conf"><span class="toc-text">Apache配置文件&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;httpd.conf</span></a></li></ol>
-    
-<style>
-    .left-col .switch-btn,
-    .left-col .switch-area {
-        display: none;
-    }
-    .toc-level-3 i,
-    .toc-level-3 ol {
-        display: none !important;
-    }
-</style>
-</div>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Web基础"><a href="#Web基础" class="headerlink" title="Web基础"></a>Web基础</h3><p>我们平时上网的时候，输入网址的时候都会输入什么，<a href="http://www.baidu.com，对不对，那么这个www是什么呢？这个www代表的是world">www.baidu.com，对不对，那么这个www是什么呢？这个www代表的是world</a> wide web，WWW可以让Web客户端（常用浏览器）访问浏览Web服务器上的页面。 它是一个由许多互相链接的超文本组成的系统，通过互联网访问，在这个系统中，每个有用的事物，称为一样“资源”；并且由一个全局“统一资源标识符”（URL）标识；这些资源通过超文本传输协议（Hypertext Transfer Protocol）传送给用户，而后者通过点击链接来获得资源。</p>
-<p>HTTP是Hypertext Transfer Protocol的缩写，即超文本传输协议。 顾名思义，HTTP提供了访问超文本信息的功能，是WWW浏览器和WWW服务器之间的应用层通信协议。HTTP协议是用于分布式协作超文本信息系统的、通用的、面向对象的协议。通过扩展命令，它可用于类似的任务，如域名服务或分布式面向对象系统。WWW使用HTTP协议传输各种超文本页面和数据。</p>
-<p>网页文件是用HTML（标准通用标记语言下的一个应用）编写的，可在WWW上传输，能被浏览器识别显示的文本文件。其扩展名是.htm和.html。</p>
-<p>Web的服务器最常见的有windows上的IIS，还有linux上的apache。另外还有例如nginx等的轻量级服务器。都是比较常用的一些服务器。我们基础课主要简单介绍一些apache的一个简单搭建。</p>
-<h3 id="Apache的简介"><a href="#Apache的简介" class="headerlink" title="Apache的简介"></a>Apache的简介</h3><ul>
-<li>HTTP (Web) server、开源、1995年</li>
-<li>官网： <a href="http://httpd.apache.org/" target="_blank" rel="noopener">http://httpd.apache.org/</a></li>
+        <h3 id="Web&#x57FA;&#x7840;"><a href="#Web&#x57FA;&#x7840;" class="headerlink" title="Web&#x57FA;&#x7840;"></a>Web&#x57FA;&#x7840;</h3><p>&#x6211;&#x4EEC;&#x5E73;&#x65F6;&#x4E0A;&#x7F51;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8F93;&#x5165;&#x7F51;&#x5740;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x4F1A;&#x8F93;&#x5165;&#x4EC0;&#x4E48;&#xFF0C;<a href="http://www.baidu.com&#xFF0C;&#x5BF9;&#x4E0D;&#x5BF9;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;www&#x662F;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x8FD9;&#x4E2A;www&#x4EE3;&#x8868;&#x7684;&#x662F;world" target="_blank" rel="noopener">www.baidu.com&#xFF0C;&#x5BF9;&#x4E0D;&#x5BF9;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;www&#x662F;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x8FD9;&#x4E2A;www&#x4EE3;&#x8868;&#x7684;&#x662F;world</a> wide web&#xFF0C;WWW&#x53EF;&#x4EE5;&#x8BA9;Web&#x5BA2;&#x6237;&#x7AEF;&#xFF08;&#x5E38;&#x7528;&#x6D4F;&#x89C8;&#x5668;&#xFF09;&#x8BBF;&#x95EE;&#x6D4F;&#x89C8;Web&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x9875;&#x9762;&#x3002; &#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x7531;&#x8BB8;&#x591A;&#x4E92;&#x76F8;&#x94FE;&#x63A5;&#x7684;&#x8D85;&#x6587;&#x672C;&#x7EC4;&#x6210;&#x7684;&#x7CFB;&#x7EDF;&#xFF0C;&#x901A;&#x8FC7;&#x4E92;&#x8054;&#x7F51;&#x8BBF;&#x95EE;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;&#x6709;&#x7528;&#x7684;&#x4E8B;&#x7269;&#xFF0C;&#x79F0;&#x4E3A;&#x4E00;&#x6837;&#x201C;&#x8D44;&#x6E90;&#x201D;&#xFF1B;&#x5E76;&#x4E14;&#x7531;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x201C;&#x7EDF;&#x4E00;&#x8D44;&#x6E90;&#x6807;&#x8BC6;&#x7B26;&#x201D;&#xFF08;URL&#xFF09;&#x6807;&#x8BC6;&#xFF1B;&#x8FD9;&#x4E9B;&#x8D44;&#x6E90;&#x901A;&#x8FC7;&#x8D85;&#x6587;&#x672C;&#x4F20;&#x8F93;&#x534F;&#x8BAE;&#xFF08;Hypertext Transfer Protocol&#xFF09;&#x4F20;&#x9001;&#x7ED9;&#x7528;&#x6237;&#xFF0C;&#x800C;&#x540E;&#x8005;&#x901A;&#x8FC7;&#x70B9;&#x51FB;&#x94FE;&#x63A5;&#x6765;&#x83B7;&#x5F97;&#x8D44;&#x6E90;&#x3002;</p>
+<p>HTTP&#x662F;Hypertext Transfer Protocol&#x7684;&#x7F29;&#x5199;&#xFF0C;&#x5373;&#x8D85;&#x6587;&#x672C;&#x4F20;&#x8F93;&#x534F;&#x8BAE;&#x3002; &#x987E;&#x540D;&#x601D;&#x4E49;&#xFF0C;HTTP&#x63D0;&#x4F9B;&#x4E86;&#x8BBF;&#x95EE;&#x8D85;&#x6587;&#x672C;&#x4FE1;&#x606F;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x662F;WWW&#x6D4F;&#x89C8;&#x5668;&#x548C;WWW&#x670D;&#x52A1;&#x5668;&#x4E4B;&#x95F4;&#x7684;&#x5E94;&#x7528;&#x5C42;&#x901A;&#x4FE1;&#x534F;&#x8BAE;&#x3002;HTTP&#x534F;&#x8BAE;&#x662F;&#x7528;&#x4E8E;&#x5206;&#x5E03;&#x5F0F;&#x534F;&#x4F5C;&#x8D85;&#x6587;&#x672C;&#x4FE1;&#x606F;&#x7CFB;&#x7EDF;&#x7684;&#x3001;&#x901A;&#x7528;&#x7684;&#x3001;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x534F;&#x8BAE;&#x3002;&#x901A;&#x8FC7;&#x6269;&#x5C55;&#x547D;&#x4EE4;&#xFF0C;&#x5B83;&#x53EF;&#x7528;&#x4E8E;&#x7C7B;&#x4F3C;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x5982;&#x57DF;&#x540D;&#x670D;&#x52A1;&#x6216;&#x5206;&#x5E03;&#x5F0F;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7CFB;&#x7EDF;&#x3002;WWW&#x4F7F;&#x7528;HTTP&#x534F;&#x8BAE;&#x4F20;&#x8F93;&#x5404;&#x79CD;&#x8D85;&#x6587;&#x672C;&#x9875;&#x9762;&#x548C;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x7F51;&#x9875;&#x6587;&#x4EF6;&#x662F;&#x7528;HTML&#xFF08;&#x6807;&#x51C6;&#x901A;&#x7528;&#x6807;&#x8BB0;&#x8BED;&#x8A00;&#x4E0B;&#x7684;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#xFF09;&#x7F16;&#x5199;&#x7684;&#xFF0C;&#x53EF;&#x5728;WWW&#x4E0A;&#x4F20;&#x8F93;&#xFF0C;&#x80FD;&#x88AB;&#x6D4F;&#x89C8;&#x5668;&#x8BC6;&#x522B;&#x663E;&#x793A;&#x7684;&#x6587;&#x672C;&#x6587;&#x4EF6;&#x3002;&#x5176;&#x6269;&#x5C55;&#x540D;&#x662F;.htm&#x548C;.html&#x3002;</p>
+<p>Web&#x7684;&#x670D;&#x52A1;&#x5668;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x6709;windows&#x4E0A;&#x7684;IIS&#xFF0C;&#x8FD8;&#x6709;linux&#x4E0A;&#x7684;apache&#x3002;&#x53E6;&#x5916;&#x8FD8;&#x6709;&#x4F8B;&#x5982;nginx&#x7B49;&#x7684;&#x8F7B;&#x91CF;&#x7EA7;&#x670D;&#x52A1;&#x5668;&#x3002;&#x90FD;&#x662F;&#x6BD4;&#x8F83;&#x5E38;&#x7528;&#x7684;&#x4E00;&#x4E9B;&#x670D;&#x52A1;&#x5668;&#x3002;&#x6211;&#x4EEC;&#x57FA;&#x7840;&#x8BFE;&#x4E3B;&#x8981;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E00;&#x4E9B;apache&#x7684;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x642D;&#x5EFA;&#x3002;</p>
+<h3 id="Apache&#x7684;&#x7B80;&#x4ECB;"><a href="#Apache&#x7684;&#x7B80;&#x4ECB;" class="headerlink" title="Apache&#x7684;&#x7B80;&#x4ECB;"></a>Apache&#x7684;&#x7B80;&#x4ECB;</h3><ul>
+<li>HTTP (Web) server&#x3001;&#x5F00;&#x6E90;&#x3001;1995&#x5E74;</li>
+<li>&#x5B98;&#x7F51;&#xFF1A; <a href="http://httpd.apache.org/" target="_blank" rel="noopener">http://httpd.apache.org/</a></li>
 </ul>
-<p>Apache 起初由 Illinois 大学 Urbana-Champaign 的国家高级计算程序中心开发。此后，Apache 被开放源代码团体的成员不断的发展和加强。Apache 服务器拥有牢靠可信的美誉，已用在超过半数的因特网站中－特别是几乎所有最热门和访问量最大的网站。</p>
-<p>开始，Apache只是Netscape网页服务器（现在是Sun ONE）的之外的开放源代码选择。渐渐的，它开始在功能和速度。超越其他的基于Unix的HTTP服务器。1996年4月以来，Apache一直是Internet上最流行的HTTP服务器: 1999年5月它在 57% 的网页服务器上运行；到了2005年7月这个比例上升到了69%。</p>
-<p>作者宣称因为这个名字好记才在最初选择它，但是流传最广的解释是（也是最显而易见的）:这个名字来自这么一个事实:当Apache在1995年初开发的时候，它是由当时最流行的HTTP服务器NCSA HTTPd 1.3 的代码修改而成的，因此是“一个修补的（a patchy）”服务器。然而在服务器官方网站的FAQ中是这么解释的:“‘Apache’这个名字是为了纪念名为Apache(印地语)的美洲印第安人土著的一支，众所周知他们拥有高超的作战策略和无穷的耐性”。</p>
-<p>Apache的软件名称就叫做httpd，这里要注意一下，这里我们以el6作为服务器，el7作为客户端。</p>
-<h3 id="Apache的软件结构"><a href="#Apache的软件结构" class="headerlink" title="Apache的软件结构"></a>Apache的软件结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apache</span><br><span class="line">软件			 httpd</span><br><span class="line">					rhel6	httpd-2.2.15-29.el6_4.x86_64</span><br><span class="line">					rhel7	httpd-2.4.6-17.el7.x86_64</span><br><span class="line">service		httpd</span><br><span class="line">daemon		httpd</span><br><span class="line">端口			80</span><br><span class="line">配置文件	/etc/httpd/conf/httpd.conf</span><br><span class="line">				/etc/httpd/conf.d/*.conf</span><br><span class="line">数据文件	/var/www/</span><br><span class="line">				/var/www/uplooking/	www.uplooking.com----网站根目录</span><br><span class="line">日志文件	/var/log/httpd</span><br></pre></td></tr></table></figure>
-
-<h3 id="Apache虚拟主机方案"><a href="#Apache虚拟主机方案" class="headerlink" title="Apache虚拟主机方案"></a>Apache虚拟主机方案</h3><ol>
-<li>基于端口的虚拟主机<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www.uplooking.com:80	----&gt;	/var/www/uplooking.com/</span><br><span class="line">www.uplooking.com:8080	----&gt;	/var/www/abc.com/</span><br></pre></td></tr></table></figure></li>
-<li>基于名称的虚拟主机<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www.uplooking.com----/var/www/uplooking.com/</span><br><span class="line">www.abc.com----/var/www/abc.com/</span><br></pre></td></tr></table></figure>
-<h3 id="Apache实践"><a href="#Apache实践" class="headerlink" title="Apache实践"></a>Apache实践</h3></li>
+<p>Apache &#x8D77;&#x521D;&#x7531; Illinois &#x5927;&#x5B66; Urbana-Champaign &#x7684;&#x56FD;&#x5BB6;&#x9AD8;&#x7EA7;&#x8BA1;&#x7B97;&#x7A0B;&#x5E8F;&#x4E2D;&#x5FC3;&#x5F00;&#x53D1;&#x3002;&#x6B64;&#x540E;&#xFF0C;Apache &#x88AB;&#x5F00;&#x653E;&#x6E90;&#x4EE3;&#x7801;&#x56E2;&#x4F53;&#x7684;&#x6210;&#x5458;&#x4E0D;&#x65AD;&#x7684;&#x53D1;&#x5C55;&#x548C;&#x52A0;&#x5F3A;&#x3002;Apache &#x670D;&#x52A1;&#x5668;&#x62E5;&#x6709;&#x7262;&#x9760;&#x53EF;&#x4FE1;&#x7684;&#x7F8E;&#x8A89;&#xFF0C;&#x5DF2;&#x7528;&#x5728;&#x8D85;&#x8FC7;&#x534A;&#x6570;&#x7684;&#x56E0;&#x7279;&#x7F51;&#x7AD9;&#x4E2D;&#xFF0D;&#x7279;&#x522B;&#x662F;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x6700;&#x70ED;&#x95E8;&#x548C;&#x8BBF;&#x95EE;&#x91CF;&#x6700;&#x5927;&#x7684;&#x7F51;&#x7AD9;&#x3002;</p>
+<p>&#x5F00;&#x59CB;&#xFF0C;Apache&#x53EA;&#x662F;Netscape&#x7F51;&#x9875;&#x670D;&#x52A1;&#x5668;&#xFF08;&#x73B0;&#x5728;&#x662F;Sun ONE&#xFF09;&#x7684;&#x4E4B;&#x5916;&#x7684;&#x5F00;&#x653E;&#x6E90;&#x4EE3;&#x7801;&#x9009;&#x62E9;&#x3002;&#x6E10;&#x6E10;&#x7684;&#xFF0C;&#x5B83;&#x5F00;&#x59CB;&#x5728;&#x529F;&#x80FD;&#x548C;&#x901F;&#x5EA6;&#x3002;&#x8D85;&#x8D8A;&#x5176;&#x4ED6;&#x7684;&#x57FA;&#x4E8E;Unix&#x7684;HTTP&#x670D;&#x52A1;&#x5668;&#x3002;1996&#x5E74;4&#x6708;&#x4EE5;&#x6765;&#xFF0C;Apache&#x4E00;&#x76F4;&#x662F;Internet&#x4E0A;&#x6700;&#x6D41;&#x884C;&#x7684;HTTP&#x670D;&#x52A1;&#x5668;: 1999&#x5E74;5&#x6708;&#x5B83;&#x5728; 57% &#x7684;&#x7F51;&#x9875;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x8FD0;&#x884C;&#xFF1B;&#x5230;&#x4E86;2005&#x5E74;7&#x6708;&#x8FD9;&#x4E2A;&#x6BD4;&#x4F8B;&#x4E0A;&#x5347;&#x5230;&#x4E86;69%&#x3002;</p>
+<p>&#x4F5C;&#x8005;&#x5BA3;&#x79F0;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x540D;&#x5B57;&#x597D;&#x8BB0;&#x624D;&#x5728;&#x6700;&#x521D;&#x9009;&#x62E9;&#x5B83;&#xFF0C;&#x4F46;&#x662F;&#x6D41;&#x4F20;&#x6700;&#x5E7F;&#x7684;&#x89E3;&#x91CA;&#x662F;&#xFF08;&#x4E5F;&#x662F;&#x6700;&#x663E;&#x800C;&#x6613;&#x89C1;&#x7684;&#xFF09;:&#x8FD9;&#x4E2A;&#x540D;&#x5B57;&#x6765;&#x81EA;&#x8FD9;&#x4E48;&#x4E00;&#x4E2A;&#x4E8B;&#x5B9E;:&#x5F53;Apache&#x5728;1995&#x5E74;&#x521D;&#x5F00;&#x53D1;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5B83;&#x662F;&#x7531;&#x5F53;&#x65F6;&#x6700;&#x6D41;&#x884C;&#x7684;HTTP&#x670D;&#x52A1;&#x5668;NCSA HTTPd 1.3 &#x7684;&#x4EE3;&#x7801;&#x4FEE;&#x6539;&#x800C;&#x6210;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x662F;&#x201C;&#x4E00;&#x4E2A;&#x4FEE;&#x8865;&#x7684;&#xFF08;a patchy&#xFF09;&#x201D;&#x670D;&#x52A1;&#x5668;&#x3002;&#x7136;&#x800C;&#x5728;&#x670D;&#x52A1;&#x5668;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#x7684;FAQ&#x4E2D;&#x662F;&#x8FD9;&#x4E48;&#x89E3;&#x91CA;&#x7684;:&#x201C;&#x2018;Apache&#x2019;&#x8FD9;&#x4E2A;&#x540D;&#x5B57;&#x662F;&#x4E3A;&#x4E86;&#x7EAA;&#x5FF5;&#x540D;&#x4E3A;Apache(&#x5370;&#x5730;&#x8BED;)&#x7684;&#x7F8E;&#x6D32;&#x5370;&#x7B2C;&#x5B89;&#x4EBA;&#x571F;&#x8457;&#x7684;&#x4E00;&#x652F;&#xFF0C;&#x4F17;&#x6240;&#x5468;&#x77E5;&#x4ED6;&#x4EEC;&#x62E5;&#x6709;&#x9AD8;&#x8D85;&#x7684;&#x4F5C;&#x6218;&#x7B56;&#x7565;&#x548C;&#x65E0;&#x7A77;&#x7684;&#x8010;&#x6027;&#x201D;&#x3002;</p>
+<p>Apache&#x7684;&#x8F6F;&#x4EF6;&#x540D;&#x79F0;&#x5C31;&#x53EB;&#x505A;httpd&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x6CE8;&#x610F;&#x4E00;&#x4E0B;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4EE5;el6&#x4F5C;&#x4E3A;&#x670D;&#x52A1;&#x5668;&#xFF0C;el7&#x4F5C;&#x4E3A;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</p>
+<h3 id="Apache&#x7684;&#x8F6F;&#x4EF6;&#x7ED3;&#x6784;"><a href="#Apache&#x7684;&#x8F6F;&#x4EF6;&#x7ED3;&#x6784;" class="headerlink" title="Apache&#x7684;&#x8F6F;&#x4EF6;&#x7ED3;&#x6784;"></a>Apache&#x7684;&#x8F6F;&#x4EF6;&#x7ED3;&#x6784;</h3><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apache</span><br><span class="line">&#x8F6F;&#x4EF6;			 httpd</span><br><span class="line">					rhel6	httpd-2.2.15-29.el6_4.x86_64</span><br><span class="line">					rhel7	httpd-2.4.6-17.el7.x86_64</span><br><span class="line">service		httpd</span><br><span class="line">daemon		httpd</span><br><span class="line">&#x7AEF;&#x53E3;			80</span><br><span class="line">&#x914D;&#x7F6E;&#x6587;&#x4EF6;	/etc/httpd/conf/httpd.conf</span><br><span class="line">				/etc/httpd/conf.d/*.conf</span><br><span class="line">&#x6570;&#x636E;&#x6587;&#x4EF6;	/var/www/</span><br><span class="line">				/var/www/uplooking/	www.uplooking.com----&#x7F51;&#x7AD9;&#x6839;&#x76EE;&#x5F55;</span><br><span class="line">&#x65E5;&#x5FD7;&#x6587;&#x4EF6;	/var/log/httpd</span><br></pre></td></tr></table></figure></p>
+<h3 id="Apache&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x65B9;&#x6848;"><a href="#Apache&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x65B9;&#x6848;" class="headerlink" title="Apache&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x65B9;&#x6848;"></a>Apache&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x65B9;&#x6848;</h3><ol>
+<li>&#x57FA;&#x4E8E;&#x7AEF;&#x53E3;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;<br><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www.uplooking.com:80	----&gt;	/var/www/uplooking.com/</span><br><span class="line">www.uplooking.com:8080	----&gt;	/var/www/abc.com/</span><br></pre></td></tr></table></figure></li>
+<li>&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;<br><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www.uplooking.com----/var/www/uplooking.com/</span><br><span class="line">www.abc.com----/var/www/abc.com/</span><br></pre></td></tr></table></figure><h3 id="Apache&#x5B9E;&#x8DF5;"><a href="#Apache&#x5B9E;&#x8DF5;" class="headerlink" title="Apache&#x5B9E;&#x8DF5;"></a>Apache&#x5B9E;&#x8DF5;</h3></li>
 </ol>
-<h4 id="项目实践1：配置基于端口的虚拟主机"><a href="#项目实践1：配置基于端口的虚拟主机" class="headerlink" title="项目实践1：配置基于端口的虚拟主机"></a>项目实践1：配置基于端口的虚拟主机</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">	8080---&gt;</span><span class="bash">/var/www/8080.com/</span></span><br><span class="line">*******************************************</span><br><span class="line">1)修改主配置文件，打开要监听的端口号</span><br><span class="line">[root@rhel6 ~]# vim /etc/httpd/conf/httpd.conf</span><br><span class="line">Listen 80</span><br><span class="line">Listen 8080</span><br><span class="line">2)为不同的虚拟主机创建配置文件</span><br><span class="line">[root@rhel6 conf.d]# pwd</span><br><span class="line">/etc/httpd/conf.d</span><br><span class="line">[root@rhel6 conf.d]# vim 8080.conf</span><br><span class="line">&lt;VirtualHost *:8080&gt;</span><br><span class="line">    ServerAdmin booboo@8080.com</span><br><span class="line">    DocumentRoot /var/www/8080.com</span><br><span class="line">    ServerName www.8080.com</span><br><span class="line">    ErrorLog logs/8080.com-error_log</span><br><span class="line">    CustomLog logs/8080.com-access_log common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">3.创建网站根目录，并创建网站默认首页</span><br><span class="line">[root@rhel6 conf.d]# mkdir /var/www/8080.com</span><br><span class="line">[root@rhel6 conf.d]# echo 8080.com &gt; /var/www/8080.com/index.html</span><br><span class="line">4.重启服务</span><br><span class="line">[root@rhel6 conf.d]# service httpd start</span><br></pre></td></tr></table></figure>
-
-<p>拓展8081和8082端口</p>
+<h4 id="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;1&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x7AEF;&#x53E3;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;"><a href="#&#x9879;&#x76EE;&#x5B9E;&#x8DF5;1&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x7AEF;&#x53E3;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;" class="headerlink" title="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;1&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x7AEF;&#x53E3;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;"></a>&#x9879;&#x76EE;&#x5B9E;&#x8DF5;1&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x7AEF;&#x53E3;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;</h4><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">	8080---&gt;</span><span class="hljs-bash">/var/www/8080.com/</span></span><br><span class="line">*******************************************</span><br><span class="line">1)&#x4FEE;&#x6539;&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x6253;&#x5F00;&#x8981;&#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;&#x53F7;</span><br><span class="line">[root@rhel6 ~]# vim /etc/httpd/conf/httpd.conf</span><br><span class="line">Listen 80</span><br><span class="line">Listen 8080</span><br><span class="line">2)&#x4E3A;&#x4E0D;&#x540C;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span><br><span class="line">[root@rhel6 conf.d]# pwd</span><br><span class="line">/etc/httpd/conf.d</span><br><span class="line">[root@rhel6 conf.d]# vim 8080.conf</span><br><span class="line">&lt;VirtualHost *:8080&gt;</span><br><span class="line">    ServerAdmin booboo@8080.com</span><br><span class="line">    DocumentRoot /var/www/8080.com</span><br><span class="line">    ServerName www.8080.com</span><br><span class="line">    ErrorLog logs/8080.com-error_log</span><br><span class="line">    CustomLog logs/8080.com-access_log common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">3.&#x521B;&#x5EFA;&#x7F51;&#x7AD9;&#x6839;&#x76EE;&#x5F55;&#xFF0C;&#x5E76;&#x521B;&#x5EFA;&#x7F51;&#x7AD9;&#x9ED8;&#x8BA4;&#x9996;&#x9875;</span><br><span class="line">[root@rhel6 conf.d]# mkdir /var/www/8080.com</span><br><span class="line">[root@rhel6 conf.d]# echo 8080.com &gt; /var/www/8080.com/index.html</span><br><span class="line">4.&#x91CD;&#x542F;&#x670D;&#x52A1;</span><br><span class="line">[root@rhel6 conf.d]# service httpd start</span><br></pre></td></tr></table></figure></p>
+<p>&#x62D3;&#x5C55;8081&#x548C;8082&#x7AEF;&#x53E3;</p>
 <ol>
-<li>关闭selinux</li>
-<li>配置selinux安全上下文，允许httpd监听8081和8082端口<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 conf.d]# semanage port -l|grep http</span><br><span class="line">http_cache_port_t              tcp      3128, 8080, 8118, 8123, 10001-10010</span><br><span class="line">http_cache_port_t              udp      3130</span><br><span class="line">http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000</span><br><span class="line">pegasus_http_port_t            tcp      5988</span><br><span class="line">pegasus_https_port_t           tcp      5989</span><br><span class="line"></span><br><span class="line">[root@rhel6 conf.d]# semanage port -a -t http_port_t -p tcp 8081</span><br><span class="line">[root@rhel6 conf.d]# semanage port -a -t http_port_t -p tcp 8082</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>&#x5173;&#x95ED;selinux</li>
+<li>&#x914D;&#x7F6E;selinux&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x5141;&#x8BB8;httpd&#x76D1;&#x542C;8081&#x548C;8082&#x7AEF;&#x53E3;<br><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 conf.d]# semanage port -l|grep http</span><br><span class="line">http_cache_port_t              tcp      3128, 8080, 8118, 8123, 10001-10010</span><br><span class="line">http_cache_port_t              udp      3130</span><br><span class="line">http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000</span><br><span class="line">pegasus_http_port_t            tcp      5988</span><br><span class="line">pegasus_https_port_t           tcp      5989</span><br><span class="line"></span><br><span class="line">[root@rhel6 conf.d]# semanage port -a -t http_port_t -p tcp 8081</span><br><span class="line">[root@rhel6 conf.d]# semanage port -a -t http_port_t -p tcp 8082</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h4 id="项目实践2：配置基于名称的虚拟主机"><a href="#项目实践2：配置基于名称的虚拟主机" class="headerlink" title="项目实践2：配置基于名称的虚拟主机"></a>项目实践2：配置基于名称的虚拟主机</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">	www.taobao.com		/var/www/taobao.com/</span><br><span class="line">	www.abc.com		/var/www/abc.com/</span><br><span class="line">*******************************************************</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">服务端</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">1.修改主配置文件</span><br><span class="line">[root@rhel6 conf.d]# vim /etc/httpd/conf/httpd.conf</span><br><span class="line">NameVirtualHost *:80</span><br><span class="line">2.创建拓展配置文件</span><br><span class="line">[root@rhel6 conf.d]# vim taobao.conf</span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerAdmin booboo@taobao.com</span><br><span class="line">    DocumentRoot /var/www/taobao.com</span><br><span class="line">    ServerName www.taobao.com</span><br><span class="line">    ErrorLog logs/taobao.com-error_log</span><br><span class="line">    CustomLog logs/taobao.com-access_log common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory "/var/www/taobao.com/"&gt;</span><br><span class="line">    Options Indexes ==&gt;如果没有对应的index文件，就将该目录下的其他文件罗列出来。</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">[root@rhel6 conf.d]# vim abc.conf</span><br><span class="line">[root@rhel6 conf.d]# cat abc.conf</span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerAdmin booboo@abc.com</span><br><span class="line">    DocumentRoot /var/www/abc.com</span><br><span class="line">    ServerName www.abc.com</span><br><span class="line">    ErrorLog logs/abc.com-error_log</span><br><span class="line">    CustomLog logs/abc.com-access_log common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory "/var/www/abc.com/"&gt;</span><br><span class="line">    Options Indexes</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">[root@rhel6 conf.d]# mkdir /var/www/taobao.com</span><br><span class="line">[root@rhel6 conf.d]# mkdir /var/www/abc.com</span><br><span class="line">[root@rhel6 conf.d]# echo www.taobao.com &gt; /var/www/taobao.com/index.html</span><br><span class="line">[root@rhel6 conf.d]# echo www.abc.com &gt; /var/www/abc.com/index.html</span><br><span class="line">[root@rhel6 conf.d]# service httpd restart</span><br><span class="line">==================================================================================================</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">客户端</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">1.安装elinks软件，bash下的一个网站浏览软件</span><br><span class="line">[root@rhel7 mnt]# yum install -y elinks</span><br><span class="line">2.添加域名解析</span><br><span class="line">[root@rhel7 mnt]# cat /etc/hosts</span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line">172.25.0.11	www.taobao.com</span><br><span class="line">172.25.0.11	www.abc.com</span><br><span class="line">3.通过links命令访问www.taobao.com和www.abc.com</span><br><span class="line">[root@rhel7 mnt]# links www.taobao.com</span><br><span class="line">[root@rhel7 mnt]# links www.abc.com</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">-X 带图形化界面的远程登录</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####</span></span></span><br><span class="line">[kiosk@foundation0 Desktop]$ ssh root@172.25.0.10 -X</span><br><span class="line">Last login: Fri Aug  5 03:14:10 2016</span><br><span class="line">/usr/bin/xauth:  file /root/.Xauthority does not exist</span><br><span class="line">[root@rhel7 ~]# firefox</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="项目实践3：配置基于名称的虚拟主机针对某一个目录做限制"><a href="#项目实践3：配置基于名称的虚拟主机针对某一个目录做限制" class="headerlink" title="项目实践3：配置基于名称的虚拟主机针对某一个目录做限制"></a>项目实践3：配置基于名称的虚拟主机针对某一个目录做限制</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Directory是针对某一个目录做限制的意思。</span><br><span class="line">	Options</span><br><span class="line">		Indexes的意思代表如果没有对应的index文件，就将该目录下的其他文件罗列出来。</span><br><span class="line">		Multiview代表的是多视图</span><br><span class="line">		Follow sysmlink代表允许连接到其他目录。</span><br><span class="line">	AllowOverride None</span><br><span class="line">	最常用的是：</span><br><span class="line">	Order allow,deny</span><br><span class="line">	Allow from All</span><br><span class="line">	deny from 172.25.0.10==&gt;该目录允许所有人，除了172.25.0.11</span><br><span class="line">	或者</span><br><span class="line">	Order deny,allow</span><br><span class="line">	deny from All</span><br><span class="line">	allow from 172.25.0.10==&gt;该目录不允许所有人，除了172.25.0.11</span><br></pre></td></tr></table></figure>
-
-<h4 id="项目实践4：配置基于名称的虚拟主机-别名"><a href="#项目实践4：配置基于名称的虚拟主机-别名" class="headerlink" title="项目实践4：配置基于名称的虚拟主机_别名"></a>项目实践4：配置基于名称的虚拟主机_别名</h4><ul>
-<li>别名        alias<ul>
-<li>作用在访问该目录的时候,无论之前的虚拟主机站点名是什么,会统一转到某一个指定的目录。</li>
+<h4 id="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;2&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;"><a href="#&#x9879;&#x76EE;&#x5B9E;&#x8DF5;2&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;" class="headerlink" title="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;2&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;"></a>&#x9879;&#x76EE;&#x5B9E;&#x8DF5;2&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;</h4><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">	www.taobao.com		/var/www/taobao.com/</span><br><span class="line">	www.abc.com		/var/www/abc.com/</span><br><span class="line">*******************************************************</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment">####</span></span></span><br><span class="line">&#x670D;&#x52A1;&#x7AEF;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment">####</span></span></span><br><span class="line">1.&#x4FEE;&#x6539;&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span><br><span class="line">[root@rhel6 conf.d]# vim /etc/httpd/conf/httpd.conf</span><br><span class="line">NameVirtualHost *:80</span><br><span class="line">2.&#x521B;&#x5EFA;&#x62D3;&#x5C55;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span><br><span class="line">[root@rhel6 conf.d]# vim taobao.conf</span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerAdmin booboo@taobao.com</span><br><span class="line">    DocumentRoot /var/www/taobao.com</span><br><span class="line">    ServerName www.taobao.com</span><br><span class="line">    ErrorLog logs/taobao.com-error_log</span><br><span class="line">    CustomLog logs/taobao.com-access_log common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory &quot;/var/www/taobao.com/&quot;&gt;</span><br><span class="line">    Options Indexes ==&gt;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5BF9;&#x5E94;&#x7684;index&#x6587;&#x4EF6;&#xFF0C;&#x5C31;&#x5C06;&#x8BE5;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x5176;&#x4ED6;&#x6587;&#x4EF6;&#x7F57;&#x5217;&#x51FA;&#x6765;&#x3002;</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">[root@rhel6 conf.d]# vim abc.conf</span><br><span class="line">[root@rhel6 conf.d]# cat abc.conf</span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerAdmin booboo@abc.com</span><br><span class="line">    DocumentRoot /var/www/abc.com</span><br><span class="line">    ServerName www.abc.com</span><br><span class="line">    ErrorLog logs/abc.com-error_log</span><br><span class="line">    CustomLog logs/abc.com-access_log common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory &quot;/var/www/abc.com/&quot;&gt;</span><br><span class="line">    Options Indexes</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">[root@rhel6 conf.d]# mkdir /var/www/taobao.com</span><br><span class="line">[root@rhel6 conf.d]# mkdir /var/www/abc.com</span><br><span class="line">[root@rhel6 conf.d]# echo www.taobao.com &gt; /var/www/taobao.com/index.html</span><br><span class="line">[root@rhel6 conf.d]# echo www.abc.com &gt; /var/www/abc.com/index.html</span><br><span class="line">[root@rhel6 conf.d]# service httpd restart</span><br><span class="line">==================================================================================================</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment">####</span></span></span><br><span class="line">&#x5BA2;&#x6237;&#x7AEF;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment">####</span></span></span><br><span class="line">1.&#x5B89;&#x88C5;elinks&#x8F6F;&#x4EF6;&#xFF0C;bash&#x4E0B;&#x7684;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x6D4F;&#x89C8;&#x8F6F;&#x4EF6;</span><br><span class="line">[root@rhel7 mnt]# yum install -y elinks</span><br><span class="line">2.&#x6DFB;&#x52A0;&#x57DF;&#x540D;&#x89E3;&#x6790;</span><br><span class="line">[root@rhel7 mnt]# cat /etc/hosts</span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line">172.25.0.11	www.taobao.com</span><br><span class="line">172.25.0.11	www.abc.com</span><br><span class="line">3.&#x901A;&#x8FC7;links&#x547D;&#x4EE4;&#x8BBF;&#x95EE;www.taobao.com&#x548C;www.abc.com</span><br><span class="line">[root@rhel7 mnt]# links www.taobao.com</span><br><span class="line">[root@rhel7 mnt]# links www.abc.com</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment">####</span></span></span><br><span class="line">-X &#x5E26;&#x56FE;&#x5F62;&#x5316;&#x754C;&#x9762;&#x7684;&#x8FDC;&#x7A0B;&#x767B;&#x5F55;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment">####</span></span></span><br><span class="line">[kiosk@foundation0 Desktop]$ ssh root@172.25.0.10 -X</span><br><span class="line">Last login: Fri Aug  5 03:14:10 2016</span><br><span class="line">/usr/bin/xauth:  file /root/.Xauthority does not exist</span><br><span class="line">[root@rhel7 ~]# firefox</span><br></pre></td></tr></table></figure></p>
+<h4 id="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;3&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x9488;&#x5BF9;&#x67D0;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#x505A;&#x9650;&#x5236;"><a href="#&#x9879;&#x76EE;&#x5B9E;&#x8DF5;3&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x9488;&#x5BF9;&#x67D0;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#x505A;&#x9650;&#x5236;" class="headerlink" title="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;3&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x9488;&#x5BF9;&#x67D0;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#x505A;&#x9650;&#x5236;"></a>&#x9879;&#x76EE;&#x5B9E;&#x8DF5;3&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x9488;&#x5BF9;&#x67D0;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#x505A;&#x9650;&#x5236;</h4><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Directory&#x662F;&#x9488;&#x5BF9;&#x67D0;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#x505A;&#x9650;&#x5236;&#x7684;&#x610F;&#x601D;&#x3002;</span><br><span class="line">	Options</span><br><span class="line">		Indexes&#x7684;&#x610F;&#x601D;&#x4EE3;&#x8868;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5BF9;&#x5E94;&#x7684;index&#x6587;&#x4EF6;&#xFF0C;&#x5C31;&#x5C06;&#x8BE5;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x5176;&#x4ED6;&#x6587;&#x4EF6;&#x7F57;&#x5217;&#x51FA;&#x6765;&#x3002;</span><br><span class="line">		Multiview&#x4EE3;&#x8868;&#x7684;&#x662F;&#x591A;&#x89C6;&#x56FE;</span><br><span class="line">		Follow sysmlink&#x4EE3;&#x8868;&#x5141;&#x8BB8;&#x8FDE;&#x63A5;&#x5230;&#x5176;&#x4ED6;&#x76EE;&#x5F55;&#x3002;</span><br><span class="line">	AllowOverride None</span><br><span class="line">	&#x6700;&#x5E38;&#x7528;&#x7684;&#x662F;&#xFF1A;</span><br><span class="line">	Order allow,deny</span><br><span class="line">	Allow from All</span><br><span class="line">	deny from 172.25.0.10==&gt;&#x8BE5;&#x76EE;&#x5F55;&#x5141;&#x8BB8;&#x6240;&#x6709;&#x4EBA;&#xFF0C;&#x9664;&#x4E86;172.25.0.11</span><br><span class="line">	&#x6216;&#x8005;</span><br><span class="line">	Order deny,allow</span><br><span class="line">	deny from All</span><br><span class="line">	allow from 172.25.0.10==&gt;&#x8BE5;&#x76EE;&#x5F55;&#x4E0D;&#x5141;&#x8BB8;&#x6240;&#x6709;&#x4EBA;&#xFF0C;&#x9664;&#x4E86;172.25.0.11</span><br></pre></td></tr></table></figure></p>
+<h4 id="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;4&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;-&#x522B;&#x540D;"><a href="#&#x9879;&#x76EE;&#x5B9E;&#x8DF5;4&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;-&#x522B;&#x540D;" class="headerlink" title="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;4&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;_&#x522B;&#x540D;"></a>&#x9879;&#x76EE;&#x5B9E;&#x8DF5;4&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;_&#x522B;&#x540D;</h4><ul>
+<li>&#x522B;&#x540D;        alias<ul>
+<li>&#x4F5C;&#x7528;&#x5728;&#x8BBF;&#x95EE;&#x8BE5;&#x76EE;&#x5F55;&#x7684;&#x65F6;&#x5019;,&#x65E0;&#x8BBA;&#x4E4B;&#x524D;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x7AD9;&#x70B9;&#x540D;&#x662F;&#x4EC0;&#x4E48;,&#x4F1A;&#x7EDF;&#x4E00;&#x8F6C;&#x5230;&#x67D0;&#x4E00;&#x4E2A;&#x6307;&#x5B9A;&#x7684;&#x76EE;&#x5F55;&#x3002;</li>
 </ul>
 </li>
 </ul>
 <p><code>Alias /download/ /&quot;var/www/soft/&quot;</code></p>
-<p>访问 download 目录时,无论站点名是什么,都会交给 var/www/soft/ 去处理,注意:代表目录时,最后一个 / 不能省略</p>
-<h4 id="项目实践4：配置基于名称的虚拟主机-用户名和密码访问"><a href="#项目实践4：配置基于名称的虚拟主机-用户名和密码访问" class="headerlink" title="项目实践4：配置基于名称的虚拟主机_用户名和密码访问"></a>项目实践4：配置基于名称的虚拟主机_用户名和密码访问</h4><ul>
-<li>1）配置文件中添加认证    AllowOverride AuthConfig<ul>
-<li>2）创建认证文件和用户密码    htpasswd -cmb /etc/httpd/test booboo uplooking</li>
-<li>3）新增用户和密码        htpasswd -bm /etc/httpd/test tom uplooking</li>
-<li>4）删除用户        htpasswd -D /etc/httpd/test jack</li>
-<li>5）修改密码        先删除再创建</li>
+<p>&#x8BBF;&#x95EE; download &#x76EE;&#x5F55;&#x65F6;,&#x65E0;&#x8BBA;&#x7AD9;&#x70B9;&#x540D;&#x662F;&#x4EC0;&#x4E48;,&#x90FD;&#x4F1A;&#x4EA4;&#x7ED9; var/www/soft/ &#x53BB;&#x5904;&#x7406;,&#x6CE8;&#x610F;:&#x4EE3;&#x8868;&#x76EE;&#x5F55;&#x65F6;,&#x6700;&#x540E;&#x4E00;&#x4E2A; / &#x4E0D;&#x80FD;&#x7701;&#x7565;</p>
+<h4 id="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;4&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;-&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x8BBF;&#x95EE;"><a href="#&#x9879;&#x76EE;&#x5B9E;&#x8DF5;4&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;-&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x8BBF;&#x95EE;" class="headerlink" title="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;4&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;_&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x8BBF;&#x95EE;"></a>&#x9879;&#x76EE;&#x5B9E;&#x8DF5;4&#xFF1A;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A;_&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x8BBF;&#x95EE;</h4><ul>
+<li>1&#xFF09;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;&#x8BA4;&#x8BC1;    AllowOverride AuthConfig<ul>
+<li>2&#xFF09;&#x521B;&#x5EFA;&#x8BA4;&#x8BC1;&#x6587;&#x4EF6;&#x548C;&#x7528;&#x6237;&#x5BC6;&#x7801;    htpasswd -cmb /etc/httpd/test booboo uplooking</li>
+<li>3&#xFF09;&#x65B0;&#x589E;&#x7528;&#x6237;&#x548C;&#x5BC6;&#x7801;        htpasswd -bm /etc/httpd/test tom uplooking</li>
+<li>4&#xFF09;&#x5220;&#x9664;&#x7528;&#x6237;        htpasswd -D /etc/httpd/test jack</li>
+<li>5&#xFF09;&#x4FEE;&#x6539;&#x5BC6;&#x7801;        &#x5148;&#x5220;&#x9664;&#x518D;&#x521B;&#x5EFA;</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">设置用户和密码</span><br><span class="line">&lt;Directory "/var/www/booboo.com/football/"&gt;</span><br><span class="line">Options Indexes MultiViews FollowSymLinks</span><br><span class="line">AllowOverride AuthConfig</span><br><span class="line"><span class="meta">#</span><span class="bash">仅有网页认证 ( 账号密码 ) 可覆写 ;</span></span><br><span class="line">AuthName "student"</span><br><span class="line"><span class="meta">#</span><span class="bash">在要你输入账号与密码的对话窗口中 , 出现的『提示字符』</span></span><br><span class="line">AuthType basic</span><br><span class="line"><span class="meta">#</span><span class="bash"> 认证的类型</span></span><br><span class="line">AuthUserFile "/etc/httpd/test"</span><br><span class="line"><span class="meta">#</span><span class="bash"> 这个目录所使用的账号密码配置文件</span></span><br><span class="line">Require valid-user</span><br><span class="line"><span class="meta">#</span><span class="bash"> 后面接可以使用的账号 , 此处是让该密码文件内的用户都能够登入</span></span><br><span class="line">Order allow,deny</span><br><span class="line">Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 通过htpasswd添加用户和密码</span></span><br><span class="line">[root@rhel6 conf.d]# htpasswd -cmb /etc/httpd/test booboo uplooking</span><br><span class="line">Adding password for user student</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再添加一个用户和密码</span></span><br><span class="line">[root@rhel6 www]# htpasswd -bm /etc/httpd/test tom uplooking</span><br><span class="line">Adding password for user tom</span><br><span class="line">[root@rhel6 www]# htpasswd -bm /etc/httpd/test jack uplooking</span><br><span class="line">Adding password for user jack</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看保存apache用户名和密码的文件内容</span></span><br><span class="line">[root@rhel6 www]# cat /etc/httpd/test</span><br><span class="line">booboo:$apr1$y6g/XYrn$eEOR4WeAPfONSLExj7x2D1</span><br><span class="line">tom:$apr1$epxVgzER$Or7.R0.5s3z8FbPKrOS1e1</span><br><span class="line">jack:$apr1$Alo3.7mf$3CmcCG9mXp7eEALUsa3YY1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除用户</span></span><br><span class="line">[root@rhel6 www]# htpasswd -D /etc/httpd/test jack</span><br><span class="line">Deleting password for user jack</span><br><span class="line">[root@rhel6 www]# cat /etc/httpd/test</span><br><span class="line">booboo:$apr1$y6g/XYrn$eEOR4WeAPfONSLExj7x2D1</span><br><span class="line">tom:$apr1$epxVgzER$Or7.R0.5s3z8FbPKrOS1e1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改用户密码只能先删除再创建</span></span><br><span class="line">[root@rhel6 abc.com]# htpasswd --help</span><br><span class="line">Usage:</span><br><span class="line">	htpasswd [-cmdpsD] passwordfile username</span><br><span class="line">	htpasswd -b[cmdpsD] passwordfile username password</span><br><span class="line"></span><br><span class="line">	htpasswd -n[mdps] username</span><br><span class="line">	htpasswd -nb[mdps] username password</span><br><span class="line"> -c  Create a new file.</span><br><span class="line"> -n  Don\'t update file; display results on stdout.</span><br><span class="line"> -m  Force MD5 encryption of the password.</span><br><span class="line"> -d  Force CRYPT encryption of the password (default).</span><br><span class="line"> -p  Do not encrypt the password (plaintext).</span><br><span class="line"> -s  Force SHA encryption of the password.</span><br><span class="line"> -b  Use the password from the command line rather than prompting for it.</span><br><span class="line"> -D  Delete the specified user.</span><br><span class="line">On Windows, NetWare and TPF systems the '-m' flag is used by default.</span><br><span class="line">On all other systems, the '-p' flag will probably not work.</span><br></pre></td></tr></table></figure>
-<h4 id="项目实践5：在rhel7中搭建apahce，实现以下功能"><a href="#项目实践5：在rhel7中搭建apahce，实现以下功能" class="headerlink" title="项目实践5：在rhel7中搭建apahce，实现以下功能"></a>项目实践5：在rhel7中搭建apahce，实现以下功能</h4><ul>
-<li><p>配置基于名称的虚拟主机 <a href="http://www.abc.com" target="_blank" rel="noopener">www.abc.com</a> 和 <a href="http://www.uplooking.com" target="_blank" rel="noopener">www.uplooking.com</a></p>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&#x8BBE;&#x7F6E;&#x7528;&#x6237;&#x548C;&#x5BC6;&#x7801;</span><br><span class="line">&lt;Directory &quot;/var/www/booboo.com/football/&quot;&gt;</span><br><span class="line">Options Indexes MultiViews FollowSymLinks</span><br><span class="line">AllowOverride AuthConfig</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">&#x4EC5;&#x6709;&#x7F51;&#x9875;&#x8BA4;&#x8BC1; ( &#x8D26;&#x53F7;&#x5BC6;&#x7801; ) &#x53EF;&#x8986;&#x5199; ;</span></span><br><span class="line">AuthName &quot;student&quot;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">&#x5728;&#x8981;&#x4F60;&#x8F93;&#x5165;&#x8D26;&#x53F7;&#x4E0E;&#x5BC6;&#x7801;&#x7684;&#x5BF9;&#x8BDD;&#x7A97;&#x53E3;&#x4E2D; , &#x51FA;&#x73B0;&#x7684;&#x300E;&#x63D0;&#x793A;&#x5B57;&#x7B26;&#x300F;</span></span><br><span class="line">AuthType basic</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x8BA4;&#x8BC1;&#x7684;&#x7C7B;&#x578B;</span></span><br><span class="line">AuthUserFile &quot;/etc/httpd/test&quot;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x6240;&#x4F7F;&#x7528;&#x7684;&#x8D26;&#x53F7;&#x5BC6;&#x7801;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span></span><br><span class="line">Require valid-user</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x540E;&#x9762;&#x63A5;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x8D26;&#x53F7; , &#x6B64;&#x5904;&#x662F;&#x8BA9;&#x8BE5;&#x5BC6;&#x7801;&#x6587;&#x4EF6;&#x5185;&#x7684;&#x7528;&#x6237;&#x90FD;&#x80FD;&#x591F;&#x767B;&#x5165;</span></span><br><span class="line">Order allow,deny</span><br><span class="line">Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x901A;&#x8FC7;htpasswd&#x6DFB;&#x52A0;&#x7528;&#x6237;&#x548C;&#x5BC6;&#x7801;</span></span><br><span class="line">[root@rhel6 conf.d]# htpasswd -cmb /etc/httpd/test booboo uplooking</span><br><span class="line">Adding password for user student</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x518D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x548C;&#x5BC6;&#x7801;</span></span><br><span class="line">[root@rhel6 www]# htpasswd -bm /etc/httpd/test tom uplooking</span><br><span class="line">Adding password for user tom</span><br><span class="line">[root@rhel6 www]# htpasswd -bm /etc/httpd/test jack uplooking</span><br><span class="line">Adding password for user jack</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x67E5;&#x770B;&#x4FDD;&#x5B58;apache&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x7684;&#x6587;&#x4EF6;&#x5185;&#x5BB9;</span></span><br><span class="line">[root@rhel6 www]# cat /etc/httpd/test</span><br><span class="line">booboo:$apr1$y6g/XYrn$eEOR4WeAPfONSLExj7x2D1</span><br><span class="line">tom:$apr1$epxVgzER$Or7.R0.5s3z8FbPKrOS1e1</span><br><span class="line">jack:$apr1$Alo3.7mf$3CmcCG9mXp7eEALUsa3YY1</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x5220;&#x9664;&#x7528;&#x6237;</span></span><br><span class="line">[root@rhel6 www]# htpasswd -D /etc/httpd/test jack</span><br><span class="line">Deleting password for user jack</span><br><span class="line">[root@rhel6 www]# cat /etc/httpd/test</span><br><span class="line">booboo:$apr1$y6g/XYrn$eEOR4WeAPfONSLExj7x2D1</span><br><span class="line">tom:$apr1$epxVgzER$Or7.R0.5s3z8FbPKrOS1e1</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x4FEE;&#x6539;&#x7528;&#x6237;&#x5BC6;&#x7801;&#x53EA;&#x80FD;&#x5148;&#x5220;&#x9664;&#x518D;&#x521B;&#x5EFA;</span></span><br><span class="line">[root@rhel6 abc.com]# htpasswd --help</span><br><span class="line">Usage:</span><br><span class="line">	htpasswd [-cmdpsD] passwordfile username</span><br><span class="line">	htpasswd -b[cmdpsD] passwordfile username password</span><br><span class="line"></span><br><span class="line">	htpasswd -n[mdps] username</span><br><span class="line">	htpasswd -nb[mdps] username password</span><br><span class="line"> -c  Create a new file.</span><br><span class="line"> -n  Don\&apos;t update file; display results on stdout.</span><br><span class="line"> -m  Force MD5 encryption of the password.</span><br><span class="line"> -d  Force CRYPT encryption of the password (default).</span><br><span class="line"> -p  Do not encrypt the password (plaintext).</span><br><span class="line"> -s  Force SHA encryption of the password.</span><br><span class="line"> -b  Use the password from the command line rather than prompting for it.</span><br><span class="line"> -D  Delete the specified user.</span><br><span class="line">On Windows, NetWare and TPF systems the &apos;-m&apos; flag is used by default.</span><br><span class="line">On all other systems, the &apos;-p&apos; flag will probably not work.</span><br></pre></td></tr></table></figure></p>
+<h4 id="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;5&#xFF1A;&#x5728;rhel7&#x4E2D;&#x642D;&#x5EFA;apahce&#xFF0C;&#x5B9E;&#x73B0;&#x4EE5;&#x4E0B;&#x529F;&#x80FD;"><a href="#&#x9879;&#x76EE;&#x5B9E;&#x8DF5;5&#xFF1A;&#x5728;rhel7&#x4E2D;&#x642D;&#x5EFA;apahce&#xFF0C;&#x5B9E;&#x73B0;&#x4EE5;&#x4E0B;&#x529F;&#x80FD;" class="headerlink" title="&#x9879;&#x76EE;&#x5B9E;&#x8DF5;5&#xFF1A;&#x5728;rhel7&#x4E2D;&#x642D;&#x5EFA;apahce&#xFF0C;&#x5B9E;&#x73B0;&#x4EE5;&#x4E0B;&#x529F;&#x80FD;"></a>&#x9879;&#x76EE;&#x5B9E;&#x8DF5;5&#xFF1A;&#x5728;rhel7&#x4E2D;&#x642D;&#x5EFA;apahce&#xFF0C;&#x5B9E;&#x73B0;&#x4EE5;&#x4E0B;&#x529F;&#x80FD;</h4><ul>
+<li><p>&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x540D;&#x79F0;&#x7684;&#x865A;&#x62DF;&#x4E3B;&#x673A; <a href="http://www.abc.com" target="_blank" rel="noopener">www.abc.com</a> &#x548C; <a href="http://www.uplooking.com" target="_blank" rel="noopener">www.uplooking.com</a></p>
 </li>
-<li><p>只允许rhel6 172.25.0.11 能够访问 <a href="http://www.uplooking.com" target="_blank" rel="noopener">www.uplooking.com</a> </p>
+<li><p>&#x53EA;&#x5141;&#x8BB8;rhel6 172.25.0.11 &#x80FD;&#x591F;&#x8BBF;&#x95EE; <a href="http://www.uplooking.com" target="_blank" rel="noopener">www.uplooking.com</a> </p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">rhel6	rhel7</span><br><span class="line">2.2	2.4</span><br><span class="line">order	require</span><br><span class="line"></span><br><span class="line">》eg1:所有请求都被拒绝</span><br><span class="line">order deny,allow //先拒绝，后允许</span><br><span class="line">deny from all	//拒绝所有</span><br><span class="line">------------------------------</span><br><span class="line">require all denied //拒绝所有</span><br><span class="line"></span><br><span class="line">》eg2：所有请求都允许</span><br><span class="line">order allow，deny //先允许，后拒绝</span><br><span class="line">allow from all</span><br><span class="line">------------------------------------</span><br><span class="line">require all granted</span><br><span class="line"></span><br><span class="line">》拒绝172.25.0.10/test.uplooking.com 的请求</span><br><span class="line">order allow，deny //先允许，后拒绝</span><br><span class="line">allow from all</span><br><span class="line">deny from 172.25.0.10</span><br><span class="line">-------------------------------------</span><br><span class="line">require  all granted</span><br><span class="line">require no ip 172.25.0.10</span><br><span class="line">require no host test.uplooking.com</span><br><span class="line"></span><br><span class="line">》只允许172.25.3.10和172.25.0.0/24 uplooking.com 的请求</span><br><span class="line">order deny，allow //先决绝，后允许</span><br><span class="line">deny from all</span><br><span class="line">allow from 172.25.3.10</span><br><span class="line">allow from 172.25.0.0/24</span><br><span class="line">-------------------------------------</span><br><span class="line">require all denied</span><br><span class="line">require ip 172.25.3.10 172.25.0</span><br><span class="line">require host  uplooking.com</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="Apache配置文件-etc-httpd-conf-httpd-conf"><a href="#Apache配置文件-etc-httpd-conf-httpd-conf" class="headerlink" title="Apache配置文件/etc/httpd/conf/httpd.conf"></a>Apache配置文件/etc/httpd/conf/httpd.conf</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">1）</span><br><span class="line"><span class="meta">#</span><span class="bash"> ServerRoot “/etc/httpd“</span></span><br><span class="line">	ServerRoot用于指定守护进程httpd的运行目录，httpd在启动之后将自动将进程的当前目录改变为这个目录，因此如果设置文件中指定的文件或目录是相对路径，那么真实路径就位于这个ServerR oot定义的路径之下。</span><br><span class="line"></span><br><span class="line">2）</span><br><span class="line">hhhidFile /var/run/httpd.pid</span><br><span class="line">	PidFile指定的文件将记录httpd守护进程的进程号，由于httpd能自动复制其自身，因此系统中有多个httpd进程，但只有一个进程为最初启动的进程，它为其他进程的父进程，对这个进程发送信号将影响所有的httpd进程。PidFILE定义的文件中就记录httpd父进程的进程号。</span><br><span class="line">　　</span><br><span class="line"><span class="meta">#</span><span class="bash"> Timeout 300</span></span><br><span class="line">	Timeout定义客户程序和服务器连接的超时间隔，超过这个时间间隔（秒）后服务器将断开与客户机的连接。</span><br><span class="line"><span class="meta">#</span><span class="bash"> KeepAlive On</span></span><br><span class="line">	在HTTP 1.0中，一次连接只能作传输一次HTTP请求，而KeepAlive参数用于支持HTTP 1.1版本的一次连接、多次传输功能，这样就可以在一次连接中传递多个HTTP请求。不过只有较新的浏览器才支持这个功能</span><br><span class="line"><span class="meta">#</span><span class="bash"> MaxKeepAliveRequests 100</span></span><br><span class="line">	MaxKeepAliveRequests为一次连接可以进行的HTTP请求的最大请求次数。将其值设为0将支持在一次连接内进行无限次的传输请求。事实上没有客户程序在一次连接中请求太多的页面，通常达不到这个上限就完成连接了。</span><br><span class="line"><span class="meta">#</span><span class="bash"> KeepAliveTimeout 15</span></span><br><span class="line">	KeepAliveTimeout测试一次连接中的多次请求传输之间的时间，如果服务器已经完成了一次请求，但一直没有接收到客户程序的下一次请求，在间隔超过了这个参数设置的值之后，服务器就断开连接。</span><br><span class="line"><span class="meta">#</span><span class="bash"> ThreadsPerChild 50</span></span><br><span class="line">	设置服务器使用进程的数目。这是以服务器的响应速度为准的, 数目太大则会变慢</span><br><span class="line"><span class="meta">#</span><span class="bash"> MaxRequestsPerChild 30</span></span><br><span class="line">	使用子进程的方式提供服务的Web服务，常用的方式是一个子进程为一次连接服务，这样造成的问题就是每次连接都需要生成、退出子进程的系统操作，使得这些额外的处理过程占据了计算机的大量处理能力。因此最好的方式是一个子进程可以为多次连接请求服务，这样就不需要这些生成、退出进程的系统消耗，Apache就采用了这样的方式，一次连接结束后，子进程并不退出，而是停留在系统中等待下一次服务请求，这样就极大的提高了性能。但由于在处理过程中子进程要不断的申请和释放内存，次数多了就会造成一些内存垃圾，就会影响系统的稳定性，并且影响系统资源的有效利用。因此在一个副本处理过一定次数的请求之后，就可以让这个子进程副本退出，再从原始的htt pd进程中重新复制一个干净的副本，这样就能提高系统的稳定性。这样，每个子进程处理服务请求次数由MaxRe questPerChild定义。 缺省的设置值为30，这个值对于具备高稳定性特点的FreeBSD系统来讲是过于保守的设置，可以设置为1000甚至更高，设置为0支持每个副本进行无限次的服务处理。　　　　</span><br><span class="line"><span class="meta">#</span><span class="bash"> ServerAdmin root@localhost</span></span><br><span class="line">	配置文件中应该改变的也许只有ServerAdmin， 这一项用于配置WWW服务器的管理员的email地址，这将在HTTP服务出现错误的条件下返回给浏览器，以便让Web使用者和管理员联系，报告错误。习惯上使用服务器上的webmaster作为WWW服务器的管理员，通过邮件服务器的别名机制，将发送到webmaster 的电子邮件发送给真正的Web管理员。</span><br><span class="line"><span class="meta">#</span><span class="bash"> ServerName localhost</span></span><br><span class="line">	缺省情况下，并不需要指定这个ServerName参数，服务器将自动通过名字解析过程来获得自己的名字，但如果服务器的名字解析有问题（通常为反向解析不正确），或者没有正式的DNS名字，也可以在这里指定I P地址。当ServerName设置不正确的时候，服务器不能正常启动。</span><br><span class="line">通常一个Web服务器可以具有多个名字，客户浏览器可以使用所有这些名字或IP地址来访问这台服务器，但在没有定义虚拟主机的情况下，服务器总是以自己的正式名字回应浏览器。ServerName就定义了Web服务器自己承认的正式名字，例如一台服务器名字（在DNS中定义了A类型）为freebsd.exmaple.org.cn，同时为了方便记忆还定义了一个别名（CNAME记录）为www.exmaple.org.cn，那么Apache自动解析得到的名字就为freebsd.example.org.cn，这样不管客户浏览器使用哪个名字发送请求，服务器总是告诉客户程序自己为freebsd.example.org.cn。虽然这一般并不会造成什么问题，但是考虑到某一天服务器可能迁移到其他计算机上，而只想通过更改DNS中的www别名配置就完成迁移任务，所以不想让客户在其书签中使用 freebsd记录下这个服务器的地址，就必须使用ServerName来重新指定服务器的正式名字。</span><br><span class="line">　　</span><br><span class="line">3）</span><br><span class="line"><span class="meta">#</span><span class="bash"> DocumentRoot “/var/www/html“</span></span><br><span class="line">	DocumentRoot定义这个服务器对外发布的超文本文档存放的路径，客户程序请求的UR L就被映射为这个目录下的网页文件。这个目录下的子目录，以及使用符号连接指出的文件和目录都能被浏览器访问，只是要在URL上使用同样的相对目录名。注意，符号连接虽然逻辑上位于根文档目录之下，但实际上可以位于计算机上的任意目录中，因此可以使客户程序能访问那些根文档目录之外的目录，这在增加了灵活性的同时但减少了安全性。Apache在目录的访问控制中提供了FollowSymLinks选项来打开或关闭支持符号连接的特性。</span><br><span class="line">4）</span><br><span class="line"><span class="meta">#</span><span class="bash"> &lt;Directory /&gt;</span></span><br><span class="line">　　 Options FollowSymLinks</span><br><span class="line">　　 AllowOverride None</span><br><span class="line">　　&lt;/Directory&gt;</span><br><span class="line">	Apache服务器可以针对目录进行文档的访问控制，然而访问控制可以通过两种方式来实现，一个是在设置文件 httpd.conf（或access.conf）中针对每个目录进行设置，另一个方法是在每个目录下设置访问控制文件，通常访问控制文件名字为.htaccess。虽然使用这两个方式都能用于控制浏览器的访问，然而使用配置文件的方法要求每次改动后重新启动httpd守护进程，比较不灵活，因此主要用于配置服务器系统的整体安全控制策略，而使用每个目录下的.htaccess文件设置具体目录的访问控制更为灵活方便.</span><br><span class="line">　	由于Apache对一个目录的访问控制设置是能够被下一级目录继承的，因此对根目录的设置将影响到它的下级目录。注意由于AllowOverride None的设置，使得Apache服务器不需要查看根目录下的访问控制文件，也不需要查看以下各级目录下的访问控制文件，直至httpd.conf（或access.conf ）中为某个目录指定了允许Alloworride，即允许查看访问控制文件。由于Apache对目录访问控制是采用的继承方式，如果从根目录就允许查看访问控制文件，那么Apache就必须一级一级的查看访问控制文件，对系统性能会造成影响。而缺省关闭了根目录的这个特性，就使得Apache从httpd.conf中具体指定的目录向下搜寻，减少了搜寻的级数，增加了系统性能。因此对于系统根目录设置AllowOverride None不但对于系统安全有帮助，也有益于系统性能。</span><br><span class="line">　　&lt;Directory /&gt;</span><br><span class="line">   Options Indexes FollowSymLinks</span><br><span class="line">　　 AllowOverride None</span><br><span class="line">　　 Order allow,deny</span><br><span class="line">　　 Allow from all</span><br><span class="line">　　&lt;/Directory&gt;</span><br><span class="line">	这里定义的是系统对外发布文档的目录的访问设置，设置不同的AllowOverride选项，以定义配置文件中的目录设置和用户目录下的安全控制文件的关系，而Options选项用于定义该目录的特性。</span><br><span class="line"><span class="meta">#</span><span class="bash">  ErrorLog /var/<span class="built_in">log</span>/httpd-error.log</span></span><br><span class="line">　　LogLevel warn</span><br><span class="line">　　LogFormat “%h %l %u %t \“%r\“ %&gt;s %b \“%&#123;Referer&#125;i\“ \“%&#123;User-Agent&#125;i\““ combined</span><br><span class="line">　　LogFormat “%h %l %u %t \“%r\“ %&gt;s %b“ common</span><br><span class="line">　　LogFormat “%&#123;Referer&#125;i -&gt; %U“ referer</span><br><span class="line">　　LogFormat “%&#123;User-agent&#125;i“ agent</span><br><span class="line"><span class="meta">　　#</span><span class="bash">CustomLog /var/<span class="built_in">log</span>/httpd-access.log common</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash">CustomLog /var/<span class="built_in">log</span>/httpd-referer.log referer</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash">CustomLog /var/<span class="built_in">log</span>/httpd-agent.log agent</span></span><br><span class="line">　　CustomLog /var/log/httpd-access.log combined</span><br><span class="line">	这里定义了系统日志的形式，对于服务器错误记录，由ErrorLog、LogLevel 来定义不同的错误日志文件及其记录内容。 这是通过在 CustomLog中指定不同的记录类型来完成的。common表示普通的对单页面请求访问记录，referer表示每个页面的引用记录，可以看出一个页面中包含的请求数，agent表示对客户机的类型记录，显然可以将现有的combined 定义的设置行注释掉，并使用common、referer和agent作为CustomLog的参数，来为不同种类的日志分别指定日志记录文件。显然，LogFormat是用于定义不同类型的日志进行记录时使用的格式， 这里使用了以%开头的宏定义，以记录不同的内容。</span><br><span class="line">如果这些参数指定的文件使用的是相对路径，那么就是相对于ServerRoot的路径。</span><br><span class="line"><span class="meta">#</span><span class="bash"> Alias /icons/ “/usr/<span class="built_in">local</span>/www/icons/“</span></span><br><span class="line">　　 Options Indexes MultiViews</span><br><span class="line">　　 AllowOverride None</span><br><span class="line">　　 Order allow,deny</span><br><span class="line">　　 Allow from all</span><br><span class="line">	Alias参数用于将URL与服务器文件系统中的真实位置进行直接映射，一般的文档将在DocumentRoot 中进行查询，然而使用Alias定义的路径将直接映射到相应目录下，而不再到DocumentRoot 下面进行查询。因此Alias可以用来映射一些公用文件的路径，例如保存了各种常用图标的icons路径。这样使得除了使用符号连接之外，文档根目录（DocumentRoot）外的目录也可以通过使用了Alias映射，提供给浏览器访问。</span><br><span class="line">定义好映射的路径之后，应该需要使用Directory语句设置访问限制。</span><br><span class="line"><span class="meta">　　#</span><span class="bash">NameVirtualHost 12.34.56.78:80</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash">NameVirtualHost 12.34.56.78</span></span><br><span class="line"><span class="meta">　　#</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash"> ServerAdmin webmaster@host.some_domain.com</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash"> DocumentRoot /www/docs/host.some_domain.com</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash"> ServerName host.some_domain.com</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash"> ErrorLog logs/host.some_domain.com-error_log</span></span><br><span class="line"><span class="meta">　　#</span><span class="bash"> CustomLog logs/host.some_domain.com-access_log common</span></span><br><span class="line"><span class="meta">　　#</span></span><br><span class="line">	这个字段是虚拟主机的相关内容，虚拟主机是在一台Web服务器上，可以为多个单独域名提供Web服务，并且每个域名都完全独立，包括具有完全独立的文档目录结构及设置，这样域名之间完全独立，不但使用每个域名访问到的内容完全独立，并且使用另一个域名无法访问其他域名提供的网页内容。</span><br></pre></td></tr></table></figure>
+<h2 id="178"><a href="#178" class="headerlink" title="178"></a><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">rhel6	rhel7</span><br><span class="line">2.2	2.4</span><br><span class="line">order	require</span><br><span class="line"></span><br><span class="line">&#x300B;eg1:&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x90FD;&#x88AB;&#x62D2;&#x7EDD;</span><br><span class="line">order deny,allow //&#x5148;&#x62D2;&#x7EDD;&#xFF0C;&#x540E;&#x5141;&#x8BB8;</span><br><span class="line">deny from all	//&#x62D2;&#x7EDD;&#x6240;&#x6709;</span><br><span class="line">------------------------------</span><br><span class="line">require all denied //&#x62D2;&#x7EDD;&#x6240;&#x6709;</span><br><span class="line"></span><br><span class="line">&#x300B;eg2&#xFF1A;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x90FD;&#x5141;&#x8BB8;</span><br><span class="line">order allow&#xFF0C;deny //&#x5148;&#x5141;&#x8BB8;&#xFF0C;&#x540E;&#x62D2;&#x7EDD;</span><br><span class="line">allow from all</span><br><span class="line">------------------------------------</span><br><span class="line">require all granted</span><br><span class="line"></span><br><span class="line">&#x300B;&#x62D2;&#x7EDD;172.25.0.10/test.uplooking.com &#x7684;&#x8BF7;&#x6C42;</span><br><span class="line">order allow&#xFF0C;deny //&#x5148;&#x5141;&#x8BB8;&#xFF0C;&#x540E;&#x62D2;&#x7EDD;</span><br><span class="line">allow from all</span><br><span class="line">deny from 172.25.0.10</span><br><span class="line">-------------------------------------</span><br><span class="line">require  all granted</span><br><span class="line">require no ip 172.25.0.10</span><br><span class="line">require no host test.uplooking.com</span><br><span class="line"></span><br><span class="line">&#x300B;&#x53EA;&#x5141;&#x8BB8;172.25.3.10&#x548C;172.25.0.0/24 uplooking.com &#x7684;&#x8BF7;&#x6C42;</span><br><span class="line">order deny&#xFF0C;allow //&#x5148;&#x51B3;&#x7EDD;&#xFF0C;&#x540E;&#x5141;&#x8BB8;</span><br><span class="line">deny from all</span><br><span class="line">allow from 172.25.3.10</span><br><span class="line">allow from 172.25.0.0/24</span><br><span class="line">-------------------------------------</span><br><span class="line">require all denied</span><br><span class="line">require ip 172.25.3.10 172.25.0</span><br><span class="line">require host  uplooking.com</span><br></pre></td></tr></table></figure></h2><h3 id="Apache&#x914D;&#x7F6E;&#x6587;&#x4EF6;-etc-httpd-conf-httpd-conf"><a href="#Apache&#x914D;&#x7F6E;&#x6587;&#x4EF6;-etc-httpd-conf-httpd-conf" class="headerlink" title="Apache&#x914D;&#x7F6E;&#x6587;&#x4EF6;/etc/httpd/conf/httpd.conf"></a>Apache&#x914D;&#x7F6E;&#x6587;&#x4EF6;/etc/httpd/conf/httpd.conf</h3><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">1&#xFF09;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> ServerRoot &#x201C;/etc/httpd&#x201C;</span></span><br><span class="line">	ServerRoot&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;httpd&#x7684;&#x8FD0;&#x884C;&#x76EE;&#x5F55;&#xFF0C;httpd&#x5728;&#x542F;&#x52A8;&#x4E4B;&#x540E;&#x5C06;&#x81EA;&#x52A8;&#x5C06;&#x8FDB;&#x7A0B;&#x7684;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x6539;&#x53D8;&#x4E3A;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#xFF0C;&#x56E0;&#x6B64;&#x5982;&#x679C;&#x8BBE;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x76EE;&#x5F55;&#x662F;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#xFF0C;&#x90A3;&#x4E48;&#x771F;&#x5B9E;&#x8DEF;&#x5F84;&#x5C31;&#x4F4D;&#x4E8E;&#x8FD9;&#x4E2A;ServerR oot&#x5B9A;&#x4E49;&#x7684;&#x8DEF;&#x5F84;&#x4E4B;&#x4E0B;&#x3002;</span><br><span class="line"></span><br><span class="line">2&#xFF09;</span><br><span class="line">hhhidFile /var/run/httpd.pid</span><br><span class="line">	PidFile&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;&#x5C06;&#x8BB0;&#x5F55;httpd&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x7684;&#x8FDB;&#x7A0B;&#x53F7;&#xFF0C;&#x7531;&#x4E8E;httpd&#x80FD;&#x81EA;&#x52A8;&#x590D;&#x5236;&#x5176;&#x81EA;&#x8EAB;&#xFF0C;&#x56E0;&#x6B64;&#x7CFB;&#x7EDF;&#x4E2D;&#x6709;&#x591A;&#x4E2A;httpd&#x8FDB;&#x7A0B;&#xFF0C;&#x4F46;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E3A;&#x6700;&#x521D;&#x542F;&#x52A8;&#x7684;&#x8FDB;&#x7A0B;&#xFF0C;&#x5B83;&#x4E3A;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x7684;&#x7236;&#x8FDB;&#x7A0B;&#xFF0C;&#x5BF9;&#x8FD9;&#x4E2A;&#x8FDB;&#x7A0B;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#x5C06;&#x5F71;&#x54CD;&#x6240;&#x6709;&#x7684;httpd&#x8FDB;&#x7A0B;&#x3002;PidFILE&#x5B9A;&#x4E49;&#x7684;&#x6587;&#x4EF6;&#x4E2D;&#x5C31;&#x8BB0;&#x5F55;httpd&#x7236;&#x8FDB;&#x7A0B;&#x7684;&#x8FDB;&#x7A0B;&#x53F7;&#x3002;</span><br><span class="line">&#x3000;&#x3000;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> Timeout 300</span></span><br><span class="line">	Timeout&#x5B9A;&#x4E49;&#x5BA2;&#x6237;&#x7A0B;&#x5E8F;&#x548C;&#x670D;&#x52A1;&#x5668;&#x8FDE;&#x63A5;&#x7684;&#x8D85;&#x65F6;&#x95F4;&#x9694;&#xFF0C;&#x8D85;&#x8FC7;&#x8FD9;&#x4E2A;&#x65F6;&#x95F4;&#x95F4;&#x9694;&#xFF08;&#x79D2;&#xFF09;&#x540E;&#x670D;&#x52A1;&#x5668;&#x5C06;&#x65AD;&#x5F00;&#x4E0E;&#x5BA2;&#x6237;&#x673A;&#x7684;&#x8FDE;&#x63A5;&#x3002;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> KeepAlive On</span></span><br><span class="line">	&#x5728;HTTP 1.0&#x4E2D;&#xFF0C;&#x4E00;&#x6B21;&#x8FDE;&#x63A5;&#x53EA;&#x80FD;&#x4F5C;&#x4F20;&#x8F93;&#x4E00;&#x6B21;HTTP&#x8BF7;&#x6C42;&#xFF0C;&#x800C;KeepAlive&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x652F;&#x6301;HTTP 1.1&#x7248;&#x672C;&#x7684;&#x4E00;&#x6B21;&#x8FDE;&#x63A5;&#x3001;&#x591A;&#x6B21;&#x4F20;&#x8F93;&#x529F;&#x80FD;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x6B21;&#x8FDE;&#x63A5;&#x4E2D;&#x4F20;&#x9012;&#x591A;&#x4E2A;HTTP&#x8BF7;&#x6C42;&#x3002;&#x4E0D;&#x8FC7;&#x53EA;&#x6709;&#x8F83;&#x65B0;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x624D;&#x652F;&#x6301;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> MaxKeepAliveRequests 100</span></span><br><span class="line">	MaxKeepAliveRequests&#x4E3A;&#x4E00;&#x6B21;&#x8FDE;&#x63A5;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x7684;HTTP&#x8BF7;&#x6C42;&#x7684;&#x6700;&#x5927;&#x8BF7;&#x6C42;&#x6B21;&#x6570;&#x3002;&#x5C06;&#x5176;&#x503C;&#x8BBE;&#x4E3A;0&#x5C06;&#x652F;&#x6301;&#x5728;&#x4E00;&#x6B21;&#x8FDE;&#x63A5;&#x5185;&#x8FDB;&#x884C;&#x65E0;&#x9650;&#x6B21;&#x7684;&#x4F20;&#x8F93;&#x8BF7;&#x6C42;&#x3002;&#x4E8B;&#x5B9E;&#x4E0A;&#x6CA1;&#x6709;&#x5BA2;&#x6237;&#x7A0B;&#x5E8F;&#x5728;&#x4E00;&#x6B21;&#x8FDE;&#x63A5;&#x4E2D;&#x8BF7;&#x6C42;&#x592A;&#x591A;&#x7684;&#x9875;&#x9762;&#xFF0C;&#x901A;&#x5E38;&#x8FBE;&#x4E0D;&#x5230;&#x8FD9;&#x4E2A;&#x4E0A;&#x9650;&#x5C31;&#x5B8C;&#x6210;&#x8FDE;&#x63A5;&#x4E86;&#x3002;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> KeepAliveTimeout 15</span></span><br><span class="line">	KeepAliveTimeout&#x6D4B;&#x8BD5;&#x4E00;&#x6B21;&#x8FDE;&#x63A5;&#x4E2D;&#x7684;&#x591A;&#x6B21;&#x8BF7;&#x6C42;&#x4F20;&#x8F93;&#x4E4B;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5982;&#x679C;&#x670D;&#x52A1;&#x5668;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#x4E86;&#x4E00;&#x6B21;&#x8BF7;&#x6C42;&#xFF0C;&#x4F46;&#x4E00;&#x76F4;&#x6CA1;&#x6709;&#x63A5;&#x6536;&#x5230;&#x5BA2;&#x6237;&#x7A0B;&#x5E8F;&#x7684;&#x4E0B;&#x4E00;&#x6B21;&#x8BF7;&#x6C42;&#xFF0C;&#x5728;&#x95F4;&#x9694;&#x8D85;&#x8FC7;&#x4E86;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x8BBE;&#x7F6E;&#x7684;&#x503C;&#x4E4B;&#x540E;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x5C31;&#x65AD;&#x5F00;&#x8FDE;&#x63A5;&#x3002;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> ThreadsPerChild 50</span></span><br><span class="line">	&#x8BBE;&#x7F6E;&#x670D;&#x52A1;&#x5668;&#x4F7F;&#x7528;&#x8FDB;&#x7A0B;&#x7684;&#x6570;&#x76EE;&#x3002;&#x8FD9;&#x662F;&#x4EE5;&#x670D;&#x52A1;&#x5668;&#x7684;&#x54CD;&#x5E94;&#x901F;&#x5EA6;&#x4E3A;&#x51C6;&#x7684;, &#x6570;&#x76EE;&#x592A;&#x5927;&#x5219;&#x4F1A;&#x53D8;&#x6162;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> MaxRequestsPerChild 30</span></span><br><span class="line">	&#x4F7F;&#x7528;&#x5B50;&#x8FDB;&#x7A0B;&#x7684;&#x65B9;&#x5F0F;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#x7684;Web&#x670D;&#x52A1;&#xFF0C;&#x5E38;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#x662F;&#x4E00;&#x4E2A;&#x5B50;&#x8FDB;&#x7A0B;&#x4E3A;&#x4E00;&#x6B21;&#x8FDE;&#x63A5;&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x6837;&#x9020;&#x6210;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;&#x6BCF;&#x6B21;&#x8FDE;&#x63A5;&#x90FD;&#x9700;&#x8981;&#x751F;&#x6210;&#x3001;&#x9000;&#x51FA;&#x5B50;&#x8FDB;&#x7A0B;&#x7684;&#x7CFB;&#x7EDF;&#x64CD;&#x4F5C;&#xFF0C;&#x4F7F;&#x5F97;&#x8FD9;&#x4E9B;&#x989D;&#x5916;&#x7684;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x5360;&#x636E;&#x4E86;&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x5927;&#x91CF;&#x5904;&#x7406;&#x80FD;&#x529B;&#x3002;&#x56E0;&#x6B64;&#x6700;&#x597D;&#x7684;&#x65B9;&#x5F0F;&#x662F;&#x4E00;&#x4E2A;&#x5B50;&#x8FDB;&#x7A0B;&#x53EF;&#x4EE5;&#x4E3A;&#x591A;&#x6B21;&#x8FDE;&#x63A5;&#x8BF7;&#x6C42;&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x8FD9;&#x4E9B;&#x751F;&#x6210;&#x3001;&#x9000;&#x51FA;&#x8FDB;&#x7A0B;&#x7684;&#x7CFB;&#x7EDF;&#x6D88;&#x8017;&#xFF0C;Apache&#x5C31;&#x91C7;&#x7528;&#x4E86;&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x4E00;&#x6B21;&#x8FDE;&#x63A5;&#x7ED3;&#x675F;&#x540E;&#xFF0C;&#x5B50;&#x8FDB;&#x7A0B;&#x5E76;&#x4E0D;&#x9000;&#x51FA;&#xFF0C;&#x800C;&#x662F;&#x505C;&#x7559;&#x5728;&#x7CFB;&#x7EDF;&#x4E2D;&#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x6B21;&#x670D;&#x52A1;&#x8BF7;&#x6C42;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x6781;&#x5927;&#x7684;&#x63D0;&#x9AD8;&#x4E86;&#x6027;&#x80FD;&#x3002;&#x4F46;&#x7531;&#x4E8E;&#x5728;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x4E2D;&#x5B50;&#x8FDB;&#x7A0B;&#x8981;&#x4E0D;&#x65AD;&#x7684;&#x7533;&#x8BF7;&#x548C;&#x91CA;&#x653E;&#x5185;&#x5B58;&#xFF0C;&#x6B21;&#x6570;&#x591A;&#x4E86;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x4E00;&#x4E9B;&#x5185;&#x5B58;&#x5783;&#x573E;&#xFF0C;&#x5C31;&#x4F1A;&#x5F71;&#x54CD;&#x7CFB;&#x7EDF;&#x7684;&#x7A33;&#x5B9A;&#x6027;&#xFF0C;&#x5E76;&#x4E14;&#x5F71;&#x54CD;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x7684;&#x6709;&#x6548;&#x5229;&#x7528;&#x3002;&#x56E0;&#x6B64;&#x5728;&#x4E00;&#x4E2A;&#x526F;&#x672C;&#x5904;&#x7406;&#x8FC7;&#x4E00;&#x5B9A;&#x6B21;&#x6570;&#x7684;&#x8BF7;&#x6C42;&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8BA9;&#x8FD9;&#x4E2A;&#x5B50;&#x8FDB;&#x7A0B;&#x526F;&#x672C;&#x9000;&#x51FA;&#xFF0C;&#x518D;&#x4ECE;&#x539F;&#x59CB;&#x7684;htt pd&#x8FDB;&#x7A0B;&#x4E2D;&#x91CD;&#x65B0;&#x590D;&#x5236;&#x4E00;&#x4E2A;&#x5E72;&#x51C0;&#x7684;&#x526F;&#x672C;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x80FD;&#x63D0;&#x9AD8;&#x7CFB;&#x7EDF;&#x7684;&#x7A33;&#x5B9A;&#x6027;&#x3002;&#x8FD9;&#x6837;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B50;&#x8FDB;&#x7A0B;&#x5904;&#x7406;&#x670D;&#x52A1;&#x8BF7;&#x6C42;&#x6B21;&#x6570;&#x7531;MaxRe questPerChild&#x5B9A;&#x4E49;&#x3002; &#x7F3A;&#x7701;&#x7684;&#x8BBE;&#x7F6E;&#x503C;&#x4E3A;30&#xFF0C;&#x8FD9;&#x4E2A;&#x503C;&#x5BF9;&#x4E8E;&#x5177;&#x5907;&#x9AD8;&#x7A33;&#x5B9A;&#x6027;&#x7279;&#x70B9;&#x7684;FreeBSD&#x7CFB;&#x7EDF;&#x6765;&#x8BB2;&#x662F;&#x8FC7;&#x4E8E;&#x4FDD;&#x5B88;&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E3A;1000&#x751A;&#x81F3;&#x66F4;&#x9AD8;&#xFF0C;&#x8BBE;&#x7F6E;&#x4E3A;0&#x652F;&#x6301;&#x6BCF;&#x4E2A;&#x526F;&#x672C;&#x8FDB;&#x884C;&#x65E0;&#x9650;&#x6B21;&#x7684;&#x670D;&#x52A1;&#x5904;&#x7406;&#x3002;&#x3000;&#x3000;&#x3000;&#x3000;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> ServerAdmin root@localhost</span></span><br><span class="line">	&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x5E94;&#x8BE5;&#x6539;&#x53D8;&#x7684;&#x4E5F;&#x8BB8;&#x53EA;&#x6709;ServerAdmin&#xFF0C; &#x8FD9;&#x4E00;&#x9879;&#x7528;&#x4E8E;&#x914D;&#x7F6E;WWW&#x670D;&#x52A1;&#x5668;&#x7684;&#x7BA1;&#x7406;&#x5458;&#x7684;email&#x5730;&#x5740;&#xFF0C;&#x8FD9;&#x5C06;&#x5728;HTTP&#x670D;&#x52A1;&#x51FA;&#x73B0;&#x9519;&#x8BEF;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x8FD4;&#x56DE;&#x7ED9;&#x6D4F;&#x89C8;&#x5668;&#xFF0C;&#x4EE5;&#x4FBF;&#x8BA9;Web&#x4F7F;&#x7528;&#x8005;&#x548C;&#x7BA1;&#x7406;&#x5458;&#x8054;&#x7CFB;&#xFF0C;&#x62A5;&#x544A;&#x9519;&#x8BEF;&#x3002;&#x4E60;&#x60EF;&#x4E0A;&#x4F7F;&#x7528;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;webmaster&#x4F5C;&#x4E3A;WWW&#x670D;&#x52A1;&#x5668;&#x7684;&#x7BA1;&#x7406;&#x5458;&#xFF0C;&#x901A;&#x8FC7;&#x90AE;&#x4EF6;&#x670D;&#x52A1;&#x5668;&#x7684;&#x522B;&#x540D;&#x673A;&#x5236;&#xFF0C;&#x5C06;&#x53D1;&#x9001;&#x5230;webmaster &#x7684;&#x7535;&#x5B50;&#x90AE;&#x4EF6;&#x53D1;&#x9001;&#x7ED9;&#x771F;&#x6B63;&#x7684;Web&#x7BA1;&#x7406;&#x5458;&#x3002;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> ServerName localhost</span></span><br><span class="line">	&#x7F3A;&#x7701;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x8FD9;&#x4E2A;ServerName&#x53C2;&#x6570;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x5C06;&#x81EA;&#x52A8;&#x901A;&#x8FC7;&#x540D;&#x5B57;&#x89E3;&#x6790;&#x8FC7;&#x7A0B;&#x6765;&#x83B7;&#x5F97;&#x81EA;&#x5DF1;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x670D;&#x52A1;&#x5668;&#x7684;&#x540D;&#x5B57;&#x89E3;&#x6790;&#x6709;&#x95EE;&#x9898;&#xFF08;&#x901A;&#x5E38;&#x4E3A;&#x53CD;&#x5411;&#x89E3;&#x6790;&#x4E0D;&#x6B63;&#x786E;&#xFF09;&#xFF0C;&#x6216;&#x8005;&#x6CA1;&#x6709;&#x6B63;&#x5F0F;&#x7684;DNS&#x540D;&#x5B57;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x91CC;&#x6307;&#x5B9A;I P&#x5730;&#x5740;&#x3002;&#x5F53;ServerName&#x8BBE;&#x7F6E;&#x4E0D;&#x6B63;&#x786E;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x4E0D;&#x80FD;&#x6B63;&#x5E38;&#x542F;&#x52A8;&#x3002;</span><br><span class="line">&#x901A;&#x5E38;&#x4E00;&#x4E2A;Web&#x670D;&#x52A1;&#x5668;&#x53EF;&#x4EE5;&#x5177;&#x6709;&#x591A;&#x4E2A;&#x540D;&#x5B57;&#xFF0C;&#x5BA2;&#x6237;&#x6D4F;&#x89C8;&#x5668;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x540D;&#x5B57;&#x6216;IP&#x5730;&#x5740;&#x6765;&#x8BBF;&#x95EE;&#x8FD9;&#x53F0;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x4F46;&#x5728;&#x6CA1;&#x6709;&#x5B9A;&#x4E49;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x603B;&#x662F;&#x4EE5;&#x81EA;&#x5DF1;&#x7684;&#x6B63;&#x5F0F;&#x540D;&#x5B57;&#x56DE;&#x5E94;&#x6D4F;&#x89C8;&#x5668;&#x3002;ServerName&#x5C31;&#x5B9A;&#x4E49;&#x4E86;Web&#x670D;&#x52A1;&#x5668;&#x81EA;&#x5DF1;&#x627F;&#x8BA4;&#x7684;&#x6B63;&#x5F0F;&#x540D;&#x5B57;&#xFF0C;&#x4F8B;&#x5982;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x540D;&#x5B57;&#xFF08;&#x5728;DNS&#x4E2D;&#x5B9A;&#x4E49;&#x4E86;A&#x7C7B;&#x578B;&#xFF09;&#x4E3A;freebsd.exmaple.org.cn&#xFF0C;&#x540C;&#x65F6;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x8BB0;&#x5FC6;&#x8FD8;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x522B;&#x540D;&#xFF08;CNAME&#x8BB0;&#x5F55;&#xFF09;&#x4E3A;www.exmaple.org.cn&#xFF0C;&#x90A3;&#x4E48;Apache&#x81EA;&#x52A8;&#x89E3;&#x6790;&#x5F97;&#x5230;&#x7684;&#x540D;&#x5B57;&#x5C31;&#x4E3A;freebsd.example.org.cn&#xFF0C;&#x8FD9;&#x6837;&#x4E0D;&#x7BA1;&#x5BA2;&#x6237;&#x6D4F;&#x89C8;&#x5668;&#x4F7F;&#x7528;&#x54EA;&#x4E2A;&#x540D;&#x5B57;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x603B;&#x662F;&#x544A;&#x8BC9;&#x5BA2;&#x6237;&#x7A0B;&#x5E8F;&#x81EA;&#x5DF1;&#x4E3A;freebsd.example.org.cn&#x3002;&#x867D;&#x7136;&#x8FD9;&#x4E00;&#x822C;&#x5E76;&#x4E0D;&#x4F1A;&#x9020;&#x6210;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x8003;&#x8651;&#x5230;&#x67D0;&#x4E00;&#x5929;&#x670D;&#x52A1;&#x5668;&#x53EF;&#x80FD;&#x8FC1;&#x79FB;&#x5230;&#x5176;&#x4ED6;&#x8BA1;&#x7B97;&#x673A;&#x4E0A;&#xFF0C;&#x800C;&#x53EA;&#x60F3;&#x901A;&#x8FC7;&#x66F4;&#x6539;DNS&#x4E2D;&#x7684;www&#x522B;&#x540D;&#x914D;&#x7F6E;&#x5C31;&#x5B8C;&#x6210;&#x8FC1;&#x79FB;&#x4EFB;&#x52A1;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x60F3;&#x8BA9;&#x5BA2;&#x6237;&#x5728;&#x5176;&#x4E66;&#x7B7E;&#x4E2D;&#x4F7F;&#x7528; freebsd&#x8BB0;&#x5F55;&#x4E0B;&#x8FD9;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x5C31;&#x5FC5;&#x987B;&#x4F7F;&#x7528;ServerName&#x6765;&#x91CD;&#x65B0;&#x6307;&#x5B9A;&#x670D;&#x52A1;&#x5668;&#x7684;&#x6B63;&#x5F0F;&#x540D;&#x5B57;&#x3002;</span><br><span class="line">&#x3000;&#x3000;</span><br><span class="line">3&#xFF09;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> DocumentRoot &#x201C;/var/www/html&#x201C;</span></span><br><span class="line">	DocumentRoot&#x5B9A;&#x4E49;&#x8FD9;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#x5BF9;&#x5916;&#x53D1;&#x5E03;&#x7684;&#x8D85;&#x6587;&#x672C;&#x6587;&#x6863;&#x5B58;&#x653E;&#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x5BA2;&#x6237;&#x7A0B;&#x5E8F;&#x8BF7;&#x6C42;&#x7684;UR L&#x5C31;&#x88AB;&#x6620;&#x5C04;&#x4E3A;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x7F51;&#x9875;&#x6587;&#x4EF6;&#x3002;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x5B50;&#x76EE;&#x5F55;&#xFF0C;&#x4EE5;&#x53CA;&#x4F7F;&#x7528;&#x7B26;&#x53F7;&#x8FDE;&#x63A5;&#x6307;&#x51FA;&#x7684;&#x6587;&#x4EF6;&#x548C;&#x76EE;&#x5F55;&#x90FD;&#x80FD;&#x88AB;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE;&#xFF0C;&#x53EA;&#x662F;&#x8981;&#x5728;URL&#x4E0A;&#x4F7F;&#x7528;&#x540C;&#x6837;&#x7684;&#x76F8;&#x5BF9;&#x76EE;&#x5F55;&#x540D;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x7B26;&#x53F7;&#x8FDE;&#x63A5;&#x867D;&#x7136;&#x903B;&#x8F91;&#x4E0A;&#x4F4D;&#x4E8E;&#x6839;&#x6587;&#x6863;&#x76EE;&#x5F55;&#x4E4B;&#x4E0B;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x4E0A;&#x53EF;&#x4EE5;&#x4F4D;&#x4E8E;&#x8BA1;&#x7B97;&#x673A;&#x4E0A;&#x7684;&#x4EFB;&#x610F;&#x76EE;&#x5F55;&#x4E2D;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x4F7F;&#x5BA2;&#x6237;&#x7A0B;&#x5E8F;&#x80FD;&#x8BBF;&#x95EE;&#x90A3;&#x4E9B;&#x6839;&#x6587;&#x6863;&#x76EE;&#x5F55;&#x4E4B;&#x5916;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x8FD9;&#x5728;&#x589E;&#x52A0;&#x4E86;&#x7075;&#x6D3B;&#x6027;&#x7684;&#x540C;&#x65F6;&#x4F46;&#x51CF;&#x5C11;&#x4E86;&#x5B89;&#x5168;&#x6027;&#x3002;Apache&#x5728;&#x76EE;&#x5F55;&#x7684;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x4E2D;&#x63D0;&#x4F9B;&#x4E86;FollowSymLinks&#x9009;&#x9879;&#x6765;&#x6253;&#x5F00;&#x6216;&#x5173;&#x95ED;&#x652F;&#x6301;&#x7B26;&#x53F7;&#x8FDE;&#x63A5;&#x7684;&#x7279;&#x6027;&#x3002;</span><br><span class="line">4&#xFF09;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &lt;Directory /&gt;</span></span><br><span class="line">&#x3000;&#x3000; Options FollowSymLinks</span><br><span class="line">&#x3000;&#x3000; AllowOverride None</span><br><span class="line">&#x3000;&#x3000;&lt;/Directory&gt;</span><br><span class="line">	Apache&#x670D;&#x52A1;&#x5668;&#x53EF;&#x4EE5;&#x9488;&#x5BF9;&#x76EE;&#x5F55;&#x8FDB;&#x884C;&#x6587;&#x6863;&#x7684;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#xFF0C;&#x7136;&#x800C;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;&#x5728;&#x8BBE;&#x7F6E;&#x6587;&#x4EF6; httpd.conf&#xFF08;&#x6216;access.conf&#xFF09;&#x4E2D;&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;&#x76EE;&#x5F55;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x662F;&#x5728;&#x6BCF;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x8BBE;&#x7F6E;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#xFF0C;&#x901A;&#x5E38;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#x540D;&#x5B57;&#x4E3A;.htaccess&#x3002;&#x867D;&#x7136;&#x4F7F;&#x7528;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x5F0F;&#x90FD;&#x80FD;&#x7528;&#x4E8E;&#x63A7;&#x5236;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BBF;&#x95EE;&#xFF0C;&#x7136;&#x800C;&#x4F7F;&#x7528;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x65B9;&#x6CD5;&#x8981;&#x6C42;&#x6BCF;&#x6B21;&#x6539;&#x52A8;&#x540E;&#x91CD;&#x65B0;&#x542F;&#x52A8;httpd&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#xFF0C;&#x6BD4;&#x8F83;&#x4E0D;&#x7075;&#x6D3B;&#xFF0C;&#x56E0;&#x6B64;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x670D;&#x52A1;&#x5668;&#x7CFB;&#x7EDF;&#x7684;&#x6574;&#x4F53;&#x5B89;&#x5168;&#x63A7;&#x5236;&#x7B56;&#x7565;&#xFF0C;&#x800C;&#x4F7F;&#x7528;&#x6BCF;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x7684;.htaccess&#x6587;&#x4EF6;&#x8BBE;&#x7F6E;&#x5177;&#x4F53;&#x76EE;&#x5F55;&#x7684;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x66F4;&#x4E3A;&#x7075;&#x6D3B;&#x65B9;&#x4FBF;.</span><br><span class="line">&#x3000;	&#x7531;&#x4E8E;Apache&#x5BF9;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#x7684;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x8BBE;&#x7F6E;&#x662F;&#x80FD;&#x591F;&#x88AB;&#x4E0B;&#x4E00;&#x7EA7;&#x76EE;&#x5F55;&#x7EE7;&#x627F;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x5BF9;&#x6839;&#x76EE;&#x5F55;&#x7684;&#x8BBE;&#x7F6E;&#x5C06;&#x5F71;&#x54CD;&#x5230;&#x5B83;&#x7684;&#x4E0B;&#x7EA7;&#x76EE;&#x5F55;&#x3002;&#x6CE8;&#x610F;&#x7531;&#x4E8E;AllowOverride None&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x4F7F;&#x5F97;Apache&#x670D;&#x52A1;&#x5668;&#x4E0D;&#x9700;&#x8981;&#x67E5;&#x770B;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#xFF0C;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x67E5;&#x770B;&#x4EE5;&#x4E0B;&#x5404;&#x7EA7;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#xFF0C;&#x76F4;&#x81F3;httpd.conf&#xFF08;&#x6216;access.conf &#xFF09;&#x4E2D;&#x4E3A;&#x67D0;&#x4E2A;&#x76EE;&#x5F55;&#x6307;&#x5B9A;&#x4E86;&#x5141;&#x8BB8;Alloworride&#xFF0C;&#x5373;&#x5141;&#x8BB8;&#x67E5;&#x770B;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#x3002;&#x7531;&#x4E8E;Apache&#x5BF9;&#x76EE;&#x5F55;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x662F;&#x91C7;&#x7528;&#x7684;&#x7EE7;&#x627F;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;&#x679C;&#x4ECE;&#x6839;&#x76EE;&#x5F55;&#x5C31;&#x5141;&#x8BB8;&#x67E5;&#x770B;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;Apache&#x5C31;&#x5FC5;&#x987B;&#x4E00;&#x7EA7;&#x4E00;&#x7EA7;&#x7684;&#x67E5;&#x770B;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#xFF0C;&#x5BF9;&#x7CFB;&#x7EDF;&#x6027;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x5F71;&#x54CD;&#x3002;&#x800C;&#x7F3A;&#x7701;&#x5173;&#x95ED;&#x4E86;&#x6839;&#x76EE;&#x5F55;&#x7684;&#x8FD9;&#x4E2A;&#x7279;&#x6027;&#xFF0C;&#x5C31;&#x4F7F;&#x5F97;Apache&#x4ECE;httpd.conf&#x4E2D;&#x5177;&#x4F53;&#x6307;&#x5B9A;&#x7684;&#x76EE;&#x5F55;&#x5411;&#x4E0B;&#x641C;&#x5BFB;&#xFF0C;&#x51CF;&#x5C11;&#x4E86;&#x641C;&#x5BFB;&#x7684;&#x7EA7;&#x6570;&#xFF0C;&#x589E;&#x52A0;&#x4E86;&#x7CFB;&#x7EDF;&#x6027;&#x80FD;&#x3002;&#x56E0;&#x6B64;&#x5BF9;&#x4E8E;&#x7CFB;&#x7EDF;&#x6839;&#x76EE;&#x5F55;&#x8BBE;&#x7F6E;AllowOverride None&#x4E0D;&#x4F46;&#x5BF9;&#x4E8E;&#x7CFB;&#x7EDF;&#x5B89;&#x5168;&#x6709;&#x5E2E;&#x52A9;&#xFF0C;&#x4E5F;&#x6709;&#x76CA;&#x4E8E;&#x7CFB;&#x7EDF;&#x6027;&#x80FD;&#x3002;</span><br><span class="line">&#x3000;&#x3000;&lt;Directory /&gt;</span><br><span class="line">   Options Indexes FollowSymLinks</span><br><span class="line">&#x3000;&#x3000; AllowOverride None</span><br><span class="line">&#x3000;&#x3000; Order allow,deny</span><br><span class="line">&#x3000;&#x3000; Allow from all</span><br><span class="line">&#x3000;&#x3000;&lt;/Directory&gt;</span><br><span class="line">	&#x8FD9;&#x91CC;&#x5B9A;&#x4E49;&#x7684;&#x662F;&#x7CFB;&#x7EDF;&#x5BF9;&#x5916;&#x53D1;&#x5E03;&#x6587;&#x6863;&#x7684;&#x76EE;&#x5F55;&#x7684;&#x8BBF;&#x95EE;&#x8BBE;&#x7F6E;&#xFF0C;&#x8BBE;&#x7F6E;&#x4E0D;&#x540C;&#x7684;AllowOverride&#x9009;&#x9879;&#xFF0C;&#x4EE5;&#x5B9A;&#x4E49;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x76EE;&#x5F55;&#x8BBE;&#x7F6E;&#x548C;&#x7528;&#x6237;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x5B89;&#x5168;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x800C;Options&#x9009;&#x9879;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x8BE5;&#x76EE;&#x5F55;&#x7684;&#x7279;&#x6027;&#x3002;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">  ErrorLog /var/<span class="hljs-built_in">log</span>/httpd-error.log</span></span><br><span class="line">&#x3000;&#x3000;LogLevel warn</span><br><span class="line">&#x3000;&#x3000;LogFormat &#x201C;%h %l %u %t \&#x201C;%r\&#x201C; %&gt;s %b \&#x201C;%{Referer}i\&#x201C; \&#x201C;%{User-Agent}i\&#x201C;&#x201C; combined</span><br><span class="line">&#x3000;&#x3000;LogFormat &#x201C;%h %l %u %t \&#x201C;%r\&#x201C; %&gt;s %b&#x201C; common</span><br><span class="line">&#x3000;&#x3000;LogFormat &#x201C;%{Referer}i -&gt; %U&#x201C; referer</span><br><span class="line">&#x3000;&#x3000;LogFormat &#x201C;%{User-agent}i&#x201C; agent</span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span><span class="hljs-bash">CustomLog /var/<span class="hljs-built_in">log</span>/httpd-access.log common</span></span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span><span class="hljs-bash">CustomLog /var/<span class="hljs-built_in">log</span>/httpd-referer.log referer</span></span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span><span class="hljs-bash">CustomLog /var/<span class="hljs-built_in">log</span>/httpd-agent.log agent</span></span><br><span class="line">&#x3000;&#x3000;CustomLog /var/log/httpd-access.log combined</span><br><span class="line">	&#x8FD9;&#x91CC;&#x5B9A;&#x4E49;&#x4E86;&#x7CFB;&#x7EDF;&#x65E5;&#x5FD7;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x5BF9;&#x4E8E;&#x670D;&#x52A1;&#x5668;&#x9519;&#x8BEF;&#x8BB0;&#x5F55;&#xFF0C;&#x7531;ErrorLog&#x3001;LogLevel &#x6765;&#x5B9A;&#x4E49;&#x4E0D;&#x540C;&#x7684;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x53CA;&#x5176;&#x8BB0;&#x5F55;&#x5185;&#x5BB9;&#x3002; &#x8FD9;&#x662F;&#x901A;&#x8FC7;&#x5728; CustomLog&#x4E2D;&#x6307;&#x5B9A;&#x4E0D;&#x540C;&#x7684;&#x8BB0;&#x5F55;&#x7C7B;&#x578B;&#x6765;&#x5B8C;&#x6210;&#x7684;&#x3002;common&#x8868;&#x793A;&#x666E;&#x901A;&#x7684;&#x5BF9;&#x5355;&#x9875;&#x9762;&#x8BF7;&#x6C42;&#x8BBF;&#x95EE;&#x8BB0;&#x5F55;&#xFF0C;referer&#x8868;&#x793A;&#x6BCF;&#x4E2A;&#x9875;&#x9762;&#x7684;&#x5F15;&#x7528;&#x8BB0;&#x5F55;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x4E2D;&#x5305;&#x542B;&#x7684;&#x8BF7;&#x6C42;&#x6570;&#xFF0C;agent&#x8868;&#x793A;&#x5BF9;&#x5BA2;&#x6237;&#x673A;&#x7684;&#x7C7B;&#x578B;&#x8BB0;&#x5F55;&#xFF0C;&#x663E;&#x7136;&#x53EF;&#x4EE5;&#x5C06;&#x73B0;&#x6709;&#x7684;combined &#x5B9A;&#x4E49;&#x7684;&#x8BBE;&#x7F6E;&#x884C;&#x6CE8;&#x91CA;&#x6389;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;common&#x3001;referer&#x548C;agent&#x4F5C;&#x4E3A;CustomLog&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x6765;&#x4E3A;&#x4E0D;&#x540C;&#x79CD;&#x7C7B;&#x7684;&#x65E5;&#x5FD7;&#x5206;&#x522B;&#x6307;&#x5B9A;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x6587;&#x4EF6;&#x3002;&#x663E;&#x7136;&#xFF0C;LogFormat&#x662F;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x65E5;&#x5FD7;&#x8FDB;&#x884C;&#x8BB0;&#x5F55;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x683C;&#x5F0F;&#xFF0C; &#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x4E86;&#x4EE5;%&#x5F00;&#x5934;&#x7684;&#x5B8F;&#x5B9A;&#x4E49;&#xFF0C;&#x4EE5;&#x8BB0;&#x5F55;&#x4E0D;&#x540C;&#x7684;&#x5185;&#x5BB9;&#x3002;</span><br><span class="line">&#x5982;&#x679C;&#x8FD9;&#x4E9B;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x662F;&#x76F8;&#x5BF9;&#x4E8E;ServerRoot&#x7684;&#x8DEF;&#x5F84;&#x3002;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> Alias /icons/ &#x201C;/usr/<span class="hljs-built_in">local</span>/www/icons/&#x201C;</span></span><br><span class="line">&#x3000;&#x3000; Options Indexes MultiViews</span><br><span class="line">&#x3000;&#x3000; AllowOverride None</span><br><span class="line">&#x3000;&#x3000; Order allow,deny</span><br><span class="line">&#x3000;&#x3000; Allow from all</span><br><span class="line">	Alias&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x5C06;URL&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x771F;&#x5B9E;&#x4F4D;&#x7F6E;&#x8FDB;&#x884C;&#x76F4;&#x63A5;&#x6620;&#x5C04;&#xFF0C;&#x4E00;&#x822C;&#x7684;&#x6587;&#x6863;&#x5C06;&#x5728;DocumentRoot &#x4E2D;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#xFF0C;&#x7136;&#x800C;&#x4F7F;&#x7528;Alias&#x5B9A;&#x4E49;&#x7684;&#x8DEF;&#x5F84;&#x5C06;&#x76F4;&#x63A5;&#x6620;&#x5C04;&#x5230;&#x76F8;&#x5E94;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x800C;&#x4E0D;&#x518D;&#x5230;DocumentRoot &#x4E0B;&#x9762;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x3002;&#x56E0;&#x6B64;Alias&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x6620;&#x5C04;&#x4E00;&#x4E9B;&#x516C;&#x7528;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x4F8B;&#x5982;&#x4FDD;&#x5B58;&#x4E86;&#x5404;&#x79CD;&#x5E38;&#x7528;&#x56FE;&#x6807;&#x7684;icons&#x8DEF;&#x5F84;&#x3002;&#x8FD9;&#x6837;&#x4F7F;&#x5F97;&#x9664;&#x4E86;&#x4F7F;&#x7528;&#x7B26;&#x53F7;&#x8FDE;&#x63A5;&#x4E4B;&#x5916;&#xFF0C;&#x6587;&#x6863;&#x6839;&#x76EE;&#x5F55;&#xFF08;DocumentRoot&#xFF09;&#x5916;&#x7684;&#x76EE;&#x5F55;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x4E86;Alias&#x6620;&#x5C04;&#xFF0C;&#x63D0;&#x4F9B;&#x7ED9;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE;&#x3002;</span><br><span class="line">&#x5B9A;&#x4E49;&#x597D;&#x6620;&#x5C04;&#x7684;&#x8DEF;&#x5F84;&#x4E4B;&#x540E;&#xFF0C;&#x5E94;&#x8BE5;&#x9700;&#x8981;&#x4F7F;&#x7528;Directory&#x8BED;&#x53E5;&#x8BBE;&#x7F6E;&#x8BBF;&#x95EE;&#x9650;&#x5236;&#x3002;</span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span><span class="hljs-bash">NameVirtualHost 12.34.56.78:80</span></span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span><span class="hljs-bash">NameVirtualHost 12.34.56.78</span></span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span></span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span><span class="hljs-bash"> ServerAdmin webmaster@host.some_domain.com</span></span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span><span class="hljs-bash"> DocumentRoot /www/docs/host.some_domain.com</span></span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span><span class="hljs-bash"> ServerName host.some_domain.com</span></span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span><span class="hljs-bash"> ErrorLog logs/host.some_domain.com-error_log</span></span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span><span class="hljs-bash"> CustomLog logs/host.some_domain.com-access_log common</span></span><br><span class="line"><span class="hljs-meta">&#x3000;&#x3000;#</span></span><br><span class="line">	&#x8FD9;&#x4E2A;&#x5B57;&#x6BB5;&#x662F;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x7684;&#x76F8;&#x5173;&#x5185;&#x5BB9;&#xFF0C;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x662F;&#x5728;&#x4E00;&#x53F0;Web&#x670D;&#x52A1;&#x5668;&#x4E0A;&#xFF0C;&#x53EF;&#x4EE5;&#x4E3A;&#x591A;&#x4E2A;&#x5355;&#x72EC;&#x57DF;&#x540D;&#x63D0;&#x4F9B;Web&#x670D;&#x52A1;&#xFF0C;&#x5E76;&#x4E14;&#x6BCF;&#x4E2A;&#x57DF;&#x540D;&#x90FD;&#x5B8C;&#x5168;&#x72EC;&#x7ACB;&#xFF0C;&#x5305;&#x62EC;&#x5177;&#x6709;&#x5B8C;&#x5168;&#x72EC;&#x7ACB;&#x7684;&#x6587;&#x6863;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x53CA;&#x8BBE;&#x7F6E;&#xFF0C;&#x8FD9;&#x6837;&#x57DF;&#x540D;&#x4E4B;&#x95F4;&#x5B8C;&#x5168;&#x72EC;&#x7ACB;&#xFF0C;&#x4E0D;&#x4F46;&#x4F7F;&#x7528;&#x6BCF;&#x4E2A;&#x57DF;&#x540D;&#x8BBF;&#x95EE;&#x5230;&#x7684;&#x5185;&#x5BB9;&#x5B8C;&#x5168;&#x72EC;&#x7ACB;&#xFF0C;&#x5E76;&#x4E14;&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x57DF;&#x540D;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#x5176;&#x4ED6;&#x57DF;&#x540D;&#x63D0;&#x4F9B;&#x7684;&#x7F51;&#x9875;&#x5185;&#x5BB9;&#x3002;</span><br></pre></td></tr></table></figure></p>
 
-      
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    
     </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%9F%B9%E8%AE%AD/">#培训</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Linux%E5%9F%BA%E7%A1%80%E6%9C%8D%E5%8A%A1/">#Linux基础服务</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2016/12/23/booboo_easy_service/04_samba/">SAMBA文件共享服务</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2016/12/23/booboo_easy_service/06_ntp_chrony/">时间同步服务NTP和Chony</a>
+            
+        </span>
+    </div>
+    
 </article>
 
 
-<p>
-    <a  class="dashang" onclick="dashangToggle()">赏</a>
-</p>
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5e7f26910c743700190536a1&amp;product=inline-share-buttons&amp;cms=sop&#39; async=&#39;async&#39;' async='async'></script>
 
-
-<div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>APACHE WEB服务</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">5.4k</span></p>
-    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
-    <p><span class="copy-title">发布时间:</span>2016-12-22, 21:06:27</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-24, 05:02:31</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/23/booboo_easy_service/05_apache/" title="APACHE WEB服务">http://www.toberoot.com/2016/12/23/booboo_easy_service/05_apache/</a>
-    <p>
-        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-    </p>
 </div>
 
 
 
-    <div id="comments"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script type="text/javascript">
-    $.getScript('/js/gitalk.js', function () {
-        var gitalk = new Gitalk({
-            clientID: 'af999a0c30ad557db57d',
-            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
-            repo: 'booboowei.github.io',
-            owner: 'booboowei',
-            admin: ['booboowei'],
-            id: decodeURI(location.pathname),
-            distractionFreeMode: 'true',
-            language: 'zh-CN',
-            perPage: parseInt('10',10)
-        })
-        gitalk.render('comments')
-    })
+<div class="comments">
+    <h3 class="title is-4">Kommentare</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2016/12/23/booboo_easy_service/05_apache/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
 </script>
 
-
-
-
-    
-
-
-
-
-    </div>
-    <div class="copyright">
-        <p class="footer-entry">©2018-2020 BoobooWei</p>
-<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
-
-    </div>
-    <div class="full-toc">
-        <button class="full"><span class="min "></span></button>
-<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
-<div class="post-toc"><span class="post-toc-title">目录</span>
-    <div class="post-toc-content">
-
-    </div>
 </div>
-<a class="" id="rocket" ></a>
 
     </div>
-</div>
-<div class="acParent"></div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
 
-<div class="hide_box" onclick="dashangToggle()"></div>
-<div class="shang_box">
-    <a class="shang_close"  onclick="dashangToggle()">×</a>
-    <div class="shang_tit">
-        <p>喜欢就点赞,疼爱就打赏</p>
-    </div>
-    <div class="shang_payimg">
-        <div class="pay_img">
-            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
-            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
         </div>
     </div>
-    <div class="shang_payselect">
-        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
-    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
-
-
-</body>
-<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
-
-<script src="/js/script.js?v=1.0.1" ></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
 <script>
-    var img_resize = 'default';
-    /*作者、标签的自动补全*/
-    $(function () {
-        $('.search').AutoComplete({
-            'data': ['#宝宝成长','#培训','#LinuxShell脚本','#Linux基础服务','#Linux','#MySQL基础管理','#python','#数据救援','#hexo','#SQL优化','#锁故障','#RDS','#主从同步',],
-            'itemHeight': 20,
-            'width': 418
-        }).AutoComplete('show');
-    })
-    function initArticle() {
-        /*渲染对应的表格样式*/
-        
-
-        /*渲染打赏样式*/
-        
-        $("input[name=pay]").on("click", function () {
-            if($("input[name=pay]:checked").val()=="weixin"){
-                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
-            } else {
-                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
-            }
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
         })
-        
-
-        /*高亮代码块行号*/
-        
-
-        /*访问数量*/
-        
-        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
-        
-
-        /*代码高亮，行号对齐*/
-        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
-
-        
-        
-        /* 渲染*/
-        function HTMLDecode(text) {
-            var temp = document.createElement("div");
-            temp.innerHTML = text;
-            var output = temp.innerText || temp.textContent;
-            temp = null;
-            return output;
-        }
-        if (window.mermaid){
-            window.mermaid = null
-        }
-        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
-            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
-            if (window.mermaid) {
-                mermaid.initialize(mermaidOptions)
-                mermaid.contentLoaded()
-            }
-        })
-        
-    }
-
-    /*打赏页面隐藏与展示*/
-    
-    function dashangToggle() {
-        $(".shang_box").fadeToggle();
-        $(".hide_box").fadeToggle();
-    }
-    
-
+    });
 </script>
 
-<!--加入行号的高亮代码块样式-->
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
 
-<!--自定义样式设置-->
-<style>
+
     
     
-    .nav {
-        width: 622px;
-    }
-    .nav.fullscreen {
-        margin-left: -622px;
-    }
-    .nav-left {
-        width: 200px;
-    }
-    
-    
-    @media screen and (max-width: 1468px) {
-        .nav {
-            width: 492px;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
         }
-        .nav.fullscreen {
-            margin-left: -492px;
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
         }
-        .nav-left {
-            width: 100px;
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-    }
-    
-    
-    @media screen and (max-width: 1024px) {
-        .nav {
-            width: 492px;
-            margin-left: -492px
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
         }
-        .nav.fullscreen {
-            margin-left: 0;
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
         }
-        .nav .hide-list.fullscreen {
-            left: 492px
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
         }
-    }
-    
-    @media screen and (max-width: 426px) {
-        .nav {
-            width: 100%;
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
         }
-        .nav-left {
-            width: 100%;
-        }
-    }
-    
-    
-    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
-        color: #383636;
-    }
-    
-    
-    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
-        color: #5e5e5f;
-    }
-    
-    
-    .nav-right nav a.hover, #local-search-result a.hover{
-        background-color: #e2e0e0;
-    }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
     
     
 
-    /*列表样式*/
-    
-
-    /* 背景图样式 */
-    
     
 
 
-    /*引用块样式*/
-    
 
-    /*文章列表背景图*/
-    
-    .nav-right:before {
-        content: ' ';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.2;
-        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
-        background-repeat: no-repeat;
-        background-position: 50% 0;
-        -ms-background-size: cover;
-        -o-background-size: cover;
-        -moz-background-size: cover;
-        -webkit-background-size: cover;
-        background-size: cover;
-    }
-    
+<script src="/js/script.js"></script>
+
 
     
-</style>
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Seiten',
+                CATEGORIES: 'Kategorien',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
 
+<script src="/js/insight.js"></script>
 
-
-
-
-
-
+    
+</body>
 </html>

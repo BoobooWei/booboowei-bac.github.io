@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>LINUX Shell Scripts 第六课 上机考试 - Amy and Booboo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
+
+
+
+
+
+    <meta name="description" content="&amp;#x8BF7;&amp;#x5C06;&amp;#x811A;&amp;#x672C;&amp;#x4FDD;&amp;#x5B58;&amp;#xFF0C;&amp;#x5B58;&amp;#x653E;&amp;#x8DEF;&amp;#x5F84;&amp;#x4E3A;&#x2F;home&#x2F;kiosk&#x2F;Desktop&#x2F;stux&#x2F;,&amp;#x5176;&amp;#x4E2D;x&amp;#x4E3A;&amp;#x4F60;&amp;#x7684;&amp;#x673A;&amp;#x53F7;test.sh num.sh check">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LINUX Shell Scripts 第六课 上机考试">
+<meta property="og:url" content="http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/shell-test01/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="&amp;#x8BF7;&amp;#x5C06;&amp;#x811A;&amp;#x672C;&amp;#x4FDD;&amp;#x5B58;&amp;#xFF0C;&amp;#x5B58;&amp;#x653E;&amp;#x8DEF;&amp;#x5F84;&amp;#x4E3A;&#x2F;home&#x2F;kiosk&#x2F;Desktop&#x2F;stux&#x2F;,&amp;#x5176;&amp;#x4E2D;x&amp;#x4E3A;&amp;#x4F60;&amp;#x7684;&amp;#x673A;&amp;#x53F7;test.sh num.sh check">
+<meta property="article:published_time" content="2016-12-22T21:06:27.000Z">
+<meta property="article:modified_time" content="2020-03-24T05:17:54.753Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="培训">
+<meta property="article:tag" content="LinuxShell脚本">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    <img src="/images/influx.svg" alt="" height="28">
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/tools">Tools</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Suche" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            LINUX Shell Scripts 第六课 上机考试
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2016-12-22T21:06:27.000Z" itemprop="datePublished">12月 23 2016</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/">技术培训</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/">LinuxShell脚本教程</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            3 分钟 lesen (Über 439 Wörter)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <blockquote>
+<p>&#x8BF7;&#x5C06;&#x811A;&#x672C;&#x4FDD;&#x5B58;&#xFF0C;&#x5B58;&#x653E;&#x8DEF;&#x5F84;&#x4E3A;/home/kiosk/Desktop/stux/,&#x5176;&#x4E2D;x&#x4E3A;&#x4F60;&#x7684;&#x673A;&#x53F7;<br>test.sh num.sh checkip.sh dns.sh useradd.sh &#x6BCF;&#x9898;20&#x5206;</p>
+</blockquote>
+<h2 id="1-&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;&#xFF1A;"><a href="#1-&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;&#xFF1A;" class="headerlink" title="1.&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;&#xFF1A;"></a>1.&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;&#xFF1A;</h2><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x811A;&#x672C;&#xFF0C;&#x811A;&#x672C;&#x540D;&#x4E3A;test.sh</span><br><span class="line">&#x5224;&#x65AD;/tmp/test1&#x81F3;/tmp/test50&#x548C;/etc/passwd /etc/hosts&#x6587;&#x4EF6;&#x5B58;&#x5728;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x5C06;&#x8BE5;&#x6587;&#x4EF6;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x3002;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-&#x6309;&#x7167;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x7F16;&#x5199;Shell&#x811A;&#x672C;&#xFF1A;"><a href="#2-&#x6309;&#x7167;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x7F16;&#x5199;Shell&#x811A;&#x672C;&#xFF1A;" class="headerlink" title="2.&#x6309;&#x7167;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x7F16;&#x5199;Shell&#x811A;&#x672C;&#xFF1A;"></a>2.&#x6309;&#x7167;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x7F16;&#x5199;Shell&#x811A;&#x672C;&#xFF1A;</h2><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x8981;&#x6C42;&#xFF1A;1&#xFF09;&#x811A;&#x672C;&#x540D;&#x4E3A;num.sh</span><br><span class="line">      2&#xFF09;&#x8981;&#x6C42;&#x663E;&#x793A;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</span><br><span class="line"> &#x7B2C;&#x4E00;&#x884C;0&#xFF0C;&#x7B2C;&#x4E8C;&#x884C;01&#xFF0C;&#x7B2C;&#x4E09;&#x884C;012&#xFF0C;&#x4EE5;&#x6B64;&#x7C7B;&#x63A8;&#xFF0C;&#x8F93;&#x51FA;&#x5982;&#x4E0A;0&#x5230;9&#x7684;&#x7ED3;&#x679C;&#x5373;&#x53EF;&#x3002;</span><br><span class="line">0</span><br><span class="line">01</span><br><span class="line">012</span><br><span class="line">0123</span><br><span class="line">01234</span><br><span class="line">012345</span><br><span class="line">0123456</span><br><span class="line">01234567</span><br><span class="line">012345678</span><br><span class="line">0123456789</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;&#xFF1A;"><a href="#3-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;&#xFF1A;" class="headerlink" title="3.&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;&#xFF1A;"></a>3.&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;&#xFF1A;</h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x7F16;&#x5199;&#x4E00;&#x4E2A;IP&#x68C0;&#x6D4B;&#x811A;&#x672C;</span><br><span class="line">1&#xFF09; &#x811A;&#x672C;&#x540D;&#x4E3A;checkip.sh</span><br><span class="line">2&#xFF09; &#x8F93;&#x5165;&#x53C2;&#x6570;&#x4E3A;$1&#xFF0C;$1 &#x4E3A;&#x8981;&#x5224;&#x65AD;&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x5982;&#x679C;$1 &#x4E3A;ip &#x5730;&#x5740;&#xFF0C;&#x5219;&#x8F93;&#x51FA;&#x201D;This is ip address&#x201D;,</span><br><span class="line">&#x5982;&#x679C;$1 &#x4E3A;&#x975E;ip &#x5730;&#x5740;&#xFF0C;&#x5219;&#x8F93;&#x51FA;&#x201D;This is not ip address&#x201D;</span><br><span class="line">3&#xFF09; &#x6267;&#x884C;&#x65B9;&#x6CD5;&#x4E3A;checkip.sh 192.168.1.1</span><br><span class="line">4&#xFF09; &#x6D4B;&#x8BD5;&#x5982;&#x4E0B;&#x8F93;&#x5165;&#x503C;</span><br><span class="line">192.168.0.199  192.a.12.0  24.235.299.1  192.168.3</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;1"><a href="#4-&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;1" class="headerlink" title="4.&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;1"></a>4.&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;1</h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x811A;&#x672C;&#xFF0C;&#x811A;&#x672C;&#x540D;&#x4E3A;dns.sh,&#x901A;&#x8FC7;&#x811A;&#x672C;&#x642D;&#x5EFA;dns&#x3002;</span><br><span class="line">&#x8981;&#x6C42;&#xFF1A;	&#x89E3;&#x6790;uplooking.com&#x57DF;&#x540D;</span><br><span class="line">	A&#x8BB0;&#x5F55;&#x6709;www.uplooking.com 10.2.2.2</span><br><span class="line">	PTR&#x8BB0;&#x5F55;&#x6709;&#x76F8;&#x5E94;&#x7684;&#x53CD;&#x5411;&#x89E3;&#x6790;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;2"><a href="#5-&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;2" class="headerlink" title="5.&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;2"></a>5.&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x6D4B;&#x8BD5;2</h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x811A;&#x672C;&#xFF0C;&#x811A;&#x672C;&#x540D;&#x4E3A;useradd.sh</span><br><span class="line">&#x8981;&#x6C42;&#x6839;&#x636E;userlist&#x521B;&#x5EFA;&#x7528;&#x6237;&#xFF0C;&#x8981;&#x6C42;&#x6307;&#x5B9A;&#x7528;&#x6237;&#x540D;&#xFF0C;&#x7528;&#x6237;id&#xFF0C;&#x7528;&#x6237;&#x7684;&#x9ED8;&#x8BA4;&#x7EC4;&#x548C;&#x9644;&#x52A0;&#x7EC4;&#x53CA;&#x53D8;&#x66F4;&#x7528;&#x6237;u&#x5BC6;&#x7801;&#xFF0C;&#x82E5;&#x5BF9;&#x5E94;&#x7528;&#x6237;&#x7684;&#x9644;&#x52A0;&#x7EC4;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5219;&#x5C06;&#x9644;&#x52A0;&#x7EC4;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x540E;&#x518D;&#x6839;&#x636E;&#x8981;&#x6C42;&#x6DFB;&#x52A0;&#x7528;&#x6237;&#x3002;</span><br><span class="line">	[root@rhel6 ~]# cat /tmp/useraddlist1</span><br><span class="line">	dabao 888 xuexi,it uplooking</span><br><span class="line">	lucy 889 sales,it uplooking</span><br><span class="line">	lily 899 pro,aa uplooking</span><br></pre></td></tr></table></figure></p>
+<h3 id="6-&#x75C5;&#x6BD2;&#x81EA;&#x6211;&#x590D;&#x5236;&#x811A;&#x672C;"><a href="#6-&#x75C5;&#x6BD2;&#x81EA;&#x6211;&#x590D;&#x5236;&#x811A;&#x672C;" class="headerlink" title="6.&#x75C5;&#x6BD2;&#x81EA;&#x6211;&#x590D;&#x5236;&#x811A;&#x672C;"></a>6.&#x75C5;&#x6BD2;&#x81EA;&#x6211;&#x590D;&#x5236;&#x811A;&#x672C;</h3><h3 id="7-&#x83B7;&#x53D6;apache&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;&#x4E2D;&#x8BBF;&#x95EE;&#x6B21;&#x6570;&#x6700;&#x591A;&#x7684;&#x524D;5&#x4E2A;ip&#x5730;&#x5740;"><a href="#7-&#x83B7;&#x53D6;apache&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;&#x4E2D;&#x8BBF;&#x95EE;&#x6B21;&#x6570;&#x6700;&#x591A;&#x7684;&#x524D;5&#x4E2A;ip&#x5730;&#x5740;" class="headerlink" title="7.&#x83B7;&#x53D6;apache&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;&#x4E2D;&#x8BBF;&#x95EE;&#x6B21;&#x6570;&#x6700;&#x591A;&#x7684;&#x524D;5&#x4E2A;ip&#x5730;&#x5740;"></a>7.&#x83B7;&#x53D6;apache&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;&#x4E2D;&#x8BBF;&#x95EE;&#x6B21;&#x6570;&#x6700;&#x591A;&#x7684;&#x524D;5&#x4E2A;ip&#x5730;&#x5740;</h3>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%9F%B9%E8%AE%AD/">#培训</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/LinuxShell%E8%84%9A%E6%9C%AC/">#LinuxShell脚本</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/">LINUX Shell Scripts 第一课 简介和变量</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2016/12/23/booboo_bash_shell_scripts/shell-test02/">LINUX Shell Scripts 第七课 笔试</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5e7f26910c743700190536a1&amp;product=inline-share-buttons&amp;cms=sop&#39; async=&#39;async&#39;' async='async'></script>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Kommentare</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2016/12/23/booboo_bash_shell_scripts/shell-test01/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Seiten',
+                CATEGORIES: 'Kategorien',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

@@ -1,836 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
 <head>
-  <meta charset="utf-8">
-  <title>LINUX 基础服务课程环境使用说明 | Amy and Booboo</title>
-  <meta name="keywords" content=" 培训 , Linux基础服务 ">
-  <meta name="description" content="LINUX 基础服务课程环境使用说明 | Amy and Booboo">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Amy and Booboo">
-<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+    <meta charset="utf-8">
+<title>LINUX 基础服务课程环境使用说明 - Amy and Booboo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
+
+
+
+
+
+    <meta name="description" content="UP100 &amp;#x8BFE;&amp;#x7A0B;&amp;#x57FA;&amp;#x4E8E;RHEL6.5&amp;#x3001;RHEL7.0&amp;#x3001;ubuntu1604&amp;#x3001;WindowsXP&amp;#x548C;Windows2012R2&amp;#x7CFB;&amp;#x7EDF; &amp;#x9700;&amp;#x8981;&amp;#x5F00;&amp;#x542F;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x53EF;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LINUX 基础服务课程环境使用说明">
+<meta property="og:url" content="http://www.toberoot.com/2016/12/23/booboo_easy_service/00_linux_classroom_env/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
-<meta property="og:description" content="除了自己的无知，我什么都不懂。－苏格拉底">
-<meta property="article:published_time" content="2020-03-22T14:48:00.876Z">
-<meta property="article:modified_time" content="2020-03-22T14:48:00.875Z">
+<meta property="og:description" content="UP100 &amp;#x8BFE;&amp;#x7A0B;&amp;#x57FA;&amp;#x4E8E;RHEL6.5&amp;#x3001;RHEL7.0&amp;#x3001;ubuntu1604&amp;#x3001;WindowsXP&amp;#x548C;Windows2012R2&amp;#x7CFB;&amp;#x7EDF; &amp;#x9700;&amp;#x8981;&amp;#x5F00;&amp;#x542F;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x53EF;&amp;#x">
+<meta property="og:image" content="http://www.toberoot.com/2016/12/23/booboo_easy_service/00_linux_classroom_env/01-up100.png">
+<meta property="article:published_time" content="2016-12-22T21:06:27.000Z">
+<meta property="article:modified_time" content="2020-03-28T09:17:03.497Z">
 <meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="培训">
+<meta property="article:tag" content="Linux基础服务">
 <meta name="twitter:card" content="summary">
-
-
-<link rel="icon" href="/img/influx.svg">
-
-<link href="/css/style.css?v=1.0.1" rel="stylesheet">
-
-<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
-
-<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
-
-<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script>
-    hljs.initHighlightingOnLoad();
-</script>
-
-<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+<meta name="twitter:image" content="http://www.toberoot.com/2016/12/23/booboo_easy_service/00_linux_classroom_env/01-up100.png">
 
 
 
-<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
 
-<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
 </head>
-<div style="display: none">
-  <input class="theme_disqus_on" value="false">
-  <input class="theme_preload_comment" value="false">
-  <input class="theme_blog_path" value="">
-</div>
-
 <body>
-<aside class="nav">
-    <div class="nav-left">
-        <a href="/" class="avatar_target">
-    <img class="avatar" src="/img/my.png" />
-</a>
-<div class="author">
-    <span>BoobooWei</span>
-</div>
-
-<div class="icon">
     
-        
-        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-email"></use>
-                </svg>
-            
-        </a>
-        
-    
-</div>
-
-
-
-
-<ul>
-    <li><div class="all active">全部文章<small>(54)</small></div></li>
-    
-        
-            
-            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
                 
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
+                    
+                    <img src="/images/influx.svg" alt="" height="28">
+                    
                 
-            </li>
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
             
-        
-    
-        
+            <a class="navbar-item "
+               href="/archives">Archives</a>
             
-        
-    
-        
+            <a class="navbar-item "
+               href="/categories">Categories</a>
             
-            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(41)</small></div>
+            <a class="navbar-item "
+               href="/tools">Tools</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Suche" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
                 
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="LinuxShell脚本教程">LinuxShell脚本教程<small>(7)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MySQL基础管理教程">MySQL基础管理教程<small>(11)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
+                <i class="fab fa-github"></i>
                 
-            </li>
+            </a>
+               
             
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(7)</small></div>
-                
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="Python">Python<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
-                
-            </li>
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-</ul>
-<div class="left-bottom">
-    <div class="menus">
-    
-    </div>
-    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
-</div>
-<input type="hidden" id="yelog_site_posts_number" value="54">
-<input type="hidden" id="yelog_site_word_count" value="305.8k">
-<div style="display: none">
-    <span id="busuanzi_value_site_uv"></span>
-    <span id="busuanzi_value_site_pv"></span>
-</div>
-
-    </div>
-    <div class="nav-right">
-        <div class="friends-area">
-    <div class="friends-title">
-        友情链接
-        <i class="back-title-list"></i>
-    </div>
-    <div class="friends-content">
-        <ul>
-            
-            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
-            
-            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
-            
-            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
-            
-            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
-            
-        </ul>
-    </div>
-</div>
-        <div class="title-list">
-    <form onkeydown="if(event.keyCode === 13){return false;}">
-        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
-        <i class="cross"></i>
-        <span>
-            <label for="tagswitch">Tags:</label>
-            <input id="tagswitch" type="checkbox" style="display: none" />
-            <i id="tagsWitchIcon"></i>
-        </span>
-    </form>
-    <div class="tags-list">
-    
-    <li class="article-tag-list-item">
-        <a class="color5">宝宝成长</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color3">培训</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color3">LinuxShell脚本</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">Linux基础服务</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color1">Linux</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">MySQL基础管理</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color2">python</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">数据救援</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">hexo</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color1">SQL优化</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">锁故障</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">RDS</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">主从同步</a>
-    </li>
-    
-    <div class="clearfix"></div>
-</div>
-
-    
-    <nav id="title-list-nav">
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
-            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
-            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
-            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
-            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="家长会">家长会</span>
-            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
-            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第一课 简介和变量">LINUX Shell Scripts 第一课 简介和变量</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第二课 流程控制语句">LINUX Shell Scripts 第二课 流程控制语句</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第三课 正则表达式">LINUX Shell Scripts 第三课 正则表达式</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第四课 Sed">LINUX Shell Scripts 第四课 Sed</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第五课 各种括号的作用">LINUX Shell Scripts 第五课 各种括号的作用</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第六课 上机考试">LINUX Shell Scripts 第六课 上机考试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第七课 笔试">LINUX Shell Scripts 第七课 笔试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/01_dns/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/02_ftp/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/03_nfs/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/04_samba/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/05_apache/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/ule-online/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/00-linux_history/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 内核">Linux 内核</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/25/booboo_mysql/00-MySQL%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第一课 课程简介">MySQL 管理课程 第一课 课程简介</span>
-            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/30/booboo_mysql/03-MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%92%8CInnodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎">MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎</span>
-            <span class="post-date" title="2016-12-29 21:06:27">2016/12/29</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/31/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第七课 复制 AB replication">MySQL 管理课程 第七课 复制 AB replication</span>
-            <span class="post-date" title="2016-12-30 21:06:27">2016/12/30</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/02/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第八课 高可用性HA">MySQL 管理课程 第八课 高可用性HA</span>
-            <span class="post-date" title="2017-01-01 21:06:27">2017/01/01</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/04/booboo_mysql/07-MySQL5.6%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制">MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制</span>
-            <span class="post-date" title="2017-01-03 21:06:27">2017/01/03</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/03/booboo_mysql/06-MySQL%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7sysbench/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第九课 MySQL压力测试工具sysbench">MySQL 管理课程 第九课 MySQL压力测试工具sysbench</span>
-            <span class="post-date" title="2017-01-02 21:06:27">2017/01/02</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/05/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&mysqlpump&mydumper/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper">MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</span>
-            <span class="post-date" title="2017-01-04 21:06:27">2017/01/04</span>
-        </a>
-        
-        <a  class="技术广角 Python "
-           href="/2020/03/22/booboo_others/CentOS6.5%E9%85%8D%E7%BD%AEpython3.7%E5%AE%89%E8%A3%85%E5%90%8Essl%E9%97%AE%E9%A2%98/"
-           data-tag="python"
-           data-author="" >
-            <span class="post-title" title="CentOS6.5配置python3.7安装后ssl问题">CentOS6.5配置python3.7安装后ssl问题</span>
-            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
-           data-tag="数据救援"
-           data-author="" >
-            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
-            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
-        </a>
-        
-        <a  class="技术广角 Hexo "
-           href="/2020/03/22/booboo_others/hello-world/"
-           data-tag="hexo"
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
-        </a>
-        
-        <a  class="技术广角 Oracle "
-           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
-           data-tag="SQL优化"
-           data-author="" >
-            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
-            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
-           data-tag="锁故障"
-           data-author="" >
-            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
-            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
-           data-tag="RDS,主从同步"
-           data-author="" >
-            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
-            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
-        </a>
-        
-        <a  class="技术广角 MongoDB "
-           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
-           data-tag="数据救援"
-           data-author="" >
-            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
-            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/29/booboo_mysql/03-MySQL%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第五课 备份与恢复">MySQL 管理课程 第五课 备份与恢复</span>
-            <span class="post-date" title="2016-12-28 21:06:27">2016/12/28</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/26/booboo_mysql/01-MySQL%E5%92%8CMariaDB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍">MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍</span>
-            <span class="post-date" title="2016-12-25 21:06:27">2016/12/25</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/27/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1">MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1</span>
-            <span class="post-date" title="2016-12-26 21:06:27">2016/12/26</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/28/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2">MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2</span>
-            <span class="post-date" title="2016-12-27 21:06:27">2016/12/27</span>
-        </a>
-        
-    </nav>
-</div>
-    </div>
-    <div class="hide-list">
-        <div class="semicircle">
-            <div class="brackets first"><</div>
-            <div class="brackets">&gt;</div>
         </div>
     </div>
-</aside>
-<div class="post">
-    <div class="pjax">
-        <article id="post-booboo_easy_service/00_linux_classroom_env" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">LINUX 基础服务课程环境使用说明</h1>
-    
-    <div class="article-meta">
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
+            LINUX 基础服务课程环境使用说明
         
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2016-12-22T21:06:27.000Z" itemprop="datePublished">12月 23 2016</time>
+        </span>
         
-        <span class="book">
-            
-                <a  data-rel="技术培训">技术培训</a>/
-            
-                <a  data-rel="Linux简易服务教程">Linux简易服务教程</a>
-            
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/">技术培训</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/">Linux简易服务教程</a>
         </span>
         
         
-        <span class="tag">
+        <span class="column is-narrow">
             
-            <a class="color3">培训</a>
             
-            <a class="color5">Linux基础服务</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-        创建时间:<time class="date" title='更新时间: 2020-03-24 05:02:31'>2016-12-22 21:06</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字数:3.1k</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            阅读:<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
-        
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                评论:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
+            22 分钟 lesen (Über 3275 Wörter)
         </span>
         
     </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-    <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#授课网络环境配置如下"><span class="toc-text">授课网络环境配置如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络拓扑图"><span class="toc-text">网络拓扑图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础服务简介"><span class="toc-text">基础服务简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统服务的基本概念"><span class="toc-text">系统服务的基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#services-和-daemons"><span class="toc-text">services 和 daemons</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于-daemon-分类"><span class="toc-text">基于 daemon 分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#System-V"><span class="toc-text">System V</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xinetd"><span class="toc-text">xinetd</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#端口号"><span class="toc-text">端口号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础服务总结"><span class="toc-text">基础服务总结</span></a></li></ol>
-    
-<style>
-    .left-col .switch-btn,
-    .left-col .switch-area {
-        display: none;
-    }
-    .toc-level-3 i,
-    .toc-level-3 ol {
-        display: none !important;
-    }
-</style>
-</div>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>UP100 课程基于RHEL6.5、RHEL7.0、ubuntu1604、WindowsXP和Windows2012R2系统</p>
-<p>需要开启虚拟机可以直接双击图标，第一次启动时将从讲师机下载映像文件，可能会比较慢。</p>
-<p>控制虚拟机可以使用kiosk用户，执行rht-vmctl命令，请自行查看命令使用。</p>
-<h3 id="授课网络环境配置如下"><a href="#授课网络环境配置如下" class="headerlink" title="授课网络环境配置如下"></a>授课网络环境配置如下</h3><p><strong>f0~fN</strong>为教室物理机，其域名为<code>foundationN.ilt.example.com</code> ,可简写为<code>fN</code>。其IP为<code>172.25.N.250</code>，<code>f0</code>特殊为<code>172.25.254.250</code>。</p>
-<p><code>classroom</code>虚拟机为所有物理机和虚拟机的默认网关，配置了多个网卡设置了所有<code>172.25.N.254</code>的地址，保证虚拟机、物理机和各个学生机之间的路由。配置了<code>DHCP</code>、<code>DNS</code>和<code>HTTP</code>服务，其域名为<code>classroom.example.com</code>可简写为<code>classroom</code>。</p>
-<p>rhel6虚拟机均安装RHEL6.5系统，rhel7虚拟机均安装RHEL7.0系统，ubuntu1604虚拟机均安装Ubuntu1604系统，均安装图形化界面并配置runlevel 5启动，root密码为uplooking ，配置了基础的YUM源指向classroom， rhel6、rhel7、ubuntu1604、winxp和win2012r2虚拟机均配置了1块虚拟机网卡，eth0接入物理机br0网桥，动态获得ip地址:</p>
+        <p>UP100 &#x8BFE;&#x7A0B;&#x57FA;&#x4E8E;RHEL6.5&#x3001;RHEL7.0&#x3001;ubuntu1604&#x3001;WindowsXP&#x548C;Windows2012R2&#x7CFB;&#x7EDF;</p>
+<p>&#x9700;&#x8981;&#x5F00;&#x542F;&#x865A;&#x62DF;&#x673A;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x53CC;&#x51FB;&#x56FE;&#x6807;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x542F;&#x52A8;&#x65F6;&#x5C06;&#x4ECE;&#x8BB2;&#x5E08;&#x673A;&#x4E0B;&#x8F7D;&#x6620;&#x50CF;&#x6587;&#x4EF6;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x6BD4;&#x8F83;&#x6162;&#x3002;</p>
+<p>&#x63A7;&#x5236;&#x865A;&#x62DF;&#x673A;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;kiosk&#x7528;&#x6237;&#xFF0C;&#x6267;&#x884C;rht-vmctl&#x547D;&#x4EE4;&#xFF0C;&#x8BF7;&#x81EA;&#x884C;&#x67E5;&#x770B;&#x547D;&#x4EE4;&#x4F7F;&#x7528;&#x3002;</p>
+<h3 id="&#x6388;&#x8BFE;&#x7F51;&#x7EDC;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x5982;&#x4E0B;"><a href="#&#x6388;&#x8BFE;&#x7F51;&#x7EDC;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x5982;&#x4E0B;" class="headerlink" title="&#x6388;&#x8BFE;&#x7F51;&#x7EDC;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x5982;&#x4E0B;"></a>&#x6388;&#x8BFE;&#x7F51;&#x7EDC;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x5982;&#x4E0B;</h3><p><strong>f0~fN</strong>&#x4E3A;&#x6559;&#x5BA4;&#x7269;&#x7406;&#x673A;&#xFF0C;&#x5176;&#x57DF;&#x540D;&#x4E3A;<code>foundationN.ilt.example.com</code> ,&#x53EF;&#x7B80;&#x5199;&#x4E3A;<code>fN</code>&#x3002;&#x5176;IP&#x4E3A;<code>172.25.N.250</code>&#xFF0C;<code>f0</code>&#x7279;&#x6B8A;&#x4E3A;<code>172.25.254.250</code>&#x3002;</p>
+<p><code>classroom</code>&#x865A;&#x62DF;&#x673A;&#x4E3A;&#x6240;&#x6709;&#x7269;&#x7406;&#x673A;&#x548C;&#x865A;&#x62DF;&#x673A;&#x7684;&#x9ED8;&#x8BA4;&#x7F51;&#x5173;&#xFF0C;&#x914D;&#x7F6E;&#x4E86;&#x591A;&#x4E2A;&#x7F51;&#x5361;&#x8BBE;&#x7F6E;&#x4E86;&#x6240;&#x6709;<code>172.25.N.254</code>&#x7684;&#x5730;&#x5740;&#xFF0C;&#x4FDD;&#x8BC1;&#x865A;&#x62DF;&#x673A;&#x3001;&#x7269;&#x7406;&#x673A;&#x548C;&#x5404;&#x4E2A;&#x5B66;&#x751F;&#x673A;&#x4E4B;&#x95F4;&#x7684;&#x8DEF;&#x7531;&#x3002;&#x914D;&#x7F6E;&#x4E86;<code>DHCP</code>&#x3001;<code>DNS</code>&#x548C;<code>HTTP</code>&#x670D;&#x52A1;&#xFF0C;&#x5176;&#x57DF;&#x540D;&#x4E3A;<code>classroom.example.com</code>&#x53EF;&#x7B80;&#x5199;&#x4E3A;<code>classroom</code>&#x3002;</p>
+<p>rhel6&#x865A;&#x62DF;&#x673A;&#x5747;&#x5B89;&#x88C5;RHEL6.5&#x7CFB;&#x7EDF;&#xFF0C;rhel7&#x865A;&#x62DF;&#x673A;&#x5747;&#x5B89;&#x88C5;RHEL7.0&#x7CFB;&#x7EDF;&#xFF0C;ubuntu1604&#x865A;&#x62DF;&#x673A;&#x5747;&#x5B89;&#x88C5;Ubuntu1604&#x7CFB;&#x7EDF;&#xFF0C;&#x5747;&#x5B89;&#x88C5;&#x56FE;&#x5F62;&#x5316;&#x754C;&#x9762;&#x5E76;&#x914D;&#x7F6E;runlevel 5&#x542F;&#x52A8;&#xFF0C;root&#x5BC6;&#x7801;&#x4E3A;uplooking &#xFF0C;&#x914D;&#x7F6E;&#x4E86;&#x57FA;&#x7840;&#x7684;YUM&#x6E90;&#x6307;&#x5411;classroom&#xFF0C; rhel6&#x3001;rhel7&#x3001;ubuntu1604&#x3001;winxp&#x548C;win2012r2&#x865A;&#x62DF;&#x673A;&#x5747;&#x914D;&#x7F6E;&#x4E86;1&#x5757;&#x865A;&#x62DF;&#x673A;&#x7F51;&#x5361;&#xFF0C;eth0&#x63A5;&#x5165;&#x7269;&#x7406;&#x673A;br0&#x7F51;&#x6865;&#xFF0C;&#x52A8;&#x6001;&#x83B7;&#x5F97;ip&#x5730;&#x5740;:</p>
 <table>
 <thead>
 <tr>
@@ -859,8 +187,8 @@
 <td align="left">172.25.N.15</td>
 </tr>
 </tbody></table>
-<p>rhel6、rhel7、ubuntu1604虚拟机均配置两块虚拟硬盘vda和vdb，以方便授课演示。除winxp和win2012r2之外其它虚拟机均配置2GB运行内存，winxp配置1GB运行内存，win2012r2配置4GB运行内存。</p>
-<p>winxp虚拟机主机上安装了如下软件：</p>
+<p>rhel6&#x3001;rhel7&#x3001;ubuntu1604&#x865A;&#x62DF;&#x673A;&#x5747;&#x914D;&#x7F6E;&#x4E24;&#x5757;&#x865A;&#x62DF;&#x786C;&#x76D8;vda&#x548C;vdb&#xFF0C;&#x4EE5;&#x65B9;&#x4FBF;&#x6388;&#x8BFE;&#x6F14;&#x793A;&#x3002;&#x9664;winxp&#x548C;win2012r2&#x4E4B;&#x5916;&#x5176;&#x5B83;&#x865A;&#x62DF;&#x673A;&#x5747;&#x914D;&#x7F6E;2GB&#x8FD0;&#x884C;&#x5185;&#x5B58;&#xFF0C;winxp&#x914D;&#x7F6E;1GB&#x8FD0;&#x884C;&#x5185;&#x5B58;&#xFF0C;win2012r2&#x914D;&#x7F6E;4GB&#x8FD0;&#x884C;&#x5185;&#x5B58;&#x3002;</p>
+<p>winxp&#x865A;&#x62DF;&#x673A;&#x4E3B;&#x673A;&#x4E0A;&#x5B89;&#x88C5;&#x4E86;&#x5982;&#x4E0B;&#x8F6F;&#x4EF6;&#xFF1A;</p>
 <ul>
 <li>Cisco Packet Tracer</li>
 <li>Putty</li>
@@ -871,53 +199,53 @@
 <li>Microsoft Visio 2010</li>
 <li>7-zip</li>
 </ul>
-<p>已在classroom上完成DNS配置，正向和方向域名及邮件代理域名和虚拟机域名设置如下：</p>
-<p>rhel7主机：172.25.N.10</p>
+<p>&#x5DF2;&#x5728;classroom&#x4E0A;&#x5B8C;&#x6210;DNS&#x914D;&#x7F6E;&#xFF0C;&#x6B63;&#x5411;&#x548C;&#x65B9;&#x5411;&#x57DF;&#x540D;&#x53CA;&#x90AE;&#x4EF6;&#x4EE3;&#x7406;&#x57DF;&#x540D;&#x548C;&#x865A;&#x62DF;&#x673A;&#x57DF;&#x540D;&#x8BBE;&#x7F6E;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>rhel7&#x4E3B;&#x673A;&#xFF1A;172.25.N.10</p>
 <ul>
 <li>rhel7-fN.example.com</li>
 <li>dN.example.com</li>
 <li>imapN.example.com</li>
 <li>smtpN.example.com (MX)</li>
 </ul>
-<p>rhel6主机： 172.25.N.11</p>
+<p>rhel6&#x4E3B;&#x673A;&#xFF1A; 172.25.N.11</p>
 <ul>
 <li>rhel6-fN.example.com</li>
 <li>sN.example.com</li>
 <li>wwwN.example.com</li>
 <li>webapp-fN.example.com</li>
 </ul>
-<p>winxp主机： 172.25.N.12</p>
+<p>winxp&#x4E3B;&#x673A;&#xFF1A; 172.25.N.12</p>
 <ul>
 <li>winxp-fN.example.com</li>
-<li>install 主机：172.25.N.13</li>
+<li>install &#x4E3B;&#x673A;&#xFF1A;172.25.N.13</li>
 <li>install-fN.example.com</li>
-<li>ubuntu主机：172.25.N.14</li>
+<li>ubuntu&#x4E3B;&#x673A;&#xFF1A;172.25.N.14</li>
 <li>ubuntu-fN.example.com</li>
 </ul>
-<p>win2012r2主机：172.25.N.15</p>
+<p>win2012r2&#x4E3B;&#x673A;&#xFF1A;172.25.N.15</p>
 <ul>
 <li>win2012r2-fN.example.com</li>
 </ul>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>rhel6.5 SElinux有bug，光盘中默认没有selinux相关manpage，看manpage需要安装selinux-policy-doc包，但这个包需要从RHN下载。</p>
-<h3 id="网络拓扑图"><a href="#网络拓扑图" class="headerlink" title="网络拓扑图"></a>网络拓扑图</h3><p><img src="pic/01-up100.png" alt="up100"></p>
+<h3 id="&#x6CE8;&#x610F;&#x4E8B;&#x9879;"><a href="#&#x6CE8;&#x610F;&#x4E8B;&#x9879;" class="headerlink" title="&#x6CE8;&#x610F;&#x4E8B;&#x9879;"></a>&#x6CE8;&#x610F;&#x4E8B;&#x9879;</h3><p>rhel6.5 SElinux&#x6709;bug&#xFF0C;&#x5149;&#x76D8;&#x4E2D;&#x9ED8;&#x8BA4;&#x6CA1;&#x6709;selinux&#x76F8;&#x5173;manpage&#xFF0C;&#x770B;manpage&#x9700;&#x8981;&#x5B89;&#x88C5;selinux-policy-doc&#x5305;&#xFF0C;&#x4F46;&#x8FD9;&#x4E2A;&#x5305;&#x9700;&#x8981;&#x4ECE;RHN&#x4E0B;&#x8F7D;&#x3002;</p>
+<h3 id="&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x56FE;"><a href="#&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x56FE;" class="headerlink" title="&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x56FE;"></a>&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x56FE;</h3><p><img src="/2016/12/23/booboo_easy_service/00_linux_classroom_env/01-up100.png" alt="up100"></p>
 <hr>
-<h2 id="基础服务简介"><a href="#基础服务简介" class="headerlink" title="基础服务简介"></a>基础服务简介</h2><p>本章将讲解以下内容：</p>
+<h2 id="&#x57FA;&#x7840;&#x670D;&#x52A1;&#x7B80;&#x4ECB;"><a href="#&#x57FA;&#x7840;&#x670D;&#x52A1;&#x7B80;&#x4ECB;" class="headerlink" title="&#x57FA;&#x7840;&#x670D;&#x52A1;&#x7B80;&#x4ECB;"></a>&#x57FA;&#x7840;&#x670D;&#x52A1;&#x7B80;&#x4ECB;</h2><p>&#x672C;&#x7AE0;&#x5C06;&#x8BB2;&#x89E3;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
 <ul>
-<li>RHEL6 中Linux系统服务的基础知识、System V与Xinetd的概念，以及通过 servcie 命令来启动某一服务，通过 chkconfig 命令来设置服务是否开机启动</li>
-<li>RHEL7 中 已经替换掉 System V init，并正式采用全新的初始化进程 Systemd，以及通过systemctl 命令来启动某一服务和设置该服务是否开机启动</li>
+<li>RHEL6 &#x4E2D;Linux&#x7CFB;&#x7EDF;&#x670D;&#x52A1;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#x3001;System V&#x4E0E;Xinetd&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x4EE5;&#x53CA;&#x901A;&#x8FC7; servcie &#x547D;&#x4EE4;&#x6765;&#x542F;&#x52A8;&#x67D0;&#x4E00;&#x670D;&#x52A1;&#xFF0C;&#x901A;&#x8FC7; chkconfig &#x547D;&#x4EE4;&#x6765;&#x8BBE;&#x7F6E;&#x670D;&#x52A1;&#x662F;&#x5426;&#x5F00;&#x673A;&#x542F;&#x52A8;</li>
+<li>RHEL7 &#x4E2D; &#x5DF2;&#x7ECF;&#x66FF;&#x6362;&#x6389; System V init&#xFF0C;&#x5E76;&#x6B63;&#x5F0F;&#x91C7;&#x7528;&#x5168;&#x65B0;&#x7684;&#x521D;&#x59CB;&#x5316;&#x8FDB;&#x7A0B; Systemd&#xFF0C;&#x4EE5;&#x53CA;&#x901A;&#x8FC7;systemctl &#x547D;&#x4EE4;&#x6765;&#x542F;&#x52A8;&#x67D0;&#x4E00;&#x670D;&#x52A1;&#x548C;&#x8BBE;&#x7F6E;&#x8BE5;&#x670D;&#x52A1;&#x662F;&#x5426;&#x5F00;&#x673A;&#x542F;&#x52A8;</li>
 </ul>
 <blockquote>
-<p>重点简介rhel6，rhel7只做命令的介绍，具体内容请参考《systemd说明》</p>
+<p>&#x91CD;&#x70B9;&#x7B80;&#x4ECB;rhel6&#xFF0C;rhel7&#x53EA;&#x505A;&#x547D;&#x4EE4;&#x7684;&#x4ECB;&#x7ECD;&#xFF0C;&#x5177;&#x4F53;&#x5185;&#x5BB9;&#x8BF7;&#x53C2;&#x8003;&#x300A;systemd&#x8BF4;&#x660E;&#x300B;</p>
 </blockquote>
-<h3 id="系统服务的基本概念"><a href="#系统服务的基本概念" class="headerlink" title="系统服务的基本概念"></a>系统服务的基本概念</h3><p>服务，其实就是运行在操作系统后台的一个或者多个应用程序，为计算机系统或用户提供某项特定的服务。</p>
-<p>在我们的windows操作系统中，其在后台也运行了许许多多的服务。例如我们装的杀毒软件，其在后台运行了许多我们看不见的服务程序，通过这些服务来为用户或者计算机系统来提高特定的功能。</p>
-<p>服务通常是不中断运行的，随时准备接受请求，从而提供某项服务。例如我们日常使用的网页服务，其就是由一个运行在所访问网站的服务器上的httpd服务提供的服务，我们通过在浏览器输入需要访问网站的域名，服务器端的httpd服务就会随时的接收我们发送过来的请求，并响应回给我们的用户。</p>
-<p>我们Linux系统绝大多数服务都是网络服务，例如邮件服务、FTP服务、httpd服务等等，网络服务可以使为其他用户、其他计算机提供特定的服务。</p>
-<h3 id="services-和-daemons"><a href="#services-和-daemons" class="headerlink" title="services 和 daemons"></a>services 和 daemons</h3><table>
+<h3 id="&#x7CFB;&#x7EDF;&#x670D;&#x52A1;&#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;"><a href="#&#x7CFB;&#x7EDF;&#x670D;&#x52A1;&#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x670D;&#x52A1;&#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;"></a>&#x7CFB;&#x7EDF;&#x670D;&#x52A1;&#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;</h3><p>&#x670D;&#x52A1;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x8FD0;&#x884C;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x540E;&#x53F0;&#x7684;&#x4E00;&#x4E2A;&#x6216;&#x8005;&#x591A;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x4E3A;&#x8BA1;&#x7B97;&#x673A;&#x7CFB;&#x7EDF;&#x6216;&#x7528;&#x6237;&#x63D0;&#x4F9B;&#x67D0;&#x9879;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x3002;</p>
+<p>&#x5728;&#x6211;&#x4EEC;&#x7684;windows&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x5176;&#x5728;&#x540E;&#x53F0;&#x4E5F;&#x8FD0;&#x884C;&#x4E86;&#x8BB8;&#x8BB8;&#x591A;&#x591A;&#x7684;&#x670D;&#x52A1;&#x3002;&#x4F8B;&#x5982;&#x6211;&#x4EEC;&#x88C5;&#x7684;&#x6740;&#x6BD2;&#x8F6F;&#x4EF6;&#xFF0C;&#x5176;&#x5728;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#x4E86;&#x8BB8;&#x591A;&#x6211;&#x4EEC;&#x770B;&#x4E0D;&#x89C1;&#x7684;&#x670D;&#x52A1;&#x7A0B;&#x5E8F;&#xFF0C;&#x901A;&#x8FC7;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#x6765;&#x4E3A;&#x7528;&#x6237;&#x6216;&#x8005;&#x8BA1;&#x7B97;&#x673A;&#x7CFB;&#x7EDF;&#x6765;&#x63D0;&#x9AD8;&#x7279;&#x5B9A;&#x7684;&#x529F;&#x80FD;&#x3002;</p>
+<p>&#x670D;&#x52A1;&#x901A;&#x5E38;&#x662F;&#x4E0D;&#x4E2D;&#x65AD;&#x8FD0;&#x884C;&#x7684;&#xFF0C;&#x968F;&#x65F6;&#x51C6;&#x5907;&#x63A5;&#x53D7;&#x8BF7;&#x6C42;&#xFF0C;&#x4ECE;&#x800C;&#x63D0;&#x4F9B;&#x67D0;&#x9879;&#x670D;&#x52A1;&#x3002;&#x4F8B;&#x5982;&#x6211;&#x4EEC;&#x65E5;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x7F51;&#x9875;&#x670D;&#x52A1;&#xFF0C;&#x5176;&#x5C31;&#x662F;&#x7531;&#x4E00;&#x4E2A;&#x8FD0;&#x884C;&#x5728;&#x6240;&#x8BBF;&#x95EE;&#x7F51;&#x7AD9;&#x7684;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;httpd&#x670D;&#x52A1;&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x8F93;&#x5165;&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x7F51;&#x7AD9;&#x7684;&#x57DF;&#x540D;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7684;httpd&#x670D;&#x52A1;&#x5C31;&#x4F1A;&#x968F;&#x65F6;&#x7684;&#x63A5;&#x6536;&#x6211;&#x4EEC;&#x53D1;&#x9001;&#x8FC7;&#x6765;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x5E76;&#x54CD;&#x5E94;&#x56DE;&#x7ED9;&#x6211;&#x4EEC;&#x7684;&#x7528;&#x6237;&#x3002;</p>
+<p>&#x6211;&#x4EEC;Linux&#x7CFB;&#x7EDF;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x670D;&#x52A1;&#x90FD;&#x662F;&#x7F51;&#x7EDC;&#x670D;&#x52A1;&#xFF0C;&#x4F8B;&#x5982;&#x90AE;&#x4EF6;&#x670D;&#x52A1;&#x3001;FTP&#x670D;&#x52A1;&#x3001;httpd&#x670D;&#x52A1;&#x7B49;&#x7B49;&#xFF0C;&#x7F51;&#x7EDC;&#x670D;&#x52A1;&#x53EF;&#x4EE5;&#x4F7F;&#x4E3A;&#x5176;&#x4ED6;&#x7528;&#x6237;&#x3001;&#x5176;&#x4ED6;&#x8BA1;&#x7B97;&#x673A;&#x63D0;&#x4F9B;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x3002;</p>
+<h3 id="services-&#x548C;-daemons"><a href="#services-&#x548C;-daemons" class="headerlink" title="services &#x548C; daemons"></a>services &#x548C; daemons</h3><table>
 <thead>
 <tr>
-<th align="left">服务名</th>
-<th align="left">守护进程名</th>
+<th align="left">&#x670D;&#x52A1;&#x540D;</th>
+<th align="left">&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x540D;</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -933,340 +261,331 @@
 <td align="left">crond</td>
 </tr>
 </tbody></table>
-<p><strong>服务的分类</strong> 服务名通常有两个，一个这个基于程序的服务名称，我们把它叫做service，比如说ftp服务，samba服务等等。<br>还有一个是基于进程的服务名称，我们通常把它叫做daemon，守护进程，也就是我们使用ps命令时候看到的名称，比如httpd，比如named之类的等等，一般服务的进程名都是程序名称后加上一个d，当然也有不少的特例。之后我们都会一一去说这些服务。</p>
-<h3 id="基于-daemon-分类"><a href="#基于-daemon-分类" class="headerlink" title="基于 daemon 分类"></a>基于 daemon 分类</h3><p>那么根据daemon，也就是守护进程，我们可以把服务分成两类，一类是独立启动的服务，叫做stand alone daemon，我们之后学的服务基本上都是独立启动的服务。另外一种叫做super daemon。我们分开来来说一下这两种服务的特征。</p>
+<p><strong>&#x670D;&#x52A1;&#x7684;&#x5206;&#x7C7B;</strong> &#x670D;&#x52A1;&#x540D;&#x901A;&#x5E38;&#x6709;&#x4E24;&#x4E2A;&#xFF0C;&#x4E00;&#x4E2A;&#x8FD9;&#x4E2A;&#x57FA;&#x4E8E;&#x7A0B;&#x5E8F;&#x7684;&#x670D;&#x52A1;&#x540D;&#x79F0;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x5B83;&#x53EB;&#x505A;service&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;ftp&#x670D;&#x52A1;&#xFF0C;samba&#x670D;&#x52A1;&#x7B49;&#x7B49;&#x3002;<br>&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x662F;&#x57FA;&#x4E8E;&#x8FDB;&#x7A0B;&#x7684;&#x670D;&#x52A1;&#x540D;&#x79F0;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x5E38;&#x628A;&#x5B83;&#x53EB;&#x505A;daemon&#xFF0C;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x4F7F;&#x7528;ps&#x547D;&#x4EE4;&#x65F6;&#x5019;&#x770B;&#x5230;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x6BD4;&#x5982;httpd&#xFF0C;&#x6BD4;&#x5982;named&#x4E4B;&#x7C7B;&#x7684;&#x7B49;&#x7B49;&#xFF0C;&#x4E00;&#x822C;&#x670D;&#x52A1;&#x7684;&#x8FDB;&#x7A0B;&#x540D;&#x90FD;&#x662F;&#x7A0B;&#x5E8F;&#x540D;&#x79F0;&#x540E;&#x52A0;&#x4E0A;&#x4E00;&#x4E2A;d&#xFF0C;&#x5F53;&#x7136;&#x4E5F;&#x6709;&#x4E0D;&#x5C11;&#x7684;&#x7279;&#x4F8B;&#x3002;&#x4E4B;&#x540E;&#x6211;&#x4EEC;&#x90FD;&#x4F1A;&#x4E00;&#x4E00;&#x53BB;&#x8BF4;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#x3002;</p>
+<h3 id="&#x57FA;&#x4E8E;-daemon-&#x5206;&#x7C7B;"><a href="#&#x57FA;&#x4E8E;-daemon-&#x5206;&#x7C7B;" class="headerlink" title="&#x57FA;&#x4E8E; daemon &#x5206;&#x7C7B;"></a>&#x57FA;&#x4E8E; daemon &#x5206;&#x7C7B;</h3><p>&#x90A3;&#x4E48;&#x6839;&#x636E;daemon&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x670D;&#x52A1;&#x5206;&#x6210;&#x4E24;&#x7C7B;&#xFF0C;&#x4E00;&#x7C7B;&#x662F;&#x72EC;&#x7ACB;&#x542F;&#x52A8;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x53EB;&#x505A;stand alone daemon&#xFF0C;&#x6211;&#x4EEC;&#x4E4B;&#x540E;&#x5B66;&#x7684;&#x670D;&#x52A1;&#x57FA;&#x672C;&#x4E0A;&#x90FD;&#x662F;&#x72EC;&#x7ACB;&#x542F;&#x52A8;&#x7684;&#x670D;&#x52A1;&#x3002;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x53EB;&#x505A;super daemon&#x3002;&#x6211;&#x4EEC;&#x5206;&#x5F00;&#x6765;&#x6765;&#x8BF4;&#x4E00;&#x4E0B;&#x8FD9;&#x4E24;&#x79CD;&#x670D;&#x52A1;&#x7684;&#x7279;&#x5F81;&#x3002;</p>
 <ul>
-<li>1&gt; stand alone daemon 独立启动服务</li>
-<li>2&gt; super daemon 超级服务 xinted</li>
+<li>1&gt; stand alone daemon &#x72EC;&#x7ACB;&#x542F;&#x52A8;&#x670D;&#x52A1;</li>
+<li>2&gt; super daemon &#x8D85;&#x7EA7;&#x670D;&#x52A1; xinted</li>
 </ul>
-<h4 id="System-V"><a href="#System-V" class="headerlink" title="System V"></a>System V</h4><p>总的来说，Linux系统通常作为服务器端的操作系统来用的，所以Linux系统提供了许许多的的服务，有些服务需要我们自己来进行配置，这些服务的目的就是为了给我们的计算机、用户提供某项特定的功能。那么对于各种不同的服务，Linux系统是怎么样来统一进行管理的呢？</p>
-<p>在Linux操作系统中，Linux对于服务的管理体系是沿用了System V的服务管理体系，System V原来是早期AT&amp;T的一个操作系统。</p>
-<p>对于Linux系统，System V提供了运行级别的概念，还记得之前一直提到过的Linux的启动运行级别吗？没错，System V一共提供了7种运行级别</p>
-<p>0   关机</p>
-<p>1   单用户模式</p>
-<p>2   不带网络的多用户模式</p>
-<p>3   带网络的多用户模式，纯文本界面</p>
-<p>4   未使用</p>
-<p>5   带网络的多用户模式，图形界面</p>
-<p>6   重启</p>
-<p>对于我们来说，通常使用的是级别3和级别5，每个级别下都有对应的启动、不启动的服务，比如单用户模式下，所有的服务都是不启动，这些都是通过System V这个服务管理体系来决定的</p>
-<p>System V定义了init为系统启动的第一个进程，进程PID=1，这个进程的目的就是去查看 /etc/inittab 中的系统启动级别从而来启动对应的服务</p>
-<p>对于不同的服务，因为其提供该服务的厂家不同，所以这些的服务的启动、关闭机制通常不同，在Linux系统中，为了方便的管理这些服务，每个服务的启动、结束、重启等操作都由一个System V脚本来进行控制，拥有固定的格式。</p>
-<p>对于Linux系统上的服务，这些服务的System V脚本文件都是存放在 /etc/rc.d/init.d 这个目录下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# cd /etc/rc.d/init.d/</span><br><span class="line">[root@rhel6 ~]# ls</span><br><span class="line">abrt-ccpp         firstboot     messagebus      quota_nld    snmptrapd</span><br><span class="line">abrtd             functions     mysqld          rdisc        spice-vdagentd</span><br><span class="line">abrt-oops         haldaemon     netconsole      restorecond  sshd</span><br><span class="line">acpid             halt          netfs           rngd         sssd</span><br><span class="line">atd               htcacheclean  network         rpcbind      sysstat</span><br><span class="line">auditd            httpd         NetworkManager  rpcgssd      udev-post</span><br><span class="line">autofs            ip6tables     nfs             rpcidmapd    vboxadd</span><br><span class="line">blk-availability  iptables      nfslock         rpcsvcgssd   vboxadd-service</span><br><span class="line">bluetooth         irqbalance    ntpd            rsyslog      vboxadd-x11</span><br><span class="line">certmonger        kdump         ntpdate         sandbox      vncserver</span><br><span class="line">cpuspeed          killall       oddjobd         saslauthd    wdaemon</span><br><span class="line">crond             lvm2-lvmetad  portreserve     single       winbind</span><br><span class="line">cups              lvm2-monitor  postfix         smartd       wpa_supplicant</span><br><span class="line">dnsmasq           mdmonitor     psacct          snmpd        ypbind</span><br></pre></td></tr></table></figure>
-
-<p>我们看到在这个目录下，存在了许多纯文本文件，这些文件都是系统每一个服务的System V的脚本文件，对于该脚本文件，我们要启动什么服务，都是通过这些脚本文件来启动的，我们也可以通过编写System V脚本文件来手工创建一个我们自己的由System V来控制的服务。</p>
-<p>对于Linux的所有的这些服务，我们通过 service 这个命令来进行统一的管理</p>
-<p>命令 service 可以调用指定服务的System V脚本，并执行指定的动作</p>
-<p><code>service 服务名 [start | stop | restart | status]</code></p>
-<p>对于Linux系统的这些服务，我们都是通过 service 这个命令去调用该服务对应的System V脚本，并执行其指定的动作</p>
-<p>刚才我们也说到了，System V定义了运行级别的概念，每个运行级别对应有启动、不启动的服务，在 <code>/etc/rc.d</code> 这个目录下，除了我们刚才的 init.d 这个目录，我们还发现还有其它的一些目录，诸如 rc0.d、rc1.d等这些目录就分别对应了系统的7中启动级别，每个目录里面都存放了许多的<br>文件，每个文件对应着一个特定的服务，并标志有是否开机启动以及启动顺序。</p>
-<p>我们发现，在这些目录里面，存放的都是链接文件，不过这每一个链接文件的名字都有着严格的规定。每一个链接文件都由3部分组成</p>
-<p><code>K15httpd -&gt; ../init.d/httpd　　　　S55sshd -&gt; ../init.d/sshd</code></p>
+<h4 id="System-V"><a href="#System-V" class="headerlink" title="System V"></a>System V</h4><p>&#x603B;&#x7684;&#x6765;&#x8BF4;&#xFF0C;Linux&#x7CFB;&#x7EDF;&#x901A;&#x5E38;&#x4F5C;&#x4E3A;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x6765;&#x7528;&#x7684;&#xFF0C;&#x6240;&#x4EE5;Linux&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x4E86;&#x8BB8;&#x8BB8;&#x591A;&#x7684;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x6709;&#x4E9B;&#x670D;&#x52A1;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x6765;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#xFF0C;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#x7684;&#x76EE;&#x7684;&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x7ED9;&#x6211;&#x4EEC;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x3001;&#x7528;&#x6237;&#x63D0;&#x4F9B;&#x67D0;&#x9879;&#x7279;&#x5B9A;&#x7684;&#x529F;&#x80FD;&#x3002;&#x90A3;&#x4E48;&#x5BF9;&#x4E8E;&#x5404;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x670D;&#x52A1;&#xFF0C;Linux&#x7CFB;&#x7EDF;&#x662F;&#x600E;&#x4E48;&#x6837;&#x6765;&#x7EDF;&#x4E00;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#x7684;&#x5462;&#xFF1F;</p>
+<p>&#x5728;Linux&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;Linux&#x5BF9;&#x4E8E;&#x670D;&#x52A1;&#x7684;&#x7BA1;&#x7406;&#x4F53;&#x7CFB;&#x662F;&#x6CBF;&#x7528;&#x4E86;System V&#x7684;&#x670D;&#x52A1;&#x7BA1;&#x7406;&#x4F53;&#x7CFB;&#xFF0C;System V&#x539F;&#x6765;&#x662F;&#x65E9;&#x671F;AT&amp;T&#x7684;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;Linux&#x7CFB;&#x7EDF;&#xFF0C;System V&#x63D0;&#x4F9B;&#x4E86;&#x8FD0;&#x884C;&#x7EA7;&#x522B;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x8FD8;&#x8BB0;&#x5F97;&#x4E4B;&#x524D;&#x4E00;&#x76F4;&#x63D0;&#x5230;&#x8FC7;&#x7684;Linux&#x7684;&#x542F;&#x52A8;&#x8FD0;&#x884C;&#x7EA7;&#x522B;&#x5417;&#xFF1F;&#x6CA1;&#x9519;&#xFF0C;System V&#x4E00;&#x5171;&#x63D0;&#x4F9B;&#x4E86;7&#x79CD;&#x8FD0;&#x884C;&#x7EA7;&#x522B;</p>
+<p>0   &#x5173;&#x673A;</p>
+<p>1   &#x5355;&#x7528;&#x6237;&#x6A21;&#x5F0F;</p>
+<p>2   &#x4E0D;&#x5E26;&#x7F51;&#x7EDC;&#x7684;&#x591A;&#x7528;&#x6237;&#x6A21;&#x5F0F;</p>
+<p>3   &#x5E26;&#x7F51;&#x7EDC;&#x7684;&#x591A;&#x7528;&#x6237;&#x6A21;&#x5F0F;&#xFF0C;&#x7EAF;&#x6587;&#x672C;&#x754C;&#x9762;</p>
+<p>4   &#x672A;&#x4F7F;&#x7528;</p>
+<p>5   &#x5E26;&#x7F51;&#x7EDC;&#x7684;&#x591A;&#x7528;&#x6237;&#x6A21;&#x5F0F;&#xFF0C;&#x56FE;&#x5F62;&#x754C;&#x9762;</p>
+<p>6   &#x91CD;&#x542F;</p>
+<p>&#x5BF9;&#x4E8E;&#x6211;&#x4EEC;&#x6765;&#x8BF4;&#xFF0C;&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x7EA7;&#x522B;3&#x548C;&#x7EA7;&#x522B;5&#xFF0C;&#x6BCF;&#x4E2A;&#x7EA7;&#x522B;&#x4E0B;&#x90FD;&#x6709;&#x5BF9;&#x5E94;&#x7684;&#x542F;&#x52A8;&#x3001;&#x4E0D;&#x542F;&#x52A8;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x6BD4;&#x5982;&#x5355;&#x7528;&#x6237;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x670D;&#x52A1;&#x90FD;&#x662F;&#x4E0D;&#x542F;&#x52A8;&#xFF0C;&#x8FD9;&#x4E9B;&#x90FD;&#x662F;&#x901A;&#x8FC7;System V&#x8FD9;&#x4E2A;&#x670D;&#x52A1;&#x7BA1;&#x7406;&#x4F53;&#x7CFB;&#x6765;&#x51B3;&#x5B9A;&#x7684;</p>
+<p>System V&#x5B9A;&#x4E49;&#x4E86;init&#x4E3A;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#xFF0C;&#x8FDB;&#x7A0B;PID=1&#xFF0C;&#x8FD9;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x76EE;&#x7684;&#x5C31;&#x662F;&#x53BB;&#x67E5;&#x770B; /etc/inittab &#x4E2D;&#x7684;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x7EA7;&#x522B;&#x4ECE;&#x800C;&#x6765;&#x542F;&#x52A8;&#x5BF9;&#x5E94;&#x7684;&#x670D;&#x52A1;</p>
+<p>&#x5BF9;&#x4E8E;&#x4E0D;&#x540C;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x56E0;&#x4E3A;&#x5176;&#x63D0;&#x4F9B;&#x8BE5;&#x670D;&#x52A1;&#x7684;&#x5382;&#x5BB6;&#x4E0D;&#x540C;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x4E9B;&#x7684;&#x670D;&#x52A1;&#x7684;&#x542F;&#x52A8;&#x3001;&#x5173;&#x95ED;&#x673A;&#x5236;&#x901A;&#x5E38;&#x4E0D;&#x540C;&#xFF0C;&#x5728;Linux&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x7684;&#x7BA1;&#x7406;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#xFF0C;&#x6BCF;&#x4E2A;&#x670D;&#x52A1;&#x7684;&#x542F;&#x52A8;&#x3001;&#x7ED3;&#x675F;&#x3001;&#x91CD;&#x542F;&#x7B49;&#x64CD;&#x4F5C;&#x90FD;&#x7531;&#x4E00;&#x4E2A;System V&#x811A;&#x672C;&#x6765;&#x8FDB;&#x884C;&#x63A7;&#x5236;&#xFF0C;&#x62E5;&#x6709;&#x56FA;&#x5B9A;&#x7684;&#x683C;&#x5F0F;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;Linux&#x7CFB;&#x7EDF;&#x4E0A;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#x7684;System V&#x811A;&#x672C;&#x6587;&#x4EF6;&#x90FD;&#x662F;&#x5B58;&#x653E;&#x5728; /etc/rc.d/init.d &#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;</p>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel6 ~]# cd /etc/rc.d/init.d/</span><br><span class="line">[root@rhel6 ~]# ls</span><br><span class="line">abrt-ccpp         firstboot     messagebus      quota_nld    snmptrapd</span><br><span class="line">abrtd             functions     mysqld          rdisc        spice-vdagentd</span><br><span class="line">abrt-oops         haldaemon     netconsole      restorecond  sshd</span><br><span class="line">acpid             halt          netfs           rngd         sssd</span><br><span class="line">atd               htcacheclean  network         rpcbind      sysstat</span><br><span class="line">auditd            httpd         NetworkManager  rpcgssd      udev-post</span><br><span class="line">autofs            ip6tables     nfs             rpcidmapd    vboxadd</span><br><span class="line">blk-availability  iptables      nfslock         rpcsvcgssd   vboxadd-service</span><br><span class="line">bluetooth         irqbalance    ntpd            rsyslog      vboxadd-x11</span><br><span class="line">certmonger        kdump         ntpdate         sandbox      vncserver</span><br><span class="line">cpuspeed          killall       oddjobd         saslauthd    wdaemon</span><br><span class="line">crond             lvm2-lvmetad  portreserve     single       winbind</span><br><span class="line">cups              lvm2-monitor  postfix         smartd       wpa_supplicant</span><br><span class="line">dnsmasq           mdmonitor     psacct          snmpd        ypbind</span><br></pre></td></tr></table></figure></p>
+<p>&#x6211;&#x4EEC;&#x770B;&#x5230;&#x5728;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x5B58;&#x5728;&#x4E86;&#x8BB8;&#x591A;&#x7EAF;&#x6587;&#x672C;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x90FD;&#x662F;&#x7CFB;&#x7EDF;&#x6BCF;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x7684;System V&#x7684;&#x811A;&#x672C;&#x6587;&#x4EF6;&#xFF0C;&#x5BF9;&#x4E8E;&#x8BE5;&#x811A;&#x672C;&#x6587;&#x4EF6;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x542F;&#x52A8;&#x4EC0;&#x4E48;&#x670D;&#x52A1;&#xFF0C;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x8FD9;&#x4E9B;&#x811A;&#x672C;&#x6587;&#x4EF6;&#x6765;&#x542F;&#x52A8;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7F16;&#x5199;System V&#x811A;&#x672C;&#x6587;&#x4EF6;&#x6765;&#x624B;&#x5DE5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x7684;&#x7531;System V&#x6765;&#x63A7;&#x5236;&#x7684;&#x670D;&#x52A1;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;Linux&#x7684;&#x6240;&#x6709;&#x7684;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x8FC7; service &#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x6765;&#x8FDB;&#x884C;&#x7EDF;&#x4E00;&#x7684;&#x7BA1;&#x7406;</p>
+<p>&#x547D;&#x4EE4; service &#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x6307;&#x5B9A;&#x670D;&#x52A1;&#x7684;System V&#x811A;&#x672C;&#xFF0C;&#x5E76;&#x6267;&#x884C;&#x6307;&#x5B9A;&#x7684;&#x52A8;&#x4F5C;</p>
+<p><code>service &#x670D;&#x52A1;&#x540D; [start | stop | restart | status]</code></p>
+<p>&#x5BF9;&#x4E8E;Linux&#x7CFB;&#x7EDF;&#x7684;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#xFF0C;&#x6211;&#x4EEC;&#x90FD;&#x662F;&#x901A;&#x8FC7; service &#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x53BB;&#x8C03;&#x7528;&#x8BE5;&#x670D;&#x52A1;&#x5BF9;&#x5E94;&#x7684;System V&#x811A;&#x672C;&#xFF0C;&#x5E76;&#x6267;&#x884C;&#x5176;&#x6307;&#x5B9A;&#x7684;&#x52A8;&#x4F5C;</p>
+<p>&#x521A;&#x624D;&#x6211;&#x4EEC;&#x4E5F;&#x8BF4;&#x5230;&#x4E86;&#xFF0C;System V&#x5B9A;&#x4E49;&#x4E86;&#x8FD0;&#x884C;&#x7EA7;&#x522B;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x6BCF;&#x4E2A;&#x8FD0;&#x884C;&#x7EA7;&#x522B;&#x5BF9;&#x5E94;&#x6709;&#x542F;&#x52A8;&#x3001;&#x4E0D;&#x542F;&#x52A8;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x5728; <code>/etc/rc.d</code> &#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x9664;&#x4E86;&#x6211;&#x4EEC;&#x521A;&#x624D;&#x7684; init.d &#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x53D1;&#x73B0;&#x8FD8;&#x6709;&#x5176;&#x5B83;&#x7684;&#x4E00;&#x4E9B;&#x76EE;&#x5F55;&#xFF0C;&#x8BF8;&#x5982; rc0.d&#x3001;rc1.d&#x7B49;&#x8FD9;&#x4E9B;&#x76EE;&#x5F55;&#x5C31;&#x5206;&#x522B;&#x5BF9;&#x5E94;&#x4E86;&#x7CFB;&#x7EDF;&#x7684;7&#x4E2D;&#x542F;&#x52A8;&#x7EA7;&#x522B;&#xFF0C;&#x6BCF;&#x4E2A;&#x76EE;&#x5F55;&#x91CC;&#x9762;&#x90FD;&#x5B58;&#x653E;&#x4E86;&#x8BB8;&#x591A;&#x7684;<br>&#x6587;&#x4EF6;&#xFF0C;&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x5BF9;&#x5E94;&#x7740;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x5E76;&#x6807;&#x5FD7;&#x6709;&#x662F;&#x5426;&#x5F00;&#x673A;&#x542F;&#x52A8;&#x4EE5;&#x53CA;&#x542F;&#x52A8;&#x987A;&#x5E8F;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#xFF0C;&#x5728;&#x8FD9;&#x4E9B;&#x76EE;&#x5F55;&#x91CC;&#x9762;&#xFF0C;&#x5B58;&#x653E;&#x7684;&#x90FD;&#x662F;&#x94FE;&#x63A5;&#x6587;&#x4EF6;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x6BCF;&#x4E00;&#x4E2A;&#x94FE;&#x63A5;&#x6587;&#x4EF6;&#x7684;&#x540D;&#x5B57;&#x90FD;&#x6709;&#x7740;&#x4E25;&#x683C;&#x7684;&#x89C4;&#x5B9A;&#x3002;&#x6BCF;&#x4E00;&#x4E2A;&#x94FE;&#x63A5;&#x6587;&#x4EF6;&#x90FD;&#x7531;3&#x90E8;&#x5206;&#x7EC4;&#x6210;</p>
+<p><code>K15httpd -&gt; ../init.d/httpd&#x3000;&#x3000;&#x3000;&#x3000;S55sshd -&gt; ../init.d/sshd</code></p>
 <ul>
-<li>①第一个部分是第一个字母K或者S，表示该服务是不是是不是开机自动启动，K表示开机不启动，S表示开机就启动</li>
-<li>②第二个部分是一个数字，这个数字代表的是该服务的启动顺序，服务启动的顺序非常的重要，例如我们的网络服务需要在邮件服务之前启动</li>
-<li>③第三个部分就是对应服务的名字，该链接文件其实都是指向的是 init.d 这个目录下的System V脚本文件</li>
+<li>&#x2460;&#x7B2C;&#x4E00;&#x4E2A;&#x90E8;&#x5206;&#x662F;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x6BCD;K&#x6216;&#x8005;S&#xFF0C;&#x8868;&#x793A;&#x8BE5;&#x670D;&#x52A1;&#x662F;&#x4E0D;&#x662F;&#x662F;&#x4E0D;&#x662F;&#x5F00;&#x673A;&#x81EA;&#x52A8;&#x542F;&#x52A8;&#xFF0C;K&#x8868;&#x793A;&#x5F00;&#x673A;&#x4E0D;&#x542F;&#x52A8;&#xFF0C;S&#x8868;&#x793A;&#x5F00;&#x673A;&#x5C31;&#x542F;&#x52A8;</li>
+<li>&#x2461;&#x7B2C;&#x4E8C;&#x4E2A;&#x90E8;&#x5206;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x8FD9;&#x4E2A;&#x6570;&#x5B57;&#x4EE3;&#x8868;&#x7684;&#x662F;&#x8BE5;&#x670D;&#x52A1;&#x7684;&#x542F;&#x52A8;&#x987A;&#x5E8F;&#xFF0C;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x7684;&#x987A;&#x5E8F;&#x975E;&#x5E38;&#x7684;&#x91CD;&#x8981;&#xFF0C;&#x4F8B;&#x5982;&#x6211;&#x4EEC;&#x7684;&#x7F51;&#x7EDC;&#x670D;&#x52A1;&#x9700;&#x8981;&#x5728;&#x90AE;&#x4EF6;&#x670D;&#x52A1;&#x4E4B;&#x524D;&#x542F;&#x52A8;</li>
+<li>&#x2462;&#x7B2C;&#x4E09;&#x4E2A;&#x90E8;&#x5206;&#x5C31;&#x662F;&#x5BF9;&#x5E94;&#x670D;&#x52A1;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x8BE5;&#x94FE;&#x63A5;&#x6587;&#x4EF6;&#x5176;&#x5B9E;&#x90FD;&#x662F;&#x6307;&#x5411;&#x7684;&#x662F; init.d &#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x7684;System V&#x811A;&#x672C;&#x6587;&#x4EF6;</li>
 </ul>
-<p>我们如果希望某服务开机就启动，可以通过修改 rc5.d 目录下的链接文件，不过这样做很麻烦，Linux系统提供了一个 <code>chkconfig</code> 命令可以来设置服务是否开机启动</p>
-<p>我们通过 <code>chkconfig --list</code> 命令来查看所有服务的开机启动情况</p>
-<p>比如我们需要设置 network 服务开启自动启动，可以使用 <code>chkconfig httpd on</code> 命令即可</p>
-<p>比如我们需要设置 network 服务开启不启动，可以使用 <code>chkconfig httpd off</code> 命令即可</p>
-<h4 id="xinetd"><a href="#xinetd" class="headerlink" title="xinetd"></a>xinetd</h4><p>其实对于上面通过 System V来管理的一些服务都属于Linux系统的常驻运行的服务，其实在Linux系统中还有许多不常驻的一些服务，例如 telnet、rsync服务，这些服务则是通过 xinetd 这个服务来进行管理的。</p>
-<p>xinetd 控制的就是那些不常驻的服务，功能较为简单的服务</p>
-<p>xinetd其实自己本身就是作为一个系统的常驻的服务运行在后台，而xinetd所控制的服务在没有连接请求的时候是不运行的，所有xinetd控制的服务的连接请求都会提交给xinetd来进行代理</p>
-<p>xinetd在收到一个请求后，会根据请求的协议及服务启动相应的服务进程，进程处理完后请求就会结束</p>
-<p>xinetd本身就是一个系统服务，通过 System V来对其进行管理，在CentOS6/RHEL6中，xinetd服务默认是没有安装的，我们若要使用该服务，首先需要安装它<code>yum install xinetd</code></p>
-<p>在我们安装好我们的<code>xinetd</code>服务以后，我们这时再通过 <code>chkconfig --list</code> 命令来查看所有的服务启动设置</p>
-<p>我们看到，在安装了xinetd服务以后，其下面出现了一些其他的服务选项，例如<code>rsync</code>，<code>chargen-dgram</code>等这些服务，这些服务都是系统的一些不常驻服务，都是通过xinetd这个服务来对其进行管理的</p>
-<p><code>xinetd</code>服务的配置文件是 <code>/etc/xinetd.conf</code></p>
-<h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><ul>
-<li>查看 <code>netstat -luntp</code></li>
-<li>软件名    <code>net-tools</code></li>
+<p>&#x6211;&#x4EEC;&#x5982;&#x679C;&#x5E0C;&#x671B;&#x67D0;&#x670D;&#x52A1;&#x5F00;&#x673A;&#x5C31;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4FEE;&#x6539; rc5.d &#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x94FE;&#x63A5;&#x6587;&#x4EF6;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x6837;&#x505A;&#x5F88;&#x9EBB;&#x70E6;&#xFF0C;Linux&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A; <code>chkconfig</code> &#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x6765;&#x8BBE;&#x7F6E;&#x670D;&#x52A1;&#x662F;&#x5426;&#x5F00;&#x673A;&#x542F;&#x52A8;</p>
+<p>&#x6211;&#x4EEC;&#x901A;&#x8FC7; <code>chkconfig --list</code> &#x547D;&#x4EE4;&#x6765;&#x67E5;&#x770B;&#x6240;&#x6709;&#x670D;&#x52A1;&#x7684;&#x5F00;&#x673A;&#x542F;&#x52A8;&#x60C5;&#x51B5;</p>
+<p>&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8BBE;&#x7F6E; network &#x670D;&#x52A1;&#x5F00;&#x542F;&#x81EA;&#x52A8;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>chkconfig httpd on</code> &#x547D;&#x4EE4;&#x5373;&#x53EF;</p>
+<p>&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8BBE;&#x7F6E; network &#x670D;&#x52A1;&#x5F00;&#x542F;&#x4E0D;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>chkconfig httpd off</code> &#x547D;&#x4EE4;&#x5373;&#x53EF;</p>
+<h4 id="xinetd"><a href="#xinetd" class="headerlink" title="xinetd"></a>xinetd</h4><p>&#x5176;&#x5B9E;&#x5BF9;&#x4E8E;&#x4E0A;&#x9762;&#x901A;&#x8FC7; System V&#x6765;&#x7BA1;&#x7406;&#x7684;&#x4E00;&#x4E9B;&#x670D;&#x52A1;&#x90FD;&#x5C5E;&#x4E8E;Linux&#x7CFB;&#x7EDF;&#x7684;&#x5E38;&#x9A7B;&#x8FD0;&#x884C;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x5176;&#x5B9E;&#x5728;Linux&#x7CFB;&#x7EDF;&#x4E2D;&#x8FD8;&#x6709;&#x8BB8;&#x591A;&#x4E0D;&#x5E38;&#x9A7B;&#x7684;&#x4E00;&#x4E9B;&#x670D;&#x52A1;&#xFF0C;&#x4F8B;&#x5982; telnet&#x3001;rsync&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#x5219;&#x662F;&#x901A;&#x8FC7; xinetd &#x8FD9;&#x4E2A;&#x670D;&#x52A1;&#x6765;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#x7684;&#x3002;</p>
+<p>xinetd &#x63A7;&#x5236;&#x7684;&#x5C31;&#x662F;&#x90A3;&#x4E9B;&#x4E0D;&#x5E38;&#x9A7B;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x529F;&#x80FD;&#x8F83;&#x4E3A;&#x7B80;&#x5355;&#x7684;&#x670D;&#x52A1;</p>
+<p>xinetd&#x5176;&#x5B9E;&#x81EA;&#x5DF1;&#x672C;&#x8EAB;&#x5C31;&#x662F;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x7CFB;&#x7EDF;&#x7684;&#x5E38;&#x9A7B;&#x7684;&#x670D;&#x52A1;&#x8FD0;&#x884C;&#x5728;&#x540E;&#x53F0;&#xFF0C;&#x800C;xinetd&#x6240;&#x63A7;&#x5236;&#x7684;&#x670D;&#x52A1;&#x5728;&#x6CA1;&#x6709;&#x8FDE;&#x63A5;&#x8BF7;&#x6C42;&#x7684;&#x65F6;&#x5019;&#x662F;&#x4E0D;&#x8FD0;&#x884C;&#x7684;&#xFF0C;&#x6240;&#x6709;xinetd&#x63A7;&#x5236;&#x7684;&#x670D;&#x52A1;&#x7684;&#x8FDE;&#x63A5;&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x63D0;&#x4EA4;&#x7ED9;xinetd&#x6765;&#x8FDB;&#x884C;&#x4EE3;&#x7406;</p>
+<p>xinetd&#x5728;&#x6536;&#x5230;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x540E;&#xFF0C;&#x4F1A;&#x6839;&#x636E;&#x8BF7;&#x6C42;&#x7684;&#x534F;&#x8BAE;&#x53CA;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x76F8;&#x5E94;&#x7684;&#x670D;&#x52A1;&#x8FDB;&#x7A0B;&#xFF0C;&#x8FDB;&#x7A0B;&#x5904;&#x7406;&#x5B8C;&#x540E;&#x8BF7;&#x6C42;&#x5C31;&#x4F1A;&#x7ED3;&#x675F;</p>
+<p>xinetd&#x672C;&#x8EAB;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x7CFB;&#x7EDF;&#x670D;&#x52A1;&#xFF0C;&#x901A;&#x8FC7; System V&#x6765;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#xFF0C;&#x5728;CentOS6/RHEL6&#x4E2D;&#xFF0C;xinetd&#x670D;&#x52A1;&#x9ED8;&#x8BA4;&#x662F;&#x6CA1;&#x6709;&#x5B89;&#x88C5;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x82E5;&#x8981;&#x4F7F;&#x7528;&#x8BE5;&#x670D;&#x52A1;&#xFF0C;&#x9996;&#x5148;&#x9700;&#x8981;&#x5B89;&#x88C5;&#x5B83;<code>yum install xinetd</code></p>
+<p>&#x5728;&#x6211;&#x4EEC;&#x5B89;&#x88C5;&#x597D;&#x6211;&#x4EEC;&#x7684;<code>xinetd</code>&#x670D;&#x52A1;&#x4EE5;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x8FD9;&#x65F6;&#x518D;&#x901A;&#x8FC7; <code>chkconfig --list</code> &#x547D;&#x4EE4;&#x6765;&#x67E5;&#x770B;&#x6240;&#x6709;&#x7684;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x8BBE;&#x7F6E;</p>
+<p>&#x6211;&#x4EEC;&#x770B;&#x5230;&#xFF0C;&#x5728;&#x5B89;&#x88C5;&#x4E86;xinetd&#x670D;&#x52A1;&#x4EE5;&#x540E;&#xFF0C;&#x5176;&#x4E0B;&#x9762;&#x51FA;&#x73B0;&#x4E86;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x7684;&#x670D;&#x52A1;&#x9009;&#x9879;&#xFF0C;&#x4F8B;&#x5982;<code>rsync</code>&#xFF0C;<code>chargen-dgram</code>&#x7B49;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#x90FD;&#x662F;&#x7CFB;&#x7EDF;&#x7684;&#x4E00;&#x4E9B;&#x4E0D;&#x5E38;&#x9A7B;&#x670D;&#x52A1;&#xFF0C;&#x90FD;&#x662F;&#x901A;&#x8FC7;xinetd&#x8FD9;&#x4E2A;&#x670D;&#x52A1;&#x6765;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#x7684;</p>
+<p><code>xinetd</code>&#x670D;&#x52A1;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x662F; <code>/etc/xinetd.conf</code></p>
+<h3 id="&#x7AEF;&#x53E3;&#x53F7;"><a href="#&#x7AEF;&#x53E3;&#x53F7;" class="headerlink" title="&#x7AEF;&#x53E3;&#x53F7;"></a>&#x7AEF;&#x53E3;&#x53F7;</h3><ul>
+<li>&#x67E5;&#x770B; <code>netstat -luntp</code></li>
+<li>&#x8F6F;&#x4EF6;&#x540D;    <code>net-tools</code></li>
 </ul>
-<h3 id="基础服务总结"><a href="#基础服务总结" class="headerlink" title="基础服务总结"></a>基础服务总结</h3><p><strong>RHEL 6</strong></p>
-<p>服务的启动 停止 重启 状态    <code>service 服务名 [start | stop | restart | status]</code></p>
-<p>服务开机启动状态        <code>chkconfig --list</code></p>
-<p>设置服务开机启动        <code>chkconfig 服务名 on</code></p>
-<p>设置服务开机不启动        <code>chkconfig 服务名 off</code></p>
+<h3 id="&#x57FA;&#x7840;&#x670D;&#x52A1;&#x603B;&#x7ED3;"><a href="#&#x57FA;&#x7840;&#x670D;&#x52A1;&#x603B;&#x7ED3;" class="headerlink" title="&#x57FA;&#x7840;&#x670D;&#x52A1;&#x603B;&#x7ED3;"></a>&#x57FA;&#x7840;&#x670D;&#x52A1;&#x603B;&#x7ED3;</h3><p><strong>RHEL 6</strong></p>
+<p>&#x670D;&#x52A1;&#x7684;&#x542F;&#x52A8; &#x505C;&#x6B62; &#x91CD;&#x542F; &#x72B6;&#x6001;    <code>service &#x670D;&#x52A1;&#x540D; [start | stop | restart | status]</code></p>
+<p>&#x670D;&#x52A1;&#x5F00;&#x673A;&#x542F;&#x52A8;&#x72B6;&#x6001;        <code>chkconfig --list</code></p>
+<p>&#x8BBE;&#x7F6E;&#x670D;&#x52A1;&#x5F00;&#x673A;&#x542F;&#x52A8;        <code>chkconfig &#x670D;&#x52A1;&#x540D; on</code></p>
+<p>&#x8BBE;&#x7F6E;&#x670D;&#x52A1;&#x5F00;&#x673A;&#x4E0D;&#x542F;&#x52A8;        <code>chkconfig &#x670D;&#x52A1;&#x540D; off</code></p>
 <p><strong>RHEL 7</strong></p>
-<p>服务的启动 停止 重启 状态    <code>systemctl [start | stop | restart | status] 服务名</code></p>
-<p>设置服务开机启动        <code>systemctl enable 服务名</code></p>
-<p>设置服务开机不启动        <code>systemctl disable 服务名</code></p>
+<p>&#x670D;&#x52A1;&#x7684;&#x542F;&#x52A8; &#x505C;&#x6B62; &#x91CD;&#x542F; &#x72B6;&#x6001;    <code>systemctl [start | stop | restart | status] &#x670D;&#x52A1;&#x540D;</code></p>
+<p>&#x8BBE;&#x7F6E;&#x670D;&#x52A1;&#x5F00;&#x673A;&#x542F;&#x52A8;        <code>systemctl enable &#x670D;&#x52A1;&#x540D;</code></p>
+<p>&#x8BBE;&#x7F6E;&#x670D;&#x52A1;&#x5F00;&#x673A;&#x4E0D;&#x542F;&#x52A8;        <code>systemctl disable &#x670D;&#x52A1;&#x540D;</code></p>
 
-      
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    
     </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%9F%B9%E8%AE%AD/">#培训</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Linux%E5%9F%BA%E7%A1%80%E6%9C%8D%E5%8A%A1/">#Linux基础服务</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/">LINUX Shell Scripts 第五课 各种括号的作用</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2016/12/23/booboo_easy_service/02_ftp/">FTP文件共享服务</a>
+            
+        </span>
+    </div>
+    
 </article>
 
 
-<p>
-    <a  class="dashang" onclick="dashangToggle()">赏</a>
-</p>
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5e7f26910c743700190536a1&amp;product=inline-share-buttons&amp;cms=sop&#39; async=&#39;async&#39;' async='async'></script>
 
-
-<div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>LINUX 基础服务课程环境使用说明</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">3.1k</span></p>
-    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
-    <p><span class="copy-title">发布时间:</span>2016-12-22, 21:06:27</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-24, 05:02:31</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/" title="LINUX 基础服务课程环境使用说明">http://www.toberoot.com/2016/12/23/booboo_easy_service/00_linux_classroom_env/</a>
-    <p>
-        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-    </p>
 </div>
 
 
 
-    <div id="comments"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script type="text/javascript">
-    $.getScript('/js/gitalk.js', function () {
-        var gitalk = new Gitalk({
-            clientID: 'af999a0c30ad557db57d',
-            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
-            repo: 'booboowei.github.io',
-            owner: 'booboowei',
-            admin: ['booboowei'],
-            id: decodeURI(location.pathname),
-            distractionFreeMode: 'true',
-            language: 'zh-CN',
-            perPage: parseInt('10',10)
-        })
-        gitalk.render('comments')
-    })
+<div class="comments">
+    <h3 class="title is-4">Kommentare</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2016/12/23/booboo_easy_service/00_linux_classroom_env/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
 </script>
 
-
-
-
-    
-
-
-
-
-    </div>
-    <div class="copyright">
-        <p class="footer-entry">©2018-2020 BoobooWei</p>
-<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
-
-    </div>
-    <div class="full-toc">
-        <button class="full"><span class="min "></span></button>
-<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
-<div class="post-toc"><span class="post-toc-title">目录</span>
-    <div class="post-toc-content">
-
-    </div>
 </div>
-<a class="" id="rocket" ></a>
 
     </div>
-</div>
-<div class="acParent"></div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
 
-<div class="hide_box" onclick="dashangToggle()"></div>
-<div class="shang_box">
-    <a class="shang_close"  onclick="dashangToggle()">×</a>
-    <div class="shang_tit">
-        <p>喜欢就点赞,疼爱就打赏</p>
-    </div>
-    <div class="shang_payimg">
-        <div class="pay_img">
-            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
-            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
         </div>
     </div>
-    <div class="shang_payselect">
-        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
-    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
-
-
-</body>
-<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
-
-<script src="/js/script.js?v=1.0.1" ></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
 <script>
-    var img_resize = 'default';
-    /*作者、标签的自动补全*/
-    $(function () {
-        $('.search').AutoComplete({
-            'data': ['#宝宝成长','#培训','#LinuxShell脚本','#Linux基础服务','#Linux','#MySQL基础管理','#python','#数据救援','#hexo','#SQL优化','#锁故障','#RDS','#主从同步',],
-            'itemHeight': 20,
-            'width': 418
-        }).AutoComplete('show');
-    })
-    function initArticle() {
-        /*渲染对应的表格样式*/
-        
-
-        /*渲染打赏样式*/
-        
-        $("input[name=pay]").on("click", function () {
-            if($("input[name=pay]:checked").val()=="weixin"){
-                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
-            } else {
-                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
-            }
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
         })
-        
-
-        /*高亮代码块行号*/
-        
-
-        /*访问数量*/
-        
-        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
-        
-
-        /*代码高亮，行号对齐*/
-        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
-
-        
-        
-        /* 渲染*/
-        function HTMLDecode(text) {
-            var temp = document.createElement("div");
-            temp.innerHTML = text;
-            var output = temp.innerText || temp.textContent;
-            temp = null;
-            return output;
-        }
-        if (window.mermaid){
-            window.mermaid = null
-        }
-        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
-            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
-            if (window.mermaid) {
-                mermaid.initialize(mermaidOptions)
-                mermaid.contentLoaded()
-            }
-        })
-        
-    }
-
-    /*打赏页面隐藏与展示*/
-    
-    function dashangToggle() {
-        $(".shang_box").fadeToggle();
-        $(".hide_box").fadeToggle();
-    }
-    
-
+    });
 </script>
 
-<!--加入行号的高亮代码块样式-->
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
 
-<!--自定义样式设置-->
-<style>
+
     
     
-    .nav {
-        width: 622px;
-    }
-    .nav.fullscreen {
-        margin-left: -622px;
-    }
-    .nav-left {
-        width: 200px;
-    }
-    
-    
-    @media screen and (max-width: 1468px) {
-        .nav {
-            width: 492px;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
         }
-        .nav.fullscreen {
-            margin-left: -492px;
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
         }
-        .nav-left {
-            width: 100px;
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-    }
-    
-    
-    @media screen and (max-width: 1024px) {
-        .nav {
-            width: 492px;
-            margin-left: -492px
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
         }
-        .nav.fullscreen {
-            margin-left: 0;
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
         }
-        .nav .hide-list.fullscreen {
-            left: 492px
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
         }
-    }
-    
-    @media screen and (max-width: 426px) {
-        .nav {
-            width: 100%;
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
         }
-        .nav-left {
-            width: 100%;
-        }
-    }
-    
-    
-    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
-        color: #383636;
-    }
-    
-    
-    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
-        color: #5e5e5f;
-    }
-    
-    
-    .nav-right nav a.hover, #local-search-result a.hover{
-        background-color: #e2e0e0;
-    }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
     
     
 
-    /*列表样式*/
-    
-
-    /* 背景图样式 */
-    
     
 
 
-    /*引用块样式*/
-    
 
-    /*文章列表背景图*/
-    
-    .nav-right:before {
-        content: ' ';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.2;
-        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
-        background-repeat: no-repeat;
-        background-position: 50% 0;
-        -ms-background-size: cover;
-        -o-background-size: cover;
-        -moz-background-size: cover;
-        -webkit-background-size: cover;
-        background-size: cover;
-    }
-    
+<script src="/js/script.js"></script>
+
 
     
-</style>
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Seiten',
+                CATEGORIES: 'Kategorien',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
 
+<script src="/js/insight.js"></script>
 
-
-
-
-
-
+    
+</body>
 </html>

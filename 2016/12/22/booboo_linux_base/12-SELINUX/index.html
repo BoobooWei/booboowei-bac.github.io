@@ -1,1148 +1,457 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
 <head>
-  <meta charset="utf-8">
-  <title>Linux SELINUX | Amy and Booboo</title>
-  <meta name="keywords" content=" 培训 , Linux ">
-  <meta name="description" content="Linux SELINUX | Amy and Booboo">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Amy and Booboo">
-<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+    <meta charset="utf-8">
+<title>Linux SELINUX - Amy and Booboo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
+
+
+
+
+
+    <meta name="description" content="SELinuxSecurity Enhanced Linux &amp;#x5B89;&amp;#x5168;&amp;#x5F3A;&amp;#x5316;&amp;#x7684; Linux &amp;#x4F5C;&amp;#x7528;&amp;#x5F3A;&amp;#x5236;&amp;#x9650;&amp;#x5236;&amp;#x67D0;&amp;#x4E9B;&amp;#x64CD;&amp;#x4F5C; , &amp;#x5C5E;&amp;#x4E8E;&amp;#x6743;&amp;#x9650;&amp;#x7684">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux SELINUX">
+<meta property="og:url" content="http://www.toberoot.com/2016/12/22/booboo_linux_base/12-SELINUX/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
-<meta property="og:description" content="除了自己的无知，我什么都不懂。－苏格拉底">
-<meta property="article:published_time" content="2020-03-22T14:48:00.876Z">
-<meta property="article:modified_time" content="2020-03-22T14:48:00.875Z">
+<meta property="og:description" content="SELinuxSecurity Enhanced Linux &amp;#x5B89;&amp;#x5168;&amp;#x5F3A;&amp;#x5316;&amp;#x7684; Linux &amp;#x4F5C;&amp;#x7528;&amp;#x5F3A;&amp;#x5236;&amp;#x9650;&amp;#x5236;&amp;#x67D0;&amp;#x4E9B;&amp;#x64CD;&amp;#x4F5C; , &amp;#x5C5E;&amp;#x4E8E;&amp;#x6743;&amp;#x9650;&amp;#x7684">
+<meta property="article:published_time" content="2016-12-21T20:06:27.000Z">
+<meta property="article:modified_time" content="2020-03-23T06:24:25.945Z">
 <meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="培训">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="icon" href="/img/influx.svg">
-
-<link href="/css/style.css?v=1.0.1" rel="stylesheet">
-
-<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
-
-<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
-
-<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script>
-    hljs.initHighlightingOnLoad();
-</script>
-
-<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
 
 
 
-<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+<link rel="icon" href="/favicon.png">
 
-<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
 </head>
-<div style="display: none">
-  <input class="theme_disqus_on" value="false">
-  <input class="theme_preload_comment" value="false">
-  <input class="theme_blog_path" value="">
-</div>
-
 <body>
-<aside class="nav">
-    <div class="nav-left">
-        <a href="/" class="avatar_target">
-    <img class="avatar" src="/img/my.png" />
-</a>
-<div class="author">
-    <span>BoobooWei</span>
-</div>
-
-<div class="icon">
     
-        
-        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-email"></use>
-                </svg>
-            
-        </a>
-        
-    
-</div>
-
-
-
-
-<ul>
-    <li><div class="all active">全部文章<small>(54)</small></div></li>
-    
-        
-            
-            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
                 
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
+                    
+                    <img src="/images/influx.svg" alt="" height="28">
+                    
                 
-            </li>
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
             
-        
-    
-        
+            <a class="navbar-item "
+               href="/archives">Archives</a>
             
-        
-    
-        
+            <a class="navbar-item "
+               href="/categories">Categories</a>
             
-            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(41)</small></div>
+            <a class="navbar-item "
+               href="/tools">Tools</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Suche" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
                 
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="LinuxShell脚本教程">LinuxShell脚本教程<small>(7)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MySQL基础管理教程">MySQL基础管理教程<small>(11)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
+                <i class="fab fa-github"></i>
                 
-            </li>
+            </a>
+               
             
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(7)</small></div>
-                
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="Python">Python<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
-                
-            </li>
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-</ul>
-<div class="left-bottom">
-    <div class="menus">
-    
-    </div>
-    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
-</div>
-<input type="hidden" id="yelog_site_posts_number" value="54">
-<input type="hidden" id="yelog_site_word_count" value="305.8k">
-<div style="display: none">
-    <span id="busuanzi_value_site_uv"></span>
-    <span id="busuanzi_value_site_pv"></span>
-</div>
-
-    </div>
-    <div class="nav-right">
-        <div class="friends-area">
-    <div class="friends-title">
-        友情链接
-        <i class="back-title-list"></i>
-    </div>
-    <div class="friends-content">
-        <ul>
-            
-            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
-            
-            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
-            
-            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
-            
-            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
-            
-        </ul>
-    </div>
-</div>
-        <div class="title-list">
-    <form onkeydown="if(event.keyCode === 13){return false;}">
-        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
-        <i class="cross"></i>
-        <span>
-            <label for="tagswitch">Tags:</label>
-            <input id="tagswitch" type="checkbox" style="display: none" />
-            <i id="tagsWitchIcon"></i>
-        </span>
-    </form>
-    <div class="tags-list">
-    
-    <li class="article-tag-list-item">
-        <a class="color5">宝宝成长</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color3">培训</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color3">LinuxShell脚本</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">Linux基础服务</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color1">Linux</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">MySQL基础管理</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color2">python</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">数据救援</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">hexo</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color1">SQL优化</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">锁故障</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">RDS</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">主从同步</a>
-    </li>
-    
-    <div class="clearfix"></div>
-</div>
-
-    
-    <nav id="title-list-nav">
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
-            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
-            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
-            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
-            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="家长会">家长会</span>
-            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
-            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第一课 简介和变量">LINUX Shell Scripts 第一课 简介和变量</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第二课 流程控制语句">LINUX Shell Scripts 第二课 流程控制语句</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第三课 正则表达式">LINUX Shell Scripts 第三课 正则表达式</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第四课 Sed">LINUX Shell Scripts 第四课 Sed</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第五课 各种括号的作用">LINUX Shell Scripts 第五课 各种括号的作用</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第六课 上机考试">LINUX Shell Scripts 第六课 上机考试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第七课 笔试">LINUX Shell Scripts 第七课 笔试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/01_dns/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/02_ftp/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/03_nfs/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/04_samba/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/05_apache/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/ule-online/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/00-linux_history/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 内核">Linux 内核</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/25/booboo_mysql/00-MySQL%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第一课 课程简介">MySQL 管理课程 第一课 课程简介</span>
-            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/30/booboo_mysql/03-MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%92%8CInnodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎">MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎</span>
-            <span class="post-date" title="2016-12-29 21:06:27">2016/12/29</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/31/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第七课 复制 AB replication">MySQL 管理课程 第七课 复制 AB replication</span>
-            <span class="post-date" title="2016-12-30 21:06:27">2016/12/30</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/02/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第八课 高可用性HA">MySQL 管理课程 第八课 高可用性HA</span>
-            <span class="post-date" title="2017-01-01 21:06:27">2017/01/01</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/04/booboo_mysql/07-MySQL5.6%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制">MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制</span>
-            <span class="post-date" title="2017-01-03 21:06:27">2017/01/03</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/03/booboo_mysql/06-MySQL%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7sysbench/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第九课 MySQL压力测试工具sysbench">MySQL 管理课程 第九课 MySQL压力测试工具sysbench</span>
-            <span class="post-date" title="2017-01-02 21:06:27">2017/01/02</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/05/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&mysqlpump&mydumper/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper">MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</span>
-            <span class="post-date" title="2017-01-04 21:06:27">2017/01/04</span>
-        </a>
-        
-        <a  class="技术广角 Python "
-           href="/2020/03/22/booboo_others/CentOS6.5%E9%85%8D%E7%BD%AEpython3.7%E5%AE%89%E8%A3%85%E5%90%8Essl%E9%97%AE%E9%A2%98/"
-           data-tag="python"
-           data-author="" >
-            <span class="post-title" title="CentOS6.5配置python3.7安装后ssl问题">CentOS6.5配置python3.7安装后ssl问题</span>
-            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
-           data-tag="数据救援"
-           data-author="" >
-            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
-            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
-        </a>
-        
-        <a  class="技术广角 Hexo "
-           href="/2020/03/22/booboo_others/hello-world/"
-           data-tag="hexo"
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
-        </a>
-        
-        <a  class="技术广角 Oracle "
-           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
-           data-tag="SQL优化"
-           data-author="" >
-            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
-            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
-           data-tag="锁故障"
-           data-author="" >
-            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
-            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
-           data-tag="RDS,主从同步"
-           data-author="" >
-            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
-            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
-        </a>
-        
-        <a  class="技术广角 MongoDB "
-           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
-           data-tag="数据救援"
-           data-author="" >
-            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
-            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/29/booboo_mysql/03-MySQL%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第五课 备份与恢复">MySQL 管理课程 第五课 备份与恢复</span>
-            <span class="post-date" title="2016-12-28 21:06:27">2016/12/28</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/26/booboo_mysql/01-MySQL%E5%92%8CMariaDB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍">MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍</span>
-            <span class="post-date" title="2016-12-25 21:06:27">2016/12/25</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/27/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1">MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1</span>
-            <span class="post-date" title="2016-12-26 21:06:27">2016/12/26</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/28/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2">MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2</span>
-            <span class="post-date" title="2016-12-27 21:06:27">2016/12/27</span>
-        </a>
-        
-    </nav>
-</div>
-    </div>
-    <div class="hide-list">
-        <div class="semicircle">
-            <div class="brackets first"><</div>
-            <div class="brackets">&gt;</div>
         </div>
     </div>
-</aside>
-<div class="post">
-    <div class="pjax">
-        <article id="post-booboo_linux_base/12-SELINUX" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">Linux SELINUX</h1>
-    
-    <div class="article-meta">
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
+            Linux SELINUX
         
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2016-12-21T20:06:27.000Z" itemprop="datePublished">12月 22 2016</time>
+        </span>
         
-        <span class="book">
-            
-                <a  data-rel="技术培训">技术培训</a>/
-            
-                <a  data-rel="Linux系统基础培训">Linux系统基础培训</a>
-            
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/">技术培训</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/">Linux系统基础培训</a>
         </span>
         
         
-        <span class="tag">
+        <span class="column is-narrow">
             
-            <a class="color3">培训</a>
             
-            <a class="color1">Linux</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-        创建时间:<time class="date" title='更新时间: 2020-03-23 06:24:25'>2016-12-21 20:06</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字数:1.3k</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            阅读:<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
-        
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                评论:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
+            9 分钟 lesen (Über 1415 Wörter)
         </span>
         
     </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-    <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SELinux"><span class="toc-text">SELinux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#作用"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件"><span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关指令"><span class="toc-text">相关指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作限制的实现方法"><span class="toc-text">操作限制的实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#auditd"><span class="toc-text">auditd</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#selinux-policy-devel"><span class="toc-text">selinux-policy-devel</span></a></li></ol></li></ol>
-    
-<style>
-    .left-col .switch-btn,
-    .left-col .switch-area {
-        display: none;
-    }
-    .toc-level-3 i,
-    .toc-level-3 ol {
-        display: none !important;
-    }
-</style>
-</div>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h2><p>Security Enhanced Linux 安全强化的 Linux</p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>强制限制某些操作 , 属于权限的一种</p>
-<p>思考 : 到目前为止学过的 linux 中的权限 ?</p>
+        <h2 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h2><p>Security Enhanced Linux &#x5B89;&#x5168;&#x5F3A;&#x5316;&#x7684; Linux</p>
+<h3 id="&#x4F5C;&#x7528;"><a href="#&#x4F5C;&#x7528;" class="headerlink" title="&#x4F5C;&#x7528;"></a>&#x4F5C;&#x7528;</h3><p>&#x5F3A;&#x5236;&#x9650;&#x5236;&#x67D0;&#x4E9B;&#x64CD;&#x4F5C; , &#x5C5E;&#x4E8E;&#x6743;&#x9650;&#x7684;&#x4E00;&#x79CD;</p>
+<p>&#x601D;&#x8003; : &#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#x5B66;&#x8FC7;&#x7684; linux &#x4E2D;&#x7684;&#x6743;&#x9650; ?</p>
 <p>u\g\o r\w\x ssid\sgid\stid acl attr</p>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>/etc/selinux/config</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[#</span><span class="bash">15<span class="comment">#root@rhel6 ~]#ll /etc/selinux/config</span></span></span><br><span class="line">-rw-r--r--. 1 root root 458 Jul 2 2015 /etc/selinux/config</span><br><span class="line"><span class="meta">[#</span><span class="bash">16<span class="comment">#root@rhel6 ~]#ll /etc/sysconfig/selinux</span></span></span><br><span class="line">lrwxrwxrwx. 1 root root 17 Jul 2 2015 /etc/sysconfig/selinux -&gt; ../selinux/config</span><br><span class="line"><span class="meta">[#</span><span class="bash">17<span class="comment">#root@rhel6 ~]#cat /etc/selinux/config</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> This file controls the state of SELinux on the system.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> SELINUX= can take one of these three values: 【三种状态】</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> enforcing - SELinux security policy is enforced. 【打开 selinux , 并强制限制】</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> permissive - SELinux prints warnings instead of enforcing. 【打开 selinux , 不限制操作 , 但会警</span></span><br><span class="line">告】</span><br><span class="line"><span class="meta">#</span><span class="bash"> disabled - No SELinux policy is loaded. 【关闭 selinux 】</span></span><br><span class="line">SELINUX=enforcing</span><br><span class="line"><span class="meta">#</span><span class="bash"> SELINUXTYPE= can take one of these two values: 【两种类型】</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> targeted - Targeted processes are protected, 【针对网络服务较多 , 针对主机较少】</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mls - Multi Level Security protection. 【全方位的控制】</span></span><br><span class="line">SELINUXTYPE=targeted</span><br></pre></td></tr></table></figure>
-
-<p>重启电脑后生效 , 并永久生效</p>
-<h3 id="相关指令"><a href="#相关指令" class="headerlink" title="相关指令"></a>相关指令</h3><ul>
-<li>查看当前 selinux 状态的命令 : getenforce/sestatus</li>
-<li>设置 selinux 状态 ( 临时生效 ): setenforce [ Enforcing | Permissive | 1 | 0 ]</li>
+<h3 id="&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a href="#&#x914D;&#x7F6E;&#x6587;&#x4EF6;" class="headerlink" title="&#x914D;&#x7F6E;&#x6587;&#x4EF6;"></a>&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3><p>/etc/selinux/config</p>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">[#</span><span class="hljs-bash">15<span class="hljs-comment">#root@rhel6 ~]#ll /etc/selinux/config</span></span></span><br><span class="line">-rw-r--r--. 1 root root 458 Jul 2 2015 /etc/selinux/config</span><br><span class="line"><span class="hljs-meta">[#</span><span class="hljs-bash">16<span class="hljs-comment">#root@rhel6 ~]#ll /etc/sysconfig/selinux</span></span></span><br><span class="line">lrwxrwxrwx. 1 root root 17 Jul 2 2015 /etc/sysconfig/selinux -&gt; ../selinux/config</span><br><span class="line"><span class="hljs-meta">[#</span><span class="hljs-bash">17<span class="hljs-comment">#root@rhel6 ~]#cat /etc/selinux/config</span></span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> This file controls the state of SELinux on the system.</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> SELINUX= can take one of these three values: &#x3010;&#x4E09;&#x79CD;&#x72B6;&#x6001;&#x3011;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> enforcing - SELinux security policy is enforced. &#x3010;&#x6253;&#x5F00; selinux , &#x5E76;&#x5F3A;&#x5236;&#x9650;&#x5236;&#x3011;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> permissive - SELinux prints warnings instead of enforcing. &#x3010;&#x6253;&#x5F00; selinux , &#x4E0D;&#x9650;&#x5236;&#x64CD;&#x4F5C; , &#x4F46;&#x4F1A;&#x8B66;</span></span><br><span class="line">&#x544A;&#x3011;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> disabled - No SELinux policy is loaded. &#x3010;&#x5173;&#x95ED; selinux &#x3011;</span></span><br><span class="line">SELINUX=enforcing</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> SELINUXTYPE= can take one of these two values: &#x3010;&#x4E24;&#x79CD;&#x7C7B;&#x578B;&#x3011;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> targeted - Targeted processes are protected, &#x3010;&#x9488;&#x5BF9;&#x7F51;&#x7EDC;&#x670D;&#x52A1;&#x8F83;&#x591A; , &#x9488;&#x5BF9;&#x4E3B;&#x673A;&#x8F83;&#x5C11;&#x3011;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> mls - Multi Level Security protection. &#x3010;&#x5168;&#x65B9;&#x4F4D;&#x7684;&#x63A7;&#x5236;&#x3011;</span></span><br><span class="line">SELINUXTYPE=targeted</span><br></pre></td></tr></table></figure></p>
+<p>&#x91CD;&#x542F;&#x7535;&#x8111;&#x540E;&#x751F;&#x6548; , &#x5E76;&#x6C38;&#x4E45;&#x751F;&#x6548;</p>
+<h3 id="&#x76F8;&#x5173;&#x6307;&#x4EE4;"><a href="#&#x76F8;&#x5173;&#x6307;&#x4EE4;" class="headerlink" title="&#x76F8;&#x5173;&#x6307;&#x4EE4;"></a>&#x76F8;&#x5173;&#x6307;&#x4EE4;</h3><ul>
+<li>&#x67E5;&#x770B;&#x5F53;&#x524D; selinux &#x72B6;&#x6001;&#x7684;&#x547D;&#x4EE4; : getenforce/sestatus</li>
+<li>&#x8BBE;&#x7F6E; selinux &#x72B6;&#x6001; ( &#x4E34;&#x65F6;&#x751F;&#x6548; ): setenforce [ Enforcing | Permissive | 1 | 0 ]</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[#</span><span class="bash">12<span class="comment">#root@rhel6 ~]#getenforce</span></span></span><br><span class="line">Enforcing</span><br><span class="line"><span class="meta">[#</span><span class="bash">13<span class="comment">#root@rhel6 ~]#sestatus</span></span></span><br><span class="line">SELinux status:</span><br><span class="line">enabled</span><br><span class="line">SELinuxfs mount:</span><br><span class="line">/selinux</span><br><span class="line">Current mode:</span><br><span class="line">enforcing</span><br><span class="line">Mode from config file:</span><br><span class="line">enforcing</span><br><span class="line">Policy version:</span><br><span class="line">28</span><br><span class="line">Policy from config file:</span><br><span class="line">targeted</span><br><span class="line">[root@rhel7 ~]# setenforce 0</span><br><span class="line">[root@rhel7 ~]# getenforce</span><br><span class="line">Permissive</span><br><span class="line">[root@rhel7 ~]# sestatus</span><br><span class="line">SELinux status:</span><br><span class="line">enabled</span><br><span class="line">SELinuxfs mount:</span><br><span class="line">/sys/fs/selinux</span><br><span class="line">SELinux root directory:</span><br><span class="line">/etc/selinux</span><br><span class="line">Loaded policy name:</span><br><span class="line">targeted</span><br><span class="line">Current mode:</span><br><span class="line">permissive</span><br><span class="line">Mode from config file:</span><br><span class="line">enforcing</span><br><span class="line">Policy MLS status:</span><br><span class="line">enabled</span><br><span class="line">Policy deny_unknown status: allowed</span><br><span class="line">Max kernel policy version: 28</span><br><span class="line">[root@rhel7 ~]# which getenforce</span><br><span class="line">/usr/sbin/getenforce</span><br><span class="line">[root@rhel7 ~]# rpm -qf /usr/sbin/getenforce</span><br><span class="line">libselinux-utils-2.2.2-6.el7.x86_64</span><br><span class="line">[root@rhel7 ~]# rpm -ql libselinux-utils|head</span><br><span class="line">/usr/sbin/avcstat</span><br><span class="line">/usr/sbin/getenforce</span><br><span class="line">/usr/sbin/getsebool</span><br><span class="line">/usr/sbin/matchpathcon</span><br><span class="line">/usr/sbin/selinuxconlist</span><br><span class="line">/usr/sbin/selinuxdefcon</span><br><span class="line">/usr/sbin/selinuxenabled</span><br><span class="line">/usr/sbin/selinuxexeccon</span><br><span class="line">/usr/sbin/setenforce</span><br><span class="line">/usr/share/man/man5/booleans.5.gz</span><br><span class="line">[root@rhel7 ~]# which sestatus</span><br><span class="line">/usr/sbin/sestatus</span><br><span class="line">[root@rhel7 ~]# rpm -qf /usr/sbin/sestatuspolicycoreutils-2.2.5-11.el7.x86_64</span><br><span class="line">[root@rhel7 ~]# rpm -ql policycoreutils|head</span><br><span class="line">/etc/sestatus.conf</span><br><span class="line">/usr/bin/secon</span><br><span class="line">/usr/sbin/fixfiles</span><br><span class="line">/usr/sbin/genhomedircon</span><br><span class="line">/usr/sbin/load_policy</span><br><span class="line">/usr/sbin/restorecon</span><br><span class="line">/usr/sbin/semodule</span><br><span class="line">/usr/sbin/sestatus</span><br><span class="line">/usr/sbin/setfiles</span><br><span class="line">/usr/sbin/setsebool</span><br></pre></td></tr></table></figure>
-
-<h3 id="操作限制的实现方法"><a href="#操作限制的实现方法" class="headerlink" title="操作限制的实现方法"></a>操作限制的实现方法</h3><ol>
-<li>通过 bool 值来进行操作的限制</li>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">[#</span><span class="hljs-bash">12<span class="hljs-comment">#root@rhel6 ~]#getenforce</span></span></span><br><span class="line">Enforcing</span><br><span class="line"><span class="hljs-meta">[#</span><span class="hljs-bash">13<span class="hljs-comment">#root@rhel6 ~]#sestatus</span></span></span><br><span class="line">SELinux status:</span><br><span class="line">enabled</span><br><span class="line">SELinuxfs mount:</span><br><span class="line">/selinux</span><br><span class="line">Current mode:</span><br><span class="line">enforcing</span><br><span class="line">Mode from config file:</span><br><span class="line">enforcing</span><br><span class="line">Policy version:</span><br><span class="line">28</span><br><span class="line">Policy from config file:</span><br><span class="line">targeted</span><br><span class="line">[root@rhel7 ~]# setenforce 0</span><br><span class="line">[root@rhel7 ~]# getenforce</span><br><span class="line">Permissive</span><br><span class="line">[root@rhel7 ~]# sestatus</span><br><span class="line">SELinux status:</span><br><span class="line">enabled</span><br><span class="line">SELinuxfs mount:</span><br><span class="line">/sys/fs/selinux</span><br><span class="line">SELinux root directory:</span><br><span class="line">/etc/selinux</span><br><span class="line">Loaded policy name:</span><br><span class="line">targeted</span><br><span class="line">Current mode:</span><br><span class="line">permissive</span><br><span class="line">Mode from config file:</span><br><span class="line">enforcing</span><br><span class="line">Policy MLS status:</span><br><span class="line">enabled</span><br><span class="line">Policy deny_unknown status: allowed</span><br><span class="line">Max kernel policy version: 28</span><br><span class="line">[root@rhel7 ~]# which getenforce</span><br><span class="line">/usr/sbin/getenforce</span><br><span class="line">[root@rhel7 ~]# rpm -qf /usr/sbin/getenforce</span><br><span class="line">libselinux-utils-2.2.2-6.el7.x86_64</span><br><span class="line">[root@rhel7 ~]# rpm -ql libselinux-utils|head</span><br><span class="line">/usr/sbin/avcstat</span><br><span class="line">/usr/sbin/getenforce</span><br><span class="line">/usr/sbin/getsebool</span><br><span class="line">/usr/sbin/matchpathcon</span><br><span class="line">/usr/sbin/selinuxconlist</span><br><span class="line">/usr/sbin/selinuxdefcon</span><br><span class="line">/usr/sbin/selinuxenabled</span><br><span class="line">/usr/sbin/selinuxexeccon</span><br><span class="line">/usr/sbin/setenforce</span><br><span class="line">/usr/share/man/man5/booleans.5.gz</span><br><span class="line">[root@rhel7 ~]# which sestatus</span><br><span class="line">/usr/sbin/sestatus</span><br><span class="line">[root@rhel7 ~]# rpm -qf /usr/sbin/sestatuspolicycoreutils-2.2.5-11.el7.x86_64</span><br><span class="line">[root@rhel7 ~]# rpm -ql policycoreutils|head</span><br><span class="line">/etc/sestatus.conf</span><br><span class="line">/usr/bin/secon</span><br><span class="line">/usr/sbin/fixfiles</span><br><span class="line">/usr/sbin/genhomedircon</span><br><span class="line">/usr/sbin/load_policy</span><br><span class="line">/usr/sbin/restorecon</span><br><span class="line">/usr/sbin/semodule</span><br><span class="line">/usr/sbin/sestatus</span><br><span class="line">/usr/sbin/setfiles</span><br><span class="line">/usr/sbin/setsebool</span><br></pre></td></tr></table></figure></p>
+<h3 id="&#x64CD;&#x4F5C;&#x9650;&#x5236;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;"><a href="#&#x64CD;&#x4F5C;&#x9650;&#x5236;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;" class="headerlink" title="&#x64CD;&#x4F5C;&#x9650;&#x5236;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;"></a>&#x64CD;&#x4F5C;&#x9650;&#x5236;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;</h3><ol>
+<li>&#x901A;&#x8FC7; bool &#x503C;&#x6765;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x7684;&#x9650;&#x5236;</li>
 </ol>
 <ul>
-<li>1&gt;getsebool -a &lt;== 显示主机中所有的布尔值</li>
-<li>2&gt;setsebool [-PV] boolean value | bool1=val1 bool2=val2 …</li>
+<li>1&gt;getsebool -a &lt;== &#x663E;&#x793A;&#x4E3B;&#x673A;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x5E03;&#x5C14;&#x503C;</li>
+<li>2&gt;setsebool [-PV] boolean value | bool1=val1 bool2=val2 &#x2026;</li>
 </ul>
 <ol start="2">
-<li>通过安全上下文<br>主体（进程）与目标的安全上下文必须一致才能够顺利访问<br>查看安全上下文<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[#</span><span class="bash">19<span class="comment">#root@rhel6 ~]#ls -Z</span></span></span><br><span class="line">-rw-------. root root system_u:object_r:admin_home_t:s0 anaconda-ks.cfg</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Desktop</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Documents</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Downloads</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 index.php3?stat=26</span><br><span class="line">-rw-r--r--. root root system_u:object_r:admin_home_t:s0 install.log</span><br><span class="line">-rw-r--r--. root root system_u:object_r:admin_home_t:s0 install.log.syslog</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Music</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Pictures</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Public</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 root@172.25.0.10</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Templates</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Videos</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>&#x901A;&#x8FC7;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;<br>&#x4E3B;&#x4F53;&#xFF08;&#x8FDB;&#x7A0B;&#xFF09;&#x4E0E;&#x76EE;&#x6807;&#x7684;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#x5FC5;&#x987B;&#x4E00;&#x81F4;&#x624D;&#x80FD;&#x591F;&#x987A;&#x5229;&#x8BBF;&#x95EE;<br>&#x67E5;&#x770B;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;<br><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">[#</span><span class="hljs-bash">19<span class="hljs-comment">#root@rhel6 ~]#ls -Z</span></span></span><br><span class="line">-rw-------. root root system_u:object_r:admin_home_t:s0 anaconda-ks.cfg</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Desktop</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Documents</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Downloads</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 index.php3?stat=26</span><br><span class="line">-rw-r--r--. root root system_u:object_r:admin_home_t:s0 install.log</span><br><span class="line">-rw-r--r--. root root system_u:object_r:admin_home_t:s0 install.log.syslog</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Music</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Pictures</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Public</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 root@172.25.0.10</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Templates</span><br><span class="line">drwxr-xr-x. root root unconfined_u:object_r:admin_home_t:s0 Videos</span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>安全上下文主要用冒号分为三个字段 :</p>
+<p>&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#x4E3B;&#x8981;&#x7528;&#x5192;&#x53F7;&#x5206;&#x4E3A;&#x4E09;&#x4E2A;&#x5B57;&#x6BB5; :</p>
 <p>Identify:role:type</p>
-<p>身份识别 : 角色 : 类型1.5 selinux 所需要的服务</p>
-<p>身份标识和角色并不重要，安全上下文里重要的就是这个类型，一个主体进程能不能读取到这个文件资源与类型字段有关。<br>之前我们说进程和文件的上下文的类型必须要匹配。这里涉及到两个专有名词，一个叫域，一个叫类型。其中主体程序中称为域，文件资源上称为类型，是不是有种听天书的感觉？很拗口吧？我们来举个列子。<br>先将httpd服务开启，service httpd start<br>Cd /var/www/html 这里是一个系列的网页文件，可以看到文件类型属于httpd_sys_content_t 还有httpd_sys_script_exec_t。<br>然后我们再看进程的上下文类型<br>先查看有没有这个进程  pstree | grep httpd<br>然后查看进程的安全上下文 ps aux -Z | grep http。<br>在这里Httpd是一个域，selinux的策略针对这个域制定了许多的规则，其中包括这个域可以读的目标资源类型，比如sys_content。<br>主题进程和目标的文件的安全上下文必须匹配不然会有权限报错的提示</p>
-<p>修改安全上下文<br>使用chcon命令来更改安全上下文的类型</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@python tmp]# ls --context test.txt</span><br><span class="line">-rw-r--r-- root root root:object_r:staff_tmp_t test.txt</span><br><span class="line">[root@python tmp]# chcon -t etc_t test.txt</span><br><span class="line">[root@python tmp]# ls -lZ test.txt</span><br><span class="line">-rw-r--r-- root root root:object_r:etc_t test.txt</span><br></pre></td></tr></table></figure>
-
-<p>###Selinux的日志分析工具sealert<br>setroubleshoot</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[#</span><span class="bash">40<span class="comment">#root@rhel6 ~]#yum install -y setroubleshoot     ===&gt;安装日志分析工具</span></span></span><br><span class="line"><span class="meta">[#</span><span class="bash">42<span class="comment">#root@rhel6 ~]#rpm -ql setroubleshoot-server|head</span></span></span><br><span class="line">/etc/audisp/plugins.d/sedispatch.conf</span><br><span class="line">/etc/dbus-1/system.d/org.fedoraproject.SetroubleshootFixit.conf</span><br><span class="line">/etc/dbus-1/system.d/org.fedoraproject.Setroubleshootd.conf</span><br><span class="line">/etc/logrotate.d/setroubleshoot</span><br><span class="line">/etc/setroubleshoot</span><br><span class="line">/etc/setroubleshoot/setroubleshoot.conf</span><br><span class="line">/usr/bin/sealert</span><br><span class="line"><span class="meta">[#</span><span class="bash">40<span class="comment">#root@rhel6 ~]#Sealert -a /var/log/audit/audit.log	===&gt;使用日志分析工具来分析selinux的日志</span></span></span><br><span class="line">等待数据处理，处理完毕之后查看</span><br></pre></td></tr></table></figure>
-
-<p>setroubleshot 将 selinux 相关的错误信息和解决方法记录在 /var/log/messages 日志中。<code>cat /var/log/messages | grep setroubleshoot</code></p>
+<p>&#x8EAB;&#x4EFD;&#x8BC6;&#x522B; : &#x89D2;&#x8272; : &#x7C7B;&#x578B;1.5 selinux &#x6240;&#x9700;&#x8981;&#x7684;&#x670D;&#x52A1;</p>
+<p>&#x8EAB;&#x4EFD;&#x6807;&#x8BC6;&#x548C;&#x89D2;&#x8272;&#x5E76;&#x4E0D;&#x91CD;&#x8981;&#xFF0C;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#x91CC;&#x91CD;&#x8981;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x7C7B;&#x578B;&#xFF0C;&#x4E00;&#x4E2A;&#x4E3B;&#x4F53;&#x8FDB;&#x7A0B;&#x80FD;&#x4E0D;&#x80FD;&#x8BFB;&#x53D6;&#x5230;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x8D44;&#x6E90;&#x4E0E;&#x7C7B;&#x578B;&#x5B57;&#x6BB5;&#x6709;&#x5173;&#x3002;<br>&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x8BF4;&#x8FDB;&#x7A0B;&#x548C;&#x6587;&#x4EF6;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x7C7B;&#x578B;&#x5FC5;&#x987B;&#x8981;&#x5339;&#x914D;&#x3002;&#x8FD9;&#x91CC;&#x6D89;&#x53CA;&#x5230;&#x4E24;&#x4E2A;&#x4E13;&#x6709;&#x540D;&#x8BCD;&#xFF0C;&#x4E00;&#x4E2A;&#x53EB;&#x57DF;&#xFF0C;&#x4E00;&#x4E2A;&#x53EB;&#x7C7B;&#x578B;&#x3002;&#x5176;&#x4E2D;&#x4E3B;&#x4F53;&#x7A0B;&#x5E8F;&#x4E2D;&#x79F0;&#x4E3A;&#x57DF;&#xFF0C;&#x6587;&#x4EF6;&#x8D44;&#x6E90;&#x4E0A;&#x79F0;&#x4E3A;&#x7C7B;&#x578B;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x6709;&#x79CD;&#x542C;&#x5929;&#x4E66;&#x7684;&#x611F;&#x89C9;&#xFF1F;&#x5F88;&#x62D7;&#x53E3;&#x5427;&#xFF1F;&#x6211;&#x4EEC;&#x6765;&#x4E3E;&#x4E2A;&#x5217;&#x5B50;&#x3002;<br>&#x5148;&#x5C06;httpd&#x670D;&#x52A1;&#x5F00;&#x542F;&#xFF0C;service httpd start<br>Cd /var/www/html &#x8FD9;&#x91CC;&#x662F;&#x4E00;&#x4E2A;&#x7CFB;&#x5217;&#x7684;&#x7F51;&#x9875;&#x6587;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#x5C5E;&#x4E8E;httpd_sys_content_t &#x8FD8;&#x6709;httpd_sys_script_exec_t&#x3002;<br>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x518D;&#x770B;&#x8FDB;&#x7A0B;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x7C7B;&#x578B;<br>&#x5148;&#x67E5;&#x770B;&#x6709;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A;&#x8FDB;&#x7A0B;  pstree | grep httpd<br>&#x7136;&#x540E;&#x67E5;&#x770B;&#x8FDB;&#x7A0B;&#x7684;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587; ps aux -Z | grep http&#x3002;<br>&#x5728;&#x8FD9;&#x91CC;Httpd&#x662F;&#x4E00;&#x4E2A;&#x57DF;&#xFF0C;selinux&#x7684;&#x7B56;&#x7565;&#x9488;&#x5BF9;&#x8FD9;&#x4E2A;&#x57DF;&#x5236;&#x5B9A;&#x4E86;&#x8BB8;&#x591A;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x62EC;&#x8FD9;&#x4E2A;&#x57DF;&#x53EF;&#x4EE5;&#x8BFB;&#x7684;&#x76EE;&#x6807;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#xFF0C;&#x6BD4;&#x5982;sys_content&#x3002;<br>&#x4E3B;&#x9898;&#x8FDB;&#x7A0B;&#x548C;&#x76EE;&#x6807;&#x7684;&#x6587;&#x4EF6;&#x7684;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#x5FC5;&#x987B;&#x5339;&#x914D;&#x4E0D;&#x7136;&#x4F1A;&#x6709;&#x6743;&#x9650;&#x62A5;&#x9519;&#x7684;&#x63D0;&#x793A;</p>
+<p>&#x4FEE;&#x6539;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;<br>&#x4F7F;&#x7528;chcon&#x547D;&#x4EE4;&#x6765;&#x66F4;&#x6539;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x7C7B;&#x578B;<br><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@python tmp]# ls --context test.txt</span><br><span class="line">-rw-r--r-- root root root:object_r:staff_tmp_t test.txt</span><br><span class="line">[root@python tmp]# chcon -t etc_t test.txt</span><br><span class="line">[root@python tmp]# ls -lZ test.txt</span><br><span class="line">-rw-r--r-- root root root:object_r:etc_t test.txt</span><br></pre></td></tr></table></figure></p>
+<p>###Selinux&#x7684;&#x65E5;&#x5FD7;&#x5206;&#x6790;&#x5DE5;&#x5177;sealert<br>setroubleshoot</p>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">[#</span><span class="hljs-bash">40<span class="hljs-comment">#root@rhel6 ~]#yum install -y setroubleshoot     ===&gt;&#x5B89;&#x88C5;&#x65E5;&#x5FD7;&#x5206;&#x6790;&#x5DE5;&#x5177;</span></span></span><br><span class="line"><span class="hljs-meta">[#</span><span class="hljs-bash">42<span class="hljs-comment">#root@rhel6 ~]#rpm -ql setroubleshoot-server|head</span></span></span><br><span class="line">/etc/audisp/plugins.d/sedispatch.conf</span><br><span class="line">/etc/dbus-1/system.d/org.fedoraproject.SetroubleshootFixit.conf</span><br><span class="line">/etc/dbus-1/system.d/org.fedoraproject.Setroubleshootd.conf</span><br><span class="line">/etc/logrotate.d/setroubleshoot</span><br><span class="line">/etc/setroubleshoot</span><br><span class="line">/etc/setroubleshoot/setroubleshoot.conf</span><br><span class="line">/usr/bin/sealert</span><br><span class="line"><span class="hljs-meta">[#</span><span class="hljs-bash">40<span class="hljs-comment">#root@rhel6 ~]#Sealert -a /var/log/audit/audit.log	===&gt;&#x4F7F;&#x7528;&#x65E5;&#x5FD7;&#x5206;&#x6790;&#x5DE5;&#x5177;&#x6765;&#x5206;&#x6790;selinux&#x7684;&#x65E5;&#x5FD7;</span></span></span><br><span class="line">&#x7B49;&#x5F85;&#x6570;&#x636E;&#x5904;&#x7406;&#xFF0C;&#x5904;&#x7406;&#x5B8C;&#x6BD5;&#x4E4B;&#x540E;&#x67E5;&#x770B;</span><br></pre></td></tr></table></figure></p>
+<p>setroubleshot &#x5C06; selinux &#x76F8;&#x5173;&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x548C;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x8BB0;&#x5F55;&#x5728; /var/log/messages &#x65E5;&#x5FD7;&#x4E2D;&#x3002;<code>cat /var/log/messages | grep setroubleshoot</code></p>
 <h4 id="auditd"><a href="#auditd" class="headerlink" title="auditd"></a>auditd</h4><ul>
-<li>auditd –&gt; 将 selinux 相关的信息记录在 /var/log/audit/audit.log 日志中,非常详细。</li>
+<li>auditd &#x2013;&gt; &#x5C06; selinux &#x76F8;&#x5173;&#x7684;&#x4FE1;&#x606F;&#x8BB0;&#x5F55;&#x5728; /var/log/audit/audit.log &#x65E5;&#x5FD7;&#x4E2D;,&#x975E;&#x5E38;&#x8BE6;&#x7EC6;&#x3002;</li>
 <li>sealert -a /var/log/audit/audit.log</li>
 </ul>
-<h3 id="selinux-policy-devel"><a href="#selinux-policy-devel" class="headerlink" title="selinux-policy-devel"></a>selinux-policy-devel</h3><p>el6 上没有该软件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# yum list|grep selinux-policy-devel</span><br><span class="line">selinux-policy-devel.noarch 3.12.1-153.el7 server</span><br><span class="line"></span><br><span class="line"><span class="meta">[#</span><span class="bash">64<span class="comment">#root@rhel6 ~]#yum list|grep selinux-policy-devel</span></span></span><br><span class="line">This system is not registered to Red Hat Subscription Management. You can use subscription-manager</span><br><span class="line">to register.</span><br></pre></td></tr></table></figure>
-<p><code>man</code> 关键词 <code>_selinux</code> 查找和关键字相关的 <code>selinux</code> 限制具体内容 , 包括什么打开什么布尔值 , 需要设置怎样的安全上下文。</p>
+<h3 id="selinux-policy-devel"><a href="#selinux-policy-devel" class="headerlink" title="selinux-policy-devel"></a>selinux-policy-devel</h3><p>el6 &#x4E0A;&#x6CA1;&#x6709;&#x8BE5;&#x8F6F;&#x4EF6;<br><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@rhel7 ~]# yum list|grep selinux-policy-devel</span><br><span class="line">selinux-policy-devel.noarch 3.12.1-153.el7 server</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">[#</span><span class="hljs-bash">64<span class="hljs-comment">#root@rhel6 ~]#yum list|grep selinux-policy-devel</span></span></span><br><span class="line">This system is not registered to Red Hat Subscription Management. You can use subscription-manager</span><br><span class="line">to register.</span><br></pre></td></tr></table></figure><br><code>man</code> &#x5173;&#x952E;&#x8BCD; <code>_selinux</code> &#x67E5;&#x627E;&#x548C;&#x5173;&#x952E;&#x5B57;&#x76F8;&#x5173;&#x7684; <code>selinux</code> &#x9650;&#x5236;&#x5177;&#x4F53;&#x5185;&#x5BB9; , &#x5305;&#x62EC;&#x4EC0;&#x4E48;&#x6253;&#x5F00;&#x4EC0;&#x4E48;&#x5E03;&#x5C14;&#x503C; , &#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x600E;&#x6837;&#x7684;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#x3002;</p>
 
-      
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 rgweiyaping@hotmail.com </span>
+    
     </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%9F%B9%E8%AE%AD/">#培训</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Linux/">#Linux</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2016/12/22/booboo_linux_base/13-pid/">Linux 进程管理</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2016/12/22/booboo_linux_base/10-Linux-startup-process/">Linux 开机启动流程</a>
+            
+        </span>
+    </div>
+    
 </article>
 
 
-<p>
-    <a  class="dashang" onclick="dashangToggle()">赏</a>
-</p>
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5e7f26910c743700190536a1&amp;product=inline-share-buttons&amp;cms=sop&#39; async=&#39;async&#39;' async='async'></script>
 
-
-<div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Linux SELINUX</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">1.3k</span></p>
-    <p><span class="copy-title">本文作者:</span><a  title="BoobooWei">BoobooWei</a></p>
-    <p><span class="copy-title">发布时间:</span>2016-12-21, 20:06:27</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-23, 06:24:25</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/12/22/booboo_linux_base/12-SELINUX/" title="Linux SELINUX">http://www.toberoot.com/2016/12/22/booboo_linux_base/12-SELINUX/</a>
-    <p>
-        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-    </p>
 </div>
 
 
 
-    <div id="comments"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script type="text/javascript">
-    $.getScript('/js/gitalk.js', function () {
-        var gitalk = new Gitalk({
-            clientID: 'af999a0c30ad557db57d',
-            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
-            repo: 'booboowei.github.io',
-            owner: 'booboowei',
-            admin: ['booboowei'],
-            id: decodeURI(location.pathname),
-            distractionFreeMode: 'true',
-            language: 'zh-CN',
-            perPage: parseInt('10',10)
-        })
-        gitalk.render('comments')
-    })
+<div class="comments">
+    <h3 class="title is-4">Kommentare</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2016/12/22/booboo_linux_base/12-SELINUX/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
 </script>
 
-
-
-
-    
-
-
-
-
-    </div>
-    <div class="copyright">
-        <p class="footer-entry">©2018-2020 BoobooWei</p>
-<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
-
-    </div>
-    <div class="full-toc">
-        <button class="full"><span class="min "></span></button>
-<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
-<div class="post-toc"><span class="post-toc-title">目录</span>
-    <div class="post-toc-content">
-
-    </div>
 </div>
-<a class="" id="rocket" ></a>
 
     </div>
-</div>
-<div class="acParent"></div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
 
-<div class="hide_box" onclick="dashangToggle()"></div>
-<div class="shang_box">
-    <a class="shang_close"  onclick="dashangToggle()">×</a>
-    <div class="shang_tit">
-        <p>喜欢就点赞,疼爱就打赏</p>
-    </div>
-    <div class="shang_payimg">
-        <div class="pay_img">
-            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
-            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
         </div>
     </div>
-    <div class="shang_payselect">
-        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
-    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
-
-
-</body>
-<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
-
-<script src="/js/script.js?v=1.0.1" ></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
 <script>
-    var img_resize = 'default';
-    /*作者、标签的自动补全*/
-    $(function () {
-        $('.search').AutoComplete({
-            'data': ['#宝宝成长','#培训','#LinuxShell脚本','#Linux基础服务','#Linux','#MySQL基础管理','#python','#数据救援','#hexo','#SQL优化','#锁故障','#RDS','#主从同步',],
-            'itemHeight': 20,
-            'width': 418
-        }).AutoComplete('show');
-    })
-    function initArticle() {
-        /*渲染对应的表格样式*/
-        
-
-        /*渲染打赏样式*/
-        
-        $("input[name=pay]").on("click", function () {
-            if($("input[name=pay]:checked").val()=="weixin"){
-                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
-            } else {
-                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
-            }
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
         })
-        
-
-        /*高亮代码块行号*/
-        
-
-        /*访问数量*/
-        
-        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
-        
-
-        /*代码高亮，行号对齐*/
-        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
-
-        
-        
-        /* 渲染*/
-        function HTMLDecode(text) {
-            var temp = document.createElement("div");
-            temp.innerHTML = text;
-            var output = temp.innerText || temp.textContent;
-            temp = null;
-            return output;
-        }
-        if (window.mermaid){
-            window.mermaid = null
-        }
-        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
-            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
-            if (window.mermaid) {
-                mermaid.initialize(mermaidOptions)
-                mermaid.contentLoaded()
-            }
-        })
-        
-    }
-
-    /*打赏页面隐藏与展示*/
-    
-    function dashangToggle() {
-        $(".shang_box").fadeToggle();
-        $(".hide_box").fadeToggle();
-    }
-    
-
+    });
 </script>
 
-<!--加入行号的高亮代码块样式-->
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
 
-<!--自定义样式设置-->
-<style>
+
     
     
-    .nav {
-        width: 622px;
-    }
-    .nav.fullscreen {
-        margin-left: -622px;
-    }
-    .nav-left {
-        width: 200px;
-    }
-    
-    
-    @media screen and (max-width: 1468px) {
-        .nav {
-            width: 492px;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
         }
-        .nav.fullscreen {
-            margin-left: -492px;
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
         }
-        .nav-left {
-            width: 100px;
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-    }
-    
-    
-    @media screen and (max-width: 1024px) {
-        .nav {
-            width: 492px;
-            margin-left: -492px
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
         }
-        .nav.fullscreen {
-            margin-left: 0;
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
         }
-        .nav .hide-list.fullscreen {
-            left: 492px
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
         }
-    }
-    
-    @media screen and (max-width: 426px) {
-        .nav {
-            width: 100%;
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
         }
-        .nav-left {
-            width: 100%;
-        }
-    }
-    
-    
-    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
-        color: #383636;
-    }
-    
-    
-    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
-        color: #5e5e5f;
-    }
-    
-    
-    .nav-right nav a.hover, #local-search-result a.hover{
-        background-color: #e2e0e0;
-    }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
     
     
 
-    /*列表样式*/
-    
-
-    /* 背景图样式 */
-    
     
 
 
-    /*引用块样式*/
-    
 
-    /*文章列表背景图*/
-    
-    .nav-right:before {
-        content: ' ';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.2;
-        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
-        background-repeat: no-repeat;
-        background-position: 50% 0;
-        -ms-background-size: cover;
-        -o-background-size: cover;
-        -moz-background-size: cover;
-        -webkit-background-size: cover;
-        background-size: cover;
-    }
-    
+<script src="/js/script.js"></script>
+
 
     
-</style>
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Seiten',
+                CATEGORIES: 'Kategorien',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
 
+<script src="/js/insight.js"></script>
 
-
-
-
-
-
+    
+</body>
 </html>

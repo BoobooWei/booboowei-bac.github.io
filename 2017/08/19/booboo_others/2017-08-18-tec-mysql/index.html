@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>MySQL的元锁MDL发生场景和解决方法总结 - Amy and Booboo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
+
+
+
+
+
+    <meta name="description" content="&amp;#x6458;&amp;#x8981;&amp;#xFF1A;MetaData Lock&amp;#x5373;&amp;#x5143;&amp;#x6570;&amp;#x636E;&amp;#x9501;&amp;#xFF0C;&amp;#x5728;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x4E2D;&amp;#x5143;&amp;#x6570;&amp;#x636E;&amp;#x5373;&amp;#x6570;&amp;#x636E;&amp;#x5B57;&amp;#x5178;&amp;#x4FE1;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL的元锁MDL发生场景和解决方法总结">
+<meta property="og:url" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="&amp;#x6458;&amp;#x8981;&amp;#xFF1A;MetaData Lock&amp;#x5373;&amp;#x5143;&amp;#x6570;&amp;#x636E;&amp;#x9501;&amp;#xFF0C;&amp;#x5728;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x4E2D;&amp;#x5143;&amp;#x6570;&amp;#x636E;&amp;#x5373;&amp;#x6570;&amp;#x636E;&amp;#x5B57;&amp;#x5178;&amp;#x4FE1;&amp;#x">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/2017-08-18-tec-mysql%5Cmdl01.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl02.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl03.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl04.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl06.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl07.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl08.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl09.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl10.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl11.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl12.png">
+<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl13.png">
+<meta property="article:published_time" content="2017-08-18T20:06:27.000Z">
+<meta property="article:modified_time" content="2020-03-28T07:43:00.118Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="锁故障">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/2017-08-18-tec-mysql%5Cmdl01.png">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    <img src="/images/influx.svg" alt="" height="28">
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/tools">Tools</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Suche" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            MySQL的元锁MDL发生场景和解决方法总结
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2017-08-18T20:06:27.000Z" itemprop="datePublished">8月 19 2017</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/">技术广角</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/">MySQL</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            35 分钟 lesen (Über 5275 Wörter)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>&#x6458;&#x8981;&#xFF1A;MetaData Lock&#x5373;&#x5143;&#x6570;&#x636E;&#x9501;&#xFF0C;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5143;&#x6570;&#x636E;&#x5373;&#x6570;&#x636E;&#x5B57;&#x5178;&#x4FE1;&#x606F;&#x5305;&#x62EC;db,table,function,procedure,trigger,event&#x7B49;&#x3002;metadata lock&#x4E3B;&#x8981;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x5143;&#x6570;&#x636E;&#x7684;&#x4E00;&#x81F4;&#x6027;,&#x7528;&#x4E8E;&#x5904;&#x7406;&#x4E0D;&#x540C;&#x7EBF;&#x7A0B;&#x64CD;&#x4F5C;&#x540C;&#x4E00;&#x6570;&#x636E;&#x5BF9;&#x8C61;&#x7684;&#x540C;&#x6B65;&#x4E0E;&#x4E92;&#x65A5;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x4ECA;&#x5929;&#x6709;&#x5BA2;&#x6237;(MySQL 5.6)&#x9047;&#x5230;&#x8BE5;&#x95EE;&#x9898;&#xFF0C;&#x6700;&#x5173;&#x952E;&#x7684;&#x662F;&#x5C5E;&#x4E8E;&#x7B2C;&#x4E09;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;google&#x4E0A;&#x6839;&#x672C;&#x627E;&#x4E0D;&#x5230;&#x7C7B;&#x4F3C;&#x7684;&#x6545;&#x969C;&#x6848;&#x4F8B;&#xFF0C;&#x552F;&#x4E00;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x63A5;&#x8FD1;&#x7684;&#x6545;&#x969C;&#x6848;&#x4F8B;&#x4E2D;&#x6570;&#x636E;&#x5E93;&#x7248;&#x672C;&#x5374;&#x4E0D;&#x540C;&#xFF08;&#x5177;&#x4F53;&#x770B;&#x4E0B;&#x6587;&#x6162;&#x6162;&#x804A;&#xFF09;&#xFF0C;&#x54CE;&#xFF0C;&#x56F0;&#x96BE;&#x91CD;&#x91CD;&#x554A;&#xFF0C;&#x6700;&#x7EC8;&#x8FD8;&#x662F;&#x89E3;&#x51B3;&#x4E86;&#x54C8;&#x3002;</p>
+<p>alter table&#x7684;&#x8BED;&#x53E5;&#x662F;&#x5F88;&#x5371;&#x9669;&#x7684;&#xFF0C;&#x5728;&#x64CD;&#x4F5C;&#x4E4B;&#x524D;&#x6700;&#x597D;&#x786E;&#x8BA4;&#x5BF9;&#x8981;&#x64CD;&#x4F5C;&#x7684;&#x8868;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x8FDB;&#x884C;&#x4E2D;&#x7684;&#x64CD;&#x4F5C;&#x3001;&#x6CA1;&#x6709;&#x672A;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#x3001;&#x4E5F;&#x6CA1;&#x6709;&#x663E;&#x5F0F;&#x4E8B;&#x52A1;&#x4E2D;&#x7684;&#x62A5;&#x9519;&#x8BED;&#x53E5;&#x3002;&#x5982;&#x679C;&#x6709;alter table&#x7684;&#x7EF4;&#x62A4;&#x4EFB;&#x52A1;&#xFF0C;&#x5728;&#x65E0;&#x4EBA;&#x76D1;&#x7BA1;&#x7684;&#x65F6;&#x5019;&#x8FD0;&#x884C;&#xFF0C;&#x6700;&#x597D;&#x901A;&#x8FC7;lock_wait_timeout&#x8BBE;&#x7F6E;&#x597D;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#xFF0C;&#x907F;&#x514D;&#x957F;&#x65F6;&#x95F4;&#x7684;metedata&#x9501;&#x7B49;&#x5F85;&#x3002;</p>
+<a id="more"></a>
+
+
+<h2 id="&#x4EC0;&#x4E48;&#x662F;metadata-lock&#xFF1F;"><a href="#&#x4EC0;&#x4E48;&#x662F;metadata-lock&#xFF1F;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;metadata lock&#xFF1F;"></a>&#x4EC0;&#x4E48;&#x662F;metadata lock&#xFF1F;</h2><p>MetaData Lock&#x5373;&#x5143;&#x6570;&#x636E;&#x9501;&#xFF0C;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5143;&#x6570;&#x636E;&#x5373;&#x6570;&#x636E;&#x5B57;&#x5178;&#x4FE1;&#x606F;&#x5305;&#x62EC;db,table,function,procedure,trigger,event&#x7B49;&#x3002;metadata lock&#x4E3B;&#x8981;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x5143;&#x6570;&#x636E;&#x7684;&#x4E00;&#x81F4;&#x6027;,&#x7528;&#x4E8E;&#x5904;&#x7406;&#x4E0D;&#x540C;&#x7EBF;&#x7A0B;&#x64CD;&#x4F5C;&#x540C;&#x4E00;&#x6570;&#x636E;&#x5BF9;&#x8C61;&#x7684;&#x540C;&#x6B65;&#x4E0E;&#x4E92;&#x65A5;&#x95EE;&#x9898;&#x3002;</p>
+<h3 id="MetaData-Lock&#x7684;&#x524D;&#x4E16;&#x4ECA;&#x751F;"><a href="#MetaData-Lock&#x7684;&#x524D;&#x4E16;&#x4ECA;&#x751F;" class="headerlink" title="MetaData Lock&#x7684;&#x524D;&#x4E16;&#x4ECA;&#x751F;"></a><strong>MetaData Lock&#x7684;&#x524D;&#x4E16;&#x4ECA;&#x751F;</strong></h3><p>MDL&#x9501;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x4E00;&#x4E2A;&#x6709;&#x540D;&#x7684;<a href="https://bugs.mysql.com/bug.php?id=989" target="_blank" rel="noopener">bug#989</a>&#xFF0C;&#x6240;&#x4EE5;&#x5728;5.5.3&#x7248;&#x672C;&#x5F15;&#x5165;&#x4E86;MDL&#x9501;&#x3002;&#x5176;&#x5B9E;5.5&#x4E5F;&#x6709;&#x7C7B;&#x4F3C;&#x4FDD;&#x62A4;&#x5143;&#x6570;&#x636E;&#x7684;&#x673A;&#x5236;&#xFF0C;&#x53EA;&#x662F;&#x6CA1;&#x6709;&#x660E;&#x786E;&#x63D0;&#x51FA;MDL&#x6982;&#x5FF5;&#x800C;&#x5DF2;&#x3002;&#x4F46;&#x662F;5.5&#x4E4B;&#x524D;&#x7248;&#x672C;(&#x6BD4;&#x5982;5.1)&#x4E0E;5.5&#x4E4B;&#x540E;&#x7248;&#x672C;&#x5728;&#x4FDD;&#x62A4;&#x5143;&#x6570;&#x636E;&#x8FD9;&#x5757;&#x6709;&#x4E00;&#x4E2A;&#x663E;&#x8457;&#x7684;&#x4E0D;&#x540C;&#x70B9;&#x662F;&#xFF0C;5.1&#x5BF9;&#x4E8E;&#x5143;&#x6570;&#x636E;&#x7684;&#x4FDD;&#x62A4;&#x662F;&#x8BED;&#x53E5;&#x7EA7;&#x522B;&#x7684;&#xFF0C;5.5&#x5BF9;&#x4E8E;metadata&#x7684;&#x4FDD;&#x62A4;&#x662F;&#x4E8B;&#x52A1;&#x7EA7;&#x522B;&#x7684;&#x3002;&#x6240;&#x8C13;&#x8BED;&#x53E5;&#x7EA7;&#x522B;&#xFF0C;&#x5373;&#x8BED;&#x53E5;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x65E0;&#x8BBA;&#x4E8B;&#x52A1;&#x662F;&#x5426;&#x63D0;&#x4EA4;&#x6216;&#x56DE;&#x6EDA;&#xFF0C;&#x5176;&#x8868;&#x7ED3;&#x6784;&#x53EF;&#x4EE5;&#x88AB;&#x5176;&#x4ED6;&#x4F1A;&#x8BDD;&#x66F4;&#x65B0;&#xFF1B;&#x800C;&#x4E8B;&#x52A1;&#x7EA7;&#x522B;&#x5219;&#x662F;&#x5728;&#x4E8B;&#x52A1;&#x7ED3;&#x675F;&#x540E;&#x624D;&#x91CA;&#x653E;MDL&#x3002;&#x5F15;&#x5165;MDL&#x9501;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;<strong>&#x89E3;&#x51B3;&#x4E24;&#x4E2A;&#x95EE;&#x9898;</strong>&#xFF1A;</p>
+<ul>
+<li>&#x4E8B;&#x52A1;&#x9694;&#x79BB;&#x95EE;&#x9898;&#xFF1A;&#x6BD4;&#x5982;&#x5728;&#x53EF;&#x91CD;&#x590D;&#x9694;&#x79BB;&#x7EA7;&#x522B;&#x4E0B;&#xFF0C;&#x4F1A;&#x8BDD;A&#x5728;2&#x6B21;&#x67E5;&#x8BE2;&#x671F;&#x95F4;&#xFF0C;&#x4F1A;&#x8BDD;B&#x5BF9;&#x8868;&#x7ED3;&#x6784;&#x505A;&#x4E86;&#x4FEE;&#x6539;&#xFF0C;&#x4E24;&#x6B21;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x5C31;&#x4F1A;&#x4E0D;&#x4E00;&#x81F4;&#xFF0C;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x53EF;&#x91CD;&#x590D;&#x8BFB;&#x7684;&#x8981;&#x6C42;&#x3002;</li>
+<li>&#x6570;&#x636E;&#x590D;&#x5236;&#x95EE;&#x9898;&#xFF1A;&#x6BD4;&#x5982;&#x4F1A;&#x8BDD;A&#x6267;&#x884C;&#x4E86;&#x591A;&#x6761;&#x66F4;&#x65B0;&#x8BED;&#x53E5;&#x671F;&#x95F4;&#xFF0C;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x4F1A;&#x8BDD;B&#x505A;&#x4E86;&#x8868;&#x7ED3;&#x6784;&#x53D8;&#x66F4;&#x5E76;&#x4E14;&#x5148;&#x63D0;&#x4EA4;&#xFF0C;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;slave&#x5728;&#x91CD;&#x505A;&#x65F6;&#xFF0C;&#x5148;&#x91CD;&#x505A;alter&#xFF0C;&#x518D;&#x91CD;&#x505A;update&#x65F6;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x590D;&#x5236;&#x9519;&#x8BEF;&#x7684;&#x73B0;&#x8C61;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x4E0A;&#x9762;&#x63D0;&#x5230;&#x7684;<a href="https://bugs.mysql.com/bug.php?id=989" target="_blank" rel="noopener">bug#989</a>&#x3002;</li>
+</ul>
+<hr>
+<h3 id="DDL&#x64CD;&#x4F5C;&#x4E0E;MetaData-Lock"><a href="#DDL&#x64CD;&#x4F5C;&#x4E0E;MetaData-Lock" class="headerlink" title="DDL&#x64CD;&#x4F5C;&#x4E0E;MetaData Lock"></a>DDL&#x64CD;&#x4F5C;&#x4E0E;MetaData Lock</h3><ul>
+<li>metadata lock &#x673A;&#x5236;&#x662F;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x6570;&#x636E;&#x4E00;&#x81F4;&#x6027;&#x5B58;&#x5728;&#x7684;&#xFF0C;&#x5728;&#x6709;&#x4E8B;&#x52A1;&#x7684;&#x64CD;&#x4F5C;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x9996;&#x5148;&#x83B7;&#x5F97;metadata lock ,&#x7136;&#x540E;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#xFF0C;&#x53C8;&#x6765;&#x4E86;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#x4E5F;&#x8981;ddl&#x64CD;&#x4F5C;&#x540C;&#x4E00;&#x4E2A;&#x8868;&#xFF0C;&#x5C31;&#x4F1A;&#x51FA;&#x73B0; metadata lock&#x3002;</li>
+<li>&#x81EA;&#x52A8;&#x63D0;&#x4EA4;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x5355;&#x8BED;&#x53E5;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#xFF0C;&#x6267;&#x884C;&#x5B8C;&#x4E86;&#xFF0C;&#x4E8B;&#x52A1;&#x4E5F;&#x5C31;&#x7ED3;&#x675F;&#x4E86;&#x3002;</li>
+<li>preparestatement  &#x4F1A;&#x83B7;&#x5F97; metalock&#xFF0C;&#x4E00;&#x65E6;prepare &#x5B8C;&#x6BD5;&#xFF0C; metalock &#x5C31;&#x91CA;&#x653E;&#x4E86;&#x3002;</li>
+<li>online DDL&#x5E94;&#x8BE5;&#x662F;&#x6307;&#x5728;alter table&#x8FDB;&#x884C;&#x7684;&#x65F6;&#x5019;&#xFF0C; &#x63D2;&#x5165;/&#x4FEE;&#x6539;/&#x5220;&#x9664;&#x6570;&#x636E;&#x7684;sql&#x8BED;&#x53E5;&#x4E0D;&#x4F1A;Waiting for table metadata lock&#x3002;&#x4E00;&#x65E6;alter table TableA&#x7684;&#x64CD;&#x4F5C;&#x505C;&#x6EDE;&#x5728;Waiting for table metadata lock&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x540E;&#x7EED;&#x5BF9;TableA&#x7684;&#x4EFB;&#x4F55;&#x64CD;&#x4F5C;&#xFF08;&#x5305;&#x62EC;&#x8BFB;&#xFF09;&#x90FD;&#x65E0;&#x6CD5;&#x8FDB;&#x884C;&#xFF0C;&#x4E5F;&#x4F1A;&#x5728;Opening tables&#x7684;&#x9636;&#x6BB5;&#x8FDB;&#x5165;Waiting for table metadata lock&#x7684;&#x961F;&#x5217;&#x3002;</li>
+</ul>
+<h2 id="Alter-table-&#x4F1A;&#x53D1;&#x751F;&#x9501;&#x7684;&#x4E09;&#x79CD;&#x573A;&#x666F;"><a href="#Alter-table-&#x4F1A;&#x53D1;&#x751F;&#x9501;&#x7684;&#x4E09;&#x79CD;&#x573A;&#x666F;" class="headerlink" title="Alter table &#x4F1A;&#x53D1;&#x751F;&#x9501;&#x7684;&#x4E09;&#x79CD;&#x573A;&#x666F;"></a>Alter table &#x4F1A;&#x53D1;&#x751F;&#x9501;&#x7684;&#x4E09;&#x79CD;&#x573A;&#x666F;</h2><h3 id="&#x573A;&#x666F;1"><a href="#&#x573A;&#x666F;1" class="headerlink" title="&#x573A;&#x666F;1"></a>&#x573A;&#x666F;1</h3><ul>
+<li>&#x4F1A;&#x8BDD;A&#x5BF9;booboo&#x8868;&#x6267;&#x884C;&#x8BFB;&#x64CD;&#x4F5C;<code>select *,sleep(60) from booboo;</code>&#xFF0C;&#x6B63;&#x5728;&#x8FDB;&#x884C;&#x672A;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;</li>
+<li>&#x4F1A;&#x8BDD;B&#x5BF9;booboo&#x8868;&#x6267;&#x884C;&#x5728;&#x7EBF;DDL&#x64CD;&#x4F5C;<code>alter table booboo add q4 int default 0;</code></li>
+<li>&#x4F1A;&#x8BDD;C&#x5BF9;booboo&#x8868;&#x6267;&#x884C;&#x9690;&#x5F0F;&#x8BFB;&#x64CD;&#x4F5C;<code>select *,sleep(60) from booboo;</code>,&#x8FDB;&#x884C;&#x7B49;&#x5F85;</li>
+<li>&#x4F1A;&#x8BDD;D&#x5BF9;booboo&#x8868;&#x6267;&#x884C;&#x663E;&#x793A;&#x8BFB;&#x64CD;&#x4F5C;<code>begin;select * from booboo;</code>&#x4E5F;&#x4F1A;&#x8FDB;&#x884C;&#x7B49;&#x5F85;</li>
+<li>&#x901A;&#x8FC7;<code>show processlist</code>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F1A;&#x8BDD;A&#xFF08;&#x5BF9;booboo&#x8868;&#x4E0A;&#x6B63;&#x5728;&#x8FDB;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#xFF09;&#xFF0C;&#x6B64;&#x65F6;&#x4F1A;&#x8BDD;B&#xFF08;alter table&#x8BED;&#x53E5;&#xFF09;&#x65E0;&#x6CD5;&#x83B7;&#x53D6;&#x5230;metadata &#x72EC;&#x5360;&#x9501;&#xFF0C;&#x4F1A;&#x8FDB;&#x884C;&#x7B49;&#x5F85;&#xFF0C;&#x4F1A;&#x8BDD;C&#x548C;&#x4F1A;&#x8BDD;D&#x90FD;&#x4F1A;&#x8FDB;&#x884C;&#x7B49;&#x5F85;&#xFF0C;&#x4E14;&#x80FD;&#x4ECE;processlist&#x8868;&#x4E2D;&#x770B;&#x5230;&#x5BF9;booboo&#x8868;&#x7684;&#x64CD;&#x4F5C;</li>
+<li>&#x4F1A;&#x8BDD;A&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#x540E;&#x6216;kill&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x8BDD;C&#x4E8B;&#x52A1;&#x7ED3;&#x675F;&#xFF0C;&#x4F1A;&#x8BDD;D<code>select</code>&#x8BED;&#x53E5;&#x6267;&#x884C;&#x6210;&#x529F;&#xFF0C;&#x4E8B;&#x52A1;&#x63D0;&#x4EA4;&#x5219;&#x4F1A;&#x8BDD;B&#x53EF;&#x6267;&#x884C;&#xFF0C;&#x5426;&#x5219;&#x8FDB;&#x5165;&#x573A;&#x666F;2</li>
+</ul>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> show processlist;</span></span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">| Id | User | Host      | db        | Command | Time | State                           | Info                                    |</span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">|  6 | root | localhost | uplooking | Query   |  167 | Waiting for table metadata lock | alter table booboo add q4 int default 0 |</span><br><span class="line">|  7 | root | localhost | uplooking | Query   |  155 | Waiting for table metadata lock | select * from booboo                    |</span><br><span class="line">|  8 | root | localhost | uplooking | Query   |    0 | starting                        | show processlist                        |</span><br><span class="line">|  9 | root | localhost | uplooking | Query   |  181 | User sleep                      | select *,sleep(60) from booboo          |</span><br><span class="line">| 10 | root | localhost | uplooking | Query   |    7 | Waiting for table metadata lock | select * from booboo                    |</span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> id=9&#x7684;&#x7EBF;&#x7A0B;&#x4E3A;&#x4F1A;&#x8BDD;A &#x867D;&#x7136;&#x662F;&#x9690;&#x5F0F;&#x4E8B;&#x52A1;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x6267;&#x884C;&#x6210;&#x529F;&#xFF0C;&#x6240;&#x4EE5;&#x4E3A;&#x672A;&#x63D0;&#x4EA4;&#x7684;&#x4E8B;&#x52A1;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> id=6&#x7684;&#x7EBF;&#x7A0B;&#x4E3A;&#x4F1A;&#x8BDD;B &#x5728;&#x4F1A;&#x8BDD;A&#x6709;&#x4E8B;&#x52A1;&#x672A;&#x63D0;&#x4EA4;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6267;&#x884C;Alter&#x64CD;&#x4F5C;,&#x4E89;&#x62A2;metadata lock</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> id=7&#x7684;&#x7EBF;&#x7A0B;&#x4E3A;&#x4F1A;&#x8BDD;C &#x9690;&#x5F0F;&#x67E5;&#x8BE2;&#x4E8B;&#x52A1;&#x4E5F;&#x4F1A;&#x8FDB;&#x5165;&#x7B49;&#x5F85;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> id=10&#x7684;&#x7EBF;&#x7A0B;&#x4E3A;&#x4F1A;&#x8BDD;D &#x663E;&#x793A;&#x67E5;&#x8BE2;&#x4E8B;&#x52A1;&#x540C;&#x6837;&#x8FDB;&#x5165;&#x7B49;&#x5F85;</span></span><br></pre></td></tr></table></figure></p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</p>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x67E5;&#x770B;metadatalock</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># &#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5219;&#x5B9A;&#x4F4D;&#x5230;&#x957F;&#x65F6;&#x95F4;&#x672A;&#x63D0;&#x4EA4;&#x7684;&#x4E8B;&#x52A1;kill&#x5373;&#x53EF;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x67E5;&#x8BE2; information_schema.innodb_trx &#x770B;&#x5230;&#x6709;&#x957F;&#x65F6;&#x95F4;&#x672A;&#x5B8C;&#x6210;&#x7684;&#x4E8B;&#x52A1;&#xFF0C; &#x4F7F;&#x7528; <span class="hljs-built_in">kill</span> &#x547D;&#x4EE4;&#x7EC8;&#x6B62;&#x8BE5;&#x67E5;&#x8BE2;&#x3002;</span></span><br><span class="line"></span><br><span class="line">select concat(&apos;kill &apos;,i.trx_mysql_thread_id,&apos;;&apos;) from information_schema.innodb_trx i,</span><br><span class="line">  (select </span><br><span class="line">         id, time</span><br><span class="line">     from</span><br><span class="line">         information_schema.processlist</span><br><span class="line">     where</span><br><span class="line">         time = (select </span><br><span class="line">                 max(time)</span><br><span class="line">             from</span><br><span class="line">                 information_schema.processlist</span><br><span class="line">             where</span><br><span class="line">                 state = &apos;Waiting for table metadata lock&apos;</span><br><span class="line">                     and substring(info, 1, 5) in (&apos;alter&apos; , &apos;optim&apos;, &apos;repai&apos;, &apos;lock &apos;, &apos;drop &apos;, &apos;creat&apos;))) p</span><br><span class="line">  where timestampdiff(second, i.trx_started, now()) &gt; p.time</span><br><span class="line">  and i.trx_mysql_thread_id  not in (connection_id(),p.id);</span><br></pre></td></tr></table></figure></p>
+<h3 id="&#x573A;&#x666F;2"><a href="#&#x573A;&#x666F;2" class="headerlink" title="&#x573A;&#x666F;2"></a>&#x573A;&#x666F;2</h3><ul>
+<li>&#x901A;&#x8FC7;<code>show processlist</code>&#x770B;&#x4E0D;&#x5230;booboo&#x4E0A;&#x6709;&#x4EFB;&#x4F55;&#x64CD;&#x4F5C;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x4E0A;&#x5B58;&#x5728;&#x6709;&#x672A;&#x63D0;&#x4EA4;&#x7684;&#x4E8B;&#x52A1;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;<code>information_schema.innodb_trx</code>&#x4E2D;&#x67E5;&#x770B;&#x5230;&#x3002;&#x5728;&#x4E8B;&#x52A1;&#x6CA1;&#x6709;&#x5B8C;&#x6210;&#x4E4B;&#x524D;&#xFF0C;booboo&#x7684;&#x9501;&#x4E0D;&#x4F1A;&#x91CA;&#x653E;&#xFF0C;alter table&#x540C;&#x6837;&#x83B7;&#x53D6;&#x4E0D;&#x5230;metadata&#x7684;&#x72EC;&#x5360;&#x9501;</li>
+<li>&#x4F1A;&#x8BDD;D&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#x6216;&#x56DE;&#x6EDA;&#x6216;kill&#xFF0C;&#x5219;&#x4F1A;&#x8BDD;B&#x4E2D;&#x7684;Alter&#x53EF;&#x7EE7;&#x7EED;&#x6267;&#x884C;</li>
+</ul>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x5728;&#x573A;&#x666F;1&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x5C06;&#x4F1A;&#x8BDD;A&#x7684;&#x4E8B;&#x52A1;&#x5B8C;&#x6210;&#x6216;&#x8005;<span class="hljs-built_in">kill</span>&#x6389;&#xFF0C;&#x4F1A;&#x8BDD;C&#x6267;&#x884C;&#x6210;&#x529F;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x8BDD;B&#x548C;&#x4F1A;&#x8BDD;D&#x7EE7;&#x7EED;&#x8FDB;&#x5165;metadata&#x9501;&#x7684;&#x7B49;&#x5F85;&#x3002;&#x539F;&#x56E0;&#x662F;&#x4F1A;&#x8BDD;D&#x867D;&#x7136;select&#x53EF;&#x4EE5;&#x6267;&#x884C;&#xFF0C;&#x4F46;&#x662F;&#x4E8B;&#x52A1;&#x6CA1;&#x6709;&#x63D0;&#x4EA4;&#xFF0C;&#x5219;&#x8868;&#x4E0A;&#x7684;metadata&#x9501;&#x8FD8;&#x5B58;&#x5728;&#xFF0C;&#x5BFC;&#x81F4;&#x4F1A;&#x8BDD;B&#x7684;ddl&#x64CD;&#x4F5C;&#x65E0;&#x6CD5;&#x6267;&#x884C;&#x3002;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x4F1A;&#x8BDD;B&#x548C;&#x4F1A;&#x8BDD;D&#xFF0C;&#x60C5;&#x51B5;1&#xFF1A;&#x77E5;&#x9053;&#x6709;&#x672A;&#x5B8C;&#x6210;&#x7684;&#x4E8B;&#x52A1;D&#xFF0C;&#x5219;&#x7ED3;&#x675F;&#x4F1A;&#x8BDD;D&#x7684;&#x4E8B;&#x52A1;&#xFF0C;&#x4F1A;&#x8BDD;B&#x6B63;&#x5E38;&#x6267;&#x884C;&#x3002;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x4F1A;&#x8BDD;B&#x548C;&#x4F1A;&#x8BDD;D&#xFF0C;&#x60C5;&#x51B5;2&#xFF1A;&#x4E0D;&#x77E5;&#x9053;&#x6709;&#x672A;&#x7ED3;&#x675F;&#x7684;&#x4E8B;&#x52A1;D&#xFF0C;&#x5982;&#x4F55;&#x6392;&#x9519;&#x5462;&#xFF1F;</span></span><br><span class="line">=================================</span><br><span class="line"></span><br><span class="line">-- &#x8BF7;&#x6839;&#x636E;&#x5177;&#x4F53;&#x7684;&#x60C5;&#x666F;&#x4FEE;&#x6539;&#x67E5;&#x8BE2;&#x8BED;&#x53E5;</span><br><span class="line">-- &#x5982;&#x679C;&#x5BFC;&#x81F4;&#x963B;&#x585E;&#x7684;&#x8BED;&#x53E5;&#x7684;&#x7528;&#x6237;&#x4E0E;&#x5F53;&#x524D;&#x7528;&#x6237;&#x4E0D;&#x540C;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x5BFC;&#x81F4;&#x963B;&#x585E;&#x7684;&#x8BED;&#x53E5;&#x7684;&#x7528;&#x6237;&#x767B;&#x5F55;&#x6765;&#x7EC8;&#x6B62;&#x4F1A;&#x8BDD;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># &#x573A;&#x666F;2&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x662F;&#x5728;&#x573A;&#x666F;1&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x8FD8;&#x662F;&#x6709;metadatalock&#x9501;&#xFF08;*&#x4E00;&#x822C;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0D;&#x4F1A;&#x505C;&#x670D;&#x52A1;&#xFF0C;&#x56E0;&#x6B64;&#x4E0D;&#x505C;&#x7684;&#x6709;&#x65B0;&#x7684;query&#x53D1;&#x9001;&#x8FC7;&#x6765;&#xFF0C;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x573A;&#x666F;2*&#xFF09;&#xFF0C;&#x5219;&#x624B;&#x52A8;&#x7EE7;&#x7EED;kill&#x6389;&#x957F;&#x4E8B;&#x52A1;&#x5373;&#x53EF;&#xFF0C;&#x6CE8;&#x610F;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x6709;&#x53EF;&#x80FD;ddl&#x64CD;&#x4F5C;&#x9700;&#x8981;&#x4FDD;&#x7559;&#xFF08;*&#x4F8B;&#x5982;MDL&#x9501;&#x51FA;&#x73B0;&#x5728;&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x7684;&#x4ECE;&#x4E2D;&#xFF0C;&#x4ECE;&#x5E93;&#x9700;&#x8981;&#x53BB;&#x6267;&#x884C;&#x4E3B;&#x53D1;&#x9001;&#x7684;&#x8868;&#x53D8;&#x66F4;&#xFF0C;&#x5F53;&#x7136;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5148;&#x5C06;&#x4E3B;&#x4ECE;&#x505C;&#x6389;&#xFF0C;&#x624B;&#x52A8;&#x6267;&#x884C;alter&#x64CD;&#x4F5C;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;*&#xFF09;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x662F;&#x5728;&#x505C;&#x6B62;&#x5BF9;&#x4ECE;&#x5E93;&#x7684;&#x8BFB;&#x64CD;&#x4F5C;&#x540E;&#xFF0C;&#x5C06;&#x975E;ddl&#x7684;&#x8FDE;&#x63A5;kill&#x6389;</span></span></span><br><span class="line"></span><br><span class="line">select id,State,command from information_schema.processlist where State=&quot;Waiting for table metadata lock&quot;;</span><br><span class="line">select  timediff(sysdate(),trx_started) timediff,sysdate(),trx_started,id,USER,DB,COMMAND,STATE,trx_state,trx_query from information_schema.processlist,information_schema.innodb_trx  where trx_mysql_thread_id=id;</span><br><span class="line">show processlist;</span><br><span class="line">select  concat(&apos;kill &apos;,trx_mysql_thread_id,&apos;;&apos;) from information_schema.processlist,information_schema.innodb_trx  where trx_mysql_thread_id=id and State!=&quot;Waiting for table metadata lock&quot;;</span><br><span class="line"></span><br><span class="line">===============================</span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> show processlist;                                                                                                             </span></span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">| Id | User | Host      | db        | Command | Time | State                           | Info                                    |</span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">|  6 | root | localhost | uplooking | Query   |  275 | Waiting for table metadata lock | alter table booboo add q6 int default 0 |</span><br><span class="line">|  7 | root | localhost | uplooking | Sleep   |  269 |                                 | NULL                                    |</span><br><span class="line">|  8 | root | localhost | uplooking | Query   |    0 | starting                        | show processlist                        |</span><br><span class="line">| 10 | root | localhost | uplooking | Sleep   |  249 |                                 | NULL                                    |</span><br><span class="line">| 12 | root | localhost | uplooking | Sleep   |  191 |                                 | NULL                                    |</span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x67E5;&#x770B;&#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x53D1;&#x73B0;&#x9664;&#x4E86;Alter&#x4E4B;&#x5916;&#x6CA1;&#x6709;&#x5BF9;booboo&#x8868;&#x7684;&#x64CD;&#x4F5C;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> select  timediff(sysdate(),trx_started) timediff,sysdate(),trx_started,id,USER,DB,COMMAND,STATE,trx_state,trx_query from information_schema.processlist,information_schema.innodb_trx <span class="hljs-built_in">where</span> trx_mysql_thread_id=id;</span></span><br><span class="line">+----------+---------------------+---------------------+----+------+-----------+---------+---------------------------------+-----------+-----------------------------------------+</span><br><span class="line">| timediff | sysdate()           | trx_started         | id | USER | DB        | COMMAND | STATE                           | trx_state | trx_query                               |</span><br><span class="line">+----------+---------------------+---------------------+----+------+-----------+---------+---------------------------------+-----------+-----------------------------------------+</span><br><span class="line">| 00:05:38 | 2017-08-18 20:21:07 | 2017-08-18 20:15:29 |  6 | root | uplooking | Query   | Waiting for table metadata lock | RUNNING   | alter table booboo add q6 int default 0 |</span><br><span class="line">| 00:05:38 | 2017-08-18 20:21:07 | 2017-08-18 20:15:29 | 10 | root | uplooking | Sleep   |                                 | RUNNING   | NULL                                    |</span><br><span class="line">+----------+---------------------+---------------------+----+------+-----------+---------+---------------------------------+-----------+-----------------------------------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x67E5;&#x770B;innodb_trx&#x8868;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9664;&#x4E86;alter&#x4E4B;&#x5916;&#x6709;&#x672A;&#x5B8C;&#x6210;&#x7684;&#x4E8B;&#x52A1;&#xFF0C;&#x4F46;&#x662F;&#x770B;&#x4E0D;&#x5230;&#x5177;&#x4F53;query&#xFF0C;&#x5F97;&#x5230;&#x7EBF;&#x7A0B;id&#x4E3A;10</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x5C31;&#x53EF;&#x4EE5;<span class="hljs-built_in">kill</span> 10&#x6765;&#x7ED3;&#x675F;&#x4E8B;&#x52A1;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x4E4B;&#x540E;Alter&#x6B63;&#x5E38;&#x64CD;&#x4F5C;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="&#x573A;&#x666F;3"><a href="#&#x573A;&#x666F;3" class="headerlink" title="&#x573A;&#x666F;3"></a>&#x573A;&#x666F;3</h3><blockquote>
+<p>&#x4E0E;&#x573A;&#x666F;2&#x5BF9;&#x6BD4;&#x7684;&#x73B0;&#x8C61;&#x4E0D;&#x540C;&#x4E8E;&#xFF1A;</p>
+<ul>
+<li>&#x573A;&#x666F;2&#xFF1A;&#x672A;&#x5B8C;&#x6210;&#x4E8B;&#x52A1;&#x4E2D;&#x5B58;&#x5728;&#x672A;&#x5B8C;&#x6210;&#x4E8B;&#x52A1;</li>
+<li>&#x573A;&#x666F;3&#xFF1A;&#x672A;&#x5B8C;&#x6210;&#x4E8B;&#x52A1;&#x4E2D;&#x4E0D;&#x5B58;&#x5728;&#x672A;&#x5B8C;&#x6210;&#x4E8B;&#x52A1;&#xFF1A;&#x786E;&#x8BA4;&#x6709;&#x9519;&#x8BEF;&#x4E8B;&#x52A1;&#x672A;&#x63D0;&#x4EA4;&#x6216;&#x56DE;&#x6EDA;&#xFF0C;&#x627E;&#x5230;&#x8BE5;&#x4E8B;&#x52A1;&#x7684;session_id&#x7136;&#x540E;&#x6740;&#x6B7B;</li>
+</ul>
+</blockquote>
+<ul>
+<li>&#x901A;&#x8FC7;<code>show processlist</code>&#x770B;&#x4E0D;&#x5230;<code>booboo</code>&#x8868;&#x6709;&#x4EFB;&#x4F55;&#x64CD;&#x4F5C;&#xFF0C;&#x5728;<code>information_schema.innodb_trx</code>&#x4E2D;&#x4E5F;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x8FDB;&#x884C;&#x4E2D;&#x7684;&#x4E8B;&#x52A1;&#x3002;</li>
+<li>&#x8FD9;&#x5F88;&#x53EF;&#x80FD;&#x662F;&#x56E0;&#x4E3A;&#x5728;&#x4E00;&#x4E2A;&#x663E;&#x5F0F;&#x7684;&#x4E8B;&#x52A1;&#x4E2D;&#xFF0C;&#x5BF9;<code>booboo</code>&#x8868;&#x8FDB;&#x884C;&#x4E86;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x7684;&#x64CD;&#x4F5C;&#xFF08;&#x6BD4;&#x5982;&#x67E5;&#x8BE2;&#x4E86;&#x4E00;&#x4E2A;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x5B57;&#x6BB5;&#xFF09;&#xFF0C;&#x8FD9;&#x65F6;&#x4E8B;&#x52A1;&#x6CA1;&#x6709;&#x5F00;&#x59CB;&#xFF0C;&#x4F46;&#x662F;&#x5931;&#x8D25;&#x8BED;&#x53E5;&#x83B7;&#x53D6;&#x5230;&#x7684;&#x9501;&#x4F9D;&#x7136;&#x6709;&#x6548;&#x3002;&#x4ECE;<code>performance_schema.events_statements_current</code>&#x8868;&#x4E2D;&#x53EF;&#x4EE5;&#x67E5;&#x5230;&#x5931;&#x8D25;&#x7684;&#x8BED;&#x53E5;</li>
+<li>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x9664;&#x4E86;&#x8BED;&#x6CD5;&#x9519;&#x8BEF;&#xFF0C;&#x5176;&#x4ED6;&#x9519;&#x8BEF;&#x8BED;&#x53E5;&#x83B7;&#x53D6;&#x5230;&#x7684;&#x9501;&#x5728;&#x8FD9;&#x4E2A;&#x4E8B;&#x52A1;&#x63D0;&#x4EA4;&#x6216;&#x56DE;&#x6EDA;&#x4E4B;&#x524D;&#xFF0C;&#x4ECD;&#x7136;&#x4E0D;&#x4F1A;&#x91CA;&#x653E;&#x6389;&#x3002;<code>because the failed statement is written to the binary log and the locks protect log consistency</code>&#x4F46;&#x662F;&#x89E3;&#x91CA;&#x8FD9;&#x4E00;&#x884C;&#x4E3A;&#x7684;&#x539F;&#x56E0;&#x5F88;&#x96BE;&#x7406;&#x89E3;&#xFF0C;&#x56E0;&#x4E3A;&#x9519;&#x8BEF;&#x7684;&#x8BED;&#x53E5;&#x6839;&#x672C;&#x4E0D;&#x4F1A;&#x88AB;&#x8BB0;&#x5F55;&#x5230;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;</li>
+<li>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF1A;&#x786E;&#x8BA4;&#x6709;&#x9519;&#x8BEF;&#x4E8B;&#x52A1;&#x672A;&#x63D0;&#x4EA4;&#x6216;&#x56DE;&#x6EDA;&#xFF0C;&#x627E;&#x5230;&#x8BE5;&#x4E8B;&#x52A1;&#x7684;sessionid&#x7136;&#x540E;&#x6740;&#x6B7B;&#xFF08;&#x96BE;&#x70B9;&#xFF09;</li>
+</ul>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x573A;&#x666F;3&#x7684;&#x51FA;&#x73B0;&#x548C;&#x524D;&#x4E24;&#x79CD;&#x4E0D;&#x540C;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x67E5;&#x770B;&#x7EBF;&#x7A0B;&#x60C5;&#x51B5;&#xFF0C;&#x770B;&#x5230;alter&#x64CD;&#x4F5C;metadata&#x9501;&#xFF0C;&#x8FD8;&#x6709;&#x5176;&#x4ED6;&#x7684;select&#x64CD;&#x4F5C;&#x6709;metadata&#x9501;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># &#x7B2C;&#x4E00;&#x53CD;&#x5E94;&#x5C31;&#x662F;&#x6709;&#x53EF;&#x80FD;&#x662F;&#x573A;&#x666F;1&#xFF0C;&#x4E8E;&#x662F;kill&#x6389;&#x6267;&#x884C;select&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x518D;&#x6B21;&#x67E5;&#x770B;&#x7EBF;&#x7A0B;&#x60C5;&#x51B5;&#xFF0C;&#x5C31;&#x53EA;&#x5269;&#x4E0B;&#x6267;&#x884C;alter&#x7EBF;&#x7A0B;&#x4E86;</span></span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># &#x63A5;&#x4E0B;&#x6765;&#x67E5;&#x770B;&#x672A;&#x5B8C;&#x6210;&#x7684;&#x4E8B;&#x52A1;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x573A;&#x666F;1&#xFF0C;&#x5728;kill&#x6389;&#x51B2;&#x7A81;&#x7684;&#x7EBF;&#x7A0B;&#x540E;&#x5E94;&#x8BE5;&#x51FA;&#x73B0;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#xFF08;A.alter&#x64CD;&#x4F5C;&#x6B63;&#x5E38;&#x6267;&#x884C;B.&#x7EBF;&#x7A0B;&#x4E2D;&#x53EA;&#x6709;alter&#x64CD;&#x4F5C;&#x4E3A;waiting metadata lock&#x72B6;&#x6001;&#xFF1B;&#x672A;&#x5B8C;&#x6210;&#x4E8B;&#x52A1;&#x4E2D;&#x5B58;&#x5728;&#x672A;&#x5B8C;&#x6210;&#x4E8B;&#x52A1;&#xFF09;</span></span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># &#x4F46;&#x662F;&#x5374;&#x53D1;&#x73B0;&#x548C;B&#x60C5;&#x51B5;&#x6709;&#x6240;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF1A;&#x672A;&#x5B8C;&#x6210;&#x4E8B;&#x52A1;&#x4E2D;&#x4E0D;&#x5B58;&#x5728;&#x672A;&#x5B8C;&#x6210;&#x4E8B;&#x52A1;&#xFF0C;&#x603B;&#x7ED3;&#x7B2C;&#x4E09;&#x79CD;&#x60C5;&#x51B5;(C.&#x7EBF;&#x7A0B;&#x4E2D;&#x53EA;&#x6709;alter&#x64CD;&#x4F5C;&#x4E3A;waiting metadata lock&#x72B6;&#x6001;&#xFF1B;&#x672A;&#x5B8C;&#x6210;&#x4E8B;&#x52A1;&#x4E2D;&#x4E0D;&#x5B58;&#x5728;&#x672A;&#x5B8C;&#x6210;&#x4E8B;&#x52A1;&#xFF09;</span></span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x901A;&#x8FC7;&#x641C;&#x7D22;&#x8D44;&#x6599;&#x5B9A;&#x4F4D;&#x5230;&#x662F;&#x573A;&#x666F;3&#xFF0C;&#x4F46;&#x8D44;&#x6599;&#x4E2D;&#x6CA1;&#x6709;&#x8BF4;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#xFF0C;&#x53C8;&#x4E0D;&#x80FD;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x8D44;&#x6599;&#x91CC;&#x63D0;&#x5230;&#x4E86;&#x65B9;&#x6CD5;&#xFF08;&#x786E;&#x8BA4;&#x6709;&#x9519;&#x8BEF;&#x4E8B;&#x52A1;&#x672A;&#x63D0;&#x4EA4;&#x6216;&#x56DE;&#x6EDA;&#xFF0C;&#x627E;&#x5230;&#x8BE5;&#x4E8B;&#x52A1;&#x7684;sessionid&#x7136;&#x540E;&#x6740;&#x6B7B;&#xFF0C;&#x5173;&#x952E;&#x5C31;&#x662F;&#x5982;&#x4F55;&#x627E;&#x5230;sessionid&#x5462;&#xFF1F;performance_schema.events_statements_current&#x4E2D;&#x7684;thread_id&#x4E3A;&#x7EBF;&#x7A0B;id&#x5E76;&#x4E0D;&#x662F;sessionid&#x6216;&#x8005;&#x8BF4;&#x4F1A;&#x8BDD;id&#x3001;&#x8FDE;&#x63A5;id&#xFF0C;&#x5982;&#x4F55;&#x901A;&#x8FC7;thread_id&#x627E;&#x5230;session_id&#x6210;&#x4E3A;&#x4E86;&#x96BE;&#x70B9;&#xFF1F;5.7&#x4E2D;&#x6709;&#x4E2A;session&#x8868;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x67E5;&#x5230;&#xFF0C;&#x800C;5.6&#x4E2D;&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x4E09;&#x8868;&#x624D;&#x80FD;&#x67E5;&#x5230;&#xFF0C;&#x5206;&#x522B;&#x4E3A;performance_schema.events_statements_current,performance_schema.threads,information_schema.processlist&#x8868;&#x3002;&#xFF09;</span></span><br><span class="line">=====================================================================================</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> <span class="hljs-built_in">kill</span>&#x6389;&#x9664;&#x4E86;&#x5199;&#x64CD;&#x4F5C;&#x4EE5;&#x5916;&#x7684;query</span></span><br><span class="line">select concat(&apos;kill &apos;,id) from information_schema.processlist where State=&quot;Waiting for table metadata lock&quot; and substring(info, 1, 5) not in (&apos;alter&apos; , &apos;optim&apos;, &apos;repai&apos;, &apos;lock &apos;, &apos;drop &apos;, &apos;creat&apos;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x5BFB;&#x627E;&#x672A;&#x63D0;&#x4EA4;&#x6216;&#x672A;&#x56DE;&#x6EDA;&#x7684;&#x9519;&#x8BEF;&#x4E8B;&#x52A1;&#xFF0C;&#x5E76;<span class="hljs-built_in">kill</span>&#x5373;&#x53EF;</span></span><br><span class="line">select t.processlist_id,t.processlist_time,e.sql_text from performance_schema.threads t,performance_schema.events_statements_current e where t.thread_id=e.thread_id and e.SQL_TEXT like &apos;%t1%&apos;;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x6848;&#x4F8B;&#x4E2D;&#x5047;&#x8BBE;&#x662F;&#x5728;t1&#x8868;&#x4E0A;&#x6709;MDL&#x9501;&#xFF0C;&#x5219;&#xFF0C;e.sql_text &#x8FD1;&#x4F3C;&#x5339;&#x914D;t1</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x672C;&#x65B9;&#x6CD5;5.5 5.6 5.7 &#x90FD;&#x901A;&#x7528;&#x3002;</span></span><br><span class="line">=============================================================================</span><br></pre></td></tr></table></figure></p>
+<p>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x6A21;&#x62DF;&#x7B2C;&#x4E09;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x4F1A;&#x8BDD;11&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x663E;&#x793A;&#x4E8B;&#x52A1;&#xFF0C;&#x4E14;query&#x51FA;&#x73B0;&#x5217;&#x9519;&#x8BEF;&#xFF0C;t1&#x8868;&#x4E2D;&#x4E0D;&#x5B58;&#x5728;xx&#x5217;&#xFF0C;&#x4E0D;&#x63D0;&#x4EA4;&#x3002;</p>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/2017-08-18-tec-mysql%5Cmdl01.png" alt></p>
+<p>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x4F1A;&#x8BDD;14&#x4E2D;&#x6267;&#x884C;alter&#x64CD;&#x4F5C;</p>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl02.png" alt="mdl02"></p>
+<p>&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x6267;&#x884C;&#x4E00;&#x6761;query</p>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl03.png" alt="mdl03"></p>
+<p>&#x7B2C;&#x56DB;&#x6B65;&#xFF1A;&#x4F1A;&#x8BDD;15&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x663E;&#x793A;&#x4E8B;&#x52A1;&#xFF0C;&#x67E5;&#x8BE2;t1&#x8868;</p>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl04.png" alt="mdl04"></p>
+<p>&#x7B2C;&#x4E94;&#x6B65;&#xFF1A;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x7684;processlist&#x60C5;&#x51B5;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x53EA;&#x8981;&#x662F;&#x5BF9;t1&#x8868;&#x7684;&#x64CD;&#x4F5C;&#x90FD;&#x51FA;&#x73B0;&#x4E86;MDL&#x9501;&#x7B49;&#x5F85;&#xFF1B;&#x5C1D;&#x8BD5;&#x901A;&#x8FC7;&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x627E;&#x51FA;&#x963B;&#x585E;&#x7684;&#x4E8B;&#x52A1;&#x4F1A;&#x8BDD;&#x8FDB;&#x884C;kill&#xFF0C;&#x53D1;&#x73B0;&#x4E0D;&#x5B58;&#x5728;&#x963B;&#x585E;&#x4F1A;&#x8BDD;&#xFF1B;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x672A;&#x63D0;&#x4EA4;&#x7684;&#x4E8B;&#x52A1;&#x53D1;&#x73B0;&#x8FD4;&#x56DE;&#x7A7A;&#xFF1B;&#x901A;&#x8FC7;&#x8FC7;&#x6EE4;processlist&#x4E2D;&#x8FDB;&#x884C;MDL&#x9501;&#x7B49;&#x5F85;&#x4E14;&#x4E0D;&#x662F;alter&#x7684;&#x4F1A;&#x8BDD;id&#xFF0C;&#x8FDB;&#x884C;kill&#x3002;</p>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl06.png" alt="mdl06"></p>
+<p>&#x7B2C;&#x516D;&#x6B65;&#xFF1A;&#x53EA;kill 12&#xFF0C;15&#xFF0C;&#x7559;&#x4E0B;&#x6267;&#x884C;alter&#x7684;&#x4F1A;&#x8BDD;14&#xFF1B;&#x6709;&#x4EBA;&#x4F1A;&#x60F3;&#x4E3A;&#x4EC0;&#x4E48;&#x90FD;kill&#x6389;&#x5462;&#xFF1F;&#x56E0;&#x4E3A;&#x5373;&#x4F7F;&#x73B0;&#x5728;kill&#x6389;&#x4E86;&#xFF0C;t1&#x8868;&#x7684;MDL&#x9501;&#x4E5F;&#x4E0D;&#x4F1A;&#x91CA;&#x653E;&#x6389;&#xFF0C;&#x8FD8;&#x4E0D;&#x5982;&#x7559;&#x4E0B;&#x4F1A;&#x8BDD;14&#x7684;ddl&#x64CD;&#x4F5C;&#xFF0C;&#x7B49;&#x5F7B;&#x5E95;&#x89E3;&#x51B3;&#x4E86;&#xFF0C;&#x81EA;&#x7136;&#x5C31;&#x80FD;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x3002;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x770B;&#x4E0B;&#x9762;&#x7684;&#x5206;&#x6790;&#x3002;</p>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl07.png" alt="mdl07"></p>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl08.png" alt="mdl08"></p>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl09.png" alt="mdl09"></p>
+<p>&#x7B2C;&#x4E03;&#x6B65;&#xFF1A;&#x7ED9;&#x5927;&#x5BB6;&#x505A;&#x4E2A;&#x6D4B;&#x8BD5;&#xFF0C;&#x5373;&#x4F7F;&#x5C06;&#x4F1A;&#x8BDD;14&#x7684;alter&#x52A8;&#x4F5C;kill&#x6389;&#xFF1A;</p>
+<ul>
+<li>processlist&#x4E2D;&#x770B;&#x4E0D;&#x5230;&#x4EFB;&#x4F55;&#x7B49;&#x5F85;MDL&#x9501;&#x7684;&#x4F1A;&#x8BDD;&#xFF1B;</li>
+<li>sys.schema_table_lock_waits&#x4E2D;&#x4E5F;&#x4E0D;&#x5B58;&#x5728;&#x8868;&#x9501;&#xFF08;5.7&#x624D;&#x6709;sys&#x5E93;&#xFF09;&#xFF1B;</li>
+<li>performance_schema.metadata_locks&#x4E2D;&#x4E5F;&#x4E0D;&#x5B58;&#x5728;&#x4EFB;&#x4F55;&#x9501;&#x8BB0;&#x5F55;&#xFF1B;</li>
+<li>&#x4F1A;&#x8BDD;16&#x60F3;&#x518D;&#x53BB;&#x6267;&#x884C;alter&#x64CD;&#x4F5C;&#xFF0C;&#x53C8;&#x5F00;&#x59CB;&#x4E86;MDL&#x9501;&#x7B49;&#x5F85;&#x3002;</li>
+</ul>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl10.png" alt="mdl10"></p>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl11.png" alt="mdl11"></p>
+<p>&#x7B2C;&#x516B;&#x6B65;&#xFF1A;&#x6B64;&#x65F6;&#x5C31;&#x4E00;&#x5B9A;&#x53EF;&#x4EE5;&#x786E;&#x5B9A;&#x5F53;&#x524D;&#x5C5E;&#x4E8E;&#x3010;<strong>&#x6709;&#x9519;&#x8BEF;&#x4E8B;&#x52A1;&#x672A;&#x63D0;&#x4EA4;&#x6216;&#x56DE;&#x6EDA;&#x5BFC;&#x81F4;&#x7684;MDL&#x9501;</strong>&#x3011;&#x7684;&#x60C5;&#x51B5;&#x4E86;&#x3002;&#x6211;&#x4EEC;&#x627E;&#x51FA;&#x8FD9;&#x4E2A;&#x9519;&#x8BEF;&#x4E8B;&#x52A1;&#xFF0C;&#x8FDB;&#x884C;kill</p>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl12.png" alt="mdl12"></p>
+<p>&#x7B2C;&#x4E5D;&#x6B65;&#xFF1A;kill&#x6389;&#x4F1A;&#x8BDD;11&#x540E;&#xFF0C;&#x6210;&#x529F;&#x5C06;MDL&#x9501;&#x91CA;&#x653E;&#x3002;</p>
+<blockquote>
+<p>&#x6709;&#x4EBA;&#x53C8;&#x4F1A;&#x95EE;&#x54AF;&#xFF1A;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x5C06;&#x6570;&#x636E;&#x5E93;&#x91CD;&#x542F;&#xFF1F;</p>
+<p>&#x56DE;&#x7B54;&#xFF1A;</p>
+<p>&#x5982;&#x679C;&#x8BF4;&#x2014;&#x2014;</p>
+<ol>
+<li><p>&#x4E1A;&#x52A1;&#x5141;&#x8BB8;&#x91CD;&#x542F;</p>
+</li>
+<li><p>&#x4E0D;&#x60F3;&#x627E;&#x5230;&#x95EE;&#x9898;&#x7684;&#x6839;&#x6E90;</p>
+<p>&#x90A3;&#x4E48;&#x91CD;&#x542F;&#x5427;</p>
+</li>
+</ol>
+<p>&#x5982;&#x679C;&#x8BF4;&#x2014;&#x2014; </p>
+<ol>
+<li><p>&#x6570;&#x636E;&#x5E93;&#x4E0A;&#x9762;&#x591A;&#x4E2A;&#x5E93;&#xFF0C;&#x5173;&#x8054;&#x591A;&#x4E2A;&#x4E1A;&#x52A1;&#xFF0C;&#x4E0D;&#x80FD;&#x91CD;&#x542F;</p>
+</li>
+<li><p>&#x60F3;&#x627E;&#x5230;&#x95EE;&#x9898;&#x7684;&#x6839;&#x6E90;&#xFF0C;&#x9632;&#x6B62;&#x4E0B;&#x6B21;&#x518D;&#x6B21;&#x51FA;&#x73B0;&#x7C7B;&#x4F3C;&#x7684;&#x95EE;&#x9898;</p>
+<p>&#x90A3;&#x4E48;&#x4F60;&#x61C2;&#x7684;</p>
+</li>
+</ol>
+<p>&#x90A3;&#x4E48;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x76F4;&#x63A5;kill&#x6240;&#x6709;&#x4F1A;&#x8BDD;&#x5462;&#xFF1F;&#x540C;&#x6837;&#x5982;&#x679C;&#x4F60;&#x8981;&#x627E;&#x51FA;&#x95EE;&#x9898;&#x7684;&#x6839;&#x6E90;&#x90A3;&#x4E48;&#x5C31;&#x6392;&#x67E5;&#xFF0C;&#x4E0D;&#x60F3;&#x95EE;&#x4E3A;&#x4EC0;&#x4E48;&#x5C31;&#x76F4;&#x63A5;kill&#x5427;&#xFF0C;&#x672B;&#x5C3E;&#x6709;kill&#x7684;&#x811A;&#x672C;</p>
+</blockquote>
+<p><img src="/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl13.png" alt="mdl13"></p>
+<p>&#x4E00;&#x6B65;&#x6B65;&#x5206;&#x6790;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> show processlist;                                                                                                                                                                   </span></span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">| Id | User | Host      | db        | Command | Time | State                           | Info                                    |</span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">|  6 | root | localhost | uplooking | Query   |   17 | Waiting for table metadata lock | alter table booboo add q9 int default 0 |</span><br><span class="line">|  7 | root | localhost | uplooking | Query   |   11 | Waiting for table metadata lock | select * from booboo                    |</span><br><span class="line">|  8 | root | localhost | uplooking | Query   |    0 | starting                        | show processlist                        |</span><br><span class="line">| 14 | root | localhost | uplooking | Query   |    5 | Waiting for table metadata lock | select * from booboo where id=3         |</span><br><span class="line">| 15 | root | localhost | uplooking | Sleep   |   28 |                                 | NULL                                    |</span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> select  timediff(sysdate(),trx_started) timediff,sysdate(),trx_started,id,USER,DB,COMMAND,STATE,trx_state,trx_query from information_schema.processlist,information_schema.innodb_trx <span class="hljs-built_in">where</span> trx_mysql_thread_id=id;</span></span><br><span class="line">Empty set (0.00 sec)</span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> <span class="hljs-built_in">kill</span> 7 ;</span></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> <span class="hljs-built_in">kill</span> 14;</span></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> show processlist;                                                                                                                                                                   </span></span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">| Id | User | Host      | db        | Command | Time | State                           | Info                                    |</span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">|  6 | root | localhost | uplooking | Query   |   86 | Waiting for table metadata lock | alter table booboo add q9 int default 0 |</span><br><span class="line">|  8 | root | localhost | uplooking | Query   |    0 | starting                        | show processlist                        |</span><br><span class="line">| 15 | root | localhost | uplooking | Sleep   |   97 |                                 | NULL                                    |</span><br><span class="line">+----+------+-----------+-----------+---------+------+---------------------------------+-----------------------------------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> select  timediff(sysdate(),trx_started) timediff,sysdate(),trx_started,id,USER,DB,COMMAND,STATE,trx_state,trx_query from information_schema.processlist,information_schema.innodb_trx <span class="hljs-built_in">where</span> trx_mysql_thread_id=id;</span></span><br><span class="line">Empty set (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x5982;&#x679C;&#x7B26;&#x5408;&#x60C5;&#x51B5;C&#xFF0C;&#x9700;&#x8981;&#x53BB;&#x67E5;&#x770B;performance_schema.events_statements_current&#x8868;&#x4E2D;&#x662F;&#x5426;&#x6709;&#x5BF9;booboo&#x7684;&#x9519;&#x8BEF;&#x8BED;&#x53E5;&#xFF08;&#x8FD9;&#x91CC;&#x7684;&#x9519;&#x8BEF;&#x8BED;&#x53E5;&#x662F;&#x975E;&#x8BED;&#x6CD5;&#x9519;&#x8BEF;&#x7684;&#xFF0C;&#x4F8B;&#x5982;select&#x4E2D;&#x5199;&#x4E86;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x5217;&#x7B49;&#x60C5;&#x51B5;&#xFF09;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x4ECE;&#x4E0B;&#x9762;&#x7684;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x786E;&#x5B9E;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x9519;&#x8BEF;&#x8BED;&#x53E5;&#x4E8B;&#x4EF6;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x901A;&#x8FC7;&#x8BE5;&#x9519;&#x8BEF;&#x8BED;&#x53E5;&#x4E8B;&#x4EF6;&#x7684;THREAD_ID&#xFF0C;&#x5230;performance_schema.threads&#x8868;&#x67E5;&#x5230;&#x8BE5;&#x7EBF;&#x7A0B;&#x5BF9;&#x5E94;&#x7684;PROCESSLIST_ID&#xFF0C;&#x800C;PROCESSLIST_ID&#x8FDB;&#x7A0B;id&#x7B49;&#x4E8E;processlist&#x4E2D;&#x7684;id</span></span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> select * from performance_schema.events_statements_current <span class="hljs-built_in">where</span> SQL_TEXT like <span class="hljs-string">&apos;%booboo%&apos;</span>\G;</span></span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">              THREAD_ID: 31</span><br><span class="line">               EVENT_ID: 16</span><br><span class="line">           END_EVENT_ID: NULL</span><br><span class="line">             EVENT_NAME: statement/sql/alter_table</span><br><span class="line">                 SOURCE: socket_connection.cc:101</span><br><span class="line">            TIMER_START: 3292336129737000</span><br><span class="line">              TIMER_END: 3521408438190000</span><br><span class="line">             TIMER_WAIT: 229072308453000</span><br><span class="line">              LOCK_TIME: 0</span><br><span class="line">               SQL_TEXT: alter table booboo add q9 int default 0</span><br><span class="line">                 DIGEST: NULL</span><br><span class="line">            DIGEST_TEXT: NULL</span><br><span class="line">         CURRENT_SCHEMA: uplooking</span><br><span class="line">            OBJECT_TYPE: NULL</span><br><span class="line">          OBJECT_SCHEMA: NULL</span><br><span class="line">            OBJECT_NAME: NULL</span><br><span class="line">  OBJECT_INSTANCE_BEGIN: NULL</span><br><span class="line">            MYSQL_ERRNO: 0</span><br><span class="line">      RETURNED_SQLSTATE: NULL</span><br><span class="line">           MESSAGE_TEXT: NULL</span><br><span class="line">                 ERRORS: 0</span><br><span class="line">               WARNINGS: 0</span><br><span class="line">          ROWS_AFFECTED: 0</span><br><span class="line">              ROWS_SENT: 0</span><br><span class="line">          ROWS_EXAMINED: 0</span><br><span class="line">CREATED_TMP_DISK_TABLES: 0</span><br><span class="line">     CREATED_TMP_TABLES: 0</span><br><span class="line">       SELECT_FULL_JOIN: 0</span><br><span class="line"> SELECT_FULL_RANGE_JOIN: 0</span><br><span class="line">           SELECT_RANGE: 0</span><br><span class="line">     SELECT_RANGE_CHECK: 0</span><br><span class="line">            SELECT_SCAN: 0</span><br><span class="line">      SORT_MERGE_PASSES: 0</span><br><span class="line">             SORT_RANGE: 0</span><br><span class="line">              SORT_ROWS: 0</span><br><span class="line">              SORT_SCAN: 0</span><br><span class="line">          NO_INDEX_USED: 0</span><br><span class="line">     NO_GOOD_INDEX_USED: 0</span><br><span class="line">       NESTING_EVENT_ID: NULL</span><br><span class="line">     NESTING_EVENT_TYPE: NULL</span><br><span class="line">    NESTING_EVENT_LEVEL: 0</span><br><span class="line">*************************** 2. row ***************************</span><br><span class="line">              THREAD_ID: 33</span><br><span class="line">               EVENT_ID: 74</span><br><span class="line">           END_EVENT_ID: NULL</span><br><span class="line">             EVENT_NAME: statement/sql/select</span><br><span class="line">                 SOURCE: socket_connection.cc:101</span><br><span class="line">            TIMER_START: 3521408132304000</span><br><span class="line">              TIMER_END: 3521408462141000</span><br><span class="line">             TIMER_WAIT: 329837000</span><br><span class="line">              LOCK_TIME: 184000000</span><br><span class="line">               SQL_TEXT: select * from performance_schema.events_statements_current where SQL_TEXT like &apos;%booboo%&apos;</span><br><span class="line">                 DIGEST: NULL</span><br><span class="line">            DIGEST_TEXT: NULL</span><br><span class="line">         CURRENT_SCHEMA: uplooking</span><br><span class="line">            OBJECT_TYPE: NULL</span><br><span class="line">          OBJECT_SCHEMA: NULL</span><br><span class="line">            OBJECT_NAME: NULL</span><br><span class="line">  OBJECT_INSTANCE_BEGIN: NULL</span><br><span class="line">            MYSQL_ERRNO: 0</span><br><span class="line">      RETURNED_SQLSTATE: NULL</span><br><span class="line">           MESSAGE_TEXT: NULL</span><br><span class="line">                 ERRORS: 0</span><br><span class="line">               WARNINGS: 0</span><br><span class="line">          ROWS_AFFECTED: 0</span><br><span class="line">              ROWS_SENT: 1</span><br><span class="line">          ROWS_EXAMINED: 0</span><br><span class="line">CREATED_TMP_DISK_TABLES: 0</span><br><span class="line">     CREATED_TMP_TABLES: 0</span><br><span class="line">       SELECT_FULL_JOIN: 0</span><br><span class="line"> SELECT_FULL_RANGE_JOIN: 0</span><br><span class="line">           SELECT_RANGE: 0</span><br><span class="line">     SELECT_RANGE_CHECK: 0</span><br><span class="line">            SELECT_SCAN: 1</span><br><span class="line">      SORT_MERGE_PASSES: 0</span><br><span class="line">             SORT_RANGE: 0</span><br><span class="line">              SORT_ROWS: 0</span><br><span class="line">              SORT_SCAN: 0</span><br><span class="line">          NO_INDEX_USED: 1</span><br><span class="line">     NO_GOOD_INDEX_USED: 0</span><br><span class="line">       NESTING_EVENT_ID: NULL</span><br><span class="line">     NESTING_EVENT_TYPE: NULL</span><br><span class="line">    NESTING_EVENT_LEVEL: 0</span><br><span class="line">*************************** 3. row ***************************</span><br><span class="line">              THREAD_ID: 40</span><br><span class="line">               EVENT_ID: 8</span><br><span class="line">           END_EVENT_ID: 8</span><br><span class="line">             EVENT_NAME: statement/sql/select</span><br><span class="line">                 SOURCE: socket_connection.cc:101</span><br><span class="line">            TIMER_START: 3280938133699000</span><br><span class="line">              TIMER_END: 3280938258470000</span><br><span class="line">             TIMER_WAIT: 124771000</span><br><span class="line">              LOCK_TIME: 0</span><br><span class="line">               SQL_TEXT: select abc from booboo</span><br><span class="line">                 DIGEST: 871dd43dfdfb143e81439bbe7bf7b57e</span><br><span class="line">            DIGEST_TEXT: SELECT `abc` FROM `booboo` </span><br><span class="line">         CURRENT_SCHEMA: uplooking</span><br><span class="line">            OBJECT_TYPE: NULL</span><br><span class="line">          OBJECT_SCHEMA: NULL</span><br><span class="line">            OBJECT_NAME: NULL</span><br><span class="line">  OBJECT_INSTANCE_BEGIN: NULL</span><br><span class="line">            MYSQL_ERRNO: 1054</span><br><span class="line">      RETURNED_SQLSTATE: 42S22</span><br><span class="line">           MESSAGE_TEXT: Unknown column &apos;abc&apos; in &apos;field list&apos;</span><br><span class="line">                 ERRORS: 1</span><br><span class="line">               WARNINGS: 0</span><br><span class="line">          ROWS_AFFECTED: 0</span><br><span class="line">              ROWS_SENT: 0</span><br><span class="line">          ROWS_EXAMINED: 0</span><br><span class="line">CREATED_TMP_DISK_TABLES: 0</span><br><span class="line">     CREATED_TMP_TABLES: 0</span><br><span class="line">       SELECT_FULL_JOIN: 0</span><br><span class="line"> SELECT_FULL_RANGE_JOIN: 0</span><br><span class="line">           SELECT_RANGE: 0</span><br><span class="line">     SELECT_RANGE_CHECK: 0</span><br><span class="line">            SELECT_SCAN: 0</span><br><span class="line">      SORT_MERGE_PASSES: 0</span><br><span class="line">             SORT_RANGE: 0</span><br><span class="line">              SORT_ROWS: 0</span><br><span class="line">              SORT_SCAN: 0</span><br><span class="line">          NO_INDEX_USED: 0</span><br><span class="line">     NO_GOOD_INDEX_USED: 0</span><br><span class="line">       NESTING_EVENT_ID: NULL</span><br><span class="line">     NESTING_EVENT_TYPE: NULL</span><br><span class="line">    NESTING_EVENT_LEVEL: 0</span><br><span class="line">3 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">ERROR: </span><br><span class="line">No query specified</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> select THREAD_ID,DIGEST_TEXT from performance_schema.events_statements_current <span class="hljs-built_in">where</span> DIGEST_TEXT=<span class="hljs-string">&quot;SELECT `abc` FROM `booboo`&quot;</span>;</span></span><br><span class="line">+-----------+-----------------------------+</span><br><span class="line">| THREAD_ID | DIGEST_TEXT                 |</span><br><span class="line">+-----------+-----------------------------+</span><br><span class="line">|        40 | SELECT `abc` FROM `booboo`  |</span><br><span class="line">+-----------+-----------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> select * from performance_schema.threads <span class="hljs-built_in">where</span> thread_id=40\G;</span></span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">          THREAD_ID: 40</span><br><span class="line">               NAME: thread/sql/one_connection</span><br><span class="line">               TYPE: FOREGROUND</span><br><span class="line">     PROCESSLIST_ID: 15</span><br><span class="line">   PROCESSLIST_USER: root</span><br><span class="line">   PROCESSLIST_HOST: localhost</span><br><span class="line">     PROCESSLIST_DB: uplooking</span><br><span class="line">PROCESSLIST_COMMAND: Sleep</span><br><span class="line">   PROCESSLIST_TIME: 402</span><br><span class="line">  PROCESSLIST_STATE: NULL</span><br><span class="line">   PROCESSLIST_INFO: NULL</span><br><span class="line">   PARENT_THREAD_ID: NULL</span><br><span class="line">               ROLE: NULL</span><br><span class="line">       INSTRUMENTED: YES</span><br><span class="line">            HISTORY: YES</span><br><span class="line">    CONNECTION_TYPE: Socket</span><br><span class="line">       THREAD_OS_ID: 22758</span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> select PROCESSLIST_ID from performance_schema.threads <span class="hljs-built_in">where</span> thread_id=40;</span></span><br><span class="line">+----------------+</span><br><span class="line">| PROCESSLIST_ID |</span><br><span class="line">+----------------+</span><br><span class="line">|             15 |</span><br><span class="line">+----------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> select * from information_schema.processlist <span class="hljs-built_in">where</span> id=(select PROCESSLIST_ID from performance_schema.threads <span class="hljs-built_in">where</span> thread_id=40);</span></span><br><span class="line">+----+------+-----------+-----------+---------+------+-------+------+</span><br><span class="line">| ID | USER | HOST      | DB        | COMMAND | TIME | STATE | INFO |</span><br><span class="line">+----+------+-----------+-----------+---------+------+-------+------+</span><br><span class="line">| 15 | root | localhost | uplooking | Sleep   |  466 |       | NULL |</span><br><span class="line">+----+------+-----------+-----------+---------+------+-------+------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> <span class="hljs-built_in">kill</span> 15;</span></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x4F1A;&#x8BDD;B</span></span><br><span class="line"><span class="hljs-meta">mysql&gt;</span><span class="hljs-bash"> alter table booboo add q9 int default 0;</span></span><br><span class="line">Query OK, 0 rows affected (9 min 54.35 sec)</span><br><span class="line">Records: 0  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure></p>
+<h2 id="&#x5C0F;&#x77E5;&#x8BC6;&#x70B9;&#x603B;&#x7ED3;"><a href="#&#x5C0F;&#x77E5;&#x8BC6;&#x70B9;&#x603B;&#x7ED3;" class="headerlink" title="&#x5C0F;&#x77E5;&#x8BC6;&#x70B9;&#x603B;&#x7ED3;"></a>&#x5C0F;&#x77E5;&#x8BC6;&#x70B9;&#x603B;&#x7ED3;</h2><h3 id="&#x4E09;&#x5F20;&#x8868;&#x7684;&#x5173;&#x7CFB;"><a href="#&#x4E09;&#x5F20;&#x8868;&#x7684;&#x5173;&#x7CFB;" class="headerlink" title="&#x4E09;&#x5F20;&#x8868;&#x7684;&#x5173;&#x7CFB;"></a>&#x4E09;&#x5F20;&#x8868;&#x7684;&#x5173;&#x7CFB;</h3><blockquote>
+<p>MySQL 5.6</p>
+</blockquote>
+<ol>
+<li><code>performance_schema</code>&#x5E93;&#x4E2D;&#xFF0C;<code>events_statements_current</code>&#x8868;&#x4E2D;<code>theard_id</code>&#x4E0E;<code>threads</code>&#x8868;&#x4E2D;&#x7684;<code>thread_id</code>&#x76F8;&#x540C;</li>
+<li><code>performance_schema</code>&#x5E93;&#x4E2D;&#xFF0C;threads&#x8868;&#x4E2D;&#xFF0C;thread_id&#x548C;processlist_id&#x4E3A;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#xFF0C;<code>thread_id</code>&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x72EC;&#x7279;&#x7684;&#x7EBF;&#x7A0B;&#x6807;&#x8BC6;&#x7B26;;<code>processlist_id</code>&#x662F;<code>show processlist</code>&#x663E;&#x793A;&#x7684;<code>id</code>&#x503C;&#xFF0C;&#x8FDE;&#x63A5;&#x6807;&#x8BC6;&#x7B26;&#xFF1B;&#x800C;&#x5BF9;&#x4E8E;&#x540E;&#x53F0;&#x7EBF;&#x7A0B;(&#x4E0E;&#x7528;&#x6237;&#x8FDE;&#x63A5;&#x4E0D;&#x76F8;&#x5173;&#x7684;&#x7EBF;&#x7A0B;)&#xFF0C;<code>PROCESSLIST_ID</code>&#x4E3A;&#x7A7A;&#xFF0C;&#x6B64;&#x503C;&#x4E0D;&#x662F;&#x552F;&#x4E00;&#x7684;&#x3002;</li>
+<li><code>information_schema</code>&#x5E93;&#x4E2D;,<code>PROCESSLIST</code>&#x8868;&#x662F;&#x4E00;&#x4E2A;&#x975E;&#x6807;&#x51C6;&#x8868;&#x3002;<code>id</code>&#x8FDE;&#x63A5;&#x6807;&#x8BC6;&#x7B26;&#xFF0C;&#x5E76;&#x7531;CONNECTION_ID()&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x3002;</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>performance_schema</th>
+<th>performance_schema</th>
+<th>performance_schema</th>
+<th>information_schema</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>events_statements_current</td>
+<td>threads</td>
+<td>threads</td>
+<td>processlist</td>
+</tr>
+<tr>
+<td>THREAD_ID</td>
+<td>THREAD_ID</td>
+<td>PROCESSLIST_ID</td>
+<td>ID</td>
+</tr>
+</tbody></table>
+<h3 id="&#x6211;&#x7684;&#x7406;&#x89E3;"><a href="#&#x6211;&#x7684;&#x7406;&#x89E3;" class="headerlink" title="&#x6211;&#x7684;&#x7406;&#x89E3;"></a>&#x6211;&#x7684;&#x7406;&#x89E3;</h3><ol>
+<li>&#x7EBF;&#x7A0B;&#x8868;&#x4E2D;&#x4FDD;&#x5B58;&#x4E86;&#x6240;&#x6709;&#x7EBF;&#x7A0B;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x6709;&#x524D;&#x53F0;&#x7684;&#x6709;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#x7684;&#xFF1B;</li>
+<li>&#x5982;&#x679C;&#x662F;&#x7531;&#x8FDE;&#x63A5;&#x4EA7;&#x751F;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x4E00;&#x822C;&#x90FD;&#x662F;&#x524D;&#x53F0;&#x7EBF;&#x7A0B;&#xFF0C;&#x4F1A;&#x5206;&#x914D;&#x4E00;&#x4E2A;processlist_id&#xFF0C;&#x53EF;&#x4EE5;&#x5728;information_schema.processlist&#x4E2D;&#x770B;&#x5230;</li>
+</ol>
+<h3 id="&#x8D44;&#x6599;&#x53C2;&#x8003;"><a href="#&#x8D44;&#x6599;&#x53C2;&#x8003;" class="headerlink" title="&#x8D44;&#x6599;&#x53C2;&#x8003;"></a>&#x8D44;&#x6599;&#x53C2;&#x8003;</h3><p><a href="https://dev.mysql.com/doc/refman/5.7/en/threads-table.html" target="_blank" rel="noopener">&#x5B98;&#x7F51;&#x5173;&#x4E8E;threads&#x8868;&#x7684;&#x8BF4;&#x660E;</a></p>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/show-processlist.html" target="_blank" rel="noopener">&#x5B98;&#x65B9;&#x5173;&#x4E8E;processlist&#x8868;&#x7684;&#x8BF4;&#x660E;</a></p>
+<p><a href="http://www.voidcn.com/article/p-hjsjvnlz-bog.html" target="_blank" rel="noopener">MySQL5.7 MetaData Lock &#x6848;&#x4F8B;&#x5206;&#x4EAB;</a></p>
+<h3 id="&#x4E0D;&#x540C;&#x7248;&#x672C;"><a href="#&#x4E0D;&#x540C;&#x7248;&#x672C;" class="headerlink" title="&#x4E0D;&#x540C;&#x7248;&#x672C;"></a>&#x4E0D;&#x540C;&#x7248;&#x672C;</h3><blockquote>
+<p>MySQL 5.7</p>
+</blockquote>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">select * from performance_schema.events_statements_current\G</span><br><span class="line">select * from sys.x$session\G</span><br><span class="line">select * from sys.x$processlist\G</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from x$session\G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">                thd_id: 3904</span><br><span class="line">               conn_id: 3879</span><br><span class="line">                  user: root@localhost</span><br><span class="line">                    db: sys</span><br><span class="line">               command: Query</span><br><span class="line">                 state: Sending data</span><br><span class="line">                  time: 0</span><br><span class="line">     current_statement: select * from x$session</span><br><span class="line">     statement_latency: 1564453000</span><br><span class="line">              progress: NULL</span><br><span class="line">          lock_latency: 847000000</span><br><span class="line">         rows_examined: 0</span><br><span class="line">             rows_sent: 0</span><br><span class="line">         rows_affected: 0</span><br><span class="line">            tmp_tables: 4</span><br><span class="line">       tmp_disk_tables: 1</span><br><span class="line">             full_scan: YES</span><br><span class="line">        last_statement: NULL</span><br><span class="line">last_statement_latency: NULL</span><br><span class="line">        current_memory: 0</span><br><span class="line">             last_wait: NULL</span><br><span class="line">     last_wait_latency: NULL</span><br><span class="line">                source: NULL</span><br><span class="line">           trx_latency: NULL</span><br><span class="line">             trx_state: NULL</span><br><span class="line">        trx_autocommit: NULL</span><br><span class="line">                   pid: 12880</span><br><span class="line">          program_name: mysql</span><br><span class="line">1 row in set (0.05 sec)</span><br><span class="line">mysql&gt; select * from  x$processlist limit 1\G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">                thd_id: 1</span><br><span class="line">               conn_id: NULL</span><br><span class="line">                  user: sql/main</span><br><span class="line">                    db: NULL</span><br><span class="line">               command: NULL</span><br><span class="line">                 state: NULL</span><br><span class="line">                  time: 230927</span><br><span class="line">     current_statement: NULL</span><br><span class="line">     statement_latency: NULL</span><br><span class="line">              progress: NULL</span><br><span class="line">          lock_latency: NULL</span><br><span class="line">         rows_examined: NULL</span><br><span class="line">             rows_sent: NULL</span><br><span class="line">         rows_affected: NULL</span><br><span class="line">            tmp_tables: NULL</span><br><span class="line">       tmp_disk_tables: NULL</span><br><span class="line">             full_scan: NO</span><br><span class="line">        last_statement: NULL</span><br><span class="line">last_statement_latency: NULL</span><br><span class="line">        current_memory: 0</span><br><span class="line">             last_wait: NULL</span><br><span class="line">     last_wait_latency: NULL</span><br><span class="line">                source: NULL</span><br><span class="line">           trx_latency: NULL</span><br><span class="line">             trx_state: NULL</span><br><span class="line">        trx_autocommit: NULL</span><br><span class="line">                   pid: NULL</span><br><span class="line">          program_name: NULL</span><br><span class="line">1 row in set (0.06 sec)</span><br><span class="line">mysql&gt; select * from information_schema.processlist;</span><br><span class="line">+------+------+-----------+------+---------+------+-----------+----------------------------------------------+</span><br><span class="line">| ID   | USER | HOST      | DB   | COMMAND | TIME | STATE     | INFO                                         |</span><br><span class="line">+------+------+-----------+------+---------+------+-----------+----------------------------------------------+</span><br><span class="line">| 3879 | root | localhost | sys  | Query   |    0 | executing | select * from information_schema.processlist |</span><br><span class="line">+------+------+-----------+------+---------+------+-----------+----------------------------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<h2 id="MDL&#x6545;&#x969C;&#x81EA;&#x6108;"><a href="#MDL&#x6545;&#x969C;&#x81EA;&#x6108;" class="headerlink" title="MDL&#x6545;&#x969C;&#x81EA;&#x6108;"></a>MDL&#x6545;&#x969C;&#x81EA;&#x6108;</h2><h3 id="kill&#x6240;&#x6709;&#x4F1A;&#x8BDD;"><a href="#kill&#x6240;&#x6709;&#x4F1A;&#x8BDD;" class="headerlink" title="kill&#x6240;&#x6709;&#x4F1A;&#x8BDD;"></a>kill&#x6240;&#x6709;&#x4F1A;&#x8BDD;</h3><blockquote>
+<p>&#x4E0D;&#x60F3;&#x77E5;&#x9053;&#x6545;&#x969C;&#x539F;&#x56E0;&#xFF0C;&#x53EA;&#x60F3;&#x5FEB;&#x901F;&#x89E3;&#x51B3;&#x6545;&#x969C;</p>
+</blockquote>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">!/bin/bash</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> <span class="hljs-built_in">kill</span>&#x6389; &#x6240;&#x6709;&#x4F1A;&#x8BDD;</span></span><br><span class="line">user=xxx</span><br><span class="line">password=xxx</span><br><span class="line">host=xxxx.mysql.rds.aliyuncs.com</span><br><span class="line">port=3306</span><br><span class="line"></span><br><span class="line">mysql -u$user -p$password -h$host  -P$port -e &quot;select  concat(&apos;KILL &apos;,id,&apos;;&apos;) from information_schema.processlist;&quot; &gt; tmpfile</span><br><span class="line"></span><br><span class="line">awk &apos;{if (NR != 1) print $0 }&apos; tmpfile | mysql -u$user -p$password -h$host  -P$port</span><br></pre></td></tr></table></figure></p>
+<h3 id="MDL&#x6545;&#x969C;&#x6392;&#x67E5;&#x548C;&#x89E3;&#x51B3;"><a href="#MDL&#x6545;&#x969C;&#x6392;&#x67E5;&#x548C;&#x89E3;&#x51B3;" class="headerlink" title="MDL&#x6545;&#x969C;&#x6392;&#x67E5;&#x548C;&#x89E3;&#x51B3;"></a>MDL&#x6545;&#x969C;&#x6392;&#x67E5;&#x548C;&#x89E3;&#x51B3;</h3><p><a href="https://github.com/BoobooWei/DevOps-Database-Troubleshooting/blob/master/fault_self_healing_metadatalock.py" target="_blank" rel="noopener">MDL&#x6545;&#x969C;&#x81EA;&#x6108;&#x811A;&#x672C;GitHub&#x5730;&#x5740;</a></p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E9%94%81%E6%95%85%E9%9A%9C/">#锁故障</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2018/05/17/booboo_others/2018-05-16-tec-mysql/">MySQL一次惊心动魄地数据强制恢复</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2017/01/05/booboo_mysql/08-MySQL-mysqldump-mysqlpump-mydumper/">MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5e7f26910c743700190536a1&amp;product=inline-share-buttons&amp;cms=sop&#39; async=&#39;async&#39;' async='async'></script>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Kommentare</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2017/08/19/booboo_others/2017-08-18-tec-mysql/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Seiten',
+                CATEGORIES: 'Kategorien',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

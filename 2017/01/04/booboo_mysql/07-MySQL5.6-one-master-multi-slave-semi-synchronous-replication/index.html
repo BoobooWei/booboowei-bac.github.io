@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制 - Amy and Booboo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
+
+
+
+
+
+    <meta name="description" content="&amp;#x8981;&amp;#x6C42;&amp;#x638C;&amp;#x63E1;mysql5.6&amp;#x7684;&amp;#x4E8C;&amp;#x8FDB;&amp;#x5236;&amp;#x5B89;&amp;#x88C5;&amp;#x548C;AB replication&amp;#x4E4B;&amp;#x534A;&amp;#x540C;&amp;#x6B65;&amp;#x590D;&amp;#x5236;     role server ip    master mastera 172">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制">
+<meta property="og:url" content="http://www.toberoot.com/2017/01/04/booboo_mysql/07-MySQL5.6-one-master-multi-slave-semi-synchronous-replication/index.html">
+<meta property="og:site_name" content="Amy and Booboo">
+<meta property="og:description" content="&amp;#x8981;&amp;#x6C42;&amp;#x638C;&amp;#x63E1;mysql5.6&amp;#x7684;&amp;#x4E8C;&amp;#x8FDB;&amp;#x5236;&amp;#x5B89;&amp;#x88C5;&amp;#x548C;AB replication&amp;#x4E4B;&amp;#x534A;&amp;#x540C;&amp;#x6B65;&amp;#x590D;&amp;#x5236;     role server ip    master mastera 172">
+<meta property="article:published_time" content="2017-01-03T21:06:27.000Z">
+<meta property="article:modified_time" content="2020-03-24T05:29:49.070Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="培训">
+<meta property="article:tag" content="MySQL基础管理">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    <img src="/images/influx.svg" alt="" height="28">
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/tools">Tools</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Suche" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2017-01-03T21:06:27.000Z" itemprop="datePublished">1月 4 2017</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/">技术培训</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/">MySQL基础管理教程</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            6 分钟 lesen (Über 934 Wörter)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <blockquote>
+<p>&#x8981;&#x6C42;&#x638C;&#x63E1;mysql5.6&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5B89;&#x88C5;&#x548C;AB replication&#x4E4B;&#x534A;&#x540C;&#x6B65;&#x590D;&#x5236;</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">role</th>
+<th align="left">server</th>
+<th align="left">ip</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">master</td>
+<td align="left">mastera</td>
+<td align="left">172.25.0.11</td>
+</tr>
+<tr>
+<td align="left">slave</td>
+<td align="left">masterb</td>
+<td align="left">172.25.0.12</td>
+</tr>
+<tr>
+<td align="left">slave</td>
+<td align="left">slavea</td>
+<td align="left">172.25.0.13</td>
+</tr>
+</tbody></table>
+<h2 id="&#x5B89;&#x88C5;&#x4E8C;&#x8FDB;&#x5236;&#x7684;mysql5-6"><a href="#&#x5B89;&#x88C5;&#x4E8C;&#x8FDB;&#x5236;&#x7684;mysql5-6" class="headerlink" title="&#x5B89;&#x88C5;&#x4E8C;&#x8FDB;&#x5236;&#x7684;mysql5.6"></a>&#x5B89;&#x88C5;&#x4E8C;&#x8FDB;&#x5236;&#x7684;mysql5.6</h2><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">[root@mastera0 ~]# tar -xf mysql-5.6.20-linux-glibc2.5-x86_64.tar.gz </span><br><span class="line">[root@mastera0 ~]# cd mysql-5.6.20-linux-glibc2.5-x86_64</span><br><span class="line">[root@mastera0 mysql-5.6.20-linux-glibc2.5-x86_64]# ls</span><br><span class="line">bin  COPYING  data  docs  include  INSTALL-BINARY  lib  man  mysql-test  README  scripts  share  sql-bench  support-files</span><br><span class="line">[root@mastera0 mysql-5.6.20-linux-glibc2.5-x86_64]# cat INSTALL-BINARY</span><br><span class="line">... ...</span><br><span class="line"> To install and use a MySQL binary distribution, the basic command</span><br><span class="line">   sequence looks like this:</span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> groupadd mysql</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> useradd -r -g mysql mysql</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> <span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span></span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> tar zxvf /path/to/mysql-VERSION-OS.tar.gz</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> ln -s full-path-to-mysql-VERSION-OS mysql</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> <span class="hljs-built_in">cd</span> mysql</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> chown -R mysql .</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> chgrp -R mysql .</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> scripts/mysql_install_db --user=mysql</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> chown -R root .</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> chown -R mysql data</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> bin/mysqld_safe --user=mysql &amp;</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> Next <span class="hljs-built_in">command</span> is optional</span></span><br><span class="line"><span class="hljs-meta">shell&gt;</span><span class="hljs-bash"> cp support-files/mysql.server /etc/init.d/mysql.server</span></span><br><span class="line">... ...</span><br><span class="line"></span><br><span class="line">[root@mastera0 mysql-5.6.20-linux-glibc2.5-x86_64]# groupadd mysql</span><br><span class="line">[root@mastera0 mysql-5.6.20-linux-glibc2.5-x86_64]# cd ..</span><br><span class="line">[root@mastera0 ~]# useradd -r -g mysql mysql</span><br><span class="line">[root@mastera0 ~]# cd /usr/local</span><br><span class="line">[root@mastera0 local]# mv /root/mysql-5.6.20-linux-glibc2.5-x86_64 .</span><br><span class="line">[root@mastera0 local]# ls</span><br><span class="line">bin  games    lib    libexec                             sbin   src</span><br><span class="line">etc  include  lib64  mysql-5.6.20-linux-glibc2.5-x86_64  share</span><br><span class="line">[root@mastera0 local]# ln -s mysql-5.6.20-linux-glibc2.5-x86_64 mysql</span><br><span class="line">[root@mastera0 local]# ll mysql</span><br><span class="line">lrwxrwxrwx.  1 root root   34 Dec 11 12:20 mysql -&gt; mysql-5.6.20-linux-glibc2.5-x86_64</span><br><span class="line">[root@mastera0 mysql]# cd mysql</span><br><span class="line">[root@mastera0 mysql]# mkdir /data/mysql/data -p</span><br><span class="line">[root@mastera0 mysql]# chown mysql. /data/mysql/data</span><br><span class="line">[root@mastera0 mysql]# chown mysql. /data/mysql/data -R</span><br><span class="line">[root@mastera0 mysql]# ll -d /data/mysql/data</span><br><span class="line">drwxr-xr-x. 2 mysql mysql 4096 Dec 11 12:24 /data/mysql/data</span><br><span class="line">[root@mastera0 mysql]# scripts/mysql_install_db --user=mysql --datadir=/data/mysql/data --basedir=/usr/local/mysql</span><br><span class="line"></span><br><span class="line">[root@mastera0 mysql]# ll /data/mysql/data</span><br><span class="line">total 110604</span><br><span class="line">-rw-rw----. 1 mysql mysql 12582912 Dec 11 12:28 ibdata1</span><br><span class="line">-rw-rw----. 1 mysql mysql 50331648 Dec 11 12:28 ib_logfile0</span><br><span class="line">-rw-rw----. 1 mysql mysql 50331648 Dec 11 12:28 ib_logfile1</span><br><span class="line">drwx------. 2 mysql mysql     4096 Dec 11 12:28 mysql</span><br><span class="line">drwx------. 2 mysql mysql     4096 Dec 11 12:28 performance_schema</span><br><span class="line">drwx------. 2 mysql mysql     4096 Dec 11 12:28 test</span><br><span class="line">[root@mastera0 mysql]# cp /mnt/mysql/my.cnf /etc/my.cnf</span><br><span class="line">[root@mastera0 mysql]# vim /etc/my.cnf</span><br><span class="line">[client]</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">&#x5982;&#x679C;&#x4E0D;&#x8BA4;&#x8BC6;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x4F1A;&#x5FFD;&#x7565;</span></span><br><span class="line">loose-default-character-set=utf8</span><br><span class="line">loose-prompt=&apos;\u@\h:\p [\d]&gt;&apos;</span><br><span class="line">socket=/tmp/mysql.sock</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /data/mysql/data</span><br><span class="line">user=mysql</span><br><span class="line">port = 3306</span><br><span class="line">socket=/tmp/mysql.sock</span><br><span class="line">pid-file=/data/tmp/mysql.pid</span><br><span class="line">tmpdir=/data1/tmp</span><br><span class="line">character_set_server=utf8</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">skip</span></span><br><span class="line">skip-external_locking=1</span><br><span class="line">skip-name-resolve=1</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">AB replication</span></span><br><span class="line">server-id = 1</span><br><span class="line">log-bin = /data/mysql/log-data/mastera</span><br><span class="line">binlog_format=row</span><br><span class="line">max_binlog_cache_size=2000M</span><br><span class="line">max_binlog_size=1G</span><br><span class="line">sync_binlog=1</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">expire_logs_days=7</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">semi_sync</span></span><br><span class="line">rpl_semi_sync_master_enabled=1</span><br><span class="line">rpl_semi_sync_master_timeout=1000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@mastera0 mysql]# pwd</span><br><span class="line">/usr/local/mysql</span><br><span class="line">[root@mastera0 mysql]# cp support-files/mysql.server /etc/init.d/mysql.server</span><br><span class="line">[root@mastera0 mysql]# echo export PATH=$PATH:/usr/local/mysql/support-files/ &gt;&gt; /etc/bashrc</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th align="left">mysql</th>
+<th align="left">&#x8F6F;&#x4EF6;&#x67B6;&#x6784;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&#x6570;&#x636E;&#x76EE;&#x5F55;</td>
+<td align="left">/data/mysql/data</td>
+</tr>
+<tr>
+<td align="left">binlog&#x76EE;&#x5F55;</td>
+<td align="left">/data/mysql/log-data</td>
+</tr>
+<tr>
+<td align="left">pid&#x6587;&#x4EF6;</td>
+<td align="left">/data/tmp</td>
+</tr>
+<tr>
+<td align="left">&#x4E34;&#x65F6;&#x76EE;&#x5F55;</td>
+<td align="left">/data1/tmp/</td>
+</tr>
+</tbody></table>
+<p>&#x4EE5;&#x4E0A;&#x76EE;&#x5F55;&#x6240;&#x5C5E;&#x8005;&#x548C;&#x6240;&#x5C5E;&#x7EC4;&#x90FD;&#x9700;&#x8981;&#x4E3A;mysql.mysql</p>
+<p>&#x540C;&#x6837;&#x53BB;&#x5B89;&#x88C5;masterb slavea</p>
+<hr>
+<h2 id="&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;"><a href="#&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;" class="headerlink" title="&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;"></a>&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;</h2><p>&#x6B65;&#x9AA4;&#x5FFD;&#x7565;</p>
+<h2 id="&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;&#x534A;&#x540C;&#x6B65;&#x6A21;&#x5F0F;"><a href="#&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;&#x534A;&#x540C;&#x6B65;&#x6A21;&#x5F0F;" class="headerlink" title="&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;&#x534A;&#x540C;&#x6B65;&#x6A21;&#x5F0F;"></a>&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;&#x534A;&#x540C;&#x6B65;&#x6A21;&#x5F0F;</h2><blockquote>
+<p>&#x5B89;&#x88C5;&#x534A;&#x540C;&#x6B65;&#x63D2;&#x4EF6;<br><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;</span><span class="hljs-bash">install plugin rpl_semi_sync_master soname <span class="hljs-string">&apos;semisync_master.so&apos;</span>;</span></span><br><span class="line"><span class="hljs-meta">&gt;</span><span class="hljs-bash">install plugin rpl_semi_sync_slave soname <span class="hljs-string">&apos;semisync_slave.so&apos;</span>;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x9700;&#x8981;&#x6253;&#x5F00;&#x76F8;&#x5E94;&#x7684;&#x53C2;&#x6570;<br><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpl_semi_sync_master_enabled=1</span><br><span class="line">rpl_semi_sync_master_timeout=1000 #ms</span><br><span class="line">rpl_semi_sync_slave_enabled=1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x670D;&#x52A1;</p>
+</blockquote>
+<blockquote>
+<p>&#x6D4B;&#x8BD5;</p>
+</blockquote>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">mastera</span><br><span class="line">root@localhost:mysql.sock [(none)]&gt;show variables like &quot;%semi%&quot;;</span><br><span class="line">+------------------------------------+-------+</span><br><span class="line">| Variable_name                      | Value |</span><br><span class="line">+------------------------------------+-------+</span><br><span class="line">| rpl_semi_sync_master_enabled       | ON    |</span><br><span class="line">| rpl_semi_sync_master_timeout       | 1000  |</span><br><span class="line">| rpl_semi_sync_master_trace_level   | 32    |</span><br><span class="line">| rpl_semi_sync_master_wait_no_slave | ON    |</span><br><span class="line">| rpl_semi_sync_slave_enabled        | OFF   |</span><br><span class="line">| rpl_semi_sync_slave_trace_level    | 32    |</span><br><span class="line">+------------------------------------+-------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">masterb</span><br><span class="line">root@localhost:mysql.sock [(none)]&gt;show variables like &quot;%semi%&quot;;</span><br><span class="line">+------------------------------------+-------+</span><br><span class="line">| Variable_name                      | Value |</span><br><span class="line">+------------------------------------+-------+</span><br><span class="line">| rpl_semi_sync_master_enabled       | OFF   |</span><br><span class="line">| rpl_semi_sync_master_timeout       | 10000 |</span><br><span class="line">| rpl_semi_sync_master_trace_level   | 32    |</span><br><span class="line">| rpl_semi_sync_master_wait_no_slave | ON    |</span><br><span class="line">| rpl_semi_sync_slave_enabled        | ON    |</span><br><span class="line">| rpl_semi_sync_slave_trace_level    | 32    |</span><br><span class="line">+------------------------------------+-------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">slavea</span><br><span class="line">root@localhost:mysql.sock [(none)]&gt;show variables like &quot;%semi%&quot;;</span><br><span class="line">+------------------------------------+-------+</span><br><span class="line">| Variable_name                      | Value |</span><br><span class="line">+------------------------------------+-------+</span><br><span class="line">| rpl_semi_sync_master_enabled       | OFF   |</span><br><span class="line">| rpl_semi_sync_master_timeout       | 10000 |</span><br><span class="line">| rpl_semi_sync_master_trace_level   | 32    |</span><br><span class="line">| rpl_semi_sync_master_wait_no_slave | ON    |</span><br><span class="line">| rpl_semi_sync_slave_enabled        | ON    |</span><br><span class="line">| rpl_semi_sync_slave_trace_level    | 32    |</span><br><span class="line">+------------------------------------+-------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>&#x73B0;&#x5728;&#x5C06;masterb&#x548C;slavea&#x7684;slave&#x5173;&#x95ED;&#xFF0C;&#x5728;mastera&#x4E0A;&#x8FDB;&#x884C;&#x5199;&#x64CD;&#x4F5C;&#xFF0C;&#x5E76;&#x89C2;&#x5BDF;&#x3002;</p>
+<p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:mysql.sock [(none)]&gt;insert into db1.t1 values (2);</span><br><span class="line">Query OK, 1 row affected (1.29 sec)</span><br><span class="line"></span><br><span class="line">root@localhost:mysql.sock [(none)]&gt;insert into db1.t1 values (3);</span><br><span class="line">Query OK, 1 row affected (0.20 sec)</span><br><span class="line"></span><br><span class="line">root@localhost:mysql.sock [(none)]&gt;insert into db1.t1 values (4);</span><br><span class="line">Query OK, 1 row affected (0.22 sec)</span><br></pre></td></tr></table></figure></p>
+<p>&#x5F53;mastera&#x7B49;&#x5F85;1000ms&#x4E5F;&#x5C31;&#x662F;1s&#x540E;&#xFF0C;&#x5C31;&#x4E0D;&#x7B49;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x770B;&#x5230;&#x6D88;&#x8017;1.29s&#xFF0C;&#x800C;&#x4E4B;&#x540E;&#x7684;&#x63D2;&#x5165;&#x5C31;&#x53D8;&#x6210;&#x5F02;&#x6B65;&#x4E86;&#x3002;</p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%9F%B9%E8%AE%AD/">#培训</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/">#MySQL基础管理</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2017/01/05/booboo_mysql/08-MySQL-mysqldump-mysqlpump-mydumper/">MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2017/01/03/booboo_mysql/06-MySQL-sysbench/">MySQL 管理课程 第九课 MySQL压力测试工具sysbench</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5e7f26910c743700190536a1&amp;product=inline-share-buttons&amp;cms=sop&#39; async=&#39;async&#39;' async='async'></script>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Kommentare</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2017/01/04/booboo_mysql/07-MySQL5.6-one-master-multi-slave-semi-synchronous-replication/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Seiten',
+                CATEGORIES: 'Kategorien',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

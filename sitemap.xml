@@ -2,84 +2,252 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.toberoot.com/2020/03/22/booboo_others/CentOS6.5%E9%85%8D%E7%BD%AEpython3.7%E5%AE%89%E8%A3%85%E5%90%8Essl%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://www.toberoot.com/tools/index.html</loc>
     
-    <lastmod>2020-03-24T12:46:17.389Z</lastmod>
+    <lastmod>2020-03-28T10:08:15.530Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/27/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</loc>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/13-pid/</loc>
+    
+    <lastmod>2020-03-28T09:39:25.223Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/11-Linux-kernel/</loc>
+    
+    <lastmod>2020-03-28T09:37:10.652Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/10-Linux-startup-process/</loc>
+    
+    <lastmod>2020-03-28T09:36:18.334Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/09-Linux-disk/</loc>
+    
+    <lastmod>2020-03-28T09:35:21.921Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/06-Vim/</loc>
+    
+    <lastmod>2020-03-28T09:33:53.306Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/04-Linux-tar/</loc>
+    
+    <lastmod>2020-03-28T09:32:35.046Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/03-Linux-file/</loc>
+    
+    <lastmod>2020-03-28T09:31:13.359Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/00-linux_history/</loc>
+    
+    <lastmod>2020-03-28T09:28:07.777Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/07_iptables_firewalld/</loc>
+    
+    <lastmod>2020-03-28T09:27:32.549Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/01_dns/</loc>
+    
+    <lastmod>2020-03-28T09:17:03.511Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/</loc>
+    
+    <lastmod>2020-03-28T09:17:03.508Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/03_nfs/</loc>
+    
+    <lastmod>2020-03-28T09:17:03.505Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/02_ftp/</loc>
+    
+    <lastmod>2020-03-28T09:17:03.502Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/00_linux_classroom_env/</loc>
+    
+    <lastmod>2020-03-28T09:17:03.497Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2018/08/03/booboo_others/2018-08-03-tec-mongodb/</loc>
+    
+    <lastmod>2020-03-28T07:44:43.090Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2018/05/17/booboo_others/2018-05-16-tec-mysql/</loc>
+    
+    <lastmod>2020-03-28T07:43:23.573Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/</loc>
+    
+    <lastmod>2020-03-28T07:43:00.118Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/03/27/booboo_others/2020-03-26-tec-python/</loc>
+    
+    <lastmod>2020-03-28T07:28:37.641Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2018/09/21/amy_life/2018-09-21-amy/</loc>
+    
+    <lastmod>2020-03-28T06:56:06.628Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2018/09/19/amy_life/2018-09-19-amy/</loc>
+    
+    <lastmod>2020-03-28T06:56:06.625Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2018/09/20/amy_life/2018-09-20-amy/</loc>
+    
+    <lastmod>2020-03-28T06:54:01.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2018/09/29/amy_life/2018-09-29-amy/</loc>
+    
+    <lastmod>2020-03-28T06:53:12.397Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2018/09/10/amy_life/2018-09-10-amy/</loc>
+    
+    <lastmod>2020-03-28T06:52:17.708Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2018/09/30/amy_life/2018-09-30-amy/</loc>
+    
+    <lastmod>2020-03-28T06:52:17.702Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2016/12/27/booboo_mysql/02-SQL01/</loc>
     
     <lastmod>2020-03-24T05:29:49.108Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/28/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2/</loc>
+    <loc>http://www.toberoot.com/2016/12/28/booboo_mysql/02-SQL02/</loc>
     
     <lastmod>2020-03-24T05:29:49.100Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2017/01/05/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&mysqlpump&mydumper/</loc>
+    <loc>http://www.toberoot.com/2017/01/05/booboo_mysql/08-MySQL-mysqldump-mysqlpump-mydumper/</loc>
     
     <lastmod>2020-03-24T05:29:49.092Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/29/booboo_mysql/03-MySQL%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</loc>
+    <loc>http://www.toberoot.com/2016/12/29/booboo_mysql/03-MySQL-backup-and-recovery/</loc>
     
     <lastmod>2020-03-24T05:29:49.089Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2017/01/03/booboo_mysql/06-MySQL%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7sysbench/</loc>
+    <loc>http://www.toberoot.com/2017/01/03/booboo_mysql/06-MySQL-sysbench/</loc>
     
     <lastmod>2020-03-24T05:29:49.083Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2017/01/02/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/</loc>
+    <loc>http://www.toberoot.com/2017/01/02/booboo_mysql/05-MySQL-HA/</loc>
     
     <lastmod>2020-03-24T05:29:49.081Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/31/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/</loc>
+    <loc>http://www.toberoot.com/2016/12/31/booboo_mysql/04-MySQL-replication/</loc>
     
     <lastmod>2020-03-24T05:29:49.077Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/30/booboo_mysql/03-MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%92%8CInnodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/</loc>
+    <loc>http://www.toberoot.com/2016/12/30/booboo_mysql/03-MySQL-logical-architecture-and-InnoDB-storage-engine/</loc>
     
     <lastmod>2020-03-24T05:29:49.074Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2017/01/04/booboo_mysql/07-MySQL5.6%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/</loc>
+    <loc>http://www.toberoot.com/2017/01/04/booboo_mysql/07-MySQL5.6-one-master-multi-slave-semi-synchronous-replication/</loc>
     
     <lastmod>2020-03-24T05:29:49.070Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/26/booboo_mysql/01-MySQL%E5%92%8CMariaDB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/</loc>
+    <loc>http://www.toberoot.com/2016/12/26/booboo_mysql/01-Introduction-to-MySQL-and-MariaDB-databases/</loc>
     
     <lastmod>2020-03-24T05:29:49.066Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/00-MySQL%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B/</loc>
+    <loc>http://www.toberoot.com/2016/12/25/booboo_mysql/00-MySQL-Management-Course-Introduction/</loc>
     
     <lastmod>2020-03-24T05:27:17.964Z</lastmod>
     
@@ -100,7 +268,7 @@
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/</loc>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/shell-test02/</loc>
     
     <lastmod>2020-03-24T05:17:54.757Z</lastmod>
     
@@ -114,16 +282,9 @@
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/</loc>
+    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/shell-test01/</loc>
     
     <lastmod>2020-03-24T05:17:54.753Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/</loc>
-    
-    <lastmod>2020-03-24T05:17:54.748Z</lastmod>
     
   </url>
   
@@ -135,23 +296,9 @@
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/02_ftp/</loc>
-    
-    <lastmod>2020-03-24T05:02:31.715Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/05_apache/</loc>
     
     <lastmod>2020-03-24T05:02:31.712Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/03_nfs/</loc>
-    
-    <lastmod>2020-03-24T05:02:31.709Z</lastmod>
     
   </url>
   
@@ -177,55 +324,6 @@
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/00_linux_classroom_env/</loc>
-    
-    <lastmod>2020-03-24T05:02:31.699Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/07_iptables_firewalld/</loc>
-    
-    <lastmod>2020-03-24T05:02:31.697Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/23/booboo_easy_service/01_dns/</loc>
-    
-    <lastmod>2020-03-24T05:02:31.694Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/</loc>
-    
-    <lastmod>2020-03-23T06:24:25.955Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/</loc>
-    
-    <lastmod>2020-03-23T06:24:25.952Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/</loc>
-    
-    <lastmod>2020-03-23T06:24:25.950Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/</loc>
-    
-    <lastmod>2020-03-23T06:24:25.947Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/12-SELINUX/</loc>
     
     <lastmod>2020-03-23T06:24:25.945Z</lastmod>
@@ -233,65 +331,37 @@
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</loc>
-    
-    <lastmod>2020-03-23T06:24:25.942Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/01-Linux-basic-command/</loc>
     
     <lastmod>2020-03-23T06:24:25.940Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</loc>
-    
-    <lastmod>2020-03-23T06:24:25.937Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/</loc>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/08-crontab/</loc>
     
     <lastmod>2020-03-23T06:24:25.934Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/</loc>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/07-Bash/</loc>
     
     <lastmod>2020-03-23T06:24:25.931Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</loc>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/05-Linux-software/</loc>
     
     <lastmod>2020-03-23T06:24:25.929Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/</loc>
+    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/02-Linux-user-and-group/</loc>
     
     <lastmod>2020-03-23T06:24:25.927Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</loc>
-    
-    <lastmod>2020-03-23T06:24:25.924Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2016/12/22/booboo_linux_base/00-linux_history/</loc>
-    
-    <lastmod>2020-03-23T06:08:12.861Z</lastmod>
     
   </url>
   
@@ -303,86 +373,16 @@
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2020/03/22/booboo_others/hello-world/</loc>
-    
-    <lastmod>2020-03-22T14:23:51.136Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/</loc>
-    
-    <lastmod>2020-03-22T08:32:42.588Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/</loc>
-    
-    <lastmod>2020-03-22T08:32:42.584Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/</loc>
+    <loc>http://www.toberoot.com/2018/08/22/booboo_others/2018-08-22-tec-mysql/</loc>
     
     <lastmod>2020-03-22T08:32:42.581Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/</loc>
-    
-    <lastmod>2020-03-22T08:32:42.577Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/</loc>
+    <loc>http://www.toberoot.com/2018/05/29/booboo_others/2018-05-28-tec-oracle/</loc>
     
     <lastmod>2020-03-22T08:32:42.573Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/</loc>
-    
-    <lastmod>2020-03-22T08:31:38.472Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/</loc>
-    
-    <lastmod>2020-03-22T08:31:38.469Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/</loc>
-    
-    <lastmod>2020-03-22T08:31:38.466Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/</loc>
-    
-    <lastmod>2020-03-22T08:31:38.463Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/</loc>
-    
-    <lastmod>2020-03-22T08:31:38.460Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/</loc>
-    
-    <lastmod>2020-03-22T08:31:38.457Z</lastmod>
     
   </url>
   

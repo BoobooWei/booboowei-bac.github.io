@@ -1,1016 +1,469 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
 <head>
-  <meta charset="utf-8">
-  <title>Amy and Booboo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Amy and Booboo">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="除了自己的无知，我什么都不懂。－苏格拉底">
+    <meta charset="utf-8">
+<title>Tag: MySQL基础管理 - Amy and Booboo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
+
+
+
+
+
+    <meta name="description" content="君不见黄河之水天上来，奔流到海不复回。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Amy and Booboo">
-<meta property="og:url" content="http://www.toberoot.com/about/index.html">
+<meta property="og:url" content="http://www.toberoot.com/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/page/2/index.html">
 <meta property="og:site_name" content="Amy and Booboo">
-<meta property="og:description" content="除了自己的无知，我什么都不懂。－苏格拉底">
-<meta property="article:published_time" content="2020-03-22T14:48:00.876Z">
-<meta property="article:modified_time" content="2020-03-22T14:48:00.875Z">
+<meta property="og:description" content="君不见黄河之水天上来，奔流到海不复回。">
 <meta property="article:author" content="BoobooWei">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="icon" href="/img/influx.svg">
-
-<link href="/css/style.css?v=1.0.1" rel="stylesheet">
-
-<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
-
-<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
-
-<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script>
-    hljs.initHighlightingOnLoad();
-</script>
-
-<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
 
 
 
-<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+<link rel="icon" href="/favicon.png">
 
-<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Amy and Booboo" type="application/atom+xml">
 </head>
-<div style="display: none">
-  <input class="theme_disqus_on" value="false">
-  <input class="theme_preload_comment" value="false">
-  <input class="theme_blog_path" value="">
-</div>
-
 <body>
-<aside class="nav mobile">
-    <div class="nav-left">
-        <a href="/" class="avatar_target">
-    <img class="avatar" src="/img/my.png" />
-</a>
-<div class="author">
-    <span>BoobooWei</span>
-</div>
-
-<div class="icon">
     
-        
-        <a title="email" href="mailto:rgweiyaping@hotmail.com" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-email"></use>
-                </svg>
-            
-        </a>
-        
-    
-</div>
-
-
-
-
-<ul>
-    <li><div class="all active">全部文章<small>(54)</small></div></li>
-    
-        
-            
-            <li><div data-rel="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆<small>(6)</small></div>
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
                 
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="小二班">小二班<small>(6)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
+                    
+                    <img src="/images/influx.svg" alt="" height="28">
+                    
                 
-            </li>
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
             
-        
-    
-        
+            <a class="navbar-item "
+               href="/archives">Archives</a>
             
-        
-    
-        
+            <a class="navbar-item "
+               href="/categories">Categories</a>
             
-            <li><div data-rel="技术培训"><i class="fold iconfont icon-right"></i>技术培训<small>(41)</small></div>
+            <a class="navbar-item "
+               href="/tools">Tools</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Suche" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
                 
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="Linux简易服务教程">Linux简易服务教程<small>(9)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="LinuxShell脚本教程">LinuxShell脚本教程<small>(7)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Linux系统基础培训">Linux系统基础培训<small>(14)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MySQL基础管理教程">MySQL基础管理教程<small>(11)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
+                <i class="fab fa-github"></i>
                 
-            </li>
+            </a>
+               
             
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-            <li><div data-rel="技术广角"><i class="fold iconfont icon-right"></i>技术广角<small>(7)</small></div>
-                
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="Python">Python<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MySQL">MySQL<small>(3)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Hexo">Hexo<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Oracle">Oracle<small>(1)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="MongoDB">MongoDB<small>(1)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
-                
-            </li>
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-</ul>
-<div class="left-bottom">
-    <div class="menus">
-    
+        </div>
     </div>
-    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
-</div>
-<input type="hidden" id="yelog_site_posts_number" value="54">
-<input type="hidden" id="yelog_site_word_count" value="305.8k">
-<div style="display: none">
-    <span id="busuanzi_value_site_uv"></span>
-    <span id="busuanzi_value_site_pv"></span>
-</div>
+</nav>
 
+    <section class="section section-heading">
+    <div class="container">
+        <div class="content">
+            <h5>#MySQL基础管理</h5>
+        </div>
     </div>
-    <div class="nav-right">
-        <div class="friends-area">
-    <div class="friends-title">
-        友情链接
-        <i class="back-title-list"></i>
-    </div>
-    <div class="friends-content">
-        <ul>
-            
-            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
-            
-            <li><a target="_blank" href="https://www.changhai.org/">科普作家卢昌海</a></li>
-            
-            <li><a target="_blank" href="https://github.com/booboowei">GitHub</a></li>
-            
-            <li><a target="_blank" href="https://applegit11.github.io/">AppleHuang</a></li>
-            
-        </ul>
-    </div>
-</div>
-        <div class="title-list">
-    <form onkeydown="if(event.keyCode === 13){return false;}">
-        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
-        <i class="cross"></i>
-        <span>
-            <label for="tagswitch">Tags:</label>
-            <input id="tagswitch" type="checkbox" style="display: none" />
-            <i id="tagsWitchIcon"></i>
+</section>
+<section class="section">
+    <div class="container">
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2016/12/25/booboo_mysql/00-MySQL-Management-Course-Introduction/" itemprop="url">MySQL 管理课程 第一课 课程简介</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2016-12-24T21:06:27.000Z" itemprop="datePublished">12月 25 2016</time>
         </span>
-    </form>
-    <div class="tags-list">
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/">技术培训</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/">MySQL基础管理教程</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            21 分钟 lesen (Über 3178 Wörter)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-    <li class="article-tag-list-item">
-        <a class="color5">宝宝成长</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color3">培训</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color3">LinuxShell脚本</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">Linux基础服务</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color1">Linux</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">MySQL基础管理</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color2">python</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">数据救援</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">hexo</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color1">SQL优化</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">锁故障</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color4">RDS</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a class="color5">主从同步</a>
-    </li>
-    
-    <div class="clearfix"></div>
-</div>
+        <p><img src="/2016/12/25/booboo_mysql/00-MySQL-Management-Course-Introduction/00-mysql.png" alt="mysql&#x56FE;&#x7247;"></p>
+<blockquote>
+<ul>
+<li>&#x6559;&#x5B66;&#x5BF9;&#x8C61;&#xFF1A;&#x6709;&#x4E00;&#x5B9A;linux&#x57FA;&#x7840;</li>
+<li>&#x6570;&#x636E;&#x5E93;&#x7248;&#x672C;&#xFF1A;maraidb5.5 mariadb10.2 mysql5.7</li>
+<li>&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF1A;RHEL7.2 &#x6700;&#x5C0F;&#x5316;&#x5B89;&#x88C5;</li>
+</ul>
+</blockquote>
+<p>MySQL &#x7BA1;&#x7406;&#x8BFE;&#x7A0B;&#xFF0C;&#x9884;&#x8BA1;&#x8BFE;&#x65F6;10&#x5929;&#xFF0C;&#x8BF4;&#x662F;&#x8BF4;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5176;&#x5B9E;&#x4E5F;&#x5C5E;&#x4E8E;&#x9879;&#x76EE;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x53D1;&#x73B0;&#x5728;&#x9879;&#x76EE;&#x7684;&#x5F53;&#x4E2D;&#xFF0C;&#x591A;&#x591A;&#x5C11;&#x5C11;&#x90FD;&#x4F1A;&#x7528;&#x5230;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x800C;&#x4E14;&#x6570;&#x636E;&#x5E93;&#x8FD8;&#x662F;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#xFF0C;&#x5728;&#x6574;&#x4E2A;&#x9879;&#x76EE;&#x73AF;&#x5883;&#x5F53;&#x4E2D;&#x5462;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x8BB2;&#x5230;&#x9879;&#x76EE;&#x7684;&#x642D;&#x5EFA;&#x3001;&#x8FC1;&#x79FB;&#x3001;&#x62D3;&#x5C55;&#xFF0C;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x53D8;&#x6210;&#x591A;&#x53F0;&#x673A;&#x5668;&#xFF0C;&#x89E3;&#x51B3;&#x7528;&#x6237;&#x7684;&#x6027;&#x80FD;&#x95EE;&#x9898;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x62D3;&#x5C55;&#x8FC7;&#x7A0B;&#x5F53;&#x4E2D;&#x5462;&#xFF0C;&#x6211;&#x4EEC;&#x7B2C;&#x4E00;&#x6B65;&#x62D3;&#x5C55;&#x7684;&#x90FD;&#x662F;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x56E0;&#x4E3A;&#x6570;&#x636E;&#x5E93;&#x7684;&#x538B;&#x529B;&#x662F;&#x6700;&#x5927;&#x7684;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x9047;&#x5230;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x7684;&#x90FD;&#x662F;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#x9762;&#xFF0C;&#x6240;&#x4EE5;&#x7684;&#x8BDD;&#x5462;&#xFF0C;&#x6211;&#x4EEC;&#x5728;MySQL&#x7684;&#x8BFE;&#x7A0B;&#x5F53;&#x4E2D;&#x4F1A;&#x4E3B;&#x8981;&#x4EE5;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x5458;&#x7684;&#x89D2;&#x5EA6;&#x53BB;&#x8BB2;&#x8BB2;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5907;&#x4EFD;&#x3001;&#x5197;&#x4F59;&#x3001;&#x6269;&#x5C55;&#x3001;&#x9AD8;&#x53EF;&#x7528;&#x3001;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3002;</p>
+<h2 id="&#x4E3A;&#x4EC0;&#x4E48;MySQL"><a href="#&#x4E3A;&#x4EC0;&#x4E48;MySQL" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;MySQL ?"></a>&#x4E3A;&#x4EC0;&#x4E48;MySQL ?</h2><p>DB-Engines &#x6700;&#x8FD1;&#x53D1;&#x5E03;&#x4E86; 2017 &#x5E74; 2 &#x6708;&#x4EFD;&#x7684;&#x6570;&#x636E;&#x5E93;&#x6392;&#x540D;&#x3002;</p>
+<p>&#x524D;&#x5341;&#x540D;&#x4E2D;&#xFF0C;Oracle&#xFF0C;MySQL &#x548C; Microsoft SQL Server &#x4ECD;&#x5360;&#x636E;&#x524D;&#x4E09;&#x540D;&#xFF0C;Oracle &#x867D;&#x7136;&#x957F;&#x671F;&#x9738;&#x5360;&#x9996;&#x4F4D;&#xFF0C;&#x4F46;&#x5F97;&#x5206;&#x5374;&#x5448;&#x4E0B;&#x964D;&#x8D8B;&#x52BF;&#xFF0C;&#x4E0E; 1 &#x6708;&#x76F8;&#x6BD4;&#x5C11;&#x4E86; 12.89&#xFF0C;&#x4E0E;&#x53BB;&#x5E74;&#x540C;&#x671F;&#x76F8;&#x6BD4;&#xFF0C;&#x5C11;&#x4E86; 72.31&#x3002;&#x7B2C;&#x4E8C;&#x540D;&#x7684; MySQL &#x5F97;&#x5206;&#x5747;&#x6709;&#x6240;&#x4E0A;&#x6DA8;&#xFF0C;&#x4E0E;&#x53BB;&#x5E74;&#x540C;&#x671F;&#x76F8;&#x6BD4;&#xFF0C;&#x589E;&#x957F; 59.18&#xFF0C;&#x7B2C;&#x4E09;&#x540D;&#x7684; Microsoft SQL Server &#x5F97;&#x5206;&#x8F83; 1 &#x6708;&#x4E0B;&#x964D;&#x4E86; 17.5&#xFF0C;&#x6BD4;&#x53BB;&#x5E74;&#x540C;&#x671F;&#xFF0C;&#x5F97;&#x5206;&#x6709;&#x6BD4;&#x8F83;&#x9AD8;&#x7684;&#x63D0;&#x5347;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x60C5;&#x51B5;&#x8BF7;&#x770B;&#x524D; 20 &#x540D;&#x6392;&#x540D;&#x60C5;&#x51B5;&#xFF1A;</p>
+<p><img src="/2016/12/25/booboo_mysql/00-MySQL-Management-Course-Introduction/20170206-database-1.jpg" alt="20170206-database-1.jpg"></p>
+<p>&#x5B8C;&#x6574;&#x6392;&#x540D;&#x8BF7;&#x770B;&#x8FD9;&#x91CC;&#xFF1A;<a href="http://db-engines.com/en/ranking" target="_blank" rel="noopener">http://db-engines.com/en/ranking</a></p>
+<p>DB-Engines &#x6392;&#x540D;&#x7684;&#x6570;&#x636E;&#x4F9D;&#x636E; 5 &#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x56E0;&#x7D20;&#xFF1A;</p>
+<ul>
+<li>Google &#x4EE5;&#x53CA; Bing &#x641C;&#x7D22;&#x5F15;&#x64CE;&#x7684;&#x5173;&#x952E;&#x5B57;&#x641C;&#x7D22;&#x6570;&#x91CF;</li>
+<li>Google Trends &#x7684;&#x641C;&#x7D22;&#x6570;&#x91CF;</li>
+<li>Indeed &#x7F51;&#x7AD9;&#x4E2D;&#x7684;&#x804C;&#x4F4D;&#x641C;&#x7D22;&#x91CF;</li>
+<li>LinkedIn &#x4E2D;&#x63D0;&#x5230;&#x5173;&#x952E;&#x5B57;&#x7684;&#x4E2A;&#x4EBA;&#x8D44;&#x6599;&#x6570;</li>
+<li>Stackoverflow &#x4E0A;&#x76F8;&#x5173;&#x7684;&#x95EE;&#x9898;&#x548C;&#x5173;&#x6CE8;&#x8005;&#x6570;&#x91CF;</li>
+</ul>
+<p>&#x4E0B;&#x56FE;&#x662F;&#x6BCF;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x7684;&#x53D8;&#x5316;&#x8D8B;&#x52BF;&#xFF1A;</p>
+<p><img src="/2016/12/25/booboo_mysql/00-MySQL-Management-Course-Introduction/20170206-database-2.jpg" alt="20170206-database-2.jpg"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x524D; 3 &#x540D;&#x4E00;&#x76F4;&#x4FDD;&#x6301;&#x7740;&#x8FDC;&#x9AD8;&#x4E8E;&#x5176;&#x5B83;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5730;&#x4F4D;&#xFF0C;&#x524D;&#x4E09;&#x57FA;&#x672C;&#x6CA1;&#x6709;&#x60AC;&#x5FF5;&#x3002;&#x53EA;&#x662F;&#xFF0C;&#x7B2C;&#x4E8C;&#x540D;&#x548C;&#x7B2C;&#x4E09;&#x540D;&#x7684;MySQL &#x548C; Microsoft SQL Server &#x5DF2;&#x7ECF;&#x8D8A;&#x6765;&#x8D8A;&#x63A5;&#x8FD1;&#x7B2C;&#x4E00;&#x540D;&#x7684;Oracle&#xFF0C;&#x8BF4;&#x4E0D;&#x5B9A;&#x5728;&#x4E0B;&#x4E00;&#x6B21;&#x6392;&#x540D;&#x53D1;&#x5E03;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x80FD;&#x770B;&#x5230;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x4E09;&#x7532;&#x6392;&#x540D;&#x3002;</p>
+<p>&#x8BE6;&#x7EC6;&#x8D8B;&#x52BF;&#x8BF7;&#x770B;&#x8FD9;&#x91CC;&#xFF1A;<a href="http://db-engines.com/en/ranking_trend" target="_blank" rel="noopener">http://db-engines.com/en/ranking_trend</a></p>
+<p>&#x6709;&#x4EBA;&#x7528;python&#x5199;&#x4E86;&#x722C;&#x866B;&#x6293;&#x53D6;&#x56FD;&#x5185;&#x7F51;&#x7AD9;&#x6570;&#x636E;&#x5236;&#x4F5C;&#x4E86;&#x4E2D;&#x56FD;&#x6570;&#x636E;&#x5E93;&#x6392;&#x884C;&#x699C;&#x3002;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#x548C;db-engines&#x7C7B;&#x4F3C;&#xFF0C;&#x7136;&#x800C;&#x6839;&#x636E;&#x56FD;&#x5185;&#x505A;&#x4E86;&#x4E00;&#x4E9B;&#x8C03;&#x6574;&#xFF0C;&#x7EDF;&#x8BA1;&#x7ED3;&#x679C;&#x662F;2017&#x5E74;1&#x6708;MYSQL&#x6392;&#x540D;&#x7B2C;&#x4E00;&#xFF0C;&#x5F97;&#x5206;&#x4E3A;2864.75&#xFF0C;&#x800C;oracle&#x5F97;&#x5206;&#x4E3A;2752.67&#xFF0C;sql server&#x5F97;&#x5206;&#x4EC5;&#x4EC5;&#x4E3A;981.5</p>
+<p>&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#x56FD;&#x5185;&#x5BF9;mysql&#x6570;&#x636E;&#x5E93;&#x5DE5;&#x7A0B;&#x5E08;&#x7684;&#x62DB;&#x8058;&#x4FE1;&#x606F;</p>
+<p><img src="/2016/12/25/booboo_mysql/00-MySQL-Management-Course-Introduction/QQ%E6%88%AA%E5%9B%BE20170206114205.png" alt="QQ&#x622A;&#x56FE;20170206114205.png"></p>
+<p>&#x4ECE;&#x4E0A;&#x56FE;&#x770B;&#x5230;2&#x6708;6&#x65E5;&#x8FD9;&#x4E00;&#x5929;51job&#x4E0A;&#x5BF9;mysql dba&#x7684;&#x804C;&#x4F4D;&#x63D0;&#x4F9B;&#x6709;316&#x4E2A;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x770B;&#x770B;&#x5BF9;&#x5C97;&#x4F4D;&#x7684;&#x8981;&#x6C42;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#xFF1A;</p>
+<p><img src="/2016/12/25/booboo_mysql/00-MySQL-Management-Course-Introduction/20170206114325.png" alt="20170206114325.png"></p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x662F; MySQL ?&#x5BF9;&#x6BCF;&#x4E00;&#x79CD;&#x6280;&#x672F;,&#x6211;&#x4EEC;&#x90FD;&#x8003;&#x8651;&#x4E86;&#x5176;&#x6700;&#x5927;&#x5173;&#x6CE8;&#x70B9;,&#x5E76;&#x63D0;&#x51FA;&#x540C;&#x6837;&#x7684;&#x95EE;&#x9898;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x6211;&#x4EEC;&#x5BF9; MySQL &#x7684;&#x8003;&#x8651; :</p>
+<p>Q&#xFF1A;&#x5B83;&#x89E3;&#x51B3;&#x4E86;&#x6211;&#x4EEC;&#x7684;&#x5B58;&#x50A8;&#x9700;&#x6C42;&#x5417;? </p>
+<p>A&#xFF1A;&#x6CA1;&#x9519;,&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6620;&#x5C04;&#x3001;&#x7D22;&#x5F15;&#x3001;&#x6392;&#x5E8F;&#x548C; blob &#x5B58;&#x50A8;,&#x8FD9;&#x4E9B;MySQL &#x90FD;&#x6709;&#x3002;</p>
+<p>Q&#xFF1A;&#x5B83;&#x5E38;&#x7528;&#x5417;? &#x4F60;&#x53EF;&#x4EE5;&#x62DB;&#x8058;&#x5230;&#x76F8;&#x5173;&#x5458;&#x5DE5;&#x5417;?</p>
+<p>A&#xFF1A;MySQL &#x662F;&#x76EE;&#x524D;&#x751F;&#x4EA7;&#x7EBF;&#x4E0A;&#x6700;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x6570;&#x636E;&#x5E93;&#x4E4B;&#x4E00;&#x3002;&#x5F88;&#x5BB9;&#x6613;&#x62DB;&#x5230;&#x4F7F;&#x7528;&#x8FC7; MySQL &#x7684;&#x4EBA;&#x3002;</p>
+<p>Q&#xFF1A;&#x5B83;&#x7684;&#x793E;&#x533A;&#x6D3B;&#x8DC3;&#x5417;? </p>
+<p>A&#xFF1A;&#x975E;&#x5E38;&#x6D3B;&#x8DC3;&#x3002;&#x6709;&#x597D;&#x591A;&#x975E;&#x5E38;&#x68D2;&#x7684;&#x4E66;&#x7C4D;,&#x548C;&#x4E00;&#x4E2A;&#x5F3A;&#x5927;&#x7684;&#x5728;&#x7EBF;&#x793E;&#x533A;&#x3002;</p>
+<p>Q&#xFF1A;&#x9762;&#x5BF9;&#x6545;&#x969C;,&#x5B83;&#x5065;&#x58EE;&#x5417;?</p>
+<p>A&#xFF1A;&#x5373;&#x4F7F;&#x5728;&#x6700;&#x6076;&#x52A3;&#x7684;&#x60C5;&#x51B5;&#x4E0B;,&#x6211;&#x4EEC;&#x4E5F;&#x4ECE;&#x6765;&#x6CA1;&#x6709;&#x4E22;&#x5931;&#x8FC7;&#x6570;&#x636E;&#x3002;</p>
+<p>Q&#xFF1A;&#x5B83;&#x7684;&#x6269;&#x5C55;&#x6027;&#x5982;&#x4F55;?</p>
+<p>A&#xFF1A;&#x5C31;&#x5B83;&#x672C;&#x8EAB;&#x6765;&#x8BF4;,&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x5C0F;&#x7684;&#x7EC4;&#x4EF6;&#x3002;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4E00;&#x79CD;&#x4E0A;&#x5C42;&#x7684;&#x5206;&#x7247;&#x65B9;&#x6848;(&#x8FD9;&#x5B8C;&#x5168;&#x662F;&#x53E6;&#x4E00;&#x4E2A;&#x95EE;&#x9898;)&#x3002;</p>
+<p>Q&#xFF1A;&#x4F60;&#x4F1A;&#x662F;&#x6700;&#x5927;&#x7684;&#x7528;&#x6237;&#x5417;?</p>
+<p>A&#xFF1A;&#x4E0D;, &#x76EE; &#x524D; &#x4E0D; &#x662F;&#x3002; &#x6700; &#x5927; &#x7684; &#x7528; &#x6237; &#x5305; &#x62EC; Facebook&#x3001;Twitter &#x548C; Google&#x3002;&#x9664;&#x975E;&#x4F60;&#x80FD;&#x591F;&#x6539;&#x8FDB;&#x4E00;&#x79CD;&#x6280;&#x672F;,&#x5426;&#x5219;&#x4F60;&#x4E0D;&#x4F1A;&#x60F3;&#x8981;&#x6210;&#x4E3A;&#x5B83;&#x6700;&#x5927;&#x7684;&#x7528;&#x6237;&#x3002;&#x5982;&#x679C;&#x4F60;&#x662F;&#x6700;&#x5927;&#x7684;&#x7528;&#x6237;,&#x4F60;&#x4F1A;&#x78B0;&#x5230;&#x4E00;&#x4E9B;&#x65B0;&#x7684;&#x6269;&#x5C55;&#x6027;&#x95EE;&#x9898;,&#x800C;&#x5176;&#x4ED6;&#x4EBA;&#x6839;&#x672C;&#x6CA1;&#x673A;&#x4F1A;&#x9047;&#x5230;&#x3002;</p>
+<p>Q&#xFF1A;&#x5B83;&#x7684;&#x6210;&#x719F;&#x5EA6;&#x5982;&#x4F55;? </p>
+<p>A&#xFF1A;&#x771F;&#x6B63;&#x7684;&#x533A;&#x522B;&#x5728;&#x4E8E;&#x6210;&#x719F;&#x5EA6;&#x3002;&#x6839;&#x636E;&#x590D;&#x6742;&#x5EA6;&#x7684;&#x4E0D;&#x540C;,&#x6210;&#x719F;&#x5EA6;&#x5C31;&#x597D;&#x6BD4;&#x8861;&#x91CF;&#x5B8C;&#x6210;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x6240;&#x9700;&#x7684;&#x8840;&#x3001;&#x6C57;&#x548C;&#x6CEA;&#x3002;MySQL &#x7684;&#x786E;&#x590D;&#x6742;,&#x4F46;&#x53EF;&#x6BD4;&#x4E0D;&#x4E0A;&#x90A3;&#x4E9B;&#x795E;&#x5947;&#x7684;&#x81EA;&#x52A8;&#x96C6;&#x7FA4; NoSQL &#x65B9;&#x6848;&#x3002;&#x800C;&#x4E14;,MySQL &#x62E5;&#x6709; 30 &#x5E74;(1996&#x5E74;&#x7B2C;&#x4E00;&#x7248;)&#x6700;&#x597D;&#x548C;&#x6700;&#x806A;&#x660E;&#x7684;&#x8D21;&#x732E;,&#x6765;&#x81EA;&#x4E8E;&#x8BF8;&#x5982;Facebook &#x548C; Google &#x90A3;&#x6837;&#x5927;&#x89C4;&#x6A21;&#x4F7F;&#x7528;&#x5B83;&#x7684;&#x516C;&#x53F8;&#x3002;&#x6839;&#x636E;&#x6211;&#x4EEC;&#x7684;&#x6210;&#x719F;&#x5EA6;&#x5B9A;&#x4E49;,&#x5728;&#x6211;&#x4EEC;&#x5BA1;&#x67E5;&#x7684;&#x6240;&#x6709;&#x6280;&#x672F;&#x4E2D;,MySQL &#x662F;&#x4E00;&#x4E2A;&#x660E;&#x667A;&#x7684;&#x9009;&#x62E9;&#x3002;</p>
+<p>Q&#xFF1A;&#x6709;&#x597D;&#x7684;&#x8C03;&#x8BD5;&#x5DE5;&#x5177;&#x5417;? </p>
+<p>A&#xFF1A;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6210;&#x719F;&#x7684;&#x4EA7;&#x54C1;,&#x4F60;&#x5F53;&#x7136;&#x9700;&#x8981;&#x5F3A;&#x5927;&#x7684;&#x8C03;&#x8BD5;&#x548C;&#x5206;&#x6790;&#x5DE5;&#x5177;,&#x56E0;&#x4E3A;&#x4EBA;&#x4EEC;&#x5F88;&#x5BB9;&#x6613;&#x9047;&#x5230;&#x4E00;&#x4E9B;&#x7C7B;&#x4F3C;&#x7684;&#x68D8;&#x624B;&#x60C5;&#x51B5;&#x3002;&#x6BD4;&#x5982;&#x4F60;&#x53EF;&#x80FD;&#x5728;&#x51CC;&#x6668;&#x4E09;&#x70B9;&#x9047;&#x5230;&#x95EE;&#x9898;(&#x4E0D;&#x6B62;&#x4E00;&#x6B21;)&#x3002;&#x76F8;&#x6BD4;&#x7528;&#x53E6;&#x4E00;&#x79CD;&#x6280;&#x672F;&#x91CD;&#x5199;&#x4E00;&#x904D;&#x71AC;&#x5230;&#x51CC;&#x6668;&#x516D;&#x70B9;,&#x53D1;&#x73B0;&#x95EE;&#x9898;&#x7684;&#x6839;&#x6E90;&#x7136;&#x540E;&#x56DE;&#x53BB;&#x7761;&#x89C9;&#x8212;&#x670D;&#x591A;&#x4E86;&#x3002;</p>
+<h2 id="Mysql-&#x7BA1;&#x7406;&#x8BFE;&#x7A0B;&#x73AF;&#x5883;&#x4F7F;&#x7528;&#x8BF4;&#x660E;"><a href="#Mysql-&#x7BA1;&#x7406;&#x8BFE;&#x7A0B;&#x73AF;&#x5883;&#x4F7F;&#x7528;&#x8BF4;&#x660E;" class="headerlink" title="Mysql &#x7BA1;&#x7406;&#x8BFE;&#x7A0B;&#x73AF;&#x5883;&#x4F7F;&#x7528;&#x8BF4;&#x660E;"></a>Mysql &#x7BA1;&#x7406;&#x8BFE;&#x7A0B;&#x73AF;&#x5883;&#x4F7F;&#x7528;&#x8BF4;&#x660E;</h2><p>DB100&#x8BFE;&#x7A0B;&#x57FA;&#x4E8E;RHEL7.2&#x7CFB;&#x7EDF;&#xFF0C;&#x8BFE;&#x7A0B;&#x6559;&#x6388;&#x5B66;&#x751F;&#x5B8C;&#x6210;&#x57FA;&#x4E8E;&#x6B64;&#x7CFB;&#x7EDF;&#x7684;Mysql 5.7 &#x3001;MariaDB 10.2&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;&#x8BFE;&#x7A0B;&#x548C;&#x57FA;&#x7840;&#x8BFE;&#x7A0B;&#x5185;&#x5BB9;&#x3002;</p>
+<h3 id="&#x6388;&#x8BFE;&#x7F51;&#x7EDC;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x5982;&#x4E0B;"><a href="#&#x6388;&#x8BFE;&#x7F51;&#x7EDC;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x5982;&#x4E0B;" class="headerlink" title="&#x6388;&#x8BFE;&#x7F51;&#x7EDC;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x5982;&#x4E0B;"></a>&#x6388;&#x8BFE;&#x7F51;&#x7EDC;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x5982;&#x4E0B;</h3><ul>
+<li><p>workstation&#x865A;&#x62DF;&#x673A;&#x5747;&#x5B89;&#x88C5;rhel7.2&#x7CFB;&#x7EDF;&#xFF0C;&#xFF08;&#x5B89;&#x88C5;&#x56FE;&#x5F62;&#x5316;&#x754C;&#x9762;&#x5E76;&#x914D;&#x7F6E;runlevel 5&#x542F;&#x52A8;&#xFF0C;root&#x5BC6;&#x7801;&#x4E3A;uplooking &#xFF0C;&#x914D;&#x7F6E;&#x4E86;&#x57FA;&#x7840;&#x7684;YUM&#x6E90;&#x6307;&#x5411;classroom&#xFF09;&#xFF0C; workstation&#x865A;&#x62DF;&#x673A;&#x5747;&#x914D;&#x7F6E;&#x4E86;2&#x5757;&#x865A;&#x62DF;&#x673A;&#x7F51;&#x5361;&#xFF0C;eth0&#x63A5;&#x5165;&#x7269;&#x7406;&#x673A;br0&#x7F51;&#x6865;&#xFF0C;&#x52A8;&#x6001;&#x83B7;&#x5F97;ip&#x5730;&#x5740;172.25.0.10&#xFF1B;eth1&#x63A5;&#x5165;&#x7269;&#x7406;&#x673A;private&#x7F51;&#x6865;&#xFF0C;&#x4E0D;&#x83B7;&#x5F97;ip&#x5730;&#x5740;&#xFF1B;workstation&#x865A;&#x62DF;&#x673A;&#x5747;&#x914D;&#x7F6E;2&#x5757;&#x865A;&#x62DF;&#x786C;&#x76D8;&#xFF08;vda&#x3001;vdb&#xFF09;&#xFF0C;&#x4EE5;&#x65B9;&#x4FBF;&#x6388;&#x8BFE;&#x6F14;&#x793A;&#x3002;workstation&#x865A;&#x62DF;&#x673A;&#x5747;&#x914D;&#x7F6E;2GB&#x8FD0;&#x884C;&#x5185;&#x5B58;&#x3002;</p>
+</li>
+<li><p>mastera&#x3001;masterb&#x3001;slavea &#x3001;slaveb &#x548C;dbproxy&#x865A;&#x62DF;&#x673A;&#x5747;&#x5B89;&#x88C5;rhel7.2&#x7CFB;&#x7EDF;&#xFF0C;&#xFF08;&#x6CA1;&#x6709;&#x5B89;&#x88C5;&#x56FE;&#x5F62;&#x5316;&#x754C;&#x9762;&#xFF0C;root&#x5BC6;&#x7801;&#x4E3A;uplooking &#xFF0C;&#x914D;&#x7F6E;&#x4E86;&#x57FA;&#x7840;&#x7684;YUM&#x6E90;&#x6307;&#x5411;classroom&#xFF09;&#xFF0C; mastera&#x3001;masterb&#x3001;slavea &#x3001;slaveb &#x548C;dbproxy&#x865A;&#x62DF;&#x673A;&#x5747;&#x914D;&#x7F6E;&#x4E86;2&#x5757;&#x865A;&#x62DF;&#x673A;&#x7F51;&#x5361;&#xFF0C;eth0&#x63A5;&#x5165;&#x7269;&#x7406;&#x673A;br0&#x7F51;&#x6865;&#xFF0C;&#x52A8;&#x6001;&#x83B7;&#x5F97;ip&#x5730;&#x5740;172.25.0.11~172.25.0.5&#xFF1B;eth1&#x63A5;&#x5165;&#x7269;&#x7406;&#x673A;private&#x7F51;&#x6865;&#xFF0C;&#x4E0D;&#x83B7;&#x5F97;ip&#x5730;&#x5740;&#xFF1B;mastera&#x3001;masterb&#x3001;slavea &#x3001;slaveb &#x548C;dbproxy&#x865A;&#x62DF;&#x673A;&#x5747;&#x914D;&#x7F6E;2&#x5757;&#x865A;&#x62DF;&#x786C;&#x76D8;&#xFF08;vda&#x3001;vdb&#xFF09;&#xFF0C;&#x4EE5;&#x65B9;&#x4FBF;&#x6388;&#x8BFE;&#x6F14;&#x793A;&#x3002;mastera&#x3001;masterb&#x3001;slavea &#x3001;slaveb &#x548C;dbproxy&#x865A;&#x62DF;&#x673A;&#x5747;&#x914D;&#x7F6E;512MB&#x8FD0;&#x884C;&#x5185;&#x5B58;&#x3002;</p>
+</li>
+<li><p>&#x5DF2;&#x5728;classroom&#x4E0A;&#x5B8C;&#x6210;DNS&#x914D;&#x7F6E;&#xFF0C;&#x6B63;&#x5411;&#x548C;&#x65B9;&#x5411;&#x57DF;&#x540D;&#x53CA;&#x90AE;&#x4EF6;&#x4EE3;&#x7406;&#x57DF;&#x540D;&#x548C;&#x865A;&#x62DF;&#x673A;&#x57DF;&#x540D;&#x8BBE;&#x7F6E;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>classroom.example.com 172.25.254.254</li>
+<li>fN.example.com 172.25.254.N</li>
+<li>workstationN.example.com 172.25.N.10</li>
+<li>masteraN.example.com 172.25.N.11</li>
+<li>masterbN.example.com 172.25.N.12</li>
+<li>slaveaN.example.com 172.25.N.13</li>
+<li>slavebN.example.com 172.25.N.14</li>
+<li>dbproxyN.example.com 172.25.N.15</li>
+<li>N:1~80</li>
+</ul>
+</li>
+<li><p><a href="http://classroom.example.com/materials" target="_blank" rel="noopener">http://classroom.example.com/materials</a> &#x4E3A;&#x7B2C;&#x4E09;&#x65B9;&#x8F6F;&#x4EF6;&#x5305;&#x548C;&#x8D44;&#x6599;&#x76EE;&#x5F55;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<a href="http://materials.example.com" target="_blank" rel="noopener">http://materials.example.com</a> &#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3002;</p>
+</li>
+</ul>
+<h3 id="&#x6CE8;&#x610F;&#x4E8B;&#x9879;"><a href="#&#x6CE8;&#x610F;&#x4E8B;&#x9879;" class="headerlink" title="&#x6CE8;&#x610F;&#x4E8B;&#x9879;"></a>&#x6CE8;&#x610F;&#x4E8B;&#x9879;</h3><p>** Mariadb 10.2 &#x548C;Mysql 5.7 &#x5728;yum&#x5B89;&#x88C5;&#x4E2D;&#x4F1A;&#x6709;&#x51B2;&#x7A81;&#xFF0C;&#x4E0D;&#x8981;&#x540C;&#x65F6;&#x914D;&#x7F6E;MariaDB&#x548C;MySQL&#x7684;&#x6E90;&#x3002; **</p>
+<h3 id="&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x56FE;"><a href="#&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x56FE;" class="headerlink" title="&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x56FE;"></a>&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x56FE;</h3><p><img src="/2016/12/25/booboo_mysql/00-MySQL-Management-Course-Introduction/01-db100-classroom.png" alt="db100&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x56FE;"></p>
+<h3 id="&#x8BFE;&#x7A0B;&#x5927;&#x7EB2;"><a href="#&#x8BFE;&#x7A0B;&#x5927;&#x7EB2;" class="headerlink" title="&#x8BFE;&#x7A0B;&#x5927;&#x7EB2;"></a>&#x8BFE;&#x7A0B;&#x5927;&#x7EB2;</h3><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line">MYSQL</span><br><span class="line">&#x4E00;&#x3001;MySQL&#x7BA1;&#x7406;&#x8BFE;&#x7A0B;&#x7B80;&#x4ECB;</span><br><span class="line">1.MySQL &#x7BA1;&#x7406;&#x8BFE;&#x7A0B;</span><br><span class="line">2.&#x4E3A;&#x4EC0;&#x4E48;MySQL ?</span><br><span class="line">3.Mysql &#x7BA1;&#x7406;&#x8BFE;&#x7A0B;&#x73AF;&#x5883;&#x4F7F;&#x7528;&#x8BF4;&#x660E;</span><br><span class="line">4.&#x6388;&#x8BFE;&#x7F51;&#x7EDC;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x5982;&#x4E0B;</span><br><span class="line">5.&#x6CE8;&#x610F;&#x4E8B;&#x9879;</span><br><span class="line">6.&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x56FE;</span><br><span class="line"></span><br><span class="line">&#x4E8C;&#x3001;MySQL&#x548C;MariaDB&#x6570;&#x636E;&#x5E93;&#x4ECB;&#x7ECD;</span><br><span class="line">1.&#x6570;&#x636E;&#x5E93;&#x7684;&#x57FA;&#x7840;&#x6982;&#x5FF5;</span><br><span class="line">2.&#x6570;&#x636E;&#x5E93;&#x7684;&#x5206;&#x7C7B;</span><br><span class="line">3.&#x4EC0;&#x4E48;&#x662F;MySQL</span><br><span class="line">4.&#x5982;&#x4F55;&#x83B7;&#x5F97;MySQL&#x76F8;&#x5173;&#x8D44;&#x6E90;</span><br><span class="line">5.MySQL&#x5728;&#x4F01;&#x4E1A;&#x4E2D;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;</span><br><span class="line">6.MySQL &#x6570;&#x636E;&#x5E93;&#x5B89;&#x88C5;</span><br><span class="line">	RHEL 7.2 RPM &#x5305;&#x5B89;&#x88C5; MariaDB 5.5</span><br><span class="line">	RHEL 7.2 RPM &#x5305;&#x5B89;&#x88C5; MariaDB 10.2</span><br><span class="line">	RHEL 7.2 RPM &#x5305;&#x5B89;&#x88C5; MySQL 5.7</span><br><span class="line">	RHEL 7.2 &#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#x5B89;&#x88C5; MySQL 5.6</span><br><span class="line">7.MySQL&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#x6570;&#x636E;&#x5E93;</span><br><span class="line">	MySQL&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x4F7F;&#x7528;</span><br><span class="line">	python&#x8FDE;&#x63A5;MySQL&#x6570;&#x636E;&#x5E93;</span><br><span class="line">	PHPmyAdmin&#x5728;&#x7EBF;&#x5DE5;&#x5177;&#x4F7F;&#x7528;</span><br><span class="line">	MySQL Workbench &#x8FDE;&#x63A5;&#x6570;&#x636E;&#x5E93;</span><br><span class="line"></span><br><span class="line">&#x4E09;&#x3001;&#x7ED3;&#x6784;&#x5316;&#x67E5;&#x8BE2;&#x8BED;&#x8A00;SQL&#x4ECB;&#x7ECD;&#x548C;&#x57FA;&#x672C;&#x64CD;&#x4F5C;</span><br><span class="line">1.sql&#x8BED;&#x6CD5;&#xFF0C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x8FD0;&#x7B97;&#x7B26;</span><br><span class="line">2.DDL(Data Definition Languages)&#x8BED;&#x53E5;</span><br><span class="line">3.DML(Data Manipulation Language)&#x8BED;&#x53E5;</span><br><span class="line">4.DCL(Data Control Language)&#x8BED;&#x53E5;</span><br><span class="line">5.DQL(Data Query Language)&#x8BED;&#x53E5;</span><br><span class="line">6.&#x5B9E;&#x6218;&#x9879;&#x76EE;1:&#x719F;&#x6089;SQL&#x8BED;&#x53E5;</span><br><span class="line">7.&#x5B9E;&#x6218;&#x9879;&#x76EE;2:&#x719F;&#x6089;mysql.user&#x8868;</span><br><span class="line">8.&#x5B9E;&#x6218;&#x9879;&#x76EE;3:&#x5B8C;&#x6210;&#x6570;&#x636E;&#x5E93;&#x7528;&#x6237;&#x6743;&#x9650;&#x64CD;&#x4F5C;&#x9879;&#x76EE;</span><br><span class="line"></span><br><span class="line">&#x56DB;&#x3001;MySQL&#x903B;&#x8F91;&#x67B6;&#x6784;&#x548C;Innodb&#x5B58;&#x50A8;&#x5F15;&#x64CE;</span><br><span class="line">1.MySQL &#x903B;&#x8F91;&#x67B6;&#x6784;</span><br><span class="line">2.MySQL &#x5B58;&#x50A8;&#x5F15;&#x64CE;</span><br><span class="line">	&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x6982;&#x8FF0;</span><br><span class="line">	&#x77E5;&#x540D;&#x7684;&#x4E24;&#x5927;&#x5B58;&#x50A8;&#x5F15;&#x64CE;</span><br><span class="line">	&#x4E8B;&#x52A1;</span><br><span class="line">	&#x5E76;&#x53D1;&#x63A7;&#x5236;</span><br><span class="line">	&#x9501;&#x673A;&#x5236;</span><br><span class="line">	&#x591A;&#x7248;&#x672C;&#x5E76;&#x53D1;&#x63A7;&#x5236; MVCC</span><br><span class="line">	&#x4E8B;&#x52A1;&#x7684;&#x9694;&#x79BB;&#x7EA7;&#x522B;</span><br><span class="line">3.INNODB&#x9501;</span><br><span class="line">	&#x8BBE;&#x7F6E;INNODB&#x4E8B;&#x52A1;&#x9694;&#x79BB;&#x7EA7;&#x522B;</span><br><span class="line">		&#x5B9E;&#x8DF5;1&#xFF1A;&#x67E5;&#x770B;innodb&#x9ED8;&#x8BA4;&#x7684;&#x4E8B;&#x52A1;&#x9694;&#x79BB;&#x7EA7;&#x522B;</span><br><span class="line">		&#x5B9E;&#x8DF5;2&#xFF1A;&#x6539;&#x53D8;&#x5355;&#x4E2A;&#x4F1A;&#x8BDD;&#x7684;&#x9694;&#x79BB;&#x7EA7;&#x522B;</span><br><span class="line">		&#x5B9E;&#x8DF5;3&#xFF1A;&#x6539;&#x53D8;&#x5355;&#x4E2A;&#x5B9E;&#x4F8B;&#x7684;&#x9694;&#x79BB;&#x7EA7;&#x522B;</span><br><span class="line">		&#x5B9E;&#x8DF5;4&#xFF1A;&#x6539;&#x53D8;&#x6240;&#x6709;&#x5B9E;&#x4F8B;&#x7684;&#x9694;&#x79BB;&#x7EA7;&#x522B;</span><br><span class="line">	&#x533A;&#x5206;INNODB&#x4E8B;&#x52A1;&#x9694;&#x79BB;&#x7EA7;&#x522B;</span><br><span class="line">		InnoDB &#x4E2D;&#x7684;&#x9694;&#x79BB;&#x7EA7;&#x8BE6;&#x7EC6;&#x63CF;&#x8FF0;</span><br><span class="line">		&#x5B9E;&#x8DF5;1&#xFF1A;SERIALIZABLE&#x9694;&#x79BB;&#x7EA7;&#x522B;&#x67E5;&#x8BE2;&#x81EA;&#x52A8;&#x52A0;&#x5171;&#x4EAB;&#x9501;</span><br><span class="line">		&#x5B9E;&#x8DF5;2&#xFF1A;RU&#x3001;RC&#x3001;RR&#x9694;&#x79BB;&#x7EA7;&#x522B;&#x7684;&#x5BF9;&#x6BD4;</span><br><span class="line">	&#x5B9E;&#x73B0;&#x4E00;&#x81F4;&#x6027;&#x9501;&#x5B9A;&#x8BFB;</span><br><span class="line">		&#x5B9E;&#x8DF5;1&#xFF1A;&#x8BBE;&#x7F6E;innodb&#x7533;&#x8BF7;&#x9501;&#x7B49;&#x5F85;&#x8D85;&#x65F6;&#x65F6;&#x95F4;</span><br><span class="line">		&#x5B9E;&#x8DF5;2&#xFF1A;&#x8BBE;&#x7F6E;&#x4E00;&#x81F4;&#x6027;&#x9501;&#x5B9A;&#x8BFB;&#xFF0C;&#x52A0;&#x5171;&#x4EAB;&#x9501;&#x6D4B;&#x8BD5;</span><br><span class="line">		&#x5B9E;&#x8DF5;3&#xFF1A;&#x8BBE;&#x7F6E;&#x4E00;&#x81F4;&#x6027;&#x9501;&#x5B9A;&#x8BFB;&#xFF0C;&#x52A0;&#x6392;&#x4ED6;&#x9501;&#x6D4B;&#x8BD5;</span><br><span class="line">	&#x8BA4;&#x8BC6;&#x9501;&#x7684;&#x7B97;&#x6CD5;</span><br><span class="line">		&#x77E5;&#x8BC6;&#x70B9;</span><br><span class="line">		&#x5B9E;&#x8DF5;1&#xFF1A; &#x9A8C;&#x8BC1;nextkey</span><br><span class="line">		lock&#x964D;&#x7EA7;&#x4E3A;record key</span><br><span class="line">		&#x5B9E;&#x8DF5;2&#xFF1A; &#x5173;&#x95ED;GAP&#x9501;_RC</span><br><span class="line">		&#x5B9E;&#x8DF5;3&#xFF1A; &#x5173;&#x95ED;GAP&#x9501;_innodb_locks_unsafe_for_binlog</span><br><span class="line">		&#x5B9E;&#x8DF5;4&#xFF1A; nextkeylocking&#x662F;&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5E7B;&#x8BFB;&#x95EE;&#x9898;&#x7684;</span><br><span class="line"></span><br><span class="line">&#x4E94;&#x3001;MySQL&#x5907;&#x4EFD;&#x4E0E;&#x6062;&#x590D;</span><br><span class="line"></span><br><span class="line">1.&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5907;&#x4EFD;</span><br><span class="line">2.&#x4EC0;&#x4E48;&#x662F;&#x5907;&#x4EFD;</span><br><span class="line">3.&#x5907;&#x4EFD;&#x7684;&#x4E24;&#x5927;&#x8981;&#x7D20;</span><br><span class="line">4.&#x5907;&#x4EFD;&#x7684;&#x5206;&#x7C7B;</span><br><span class="line">	&#x7269;&#x7406;&#x5907;&#x4EFD;&#x548C;&#x903B;&#x8F91;&#x5907;&#x4EFD;</span><br><span class="line">		&#x903B;&#x8F91;&#x5907;&#x4EFD;</span><br><span class="line">		&#x7269;&#x7406;&#x5907;&#x4EFD;</span><br><span class="line">	&#x589E;&#x91CF;&#x5907;&#x4EFD;&#x548C;&#x5DEE;&#x5F02;&#x5907;&#x4EFD;</span><br><span class="line">	&#x5728;&#x7EBF;&#xFF08;&#x70ED;&#xFF09;&#x5907;&#x4EFD;&#x3001;&#x6E29;&#x5907;&#x4EFD;&#x3001;&#x79BB;&#x7EBF;&#xFF08;&#x51B7;&#xFF09;&#x5907;&#x4EFD;</span><br><span class="line">5.&#x5907;&#x4EFD;&#x548C;&#x6062;&#x590D;&#x5DE5;&#x5177;</span><br><span class="line">	tar</span><br><span class="line">		tar&#x5907;&#x4EFD;&#x6B65;&#x9AA4;</span><br><span class="line">		tar&#x8FD8;&#x539F;&#x6B65;&#x9AA4;</span><br><span class="line">		&#x8BFE;&#x5802;&#x5B9E;&#x6218;1: &#x5229;&#x7528;tar&#x5B9E;&#x73B0;&#x7269;&#x7406;&#x5907;&#x4EFD;&#x5E76;&#x8FD8;&#x539F;</span><br><span class="line">	LVM SnapShot</span><br><span class="line">		lvm&#x5FEB;&#x7167;&#x7684;&#x4F18;&#x70B9;&#x548C;&#x7F3A;&#x70B9;</span><br><span class="line">		os&#x652F;&#x6301;lvm&#x65B9;&#x5F0F; </span><br><span class="line">		lvm&#x5FEB;&#x7167;&#x5907;&#x4EFD;&#x6570;&#x636E;</span><br><span class="line">		lvm&#x5FEB;&#x7167;&#x8FD8;&#x539F;&#x6570;&#x636E;</span><br><span class="line">		&#x8BFE;&#x5802;&#x5B9E;&#x6218;2: &#x5229;&#x7528;LVM&#x5FEB;&#x7167;&#x5B9E;&#x73B0;&#x7269;&#x7406;&#x5907;&#x4EFD;&#x5E76;&#x8FD8;&#x539F;</span><br><span class="line">	mysqldump</span><br><span class="line">		MyISAM&#x548C;INNODB&#x8868;&#x7684;&#x5907;&#x4EFD;</span><br><span class="line">		mysqldump&#x547D;&#x4EE4;&#x7684;&#x7528;&#x6CD5;</span><br><span class="line">		mysqldump&#x5907;&#x4EFD;&#x6B65;&#x9AA4;</span><br><span class="line">		mysqldump&#x8FD8;&#x539F;&#x6B65;&#x9AA4;</span><br><span class="line">		&#x8BFE;&#x5802;&#x5B9E;&#x6218;3: &#x5229;&#x7528;mysqldump&#x5B9E;&#x73B0;&#x903B;&#x8F91;&#x5907;&#x4EFD;&#x5E76;&#x8FD8;&#x539F;</span><br><span class="line">	Percona Xtrabackup</span><br><span class="line">	&#x8BFE;&#x5802;&#x5B9E;&#x6218;4&#xFF1A;innobackupex&#x5B9E;&#x65F6;&#x589E;&#x91CF;&#x5907;&#x4EFD;&#x548C;&#x8FD8;&#x539F;</span><br><span class="line">6.MySQL &#x65E5;&#x5FD7;&#x7684;&#x5206;&#x7C7B;</span><br><span class="line">	&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x7684;&#x7BA1;&#x7406;&#x548C;&#x5907;&#x4EFD;</span><br><span class="line">		&#x5982;&#x4F55;&#x6253;&#x5F00;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;</span><br><span class="line">		&#x5982;&#x4F55;&#x67E5;&#x770B;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;</span><br><span class="line">		&#x57FA;&#x4E8E;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x7684;&#x5B9E;&#x65F6;&#x589E;&#x91CF;&#x8FD8;&#x539F;</span><br><span class="line">	&#x6570;&#x636E;&#x5E93;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6A21;&#x62DF;&#x4E00;</span><br><span class="line">	&#x6570;&#x636E;&#x5E93;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6A21;&#x62DF;&#x4E8C;</span><br><span class="line">	&#x6570;&#x636E;&#x5E93;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6A21;&#x62DF;&#x4E09;</span><br><span class="line">	&#x8BFE;&#x5802;&#x5B9E;&#x6218;5&#xFF1A;&#x57FA;&#x4E8E;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x65F6;&#x95F4;&#x70B9;&#x548C;&#x4F4D;&#x7F6E;&#x7684;&#x6570;&#x636E;&#x5E93;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6A21;&#x62DF;</span><br><span class="line"></span><br><span class="line">&#x516D;&#x3001;MySQL&#x590D;&#x5236;replication </span><br><span class="line">1.&#x590D;&#x5236;&#x6982;&#x8FF0;</span><br><span class="line">2.&#x590D;&#x5236;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;</span><br><span class="line">3.&#x590D;&#x5236;&#x7684;&#x539F;&#x7406;</span><br><span class="line">	&#x9879;&#x76EE;&#x5B9E;&#x6218;1&#xFF1A;mariadb server 5.5 &#x5355;&#x4E3B;&#x4ECE;&#x67B6;&#x6784;</span><br><span class="line">	&#x9879;&#x76EE;&#x5B9E;&#x6218;2&#xFF1A;mysql server 5.7 &#x57FA;&#x4E8E;GTID&#x7684;&#x5355;&#x4E3B;&#x4ECE;&#x67B6;&#x6784;</span><br><span class="line">4.&#x590D;&#x5236;&#x4E2D;&#x7684;&#x5EF6;&#x8FDF;&#x95EE;&#x9898;_&#x91CD;&#x6F14;&#x5EF6;&#x8FDF;</span><br><span class="line">	&#x9879;&#x76EE;&#x5B9E;&#x6218;3&#xFF1A;mysql server 5.7 &#x57FA;&#x4E8E;GTID&#x7684;&#x5E76;&#x884C;MTS&#x5355;&#x4E3B;&#x4ECE;&#x67B6;&#x6784;</span><br><span class="line">	&#x9879;&#x76EE;&#x5B9E;&#x6218;4&#xFF1A;mysql server 5.7 &#x57FA;&#x4E8E;GTID&#x7684;&#x5E76;&#x884C;MTS&#x5355;&#x4E3B;&#x4ECE;&#x67B6;&#x6784;crash safe&#x53C2;&#x6570;&#x8C03;&#x4F18;</span><br><span class="line">5.&#x590D;&#x5236;&#x4E2D;&#x7684;&#x5EF6;&#x8FDF;&#x95EE;&#x9898;_&#x8BFB;&#x5199;&#x5206;&#x79BB;</span><br><span class="line">	&#x534A;&#x540C;&#x6B65;&#x590D;&#x5236;&#x7684;&#x6F5C;&#x5728;&#x95EE;&#x9898;</span><br><span class="line">	&#x65E0;&#x6570;&#x636E;&#x4E22;&#x5931;&#x7684;&#x534A;&#x540C;&#x6B65;&#x590D;&#x5236;</span><br><span class="line">	&#x9879;&#x76EE;&#x5B9E;&#x6218;5&#xFF1A;mysql server 5.7 &#x57FA;&#x4E8E;GTID&#x7684;&#x5E76;&#x884C;MTS&#x5355;&#x4E3B;&#x4ECE;&#x534A;&#x540C;&#x6B65;&#x67B6;&#x6784;</span><br><span class="line">6.&#x590D;&#x5236;&#x4E2D;&#x7684;&#x5355;&#x70B9;&#x6545;&#x969C;&#x95EE;&#x9898;</span><br><span class="line">	&#x590D;&#x5236;&#x62D3;&#x6251;_&#x914D;&#x7F6E;MSS</span><br><span class="line">	&#x590D;&#x5236;&#x62D3;&#x6251;_&#x914D;&#x7F6E;MM</span><br><span class="line">	&#x590D;&#x5236;&#x62D3;&#x6251;_&#x914D;&#x7F6E;M(s)M(s)</span><br><span class="line">	&#x590D;&#x5236;&#x62D3;&#x6251;_&#x914D;&#x7F6E;MMSS</span><br><span class="line">	&#x9879;&#x76EE;&#x5B9E;&#x6218;6&#xFF1A;mysql server 5.7 &#x57FA;&#x4E8E;GTID&#x7684;&#x5E76;&#x884C;MTS&#x591A;&#x7EA7;&#x4E3B;&#x4ECE; Multisource &#x534A;&#x540C;&#x6B65;&#x67B6;&#x6784;</span><br><span class="line"></span><br><span class="line">&#x4E03;&#x3001;MySQL&#x9AD8;&#x53EF;&#x7528;HA</span><br><span class="line">1.&#x4EC0;&#x4E48;&#x662F;&#x9AD8;&#x53EF;&#x7528;</span><br><span class="line">2.&#x5BFC;&#x81F4;&#x5B95;&#x673A;&#x7684;&#x539F;&#x56E0;</span><br><span class="line">3.&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x9AD8;&#x53EF;&#x7528;</span><br><span class="line">4.&#x907F;&#x514D;&#x5355;&#x70B9;&#x6545;&#x969C;</span><br><span class="line">	&#x57FA;&#x4E8E;&#x590D;&#x5236;&#x7684;&#x5197;&#x4F59;</span><br><span class="line">	MySQL &#x540C;&#x6B65;&#x590D;&#x5236;</span><br><span class="line">		MySQL Cluster &#x96C6;&#x7FA4;</span><br><span class="line">		Galera Cluster &#x96C6;&#x7FA4;</span><br><span class="line">5.&#x6545;&#x969C;&#x8F6C;&#x79FB;&#x548C;&#x6545;&#x969C;&#x6062;&#x590D;</span><br><span class="line">	&#x95EE;&#x9898;&#x7684;&#x63D0;&#x51FA;</span><br><span class="line">	&#x89E3;&#x51B3;&#x65B9;&#x6848;</span><br><span class="line">	&#x4EC0;&#x4E48;&#x662F;&#x6570;&#x636E;&#x5E93;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;</span><br><span class="line">	&#x76EE;&#x524D;&#x5E02;&#x9762;&#x4E0A;&#x7684;&#x6570;&#x636E;&#x5E93;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;</span><br><span class="line">		mysqlproxy (&#x4E86;&#x89E3;&#xFF0C;&#x4E0D;&#x8BB2;)</span><br><span class="line">		mycat</span><br><span class="line">6.&#x5B9E;&#x6218;&#x9879;&#x76EE;&#xFF1A; &#x6570;&#x636E;&#x5E93;&#x4E2D;&#x95F4;&#x4EF6; Mycat &#x5B9E;&#x73B0; &#x8BFB;&#x5199;&#x5206;&#x79BB;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x540E;&#x7AEF;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;&#x4E3A; MySQL 5.7 MMSS Multisource Replication &#x9AD8;&#x53EF;&#x7528;&#x67B6;&#x6784;</span><br><span class="line">7.&#x5B9E;&#x6218;&#x9879;&#x76EE;:  &#x6570;&#x636E;&#x5E93;&#x4E2D;&#x95F4;&#x4EF6; Mycat &#x5B9E;&#x73B0; &#x8BFB;&#x5199;&#x5206;&#x79BB;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x540E;&#x7AEF;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;&#x4E3A; Mariadb 10.2 Galera Cluster&#x540C;&#x6B65;&#x590D;&#x5236;&#x9AD8;&#x53EF;&#x7528;&#x67B6;&#x6784;</span><br></pre></td></tr></table></figure></p>
 
     
-    <nav id="title-list-nav">
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/10/amy_life/%E5%90%91%E6%9C%88%E4%BA%AE%E8%AF%B4%E6%99%9A%E5%AE%89/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="向月亮说晚安">向月亮说晚安</span>
-            <span class="post-date" title="2018-09-10 11:26:39">2018/09/10</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/30/amy_life/%E5%9B%BD%E5%BA%86%E5%89%8D%E5%AD%A6%E6%B4%97%E6%89%8B/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="国庆前学洗手">国庆前学洗手</span>
-            <span class="post-date" title="2018-09-30 10:43:53">2018/09/30</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/29/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E4%B8%8A%E7%8F%AD%E5%95%A6/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="宝宝们上班啦">宝宝们上班啦</span>
-            <span class="post-date" title="2018-09-29 10:43:41">2018/09/29</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/20/amy_life/%E5%AE%9D%E5%AE%9D%E4%BB%AC%E5%BC%80%E5%A7%8B%E6%BC%B1%E5%8F%A3%E4%BA%86/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="宝宝们开始漱口了">宝宝们开始漱口了</span>
-            <span class="post-date" title="2018-09-20 12:08:51">2018/09/20</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/19/amy_life/%E5%AE%B6%E9%95%BF%E4%BC%9A/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="家长会">家长会</span>
-            <span class="post-date" title="2018-09-19 11:40:55">2018/09/19</span>
-        </a>
-        
-        <a  class="往昔追忆 小二班 "
-           href="/2018/09/21/amy_life/%E6%9C%88%E9%A5%BC%E7%83%98%E5%9F%B9%E5%92%8C%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5/"
-           data-tag="宝宝成长"
-           data-author="" >
-            <span class="post-title" title="月饼烘培和小小搬运工">月饼烘培和小小搬运工</span>
-            <span class="post-date" title="2018-09-21 12:25:51">2018/09/21</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/00_shell_variables/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第一课 简介和变量">LINUX Shell Scripts 第一课 简介和变量</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/01_shell_flow_control_statement/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第二课 流程控制语句">LINUX Shell Scripts 第二课 流程控制语句</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/02_shell_regular_expression/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第三课 正则表达式">LINUX Shell Scripts 第三课 正则表达式</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/03_shell_sed_awk/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第四课 Sed">LINUX Shell Scripts 第四课 Sed</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/04_shell_brackets/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第五课 各种括号的作用">LINUX Shell Scripts 第五课 各种括号的作用</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/shell%E4%B8%8A%E6%9C%BA/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第六课 上机考试">LINUX Shell Scripts 第六课 上机考试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 LinuxShell脚本教程 "
-           href="/2016/12/23/booboo_bash_shell_scripts/shell%E7%AC%94%E8%AF%95/"
-           data-tag="培训,LinuxShell脚本"
-           data-author="" >
-            <span class="post-title" title="LINUX Shell Scripts 第七课 笔试">LINUX Shell Scripts 第七课 笔试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="LINUX 基础服务课程环境使用说明">LINUX 基础服务课程环境使用说明</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/01_dns/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="DNS域名解析服务">DNS域名解析服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/02_ftp/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="FTP文件共享服务">FTP文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/03_nfs/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="NFS文件共享服务">NFS文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/04_samba/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="SAMBA文件共享服务">SAMBA文件共享服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/05_apache/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="APACHE WEB服务">APACHE WEB服务</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/06_ntp_chrony/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="时间同步服务NTP和Chony">时间同步服务NTP和Chony</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/07_iptables_firewalld/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="防火墙 iptables">防火墙 iptables</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux简易服务教程 "
-           href="/2016/12/23/booboo_easy_service/ule-online/"
-           data-tag="培训,Linux基础服务"
-           data-author="" >
-            <span class="post-title" title="Linux简易服务上机考试">Linux简易服务上机考试</span>
-            <span class="post-date" title="2016-12-22 21:06:27">2016/12/22</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/00-linux_history/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="LINUX HISTORY">LINUX HISTORY</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 基础命令">Linux 基础命令</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/02-Linux%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 用户和组">Linux 用户和组</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/03-Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 文件和目录">Linux 文件和目录</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/04-Linux%E5%8E%8B%E7%BC%A9%E6%89%93%E5%8C%85/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 压缩打包">Linux 压缩打包</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/05-Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 软件安装">Linux 软件安装</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/07-Bash%E7%AE%80%E4%BB%8B/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux Bash简介">Linux Bash简介</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/08-%E6%97%A5%E5%BF%97%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 日志和计划任务">Linux 日志和计划任务</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/06-Vim%E7%BC%96%E8%BE%91%E5%99%A8/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux Vim 编辑器">Linux Vim 编辑器</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/09-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 文件系统和磁盘管理">Linux 文件系统和磁盘管理</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/11-Linux%E5%86%85%E6%A0%B8/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 内核">Linux 内核</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/10-Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 开机启动流程">Linux 开机启动流程</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/12-SELINUX/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux SELINUX">Linux SELINUX</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 Linux系统基础培训 "
-           href="/2016/12/22/booboo_linux_base/13-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
-           data-tag="培训,Linux"
-           data-author="" >
-            <span class="post-title" title="Linux 进程管理">Linux 进程管理</span>
-            <span class="post-date" title="2016-12-21 20:06:27">2016/12/21</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/25/booboo_mysql/00-MySQL%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第一课 课程简介">MySQL 管理课程 第一课 课程简介</span>
-            <span class="post-date" title="2016-12-24 21:06:27">2016/12/24</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/30/booboo_mysql/03-MySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%92%8CInnodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎">MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎</span>
-            <span class="post-date" title="2016-12-29 21:06:27">2016/12/29</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/31/booboo_mysql/04-MySQL%E5%A4%8D%E5%88%B6replication/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第七课 复制 AB replication">MySQL 管理课程 第七课 复制 AB replication</span>
-            <span class="post-date" title="2016-12-30 21:06:27">2016/12/30</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/02/booboo_mysql/05-MySQL%E9%AB%98%E5%8F%AF%E7%94%A8HA/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第八课 高可用性HA">MySQL 管理课程 第八课 高可用性HA</span>
-            <span class="post-date" title="2017-01-01 21:06:27">2017/01/01</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/04/booboo_mysql/07-MySQL5.6%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制">MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制</span>
-            <span class="post-date" title="2017-01-03 21:06:27">2017/01/03</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/03/booboo_mysql/06-MySQL%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7sysbench/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第九课 MySQL压力测试工具sysbench">MySQL 管理课程 第九课 MySQL压力测试工具sysbench</span>
-            <span class="post-date" title="2017-01-02 21:06:27">2017/01/02</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2017/01/05/booboo_mysql/08-MySQL%E9%80%BB%E8%BE%91%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump&mysqlpump&mydumper/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper">MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</span>
-            <span class="post-date" title="2017-01-04 21:06:27">2017/01/04</span>
-        </a>
-        
-        <a  class="技术广角 Python "
-           href="/2020/03/22/booboo_others/CentOS6.5%E9%85%8D%E7%BD%AEpython3.7%E5%AE%89%E8%A3%85%E5%90%8Essl%E9%97%AE%E9%A2%98/"
-           data-tag="python"
-           data-author="" >
-            <span class="post-title" title="CentOS6.5配置python3.7安装后ssl问题">CentOS6.5配置python3.7安装后ssl问题</span>
-            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2018/05/17/booboo_others/MySQL%E4%B8%80%E6%AC%A1%E6%83%8A%E5%BF%83%E5%8A%A8%E9%AD%84%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BC%BA%E5%88%B6%E6%81%A2%E5%A4%8D/"
-           data-tag="数据救援"
-           data-author="" >
-            <span class="post-title" title="MySQL一次惊心动魄地数据强制恢复">MySQL一次惊心动魄地数据强制恢复</span>
-            <span class="post-date" title="2018-05-16 19:58:02">2018/05/16</span>
-        </a>
-        
-        <a  class="技术广角 Hexo "
-           href="/2020/03/22/booboo_others/hello-world/"
-           data-tag="hexo"
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2020-03-22 14:23:51">2020/03/22</span>
-        </a>
-        
-        <a  class="技术广角 Oracle "
-           href="/2018/05/29/booboo_others/oracle%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96-%E7%B4%A2%E5%BC%95%E7%BC%BA%E5%A4%B1/"
-           data-tag="SQL优化"
-           data-author="" >
-            <span class="post-title" title="Oracle数据库SQL优化_索引缺失">Oracle数据库SQL优化_索引缺失</span>
-            <span class="post-date" title="2018-05-28 18:09:32">2018/05/28</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2017/08/19/booboo_others/MySQL%E7%9A%84%E5%85%83%E9%94%81MDL%E5%8F%91%E7%94%9F%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"
-           data-tag="锁故障"
-           data-author="" >
-            <span class="post-title" title="MySQL的元锁MDL发生场景和解决方法总结">MySQL的元锁MDL发生场景和解决方法总结</span>
-            <span class="post-date" title="2017-08-18 20:06:27">2017/08/18</span>
-        </a>
-        
-        <a  class="技术广角 MySQL "
-           href="/2018/08/22/booboo_others/rds-for-mysql-5-7%E5%88%B0%E8%87%AA%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E4%B9%8B%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3user%E8%A1%A8%E5%AE%9E%E7%8E%B0%E4%BB%8E%E5%BA%93%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9%E5%8A%9F%E8%83%BD/"
-           data-tag="RDS,主从同步"
-           data-author="" >
-            <span class="post-title" title="突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;">突破阿里限制实现&#34;RDS For MySQL 5.7到自建MySQL主从&#34;</span>
-            <span class="post-date" title="2018-08-22 10:41:15">2018/08/22</span>
-        </a>
-        
-        <a  class="技术广角 MongoDB "
-           href="/2018/08/03/booboo_others/%E5%88%A9%E7%94%A8split%E5%B7%A5%E5%85%B7%E8%A7%A3%E5%86%B3%E4%B8%80%E6%AC%A1MongoDB%E6%97%A5%E5%BF%97%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/"
-           data-tag="数据救援"
-           data-author="" >
-            <span class="post-title" title="利用split工具解决一次MongoDB日志异常问题">利用split工具解决一次MongoDB日志异常问题</span>
-            <span class="post-date" title="2018-08-03 12:25:24">2018/08/03</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/29/booboo_mysql/03-MySQL%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第五课 备份与恢复">MySQL 管理课程 第五课 备份与恢复</span>
-            <span class="post-date" title="2016-12-28 21:06:27">2016/12/28</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/26/booboo_mysql/01-MySQL%E5%92%8CMariaDB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍">MySQL 管理课程 第二课 MySQL和MariaDB数据库介绍</span>
-            <span class="post-date" title="2016-12-25 21:06:27">2016/12/25</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/27/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1">MySQL 管理课程 第三课 结构化查询语言SQL介绍和基本操作1</span>
-            <span class="post-date" title="2016-12-26 21:06:27">2016/12/26</span>
-        </a>
-        
-        <a  class="技术培训 MySQL基础管理教程 "
-           href="/2016/12/28/booboo_mysql/02-%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80SQL%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C2/"
-           data-tag="培训,MySQL基础管理"
-           data-author="" >
-            <span class="post-title" title="MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2">MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2</span>
-            <span class="post-date" title="2016-12-27 21:06:27">2016/12/27</span>
-        </a>
-        
-    </nav>
-</div>
     </div>
-    <div class="hide-list">
-        <div class="semicircle">
-            <div class="brackets first"><</div>
-            <div class="brackets">&gt;</div>
+    
+    
+</article>
+
+
+
+
+    
+    
+        
+<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
+    <div class="pagination-previous">
+        <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/">Vorheriges</a>
+    </div>
+    <div class="pagination-next is-invisible is-hidden-mobile">
+        <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/page/3/">Nächstes</a>
+    </div>
+    <ul class="pagination-list is-hidden-mobile">
+        
+        <li><a class="pagination-link" href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/">1</a></li>
+        
+        <li><a class="pagination-link is-current" href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/page/2/">2</a></li>
+        
+    </ul>
+</nav>
+    
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
         </div>
     </div>
-</aside>
-<div class="post index">
-    <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#除了自己的无知，"><span class="toc-text">除了自己的无知，</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#我什么都不懂。"><span class="toc-text">我什么都不懂。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#－苏格拉底"><span class="toc-text">－苏格拉底</span></a></li></ol>
-    
-<style>
-    .left-col .switch-btn,
-    .left-col .switch-area {
-        display: none;
-    }
-    .toc-level-3 i,
-    .toc-level-3 ol {
-        display: none !important;
-    }
-</style>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
-            <h5 id="除了自己的无知，"><a href="#除了自己的无知，" class="headerlink" title="除了自己的无知，"></a>除了自己的无知，</h5><h5 id="我什么都不懂。"><a href="#我什么都不懂。" class="headerlink" title="我什么都不懂。"></a>我什么都不懂。</h5><h5 id="－苏格拉底"><a href="#－苏格拉底" class="headerlink" title="－苏格拉底"></a>－苏格拉底</h5>
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
-    <div id="comments"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script type="text/javascript">
-    $.getScript('/js/gitalk.js', function () {
-        var gitalk = new Gitalk({
-            clientID: 'af999a0c30ad557db57d',
-            clientSecret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
-            repo: 'booboowei.github.io',
-            owner: 'booboowei',
-            admin: ['booboowei'],
-            id: decodeURI(location.pathname),
-            distractionFreeMode: 'true',
-            language: 'zh-CN',
-            perPage: parseInt('10',10)
-        })
-        gitalk.render('comments')
-    })
-</script>
-
-
-    </div>
-    <div class="copyright">
-        <p class="footer-entry">©2018-2020 BoobooWei</p>
-<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
-
-    </div>
-    <div class="full-toc">
-        <button class="full"><span class="min "></span></button>
-<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
-<div class="post-toc"><span class="post-toc-title">目录</span>
-    <div class="post-toc-content">
-
-    </div>
-</div>
-<a class="" id="rocket" ></a>
-
-    </div>
-</div>
-<div class="acParent"></div>
-
-<div class="hide_box" onclick="dashangToggle()"></div>
-<div class="shang_box">
-    <a class="shang_close"  onclick="dashangToggle()">×</a>
-    <div class="shang_tit">
-        <p>喜欢就点赞,疼爱就打赏</p>
-    </div>
-    <div class="shang_payimg">
-        <div class="pay_img">
-            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
-            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
-        </div>
-    </div>
-    <div class="shang_payselect">
-        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
-    </div>
-</div>
-
-
-</body>
-<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
-
-<script src="/js/script.js?v=1.0.1" ></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
 <script>
-    var img_resize = 'default';
-    /*作者、标签的自动补全*/
-    $(function () {
-        $('.search').AutoComplete({
-            'data': ['#宝宝成长','#培训','#LinuxShell脚本','#Linux基础服务','#Linux','#MySQL基础管理','#python','#数据救援','#hexo','#SQL优化','#锁故障','#RDS','#主从同步',],
-            'itemHeight': 20,
-            'width': 418
-        }).AutoComplete('show');
-    })
-    function initArticle() {
-        /*渲染对应的表格样式*/
-        
-
-        /*渲染打赏样式*/
-        
-        $("input[name=pay]").on("click", function () {
-            if($("input[name=pay]:checked").val()=="weixin"){
-                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
-            } else {
-                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
-            }
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
         })
-        
-
-        /*高亮代码块行号*/
-        
-
-        /*访问数量*/
-        
-        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
-        
-
-        /*代码高亮，行号对齐*/
-        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
-
-        
-        
-        /* 渲染*/
-        function HTMLDecode(text) {
-            var temp = document.createElement("div");
-            temp.innerHTML = text;
-            var output = temp.innerText || temp.textContent;
-            temp = null;
-            return output;
-        }
-        if (window.mermaid){
-            window.mermaid = null
-        }
-        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
-            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
-            if (window.mermaid) {
-                mermaid.initialize(mermaidOptions)
-                mermaid.contentLoaded()
-            }
-        })
-        
-    }
-
-    /*打赏页面隐藏与展示*/
-    
-    function dashangToggle() {
-        $(".shang_box").fadeToggle();
-        $(".hide_box").fadeToggle();
-    }
-    
-
+    });
 </script>
 
-<!--加入行号的高亮代码块样式-->
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
 
-<!--自定义样式设置-->
-<style>
+
     
     
-    .nav {
-        width: 622px;
-    }
-    .nav.fullscreen {
-        margin-left: -622px;
-    }
-    .nav-left {
-        width: 200px;
-    }
-    
-    
-    @media screen and (max-width: 1468px) {
-        .nav {
-            width: 492px;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
         }
-        .nav.fullscreen {
-            margin-left: -492px;
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
         }
-        .nav-left {
-            width: 100px;
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-    }
-    
-    
-    @media screen and (max-width: 1024px) {
-        .nav {
-            width: 492px;
-            margin-left: -492px
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
         }
-        .nav.fullscreen {
-            margin-left: 0;
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
         }
-        .nav .hide-list.fullscreen {
-            left: 492px
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
         }
-    }
-    
-    @media screen and (max-width: 426px) {
-        .nav {
-            width: 100%;
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
         }
-        .nav-left {
-            width: 100%;
-        }
-    }
-    
-    
-    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
-        color: #383636;
-    }
-    
-    
-    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
-        color: #5e5e5f;
-    }
-    
-    
-    .nav-right nav a.hover, #local-search-result a.hover{
-        background-color: #e2e0e0;
-    }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
     
     
 
-    /*列表样式*/
-    
-
-    /* 背景图样式 */
-    
     
 
 
-    /*引用块样式*/
-    
 
-    /*文章列表背景图*/
-    
-    .nav-right:before {
-        content: ' ';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.2;
-        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
-        background-repeat: no-repeat;
-        background-position: 50% 0;
-        -ms-background-size: cover;
-        -o-background-size: cover;
-        -moz-background-size: cover;
-        -webkit-background-size: cover;
-        background-size: cover;
-    }
-    
+<script src="/js/script.js"></script>
+
 
     
-</style>
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Suche etwas..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Seiten',
+                CATEGORIES: 'Kategorien',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
 
+<script src="/js/insight.js"></script>
 
-
-
-
-
-
+    
+</body>
 </html>
