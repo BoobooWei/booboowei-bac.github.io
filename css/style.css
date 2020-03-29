@@ -9,7 +9,7 @@ a.tag.article-tag {
 @media screen and (min-width: 1024px) {
   .container {
     max-width: 1500px;
-    width: 1000px; }
+    width: 1100px; }
   .navbar.is-transparent .navbar-dropdown a.navbar-item:hover {
     color: #3273dc; } }
 
@@ -495,7 +495,8 @@ figure.highlight {
 /* booboowei 20200329 */
 .container {
   /* section 的 margin-left 样式确保了有足够的空间容纳左侧的（目录） nav 元素。 */
-  margin-left: 500px; }
+  margin-left: 500px;
+  margin-right: 10px; }
 
 .item {
   float: left;
@@ -537,7 +538,6 @@ figure.highlight {
     padding: .83333rem;
     margin: 0 30px 0 0;
     background: #fff;
-    box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
     border-radius: .25rem;
     width: 60px;
     height: 60px; }
@@ -557,7 +557,7 @@ figure.highlight {
   .item .page-title-heading {
     font-size: 1.25rem;
     font-weight: bolder;
-    margin: 0 0 0 16px; }
+    margin: 0 0 0 0px; }
   .item .table-title-heading {
     font-size: .5rem;
     opacity: .9; }
