@@ -20,28 +20,28 @@
     <meta name="description" content="&amp;#x6458;&amp;#x8981;&amp;#xFF1A;MetaData Lock&amp;#x5373;&amp;#x5143;&amp;#x6570;&amp;#x636E;&amp;#x9501;&amp;#xFF0C;&amp;#x5728;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x4E2D;&amp;#x5143;&amp;#x6570;&amp;#x636E;&amp;#x5373;&amp;#x6570;&amp;#x636E;&amp;#x5B57;&amp;#x5178;&amp;#x4FE1;&amp;#x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL的元锁MDL发生场景和解决方法总结">
-<meta property="og:url" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/index.html">
+<meta property="og:url" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/index.html">
 <meta property="og:site_name" content="归去来兮">
 <meta property="og:description" content="&amp;#x6458;&amp;#x8981;&amp;#xFF1A;MetaData Lock&amp;#x5373;&amp;#x5143;&amp;#x6570;&amp;#x636E;&amp;#x9501;&amp;#xFF0C;&amp;#x5728;&amp;#x6570;&amp;#x636E;&amp;#x5E93;&amp;#x4E2D;&amp;#x5143;&amp;#x6570;&amp;#x636E;&amp;#x5373;&amp;#x6570;&amp;#x636E;&amp;#x5B57;&amp;#x5178;&amp;#x4FE1;&amp;#x">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/2017-08-18-tec-mysql%5Cmdl01.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl02.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl03.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl04.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl06.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl07.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl08.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl09.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl10.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl11.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl12.png">
-<meta property="og:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl13.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/2017-08-18-tec-mysql%5Cmdl01.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl02.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl03.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl04.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl06.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl07.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl08.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl09.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl10.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl11.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl12.png">
+<meta property="og:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/mdl13.png">
 <meta property="article:published_time" content="2017-08-18T20:06:27.000Z">
 <meta property="article:modified_time" content="2020-03-28T07:43:00.118Z">
 <meta property="article:author" content="BoobooWei">
 <meta property="article:tag" content="锁故障">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/2017-08-18-tec-mysql%5Cmdl01.png">
+<meta name="twitter:image" content="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/2017-08-18-tec-mysql%5Cmdl01.png">
 
 
 
@@ -230,7 +230,7 @@
                href="/categories">分类</a>
             
             <a class="navbar-item "
-               href="/tags">标签</a>
+               href="/tagse">标签</a>
             
         </div>
         

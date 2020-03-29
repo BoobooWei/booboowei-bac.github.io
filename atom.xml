@@ -5,9 +5,9 @@
   <subtitle>Amy Booboo Sage</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.toberoot.com/"/>
+  <link href="http://booboowei.github.io/"/>
   <updated>2020-03-28T16:03:54.156Z</updated>
-  <id>http://www.toberoot.com/</id>
+  <id>http://booboowei.github.io/</id>
   
   <author>
     <name>BoobooWei</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>CentOS6.5配置python3.7安装后ssl问题</title>
-    <link href="http://www.toberoot.com/2020/03/27/booboo_others/2020-03-26-tec-python/"/>
-    <id>http://www.toberoot.com/2020/03/27/booboo_others/2020-03-26-tec-python/</id>
+    <link href="http://booboowei.github.io/2020/03/27/booboo_others/2020-03-26-tec-python/"/>
+    <id>http://booboowei.github.io/2020/03/27/booboo_others/2020-03-26-tec-python/</id>
     <published>2020-03-26T19:58:02.000Z</published>
     <updated>2020-03-28T16:03:54.156Z</updated>
     
@@ -32,19 +32,19 @@
     </summary>
     
     
-      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
+      <category term="技术广角" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
     
-      <category term="Python" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/"/>
+      <category term="Python" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/"/>
     
     
-      <category term="python" scheme="http://www.toberoot.com/tags/python/"/>
+      <category term="python" scheme="http://booboowei.github.io/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>国庆前学洗手</title>
-    <link href="http://www.toberoot.com/2018/09/30/amy_life/2018-09-30-amy/"/>
-    <id>http://www.toberoot.com/2018/09/30/amy_life/2018-09-30-amy/</id>
+    <link href="http://booboowei.github.io/2018/09/30/amy_life/2018-09-30-amy/"/>
+    <id>http://booboowei.github.io/2018/09/30/amy_life/2018-09-30-amy/</id>
     <published>2018-09-30T10:43:53.000Z</published>
     <updated>2020-03-28T06:52:17.702Z</updated>
     
@@ -57,19 +57,19 @@
     </summary>
     
     
-      <category term="往昔追忆" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
+      <category term="往昔追忆" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
     
-      <category term="小二班" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
+      <category term="小二班" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
     
     
-      <category term="宝宝成长" scheme="http://www.toberoot.com/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
+      <category term="宝宝成长" scheme="http://booboowei.github.io/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
     
   </entry>
   
   <entry>
     <title>宝宝们上班啦</title>
-    <link href="http://www.toberoot.com/2018/09/29/amy_life/2018-09-29-amy/"/>
-    <id>http://www.toberoot.com/2018/09/29/amy_life/2018-09-29-amy/</id>
+    <link href="http://booboowei.github.io/2018/09/29/amy_life/2018-09-29-amy/"/>
+    <id>http://booboowei.github.io/2018/09/29/amy_life/2018-09-29-amy/</id>
     <published>2018-09-29T10:43:41.000Z</published>
     <updated>2020-03-28T06:53:12.397Z</updated>
     
@@ -82,19 +82,19 @@
     </summary>
     
     
-      <category term="往昔追忆" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
+      <category term="往昔追忆" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
     
-      <category term="小二班" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
+      <category term="小二班" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
     
     
-      <category term="宝宝成长" scheme="http://www.toberoot.com/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
+      <category term="宝宝成长" scheme="http://booboowei.github.io/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
     
   </entry>
   
   <entry>
     <title>月饼烘培和小小搬运工</title>
-    <link href="http://www.toberoot.com/2018/09/21/amy_life/2018-09-21-amy/"/>
-    <id>http://www.toberoot.com/2018/09/21/amy_life/2018-09-21-amy/</id>
+    <link href="http://booboowei.github.io/2018/09/21/amy_life/2018-09-21-amy/"/>
+    <id>http://booboowei.github.io/2018/09/21/amy_life/2018-09-21-amy/</id>
     <published>2018-09-21T12:25:51.000Z</published>
     <updated>2020-03-28T06:56:06.628Z</updated>
     
@@ -107,19 +107,19 @@
     </summary>
     
     
-      <category term="往昔追忆" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
+      <category term="往昔追忆" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
     
-      <category term="小二班" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
+      <category term="小二班" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
     
     
-      <category term="宝宝成长" scheme="http://www.toberoot.com/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
+      <category term="宝宝成长" scheme="http://booboowei.github.io/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
     
   </entry>
   
   <entry>
     <title>宝宝们开始漱口了</title>
-    <link href="http://www.toberoot.com/2018/09/20/amy_life/2018-09-20-amy/"/>
-    <id>http://www.toberoot.com/2018/09/20/amy_life/2018-09-20-amy/</id>
+    <link href="http://booboowei.github.io/2018/09/20/amy_life/2018-09-20-amy/"/>
+    <id>http://booboowei.github.io/2018/09/20/amy_life/2018-09-20-amy/</id>
     <published>2018-09-20T12:08:51.000Z</published>
     <updated>2020-03-28T06:54:01.903Z</updated>
     
@@ -132,19 +132,19 @@
     </summary>
     
     
-      <category term="往昔追忆" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
+      <category term="往昔追忆" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
     
-      <category term="小二班" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
+      <category term="小二班" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
     
     
-      <category term="宝宝成长" scheme="http://www.toberoot.com/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
+      <category term="宝宝成长" scheme="http://booboowei.github.io/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
     
   </entry>
   
   <entry>
     <title>家长会</title>
-    <link href="http://www.toberoot.com/2018/09/19/amy_life/2018-09-19-amy/"/>
-    <id>http://www.toberoot.com/2018/09/19/amy_life/2018-09-19-amy/</id>
+    <link href="http://booboowei.github.io/2018/09/19/amy_life/2018-09-19-amy/"/>
+    <id>http://booboowei.github.io/2018/09/19/amy_life/2018-09-19-amy/</id>
     <published>2018-09-19T11:40:55.000Z</published>
     <updated>2020-03-28T06:56:06.625Z</updated>
     
@@ -157,19 +157,19 @@
     </summary>
     
     
-      <category term="往昔追忆" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
+      <category term="往昔追忆" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
     
-      <category term="小二班" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
+      <category term="小二班" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
     
     
-      <category term="宝宝成长" scheme="http://www.toberoot.com/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
+      <category term="宝宝成长" scheme="http://booboowei.github.io/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
     
   </entry>
   
   <entry>
     <title>向月亮说晚安</title>
-    <link href="http://www.toberoot.com/2018/09/10/amy_life/2018-09-10-amy/"/>
-    <id>http://www.toberoot.com/2018/09/10/amy_life/2018-09-10-amy/</id>
+    <link href="http://booboowei.github.io/2018/09/10/amy_life/2018-09-10-amy/"/>
+    <id>http://booboowei.github.io/2018/09/10/amy_life/2018-09-10-amy/</id>
     <published>2018-09-10T11:26:39.000Z</published>
     <updated>2020-03-28T06:52:17.708Z</updated>
     
@@ -182,19 +182,19 @@
     </summary>
     
     
-      <category term="往昔追忆" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
+      <category term="往昔追忆" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/"/>
     
-      <category term="小二班" scheme="http://www.toberoot.com/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
+      <category term="小二班" scheme="http://booboowei.github.io/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/"/>
     
     
-      <category term="宝宝成长" scheme="http://www.toberoot.com/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
+      <category term="宝宝成长" scheme="http://booboowei.github.io/tags/%E5%AE%9D%E5%AE%9D%E6%88%90%E9%95%BF/"/>
     
   </entry>
   
   <entry>
     <title>突破阿里限制实现&quot;RDS For MySQL 5.7到自建MySQL主从&quot;</title>
-    <link href="http://www.toberoot.com/2018/08/22/booboo_others/2018-08-22-tec-mysql/"/>
-    <id>http://www.toberoot.com/2018/08/22/booboo_others/2018-08-22-tec-mysql/</id>
+    <link href="http://booboowei.github.io/2018/08/22/booboo_others/2018-08-22-tec-mysql/"/>
+    <id>http://booboowei.github.io/2018/08/22/booboo_others/2018-08-22-tec-mysql/</id>
     <published>2018-08-22T10:41:15.000Z</published>
     <updated>2020-03-22T08:32:42.581Z</updated>
     
@@ -207,21 +207,21 @@
     </summary>
     
     
-      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
+      <category term="技术广角" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
     
-      <category term="MySQL" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/"/>
+      <category term="MySQL" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/"/>
     
     
-      <category term="RDS" scheme="http://www.toberoot.com/tags/RDS/"/>
+      <category term="RDS" scheme="http://booboowei.github.io/tags/RDS/"/>
     
-      <category term="主从同步" scheme="http://www.toberoot.com/tags/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/"/>
+      <category term="主从同步" scheme="http://booboowei.github.io/tags/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/"/>
     
   </entry>
   
   <entry>
     <title>利用split工具解决一次MongoDB日志异常问题</title>
-    <link href="http://www.toberoot.com/2018/08/03/booboo_others/2018-08-03-tec-mongodb/"/>
-    <id>http://www.toberoot.com/2018/08/03/booboo_others/2018-08-03-tec-mongodb/</id>
+    <link href="http://booboowei.github.io/2018/08/03/booboo_others/2018-08-03-tec-mongodb/"/>
+    <id>http://booboowei.github.io/2018/08/03/booboo_others/2018-08-03-tec-mongodb/</id>
     <published>2018-08-03T12:25:24.000Z</published>
     <updated>2020-03-28T07:44:43.090Z</updated>
     
@@ -239,19 +239,19 @@
     </summary>
     
     
-      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
+      <category term="技术广角" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
     
-      <category term="MongoDB" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/"/>
+      <category term="MongoDB" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/"/>
     
     
-      <category term="数据救援" scheme="http://www.toberoot.com/tags/%E6%95%B0%E6%8D%AE%E6%95%91%E6%8F%B4/"/>
+      <category term="数据救援" scheme="http://booboowei.github.io/tags/%E6%95%B0%E6%8D%AE%E6%95%91%E6%8F%B4/"/>
     
   </entry>
   
   <entry>
     <title>Oracle数据库SQL优化_索引缺失</title>
-    <link href="http://www.toberoot.com/2018/05/29/booboo_others/2018-05-28-tec-oracle/"/>
-    <id>http://www.toberoot.com/2018/05/29/booboo_others/2018-05-28-tec-oracle/</id>
+    <link href="http://booboowei.github.io/2018/05/29/booboo_others/2018-05-28-tec-oracle/"/>
+    <id>http://booboowei.github.io/2018/05/29/booboo_others/2018-05-28-tec-oracle/</id>
     <published>2018-05-28T18:09:32.000Z</published>
     <updated>2020-03-22T08:32:42.573Z</updated>
     
@@ -264,19 +264,19 @@
     </summary>
     
     
-      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
+      <category term="技术广角" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
     
-      <category term="Oracle" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/"/>
+      <category term="Oracle" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/"/>
     
     
-      <category term="SQL优化" scheme="http://www.toberoot.com/tags/SQL%E4%BC%98%E5%8C%96/"/>
+      <category term="SQL优化" scheme="http://booboowei.github.io/tags/SQL%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
   <entry>
     <title>MySQL一次惊心动魄地数据强制恢复</title>
-    <link href="http://www.toberoot.com/2018/05/17/booboo_others/2018-05-16-tec-mysql/"/>
-    <id>http://www.toberoot.com/2018/05/17/booboo_others/2018-05-16-tec-mysql/</id>
+    <link href="http://booboowei.github.io/2018/05/17/booboo_others/2018-05-16-tec-mysql/"/>
+    <id>http://booboowei.github.io/2018/05/17/booboo_others/2018-05-16-tec-mysql/</id>
     <published>2018-05-16T19:58:02.000Z</published>
     <updated>2020-03-28T07:43:23.573Z</updated>
     
@@ -290,19 +290,19 @@
     </summary>
     
     
-      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
+      <category term="技术广角" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
     
-      <category term="MySQL" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/"/>
+      <category term="MySQL" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/"/>
     
     
-      <category term="数据救援" scheme="http://www.toberoot.com/tags/%E6%95%B0%E6%8D%AE%E6%95%91%E6%8F%B4/"/>
+      <category term="数据救援" scheme="http://booboowei.github.io/tags/%E6%95%B0%E6%8D%AE%E6%95%91%E6%8F%B4/"/>
     
   </entry>
   
   <entry>
     <title>MySQL的元锁MDL发生场景和解决方法总结</title>
-    <link href="http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/"/>
-    <id>http://www.toberoot.com/2017/08/19/booboo_others/2017-08-18-tec-mysql/</id>
+    <link href="http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/"/>
+    <id>http://booboowei.github.io/2017/08/19/booboo_others/2017-08-18-tec-mysql/</id>
     <published>2017-08-18T20:06:27.000Z</published>
     <updated>2020-03-28T07:43:00.118Z</updated>
     
@@ -317,19 +317,19 @@
     </summary>
     
     
-      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
+      <category term="技术广角" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
     
-      <category term="MySQL" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/"/>
+      <category term="MySQL" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/"/>
     
     
-      <category term="锁故障" scheme="http://www.toberoot.com/tags/%E9%94%81%E6%95%85%E9%9A%9C/"/>
+      <category term="锁故障" scheme="http://booboowei.github.io/tags/%E9%94%81%E6%95%85%E9%9A%9C/"/>
     
   </entry>
   
   <entry>
     <title>MySQL 管理课程 第十一课  MySQL逻辑备份工具mysqldump,mysqlpump,mydumper</title>
-    <link href="http://www.toberoot.com/2017/01/05/booboo_mysql/08-MySQL-mysqldump-mysqlpump-mydumper/"/>
-    <id>http://www.toberoot.com/2017/01/05/booboo_mysql/08-MySQL-mysqldump-mysqlpump-mydumper/</id>
+    <link href="http://booboowei.github.io/2017/01/05/booboo_mysql/08-MySQL-mysqldump-mysqlpump-mydumper/"/>
+    <id>http://booboowei.github.io/2017/01/05/booboo_mysql/08-MySQL-mysqldump-mysqlpump-mydumper/</id>
     <published>2017-01-04T21:06:27.000Z</published>
     <updated>2020-03-24T05:29:49.092Z</updated>
     
@@ -346,21 +346,21 @@
     </summary>
     
     
-      <category term="技术培训" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
+      <category term="技术培训" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理教程" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
+      <category term="MySQL基础管理教程" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="培训" scheme="http://www.toberoot.com/tags/%E5%9F%B9%E8%AE%AD/"/>
+      <category term="培训" scheme="http://booboowei.github.io/tags/%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理" scheme="http://www.toberoot.com/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
+      <category term="MySQL基础管理" scheme="http://booboowei.github.io/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>MySQL 管理课程 第十课 MySQL5.6一主多从半同步复制</title>
-    <link href="http://www.toberoot.com/2017/01/04/booboo_mysql/07-MySQL5.6-one-master-multi-slave-semi-synchronous-replication/"/>
-    <id>http://www.toberoot.com/2017/01/04/booboo_mysql/07-MySQL5.6-one-master-multi-slave-semi-synchronous-replication/</id>
+    <link href="http://booboowei.github.io/2017/01/04/booboo_mysql/07-MySQL5.6-one-master-multi-slave-semi-synchronous-replication/"/>
+    <id>http://booboowei.github.io/2017/01/04/booboo_mysql/07-MySQL5.6-one-master-multi-slave-semi-synchronous-replication/</id>
     <published>2017-01-03T21:06:27.000Z</published>
     <updated>2020-03-24T05:29:49.070Z</updated>
     
@@ -377,21 +377,21 @@
     </summary>
     
     
-      <category term="技术培训" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
+      <category term="技术培训" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理教程" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
+      <category term="MySQL基础管理教程" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="培训" scheme="http://www.toberoot.com/tags/%E5%9F%B9%E8%AE%AD/"/>
+      <category term="培训" scheme="http://booboowei.github.io/tags/%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理" scheme="http://www.toberoot.com/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
+      <category term="MySQL基础管理" scheme="http://booboowei.github.io/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>MySQL 管理课程 第九课 MySQL压力测试工具sysbench</title>
-    <link href="http://www.toberoot.com/2017/01/03/booboo_mysql/06-MySQL-sysbench/"/>
-    <id>http://www.toberoot.com/2017/01/03/booboo_mysql/06-MySQL-sysbench/</id>
+    <link href="http://booboowei.github.io/2017/01/03/booboo_mysql/06-MySQL-sysbench/"/>
+    <id>http://booboowei.github.io/2017/01/03/booboo_mysql/06-MySQL-sysbench/</id>
     <published>2017-01-02T21:06:27.000Z</published>
     <updated>2020-03-24T05:29:49.083Z</updated>
     
@@ -407,21 +407,21 @@
     </summary>
     
     
-      <category term="技术培训" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
+      <category term="技术培训" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理教程" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
+      <category term="MySQL基础管理教程" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="培训" scheme="http://www.toberoot.com/tags/%E5%9F%B9%E8%AE%AD/"/>
+      <category term="培训" scheme="http://booboowei.github.io/tags/%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理" scheme="http://www.toberoot.com/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
+      <category term="MySQL基础管理" scheme="http://booboowei.github.io/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>MySQL 管理课程 第八课 高可用性HA</title>
-    <link href="http://www.toberoot.com/2017/01/02/booboo_mysql/05-MySQL-HA/"/>
-    <id>http://www.toberoot.com/2017/01/02/booboo_mysql/05-MySQL-HA/</id>
+    <link href="http://booboowei.github.io/2017/01/02/booboo_mysql/05-MySQL-HA/"/>
+    <id>http://booboowei.github.io/2017/01/02/booboo_mysql/05-MySQL-HA/</id>
     <published>2017-01-01T21:06:27.000Z</published>
     <updated>2020-03-24T05:29:49.081Z</updated>
     
@@ -437,21 +437,21 @@
     </summary>
     
     
-      <category term="技术培训" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
+      <category term="技术培训" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理教程" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
+      <category term="MySQL基础管理教程" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="培训" scheme="http://www.toberoot.com/tags/%E5%9F%B9%E8%AE%AD/"/>
+      <category term="培训" scheme="http://booboowei.github.io/tags/%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理" scheme="http://www.toberoot.com/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
+      <category term="MySQL基础管理" scheme="http://booboowei.github.io/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>MySQL 管理课程 第七课 复制 AB replication</title>
-    <link href="http://www.toberoot.com/2016/12/31/booboo_mysql/04-MySQL-replication/"/>
-    <id>http://www.toberoot.com/2016/12/31/booboo_mysql/04-MySQL-replication/</id>
+    <link href="http://booboowei.github.io/2016/12/31/booboo_mysql/04-MySQL-replication/"/>
+    <id>http://booboowei.github.io/2016/12/31/booboo_mysql/04-MySQL-replication/</id>
     <published>2016-12-30T21:06:27.000Z</published>
     <updated>2020-03-24T05:29:49.077Z</updated>
     
@@ -468,21 +468,21 @@
     </summary>
     
     
-      <category term="技术培训" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
+      <category term="技术培训" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理教程" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
+      <category term="MySQL基础管理教程" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="培训" scheme="http://www.toberoot.com/tags/%E5%9F%B9%E8%AE%AD/"/>
+      <category term="培训" scheme="http://booboowei.github.io/tags/%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理" scheme="http://www.toberoot.com/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
+      <category term="MySQL基础管理" scheme="http://booboowei.github.io/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>MySQL 管理课程 第六课 MySQL逻辑架构和Innodb存储引擎</title>
-    <link href="http://www.toberoot.com/2016/12/30/booboo_mysql/03-MySQL-logical-architecture-and-InnoDB-storage-engine/"/>
-    <id>http://www.toberoot.com/2016/12/30/booboo_mysql/03-MySQL-logical-architecture-and-InnoDB-storage-engine/</id>
+    <link href="http://booboowei.github.io/2016/12/30/booboo_mysql/03-MySQL-logical-architecture-and-InnoDB-storage-engine/"/>
+    <id>http://booboowei.github.io/2016/12/30/booboo_mysql/03-MySQL-logical-architecture-and-InnoDB-storage-engine/</id>
     <published>2016-12-29T21:06:27.000Z</published>
     <updated>2020-03-24T05:29:49.074Z</updated>
     
@@ -498,21 +498,21 @@
     </summary>
     
     
-      <category term="技术培训" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
+      <category term="技术培训" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理教程" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
+      <category term="MySQL基础管理教程" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="培训" scheme="http://www.toberoot.com/tags/%E5%9F%B9%E8%AE%AD/"/>
+      <category term="培训" scheme="http://booboowei.github.io/tags/%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理" scheme="http://www.toberoot.com/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
+      <category term="MySQL基础管理" scheme="http://booboowei.github.io/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>MySQL 管理课程 第五课 备份与恢复</title>
-    <link href="http://www.toberoot.com/2016/12/29/booboo_mysql/03-MySQL-backup-and-recovery/"/>
-    <id>http://www.toberoot.com/2016/12/29/booboo_mysql/03-MySQL-backup-and-recovery/</id>
+    <link href="http://booboowei.github.io/2016/12/29/booboo_mysql/03-MySQL-backup-and-recovery/"/>
+    <id>http://booboowei.github.io/2016/12/29/booboo_mysql/03-MySQL-backup-and-recovery/</id>
     <published>2016-12-28T21:06:27.000Z</published>
     <updated>2020-03-24T05:29:49.089Z</updated>
     
@@ -528,21 +528,21 @@
     </summary>
     
     
-      <category term="技术培训" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
+      <category term="技术培训" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理教程" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
+      <category term="MySQL基础管理教程" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="培训" scheme="http://www.toberoot.com/tags/%E5%9F%B9%E8%AE%AD/"/>
+      <category term="培训" scheme="http://booboowei.github.io/tags/%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理" scheme="http://www.toberoot.com/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
+      <category term="MySQL基础管理" scheme="http://booboowei.github.io/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>MySQL 管理课程 第四课 结构化查询语言SQL介绍和基本操作2</title>
-    <link href="http://www.toberoot.com/2016/12/28/booboo_mysql/02-SQL02/"/>
-    <id>http://www.toberoot.com/2016/12/28/booboo_mysql/02-SQL02/</id>
+    <link href="http://booboowei.github.io/2016/12/28/booboo_mysql/02-SQL02/"/>
+    <id>http://booboowei.github.io/2016/12/28/booboo_mysql/02-SQL02/</id>
     <published>2016-12-27T21:06:27.000Z</published>
     <updated>2020-03-24T05:29:49.100Z</updated>
     
@@ -558,14 +558,14 @@
     </summary>
     
     
-      <category term="技术培训" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
+      <category term="技术培训" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理教程" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
+      <category term="MySQL基础管理教程" scheme="http://booboowei.github.io/categories/%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="培训" scheme="http://www.toberoot.com/tags/%E5%9F%B9%E8%AE%AD/"/>
+      <category term="培训" scheme="http://booboowei.github.io/tags/%E5%9F%B9%E8%AE%AD/"/>
     
-      <category term="MySQL基础管理" scheme="http://www.toberoot.com/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
+      <category term="MySQL基础管理" scheme="http://booboowei.github.io/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
