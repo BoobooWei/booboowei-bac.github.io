@@ -8,8 +8,8 @@ a.tag.article-tag {
 
 @media screen and (min-width: 1024px) {
   .container {
-    max-width: 800px;
-    width: 800px; }
+    max-width: 1500px;
+    width: 1000px; }
   .navbar.is-transparent .navbar-dropdown a.navbar-item:hover {
     color: #3273dc; } }
 
@@ -304,7 +304,8 @@ code, pre {
 figure.highlight {
   padding: 0;
   width: 100%;
-  margin: 0 0 1.5rem; }
+  margin: 0 0 1.5rem;
+  /* booboo test */ }
   figure.highlight pre,
   figure.highlight table tr:hover {
     color: inherit;
@@ -336,6 +337,17 @@ figure.highlight {
   figure.highlight .title,
   figure.highlight .number,
   figure.highlight .section {
+    display: inherit;
+    font: inherit;
+    margin: inherit;
+    padding: inherit;
+    background: inherit;
+    height: inherit;
+    text-align: inherit;
+    vertical-align: inherit;
+    min-width: inherit;
+    border-radius: inherit; }
+  figure.highlight .booboo-left {
     display: inherit;
     font: inherit;
     margin: inherit;
@@ -479,3 +491,85 @@ figure.highlight {
 .ins-section .ins-search-item:hover .ins-search-preview,
 .ins-section .ins-search-item.active .ins-search-preview {
   color: #fff; }
+
+/* booboowei 20200329 */
+.container {
+  /* section 的 margin-left 样式确保了有足够的空间容纳左侧的（目录） nav 元素。 */
+  margin-left: 500px; }
+
+.item {
+  float: left;
+  width: 460px;
+  margin-right: 10px;
+  padding-bottom: 10000px;
+  margin-bottom: -10000px; }
+  .item .article-item {
+    font-size: 1rem;
+    display: block;
+    line-height: 1.2;
+    padding: .5rem 1rem;
+    position: relative;
+    font-family: "Ovo", "Georgia", "STZhongsong", "Microsoft YaHei", serif; }
+  .item a:link {
+    color: #4a4a4a;
+    /*初始状态*/ }
+  .item a:visited {
+    color: #4a4a4a;
+    /*点击访问*/ }
+  .item a:hover {
+    color: blue;
+    /*鼠标移动*/ }
+  .item a:active {
+    color: #4a4a4a;
+    /*点击状态*/ }
+  .item .app-page-title {
+    padding-top: 10px;
+    flex: 1;
+    display: flex;
+    z-index: 8;
+    position: relative; }
+  .item .page-title-icon {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    padding: .83333rem;
+    margin: 0 30px 0 0;
+    background: #fff;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+    border-radius: .25rem;
+    width: 60px;
+    height: 60px; }
+  .item .page-title-list {
+    font-size: 2rem;
+    padding: .83333rem;
+    margin: 0 30px 0 0;
+    background: #fff;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+    border-radius: .25rem;
+    width: 460px;
+    height: 100%; }
+  .item .page-title-subheading {
+    padding: 3px 0 0;
+    font-size: .88rem;
+    opacity: .6; }
+  .item .page-title-heading {
+    font-size: 1.25rem;
+    font-weight: bolder;
+    margin: 0 0 0 16px; }
+  .item .table-title-heading {
+    font-size: .5rem;
+    opacity: .9; }
+  .item .table-title-subheading {
+    font-size: .5rem;
+    opacity: .6; }
+  .item .card-header {
+    padding: 10px 10px 10px;
+    font-size: .5rem;
+    opacity: .6;
+    font-family: verdana; }
+
+.item-total {
+  max-width: 1500px;
+  width: 1000px; }
