@@ -7,9 +7,16 @@ a.tag.article-tag {
   text-decoration: none; }
 
 @media screen and (min-width: 1024px) {
-  .container {
+  .head_footer_container {
     max-width: 1500px;
-    width: 1100px; }
+    width: 1500px; }
+  .navbar.is-transparent .navbar-dropdown a.navbar-item:hover {
+    color: #3273dc; } }
+
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 800px;
+    width: 800px; }
   .navbar.is-transparent .navbar-dropdown a.navbar-item:hover {
     color: #3273dc; } }
 
@@ -304,8 +311,7 @@ code, pre {
 figure.highlight {
   padding: 0;
   width: 100%;
-  margin: 0 0 1.5rem;
-  /* booboo test */ }
+  margin: 0 0 1.5rem; }
   figure.highlight pre,
   figure.highlight table tr:hover {
     color: inherit;
@@ -337,17 +343,6 @@ figure.highlight {
   figure.highlight .title,
   figure.highlight .number,
   figure.highlight .section {
-    display: inherit;
-    font: inherit;
-    margin: inherit;
-    padding: inherit;
-    background: inherit;
-    height: inherit;
-    text-align: inherit;
-    vertical-align: inherit;
-    min-width: inherit;
-    border-radius: inherit; }
-  figure.highlight .booboo-left {
     display: inherit;
     font: inherit;
     margin: inherit;
@@ -493,11 +488,6 @@ figure.highlight {
   color: #fff; }
 
 /* booboowei 20200329 */
-.container {
-  /* section 的 margin-left 样式确保了有足够的空间容纳左侧的（目录） nav 元素。 */
-  margin-left: 500px;
-  margin-right: 10px; }
-
 .item {
   float: left;
   width: 460px;
@@ -572,4 +562,4 @@ figure.highlight {
 
 .item-total {
   max-width: 1500px;
-  width: 1000px; }
+  width: 1500px; }
