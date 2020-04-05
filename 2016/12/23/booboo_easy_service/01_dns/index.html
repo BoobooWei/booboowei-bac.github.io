@@ -82,289 +82,306 @@
     
 
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
-    <div class="container">
-        <div class="navbar-brand">
-            <a class="navbar-item navbar-logo" href="/">
-                
+    <div class="navbar-container">
+    <div class="row">
+        <!--左侧只占一个格子 -->
+        <div class="col-md-1">
+            <div class="navbar-brand">
+                <a class="navbar-item navbar-logo" href="/">
                     
-                    <img src="/images/influx.svg" alt="" height="28">
-                    
-                
-            </a>
-            <div class="navbar-burger">
-                <span>
-                </span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-
-
-
-
-        
-        <div class="navbar-menu navbar-start">
-            
-            <a class="navbar-item "
-               href="/archives/">最近更新</a>
-            
-            <a class="navbar-item "
-               href="/categories/">分类</a>
-            
-            <a class="navbar-item "
-               href="/tags/">标签</a>
-            
-
-            <!-- BoobooWei自动根据已有的category创建-->
-        
-
-
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                    <!--循环category 生成navbar代码-->
-                    
-                    
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#ff" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
                         
-                            <div class="dropdown-menu" aria-labelledby="往昔追忆">
-                                
-                                <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
-                                    
-                                    
-                                <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
-                                    
-                                    
-                            </div>
-
-                    </li>
-                    
-                
-            
-                    
-
-                
-            
-                    
-
-                
-            
-                    
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#ff" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                        <img src="/images/influx.svg" alt="" height="28">
                         
-                            <div class="dropdown-menu" aria-labelledby="培训教程">
-                                
-                                <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
-                                    
-                                    
-                                <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
-                                    
-                                    
-                                <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
-                                    
-                                    
-                                <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
-                                    
-                                    
-                            </div>
-
-                    </li>
                     
-                
-            
-                    
-
-                
-            
-                    
-
-                
-            
-                    
-
-                
-            
-                    
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#ff" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
-                        
-                            <div class="dropdown-menu" aria-labelledby="技术广角">
-                                
-                                <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
-                                    
-                                    
-                                <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
-                                    
-                                    
-                                <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
-                                    
-                                    
-                                <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
-                                    
-                                    
-                                <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
-                                    
-                                    
-                            </div>
-
-                    </li>
-                    
-                
-            
-                    
-
-                
-            
-                    
-
-                
-            
-                    
-
-                
-            
-                    
-
-                
-            
-                    
-
-                
-            
-                    
-
-                
-            
-            </ul>
-          </div>
-        </nav>
-
-        <!-- 自动根据已有的category创建-->
-
-
-        </div>
-        
-        <div class="navbar-menu navbar-end">
-            
-            <a class="navbar-item search" title="搜索" href="javascript:;">
-                <i class="fas fa-search"></i>
-            </a>
-            
-            
-            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="目录">
-                    <i class="fa fa-list"></i>
                 </a>
-                <div class="navbar-dropdown is-right">
-                    
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">1&nbsp;&nbsp;<b>DNS&#x670D;&#x52A1;</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#">2&nbsp;&nbsp;<b>DNS&#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#">3&nbsp;&nbsp;<b>&#x5B9E;&#x6218;&#x9879;&#x76EE;1:&#x5728;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x642D;&#x5EFA;&#x4E00;&#x53F0;&#x57DF;&#x540D;&#x89E3;&#x6790;&#x670D;&#x52A1;&#x5668;DNS&#x6B63;&#x53CD;&#x89E3;&#x6790;</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">3.1&nbsp;&nbsp;&#x5B9E;&#x9A8C;&#x51C6;&#x5907;&#x9636;&#x6BB5;</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#">4&nbsp;&nbsp;<b>&#x5B9E;&#x6218;&#x9879;&#x76EE;2:&#x5728;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x642D;&#x5EFA;&#x4E24;&#x53F0;&#x57DF;&#x540D;&#x89E3;&#x6790;&#x670D;&#x52A1;&#x5668;&#x505A;DNS&#x4E3B;&#x8F85;&#x540C;&#x6B65;</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">4.1&nbsp;&nbsp;&#x5B9E;&#x9A8C;&#x51C6;&#x5907;&#x9636;&#x6BB5;</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">4.2&nbsp;&nbsp;&#x5177;&#x4F53;&#x6B65;&#x9AA4;</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#">5&nbsp;&nbsp;<b>&#x6392;&#x9519;&#x8BB0;&#x5F55;</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">5.1&nbsp;&nbsp;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x4E0D;&#x4E86;</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">5.2&nbsp;&nbsp;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x4E0D;&#x4E86;</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">5.3&nbsp;&nbsp;&#x4E3B;&#x8F85;&#x540C;&#x6B65;&#x7F13;&#x51B2;&#x6587;&#x4EF6;&#x53EA;&#x6709;&#x4E00;&#x4E2A;</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">5.4&nbsp;&nbsp;&#x4E3B;&#x8F85;&#x540C;&#x6B65;&#x5C06;&#x4ECE;&#x673A;&#x7684;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x653E;&#x5728;&#x975E;slaves&#x76EE;&#x5F55;</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">5.5&nbsp;&nbsp;&#x5982;&#x679C;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x65F6;&#x5019;&#x592A;&#x6162;</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">5.6&nbsp;&nbsp;&#x6709;&#x987A;&#x5E8F;&#x7684;&#x6279;&#x91CF;&#x914D;&#x7F6E;&#x7684;&#x5199;&#x6CD5;&#xFF1A;&#xFF08;&#x7B80;&#x5355;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#xFF09;</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">5.7&nbsp;&nbsp;&#x4ECE;&#x673A;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x7684;&#x67E5;&#x770B;</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#">6&nbsp;&nbsp;<b>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8BE6;&#x7EC6;&#x89E3;&#x6790;</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">6.1&nbsp;&nbsp;&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;/etc/named.conf</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">6.2&nbsp;&nbsp;named.rfc1912.conf</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#">6.3&nbsp;&nbsp;&#x6570;&#x636E;&#x6587;&#x4EF6;/var/named/named.localhost</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#">7&nbsp;&nbsp;<b>&#x603B;&#x7ED3;</b></a>
-                    
+                <div class="navbar-burger">
+                    <span>
+                    </span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-            
-            
-            <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-               
-            
         </div>
+
+
+
+
+        <!--中间自适应 -->
+        <div class="col-md-10">
+            
+            <div class="navbar-menu navbar-start">
+                
+                <a class="navbar-item "
+                   href="/archives/">最近更新</a>
+                
+                <a class="navbar-item "
+                   href="/tags/">标签</a>
+                
+
+                <!-- BoobooWei自动根据已有的category创建-->
+            
+
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <!--循环category 生成navbar代码-->
+                        
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#ff" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="往昔追忆">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/" data-rel="经典语录">经典语录</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#ff" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="培训教程">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#ff" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术广角">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                </ul>
+              </div>
+            </nav>
+
+            <!-- 自动根据已有的category创建-->
+        </div>
+        
+
+        </div>
+
+
+        <!--最右侧 -->
+        <div class="col-md-1">
+
+            <div class="navbar-menu navbar-end">
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+                
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                        
+                        
+                        <a class="navbar-item" href="#DNS&#x670D;&#x52A1;">1&nbsp;&nbsp;<b>DNS&#x670D;&#x52A1;</b></a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#DNS&#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;">2&nbsp;&nbsp;<b>DNS&#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;</b></a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B9E;&#x6218;&#x9879;&#x76EE;1:&#x5728;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x642D;&#x5EFA;&#x4E00;&#x53F0;&#x57DF;&#x540D;&#x89E3;&#x6790;&#x670D;&#x52A1;&#x5668;DNS&#x6B63;&#x53CD;&#x89E3;&#x6790;">3&nbsp;&nbsp;<b>&#x5B9E;&#x6218;&#x9879;&#x76EE;1:&#x5728;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x642D;&#x5EFA;&#x4E00;&#x53F0;&#x57DF;&#x540D;&#x89E3;&#x6790;&#x670D;&#x52A1;&#x5668;DNS&#x6B63;&#x53CD;&#x89E3;&#x6790;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B9E;&#x9A8C;&#x51C6;&#x5907;&#x9636;&#x6BB5;">3.1&nbsp;&nbsp;&#x5B9E;&#x9A8C;&#x51C6;&#x5907;&#x9636;&#x6BB5;</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B9E;&#x6218;&#x9879;&#x76EE;2:&#x5728;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x642D;&#x5EFA;&#x4E24;&#x53F0;&#x57DF;&#x540D;&#x89E3;&#x6790;&#x670D;&#x52A1;&#x5668;&#x505A;DNS&#x4E3B;&#x8F85;&#x540C;&#x6B65;">4&nbsp;&nbsp;<b>&#x5B9E;&#x6218;&#x9879;&#x76EE;2:&#x5728;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x642D;&#x5EFA;&#x4E24;&#x53F0;&#x57DF;&#x540D;&#x89E3;&#x6790;&#x670D;&#x52A1;&#x5668;&#x505A;DNS&#x4E3B;&#x8F85;&#x540C;&#x6B65;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B9E;&#x9A8C;&#x51C6;&#x5907;&#x9636;&#x6BB5;">4.1&nbsp;&nbsp;&#x5B9E;&#x9A8C;&#x51C6;&#x5907;&#x9636;&#x6BB5;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5177;&#x4F53;&#x6B65;&#x9AA4;">4.2&nbsp;&nbsp;&#x5177;&#x4F53;&#x6B65;&#x9AA4;</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x6392;&#x9519;&#x8BB0;&#x5F55;">5&nbsp;&nbsp;<b>&#x6392;&#x9519;&#x8BB0;&#x5F55;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x670D;&#x52A1;&#x542F;&#x52A8;&#x4E0D;&#x4E86;">5.1&nbsp;&nbsp;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x4E0D;&#x4E86;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x670D;&#x52A1;&#x542F;&#x52A8;&#x4E0D;&#x4E86;">5.2&nbsp;&nbsp;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x4E0D;&#x4E86;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4E3B;&#x8F85;&#x540C;&#x6B65;&#x7F13;&#x51B2;&#x6587;&#x4EF6;&#x53EA;&#x6709;&#x4E00;&#x4E2A;">5.3&nbsp;&nbsp;&#x4E3B;&#x8F85;&#x540C;&#x6B65;&#x7F13;&#x51B2;&#x6587;&#x4EF6;&#x53EA;&#x6709;&#x4E00;&#x4E2A;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4E3B;&#x8F85;&#x540C;&#x6B65;&#x5C06;&#x4ECE;&#x673A;&#x7684;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x653E;&#x5728;&#x975E;slaves&#x76EE;&#x5F55;">5.4&nbsp;&nbsp;&#x4E3B;&#x8F85;&#x540C;&#x6B65;&#x5C06;&#x4ECE;&#x673A;&#x7684;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x653E;&#x5728;&#x975E;slaves&#x76EE;&#x5F55;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5982;&#x679C;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x65F6;&#x5019;&#x592A;&#x6162;">5.5&nbsp;&nbsp;&#x5982;&#x679C;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x65F6;&#x5019;&#x592A;&#x6162;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6709;&#x987A;&#x5E8F;&#x7684;&#x6279;&#x91CF;&#x914D;&#x7F6E;&#x7684;&#x5199;&#x6CD5;&#xFF1A;&#xFF08;&#x7B80;&#x5355;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#xFF09;">5.6&nbsp;&nbsp;&#x6709;&#x987A;&#x5E8F;&#x7684;&#x6279;&#x91CF;&#x914D;&#x7F6E;&#x7684;&#x5199;&#x6CD5;&#xFF1A;&#xFF08;&#x7B80;&#x5355;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#xFF09;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4ECE;&#x673A;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x7684;&#x67E5;&#x770B;">5.7&nbsp;&nbsp;&#x4ECE;&#x673A;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x7684;&#x67E5;&#x770B;</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8BE6;&#x7EC6;&#x89E3;&#x6790;">6&nbsp;&nbsp;<b>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8BE6;&#x7EC6;&#x89E3;&#x6790;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;/etc/named.conf">6.1&nbsp;&nbsp;&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;/etc/named.conf</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#named.rfc1912.conf">6.2&nbsp;&nbsp;named.rfc1912.conf</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6570;&#x636E;&#x6587;&#x4EF6;/var/named/named.localhost">6.3&nbsp;&nbsp;&#x6570;&#x636E;&#x6587;&#x4EF6;/var/named/named.localhost</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x603B;&#x7ED3;">7&nbsp;&nbsp;<b>&#x603B;&#x7ED3;</b></a>
+                        
+                    </div>
+                </div>
+                
+                
+                <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                   
+                
+            </div>
+        </div>
+</div>
 </div>
 </nav>
 
@@ -696,20 +713,13 @@
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2016/12/23/booboo_easy_service/00_linux_classroom_env/">LINUX 基础服务课程环境使用说明</a>
+            <a href="/2016/12/23/booboo_easy_service/02_ftp/">FTP文件共享服务</a>
             
         </span>
     </div>
     
 </article>
 
-
-<div class="sharebox">
-    
-<div class="sharethis-inline-share-buttons"></div>
-<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5e7f26910c743700190536a1&amp;product=inline-share-buttons&amp;cms=sop&#39; async=&#39;async&#39;' async='async'></script>
-
-</div>
 
 
 
