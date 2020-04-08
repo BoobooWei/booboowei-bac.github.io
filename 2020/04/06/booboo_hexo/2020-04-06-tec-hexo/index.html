@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>定制自己的Hexo博客专题-Minos主题修改导航栏 - 归去来兮</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+
+
+
+
+
+
+
+
+    <meta name="description" content="&amp;#x6458;&amp;#x8981;&amp;#xFF1A;&amp;#x5728;&amp;#x6A21;&amp;#x7248;minos&amp;#x7684;&amp;#x57FA;&amp;#x7840;&amp;#x4E0A;&amp;#xFF0C;&amp;#x5B9A;&amp;#x5236;&amp;#x4E00;&amp;#x4E9B;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x524D;&amp;#x7AEF;&amp;#x9700;&amp;#x6C42;&amp;#x3002;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定制自己的Hexo博客专题-Minos主题修改导航栏">
+<meta property="og:url" content="http://booboowei.github.io/2020/04/06/booboo_hexo/2020-04-06-tec-hexo/index.html">
+<meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="&amp;#x6458;&amp;#x8981;&amp;#xFF1A;&amp;#x5728;&amp;#x6A21;&amp;#x7248;minos&amp;#x7684;&amp;#x57FA;&amp;#x7840;&amp;#x4E0A;&amp;#xFF0C;&amp;#x5B9A;&amp;#x5236;&amp;#x4E00;&amp;#x4E9B;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x524D;&amp;#x7AEF;&amp;#x9700;&amp;#x6C42;&amp;#x3002;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-06T10:52:04.000Z">
+<meta property="article:modified_time" content="2020-04-08T09:46:45.789Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="归去来兮" type="application/atom+xml">
+</head>
+<body>
+    
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+    <div class="row">
+        <!--左侧只占一个格子 -->
+        <div class="col-md-1">
+            <div class="navbar-brand">
+                <a class="navbar-item navbar-logo" href="/">
+                    
+                        
+                        <img src="/images/influx.svg" alt="" height="28">
+                        
+                    
+                </a>
+                <div class="navbar-burger">
+                    <span>
+                    </span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--中间自适应 -->
+        <div class="col-md-10">
+            
+            <div class="navbar-menu navbar-start">
+                
+                <a class="navbar-item "
+                   href="/archives/">最近更新</a>
+                
+                <a class="navbar-item "
+                   href="/tags/">标签</a>
+                
+
+                <!-- BoobooWei自动根据已有的category创建-->
+            
+
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <!--循环category 生成navbar代码-->
+                        
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="往昔追忆">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/" data-rel="经典语录">经典语录</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="培训教程">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术广角">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="Hexo博客"><i class="fold iconfont icon-right"></i>Hexo博客</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="Hexo博客">
+                                    
+                                    <a class="dropdown-item" href="/categories/Hexo%E5%8D%9A%E5%AE%A2/Minos%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/" data-rel="Minos主题优化">Minos主题优化</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                </ul>
+              </div>
+            </nav>
+
+            <!-- 自动根据已有的category创建-->
+        </div>
+        
+
+        </div>
+
+
+        <!--最右侧 -->
+        <div class="col-md-1">
+
+            <div class="navbar-menu navbar-end">
+                
+                
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4FEE;&#x6539;&#x5BFC;&#x822A;&#x680F;">1&nbsp;&nbsp;<b>&#x4FEE;&#x6539;&#x5BFC;&#x822A;&#x680F;</b></a>
+                        
+                    </div>
+                </div>
+                
+                
+                <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                   
+                
+            </div>
+        </div>
+</div>
+</div>
+</nav>
+
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            定制自己的Hexo博客专题-Minos主题修改导航栏
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-04-06T10:52:04.000Z" itemprop="datePublished">4月 6 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Hexo%E5%8D%9A%E5%AE%A2/">Hexo博客</a><span>></span><a class="article-category-link" href="/categories/Hexo%E5%8D%9A%E5%AE%A2/Minos%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/">Minos主题优化</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            3 分钟 读完 (约 459 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>&#x6458;&#x8981;&#xFF1A;&#x5728;&#x6A21;&#x7248;minos&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x5B9A;&#x5236;&#x4E00;&#x4E9B;&#x81EA;&#x5DF1;&#x7684;&#x524D;&#x7AEF;&#x9700;&#x6C42;&#x3002;</p>
+<a id="more"></a>
+
+
+
+<h2><span id="&#x4FEE;&#x6539;&#x5BFC;&#x822A;&#x680F;">&#x4FEE;&#x6539;&#x5BFC;&#x822A;&#x680F;</span></h2><p>&#x5F53;&#x524D;&#xFF1A;&#x5C45;&#x4E2D;&#x663E;&#x793A;&#x4E0E;&#x6587;&#x7AE0;&#x90E8;&#x5206;&#x540C;&#x5BBD; 800px</p>
+<p>&#x6211;&#x7684;&#x671F;&#x671B;&#xFF1A;</p>
+<ul>
+<li>&#x5BFC;&#x822A;<code>1200px</code></li>
+<li>&#x6587;&#x7AE0;<code>1100px</code></li>
+<li>logo&#x5360;<code>1</code>&#x4E2A;&#x683C;&#x5B50;</li>
+<li>&#x5206;&#x7C7B;&#x5360;<code>10</code>&#x4E2A;&#x683C;&#x5B50;</li>
+<li>&#x94FE;&#x63A5;&#x5360;<code>1</code>&#x4E2A;&#x683C;&#x5B50;</li>
+</ul>
+<p>&#x4FEE;&#x6539;CSS&#x914D;&#x7F6E;<code>minos/layout/source/css/style.css</code></p>
+<p><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@media screen and (min-width: 1024px) {</span><br><span class="line">    .container {</span><br><span class="line">        max-width: 1100px;</span><br><span class="line">        width: 1100px;</span><br><span class="line">    }</span><br><span class="line">    //&#x65B0;&#x589E;</span><br><span class="line">    .navbar-container {</span><br><span class="line">        max-width: 1200px;</span><br><span class="line">        width: 1200px;</span><br><span class="line">        margin-left: 10.333%;</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">    //&#x65B0;&#x589E;</span><br><span class="line">    .navbar.is-transparent .navbar-dropdown a.navbar-item:hover {</span><br><span class="line">        color: #3273dc;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>&#x4FEE;&#x6539;<code>minos/layout/layout/common/navbar.ejs</code>&#xFF0C;&#x6DFB;&#x52A0;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;</p>
+<p><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-md-1&quot;</span>&gt;</span></span><br><span class="line">        <span class="hljs-comment">&lt;!--&#x5DE6;&#x4FA7;&#x53EA;&#x5360;&#x4E00;&#x4E2A;&#x683C;&#x5B50; --&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-md-10&quot;</span>&gt;</span></span><br><span class="line">        <span class="hljs-comment">&lt;!--&#x4E2D;&#x95F4;&#x81EA;&#x9002;&#x5E94; --&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-md-1&quot;</span>&gt;</span></span><br><span class="line">        <span class="hljs-comment">&lt;!--&#x6700;&#x53F3;&#x4FA7; --&gt;</span>         </span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>&#x6700;&#x7EC8;&#x4EE3;&#x7801;&#xFF1A;<br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">function</span> <span class="hljs-attr">is_same_link</span>(<span class="hljs-attr">a</span>, <span class="hljs-attr">b</span>) {</span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">function</span> <span class="hljs-attr">santize</span>(<span class="hljs-attr">url</span>) {</span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">let</span> <span class="hljs-attr">paths</span> = <span class="hljs-string">url.replace(/(^\w+:|^)\/\//,</span> &apos;&apos;)<span class="hljs-attr">.split</span>(&apos;#&apos;)[<span class="hljs-attr">0</span>]<span class="hljs-attr">.split</span>(&apos;/&apos;);</span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">if</span> (<span class="hljs-attr">paths.length</span> &gt;</span> 0 &amp;&amp; paths[paths.length - 1].trim() === &apos;index.html&apos;) {</span><br><span class="line">            paths = paths.slice(0, paths.length - 1)</span><br><span class="line">        }</span><br><span class="line">        return paths.join(&apos;/&apos;);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    return santize(url_for(a)) == santize(url_for(b));</span><br><span class="line">} %&gt;</span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar is-transparent is-fixed-top navbar-main&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;navigation&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;main navigation&quot;</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        <span class="hljs-comment">&lt;!--&#x5DE6;&#x4FA7;&#x53EA;&#x5360;&#x4E00;&#x4E2A;&#x683C;&#x5B50; --&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-md-1&quot;</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-brand&quot;</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-item navbar-logo&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&lt;%- url_for(&apos;/&apos; + (!is_default_language(page_language()) ? page_language() : &apos;&apos;)) %&gt;&quot;</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">has_config</span>(&apos;<span class="hljs-attr">logo</span>&apos;) &amp;&amp; <span class="hljs-attr">get_config</span>(&apos;<span class="hljs-attr">logo</span>&apos;)) { %&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">has_config</span>(&apos;<span class="hljs-attr">logo.text</span>&apos;) &amp;&amp; <span class="hljs-attr">get_config</span>(&apos;<span class="hljs-attr">logo.text</span>&apos;)) { %&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%=</span> <span class="hljs-attr">get_config</span>(&apos;<span class="hljs-attr">logo.text</span>&apos;) %&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } <span class="hljs-attr">else</span> { %&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&lt;%- url_for(get_config(&apos;logo&apos;)) %&gt;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;28&quot;</span>&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } <span class="hljs-attr">else</span> { %&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&lt;%- url_for(&apos;images/logo.png&apos;) %&gt;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;28&quot;</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-burger&quot;</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">&lt;!--&#x4E2D;&#x95F4;&#x81EA;&#x9002;&#x5E94; --&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-md-10&quot;</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">has_config</span>(&apos;<span class="hljs-attr">menu</span>&apos;)) { %&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-menu navbar-start&quot;</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">for</span> (<span class="hljs-attr">let</span> <span class="hljs-attr">i</span> <span class="hljs-attr">in</span> <span class="hljs-attr">get_config</span>(&apos;<span class="hljs-attr">menu</span>&apos;)) { <span class="hljs-attr">let</span> <span class="hljs-attr">menu</span> = <span class="hljs-string">get_config(</span>&apos;<span class="hljs-attr">menu</span>&apos;)[<span class="hljs-attr">i</span>]; %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-item &lt;% if (typeof(page.path) !== &apos;undefined&apos; &amp;&amp; is_same_link(menu, page.path)) { %&gt;is-active&lt;% } %&gt;&quot;</span></span></span><br><span class="line"><span class="hljs-tag">                   <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&lt;%- url_for(menu) %&gt;&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span> <span class="hljs-attr">i</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="hljs-comment">&lt;!-- BoobooWei&#x81EA;&#x52A8;&#x6839;&#x636E;&#x5DF2;&#x6709;&#x7684;category&#x521B;&#x5EFA;--&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><br><span class="line"><span class="hljs-tag">                <span class="hljs-attr">var</span> <span class="hljs-attr">childCategory</span> = <span class="hljs-string">{};</span></span></span><br><span class="line"><span class="hljs-tag">                <span class="hljs-attr">site.categories.forEach</span>(<span class="hljs-attr">function</span> (<span class="hljs-attr">category</span>) {</span></span><br><span class="line"><span class="hljs-tag">                    <span class="hljs-attr">if</span> (<span class="hljs-attr">category.parent</span>) {</span></span><br><span class="line"><span class="hljs-tag">                        <span class="hljs-attr">if</span> (<span class="hljs-attr">childCategory</span>[<span class="hljs-attr">category.parent</span>]) {</span></span><br><span class="line"><span class="hljs-tag">                            <span class="hljs-attr">childCategory</span>[<span class="hljs-attr">category.parent</span>]<span class="hljs-attr">.push</span>(<span class="hljs-attr">category</span>);</span></span><br><span class="line"><span class="hljs-tag">                        } <span class="hljs-attr">else</span> {</span></span><br><span class="line"><span class="hljs-tag">                            <span class="hljs-attr">childCategory</span>[<span class="hljs-attr">category.parent</span>] = <span class="hljs-string">[category];</span></span></span><br><span class="line"><span class="hljs-tag">                        }</span></span><br><span class="line"><span class="hljs-tag">                    }</span></span><br><span class="line"><span class="hljs-tag">                })</span></span><br><span class="line"><span class="hljs-tag">            %&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar navbar-expand-lg navbar-light&quot;</span>&gt;</span></span><br><span class="line">              <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-toggler&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">data-toggle</span>=<span class="hljs-string">&quot;collapse&quot;</span> <span class="hljs-attr">data-target</span>=<span class="hljs-string">&quot;#navbarSupportedContent&quot;</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">&quot;navbarSupportedContent&quot;</span> <span class="hljs-attr">aria-expanded</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Toggle navigation&quot;</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-toggler-icon&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="line">              <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">              <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;collapse navbar-collapse&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;navbarSupportedContent&quot;</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-nav mr-auto&quot;</span>&gt;</span></span><br><span class="line">                        <span class="hljs-comment">&lt;!--&#x5FAA;&#x73AF;category &#x751F;&#x6210;navbar&#x4EE3;&#x7801;--&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">site.categories.forEach</span>(<span class="hljs-attr">function</span>(<span class="hljs-attr">category</span>){ %&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span>(!<span class="hljs-attr">category.parent</span>) { %&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-item dropdown&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nav-link dropdown-toggle&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#ff&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">data-toggle</span>=<span class="hljs-string">&quot;dropdown&quot;</span> <span class="hljs-attr">aria-haspopup</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">aria-expanded</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&lt;%=category.name%&gt;&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">childCategory</span>[<span class="hljs-attr">category._id</span>]) {%&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fold iconfont icon-right&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=category.name%</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">                            <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">childCategory</span>[<span class="hljs-attr">category._id</span>]) {%&gt;</span></span><br><span class="line">                                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dropdown-menu&quot;</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">&quot;&lt;%=category.name%&gt;&quot;</span>&gt;</span></span><br><span class="line">                                    <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">childCategory</span>[<span class="hljs-attr">category._id</span>]<span class="hljs-attr">.forEach</span>(<span class="hljs-attr">function</span> (<span class="hljs-attr">child</span>) { %&gt;</span></span><br><span class="line">                                    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dropdown-item&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&lt;%=url_for(child.path)%&gt;&quot;</span> <span class="hljs-attr">data-rel</span>=<span class="hljs-string">&quot;&lt;%=child.name%&gt;&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">childCategory</span>[<span class="hljs-attr">child._id</span>]) {%&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fold iconfont icon-right&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=child.name%</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">                                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">childCategory</span>[<span class="hljs-attr">child._id</span>]) {%&gt;</span></span><br><span class="line">                                            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dropdown-menu&quot;</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">&quot;&lt;%=category.name%&gt;&quot;</span>&gt;</span></span><br><span class="line">                                                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">childCategory</span>[<span class="hljs-attr">child._id</span>]<span class="hljs-attr">.forEach</span>(<span class="hljs-attr">function</span> (<span class="hljs-attr">child2</span>) { %&gt;</span></span><br><span class="line">                                                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dropdown-item&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&lt;%=url_for(child2.path)%&gt;&quot;</span> <span class="hljs-attr">data-rel</span>=<span class="hljs-string">&quot;&lt;%=child.name%&gt;&quot;</span>&gt;</span> data-rel=&quot;<span class="hljs-tag">&lt;<span class="hljs-name">%=child2.name%</span>&gt;</span>&quot;&gt;<span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">childCategory</span>[<span class="hljs-attr">child2._id</span>]) {%&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fold iconfont icon-right&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=child2.name%</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">                                                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> }) %&gt;</span></span><br><span class="line">                                            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">                                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> }) %&gt;</span></span><br><span class="line">                                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } <span class="hljs-attr">else</span> { %&gt;</span></span><br><span class="line"></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> }) %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br><span class="line">              <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="hljs-comment">&lt;!-- &#x81EA;&#x52A8;&#x6839;&#x636E;&#x5DF2;&#x6709;&#x7684;category&#x521B;&#x5EFA;--&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">&lt;!--&#x6700;&#x53F3;&#x4FA7; --&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-md-1&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-menu navbar-end&quot;</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">has_config</span>(&apos;<span class="hljs-attr">search</span>&apos;)) { %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-item search&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;&lt;%= __(&apos;nav.search&apos;) %&gt;&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;javascript:;&quot;</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas fa-search&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">has_config</span>(&apos;<span class="hljs-attr">toc</span>&apos;) &amp;&amp; <span class="hljs-attr">get_config</span>(&apos;<span class="hljs-attr">toc</span>&apos;) === <span class="hljs-string">true</span> &amp;&amp; <span class="hljs-attr">typeof</span>(<span class="hljs-attr">page.content</span>) !== <span class="hljs-string">&apos;undefined&apos;</span>) { %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc&quot;</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-item&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;&lt;%= __(&apos;nav.toc&apos;) %&gt;&quot;</span>&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fa fa-list&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-dropdown is-right&quot;</span>&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">let</span> <span class="hljs-attr">lastHeading</span> = <span class="hljs-string">null;</span> %&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">for</span> (<span class="hljs-attr">let</span> <span class="hljs-attr">heading</span> <span class="hljs-attr">of</span> <span class="hljs-attr">toc_list</span>(<span class="hljs-attr">page.content</span>)) { %&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">lastHeading</span> !== <span class="hljs-string">null</span> &amp;&amp; <span class="hljs-attr">heading</span>[<span class="hljs-attr">0</span>]<span class="hljs-attr">.split</span>(&apos;<span class="hljs-attr">.</span>&apos;)[<span class="hljs-attr">0</span>] !== <span class="hljs-string">lastHeading)</span> { %&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-divider&quot;</span>&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">lastHeading</span> = <span class="hljs-string">heading[0].split(</span>&apos;<span class="hljs-attr">.</span>&apos;)[<span class="hljs-attr">0</span>]; %&gt;</span></span><br><span class="line">                        &lt;a class=&quot;navbar-item&quot; href=&quot;#&lt;%- heading[2].replace(/&amp;amp;/g, &apos;&amp;&apos;).replace(/ /g,&apos;-&apos;) %&gt;&quot;&gt;&lt;%= heading[0] %&gt;&amp;nbsp;&amp;nbsp;&lt;%- heading[3] === 1 ? &apos;&lt;b&gt;&apos; : &apos;&apos; %&gt;&lt;%- heading[2].replace(/&amp;amp;/g, &apos;&amp;&apos;) %&gt;&lt;%- heading[3] === 1 ? &apos;&lt;/b&gt;&apos; : &apos;&apos; %&gt;&lt;/a&gt;</span><br><span class="line">                        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">has_config</span>(&apos;<span class="hljs-attr">navbar_links</span>&apos;)) {</span></span><br><span class="line"><span class="hljs-tag">                    <span class="hljs-attr">for</span> (<span class="hljs-attr">let</span> <span class="hljs-attr">name</span> <span class="hljs-attr">in</span> <span class="hljs-attr">get_config</span>(&apos;<span class="hljs-attr">navbar_links</span>&apos;)) {</span></span><br><span class="line"><span class="hljs-tag">                        <span class="hljs-attr">let</span> <span class="hljs-attr">link</span> = <span class="hljs-string">get_config(</span>&apos;<span class="hljs-attr">navbar_links</span>&apos;)[<span class="hljs-attr">name</span>]; %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;navbar-item&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;&lt;%= name %&gt;&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&lt;%= typeof(link) === &apos;string&apos; ? link : link.url%&gt;&quot;</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">if</span> (<span class="hljs-attr">typeof</span>(<span class="hljs-attr">link</span>) === <span class="hljs-string">&apos;string&apos;</span>) { %&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">%=</span> <span class="hljs-attr">name</span> %&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } <span class="hljs-attr">else</span> { %&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;&lt;%= link.icon %&gt;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></span><br><span class="line">                    <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">                   <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">%</span> } %&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/hexo/">#hexo</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/04/07/booboo_hexo/2020-04-07-tec-hexo/">定制自己的Hexo博客专题-Minos主题开发自己的首页</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/04/06/amy_life/2020-02-07-amy/">Amy经典语录-第四篇</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2020/04/06/booboo_hexo/2020-04-06-tec-hexo/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+    
+</body>
+</html>
