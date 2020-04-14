@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/2020/04/14/booboo_hexo/2020-04-14-tec-hexo/</loc>
+    
+    <lastmod>2020-04-14T07:38:21.790Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/04/14/booboo_others/2020-04-14-tec-mysql/</loc>
+    
+    <lastmod>2020-04-14T06:40:45.053Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/03_Kapacitor%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/A_Kapacitor%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%AE%80%E4%BB%8B/</loc>
     
     <lastmod>2020-04-14T05:01:14.351Z</lastmod>
@@ -117,13 +131,6 @@
     <loc>http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/TICKscriptsDevelopmentSpecification/</loc>
     
     <lastmod>2020-04-14T03:44:32.075Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/04/08/booboo_hexo/2020-04-09-tec-hexo/</loc>
-    
-    <lastmod>2020-04-14T03:34:05.538Z</lastmod>
     
   </url>
   
