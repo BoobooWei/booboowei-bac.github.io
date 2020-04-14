@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>03-Kapcitor配置文件-A-配置文件简介 - 归去来兮</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+
+
+
+
+
+
+
+
+    <meta name="description" content="&amp;#x5B98;&amp;#x65B9;&amp;#x6587;&amp;#x6863;    Contents      Startup    Systemd      Kapacitor configuration file    TOML    Organization      Example: An InfluxDB connection grouping    Kapacitor environment">
+<meta property="og:type" content="article">
+<meta property="og:title" content="03-Kapcitor配置文件-A-配置文件简介">
+<meta property="og:url" content="http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/03_Kapacitor%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/A_Kapacitor%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="&amp;#x5B98;&amp;#x65B9;&amp;#x6587;&amp;#x6863;    Contents      Startup    Systemd      Kapacitor configuration file    TOML    Organization      Example: An InfluxDB connection grouping    Kapacitor environment">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-14T11:29:59.000Z">
+<meta property="article:modified_time" content="2020-04-14T05:01:14.351Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="监控告警">
+<meta property="article:tag" content="TICK技术栈">
+<meta property="article:tag" content="Kapcitor配置文件">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="归去来兮" type="application/atom+xml">
+</head>
+<body>
+    
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+    <div class="row">
+        <!--左侧只占一个格子 -->
+        <div class="col-md-1">
+            <div class="navbar-brand">
+                <a class="navbar-item navbar-logo" href="/">
+                    
+                        
+                        <img src="/images/influx.svg" alt="" height="28">
+                        
+                    
+                </a>
+                <div class="navbar-burger">
+                    <span>
+                    </span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--中间自适应 -->
+        <div class="col-md-10">
+            
+            <div class="navbar-menu navbar-start">
+                
+                <a class="navbar-item "
+                   href="/archives/">最近更新</a>
+                
+                <a class="navbar-item "
+                   href="/tags/">标签</a>
+                
+
+                <!-- BoobooWei自动根据已有的category创建-->
+            
+
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <!--循环category 生成navbar代码-->
+                        
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="往昔追忆">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/" data-rel="经典语录">经典语录</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="培训教程">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术广角">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Minos%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/" data-rel="Minos主题优化">Minos主题优化</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术峰会"><i class="fold iconfont icon-right"></i>技术峰会</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术峰会">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Azure/" data-rel="Azure">Azure</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Aliyun/" data-rel="Aliyun">Aliyun</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="TICK"><i class="fold iconfont icon-right"></i>TICK</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="TICK">
+                                    
+                                    <a class="dropdown-item" href="/categories/TICK/kapacitor/" data-rel="kapacitor">kapacitor</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                </ul>
+              </div>
+            </nav>
+
+            <!-- 自动根据已有的category创建-->
+        </div>
+        
+
+        </div>
+
+
+        <!--最右侧 -->
+        <div class="col-md-1">
+
+            <div class="navbar-menu navbar-end">
+                
+                <a class="navbar-item" title="movie" href="/movies/">
+                    <svg t="1586342683221" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1766" width="20" height="20"><path d="M914.044 898.826H109.956c-20.435 0-37-16.565-37-37V280.131c0-20.435 16.565-37 37-37h804.088c20.435 0 37 16.565 37 37v581.695c0 20.435-16.565 37-37 37z m-767.088-74h730.088V317.131H146.956v507.695zM322.739 199.174H113c-20.435 0-37-16.565-37-37s16.565-37 37-37h209.739c20.435 0 37 16.565 37 37s-16.565 37-37 37z" p-id="1767" fill="#2c2c2c"></path><path d="M457.932 752.856A37.002 37.002 0 0 1 420.937 716l-1.122-287.64a37.003 37.003 0 0 1 20.769-33.395 37.006 37.006 0 0 1 39.104 4.167l184.107 144.792a37 37 0 0 1-0.105 58.248L480.704 745.021a36.982 36.982 0 0 1-22.772 7.835z m36.181-248.234l0.528 135.641 86.29-67.361-86.818-68.28z" p-id="1768" fill="#2c2c2c"></path></svg>
+                </a>
+                <a class="navbar-item" title="movie" href="/books/">
+                    <svg t="1586350091188" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2280" width="20" height="20"><path d="M306.4 773.3h188v16.3c0 13.8 11.2 25 25 25s25-11.2 25-25v-16.3h180.5c68.9 0 125-56.1 125-125V295.4c0-68.9-56.1-125-125-125H549.6c-10.7 0-19.9 6.8-23.4 16.3-2.1-0.6-4.4-0.9-6.7-0.9-2 0-3.9 0.2-5.8 0.7-3.6-9.4-12.7-16-23.3-16h-184c-68.9 0-125 56.1-125 125v352.9c0 68.8 56.1 124.9 125 124.9z m418.5-552.9c41.4 0 75 33.6 75 75v352.9c0 41.4-33.6 75-75 75H544.4V219.9c1.7 0.4 3.4 0.5 5.2 0.5h175.3z m-493.5 75c0-41.4 33.6-75 75-75h183.9c1.4 0 2.8-0.1 4.1-0.3v503.2h-188c-41.4 0-75-33.6-75-75V295.4z" p-id="2281"></path><path d="M901.5 314.3c-11 0-20 9-20 20v384c0 44.1-35.9 80-80 80H615.3c-5.6 0-11 2.4-14.8 6.5l-25.9 28.4c-2 2.2-4.9 3.5-7.9 3.5H459c-2.9 0-5.6-1.1-7.6-3.1L425.8 808c-3.8-3.8-8.8-5.9-14.1-5.9H224.8c-44.1 0-80-35.9-80-80V343.9c0-11-9-20-20-20s-20 9-20 20v378.3c0 66.2 53.8 120 120 120h178.5l19.7 19.7c9.6 9.6 22.3 14.9 35.9 14.9h107.7c14.2 0 27.9-6 37.5-16.5l20-21.9h177.4c66.2 0 120-53.8 120-120v-384c0-11.1-9-20.1-20-20.1z" p-id="2282"></path><path d="M297.5 341.4h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 408.6h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 506.5h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20z" p-id="2283"></path></svg>
+                </a>
+                
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B98;&#x65B9;&#x6587;&#x6863;">1&nbsp;&nbsp;<b>&#x5B98;&#x65B9;&#x6587;&#x6863;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Contents">1.1&nbsp;&nbsp;Contents</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#Startup">2&nbsp;&nbsp;<b>Startup</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Systemd">2.1&nbsp;&nbsp;Systemd</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#Kapacitor-configuration-file">3&nbsp;&nbsp;<b>Kapacitor configuration file</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#TOML">3.1&nbsp;&nbsp;TOML</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Organization">3.2&nbsp;&nbsp;Organization</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Essential-tables">3.2.1&nbsp;&nbsp;Essential tables</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#InfluxDB">3.2.2&nbsp;&nbsp;InfluxDB</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#Example:-An-InfluxDB-connection-grouping">4&nbsp;&nbsp;<b>Example: An InfluxDB connection grouping</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Internals">4.1.1&nbsp;&nbsp;Internals</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Optional-table-groupings">4.1.2&nbsp;&nbsp;Optional table groupings</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Service-discovery-and-metric-scraping">4.1.3&nbsp;&nbsp;Service discovery and metric scraping</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#Kapacitor-environment-variables">5&nbsp;&nbsp;<b>Kapacitor environment variables</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Environment-variables-not-in-configuration-file">5.1&nbsp;&nbsp;Environment variables not in configuration file</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Mapping-properties-to-environment-variables">5.2&nbsp;&nbsp;Mapping properties to environment variables</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#Configuring-with-the-HTTP-API">6&nbsp;&nbsp;<b>Configuring with the HTTP API</b></a>
+                        
+                    </div>
+                </div>
+                
+                
+                <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                   
+                
+            </div>
+        </div>
+</div>
+</div>
+</nav>
+
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            03-Kapcitor配置文件-A-配置文件简介
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-04-14T11:29:59.000Z" itemprop="datePublished">4月 14 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/TICK/">TICK</a><span>></span><a class="article-category-link" href="/categories/TICK/kapacitor/">kapacitor</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            32 分钟 读完 (约 4772 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <!-- MDTOC maxdepth:3 firsth1:1 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
+
+<ul>
+<li><a href="#&#x5B98;&#x65B9;&#x6587;&#x6863;">&#x5B98;&#x65B9;&#x6587;&#x6863;</a>   <ul>
+<li><a href="#contents">Contents</a>   </li>
+</ul>
+</li>
+<li><a href="#startup">Startup</a>   <ul>
+<li><a href="#systemd">Systemd</a>   </li>
+</ul>
+</li>
+<li><a href="#kapacitor-configuration-file">Kapacitor configuration file</a>   <ul>
+<li><a href="#toml">TOML</a>   </li>
+<li><a href="#organization">Organization</a>   </li>
+</ul>
+</li>
+<li><a href="#example-an-influxdb-connection-grouping">Example: An InfluxDB connection grouping</a>   <ul>
+<li><a href="#kapacitor-environment-variables">Kapacitor environment variables</a>   <ul>
+<li><a href="#environment-variables-not-in-configuration-file">Environment variables not in configuration file</a>   </li>
+<li><a href="#mapping-properties-to-environment-variables">Mapping properties to environment variables</a>   </li>
+</ul>
+</li>
+<li><a href="#configuring-with-the-http-api">Configuring with the HTTP API</a>   </li>
+</ul>
+</li>
+</ul>
+<!-- /MDTOC -->
+
+
+<h2><span id="&#x5B98;&#x65B9;&#x6587;&#x6863;">&#x5B98;&#x65B9;&#x6587;&#x6863;</span></h2><p><a href="https://docs.influxdata.com/kapacitor/v1.5/administration/configuration/" target="_blank" rel="noopener">Configuring Kapacitor</a></p>
+<h3><span id="contents">Contents</span></h3><ul>
+<li><a href="#startup">Startup</a></li>
+<li><a href="#the-kapacitor-configuration-file">Kapacitor configuration file</a></li>
+<li><a href="#kapacitor-environment-variables">Kapacitor environment variables</a></li>
+<li><a href="#configuring-with-the-http-api">Configuring with the HTTP API</a></li>
+</ul>
+<p>Basic installation and startup of the Kapacitor service is covered in<br><a href="/kapacitor/v1.5/introduction/getting-started/">Getting started with Kapacitor</a>.<br>The basic principles of working with Kapacitor described there should be understood before continuing here.<br>This document presents Kapacitor configuration in greater detail.</p>
+<p>Kapacitor service properties are configured using key-value pairs organized<br>into groups.<br>Any property key can be located by following its path in the configuration file (for example, <code>[http].https-enabled</code> or <code>[slack].channel</code>).<br>Values for configuration keys are declared in the configuration file.<br>On POSIX systems this file is located by default at the following location: <code>/etc/kapacitor/kapacitor.conf</code>.  On Windows systems a sample configuration file can be found in the same directory as the <code>kapacitord.exe</code>.<br>The location of this file can be defined at startup with the <code>-config</code> argument.<br>The path to the configuration file can also be declared using the environment variable <code>KAPACITOR_CONFIG_PATH</code>.<br>Values declared in this file can be overridden by environment variables beginning with the token <code>KAPACITOR_</code>.<br>Some values can also be dynamically altered using the HTTP API when the key  <code>[config-override].enabled</code> is set to <code>true</code>.</p>
+<p>Four primary mechanisms for configuring different aspects of the Kapacitor service are available and listed here in the descending order by which they may be overridden:</p>
+<ul>
+<li>The configuration file.</li>
+<li>Environment variables.</li>
+<li>The HTTP API (for optional services and the InfluxDB connection).</li>
+<li>Command line arguments (for changing hostname and logging).</li>
+</ul>
+<blockquote>
+<p><strong><em>Note:</em></strong> Setting the property <code>skip-config-overrides</code> in the configuration file to <code>true</code> will disable configuration overrides at startup.</p>
+</blockquote>
+<h2><span id="startup">Startup</span></h2><p>The Kapacitor daemon includes command line options that affect how it loads and<br>runs.<br>These include:</p>
+<ul>
+<li><code>-config</code>: Path to the configuration file.</li>
+<li><code>-hostname</code>: Hostname that will override the hostname specified in the configuration file.</li>
+<li><code>-pidfile</code>: File where the process ID will be written.</li>
+<li><code>-log-file</code>: File where logs will be written.</li>
+<li><code>-log-level</code>: Threshold for writing messages to the log file. Valid values include <code>debug, info, warn, error</code>.</li>
+</ul>
+<h3><span id="systemd">Systemd</span></h3><p>On POSIX systems, when the Kapacitor daemon starts as part of <code>systemd</code>, environment variables can be set in the file <code>/etc/default/kapacitor</code>.</p>
+<ul>
+<li><p>Start Kapacitor as part of <code>systemd</code>:</p>
+<p><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl <span class="hljs-built_in">enable</span> kapacitor</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>Start Kapacitor as part of <code>systemd</code> <strong>and</strong> start Kapacitor immediately:</p>
+<p><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="hljs-built_in">enable</span> kapacitor &#x2014;-now</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>Define where the PID file and log file will be written:</p>
+<ol>
+<li>Add a line like the following into the <code>/etc/default/kapacitor</code> file:</li>
+</ol>
+<p><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KAPACITOR_OPTS=<span class="hljs-string">&quot;-pidfile=/home/kapacitor/kapacitor.pid -log-file=/home/kapacitor/logs/kapacitor.log&quot;</span></span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>Restart Kapacitor:</li>
+</ol>
+<p><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart kapacitor</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<p>The environment variable <code>KAPACITOR_OPTS</code> is one of a few special variables used<br>by Kapacitor at startup.<br>For more information on working with environment variables,<br>see <a href="#kapacitor-environment-variables">Kapacitor environment variables</a><br>below.</p>
+<h2><span id="kapacitor-configuration-file">Kapacitor configuration file</span></h2><p>The default configuration can be displayed using the <code>config</code> command of the Kapacitor daemon.</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kapacitord config</span><br></pre></td></tr></table></figure></p>
+<p>A sample configuration file is also available in the Kapacitor code base.<br>The most current version can be accessed on <a href="https://github.com/influxdata/kapacitor/blob/master/etc/kapacitor/kapacitor.conf" target="_blank" rel="noopener">github</a>.</p>
+<p>To get current configuration settings, you can use the Kapacitor HTTP API to get configuration values for settings that can be changed while the Kapacitor service is running. See <a href="/kapacitor/v1.5/working/api/#retrieving-the-current-configuration">Retrieving the current configuration</a>.</p>
+<h3><span id="toml">TOML</span></h3><p>The configuration file is based on <a href="https://github.com/toml-lang/toml" target="_blank" rel="noopener">TOML</a>.<br>Important configuration properties are identified by case-sensitive keys<br>to which values are assigned.<br>Key-value pairs are grouped into tables whose identifiers are delineated by brackets.<br>Tables can also be grouped into table arrays.</p>
+<p>The most common value types found in the Kapacitor configuration file include<br>the following:</p>
+<ul>
+<li><strong>String</strong> (declared in double quotes)<ul>
+<li>Examples: <code>host = &quot;localhost&quot;</code>, <code>id = &quot;myconsul&quot;</code>, <code>refresh-interval = &quot;30s&quot;</code>.</li>
+</ul>
+</li>
+<li><strong>Integer</strong><ul>
+<li>Examples: <code>port = 80</code>, <code>timeout = 0</code>, <code>udp-buffer = 1000</code>.</li>
+</ul>
+</li>
+<li><strong>Float</strong><ul>
+<li>Example: <code>threshold = 0.0</code>.</li>
+</ul>
+</li>
+<li><strong>Boolean</strong><ul>
+<li>Examples: <code>enabled = true</code>, <code>global = false</code>, <code>no-verify = false</code>.</li>
+</ul>
+</li>
+<li><strong>Array</strong> &#x2013;<ul>
+<li>Examples: <code>my_database = [ &quot;default&quot;, &quot;longterm&quot; ]</code>, <code>urls = [&quot;http://localhost:8086&quot;]</code></li>
+</ul>
+</li>
+<li><strong>Inline Table</strong><ul>
+<li>Example: <code>basic-auth = { username = &quot;my-user&quot;, password = &quot;my-pass&quot; }</code></li>
+</ul>
+</li>
+</ul>
+<p>Table grouping identifiers are declared within brackets.<br>For example, <code>[http]</code>, <code>[deadman]</code>,<code>[kubernetes]</code>.</p>
+<p>An array of tables is declared within double brackets.<br>For example, <code>[[influxdb]]</code>. <code>[[mqtt]]</code>, <code>[[dns]]</code>.</p>
+<h3><span id="organization">Organization</span></h3><p>Most keys are declared in the context of a table grouping, but the basic properties of the Kapacitor system are defined in the root context of the configuration file.<br>The four basic properties of the Kapacitor service include:</p>
+<ul>
+<li><code>hostname</code>: String declaring the DNS hostname where the Kapacitor daemon runs.</li>
+<li><code>data_dir</code>: String declaring the file system directory where core Kapacitor data is stored.</li>
+<li><code>skip-config-overrides</code>: Boolean indicating whether or not to skip configuration overrides.</li>
+<li><code>default-retention-policy</code>: String declaring the default retention policy to be used on the InfluxDB database.</li>
+</ul>
+<p>Table groupings and arrays of tables follow the basic properties and include essential and optional features,<br>including specific alert handlers and mechanisms for service discovery and data scraping.</p>
+<h4><span id="essential-tables">Essential tables</span></h4><h5><span id="http">HTTP</span></h5><p>The Kapacitor service requires an HTTP connection and important<br>HTTP properties,<br>such as a bind address and the path to an HTTPS certificate,<br>are defined in the <code>[http]</code> table.</p>
+<p><strong>Example: The HTTP grouping</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[http]</span></span><br><span class="line">  <span class="hljs-comment"># HTTP API Server for Kapacitor</span></span><br><span class="line">  <span class="hljs-comment"># This server is always on,</span></span><br><span class="line">  <span class="hljs-comment"># it serves both as a write endpoint</span></span><br><span class="line">  <span class="hljs-comment"># and as the API endpoint for all other</span></span><br><span class="line">  <span class="hljs-comment"># Kapacitor calls.</span></span><br><span class="line">  bind-address = &quot;:9092&quot;</span><br><span class="line">  log-enabled = true</span><br><span class="line">  write-tracing = false</span><br><span class="line">  pprof-enabled = false</span><br><span class="line">  https-enabled = false</span><br><span class="line">  https-certificate = &quot;/etc/ssl/influxdb-selfsigned.pem&quot;</span><br><span class="line">  <span class="hljs-comment">### Use a separate private key location.</span></span><br><span class="line">  <span class="hljs-comment"># https-private-key = &quot;&quot;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h5><span id="transport-layer-security-tls-settings">Transport Layer Security (TLS) settings</span></h5><p>If the TLS configuration settings is not specified, Kapacitor supports all of the cipher suite IDs listed and all of the TLS versions implemented in the <a href="https://golang.org/pkg/crypto/tls/#pkg-constants" target="_blank" rel="noopener">Constants section of the Go <code>crypto/tls</code> package documentation</a>, depending on the version of Go used to build InfluxDB.<br>Use the <code>SHOW DIAGNOSTICS</code> command to see the version of Go used to build Kapacitor.</p>
+<h6><span id="ciphers-quottls_ecdhe_ecdsa_with_chacha20_poly1305quot-quottls_ecdhe_rsa_with_aes_128_gcm_sha256quot"><code>ciphers = [ &quot;TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305&quot;, &quot;TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256&quot;,]</code></span></h6><p>Determines the available set of cipher suites. For a list of available ciphers, which depends on the version of Go, see <a href="https://golang.org/pkg/crypto/tls/#pkg-constants" target="_blank" rel="noopener">https://golang.org/pkg/crypto/tls/#pkg-constants</a>.<br>You can use the query <code>SHOW DIAGNOSTICS</code> to see the version of Go used to build Kapacitor.<br>If not specified, uses the default settings from Go&#x2019;s crypto/tls package.</p>
+<h6><span id="min-version-quottls12quot"><code>min-version = &quot;tls1.2&quot;</code></span></h6><p>Minimum version of the tls protocol that will be negotiated. If not specified, uses the default settings from the Go <code>crypto/tls</code> package.</p>
+<h6><span id="max-version-quottls12quot"><code>max-version = &quot;tls1.2&quot;</code></span></h6><p>Maximum version of the tls protocol that will be negotiated. If not specified, uses the default settings from the Go <code>crypto/tls</code> package.</p>
+<h5><span id="recommended-configuration-for-modern-compatibility">Recommended configuration for &#x201C;modern compatibility&#x201D;</span></h5><p>InfluxData recommends configuring your Kapacitor server&#x2019;s TLS settings for &#x201C;modern compatibility&#x201D; &#x2014; this provides a higher level of security and assumes that backward compatibility is not required.<br>Our recommended TLS configuration settings for <code>ciphers</code>, <code>min-version</code>, and <code>max-version</code> are based on Mozilla&#x2019;s &#x201C;modern compatibility&#x201D; TLS server configuration described in <a href="https://wiki.mozilla.org/Security/Server_Side_TLS#Modern_compatibility" target="_blank" rel="noopener">Security/Server Side TLS</a>.</p>
+<p>InfluxData&#x2019;s recommended TLS settings for &#x201C;modern compatibility&#x201D; are specified in the following configuration settings example.</p>
+<p><figure class="highlight toml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">ciphers</span> = [ <span class="hljs-string">&quot;TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305&quot;</span>,</span><br><span class="line">            <span class="hljs-string">&quot;TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305&quot;</span>,</span><br><span class="line">            <span class="hljs-string">&quot;TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256&quot;</span>,</span><br><span class="line">            <span class="hljs-string">&quot;TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256&quot;</span>,</span><br><span class="line">            <span class="hljs-string">&quot;TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384&quot;</span>,</span><br><span class="line">            <span class="hljs-string">&quot;TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384&quot;</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="hljs-attr">min-version</span> = <span class="hljs-string">&quot;tls1.2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-attr">max-version</span> = <span class="hljs-string">&quot;tls1.2&quot;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>Important:*</strong> The order of the cipher suite IDs in the <code>ciphers</code> setting determines which algorithms are selected by priority. The TLS <code>min-version</code> and the <code>max-version</code> settings restrict support to TLS 1.2.</p>
+</blockquote>
+<h5><span id="config-override">Config override</span></h5><p>The <code>[config-override]</code> table contains only one key which enables or disables the ability to<br>override certain values through the HTTP API. It is enabled by default.</p>
+<p><strong>Example: The Config Override grouping</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[config-override]</span></span><br><span class="line">  <span class="hljs-comment"># Enable/Disable the service for overridding configuration via the HTTP API.</span></span><br><span class="line">  enabled = true</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h5><span id="logging">Logging</span></h5><p>The Kapacitor service uses logging to monitor and inspect its behavior.<br>The path to the log and the log threshold is defined in <code>[logging]</code> table.</p>
+<p><strong>Example: The Logging grouping</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[logging]</span></span><br><span class="line">    <span class="hljs-comment"># Destination for logs</span></span><br><span class="line">    <span class="hljs-comment"># Can be a path to a file or &apos;STDOUT&apos;, &apos;STDERR&apos;.</span></span><br><span class="line">    file = &quot;/var/log/kapacitor/kapacitor.log&quot;</span><br><span class="line">    <span class="hljs-comment"># Logging level can be one of:</span></span><br><span class="line">    <span class="hljs-comment"># DEBUG, INFO, WARN, ERROR, or OFF</span></span><br><span class="line">    level = &quot;INFO&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h5><span id="load">Load</span></h5><p>Starting with Kapacitor 1.4, the Kapacitor service includes a feature<br>that enables the loading of TICKscript tasks when the service loads.<br>The path to these scripts is defined in this table.</p>
+<p><strong>Example: The Load grouping</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[load]</span></span><br><span class="line">  <span class="hljs-comment"># Enable/Disable the service for loading tasks/templates/handlers</span></span><br><span class="line">  <span class="hljs-comment"># from a directory</span></span><br><span class="line">  enabled = true</span><br><span class="line">  <span class="hljs-comment"># Directory where task/template/handler files are set</span></span><br><span class="line">  dir = &quot;/etc/kapacitor/load&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h5><span id="replay">Replay</span></h5><p>The Kapacitor client application can record data streams and batches for testing<br>tasks before they are enabled.<br>This table contains one key which declares the path to the directory where the replay files are to be stored.</p>
+<p><strong>Example: The Replay grouping</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[replay]</span></span><br><span class="line">  <span class="hljs-comment"># Where to store replay files, aka recordings.</span></span><br><span class="line">  dir = &quot;/var/lib/kapacitor/replay&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h5><span id="task">Task</span></h5><p>Prior to Kapacitor 1.4, tasks were written to a special task database.<br>This table and its associated keys are <em>deprecated</em> and should only be used for<br>migration purposes.</p>
+<h5><span id="storage">Storage</span></h5><p>The Kapacitor service stores its configuration and other information in the key-value <a href="https://github.com/boltdb/bolt" target="_blank" rel="noopener">Bolt</a> database.<br>The location of this database on the file system is defined in the storage table<br>grouping.</p>
+<p><strong>Example: The Storage grouping</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[storage]</span></span><br><span class="line">  <span class="hljs-comment"># Where to store the Kapacitor boltdb database</span></span><br><span class="line">  boltdb = &quot;/var/lib/kapacitor/kapacitor.db&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h5><span id="deadman">Deadman</span></h5><p>Kapacitor provides a deadman&#x2019;s switch alert which can be configured globally<br>in this table grouping.<br>See the <a href="/kapacitor/v1.5/nodes/alert_node/#deadman">Deadman</a> helper function topic in the AlertNode documentation.</p>
+<p>For a Deadman&#x2019;s switch to work it needs a threshold below which the switch will<br>be triggered.  It also needs a polling interval as well as an id and message<br>which will be passed to the alert handler.</p>
+<p><strong>Example: The Deadman grouping</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[deadman]</span></span><br><span class="line">  <span class="hljs-comment"># Configure a deadman&apos;s switch</span></span><br><span class="line">  <span class="hljs-comment"># Globally configure deadman&apos;s switches on all tasks.</span></span><br><span class="line">  <span class="hljs-comment"># <span class="hljs-doctag">NOTE:</span> for this to be of use you must also globally configure at least one alerting method.</span></span><br><span class="line">  global = false</span><br><span class="line">  <span class="hljs-comment"># Threshold, if globally configured the alert will be triggered if the throughput in points/interval is &lt;= threshold.</span></span><br><span class="line">  threshold = 0.0</span><br><span class="line">  <span class="hljs-comment"># Interval, if globally configured the frequency at which to check the throughput.</span></span><br><span class="line">  interval = &quot;10s&quot;</span><br><span class="line">  <span class="hljs-comment"># Id: the alert Id, NODE_NAME will be replaced with the name of the node being monitored.</span></span><br><span class="line">  id = &quot;node &apos;NODE_NAME&apos; in task &apos;{{ .TaskName }}&apos;&quot;</span><br><span class="line">  <span class="hljs-comment"># The message of the alert. INTERVAL will be replaced by the interval.</span></span><br><span class="line">  message = &quot;{{ .ID }} is {{ if eq .Level \&quot;OK\&quot; }}alive{{ else }}dead{{ end }}: {{ index .Fields \&quot;collected\&quot; | printf \&quot;%0.3f\&quot; }} points/INTERVAL.&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h4><span id="influxdb">InfluxDB</span></h4><p>Kapacitor&#x2019;s main purpose processing between nodes within an InfluxDB Enterprise cluster or between multiple clusters.<br>You must define at least one <code>[[influxdb]]</code> table array configuration for an InfluxDB connection.<br>Multiple InfluxDB table array configurations can be specified,<br>but one InfluxDB table array configuration must be flagged as the <code>default</code>.</p>
+<h2><span id="example-an-influxdb-connection-grouping">Example: An InfluxDB connection grouping</span></h2><p><figure class="highlight shell hljs"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">{{% note %}}</span><br><span class="line">To use Kapacitor with an InfluxDB instance that requires authentication,</span><br><span class="line">it must authenticate using an InfluxDB user with **read and write** permissions.</span><br><span class="line">{{% /note %}}</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[[influxdb]]</span></span><br><span class="line">  <span class="hljs-comment"># Connect to an InfluxDB cluster</span></span><br><span class="line">  <span class="hljs-comment"># Kapacitor can subscribe, query and write to this cluster.</span></span><br><span class="line">  <span class="hljs-comment"># Using InfluxDB is not required and can be disabled.</span></span><br><span class="line">  enabled = true</span><br><span class="line">  default = true</span><br><span class="line">  name = &quot;localhost&quot;</span><br><span class="line">  urls = [&quot;http://localhost:8086&quot;]</span><br><span class="line">  username = &quot;&quot;</span><br><span class="line">  password = &quot;&quot;</span><br><span class="line">  timeout = 0</span><br><span class="line">  <span class="hljs-comment"># Absolute path to pem encoded CA file.</span></span><br><span class="line">  <span class="hljs-comment"># A CA can be provided without a key/cert pair</span></span><br><span class="line">  <span class="hljs-comment">#   ssl-ca = &quot;/etc/kapacitor/ca.pem&quot;</span></span><br><span class="line">  <span class="hljs-comment"># Absolutes paths to pem encoded key and cert files.</span></span><br><span class="line">  <span class="hljs-comment">#   ssl-cert = &quot;/etc/kapacitor/cert.pem&quot;</span></span><br><span class="line">  <span class="hljs-comment">#   ssl-key = &quot;/etc/kapacitor/key.pem&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># Do not verify the TLS/SSL certificate.</span></span><br><span class="line">  <span class="hljs-comment"># This is insecure.</span></span><br><span class="line">  insecure-skip-verify = false</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># Maximum time to try and connect to InfluxDB during startup</span></span><br><span class="line">  startup-timeout = &quot;5m&quot;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># Turn off all subscriptions</span></span><br><span class="line">  disable-subscriptions = false</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># Subscription mode is either &quot;cluster&quot; or &quot;server&quot;</span></span><br><span class="line">  subscription-mode = &quot;server&quot;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># Which protocol to use for subscriptions</span></span><br><span class="line">  <span class="hljs-comment"># one of &apos;udp&apos;, &apos;http&apos;, or &apos;https&apos;.</span></span><br><span class="line">  subscription-protocol = &quot;http&quot;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># Subscriptions resync time interval</span></span><br><span class="line">  <span class="hljs-comment"># Useful if you want to subscribe to new created databases</span></span><br><span class="line">  <span class="hljs-comment"># without restart Kapacitord</span></span><br><span class="line">  subscriptions-sync-interval = &quot;1m0s&quot;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># Override the global hostname option for this InfluxDB cluster.</span></span><br><span class="line">  <span class="hljs-comment"># Useful if the InfluxDB cluster is in a separate network and</span></span><br><span class="line">  <span class="hljs-comment"># needs special configuration to connect back to this Kapacitor instance.</span></span><br><span class="line">  <span class="hljs-comment"># Defaults to `hostname` if empty.</span></span><br><span class="line">  kapacitor-hostname = &quot;&quot;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># Override the global http port option for this InfluxDB cluster.</span></span><br><span class="line">  <span class="hljs-comment"># Useful if the InfluxDB cluster is in a separate network and</span></span><br><span class="line">  <span class="hljs-comment"># needs special configuration to connect back to this Kapacitor instance.</span></span><br><span class="line">  <span class="hljs-comment"># Defaults to the port from `[http] bind-address` if 0.</span></span><br><span class="line">  http-port = 0</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># Host part of a bind address for UDP listeners.</span></span><br><span class="line">  <span class="hljs-comment"># For example if a UDP listener is using port 1234</span></span><br><span class="line">  <span class="hljs-comment"># and `udp-bind = &quot;hostname_or_ip&quot;`,</span></span><br><span class="line">  <span class="hljs-comment"># then the UDP port will be bound to `hostname_or_ip:1234`</span></span><br><span class="line">  <span class="hljs-comment"># The default empty value will bind to all addresses.</span></span><br><span class="line">  udp-bind = &quot;&quot;</span><br><span class="line">  <span class="hljs-comment"># Subscriptions use the UDP network protocl.</span></span><br><span class="line">  <span class="hljs-comment"># The following options of for the created UDP listeners for each subscription.</span></span><br><span class="line">  <span class="hljs-comment"># Number of packets to buffer when reading packets off the socket.</span></span><br><span class="line">  udp-buffer = 1000</span><br><span class="line">  <span class="hljs-comment"># The size in bytes of the OS read buffer for the UDP socket.</span></span><br><span class="line">  <span class="hljs-comment"># A value of 0 indicates use the OS default.</span></span><br><span class="line">  udp-read-buffer = 0</span><br><span class="line"></span><br><span class="line">  <span class="hljs-section">[influxdb.subscriptions]</span></span><br><span class="line">    <span class="hljs-comment"># Set of databases and retention policies to subscribe to.</span></span><br><span class="line">    <span class="hljs-comment"># If empty will subscribe to all, minus the list in</span></span><br><span class="line">    <span class="hljs-comment"># influxdb.excluded-subscriptions</span></span><br><span class="line">    <span class="hljs-comment">#</span></span><br><span class="line">    <span class="hljs-comment"># Format</span></span><br><span class="line">    <span class="hljs-comment"># db_name = &lt;list of retention policies&gt;</span></span><br><span class="line">    <span class="hljs-comment">#</span></span><br><span class="line">    <span class="hljs-comment"># Example:</span></span><br><span class="line">    <span class="hljs-comment"># my_database = [ &quot;default&quot;, &quot;longterm&quot; ]</span></span><br><span class="line">  <span class="hljs-section">[influxdb.excluded-subscriptions]</span></span><br><span class="line">    <span class="hljs-comment"># Set of databases and retention policies to exclude from the subscriptions.</span></span><br><span class="line">    <span class="hljs-comment"># If influxdb.subscriptions is empty it will subscribe to all</span></span><br><span class="line">    <span class="hljs-comment"># except databases listed here.</span></span><br><span class="line">    <span class="hljs-comment">#</span></span><br><span class="line">    <span class="hljs-comment"># Format</span></span><br><span class="line">    <span class="hljs-comment"># db_name = &lt;list of retention policies&gt;</span></span><br><span class="line">    <span class="hljs-comment">#</span></span><br><span class="line">    <span class="hljs-comment"># Example:</span></span><br><span class="line">    <span class="hljs-comment"># my_database = [ &quot;default&quot;, &quot;longterm&quot; ]</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h4><span id="internals">Internals</span></h4><p>Kapacitor includes internal services that can be enabled or disabled and<br>that have properties that need to be defined.</p>
+<h5><span id="http-post">HTTP Post</span></h5><p>The HTTP Post service configuration is commented out by default. It is used for<br>POSTing alerts to an HTTP endpoint.</p>
+<h5><span id="reporting">Reporting</span></h5><p>Kapacitor will send usage statistics back to InfluxData.<br>This feature can be disabled or enabled in the <code>[reporting]</code> table grouping.</p>
+<p><strong>Example 9 &#x2013; Reporting configuration</strong><br><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[reporting]</span></span><br><span class="line">  <span class="hljs-comment"># Send usage statistics</span></span><br><span class="line">  <span class="hljs-comment"># every 12 hours to Enterprise.</span></span><br><span class="line">  enabled = true</span><br><span class="line">  url = &quot;https://usage.influxdata.com&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h5><span id="stats">Stats</span></h5><p>Internal statistics about Kapacitor can also be emitted to an InfluxDB database.<br>The collection frequency and the database to which the statistics are emitted<br>can be configured in the <code>[stats]</code> table grouping.</p>
+<p><strong>Example: Stats configuration</strong></p>
+<p><figure class="highlight toml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[stats]</span></span><br><span class="line">  <span class="hljs-comment"># Emit internal statistics about Kapacitor.</span></span><br><span class="line">  <span class="hljs-comment"># To consume these stats create a stream task</span></span><br><span class="line">  <span class="hljs-comment"># that selects data from the configured database</span></span><br><span class="line">  <span class="hljs-comment"># and retention policy.</span></span><br><span class="line">  <span class="hljs-comment">#</span></span><br><span class="line">  <span class="hljs-comment"># Example:</span></span><br><span class="line">  <span class="hljs-comment">#  stream|from().database(&apos;_kapacitor&apos;).retentionPolicy(&apos;autogen&apos;)...</span></span><br><span class="line">  <span class="hljs-comment">#</span></span><br><span class="line">  enabled = true</span><br><span class="line">  stats-interval = &quot;10s&quot;</span><br><span class="line">  database = &quot;_kapacitor&quot;</span><br><span class="line">  retention-policy= &quot;autogen&quot;</span><br><span class="line"><span class="hljs-comment"># ...</span></span><br></pre></td></tr></table></figure></p>
+<h5><span id="alert">Alert</span></h5><p>Kapacitor includes global alert configuration options that apply to all alerts<br>created by the <a href="/kapacitor/v1.5/nodes/alert_node">alertNode</a></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">[alert]</span></span><br><span class="line">  <span class="hljs-comment"># Persisting topics can become an I/O bottleneck under high load.</span></span><br><span class="line">  <span class="hljs-comment"># This setting disables them entirely.</span></span><br><span class="line">  persist-topics = false</span><br></pre></td></tr></table></figure></p>
+<h4><span id="optional-table-groupings">Optional table groupings</span></h4><p>Optional table groupings are disabled by default and relate to specific features that can be leveraged by TICKscript nodes or used to discover and scrape information from remote locations.<br>In the default configuration, these optional table groupings may be commented out or include a key <code>enabled</code> set to <code>false</code> (i.e., <code>enabled = false</code>).<br>A feature defined by an optional table should be enabled whenever a relevant node or a handler for a relevant node is required by a task, or when an input source is needed.</p>
+<p>For example, if alerts are to be sent via email, then the SMTP service should<br>be enabled and configured in the <code>[smtp]</code> properties table.</p>
+<p><strong>Example 11 &#x2013; Enabling SMTP</strong></p>
+<p><figure class="highlight toml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[smtp]</span></span><br><span class="line">  <span class="hljs-comment"># Configure an SMTP email server</span></span><br><span class="line">  <span class="hljs-comment"># Will use TLS and authentication if possible</span></span><br><span class="line">  <span class="hljs-comment"># Only necessary for sending emails from alerts.</span></span><br><span class="line">  enabled = true</span><br><span class="line">  host = &quot;192.168.1.24&quot;</span><br><span class="line">  port = 25</span><br><span class="line">  username = &quot;schwartz.pudel&quot;</span><br><span class="line">  password = &quot;f4usT!1808&quot;</span><br><span class="line">  <span class="hljs-comment"># From address for outgoing mail</span></span><br><span class="line">  from = &quot;kapacitor@test.org&quot;</span><br><span class="line">  <span class="hljs-comment"># List of default To addresses.</span></span><br><span class="line">  to = [&quot;heinrich@urfaust.versuch.de&quot;,&quot;valentin@urfaust.versuch.de&quot;,&quot;wagner@urfaust.versuch.de&quot;]</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># Skip TLS certificate verify when connecting to SMTP server</span></span><br><span class="line">  no-verify = false</span><br><span class="line">  <span class="hljs-comment"># Close idle connections after timeout</span></span><br><span class="line">  idle-timeout = &quot;30s&quot;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment"># If true the all alerts will be sent via Email</span></span><br><span class="line">  <span class="hljs-comment"># without explicitly marking them in the TICKscript.</span></span><br><span class="line">  global = false</span><br><span class="line">  <span class="hljs-comment"># Only applies if global is true.</span></span><br><span class="line">  <span class="hljs-comment"># Sets all alerts in state-changes-only mode,</span></span><br><span class="line">  <span class="hljs-comment"># meaning alerts will only be sent if the alert state changes.</span></span><br><span class="line">  state-changes-only = false</span><br><span class="line"><span class="hljs-comment"># ...</span></span><br></pre></td></tr></table></figure></p>
+<p>Optional features include supported alert handlers, Docker services, user defined functions, input services, and discovery services.</p>
+<h5><span id="supported-event-handlers">Supported event handlers</span></h5><p>Event handlers manage communications from Kapacitor to third party services or<br>across Internet standard messaging protocols.<br>They are activated through chaining methods on the <a href="/kapacitor/v1.5/nodes/alert_node/">Alert</a> node.</p>
+<p>Most of the handler configurations include common properties.<br>Every handler has the property <code>enabled</code>.  They also need an endpoint to which<br>messages can be sent.<br>Endpoints may include single properties (e.g, <code>url</code> and <code>addr</code>) or property pairs (e.g., <code>host</code> and <code>port</code>).<br>Most also include an authentication mechanism such as a <code>token</code> or a pair of properties like <code>username</code> and <code>password</code>.<br>A sample SMTP configuration is shown in Example 11 above.</p>
+<p>Specific properties are included directly in the configuration file and<br>discussed along with the specific handler information in the <a href="/kapacitor/v1.5/nodes/alert_node/">Alert</a><br>document.</p>
+<p>The following handlers are currently supported:</p>
+<ul>
+<li><a href="/kapacitor/v1.5/event_handlers/alerta/">Alerta</a>: Sending alerts to Alerta.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/email/">Email</a>: To send alerts by email.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/hipchat/">HipChat</a>: Sending alerts to the HipChat service.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/kafka/">Kafka</a>: Sending alerts to an Apache Kafka cluster.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/mqtt/">MQTT</a>: Publishing alerts to an MQTT broker.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/opsgenie/v2/">OpsGenie</a>: Sending alerts to the OpsGenie service.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/pagerduty/v2/">PagerDuty</a>: Sending alerts to the PagerDuty service.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/pushover/">Pushover</a>: Sending alerts to the Pushover service.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/sensu/">Sensu</a>: Sending alerts to Sensu.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/slack/">Slack</a>: Sending alerts to Slack.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/snmptrap/">SNMP Trap</a>: Posting to SNMP traps.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/talk/">Talk</a>: Sending alerts to the Talk service.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/telegram/">Telegram</a>: Sending alerts to Telegram.</li>
+<li><a href="/kapacitor/v1.5/event_handlers/victorops/">VictorOps</a>: Sending alerts to the VictorOps service.</li>
+</ul>
+<h5><span id="docker-services">Docker services</span></h5><p>Kapacitor can be used to trigger changes in Docker clusters.  This<br>is activated by the <a href="/kapacitor/v1.5/nodes/swarm_autoscale_node/">SwarmAutoScale</a><br>and the <a href="/kapacitor/v1.5/nodes/k8s_autoscale_node/">K8sAutoScale</a> nodes.</p>
+<p>The following service configurations corresponding to these chaining methods can<br>be found in the configuration file:</p>
+<ul>
+<li><p><a href="/kapacitor/v1.5/nodes/swarm_autoscale_node/">Swarm</a></p>
+</li>
+<li><p><em>Example 12 &#x2013; The Docker Swarm configuration*</em></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> ...</span><br><span class="line"> <span class="hljs-section">[[swarm]]</span></span><br><span class="line"><span class="hljs-comment"># Enable/Disable the Docker Swarm service.</span></span><br><span class="line"><span class="hljs-comment"># Needed by the swarmAutoscale TICKscript node.</span></span><br><span class="line"><span class="hljs-attr">enabled</span> = <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-comment"># Unique ID for this Swarm cluster</span></span><br><span class="line"><span class="hljs-comment"># <span class="hljs-doctag">NOTE:</span> This is not the ID generated by Swarm rather a user defined</span></span><br><span class="line"><span class="hljs-comment"># ID for this cluster since Kapacitor can communicate with multiple clusters.</span></span><br><span class="line"><span class="hljs-attr">id</span> = <span class="hljs-string">&quot;&quot;</span></span><br><span class="line"><span class="hljs-comment"># List of URLs for Docker Swarm servers.</span></span><br><span class="line"><span class="hljs-attr">servers</span> = [<span class="hljs-string">&quot;http://localhost:2376&quot;</span>]</span><br><span class="line"><span class="hljs-comment"># TLS/SSL Configuration for connecting to secured Docker daemons</span></span><br><span class="line"><span class="hljs-attr">ssl-ca</span> = <span class="hljs-string">&quot;&quot;</span></span><br><span class="line"><span class="hljs-attr">ssl-cert</span> = <span class="hljs-string">&quot;&quot;</span></span><br><span class="line"><span class="hljs-attr">ssl-key</span> = <span class="hljs-string">&quot;&quot;</span></span><br><span class="line"><span class="hljs-attr">insecure-skip-verify</span> = <span class="hljs-literal">false</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p><a href="/kapacitor/v1.5/nodes/k8s_autoscale_node/">Kubernetes</a></p>
+</li>
+<li><p><em>Example: The Kubernetes configuration*</em></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"> ...</span><br><span class="line"> <span class="hljs-section">[kubernetes]</span></span><br><span class="line"><span class="hljs-comment"># Enable/Disable the kubernetes service.</span></span><br><span class="line"><span class="hljs-comment"># Needed by the k8sAutoscale TICKscript node.</span></span><br><span class="line"><span class="hljs-attr">enabled</span> = <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-comment"># There are several ways to connect to the kubernetes API servers:</span></span><br><span class="line"><span class="hljs-comment">#</span></span><br><span class="line"><span class="hljs-comment"># Via the proxy, start the proxy via the `kubectl proxy` command:</span></span><br><span class="line"><span class="hljs-comment">#   api-servers = [&quot;http://localhost:8001&quot;]</span></span><br><span class="line"><span class="hljs-comment">#</span></span><br><span class="line"><span class="hljs-comment"># From within the cluster itself, in which case</span></span><br><span class="line"><span class="hljs-comment"># kubernetes secrets and DNS services are used</span></span><br><span class="line"><span class="hljs-comment"># to determine the needed configuration.</span></span><br><span class="line"><span class="hljs-comment">#   in-cluster = true</span></span><br><span class="line"><span class="hljs-comment">#</span></span><br><span class="line"><span class="hljs-comment"># Direct connection, in which case you need to know</span></span><br><span class="line"><span class="hljs-comment"># the URL of the API servers,  the authentication token and</span></span><br><span class="line"><span class="hljs-comment"># the path to the ca cert bundle.</span></span><br><span class="line"><span class="hljs-comment"># These value can be found using the `kubectl config view` command.</span></span><br><span class="line"><span class="hljs-comment">#   api-servers = [&quot;http://192.168.99.100:8443&quot;]</span></span><br><span class="line"><span class="hljs-comment">#   token = &quot;...&quot;</span></span><br><span class="line"><span class="hljs-comment">#   ca-path = &quot;/path/to/kubernetes/ca.crt&quot;</span></span><br><span class="line"><span class="hljs-comment">#</span></span><br><span class="line"><span class="hljs-comment"># Kubernetes can also serve as a discoverer for scrape targets.</span></span><br><span class="line"><span class="hljs-comment"># In that case the type of resources to discoverer must be specified.</span></span><br><span class="line"><span class="hljs-comment"># Valid values are: &quot;node&quot;, &quot;pod&quot;, &quot;service&quot;, and &quot;endpoint&quot;.</span></span><br><span class="line"><span class="hljs-comment">#   resource = &quot;pod&quot;</span></span><br><span class="line"> ...</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h5><span id="user-defined-functions-udfs">User defined functions (UDFs)</span></h5><p>Kapacitor can be used to plug in a user defined function<br>(<a href="/kapacitor/v1.5/nodes/u_d_f_node/">UDF</a>), which can then be leveraged as<br>chaining methods in a TICKscript.<br>A user defined function is indicated by the declaration of a new grouping table with the following identifier: <code>[udf.functions.&lt;UDF_NAME&gt;]</code>.<br>A UDF configuration requires a path to an executable, identified by the following properties:</p>
+<ul>
+<li><code>prog</code>: A string indicating the path to the executable.</li>
+<li><code>args</code>: An array of string arguments to be passed to the executable.</li>
+<li><code>timeout</code>: A timeout monitored when waiting for communications from the executable.</li>
+</ul>
+<p>The UDF can also include a group of environment variables declared in a table<br>identified by the string <code>udf.functions.&lt;UDF_NAME&gt;.env</code>.</p>
+<p>   <strong>Example: Configuring a User Defined Function</strong></p>
+<p>   <figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">   ...</span><br><span class="line">   <span class="hljs-section">[udf]</span></span><br><span class="line"><span class="hljs-comment"># Configuration for UDFs (User Defined Functions)</span></span><br><span class="line"><span class="hljs-section">[udf.functions]</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="hljs-comment"># Example python UDF.</span></span><br><span class="line">    <span class="hljs-comment"># Use in TICKscript like:</span></span><br><span class="line">    <span class="hljs-comment">#   stream.pyavg()</span></span><br><span class="line">    <span class="hljs-comment">#           .field(&apos;value&apos;)</span></span><br><span class="line">    <span class="hljs-comment">#           .size(10)</span></span><br><span class="line">    <span class="hljs-comment">#           .as(&apos;m_average&apos;)</span></span><br><span class="line">    <span class="hljs-comment">#</span></span><br><span class="line">    <span class="hljs-section">[udf.functions.pyavg]</span></span><br><span class="line">       prog = &quot;/usr/bin/python2&quot;</span><br><span class="line">       args = [&quot;-u&quot;, &quot;./udf/agent/examples/moving_avg.py&quot;]</span><br><span class="line">       timeout = &quot;10s&quot;</span><br><span class="line">       <span class="hljs-section">[udf.functions.pyavg.env]</span></span><br><span class="line">           PYTHONPATH = &quot;./udf/agent/py&quot;</span><br><span class="line">   ...</span><br></pre></td></tr></table></figure></p>
+<p>Additional examples can be found directly in the default configuration file.</p>
+<h5><span id="input-methods">Input methods</span></h5><p>Kapacitor can receive and process data from sources other than InfluxDB, and the results of this processing can then be written to an InfluxDB database.</p>
+<p>Currently, the following two sources external to InfluxDB are supported:</p>
+<ul>
+<li><strong>Collectd</strong>: The POSIX daemon <code>collectd</code> for collecting system, network and service performance data.</li>
+<li><strong>Opentsdb</strong>: The Open Time Series Database (Opentsdb) and its daemon tsd.</li>
+</ul>
+<p>Configuration of connections to third party input sources requires properties such as:</p>
+<ul>
+<li><code>bind-address</code>: Address at which Kapacitor will receive data.</li>
+<li><code>database</code>: Database to which Kapacitor will write data.</li>
+<li><code>retention-policy</code>: Retention policy for that database.</li>
+<li><code>batch-size</code>: Number of datapoints to buffer before writing.</li>
+<li><code>batch-pending</code>: Number of batches that may be pending in memory.</li>
+<li><code>batch-timeout</code>: Length of time to wait before writing the batch.  If<br>the batch size has not been reached, then a short batch will be written.</li>
+</ul>
+<p>Each input source has additional properties specific to its configuration.  They<br>follow the same configurations for these services used in<br><a href="https://github.com/influxdata/influxdb/blob/master/etc/config.sample.toml" target="_blank" rel="noopener">Influxdb</a>.</p>
+<p><strong>Example: Collectd configuration</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[collectd]</span></span><br><span class="line">  enabled = false</span><br><span class="line">  bind-address = &quot;:25826&quot;</span><br><span class="line">  database = &quot;collectd&quot;</span><br><span class="line">  retention-policy = &quot;&quot;</span><br><span class="line">  batch-size = 1000</span><br><span class="line">  batch-pending = 5</span><br><span class="line">  batch-timeout = &quot;10s&quot;</span><br><span class="line">  typesdb = &quot;/usr/share/collectd/types.db&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p><strong>Example 16 &#x2013; Opentsdb configuration</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[opentsdb]</span></span><br><span class="line">  enabled = false</span><br><span class="line">  bind-address = &quot;:4242&quot;</span><br><span class="line">  database = &quot;opentsdb&quot;</span><br><span class="line">  retention-policy = &quot;&quot;</span><br><span class="line">  consistency-level = &quot;one&quot;</span><br><span class="line">  tls-enabled = false</span><br><span class="line">  certificate = &quot;/etc/ssl/influxdb.pem&quot;</span><br><span class="line">  batch-size = 1000</span><br><span class="line">  batch-pending = 5</span><br><span class="line">  batch-timeout = &quot;1s&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p><strong>User Datagram Protocol (UDP)</strong></p>
+<p>As demonstrated in the <a href="/kapacitor/v1.5/guides/live_leaderboard/">Live Leaderboard</a><br>guide and the <a href="https://github.com/influxdb/kapacitor/tree/master/examples/scores" target="_blank" rel="noopener">Scores</a><br>example, Kapacitor can be configured to accept raw data from a UDP connection.</p>
+<p>This is configured much like other input services.</p>
+<p><strong>Example: UDP configuration</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[[udp]]</span></span><br><span class="line">  enabled = true</span><br><span class="line">  bind-address = &quot;:9100&quot;</span><br><span class="line">  database = &quot;game&quot;</span><br><span class="line">  retention-policy = &quot;autogen&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h4><span id="service-discovery-and-metric-scraping">Service discovery and metric scraping</span></h4><p>When the number and addresses of the hosts and services for which Kapacitor<br>should collect information are not known at the time of configuring or booting<br>the Kapacitor service, they can be determined, and the data collected, at runtime<br>with the help of discovery services.<br>This process is known as metric <em>scraping and discovery</em>.<br>For more information, see <a href="/kapacitor/v1.5/pull_metrics/scraping-and-discovery/">Scraping and Discovery</a>.</p>
+<p>For scraping and discovery to work one or more scrapers must be configured. One<br>scraper can be bound to one discovery service.</p>
+<p><strong>Example: Scraper configuration</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[[scraper]]</span></span><br><span class="line">  enabled = false</span><br><span class="line">  name = &quot;myscraper&quot;</span><br><span class="line">  <span class="hljs-comment"># Specify the id of a discoverer service specified below</span></span><br><span class="line">  discoverer-id = &quot;goethe-ec2&quot;</span><br><span class="line">  <span class="hljs-comment"># Specify the type of discoverer service being used.</span></span><br><span class="line">  discoverer-service = &quot;ec2&quot;</span><br><span class="line">  db = &quot;prometheus_raw&quot;</span><br><span class="line">  rp = &quot;autogen&quot;</span><br><span class="line">  type = &quot;prometheus&quot;</span><br><span class="line">  scheme = &quot;http&quot;</span><br><span class="line">  metrics-path = &quot;/metrics&quot;</span><br><span class="line">  scrape-interval = &quot;1m0s&quot;</span><br><span class="line">  scrape-timeout = &quot;10s&quot;</span><br><span class="line">  username = &quot;schwartz.pudel&quot;</span><br><span class="line">  password = &quot;f4usT!1808&quot;</span><br><span class="line">  bearer-token = &quot;&quot;</span><br><span class="line">  ssl-ca = &quot;&quot;</span><br><span class="line">  ssl-cert = &quot;&quot;</span><br><span class="line">  ssl-key = &quot;&quot;</span><br><span class="line">  ssl-server-name = &quot;&quot;</span><br><span class="line">  insecure-skip-verify = false</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>The example above is illustrative only.</p>
+<h6><span id="discovery-services">Discovery services</span></h6><p>Kapacitor currently supports 12 discovery services.<br>Each of these has an <code>id</code> property by which it will be bound to a scraper.</p>
+<p>Configuration entries are prepared by default for the following discovery<br>services:</p>
+<ul>
+<li>Azure</li>
+<li>Consul</li>
+<li>DNS</li>
+<li>EC2</li>
+<li>File Discovery</li>
+<li>GCE</li>
+<li>Marathon</li>
+<li>Nerve</li>
+<li>ServerSet</li>
+<li>Static Discovery</li>
+<li>Triton</li>
+<li>UDP</li>
+</ul>
+<p><strong>Example: EC2 Discovery Service configuration</strong></p>
+<p><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-section">[[ec2]]</span></span><br><span class="line">  enabled = false</span><br><span class="line">  id = &quot;goethe-ec2&quot;</span><br><span class="line">  region = &quot;us-east-1&quot;</span><br><span class="line">  access-key = &quot;ABCD1234EFGH5678IJKL&quot;</span><br><span class="line">  secret-key = &quot;1nP00dl3N01rM4Su1v1Ju5qU3ch3ZM01&quot;</span><br><span class="line">  profile = &quot;mph&quot;</span><br><span class="line">  refresh-interval = &quot;1m0s&quot;</span><br><span class="line">  port = 80</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>The above example is illustrative.</p>
+<h2><span id="kapacitor-environment-variables">Kapacitor environment variables</span></h2><p>Kapacitor can use environment variables for high-level properties or to<br>override properties in the configuration file.</p>
+<h3><span id="environment-variables-not-in-configuration-file">Environment variables not in configuration file</span></h3><p>These variables are not found in the configuration file.</p>
+<ul>
+<li><code>KAPACITOR_OPTS</code>: Found in the <code>systemd</code> startup script and used to pass<br>command line options to <code>kapacitord</code> started by <code>systemd</code>.</li>
+<li><code>KAPACITOR_CONFIG_PATH</code>: Sets the path to the configuration file.</li>
+<li><code>KAPACITOR_URL</code>: Used by the client application <code>kapacitor</code> to locate<br>the <code>kapacitord</code> service.</li>
+<li><code>KAPACITOR_UNSAFE_SSL</code>: A Boolean used by the client application <code>kapacitor</code><br>to skip verification of the <code>kapacitord</code> certificate when connecting over SSL.</li>
+</ul>
+<h3><span id="mapping-properties-to-environment-variables">Mapping properties to environment variables</span></h3><p>Kapacitor-specific environment variables begin with the token <code>KAPACITOR</code><br>followed by an underscore (<code>_</code>).<br>Properties then follow their path through the configuration file tree with each node in the tree separated by an underscore.<br>Dashes in configuration file identifiers are replaced with underscores.<br>Table groupings in table arrays are identified by integer tokens.</p>
+<p>Examples:</p>
+<ul>
+<li><code>KAPACITOR_SKIP_CONFIG_OVERRIDES</code>: Could be used to set the value for<br><code>skip-config-overrides</code>.</li>
+<li><code>KAPACITOR_INFLUXDB_0_URLS_0</code>: Could be used to set the value of the<br>first URL item in the URLS array in the first Influxdb property grouping table,<br>i.e. <code>[infludxb][0].[urls][0]</code>.</li>
+<li><code>KAPACITOR_STORAGE_BOLTDB</code>: Could be used to set the path to the boltdb<br>directory used for storage, i.e. <code>[storage].botldb</code>.</li>
+<li><code>KAPACITOR_HTTPPOST_0_HEADERS_Authorization</code>: Could be used to set the<br>value of the <code>authorization</code> header for the first HTTPPost configuration (<code>[httppost][0].headers.{authorization:&quot;some_value&quot;}</code>).</li>
+<li><code>KAPACITOR_KUBERNETES_ENABLED</code>: Could be used to enable the Kubernetes<br>configuration service (<code>[kubernetes].enabled</code>).</li>
+</ul>
+<h2><span id="configuring-with-the-http-api">Configuring with the HTTP API</span></h2><p>The Kapacitor <a href="/kapacitor/v1.5/working/api/">HTTP API</a> can also be used to override<br>certain parts of the configuration.<br>This can be useful when a property may contain security sensitive information that should not be left in plain view in the file system, or when you need to reconfigure a service without restarting Kapacitor.<br>To view which parts of the configuration are available,<br>pull the JSON file at the <code>/kapacitor/v1/config</code> endpoint.<br>(e.g., http<span>:</span><span>//</span>localhost:9092<span>/</span>kapacitor<span>/</span>v1<span>/</span>config).</p>
+<p>Working with the HTTP API to override configuration properties is presented in<br>detail in the <a href="/kapacitor/v1.5/working/api/#overriding-configurations">Configuration</a> section<br>of the HTTP API document.<br>In order for overrides over the HTTP API to work,<br>the <code>[config-override].enabled</code> property must be set to <code>true</code>.</p>
+<p>Generally, specific sections of the configuration can be viewed as JSON files by<br>GETting them from the context path built by their identifier from the <code>config</code><br>endpoint.<br>For example, to get the table groupings of InfluxDB properties,<br>use the context <code>/kapacitor/v1/config/influxdb</code>.<br>Security-sensitive fields such as passwords, keys, and security tokens are redacted when using GET.</p>
+<p>Properties can be altered by POSTing a JSON document to the endpoint.<br>The JSON document must contain a <code>set</code> field with a map of the properties to override and<br>their new values.</p>
+<p><strong>Example: JSON file for enabling the SMTP configuration</strong></p>
+<p><figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="hljs-attr">&quot;set&quot;</span>:{</span><br><span class="line">        <span class="hljs-attr">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>By POSTing this document to the <code>/kapacitor/v1/config/smtp/</code> endpoint, the SMTP<br>service can be enabled.</p>
+<p>Property overrides can be removed with the <code>delete</code> field in the JSON document.</p>
+<p><strong>Example: JSON file for removing an SMTP override</strong></p>
+<p><figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="hljs-attr">&quot;delete&quot;</span>:[</span><br><span class="line">        <span class="hljs-string">&quot;enabled&quot;</span></span><br><span class="line">    ]</span><br><span class="line">}</span><br></pre></td></tr></table></figure><br>By POSTing this document to the <code>/kapacitor/v1/config/smtp/</code> endpoint the SMTP<br>override is removed and Kapacitor reverts to the behavior defined in the<br>configuration file.</p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6/">#监控告警</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/TICK%E6%8A%80%E6%9C%AF%E6%A0%88/">#TICK技术栈</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Kapcitor%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">#Kapcitor配置文件</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/04/14/booboo_tick/kapacitor/04_Kapacitor%E5%91%BD%E4%BB%A4%E8%A1%8C/A_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/">04-Kapcitor命令行-A-基础命令</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/I_TICKscriptLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">02-TICKscript语言-I-Lambda表达式</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2020/04/14/booboo_tick/kapacitor/03_Kapacitor配置文件/A_Kapacitor配置文件简介/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+</div>
+
+
+    </div>
+</section>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span> 人次 </span>
+           </div>
+
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+    
+</body>
+</html>

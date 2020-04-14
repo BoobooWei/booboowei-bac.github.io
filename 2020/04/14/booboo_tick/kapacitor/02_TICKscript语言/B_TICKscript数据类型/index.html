@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>02-TICKscript语言-B-数据类型 - 归去来兮</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+
+
+
+
+
+
+
+
+    <meta name="description" content="TICKscript &amp;#x6570;&amp;#x636E;&amp;#x7C7B;&amp;#x578B; &amp;#x5E03;&amp;#x5C14;&amp;#x503C; Booleans &amp;#x6570;&amp;#x5B57;&amp;#x578B; Int64 AND Float64 &amp;#x6301;&amp;#x7EED;&amp;#x65F6;&amp;#x95F4; Duration &amp;#x5B57;&amp;#x7B26;&amp;#x4E32; &amp;#x5B57;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02-TICKscript语言-B-数据类型">
+<meta property="og:url" content="http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/B_TICKscript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="TICKscript &amp;#x6570;&amp;#x636E;&amp;#x7C7B;&amp;#x578B; &amp;#x5E03;&amp;#x5C14;&amp;#x503C; Booleans &amp;#x6570;&amp;#x5B57;&amp;#x578B; Int64 AND Float64 &amp;#x6301;&amp;#x7EED;&amp;#x65F6;&amp;#x95F4; Duration &amp;#x5B57;&amp;#x7B26;&amp;#x4E32; &amp;#x5B57;&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-14T11:28:44.000Z">
+<meta property="article:modified_time" content="2020-04-14T04:30:09.969Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="监控告警">
+<meta property="article:tag" content="TICK技术栈">
+<meta property="article:tag" content="TICKscript语言">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="归去来兮" type="application/atom+xml">
+</head>
+<body>
+    
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+    <div class="row">
+        <!--左侧只占一个格子 -->
+        <div class="col-md-1">
+            <div class="navbar-brand">
+                <a class="navbar-item navbar-logo" href="/">
+                    
+                        
+                        <img src="/images/influx.svg" alt="" height="28">
+                        
+                    
+                </a>
+                <div class="navbar-burger">
+                    <span>
+                    </span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--中间自适应 -->
+        <div class="col-md-10">
+            
+            <div class="navbar-menu navbar-start">
+                
+                <a class="navbar-item "
+                   href="/archives/">最近更新</a>
+                
+                <a class="navbar-item "
+                   href="/tags/">标签</a>
+                
+
+                <!-- BoobooWei自动根据已有的category创建-->
+            
+
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <!--循环category 生成navbar代码-->
+                        
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="往昔追忆">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/" data-rel="经典语录">经典语录</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="培训教程">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术广角">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Minos%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/" data-rel="Minos主题优化">Minos主题优化</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术峰会"><i class="fold iconfont icon-right"></i>技术峰会</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术峰会">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Azure/" data-rel="Azure">Azure</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Aliyun/" data-rel="Aliyun">Aliyun</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="TICK"><i class="fold iconfont icon-right"></i>TICK</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="TICK">
+                                    
+                                    <a class="dropdown-item" href="/categories/TICK/kapacitor/" data-rel="kapacitor">kapacitor</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                </ul>
+              </div>
+            </nav>
+
+            <!-- 自动根据已有的category创建-->
+        </div>
+        
+
+        </div>
+
+
+        <!--最右侧 -->
+        <div class="col-md-1">
+
+            <div class="navbar-menu navbar-end">
+                
+                <a class="navbar-item" title="movie" href="/movies/">
+                    <svg t="1586342683221" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1766" width="20" height="20"><path d="M914.044 898.826H109.956c-20.435 0-37-16.565-37-37V280.131c0-20.435 16.565-37 37-37h804.088c20.435 0 37 16.565 37 37v581.695c0 20.435-16.565 37-37 37z m-767.088-74h730.088V317.131H146.956v507.695zM322.739 199.174H113c-20.435 0-37-16.565-37-37s16.565-37 37-37h209.739c20.435 0 37 16.565 37 37s-16.565 37-37 37z" p-id="1767" fill="#2c2c2c"></path><path d="M457.932 752.856A37.002 37.002 0 0 1 420.937 716l-1.122-287.64a37.003 37.003 0 0 1 20.769-33.395 37.006 37.006 0 0 1 39.104 4.167l184.107 144.792a37 37 0 0 1-0.105 58.248L480.704 745.021a36.982 36.982 0 0 1-22.772 7.835z m36.181-248.234l0.528 135.641 86.29-67.361-86.818-68.28z" p-id="1768" fill="#2c2c2c"></path></svg>
+                </a>
+                <a class="navbar-item" title="movie" href="/books/">
+                    <svg t="1586350091188" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2280" width="20" height="20"><path d="M306.4 773.3h188v16.3c0 13.8 11.2 25 25 25s25-11.2 25-25v-16.3h180.5c68.9 0 125-56.1 125-125V295.4c0-68.9-56.1-125-125-125H549.6c-10.7 0-19.9 6.8-23.4 16.3-2.1-0.6-4.4-0.9-6.7-0.9-2 0-3.9 0.2-5.8 0.7-3.6-9.4-12.7-16-23.3-16h-184c-68.9 0-125 56.1-125 125v352.9c0 68.8 56.1 124.9 125 124.9z m418.5-552.9c41.4 0 75 33.6 75 75v352.9c0 41.4-33.6 75-75 75H544.4V219.9c1.7 0.4 3.4 0.5 5.2 0.5h175.3z m-493.5 75c0-41.4 33.6-75 75-75h183.9c1.4 0 2.8-0.1 4.1-0.3v503.2h-188c-41.4 0-75-33.6-75-75V295.4z" p-id="2281"></path><path d="M901.5 314.3c-11 0-20 9-20 20v384c0 44.1-35.9 80-80 80H615.3c-5.6 0-11 2.4-14.8 6.5l-25.9 28.4c-2 2.2-4.9 3.5-7.9 3.5H459c-2.9 0-5.6-1.1-7.6-3.1L425.8 808c-3.8-3.8-8.8-5.9-14.1-5.9H224.8c-44.1 0-80-35.9-80-80V343.9c0-11-9-20-20-20s-20 9-20 20v378.3c0 66.2 53.8 120 120 120h178.5l19.7 19.7c9.6 9.6 22.3 14.9 35.9 14.9h107.7c14.2 0 27.9-6 37.5-16.5l20-21.9h177.4c66.2 0 120-53.8 120-120v-384c0-11.1-9-20.1-20-20.1z" p-id="2282"></path><path d="M297.5 341.4h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 408.6h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 506.5h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20z" p-id="2283"></path></svg>
+                </a>
+                
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                        
+                        
+                        <a class="navbar-item" href="#TICKscript-&#x6570;&#x636E;&#x7C7B;&#x578B;">1&nbsp;&nbsp;<b>TICKscript &#x6570;&#x636E;&#x7C7B;&#x578B;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5E03;&#x5C14;&#x503C;-Booleans">1.1&nbsp;&nbsp;&#x5E03;&#x5C14;&#x503C; Booleans</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x793A;&#x4F8B;3---&#x5E03;&#x5C14;&#x503C;">1.1.1&nbsp;&nbsp;&#x793A;&#x4F8B;3 - &#x5E03;&#x5C14;&#x503C;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6570;&#x5B57;&#x578B;-Int64-AND-Float64">1.2&nbsp;&nbsp;&#x6570;&#x5B57;&#x578B; Int64 AND Float64</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4F8B;4---&#x6570;&#x5B57;&#x578B;">1.2.1&nbsp;&nbsp;&#x4F8B;4 - &#x6570;&#x5B57;&#x578B;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6301;&#x7EED;&#x65F6;&#x95F4;-Duration">1.3&nbsp;&nbsp;&#x6301;&#x7EED;&#x65F6;&#x95F4; Duration</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x793A;&#x4F8B;5---&#x6301;&#x7EED;&#x65F6;&#x95F4;&#x8868;&#x8FBE;&#x5F0F;">1.3.1&nbsp;&nbsp;&#x793A;&#x4F8B;5 - &#x6301;&#x7EED;&#x65F6;&#x95F4;&#x8868;&#x8FBE;&#x5F0F;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B57;&#x7B26;&#x4E32;">1.4&nbsp;&nbsp;&#x5B57;&#x7B26;&#x4E32;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4F8B;6---&#x57FA;&#x672C;&#x5B57;&#x7B26;&#x4E32;">1.4.1&nbsp;&nbsp;&#x4F8B;6 - &#x57FA;&#x672C;&#x5B57;&#x7B26;&#x4E32;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4F8B;7---&#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;">1.4.2&nbsp;&nbsp;&#x4F8B;7 - &#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;">1.5&nbsp;&nbsp;&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x793A;&#x4F8B;8---&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;&#x5185;&#x7684;&#x53D8;&#x91CF;">1.5.1&nbsp;&nbsp;&#x793A;&#x4F8B;8 - &#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;&#x5185;&#x7684;&#x53D8;&#x91CF;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;">1.6&nbsp;&nbsp;&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x793A;&#x4F8B;9---&#x6807;&#x51C6;&#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;">1.6.1&nbsp;&nbsp;&#x793A;&#x4F8B;9 - &#x6807;&#x51C6;&#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x793A;&#x4F8B;10---&#x6A21;&#x677F;&#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;">1.6.2&nbsp;&nbsp;&#x793A;&#x4F8B;10 - &#x6A21;&#x677F;&#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;">1.7&nbsp;&nbsp;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4F8B;11---&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;">1.7.1&nbsp;&nbsp;&#x4F8B;11 - &#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Lambda&#x8868;&#x8FBE;&#x5F0F;">1.8&nbsp;&nbsp;Lambda&#x8868;&#x8FBE;&#x5F0F;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4F8B;12--Lambda&#x8868;&#x8FBE;&#x5F0F;">1.8.1&nbsp;&nbsp;&#x4F8B;12- Lambda&#x8868;&#x8FBE;&#x5F0F;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x8282;&#x70B9;">1.9&nbsp;&nbsp;&#x8282;&#x70B9;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4F8B;13---&#x8282;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;">1.9.1&nbsp;&nbsp;&#x4F8B;13 - &#x8282;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x6570;&#x636E;&#x7C7B;&#x578B;&#x8F6C;&#x6362;">2&nbsp;&nbsp;<b>&#x6570;&#x636E;&#x7C7B;&#x578B;&#x8F6C;&#x6362;</b></a>
+                        
+                    </div>
+                </div>
+                
+                
+                <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                   
+                
+            </div>
+        </div>
+</div>
+</div>
+</nav>
+
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            02-TICKscript语言-B-数据类型
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-04-14T11:28:44.000Z" itemprop="datePublished">4月 14 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/TICK/">TICK</a><span>></span><a class="article-category-link" href="/categories/TICK/kapacitor/">kapacitor</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            18 分钟 读完 (约 2633 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+<ul>
+<li><a href="#tickscript-&#x6570;&#x636E;&#x7C7B;&#x578B;">TICKscript &#x6570;&#x636E;&#x7C7B;&#x578B;</a><ul>
+<li><a href="#&#x5E03;&#x5C14;&#x503C;-booleans">&#x5E03;&#x5C14;&#x503C; Booleans</a></li>
+<li><a href="#&#x6570;&#x5B57;&#x578B;-int64-and-float64">&#x6570;&#x5B57;&#x578B; Int64 AND Float64</a></li>
+<li><a href="#&#x6301;&#x7EED;&#x65F6;&#x95F4;-duration">&#x6301;&#x7EED;&#x65F6;&#x95F4; Duration</a></li>
+<li><a href="#&#x5B57;&#x7B26;&#x4E32;">&#x5B57;&#x7B26;&#x4E32;</a></li>
+<li><a href="#&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;">&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;</a></li>
+<li><a href="#&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;">&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;</a></li>
+<li><a href="#&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;">&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</a></li>
+<li><a href="#lambda&#x8868;&#x8FBE;&#x5F0F;">Lambda&#x8868;&#x8FBE;&#x5F0F;</a><pre><code>- [&#x8282;&#x70B9;](#&#x8282;&#x70B9;)</code></pre></li>
+</ul>
+</li>
+<li><a href="#&#x6570;&#x636E;&#x7C7B;&#x578B;&#x8F6C;&#x6362;">&#x6570;&#x636E;&#x7C7B;&#x578B;&#x8F6C;&#x6362;</a></li>
+</ul>
+<!-- /TOC -->
+
+<h1><span id="tickscript-&#x6570;&#x636E;&#x7C7B;&#x578B;">TICKscript &#x6570;&#x636E;&#x7C7B;&#x578B;</span></h1><p>TICKscript&#x5305;&#x542B;9&#x79CD;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x7C7B;&#x578B;</strong></th>
+<th><strong>&#x8BF4;&#x660E;</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Booleans</strong></td>
+<td>&#x5E03;&#x5C14;&#x503C; <code>TRUE</code>&#x3001;<code>FALSE</code></td>
+</tr>
+<tr>
+<td><strong>String</strong></td>
+<td>&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+<tr>
+<td><strong>Int64</strong></td>
+<td>&#x6574;&#x578B;</td>
+</tr>
+<tr>
+<td><strong>Float64</strong></td>
+<td>&#x6D6E;&#x70B9;&#x578B;</td>
+</tr>
+<tr>
+<td><strong>Duration</strong></td>
+<td>&#x6301;&#x7EED;&#x65F6;&#x95F4;</td>
+</tr>
+<tr>
+<td><strong>String Lists</strong></td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;</td>
+</tr>
+<tr>
+<td><strong>Regular expressions</strong></td>
+<td>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</td>
+</tr>
+<tr>
+<td><strong>Lambda expressions</strong></td>
+<td>Lambda&#x8868;&#x8FBE;&#x5F0F;</td>
+</tr>
+<tr>
+<td><strong>Nodes</strong></td>
+<td>&#x8282;&#x70B9;</td>
+</tr>
+</tbody></table>
+<h2><span id="&#x5E03;&#x5C14;&#x503C;-booleans">&#x5E03;&#x5C14;&#x503C; Booleans</span></h2><p>&#x4F7F;&#x7528;&#x5E03;&#x5C14;&#x5173;&#x952E;&#x5B57;&#x751F;&#x6210;&#x5E03;&#x5C14;&#x503C;&#xFF1A;<code>TRUE</code>&#x548C;<code>FALSE</code>&#x3002;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x8FD9;&#x4E9B;&#x5173;&#x952E;&#x5B57;&#x4F7F;&#x7528;&#x5168;&#x90E8;&#x5927;&#x5199;&#x5B57;&#x6BCD;&#x3002;&#x4F7F;&#x7528;&#x5C0F;&#x5199;&#x5B57;&#x7B26;&#x65F6;&#xFF0C;&#x89E3;&#x6790;&#x5668;&#x5C06;&#x629B;&#x51FA;&#x9519;&#x8BEF;&#xFF0C;&#x4F8B;&#x5982;<code>True</code>&#x6216;<code>true</code>&#x3002;</p>
+<h3><span id="&#x793A;&#x4F8B;3-&#x5E03;&#x5C14;&#x503C;">&#x793A;&#x4F8B;3 - &#x5E03;&#x5C14;&#x503C;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> true_bool = TRUE</span><br><span class="line">...</span><br><span class="line">   |flatten()</span><br><span class="line">       .on(<span class="hljs-string">&apos;host&apos;</span>,<span class="hljs-string">&apos;port&apos;</span>)</span><br><span class="line">       .dropOriginalFieldName(FALSE)</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;3&#x4E2D;&#xFF0C;&#x7B2C;&#x4E00;&#x884C;&#x663E;&#x793A;&#x4E86;&#x4F7F;&#x7528;&#x5E03;&#x5C14;&#x503C;&#x7684;&#x7B80;&#x5355;&#x8D4B;&#x503C;&#x3002;&#x7B2C;&#x4E8C;&#x4E2A;&#x793A;&#x4F8B;&#x663E;&#x793A;<code>FALSE</code>&#x5728;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E2D;&#x4F7F;&#x7528;&#x5E03;&#x5C14;&#x503C;&#x3002;</p>
+<h2><span id="&#x6570;&#x5B57;&#x578B;-int64-and-float64">&#x6570;&#x5B57;&#x578B; Int64 AND Float64</span></h2><p>&#x4EFB;&#x4F55;&#x53EA;&#x5305;&#x542B;&#x6570;&#x5B57;&#x548C;&#x53EF;&#x9009;&#x7684;&#x5C0F;&#x6570;&#x7684;&#x6587;&#x5B57;&#x6807;&#x8BB0;&#x90FD;&#x5C06;&#x5BFC;&#x81F4;&#x751F;&#x6210;&#x6570;&#x5B57;&#x7C7B;&#x578B;&#x7684;&#x5B9E;&#x4F8B;&#x3002;TICKscript&#x4E86;&#x89E3;&#x57FA;&#x4E8E;Go&#x7684;&#x4E24;&#x79CD;&#x6570;&#x5B57;&#x7C7B;&#x578B;&#xFF1A;<code>int64</code>&#x548C;<code>float64</code>&#x3002;&#x4EFB;&#x4F55;&#x5305;&#x542B;&#x5C0F;&#x6570;&#x70B9;&#x7684;&#x6570;&#x5B57;&#x6807;&#x8BB0;&#x90FD;&#x5C06;&#x5BFC;&#x81F4;&#x521B;&#x5EFA;<code>float64</code>&#x503C;&#x3002;&#x4EFB;&#x4F55;&#x4EE5;&#x4E0D;&#x5305;&#x542B;&#x5C0F;&#x6570;&#x70B9;&#x7ED3;&#x675F;&#x7684;&#x6570;&#x5B57;&#x6807;&#x8BB0;&#x90FD;&#x5C06;&#x5BFC;&#x81F4;&#x521B;&#x5EFA;<code>int64</code>&#x503C;&#x3002;&#x5982;&#x679C;&#x6574;&#x6570;&#x4EE5;&#x96F6;&#x5B57;&#x7B26;&#x4E3A;&#x524D;&#x7F00;<code>0</code>&#xFF0C;&#x5219;&#x5C06;&#x5176;&#x89E3;&#x91CA;&#x4E3A;&#x516B;&#x8FDB;&#x5236;&#x3002;</p>
+<h3><span id="&#x4F8B;4-&#x6570;&#x5B57;&#x578B;">&#x4F8B;4 - &#x6570;&#x5B57;&#x578B;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> my_int = <span class="hljs-number">6</span></span><br><span class="line"><span class="hljs-keyword">var</span> my_float = <span class="hljs-number">2.71828</span></span><br><span class="line"><span class="hljs-keyword">var</span> my_octal = <span class="hljs-number">0400</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>&#x5728;&#x4F8B;4&#x4E2D;<code>my_int</code>&#x7684;&#x7C7B;&#x578B;&#x7684;<code>int64</code>&#xFF0C;<code>my_float</code>&#x662F;&#x7C7B;&#x578B;<code>float64</code>&#x548C;<code>my_octal</code>&#x7C7B;&#x578B;&#x4E3A;<code>int64</code>&#x516B;&#x8FDB;&#x5236;&#x3002;</p>
+<h2><span id="&#x6301;&#x7EED;&#x65F6;&#x95F4;-duration">&#x6301;&#x7EED;&#x65F6;&#x95F4; Duration</span></h2><p>&#x6301;&#x7EED;&#x65F6;&#x95F4;&#x6587;&#x5B57;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x3002;&#x5B83;&#x4EEC;&#x7684;&#x8BED;&#x6CD5;&#x9075;&#x5FAA;<a href="https://docs.influxdata.com/influxdb/v1.4/query_language/spec/#literals" target="_blank" rel="noopener">InfluxQL&#x4E2D;</a>&#x7684;&#x76F8;&#x540C;&#x8BED;&#x6CD5;&#x3002;&#x6301;&#x7EED;&#x65F6;&#x95F4;&#x6587;&#x5B57;&#x7531;&#x4E24;&#x90E8;&#x5206;&#x7EC4;&#x6210;&#xFF1A;&#x6574;&#x6570;&#x548C;&#x6301;&#x7EED;&#x65F6;&#x95F4;&#x5355;&#x4F4D;&#x3002;&#x5B83;&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x4E00;&#x4E2A;&#x7531;&#x4E00;&#x4E2A;&#x6216;&#x4E00;&#x5BF9;&#x4FDD;&#x7559;&#x5B57;&#x7B26;&#x7EC8;&#x6B62;&#x7684;&#x6574;&#x6570;&#xFF0C;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x65F6;&#x95F4;&#x5355;&#x4F4D;&#x3002;</p>
+<p>&#x4E0B;&#x8868;&#x663E;&#x793A;&#x4E86;&#x7528;&#x4E8E;&#x58F0;&#x660E;&#x6301;&#x7EED;&#x65F6;&#x95F4;&#x7C7B;&#x578B;&#x7684;&#x65F6;&#x95F4;&#x5355;&#x4F4D;&#x3002;</p>
+<p>&#x8868;5 - &#x6301;&#x7EED;&#x65F6;&#x95F4;&#x5355;&#x4F4D;</p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x5355;&#x5143;</strong></th>
+<th><strong>&#x542B;&#x4E49;</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u or &#x3BC;</td>
+<td>&#x5FAE;&#x79D2;&#xFF08;&#x767E;&#x4E07;&#x5206;&#x4E4B;&#x4E00;&#x79D2;&#xFF09;</td>
+</tr>
+<tr>
+<td>ms</td>
+<td>&#x6BEB;&#x79D2;&#xFF08;&#x5343;&#x5206;&#x4E4B;&#x4E00;&#x79D2;&#xFF09;</td>
+</tr>
+<tr>
+<td>s</td>
+<td>&#x79D2;</td>
+</tr>
+<tr>
+<td>m</td>
+<td>&#x5206;&#x949F;</td>
+</tr>
+<tr>
+<td>H</td>
+<td>&#x5C0F;&#x65F6;</td>
+</tr>
+<tr>
+<td>d</td>
+<td>&#x5929;</td>
+</tr>
+<tr>
+<td>w</td>
+<td>&#x5468;</td>
+</tr>
+</tbody></table>
+<h3><span id="&#x793A;&#x4F8B;5-&#x6301;&#x7EED;&#x65F6;&#x95F4;&#x8868;&#x8FBE;&#x5F0F;">&#x793A;&#x4F8B;5 - &#x6301;&#x7EED;&#x65F6;&#x95F4;&#x8868;&#x8FBE;&#x5F0F;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> span = <span class="hljs-number">10</span>s</span><br><span class="line"><span class="hljs-keyword">var</span> frequency = <span class="hljs-number">10</span>s</span><br><span class="line">...</span><br><span class="line"><span class="hljs-keyword">var</span> views = batch</span><br><span class="line">    |query(<span class="hljs-string">&apos;SELECT sum(value) FROM &quot;pages&quot;.&quot;default&quot;.views&apos;</span>)</span><br><span class="line">        .period(<span class="hljs-number">1</span>h)</span><br><span class="line">        .every(<span class="hljs-number">1</span>h)</span><br><span class="line">        .groupBy(time(<span class="hljs-number">1</span>m), *)</span><br><span class="line">        .fill(<span class="hljs-number">0</span>)</span><br></pre></td></tr></table></figure></p>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;5&#x4E2D;&#xFF0C;&#x524D;&#x4E24;&#x884C;&#x663E;&#x793A;&#x4E86;Duration&#x7C7B;&#x578B;&#x7684;&#x58F0;&#x660E;&#x3002;&#x7B2C;&#x4E00;&#x4E2A;&#x8868;&#x793A;10&#x79D2;&#x7684;&#x65F6;&#x95F4;&#x8DE8;&#x5EA6;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x8868;&#x793A;10&#x79D2;&#x7684;&#x65F6;&#x95F4;&#x8303;&#x56F4;&#x3002;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#x663E;&#x793A;&#x76F4;&#x63A5;&#x5728;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E2D;&#x58F0;&#x660E;&#x6301;&#x7EED;&#x65F6;&#x95F4;&#x3002;</p>
+<h2><span id="&#x5B57;&#x7B26;&#x4E32;">&#x5B57;&#x7B26;&#x4E32;</span></h2><p>&#x5B57;&#x7B26;&#x4E32;&#x4EE5;&#x4E00;&#x4E2A;&#x6216;&#x4E09;&#x4E2A;&#x5355;&#x5F15;&#x53F7;&#x5F00;&#x5934;&#xFF1A;<code>&apos;</code>&#x6216;<code>&apos;&apos;&apos;</code>&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x52A0;&#x6CD5;<code>+</code>&#x8FD0;&#x7B97;&#x7B26;&#x8FDE;&#x63A5;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x82E5;&#x8981;&#x8F6C;&#x4E49;&#x7531;&#x5355;&#x5F15;&#x53F7;&#x5206;&#x9694;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x5F15;&#x53F7;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x53CD;&#x659C;&#x6760;&#x5B57;&#x7B26;<code>\</code>&#x3002;&#x5982;&#x679C;&#x8981;&#x9884;&#x671F;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x5C06;&#x9047;&#x5230;&#x8BB8;&#x591A;&#x5355;&#x5F15;&#x53F7;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x4E09;&#x4E2A;&#x5355;&#x5F15;&#x53F7;&#x6765;&#x5206;&#x9694;&#x5B83;&#x3002;&#x7531;&#x4E09;&#x5F15;&#x53F7;&#x5206;&#x9694;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#x5E8F;&#x5217;&#x3002;&#x5728;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5206;&#x754C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x53CC;&#x5F15;&#x53F7;&#xFF08;&#x7528;&#x4E8E;&#x8BBF;&#x95EE;&#x5B57;&#x6BB5;&#x548C;&#x6807;&#x8BB0;&#x503C;&#xFF09;&#x800C;&#x65E0;&#x9700;&#x8F6C;&#x4E49;&#x3002;</p>
+<h3><span id="&#x4F8B;6-&#x57FA;&#x672C;&#x5B57;&#x7B26;&#x4E32;">&#x4F8B;6 - &#x57FA;&#x672C;&#x5B57;&#x7B26;&#x4E32;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> region1 = <span class="hljs-string">&apos;EMEA&apos;</span></span><br><span class="line"><span class="hljs-keyword">var</span> old_standby = <span class="hljs-string">&apos;foo&apos;</span> + <span class="hljs-string">&apos;bar&apos;</span></span><br><span class="line"><span class="hljs-keyword">var</span> query1 = <span class="hljs-string">&apos;SELECT 100 - mean(usage_idle) AS stat FROM &quot;telegraf&quot;.&quot;autogen&quot;.&quot;cpu&quot; WHERE cpu = \&apos;cpu-total\&apos; &apos;</span></span><br><span class="line"><span class="hljs-keyword">var</span> query2 = <span class="hljs-string">&apos;&apos;</span><span class="hljs-string">&apos;SELECT 100 - mean(usage_idle) AS stat FROM &quot;telegraf&quot;.&quot;autogen&quot;.&quot;cpu&quot; WHERE cpu = &apos;</span>cpu-total<span class="hljs-string">&apos; &apos;</span><span class="hljs-string">&apos;&apos;</span></span><br><span class="line">...</span><br><span class="line">batch</span><br><span class="line">   |query(<span class="hljs-string">&apos;&apos;</span><span class="hljs-string">&apos;SELECT 100 - mean(usage_idle) AS stat FROM &quot;telegraf&quot;.&quot;autogen&quot;.&quot;cpu&quot; WHERE cpu = &apos;</span>cpu-total<span class="hljs-string">&apos; &apos;</span><span class="hljs-string">&apos;&apos;</span>)</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;6&#x4E2D;&#xFF0C;&#x7B2C;&#x4E00;&#x884C;&#x663E;&#x793A;&#x4E86;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x6587;&#x5B57;&#x7684;&#x7B80;&#x5355;&#x5B57;&#x7B26;&#x4E32;&#x8D4B;&#x503C;&#x3002;<br>&#x7B2C;&#x4E8C;&#x884C;&#x4F7F;&#x7528;&#x8FDE;&#x63A5;&#x8FD0;&#x7B97;&#x7B26;&#x3002;&#x7B2C;&#x4E09;&#x884C;&#x548C;&#x7B2C;&#x56DB;&#x884C;&#x663E;&#x793A;&#x4E86;&#x4F7F;&#x7528;&#x548C;&#x4E0D;&#x4F7F;&#x7528;&#x5185;&#x90E8;&#x8F6C;&#x4E49;&#x5355;&#x5F15;&#x53F7;&#x6765;&#x58F0;&#x660E;&#x590D;&#x6742;&#x5B57;&#x7B26;&#x4E32;&#x6587;&#x5B57;&#x7684;&#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x65B9;&#x6CD5;&#x3002;<br>&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#x663E;&#x793A;&#x4E86;&#x5728;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E2D;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x6587;&#x5B57;&#x3002;</p>
+<p>&#x8981;&#x5236;&#x4F5C;&#x957F;&#x590D;&#x6742;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x66F4;&#x6613;&#x8BFB;&#x7684;&#x6362;&#x884C;&#x7B26;&#x3002;</p>
+<h3><span id="&#x4F8B;7-&#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;">&#x4F8B;7 - &#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">batch</span><br><span class="line">   |query(<span class="hljs-string">&apos;SELECT 100 - mean(usage_idle)</span></span><br><span class="line"><span class="hljs-string">           AS stat</span></span><br><span class="line"><span class="hljs-string">           FROM &quot;telegraf&quot;.&quot;autogen&quot;.&quot;cpu&quot;</span></span><br><span class="line"><span class="hljs-string">           WHERE cpu = \&apos;cpu-total\&apos;</span></span><br><span class="line"><span class="hljs-string">           &apos;</span>)</span><br></pre></td></tr></table></figure></p>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;7&#x4E2D;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x88AB;&#x5206;&#x89E3;&#x4EE5;&#x4F7F;&#x67E5;&#x8BE2;&#x66F4;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x3002;</p>
+<h2><span id="&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;">&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;</span></h2><p>&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;&#x5141;&#x8BB8;&#x5C06;&#x8282;&#x70B9;&#x5C5E;&#x6027;&#xFF0C;&#x6807;&#x8BB0;&#x548C;&#x5B57;&#x6BB5;&#x6DFB;&#x52A0;&#x5230;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x3002;</p>
+<p>&#x683C;&#x5F0F;&#x9075;&#x5FAA;Go <a href="https://golang.org/pkg/text/template/" target="_blank" rel="noopener">text.template</a> &#x5305;&#x63D0;&#x4F9B;&#x7684;&#x76F8;&#x540C;&#x683C;&#x5F0F;&#x3002;</p>
+<p>&#x8FD9;&#x5728;&#x7F16;&#x5199;&#x8B66;&#x62A5;&#x6D88;&#x606F;&#x65F6;&#x5F88;&#x6709;&#x7528;&#x3002;</p>
+<p>&#x8981;&#x5C06;&#x5C5E;&#x6027;&#xFF0C;&#x6807;&#x8BB0;&#x6216;&#x5B57;&#x6BB5;&#x503C;&#x6DFB;&#x52A0;&#x5230;&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x5176;&#x5305;&#x88C5;&#x5728;&#x53CC;&#x82B1;&#x62EC;&#x53F7;&#x5185;&#x3002;</p>
+<h3><span id="&#x793A;&#x4F8B;8-&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;&#x5185;&#x7684;&#x53D8;&#x91CF;">&#x793A;&#x4F8B;8 - &#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;&#x5185;&#x7684;&#x53D8;&#x91CF;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|alert()</span><br><span class="line">  .id(<span class="hljs-string">&apos;{{ index .Tags &quot;host&quot;}}/mem_used&apos;</span>)</span><br><span class="line">  .message(<span class="hljs-string">&apos;{{ .ID }}:{{ index .Fields &quot;stat&quot; }}&apos;</span>)</span><br></pre></td></tr></table></figure></p>
+<p>&#x5728;&#x793A;&#x4F8B;8&#x4E2D;&#xFF0C;&#x5C06;&#x4E09;&#x4E2A;&#x503C;&#x6DFB;&#x52A0;&#x5230;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;&#x4E2D;&#x3002;&#x5728;&#x5BF9;setter&#x7684;&#x8C03;&#x7528;<code>id()</code>&#x4E2D;&#xFF0C;&#x6807;&#x8BB0;&#x7684;&#x503C;<code>&quot;host&quot;</code>&#x88AB;&#x6DFB;&#x52A0;&#x5230;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5F00;&#x5934;&#x3002;<code>message()</code>&#x7136;&#x540E;&#x5BF9;setter&#x7684;&#x8C03;&#x7528;&#x4F1A;&#x6DFB;&#x52A0;<code>id</code>&#x5B57;&#x6BB5;&#x7684;&#x503C;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;&#x7684;&#x503C;<code>&quot;stat&quot;</code>&#x3002;</p>
+<p>&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;&#x5F53;&#x524D;&#x9002;&#x7528;&#x4E8E;<a href="https://docs.influxdata.com/kapacitor/v1.5/nodes/alert_node/" target="_blank" rel="noopener">Alert</a>&#x8282;&#x70B9;&#xFF0C;&#x5C06;&#x5728;&#x4E0B;&#x9762;&#x7684;&#x201C; <a href="https://docs.influxdata.com/kapacitor/v1.5/tick/syntax/#accessing-values-in-string-templates" target="_blank" rel="noopener">&#x8BBF;&#x95EE;&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;</a>&#x4E2D;&#x7684;<a href="https://docs.influxdata.com/kapacitor/v1.5/tick/syntax/#accessing-values-in-string-templates" target="_blank" rel="noopener">&#x503C;</a> &#x201D;&#x4E00;&#x8282;&#x4E2D;&#x8FDB;&#x4E00;&#x6B65;&#x8BA8;&#x8BBA;&#x3002;</p>
+<p>&#x5B57;&#x7B26;&#x4E32;&#x6A21;&#x677F;&#x8FD8;&#x53EF;&#x4EE5;&#x5305;&#x62EC;&#x6D41;&#x8BED;&#x53E5;<code>if...else</code>&#xFF0C;&#x4EE5;&#x53CA;&#x5BF9;&#x5185;&#x90E8;&#x683C;&#x5F0F;&#x5316;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;&#x3002;</p>
+<p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.message(<span class="hljs-string">&apos;{{ .ID }} is {{ if eq .Level &quot;OK&quot; }}alive{{ else }}dead{{ end }}: {{ index .Fields &quot;emitted&quot; | printf &quot;%0.3f&quot; }} points/10s.&apos;</span>)</span><br></pre></td></tr></table></figure></p>
+<h2><span id="&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;">&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;</span></h2><p>&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;&#x662F;&#x5728;&#x4E24;&#x4E2A;&#x62EC;&#x53F7;&#x4E4B;&#x95F4;&#x58F0;&#x660E;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x96C6;&#x5408;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6587;&#x5B57;&#xFF0C;&#x5176;&#x4ED6;&#x53D8;&#x91CF;&#x7684;&#x6807;&#x8BC6;&#x7B26;&#x6216;&#x661F;&#x53F7;&#x901A;&#x914D;&#x7B26;&#x201C;*&#x201D;&#x58F0;&#x660E;&#x5B83;&#x4EEC;&#x3002;&#x5B83;&#x4EEC;&#x53EF;&#x4EE5;&#x4F20;&#x9012;&#x7ED9;&#x91C7;&#x7528;&#x591A;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x53C2;&#x6570;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x5B83;&#x4EEC;&#x5728;&#x6A21;&#x677F;&#x4EFB;&#x52A1;&#x4E2D;&#x7279;&#x522B;&#x6709;&#x7528;&#x3002;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x5728;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x4E2D;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x5217;&#x8868;&#x5185;&#x5BB9;&#x4F1A;&#x7206;&#x70B8;&#xFF0C;&#x5143;&#x7D20;&#x5C06;&#x7528;&#x4F5C;&#x51FD;&#x6570;&#x7684;&#x6240;&#x6709;&#x53C2;&#x6570;&#x3002;&#x7ED9;&#x51FA;&#x5217;&#x8868;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x5217;&#x8868;&#x5305;&#x542B;&#x51FD;&#x6570;&#x7684;&#x6240;&#x6709;&#x53C2;&#x6570;&#x3002;</p>
+<h3><span id="&#x793A;&#x4F8B;9-&#x6807;&#x51C6;&#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;">&#x793A;&#x4F8B;9 - &#x6807;&#x51C6;&#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">&apos;foo&apos;</span></span><br><span class="line"><span class="hljs-keyword">var</span> bar = <span class="hljs-string">&apos;bar&apos;</span></span><br><span class="line"><span class="hljs-keyword">var</span> foobar_list = [foo, bar]</span><br><span class="line"><span class="hljs-keyword">var</span> cpu_groups = [ <span class="hljs-string">&apos;host&apos;</span>, <span class="hljs-string">&apos;cpu&apos;</span> ]</span><br><span class="line">...</span><br><span class="line">stream</span><br><span class="line">   |<span class="hljs-keyword">from</span>()</span><br><span class="line">      .measurement(<span class="hljs-string">&apos;cpu&apos;</span>)</span><br><span class="line">      .groupBy(cpu_groups)</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>&#x4F8B;9&#x58F0;&#x660E;&#x4E86;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;&#x3002;&#x7B2C;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x5176;&#x4ED6;&#x53D8;&#x91CF;&#x7684;&#x6807;&#x8BC6;&#x7B26;&#x3002;&#x7B2C;&#x4E8C;&#x4E2A;&#x5305;&#x542B;&#x5B57;&#x7B26;&#x4E32;&#x6587;&#x5B57;&#x3002;&#x8BE5;&#x5217;&#x8868;<code>cpu_groups</code>&#x7528;&#x4E8E;&#x8BE5;&#x65B9;&#x6CD5;<code>from.groupBy()</code>&#x3002;</p>
+<h3><span id="&#x793A;&#x4F8B;10-&#x6A21;&#x677F;&#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;">&#x793A;&#x4F8B;10 - &#x6A21;&#x677F;&#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5217;&#x8868;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">dbrp <span class="hljs-string">&quot;telegaf&quot;</span>.<span class="hljs-string">&quot;not_autogen&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> measurement string</span><br><span class="line"><span class="hljs-keyword">var</span> where_filter = lambda: TRUE</span><br><span class="line"><span class="hljs-keyword">var</span> groups = [*]</span><br><span class="line"><span class="hljs-keyword">var</span> field string</span><br><span class="line"><span class="hljs-keyword">var</span> warn lambda</span><br><span class="line"><span class="hljs-keyword">var</span> crit lambda</span><br><span class="line"><span class="hljs-keyword">var</span> <span class="hljs-built_in">window</span> = <span class="hljs-number">5</span>m</span><br><span class="line"><span class="hljs-keyword">var</span> slack_channel = <span class="hljs-string">&apos;#alerts&apos;</span></span><br><span class="line"></span><br><span class="line">stream</span><br><span class="line">    |<span class="hljs-keyword">from</span>()</span><br><span class="line">        .measurement(measurement)</span><br><span class="line">        .where(where_filter)</span><br><span class="line">        .groupBy(groups)</span><br><span class="line">    |<span class="hljs-built_in">window</span>()</span><br><span class="line">        .period(<span class="hljs-built_in">window</span>)</span><br><span class="line">        .every(<span class="hljs-built_in">window</span>)</span><br><span class="line">    |mean(field)</span><br><span class="line">    |alert()</span><br><span class="line">         .warn(warn)</span><br><span class="line">         .crit(crit)</span><br><span class="line">         .slack()</span><br><span class="line">         .channel(slack_channel)</span><br></pre></td></tr></table></figure></p>
+<p>&#x793A;&#x4F8B;10&#x53D6;&#x81EA;<a href="https://github.com/influxdata/kapacitor/blob/1de435db363fa8ece4b50e26d618fc225b38c70f/examples/load/templates/implicit_template.tick" target="_blank" rel="noopener">&#x4EE3;&#x7801;&#x5E93;&#x4E2D;</a>&#x7684;&#x793A;&#x4F8B;&#xFF0C;&#x5B9A;&#x4E49;<code>implicit_template.tick</code>&#x3002;&#x5B83;&#x4F7F;&#x7528;<code>groups</code>&#x5217;&#x8868;&#x6765;&#x4FDD;&#x5B58;&#x8981;&#x4F20;&#x9012;&#x7ED9;<code>from.groupBy()</code>&#x65B9;&#x6CD5;&#x7684;&#x53D8;&#x91CF;&#x53C2;&#x6570;&#x3002;<code>groups</code>&#x5F53;&#x6A21;&#x677F;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x65B0;&#x4EFB;&#x52A1;&#x65F6;&#xFF0C;&#x5C06;&#x786E;&#x5B9A;&#x5217;&#x8868;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<h2><span id="&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;">&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</span></h2><p>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x4EE5;&#x6B63;&#x659C;&#x6760;&#x5F00;&#x5934;&#x548C;&#x7ED3;&#x5C3E;&#xFF1A;<code>/</code>&#x3002;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8BED;&#x6CD5;&#x4E0E;Perl&#xFF0C;Python&#x548C;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x76F8;&#x540C;&#x3002;&#x6709;&#x5173;&#x8BED;&#x6CD5;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x53C2;&#x9605;Go <a href="https://golang.org/pkg/regexp/syntax/" target="_blank" rel="noopener">&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5E93;</a>&#x3002;</p>
+<h3><span id="&#x4F8B;11-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;">&#x4F8B;11 - &#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> cz_turbines = <span class="hljs-regexp">/^cz\d+/</span></span><br><span class="line"><span class="hljs-keyword">var</span> adr_senegal = <span class="hljs-regexp">/\.sn$/</span></span><br><span class="line"><span class="hljs-keyword">var</span> local_ips = <span class="hljs-regexp">/^192\.168\..*/</span></span><br><span class="line">...</span><br><span class="line"><span class="hljs-keyword">var</span> locals = stream</span><br><span class="line">   |<span class="hljs-keyword">from</span>()</span><br><span class="line">      .measurement(<span class="hljs-string">&apos;responses&apos;</span>)</span><br><span class="line">      .where(lambda: <span class="hljs-string">&quot;node&quot;</span> =~ local_ips )</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> south_afr = stream</span><br><span class="line">   |<span class="hljs-keyword">from</span>()</span><br><span class="line">      .measurement(<span class="hljs-string">&apos;responses&apos;</span>)</span><br><span class="line">      .where(lambda: <span class="hljs-string">&quot;dns_node&quot;</span> =~ <span class="hljs-regexp">/\.za$/</span> )</span><br></pre></td></tr></table></figure></p>
+<p>&#x5728;&#x4F8B;11&#x4E2D;&#xFF0C;&#x524D;&#x4E09;&#x884C;&#x663E;&#x793A;&#x4E86;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5BF9;&#x53D8;&#x91CF;&#x7684;&#x8D4B;&#x503C;&#x3002;&#x7684;<code>locals</code>&#x6D41;&#x4F7F;&#x7528;&#x5206;&#x914D;&#x7ED9;&#x8BE5;&#x53D8;&#x91CF;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;<code>local_ips</code>&#x3002;&#x8BE5;<code>south_afr</code>&#x6D41;&#x4F7F;&#x7528;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x6BD4;&#x8F83;&#xFF0C;&#x8BE5;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x4E0E;&#x5B57;&#x9762;&#x4E0A;&#x58F0;&#x660E;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x4E00;&#x8D77;&#x4F5C;&#x4E3A;lambda&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x3002;</p>
+<h2><span id="lambda&#x8868;&#x8FBE;&#x5F0F;">Lambda&#x8868;&#x8FBE;&#x5F0F;</span></h2><p>lambda&#x8868;&#x8FBE;&#x5F0F;&#x662F;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x8868;&#x793A;&#x8981;&#x4F20;&#x9012;&#x7ED9;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x6216;&#x4FDD;&#x5B58;&#x5728;&#x53D8;&#x91CF;&#x4E2D;&#x7684;&#x7B80;&#x77ED;&#x6613;&#x7406;&#x89E3;&#x51FD;&#x6570;&#x3002;&#x5B83;&#x53EF;&#x4EE5;&#x5305;&#x88C5;&#x5E03;&#x5C14;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x6570;&#x5B66;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x5BF9;&#x5185;&#x90E8;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x6216;&#x8FD9;&#x4E09;&#x8005;&#x7684;&#x7EC4;&#x5408;&#x3002;Lambda&#x8868;&#x8FBE;&#x5F0F;&#x59CB;&#x7EC8;&#x5BF9;&#x70B9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;&#x5B83;&#x4EEC;&#x901A;&#x5E38;&#x662F;&#x7D27;&#x51D1;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x7528;&#x4F5C;&#x6587;&#x5B57;&#xFF0C;&#x6700;&#x7EC8;&#x4F20;&#x9012;&#x7ED9;&#x8282;&#x70B9;&#x65B9;&#x6CD5;&#x3002;&#x53EF;&#x4EE5;&#x5728;Lambda&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x90E8;&#x51FD;&#x6570;&#x5C06;&#x5728;&#x4E0B;&#x9762;&#x7684;<a href="https://docs.influxdata.com/kapacitor/v1.5/tick/syntax/#type-conversion" target="_blank" rel="noopener">&#x7C7B;&#x578B;&#x8F6C;&#x6362;</a>&#x548C;<a href="https://docs.influxdata.com/kapacitor/v1.5/tick/syntax/#lambda-expressions" target="_blank" rel="noopener">Lambda&#x8868;&#x8FBE;&#x5F0F;&#x4E00;</a>&#x8282;&#x4E2D;&#x8BA8;&#x8BBA;&#x3002;Lambda&#x8868;&#x8FBE;&#x5F0F;&#x5728;<a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/" target="_blank" rel="noopener">Lambda&#x8868;&#x8FBE;&#x5F0F;</a>&#x4E3B;&#x9898;&#x4E2D;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x3002;</p>
+<p>Lambda&#x8868;&#x8FBE;&#x5F0F;&#x4EE5;&#x4EE4;&#x724C;&#x5F00;&#x5934;&#xFF0C;<code>lambda</code>&#x540E;&#x8DDF;&#x5192;&#x53F7;<code>&#xFF1A;</code> - <code>lambda:</code>&#x3002;</p>
+<h3><span id="&#x4F8B;12-lambda&#x8868;&#x8FBE;&#x5F0F;">&#x4F8B;12- Lambda&#x8868;&#x8FBE;&#x5F0F;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> my_lambda = lambda: <span class="hljs-number">1</span> &gt; <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-keyword">var</span> lazy_lambda = lambda: <span class="hljs-string">&quot;usage_idle&quot;</span> &lt; <span class="hljs-number">95</span></span><br><span class="line">...</span><br><span class="line"><span class="hljs-keyword">var</span> data = stream</span><br><span class="line">  |<span class="hljs-keyword">from</span>()</span><br><span class="line">...</span><br><span class="line"><span class="hljs-keyword">var</span> alert = data</span><br><span class="line">  |<span class="hljs-built_in">eval</span>(lambda: sigma(<span class="hljs-string">&quot;stat&quot;</span>))</span><br><span class="line">    .as(<span class="hljs-string">&apos;sigma&apos;</span>)</span><br><span class="line">    .keep()</span><br><span class="line">  |alert()</span><br><span class="line">    .id(<span class="hljs-string">&apos;{{ index .Tags &quot;host&quot;}}/cpu_used&apos;</span>)</span><br><span class="line">    .message(<span class="hljs-string">&apos;{{ .ID }}:{{ index .Fields &quot;stat&quot; }}&apos;</span>)</span><br><span class="line">    .info(lambda: <span class="hljs-string">&quot;stat&quot;</span> &gt; <span class="hljs-number">70</span> OR <span class="hljs-string">&quot;sigma&quot;</span> &gt; <span class="hljs-number">2.5</span>)</span><br><span class="line">    .warn(lambda: <span class="hljs-string">&quot;stat&quot;</span> &gt; <span class="hljs-number">80</span> OR <span class="hljs-string">&quot;sigma&quot;</span> &gt; <span class="hljs-number">3.0</span>)</span><br><span class="line">    .crit(lambda: <span class="hljs-string">&quot;stat&quot;</span> &gt; <span class="hljs-number">90</span> OR <span class="hljs-string">&quot;sigma&quot;</span> &gt; <span class="hljs-number">3.5</span>)</span><br></pre></td></tr></table></figure></p>
+<p>&#x4E0A;&#x9762;&#x7684;&#x4F8B;12&#x8868;&#x660E;lambda&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8D4B;&#x503C;&#x7ED9;&#x53D8;&#x91CF;&#x3002;&#x5728;eval&#x8282;&#x70B9;&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;lambda&#x8BED;&#x53E5;&#x8C03;&#x7528;sigma&#x51FD;&#x6570;&#x3002;&#x8B66;&#x62A5;&#x8282;&#x70B9;&#x4F7F;&#x7528;lambda&#x8868;&#x8FBE;&#x5F0F;&#x6765;&#x5B9A;&#x4E49;&#x7ED9;&#x5B9A;&#x4E8B;&#x4EF6;&#x7684;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;&#x3002;</p>
+<h2><span id="&#x8282;&#x70B9;">&#x8282;&#x70B9;</span></h2><p>&#x4E0E;&#x66F4;&#x7B80;&#x5355;&#x7684;&#x7C7B;&#x578B;&#x4E00;&#x6837;&#xFF0C;&#x8282;&#x70B9;&#x7C7B;&#x578B;&#x5DF2;&#x58F0;&#x660E;&#xFF0C;&#x53EF;&#x4EE5;&#x5206;&#x914D;&#x7ED9;&#x53D8;&#x91CF;&#x3002;</p>
+<h3><span id="&#x4F8B;13-&#x8282;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;">&#x4F8B;13 - &#x8282;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;</span></h3><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> data = stream</span><br><span class="line">  |<span class="hljs-keyword">from</span>()</span><br><span class="line">    .database(<span class="hljs-string">&apos;telegraf&apos;</span>)</span><br><span class="line">    .retentionPolicy(<span class="hljs-string">&apos;autogen&apos;</span>)</span><br><span class="line">    .measurement(<span class="hljs-string">&apos;cpu&apos;</span>)</span><br><span class="line">    .groupBy(<span class="hljs-string">&apos;host&apos;</span>)</span><br><span class="line">    .where(lambda: <span class="hljs-string">&quot;cpu&quot;</span> == <span class="hljs-string">&apos;cpu-total&apos;</span>)</span><br><span class="line">  |<span class="hljs-built_in">eval</span>(lambda: <span class="hljs-number">100.0</span> - <span class="hljs-string">&quot;usage_idle&quot;</span>)</span><br><span class="line">    .as(<span class="hljs-string">&apos;used&apos;</span>)</span><br><span class="line">  |<span class="hljs-built_in">window</span>()</span><br><span class="line">    .period(span)</span><br><span class="line">    .every(frequency)</span><br><span class="line">  |mean(<span class="hljs-string">&apos;used&apos;</span>)</span><br><span class="line">    .as(<span class="hljs-string">&apos;stat&apos;</span>)</span><br><span class="line">...</span><br><span class="line"><span class="hljs-keyword">var</span> alert = data</span><br><span class="line">  |<span class="hljs-built_in">eval</span>(lambda: sigma(<span class="hljs-string">&quot;stat&quot;</span>))</span><br><span class="line">    .as(<span class="hljs-string">&apos;sigma&apos;</span>)</span><br><span class="line">    .keep()</span><br><span class="line">  |alert()</span><br><span class="line">    .id(<span class="hljs-string">&apos;{{ index .Tags &quot;host&quot;}}/cpu_used&apos;</span>)</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;13&#x4E2D;&#xFF0C;&#x5728;&#x7B2C;&#x4E00;&#x90E8;&#x5206;&#x4E2D;&#xFF0C;&#x521B;&#x5EFA;&#x4E86;&#x4E94;&#x4E2A;&#x8282;&#x70B9;&#x3002;&#x9876;&#x7EA7;&#x8282;&#x70B9;<code>stream</code>&#x5206;&#x914D;&#x7ED9;&#x53D8;&#x91CF;<code>data</code>&#x3002;&#x6240;&#x8FF0;<code>stream</code>&#x7136;&#x540E;&#x8282;&#x70B9;&#x88AB;&#x7528;&#x4F5C;&#x7BA1;&#x9053;&#x8F93;&#x9001;&#x5230;&#x8BE5;&#x8282;&#x70B9;&#x7684;&#x6839;<code>from</code>&#xFF0C;<code>eval</code>&#xFF0C;<code>window</code>&#x548C;<code>mean</code>&#x6309;&#x987A;&#x5E8F;&#x94FE;&#x7684;&#x3002;&#x5728;&#x7B2C;&#x4E8C;&#x90E8;&#x5206;&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;&#x8D4B;&#x503C;&#x7ED9;&#x53D8;&#x91CF;&#x6269;&#x5C55;&#x7BA1;&#x9053;<code>alert</code>&#xFF0C;&#x4EE5;&#x4FBF;&#x53EF;&#x4EE5;&#x5C06;&#x7B2C;&#x4E8C;&#x4E2A;<code>eval</code>&#x8282;&#x70B9;&#x5E94;&#x7528;&#x4E8E;&#x6570;&#x636E;&#x3002;</p>
+<h1><span id="&#x6570;&#x636E;&#x7C7B;&#x578B;&#x8F6C;&#x6362;">&#x6570;&#x636E;&#x7C7B;&#x578B;&#x8F6C;&#x6362;</span></h1><blockquote>
+<p>&#x5728;lambda&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x65E0;&#x72B6;&#x6001;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x5728;&#x7C7B;&#x578B;&#x4E4B;&#x95F4;&#x8F6C;&#x6362;&#x503C;&#x3002;</p>
+</blockquote>
+<ul>
+<li><code>bool()</code> - converts a <code>string</code>, <code>int64</code> or <code>float64</code> to <code>Boolean</code>.</li>
+<li><code>int()</code> - converts a <code>string</code>, <code>float64</code>, <code>Boolean</code> or <code>duration type</code> to an <code>int64</code>.</li>
+<li><code>float()</code> - converts a <code>string</code>, <code>int64</code> or <code>Boolean</code> to <code>float64</code>.</li>
+<li><code>string()</code> - converts an <code>int64</code>, <code>float64</code>, <code>Boolean</code> or <code>duration value</code> to a <code>string</code>.</li>
+<li><code>duration()</code> - converts an <code>int64</code>, <code>float64</code> or <code>string</code> to a <code>duration type</code>.</li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6/">#监控告警</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/TICK%E6%8A%80%E6%9C%AF%E6%A0%88/">#TICK技术栈</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/TICKscript%E8%AF%AD%E8%A8%80/">#TICKscript语言</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/C_TICKscript%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E/">02-TICKscript语言-C-变量声明</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/A_TICKscript%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/">02-TICKscript语言-A-基础语法和运算符</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2020/04/14/booboo_tick/kapacitor/02_TICKscript语言/B_TICKscript数据类型/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+</div>
+
+
+    </div>
+</section>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span> 人次 </span>
+           </div>
+
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+    
+</body>
+</html>

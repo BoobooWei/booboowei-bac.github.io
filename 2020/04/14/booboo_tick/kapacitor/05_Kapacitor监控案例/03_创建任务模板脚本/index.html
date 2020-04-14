@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>05-Kapacitor监控案例-C-创建任务模板脚本 - 归去来兮</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+
+
+
+
+
+
+
+
+    <meta name="description" content="&amp;#x521B;&amp;#x5EFA;&amp;#x4EFB;&amp;#x52A1;&amp;#x6A21;&amp;#x677F;&amp;#x811A;&amp;#x672C;    &amp;#x4F7F;&amp;#x7528;JSON&amp;#x53D8;&amp;#x91CF;&amp;#x6587;&amp;#x4EF6;&amp;#x6765;&amp;#x5B9A;&amp;#x4E49;&amp;#x65B0;&amp;#x4EFB;&amp;#x52A1;    01&amp;#x901A;&amp;#x8FC7;-templa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05-Kapacitor监控案例-C-创建任务模板脚本">
+<meta property="og:url" content="http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/05_Kapacitor%E7%9B%91%E6%8E%A7%E6%A1%88%E4%BE%8B/03_%E5%88%9B%E5%BB%BA%E4%BB%BB%E5%8A%A1%E6%A8%A1%E6%9D%BF%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="&amp;#x521B;&amp;#x5EFA;&amp;#x4EFB;&amp;#x52A1;&amp;#x6A21;&amp;#x677F;&amp;#x811A;&amp;#x672C;    &amp;#x4F7F;&amp;#x7528;JSON&amp;#x53D8;&amp;#x91CF;&amp;#x6587;&amp;#x4EF6;&amp;#x6765;&amp;#x5B9A;&amp;#x4E49;&amp;#x65B0;&amp;#x4EFB;&amp;#x52A1;    01&amp;#x901A;&amp;#x8FC7;-templa">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-14T11:31:53.000Z">
+<meta property="article:modified_time" content="2020-04-14T04:51:57.522Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="监控告警">
+<meta property="article:tag" content="TICK技术栈">
+<meta property="article:tag" content="Kapacitor监控案例">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="归去来兮" type="application/atom+xml">
+</head>
+<body>
+    
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+    <div class="row">
+        <!--左侧只占一个格子 -->
+        <div class="col-md-1">
+            <div class="navbar-brand">
+                <a class="navbar-item navbar-logo" href="/">
+                    
+                        
+                        <img src="/images/influx.svg" alt="" height="28">
+                        
+                    
+                </a>
+                <div class="navbar-burger">
+                    <span>
+                    </span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--中间自适应 -->
+        <div class="col-md-10">
+            
+            <div class="navbar-menu navbar-start">
+                
+                <a class="navbar-item "
+                   href="/archives/">最近更新</a>
+                
+                <a class="navbar-item "
+                   href="/tags/">标签</a>
+                
+
+                <!-- BoobooWei自动根据已有的category创建-->
+            
+
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <!--循环category 生成navbar代码-->
+                        
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="往昔追忆">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/" data-rel="经典语录">经典语录</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="培训教程">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术广角">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Minos%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/" data-rel="Minos主题优化">Minos主题优化</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术峰会"><i class="fold iconfont icon-right"></i>技术峰会</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术峰会">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Azure/" data-rel="Azure">Azure</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Aliyun/" data-rel="Aliyun">Aliyun</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="TICK"><i class="fold iconfont icon-right"></i>TICK</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="TICK">
+                                    
+                                    <a class="dropdown-item" href="/categories/TICK/kapacitor/" data-rel="kapacitor">kapacitor</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                </ul>
+              </div>
+            </nav>
+
+            <!-- 自动根据已有的category创建-->
+        </div>
+        
+
+        </div>
+
+
+        <!--最右侧 -->
+        <div class="col-md-1">
+
+            <div class="navbar-menu navbar-end">
+                
+                <a class="navbar-item" title="movie" href="/movies/">
+                    <svg t="1586342683221" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1766" width="20" height="20"><path d="M914.044 898.826H109.956c-20.435 0-37-16.565-37-37V280.131c0-20.435 16.565-37 37-37h804.088c20.435 0 37 16.565 37 37v581.695c0 20.435-16.565 37-37 37z m-767.088-74h730.088V317.131H146.956v507.695zM322.739 199.174H113c-20.435 0-37-16.565-37-37s16.565-37 37-37h209.739c20.435 0 37 16.565 37 37s-16.565 37-37 37z" p-id="1767" fill="#2c2c2c"></path><path d="M457.932 752.856A37.002 37.002 0 0 1 420.937 716l-1.122-287.64a37.003 37.003 0 0 1 20.769-33.395 37.006 37.006 0 0 1 39.104 4.167l184.107 144.792a37 37 0 0 1-0.105 58.248L480.704 745.021a36.982 36.982 0 0 1-22.772 7.835z m36.181-248.234l0.528 135.641 86.29-67.361-86.818-68.28z" p-id="1768" fill="#2c2c2c"></path></svg>
+                </a>
+                <a class="navbar-item" title="movie" href="/books/">
+                    <svg t="1586350091188" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2280" width="20" height="20"><path d="M306.4 773.3h188v16.3c0 13.8 11.2 25 25 25s25-11.2 25-25v-16.3h180.5c68.9 0 125-56.1 125-125V295.4c0-68.9-56.1-125-125-125H549.6c-10.7 0-19.9 6.8-23.4 16.3-2.1-0.6-4.4-0.9-6.7-0.9-2 0-3.9 0.2-5.8 0.7-3.6-9.4-12.7-16-23.3-16h-184c-68.9 0-125 56.1-125 125v352.9c0 68.8 56.1 124.9 125 124.9z m418.5-552.9c41.4 0 75 33.6 75 75v352.9c0 41.4-33.6 75-75 75H544.4V219.9c1.7 0.4 3.4 0.5 5.2 0.5h175.3z m-493.5 75c0-41.4 33.6-75 75-75h183.9c1.4 0 2.8-0.1 4.1-0.3v503.2h-188c-41.4 0-75-33.6-75-75V295.4z" p-id="2281"></path><path d="M901.5 314.3c-11 0-20 9-20 20v384c0 44.1-35.9 80-80 80H615.3c-5.6 0-11 2.4-14.8 6.5l-25.9 28.4c-2 2.2-4.9 3.5-7.9 3.5H459c-2.9 0-5.6-1.1-7.6-3.1L425.8 808c-3.8-3.8-8.8-5.9-14.1-5.9H224.8c-44.1 0-80-35.9-80-80V343.9c0-11-9-20-20-20s-20 9-20 20v378.3c0 66.2 53.8 120 120 120h178.5l19.7 19.7c9.6 9.6 22.3 14.9 35.9 14.9h107.7c14.2 0 27.9-6 37.5-16.5l20-21.9h177.4c66.2 0 120-53.8 120-120v-384c0-11.1-9-20.1-20-20.1z" p-id="2282"></path><path d="M297.5 341.4h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 408.6h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 506.5h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20z" p-id="2283"></path></svg>
+                </a>
+                
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x521B;&#x5EFA;&#x4EFB;&#x52A1;&#x6A21;&#x677F;&#x811A;&#x672C;">1&nbsp;&nbsp;<b>&#x521B;&#x5EFA;&#x4EFB;&#x52A1;&#x6A21;&#x677F;&#x811A;&#x672C;</b></a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x4F7F;&#x7528;JSON&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;">2&nbsp;&nbsp;<b>&#x4F7F;&#x7528;JSON&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#01&#x901A;&#x8FC7;-template&#x548C;-vars&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;CPU&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;">2.1&nbsp;&nbsp;01&#x901A;&#x8FC7;-template&#x548C;-vars&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;CPU&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#02&#x901A;&#x8FC7;-file&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;CPU&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;">2.2&nbsp;&nbsp;02&#x901A;&#x8FC7;-file&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;CPU&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x4F7F;&#x7528;YAML&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;">3&nbsp;&nbsp;<b>&#x4F7F;&#x7528;YAML&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;</b></a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x8BFE;&#x5802;&#x7EC3;&#x4E60;">4&nbsp;&nbsp;<b>&#x8BFE;&#x5802;&#x7EC3;&#x4E60;</b></a>
+                        
+                    </div>
+                </div>
+                
+                
+                <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                   
+                
+            </div>
+        </div>
+</div>
+</div>
+</nav>
+
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            05-Kapacitor监控案例-C-创建任务模板脚本
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-04-14T11:31:53.000Z" itemprop="datePublished">4月 14 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/TICK/">TICK</a><span>></span><a class="article-category-link" href="/categories/TICK/kapacitor/">kapacitor</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            10 分钟 读完 (约 1553 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <!-- MDTOC maxdepth:6 firsth1:1 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
+
+<ul>
+<li><a href="#&#x521B;&#x5EFA;&#x4EFB;&#x52A1;&#x6A21;&#x677F;&#x811A;&#x672C;">&#x521B;&#x5EFA;&#x4EFB;&#x52A1;&#x6A21;&#x677F;&#x811A;&#x672C;</a>   </li>
+<li><a href="#&#x4F7F;&#x7528;json&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;">&#x4F7F;&#x7528;JSON&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;</a>   <ul>
+<li><a href="#01&#x901A;&#x8FC7;-template&#x548C;-vars&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;cpu&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;">01&#x901A;&#x8FC7;<code>-template</code>&#x548C;<code>-vars</code>&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;CPU&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;</a>   </li>
+<li><a href="#02&#x901A;&#x8FC7;-file&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;cpu&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;">02&#x901A;&#x8FC7;<code>-file</code>&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;CPU&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;</a>   </li>
+</ul>
+</li>
+<li><a href="#&#x4F7F;&#x7528;yaml&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;">&#x4F7F;&#x7528;YAML&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;</a>   </li>
+<li><a href="#&#x8BFE;&#x5802;&#x7EC3;&#x4E60;">&#x8BFE;&#x5802;&#x7EC3;&#x4E60;</a>   </li>
+</ul>
+<!-- /MDTOC -->
+
+<h1><span id="&#x521B;&#x5EFA;&#x4EFB;&#x52A1;&#x6A21;&#x677F;&#x811A;&#x672C;">&#x521B;&#x5EFA;&#x4EFB;&#x52A1;&#x6A21;&#x677F;&#x811A;&#x672C;</span></h1><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// Which measurement to consume</span></span><br><span class="line"><span class="hljs-keyword">var</span> measurement string</span><br><span class="line"><span class="hljs-comment">// Optional where filter</span></span><br><span class="line"><span class="hljs-keyword">var</span> where_filter = lambda: TRUE</span><br><span class="line"><span class="hljs-comment">// Optional list of group by dimensions</span></span><br><span class="line"><span class="hljs-keyword">var</span> groups = [*]</span><br><span class="line"><span class="hljs-comment">// Which field to process</span></span><br><span class="line"><span class="hljs-keyword">var</span> field string</span><br><span class="line"><span class="hljs-comment">// Warning criteria, has access to &apos;mean&apos; field</span></span><br><span class="line"><span class="hljs-keyword">var</span> warn lambda</span><br><span class="line"><span class="hljs-comment">// Critical criteria, has access to &apos;mean&apos; field</span></span><br><span class="line"><span class="hljs-keyword">var</span> crit lambda</span><br><span class="line"><span class="hljs-comment">// How much data to window</span></span><br><span class="line"><span class="hljs-keyword">var</span> <span class="hljs-built_in">window</span> = <span class="hljs-number">5</span>m</span><br><span class="line"><span class="hljs-comment">// The slack channel for alerts</span></span><br><span class="line"><span class="hljs-keyword">var</span> slack_channel = <span class="hljs-string">&apos;#alerts&apos;</span></span><br><span class="line"></span><br><span class="line">stream</span><br><span class="line">    |<span class="hljs-keyword">from</span>()</span><br><span class="line">        .measurement(measurement)</span><br><span class="line">        .where(where_filter)</span><br><span class="line">        .groupBy(groups)</span><br><span class="line">    |<span class="hljs-built_in">window</span>()</span><br><span class="line">        .period(<span class="hljs-built_in">window</span>)</span><br><span class="line">        .every(<span class="hljs-built_in">window</span>)</span><br><span class="line">    |mean(field)</span><br><span class="line">    |alert()</span><br><span class="line">         .warn(warn)</span><br><span class="line">         .crit(crit)</span><br><span class="line">         .slack()</span><br><span class="line">         .channel(slack_channel)</span><br></pre></td></tr></table></figure></p>
+<p>&#x58F0;&#x660E;&#x6A21;&#x677F;</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kapacitor define-template generic_mean_alert -tick path/to/template_script.tick</span><br></pre></td></tr></table></figure></p>
+<p> &#x67E5;&#x770B;&#x6A21;&#x677F;</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kapacitor show-template generic_mean_alert</span><br></pre></td></tr></table></figure></p>
+<h1><span id="&#x4F7F;&#x7528;json&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;">&#x4F7F;&#x7528;JSON&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;</span></h1><h2><span id="01&#x901A;&#x8FC7;-template&#x548C;-vars&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;cpu&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;">01&#x901A;&#x8FC7;<code>-template</code>&#x548C;<code>-vars</code>&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;CPU&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;</span></h2><p><figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="hljs-attr">&quot;measurement&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;string&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;cpu&quot;</span> },</span><br><span class="line">    <span class="hljs-attr">&quot;where_filter&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;lambda&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;\&quot;cpu\&quot; == &apos;cpu-total&apos;&quot;</span>},</span><br><span class="line">    <span class="hljs-attr">&quot;groups&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;list&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span>: [{<span class="hljs-attr">&quot;type&quot;</span>:<span class="hljs-string">&quot;string&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span>:<span class="hljs-string">&quot;host&quot;</span>},{<span class="hljs-attr">&quot;type&quot;</span>:<span class="hljs-string">&quot;string&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span>:<span class="hljs-string">&quot;dc&quot;</span>}]},</span><br><span class="line">    <span class="hljs-attr">&quot;field&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;string&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;usage_idle&quot;</span> },</span><br><span class="line">    <span class="hljs-attr">&quot;warn&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;lambda&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;\&quot;mean\&quot; &lt; 30.0&quot;</span> },</span><br><span class="line">    <span class="hljs-attr">&quot;crit&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;lambda&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;\&quot;mean\&quot; &lt; 10.0&quot;</span> },</span><br><span class="line">    <span class="hljs-attr">&quot;window&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;duration&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;1m&quot;</span> },</span><br><span class="line">    <span class="hljs-attr">&quot;slack_channel&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;string&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;#alerts_testing&quot;</span> }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>&#x901A;&#x8FC7;&#x8FD0;&#x884C;&#x5E26;&#x6709;&#x53C2;&#x6570;<code>-template</code>&#x548C;<code>-vars</code>&#x53C2;&#x6570;&#x7684;&#x547D;&#x4EE4;&#x6765;&#x4F20;&#x9012;&#x6A21;&#x677F;&#x6587;&#x4EF6;&#x548C;JSON&#x53D8;&#x91CF;&#x6587;&#x4EF6;</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kapacitor define cpu_alert -template generic_mean_alert -vars cpu_vars.json -dbrp telegraf.autogen</span><br></pre></td></tr></table></figure></p>
+<p>&#x67E5;&#x770B;</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kapacitor show cpu_alert</span><br></pre></td></tr></table></figure></p>
+<h2><span id="02&#x901A;&#x8FC7;-file&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;cpu&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;">02&#x901A;&#x8FC7;<code>-file</code>&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;&#x4EE5;&#x89E6;&#x53D1;CPU&#x4F7F;&#x7528;&#x7387;&#x8B66;&#x62A5;</span></h2><p><figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="hljs-attr">&quot;template-id&quot;</span>: <span class="hljs-string">&quot;generic_mean_alert&quot;</span>,</span><br><span class="line">  <span class="hljs-attr">&quot;dbrps&quot;</span>: [{<span class="hljs-attr">&quot;db&quot;</span>: <span class="hljs-string">&quot;telegraf&quot;</span>, <span class="hljs-attr">&quot;rp&quot;</span>: <span class="hljs-string">&quot;autogen&quot;</span>}],</span><br><span class="line">  <span class="hljs-attr">&quot;vars&quot;</span>: {</span><br><span class="line">    <span class="hljs-attr">&quot;measurement&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;string&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;mem&quot;</span> },</span><br><span class="line">    <span class="hljs-attr">&quot;groups&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;list&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span>: [{<span class="hljs-attr">&quot;type&quot;</span>:<span class="hljs-string">&quot;star&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span>:<span class="hljs-string">&quot;*&quot;</span>}]},</span><br><span class="line">    <span class="hljs-attr">&quot;field&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;string&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;used_percent&quot;</span> },</span><br><span class="line">    <span class="hljs-attr">&quot;warn&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;lambda&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;\&quot;mean\&quot; &gt; 80.0&quot;</span> },</span><br><span class="line">    <span class="hljs-attr">&quot;crit&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;lambda&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;\&quot;mean\&quot; &gt; 90.0&quot;</span> },</span><br><span class="line">    <span class="hljs-attr">&quot;window&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;duration&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;10m&quot;</span> },</span><br><span class="line">    <span class="hljs-attr">&quot;slack_channel&quot;</span>: {<span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;string&quot;</span>, <span class="hljs-attr">&quot;value&quot;</span> : <span class="hljs-string">&quot;#alerts_testing&quot;</span> }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>&#x901A;&#x8FC7;<code>-file</code>,&#x8BE5;&#x53C2;&#x6570;&#x4E0E;&#x8BE5;&#x4EFB;&#x52A1;&#x5B9A;&#x4E49;&#x6587;&#x4EF6;&#x7684;&#x65B0;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x66FF;&#x6362;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;<code>template</code>&#xFF0C;<code>dbrp</code>&#x548C;<code>vars</code>&#x3002;</p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kapacitor define mem_alert -file mem_template_task.json</span><br></pre></td></tr></table></figure></p>
+<h1><span id="&#x4F7F;&#x7528;yaml&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;">&#x4F7F;&#x7528;YAML&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x65B0;&#x4EFB;&#x52A1;</span></h1><p>&#x4F7F;&#x7528;YAML&#xFF0C;&#x4EFB;&#x52A1;&#x5B9A;&#x4E49;&#x6587;&#x4EF6;<code>mem_template_task.yaml</code>&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<p><strong><em>&#x793A;&#x4F8B;&#xFF1A;YAML&#x4E2D;&#x7684;&#x4EFB;&#x52A1;&#x5B9A;&#x4E49;&#x6587;&#x4EF6;</em></strong></p>
+<p><figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">template-id:</span> <span class="hljs-string">generic_mean_alert</span></span><br><span class="line"><span class="hljs-attr">dbrps:</span></span><br><span class="line"><span class="hljs-bullet">-</span> <span class="hljs-attr">db:</span> <span class="hljs-string">telegraf</span></span><br><span class="line">  <span class="hljs-attr">rp:</span> <span class="hljs-string">autogen</span></span><br><span class="line"><span class="hljs-attr">vars:</span></span><br><span class="line">  <span class="hljs-attr">measurement:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">string</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">mem</span></span><br><span class="line">  <span class="hljs-attr">groups:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">list</span></span><br><span class="line">    <span class="hljs-attr">value:</span></span><br><span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">star</span></span><br><span class="line">      <span class="hljs-attr">value:</span> <span class="hljs-string">&quot;*&quot;</span></span><br><span class="line">  <span class="hljs-attr">field:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">string</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">used_percent</span></span><br><span class="line">  <span class="hljs-attr">warn:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">lambda</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">&apos;&quot;mean&quot; &gt; 80.0&apos;</span></span><br><span class="line">  <span class="hljs-attr">crit:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">lambda</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">&apos;&quot;mean&quot; &gt; 90.0&apos;</span></span><br><span class="line">  <span class="hljs-attr">window:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">duration</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">10m</span></span><br><span class="line">  <span class="hljs-attr">slack_channel:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">string</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">&quot;#alerts_testing&quot;</span></span><br></pre></td></tr></table></figure></p>
+<p>&#x7136;&#x540E;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>file</code>&#x5982;&#x524D;&#x6240;&#x793A;&#x7684;&#x53C2;&#x6570;&#x5B9A;&#x4E49;&#x4EFB;&#x52A1;&#x3002;</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kapacitor define mem_alert -file mem_template_task.yaml</span><br></pre></td></tr></table></figure></p>
+<h1><span id="&#x8BFE;&#x5802;&#x7EC3;&#x4E60;">&#x8BFE;&#x5802;&#x7EC3;&#x4E60;</span></h1><p>&#x8981;&#x6C42;&#xFF1A;&#x5224;&#x65AD;&#x5E73;&#x5747;&#x503C;&#x548C;&#x6307;&#x5B9A;&#x9608;&#x503C;&#x5BF9;&#x6BD4;&#x89E6;&#x53D1;&#x544A;&#x8B66;&#x7684;&#x6A21;&#x677F;&#xFF0C;&#x901A;&#x8FC7;&#x914D;&#x7F6E;yml&#x53D8;&#x91CF;&#x6587;&#x4EF6;&#x6765;&#x5B9A;&#x4E49;&#x4EFB;&#x52A1;&#x3002;</p>
+<p>&#x65F6;&#x5E8F;&#x6570;&#x636E;</p>
+<p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">InfluxDB shell version: <span class="hljs-number">1.7</span><span class="hljs-number">.7</span></span><br><span class="line">&gt; use telegraf</span><br><span class="line">Using database telegraf</span><br><span class="line">&gt; show field keys <span class="hljs-keyword">from</span> cpu</span><br><span class="line">name: cpu</span><br><span class="line">fieldKey         fieldType</span><br><span class="line">--------         ---------</span><br><span class="line">usage_guest      float</span><br><span class="line">usage_guest_nice float</span><br><span class="line">usage_idle       float</span><br><span class="line">usage_iowait     float</span><br><span class="line">usage_irq        float</span><br><span class="line">usage_nice       float</span><br><span class="line">usage_softirq    float</span><br><span class="line">usage_steal      float</span><br><span class="line">usage_system     float</span><br><span class="line">usage_user       float</span><br><span class="line">&gt; show tag keys <span class="hljs-keyword">from</span> cpu</span><br><span class="line">name: cpu</span><br><span class="line">tagKey</span><br><span class="line">------</span><br><span class="line">cpu</span><br><span class="line">host</span><br></pre></td></tr></table></figure></p>
+<p>&#x6A21;&#x677F;template_alert.tick</p>
+<p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// &#x6D4B;&#x91CF;&#x540D;</span></span><br><span class="line"><span class="hljs-keyword">var</span> measurement string</span><br><span class="line"><span class="hljs-comment">// &#x8FC7;&#x6EE4;&#x6761;&#x4EF6;</span></span><br><span class="line"><span class="hljs-keyword">var</span> where_filter = lambda: TRUE</span><br><span class="line"><span class="hljs-comment">// &#x5206;&#x7EC4;</span></span><br><span class="line"><span class="hljs-keyword">var</span> groups = [*]</span><br><span class="line"><span class="hljs-comment">// &#x65F6;&#x95F4;&#x7A97;&#x53E3;</span></span><br><span class="line"><span class="hljs-keyword">var</span> <span class="hljs-built_in">window</span> duration</span><br><span class="line"><span class="hljs-comment">// &#x6267;&#x884C;&#x9891;&#x7387;</span></span><br><span class="line"><span class="hljs-keyword">var</span> every duration</span><br><span class="line"><span class="hljs-comment">// &#x5B57;&#x6BB5;</span></span><br><span class="line"><span class="hljs-keyword">var</span> field string</span><br><span class="line"><span class="hljs-comment">// &#x89E6;&#x53D1;&#x544A;&#x8B66;&#x7684;&#x8868;&#x8FBE;&#x5F0F;</span></span><br><span class="line"><span class="hljs-keyword">var</span> crit lambda</span><br><span class="line"><span class="hljs-comment">// &#x544A;&#x8B66;&#x63CF;&#x8FF0;</span></span><br><span class="line"><span class="hljs-keyword">var</span> message string</span><br><span class="line"></span><br><span class="line">stream</span><br><span class="line">    |<span class="hljs-keyword">from</span>()</span><br><span class="line">      .measurement(measurement)</span><br><span class="line">      .where(where_filter)</span><br><span class="line">      .groupBy(groups)</span><br><span class="line">    |<span class="hljs-built_in">window</span>()</span><br><span class="line">      .period(<span class="hljs-built_in">window</span>)</span><br><span class="line">      .every(every)</span><br><span class="line">    |mean(field)</span><br><span class="line">    |alert()</span><br><span class="line">      .crit(crit)</span><br><span class="line">      .stateChangesOnly()</span><br><span class="line">      .message(message)</span><br></pre></td></tr></table></figure></p>
+<p>cpu&#x7A7A;&#x95F2;&#x544A;&#x8B66;&#x7684;&#x53D8;&#x91CF;&#x6587;&#x4EF6;cpu_idle.yml</p>
+<p><figure class="highlight yml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">template-id:</span> <span class="hljs-string">mean_alert</span></span><br><span class="line"><span class="hljs-attr">dbrps:</span></span><br><span class="line"><span class="hljs-bullet">-</span> <span class="hljs-attr">db:</span> <span class="hljs-string">telegraf</span></span><br><span class="line">  <span class="hljs-attr">rp:</span> <span class="hljs-string">autogen</span></span><br><span class="line"><span class="hljs-attr">vars:</span></span><br><span class="line">  <span class="hljs-attr">measurement:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">string</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">cpu</span></span><br><span class="line">  <span class="hljs-attr">groups:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">list</span></span><br><span class="line">    <span class="hljs-attr">value:</span></span><br><span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">star</span></span><br><span class="line">      <span class="hljs-attr">value:</span> <span class="hljs-string">&quot;*&quot;</span></span><br><span class="line">  <span class="hljs-attr">field:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">string</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">usage_idle</span></span><br><span class="line">  <span class="hljs-attr">crit:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">lambda</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">&apos;&quot;mean&quot; &lt; 10.0&apos;</span></span><br><span class="line">  <span class="hljs-attr">window:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">duration</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">5m</span></span><br><span class="line">  <span class="hljs-attr">every:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">duration</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">1m</span></span><br><span class="line">  <span class="hljs-attr">message:</span></span><br><span class="line">    <span class="hljs-attr">type:</span> <span class="hljs-string">string</span></span><br><span class="line">    <span class="hljs-attr">value:</span> <span class="hljs-string">&apos;{</span></span><br><span class="line"><span class="hljs-string">      &quot;type&quot;: &quot;cpu_usage&quot;,</span></span><br><span class="line"><span class="hljs-string">      &quot;id&quot;: &quot;&#x4E3B;&#x673A; CPU &#x4F7F;&#x7528;&#x7387;&#x5927;&#x4E8E;90%&quot;,</span></span><br><span class="line"><span class="hljs-string">      &quot;host&quot;: &quot;<span class="hljs-template-variable">{{ index .Tags &quot;host&quot; }}</span>&quot;,</span></span><br><span class="line"><span class="hljs-string">                 &quot;description&quot;: &quot;&#x4E3B;&#x673A;<span class="hljs-template-variable">{{ index .Tags &quot;host&quot; }}</span> CPU&#x4F7F;&#x7528;&#x7387;<span class="hljs-template-variable">{{ index .Fields &quot;cpu_usage&quot; | printf &quot;%0.2f&quot; }}</span>%,CPU&#x8D1F;&#x8F7D;&#x8FC7;&#x9AD8;&#x4F1A;&#x5BFC;&#x81F4;&#x670D;&#x52A1;&#x5668;&#x8FD0;&#x884C;&#x7F13;&#x6162;&#xFF0C;&#x5E94;&#x7528;&#x65E0;&#x6CD5;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x7B49;&#x95EE;&#x9898;&#x3002;&#x8BF7;&#x67E5;&#x770B;CPU&#x4F7F;&#x7528;&#x7387;&#x9AD8;&#x7684;&#x8FDB;&#x7A0B;/&#x5E94;&#x7528;&#x662F;&#x5426;&#x4E3A;&#x5F02;&#x5E38;&#x5BFC;&#x81F4;&quot;</span></span><br><span class="line"><span class="hljs-string">  }&apos;</span></span><br></pre></td></tr></table></figure></p>
+<p>&#x64CD;&#x4F5C;&#x8FC7;&#x7A0B;&#xFF1A;</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line">[root@tick:/var/lib/kapacitor/task]<span class="hljs-comment"># vim template_alert.tick</span></span><br><span class="line">[root@tick:/var/lib/kapacitor/task]<span class="hljs-comment"># kapacitor define-template mean_alert -tick template_alert.tick</span></span><br><span class="line">[root@tick:/var/lib/kapacitor/task]<span class="hljs-comment"># kapacitor show-template mean_alert</span></span><br><span class="line">ID: mean_alert</span><br><span class="line">Error:</span><br><span class="line">Type: stream</span><br><span class="line">Created: 09 Sep 19 21:46 CST</span><br><span class="line">Modified: 09 Sep 19 21:50 CST</span><br><span class="line">TICKscript:</span><br><span class="line">// &#x6D4B;&#x91CF;&#x540D;</span><br><span class="line">var measurement string</span><br><span class="line"></span><br><span class="line">// &#x8FC7;&#x6EE4;&#x6761;&#x4EF6;</span><br><span class="line">var where_filter = lambda: TRUE</span><br><span class="line"></span><br><span class="line">// &#x5206;&#x7EC4;</span><br><span class="line">var groups = [*]</span><br><span class="line"></span><br><span class="line">// &#x65F6;&#x95F4;&#x7A97;&#x53E3;</span><br><span class="line">var window duration</span><br><span class="line"></span><br><span class="line">// &#x6267;&#x884C;&#x9891;&#x7387;</span><br><span class="line">var every duration</span><br><span class="line"></span><br><span class="line">// &#x5B57;&#x6BB5;</span><br><span class="line">var field string</span><br><span class="line"></span><br><span class="line">// &#x89E6;&#x53D1;&#x544A;&#x8B66;&#x7684;&#x8868;&#x8FBE;&#x5F0F;</span><br><span class="line">var crit lambda</span><br><span class="line"></span><br><span class="line">// &#x544A;&#x8B66;&#x63CF;&#x8FF0;</span><br><span class="line">var message string</span><br><span class="line"></span><br><span class="line">stream</span><br><span class="line">    |from()</span><br><span class="line">        .measurement(measurement)</span><br><span class="line">        .<span class="hljs-built_in">where</span>(where_filter)</span><br><span class="line">        .groupBy(groups)</span><br><span class="line">    |window()</span><br><span class="line">        .period(window)</span><br><span class="line">        .every(every)</span><br><span class="line">    |mean(field)</span><br><span class="line">    |alert()</span><br><span class="line">        .crit(crit)</span><br><span class="line">        .stateChangesOnly()</span><br><span class="line">        .message(message)</span><br><span class="line"></span><br><span class="line">Vars:</span><br><span class="line">Name                          Type      Default Value                           Description                             </span><br><span class="line">crit                          lambda    &lt;required&gt;                              &#x89E6;&#x53D1;&#x544A;&#x8B66;&#x7684;&#x8868;&#x8FBE;&#x5F0F;                                </span><br><span class="line">every                         duration  &lt;required&gt;                              &#x6267;&#x884C;&#x9891;&#x7387;                                    </span><br><span class="line">field                         string    &lt;required&gt;                              &#x5B57;&#x6BB5;                                      </span><br><span class="line">groups                        list      [*]                                     &#x5206;&#x7EC4;                                      </span><br><span class="line">measurement                   string    &lt;required&gt;                              &#x6D4B;&#x91CF;&#x540D;                                     </span><br><span class="line">message                       string    &lt;required&gt;                              &#x544A;&#x8B66;&#x63CF;&#x8FF0;                                    </span><br><span class="line">where_filter                  lambda    TRUE                                    &#x8FC7;&#x6EE4;&#x6761;&#x4EF6;                                    </span><br><span class="line">window                        duration  &lt;required&gt;                              &#x65F6;&#x95F4;&#x7A97;&#x53E3;                                    </span><br><span class="line">DOT:</span><br><span class="line">digraph mean_alert {</span><br><span class="line">stream0 -&gt; from1;</span><br><span class="line">from1 -&gt; window2;</span><br><span class="line">window2 -&gt; mean3;</span><br><span class="line">mean3 -&gt; alert4;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">[root@tick:/var/lib/kapacitor/task]<span class="hljs-comment"># vim cpu_idle.yml</span></span><br><span class="line">[root@tick:/var/lib/kapacitor/task]<span class="hljs-comment"># kapacitor define cpu_idle_alert -file cpu_idle.yml</span></span><br><span class="line">[root@tick:/var/lib/kapacitor/task]<span class="hljs-comment"># kapacitor list tasks</span></span><br><span class="line">ID             Type      Status    Executing Databases and Retention Policies</span><br><span class="line">cpu_idle_alert stream    disabled  <span class="hljs-literal">false</span>     [<span class="hljs-string">&quot;telegraf&quot;</span>.<span class="hljs-string">&quot;autogen&quot;</span>]</span><br><span class="line">[root@tick:/var/lib/kapacitor/task]<span class="hljs-comment"># kapacitor enable cpu_idle_alert</span></span><br><span class="line">[root@tick:/var/lib/kapacitor/task]<span class="hljs-comment"># kapacitor show cpu_idle_alert</span></span><br><span class="line">ID: cpu_idle_alert</span><br><span class="line">Error:</span><br><span class="line">Template: mean_alert</span><br><span class="line">Type: stream</span><br><span class="line">Status: enabled</span><br><span class="line">Executing: <span class="hljs-literal">true</span></span><br><span class="line">Created: 09 Sep 19 22:04 CST</span><br><span class="line">Modified: 09 Sep 19 22:05 CST</span><br><span class="line">LastEnabled: 09 Sep 19 22:05 CST</span><br><span class="line">Databases Retention Policies: [<span class="hljs-string">&quot;telegraf&quot;</span>.<span class="hljs-string">&quot;autogen&quot;</span>]</span><br><span class="line">TICKscript:</span><br><span class="line">// &#x6D4B;&#x91CF;&#x540D;</span><br><span class="line">var measurement string</span><br><span class="line"></span><br><span class="line">// &#x8FC7;&#x6EE4;&#x6761;&#x4EF6;</span><br><span class="line">var where_filter = lambda: TRUE</span><br><span class="line"></span><br><span class="line">// &#x5206;&#x7EC4;</span><br><span class="line">var groups = [*]</span><br><span class="line"></span><br><span class="line">// &#x65F6;&#x95F4;&#x7A97;&#x53E3;</span><br><span class="line">var window duration</span><br><span class="line"></span><br><span class="line">// &#x6267;&#x884C;&#x9891;&#x7387;</span><br><span class="line">var every duration</span><br><span class="line"></span><br><span class="line">// &#x5B57;&#x6BB5;</span><br><span class="line">var field string</span><br><span class="line"></span><br><span class="line">// &#x89E6;&#x53D1;&#x544A;&#x8B66;&#x7684;&#x8868;&#x8FBE;&#x5F0F;</span><br><span class="line">var crit lambda</span><br><span class="line"></span><br><span class="line">// &#x544A;&#x8B66;&#x63CF;&#x8FF0;</span><br><span class="line">var message string</span><br><span class="line"></span><br><span class="line">stream</span><br><span class="line">    |from()</span><br><span class="line">        .measurement(measurement)</span><br><span class="line">        .<span class="hljs-built_in">where</span>(where_filter)</span><br><span class="line">        .groupBy(groups)</span><br><span class="line">    |window()</span><br><span class="line">        .period(window)</span><br><span class="line">        .every(every)</span><br><span class="line">    |mean(field)</span><br><span class="line">    |alert()</span><br><span class="line">        .crit(crit)</span><br><span class="line">        .stateChangesOnly()</span><br><span class="line">        .message(message)</span><br><span class="line"></span><br><span class="line">Vars:</span><br><span class="line">Name                          Type      Value                                   </span><br><span class="line">crit                          lambda    <span class="hljs-string">&quot;mean&quot;</span> &lt; 10.0                           </span><br><span class="line">every                         duration  1m0s                                    </span><br><span class="line">field                         string    usage_idle                               </span><br><span class="line">groups                        list      [*]                                     </span><br><span class="line">measurement                   string    cpu                                     </span><br><span class="line">message                       string    { <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;cpu_usage&quot;</span>, <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;&#x4E3B;&#x673A; CPU &#x4F7F;&#x7528;&#x7387;&#x5927;&#x4E8E;90%&quot;</span>, <span class="hljs-string">&quot;host&quot;</span>: <span class="hljs-string">&quot;{{ index .Tags &quot;</span>host<span class="hljs-string">&quot; }}&quot;</span>, <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;&#x4E3B;&#x673A;{{ index .Tags &quot;</span>host<span class="hljs-string">&quot; }} CPU&#x4F7F;&#x7528;&#x7387;{{ index .Fields &quot;</span>cpu_usage<span class="hljs-string">&quot; | printf &quot;</span>%0.2f<span class="hljs-string">&quot; }}%,CPU&#x8D1F;&#x8F7D;&#x8FC7;&#x9AD8;&#x4F1A;&#x5BFC;&#x81F4;&#x670D;&#x52A1;&#x5668;&#x8FD0;&#x884C;&#x7F13;&#x6162;&#xFF0C;&#x5E94;&#x7528;&#x65E0;&#x6CD5;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x7B49;&#x95EE;&#x9898;&#x3002;&#x8BF7;&#x67E5;&#x770B;CPU&#x4F7F;&#x7528;&#x7387;&#x9AD8;&#x7684;&#x8FDB;&#x7A0B;/&#x5E94;&#x7528;&#x662F;&#x5426;&#x4E3A;&#x5F02;&#x5E38;&#x5BFC;&#x81F4;&quot;</span> }</span><br><span class="line">window                        duration  5m0s                                    </span><br><span class="line">DOT:</span><br><span class="line">digraph cpu_idle_alert {</span><br><span class="line">graph [throughput=<span class="hljs-string">&quot;0.00 points/s&quot;</span>];</span><br><span class="line"></span><br><span class="line">stream0 [avg_exec_time_ns=<span class="hljs-string">&quot;0s&quot;</span> errors=<span class="hljs-string">&quot;0&quot;</span> working_cardinality=<span class="hljs-string">&quot;0&quot;</span> ];</span><br><span class="line">stream0 -&gt; from1 [processed=<span class="hljs-string">&quot;0&quot;</span>];</span><br><span class="line"></span><br><span class="line">from1 [avg_exec_time_ns=<span class="hljs-string">&quot;0s&quot;</span> errors=<span class="hljs-string">&quot;0&quot;</span> working_cardinality=<span class="hljs-string">&quot;0&quot;</span> ];</span><br><span class="line">from1 -&gt; window2 [processed=<span class="hljs-string">&quot;0&quot;</span>];</span><br><span class="line"></span><br><span class="line">window2 [avg_exec_time_ns=<span class="hljs-string">&quot;0s&quot;</span> errors=<span class="hljs-string">&quot;0&quot;</span> working_cardinality=<span class="hljs-string">&quot;0&quot;</span> ];</span><br><span class="line">window2 -&gt; mean3 [processed=<span class="hljs-string">&quot;0&quot;</span>];</span><br><span class="line"></span><br><span class="line">mean3 [avg_exec_time_ns=<span class="hljs-string">&quot;0s&quot;</span> errors=<span class="hljs-string">&quot;0&quot;</span> working_cardinality=<span class="hljs-string">&quot;0&quot;</span> ];</span><br><span class="line">mean3 -&gt; alert4 [processed=<span class="hljs-string">&quot;0&quot;</span>];</span><br><span class="line"></span><br><span class="line">alert4 [alerts_inhibited=<span class="hljs-string">&quot;0&quot;</span> alerts_triggered=<span class="hljs-string">&quot;0&quot;</span> avg_exec_time_ns=<span class="hljs-string">&quot;0s&quot;</span> crits_triggered=<span class="hljs-string">&quot;0&quot;</span> errors=<span class="hljs-string">&quot;0&quot;</span> infos_triggered=<span class="hljs-string">&quot;0&quot;</span> oks_triggered=<span class="hljs-string">&quot;0&quot;</span> warns_triggered=<span class="hljs-string">&quot;0&quot;</span> working_cardinality=<span class="hljs-string">&quot;0&quot;</span> ];</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6/">#监控告警</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/TICK%E6%8A%80%E6%9C%AF%E6%A0%88/">#TICK技术栈</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Kapacitor%E7%9B%91%E6%8E%A7%E6%A1%88%E4%BE%8B/">#Kapacitor监控案例</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/04/14/booboo_tick/kapacitor/05_Kapacitor%E7%9B%91%E6%8E%A7%E6%A1%88%E4%BE%8B/02_%E9%99%8D%E9%87%87%E6%A0%B7/">05-Kapacitor监控案例-B-降采样</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2020/04/14/booboo_tick/kapacitor/05_Kapacitor监控案例/03_创建任务模板脚本/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+</div>
+
+
+    </div>
+</section>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span> 人次 </span>
+           </div>
+
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+    
+</body>
+</html>

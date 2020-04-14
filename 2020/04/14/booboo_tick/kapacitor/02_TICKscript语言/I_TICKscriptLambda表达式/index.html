@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>02-TICKscript语言-I-Lambda表达式 - 归去来兮</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+
+
+
+
+
+
+
+
+    <meta name="description" content="TICKscript Lambda&amp;#x8868;&amp;#x8FBE;&amp;#x5F0F; &amp;#x6982;&amp;#x8FF0; &amp;#x7B80;&amp;#x4ECB; &amp;#x5185;&amp;#x7F6E;&amp;#x51FD;&amp;#x6570;   &amp;#x6709;&amp;#x72B6;&amp;#x6001;&amp;#x51FD;&amp;#x6570; sigma&amp;#x53EF;&amp;#x7528;&amp;#x4E8E;&amp;#x5B9A;&amp;#x4E49;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02-TICKscript语言-I-Lambda表达式">
+<meta property="og:url" content="http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/I_TICKscriptLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="TICKscript Lambda&amp;#x8868;&amp;#x8FBE;&amp;#x5F0F; &amp;#x6982;&amp;#x8FF0; &amp;#x7B80;&amp;#x4ECB; &amp;#x5185;&amp;#x7F6E;&amp;#x51FD;&amp;#x6570;   &amp;#x6709;&amp;#x72B6;&amp;#x6001;&amp;#x51FD;&amp;#x6570; sigma&amp;#x53EF;&amp;#x7528;&amp;#x4E8E;&amp;#x5B9A;&amp;#x4E49;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-14T11:28:51.000Z">
+<meta property="article:modified_time" content="2020-04-14T04:33:43.470Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="监控告警">
+<meta property="article:tag" content="TICK技术栈">
+<meta property="article:tag" content="TICKscript语言">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="归去来兮" type="application/atom+xml">
+</head>
+<body>
+    
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+    <div class="row">
+        <!--左侧只占一个格子 -->
+        <div class="col-md-1">
+            <div class="navbar-brand">
+                <a class="navbar-item navbar-logo" href="/">
+                    
+                        
+                        <img src="/images/influx.svg" alt="" height="28">
+                        
+                    
+                </a>
+                <div class="navbar-burger">
+                    <span>
+                    </span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--中间自适应 -->
+        <div class="col-md-10">
+            
+            <div class="navbar-menu navbar-start">
+                
+                <a class="navbar-item "
+                   href="/archives/">最近更新</a>
+                
+                <a class="navbar-item "
+                   href="/tags/">标签</a>
+                
+
+                <!-- BoobooWei自动根据已有的category创建-->
+            
+
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <!--循环category 生成navbar代码-->
+                        
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="往昔追忆">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/" data-rel="经典语录">经典语录</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="培训教程">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术广角">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Minos%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/" data-rel="Minos主题优化">Minos主题优化</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术峰会"><i class="fold iconfont icon-right"></i>技术峰会</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术峰会">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Azure/" data-rel="Azure">Azure</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Aliyun/" data-rel="Aliyun">Aliyun</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="TICK"><i class="fold iconfont icon-right"></i>TICK</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="TICK">
+                                    
+                                    <a class="dropdown-item" href="/categories/TICK/kapacitor/" data-rel="kapacitor">kapacitor</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                </ul>
+              </div>
+            </nav>
+
+            <!-- 自动根据已有的category创建-->
+        </div>
+        
+
+        </div>
+
+
+        <!--最右侧 -->
+        <div class="col-md-1">
+
+            <div class="navbar-menu navbar-end">
+                
+                <a class="navbar-item" title="movie" href="/movies/">
+                    <svg t="1586342683221" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1766" width="20" height="20"><path d="M914.044 898.826H109.956c-20.435 0-37-16.565-37-37V280.131c0-20.435 16.565-37 37-37h804.088c20.435 0 37 16.565 37 37v581.695c0 20.435-16.565 37-37 37z m-767.088-74h730.088V317.131H146.956v507.695zM322.739 199.174H113c-20.435 0-37-16.565-37-37s16.565-37 37-37h209.739c20.435 0 37 16.565 37 37s-16.565 37-37 37z" p-id="1767" fill="#2c2c2c"></path><path d="M457.932 752.856A37.002 37.002 0 0 1 420.937 716l-1.122-287.64a37.003 37.003 0 0 1 20.769-33.395 37.006 37.006 0 0 1 39.104 4.167l184.107 144.792a37 37 0 0 1-0.105 58.248L480.704 745.021a36.982 36.982 0 0 1-22.772 7.835z m36.181-248.234l0.528 135.641 86.29-67.361-86.818-68.28z" p-id="1768" fill="#2c2c2c"></path></svg>
+                </a>
+                <a class="navbar-item" title="movie" href="/books/">
+                    <svg t="1586350091188" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2280" width="20" height="20"><path d="M306.4 773.3h188v16.3c0 13.8 11.2 25 25 25s25-11.2 25-25v-16.3h180.5c68.9 0 125-56.1 125-125V295.4c0-68.9-56.1-125-125-125H549.6c-10.7 0-19.9 6.8-23.4 16.3-2.1-0.6-4.4-0.9-6.7-0.9-2 0-3.9 0.2-5.8 0.7-3.6-9.4-12.7-16-23.3-16h-184c-68.9 0-125 56.1-125 125v352.9c0 68.8 56.1 124.9 125 124.9z m418.5-552.9c41.4 0 75 33.6 75 75v352.9c0 41.4-33.6 75-75 75H544.4V219.9c1.7 0.4 3.4 0.5 5.2 0.5h175.3z m-493.5 75c0-41.4 33.6-75 75-75h183.9c1.4 0 2.8-0.1 4.1-0.3v503.2h-188c-41.4 0-75-33.6-75-75V295.4z" p-id="2281"></path><path d="M901.5 314.3c-11 0-20 9-20 20v384c0 44.1-35.9 80-80 80H615.3c-5.6 0-11 2.4-14.8 6.5l-25.9 28.4c-2 2.2-4.9 3.5-7.9 3.5H459c-2.9 0-5.6-1.1-7.6-3.1L425.8 808c-3.8-3.8-8.8-5.9-14.1-5.9H224.8c-44.1 0-80-35.9-80-80V343.9c0-11-9-20-20-20s-20 9-20 20v378.3c0 66.2 53.8 120 120 120h178.5l19.7 19.7c9.6 9.6 22.3 14.9 35.9 14.9h107.7c14.2 0 27.9-6 37.5-16.5l20-21.9h177.4c66.2 0 120-53.8 120-120v-384c0-11.1-9-20.1-20-20.1z" p-id="2282"></path><path d="M297.5 341.4h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 408.6h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 506.5h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20z" p-id="2283"></path></svg>
+                </a>
+                
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                        
+                        
+                        <a class="navbar-item" href="#TICKscript-Lambda&#x8868;&#x8FBE;&#x5F0F;">1&nbsp;&nbsp;<b>TICKscript Lambda&#x8868;&#x8FBE;&#x5F0F;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6982;&#x8FF0;">1.1&nbsp;&nbsp;&#x6982;&#x8FF0;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x7B80;&#x4ECB;">1.1.1&nbsp;&nbsp;&#x7B80;&#x4ECB;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5185;&#x7F6E;&#x51FD;&#x6570;">1.1.2&nbsp;&nbsp;&#x5185;&#x7F6E;&#x51FD;&#x6570;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6709;&#x72B6;&#x6001;&#x51FD;&#x6570;">1.2&nbsp;&nbsp;&#x6709;&#x72B6;&#x6001;&#x51FD;&#x6570;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#sigma&#x53EF;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x5F3A;&#x5927;&#x7684;&#x544A;&#x8B66;">1.2.1&nbsp;&nbsp;sigma&#x53EF;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x5F3A;&#x5927;&#x7684;&#x544A;&#x8B66;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x65E0;&#x72B6;&#x6001;&#x51FD;&#x6570;">1.3&nbsp;&nbsp;&#x65E0;&#x72B6;&#x6001;&#x51FD;&#x6570;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x51FD;&#x6570;">1.3.1&nbsp;&nbsp;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x51FD;&#x6570;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5224;&#x65AD;&#x5B58;&#x5728;&#x7684;&#x51FD;&#x6570;">1.3.2&nbsp;&nbsp;&#x5224;&#x65AD;&#x5B58;&#x5728;&#x7684;&#x51FD;&#x6570;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x65F6;&#x95F4;&#x51FD;&#x6570;">1.3.3&nbsp;&nbsp;&#x65F6;&#x95F4;&#x51FD;&#x6570;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6570;&#x5B66;&#x51FD;&#x6570;">1.3.4&nbsp;&nbsp;&#x6570;&#x5B66;&#x51FD;&#x6570;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B57;&#x7B26;&#x4E32;&#x51FD;&#x6570;">1.3.5&nbsp;&nbsp;&#x5B57;&#x7B26;&#x4E32;&#x51FD;&#x6570;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4EBA;&#x6027;&#x5316;&#x51FD;&#x6570;">1.3.6&nbsp;&nbsp;&#x4EBA;&#x6027;&#x5316;&#x51FD;&#x6570;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6761;&#x4EF6;&#x51FD;&#x6570;">1.3.7&nbsp;&nbsp;&#x6761;&#x4EF6;&#x51FD;&#x6570;</a>
+                        
+                    </div>
+                </div>
+                
+                
+                <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                   
+                
+            </div>
+        </div>
+</div>
+</div>
+</nav>
+
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            02-TICKscript语言-I-Lambda表达式
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-04-14T11:28:51.000Z" itemprop="datePublished">4月 14 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/TICK/">TICK</a><span>></span><a class="article-category-link" href="/categories/TICK/kapacitor/">kapacitor</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            26 分钟 读完 (约 3840 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+<ul>
+<li><a href="#tickscript-lambda&#x8868;&#x8FBE;&#x5F0F;">TICKscript Lambda&#x8868;&#x8FBE;&#x5F0F;</a><ul>
+<li><a href="#&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</a><ul>
+<li><a href="#&#x7B80;&#x4ECB;">&#x7B80;&#x4ECB;</a></li>
+<li><a href="#&#x5185;&#x7F6E;&#x51FD;&#x6570;">&#x5185;&#x7F6E;&#x51FD;&#x6570;</a></li>
+</ul>
+</li>
+<li><a href="#&#x6709;&#x72B6;&#x6001;&#x51FD;&#x6570;">&#x6709;&#x72B6;&#x6001;&#x51FD;&#x6570;</a><ul>
+<li><a href="#sigma&#x53EF;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x5F3A;&#x5927;&#x7684;&#x544A;&#x8B66;"><code>sigma</code>&#x53EF;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x5F3A;&#x5927;&#x7684;&#x544A;&#x8B66;</a><ul>
+<li><a href="#&#x77E5;&#x8BC6;&#x70B9;-&#x5E73;&#x5747;&#x504F;&#x5DEE;">&#x77E5;&#x8BC6;&#x70B9;-&#x5E73;&#x5747;&#x504F;&#x5DEE;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#&#x65E0;&#x72B6;&#x6001;&#x51FD;&#x6570;">&#x65E0;&#x72B6;&#x6001;&#x51FD;&#x6570;</a><ul>
+<li><a href="#&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x51FD;&#x6570;">&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x51FD;&#x6570;</a></li>
+<li><a href="#&#x5224;&#x65AD;&#x5B58;&#x5728;&#x7684;&#x51FD;&#x6570;">&#x5224;&#x65AD;&#x5B58;&#x5728;&#x7684;&#x51FD;&#x6570;</a></li>
+<li><a href="#&#x65F6;&#x95F4;&#x51FD;&#x6570;">&#x65F6;&#x95F4;&#x51FD;&#x6570;</a></li>
+<li><a href="#&#x6570;&#x5B66;&#x51FD;&#x6570;">&#x6570;&#x5B66;&#x51FD;&#x6570;</a></li>
+<li><a href="#&#x5B57;&#x7B26;&#x4E32;&#x51FD;&#x6570;">&#x5B57;&#x7B26;&#x4E32;&#x51FD;&#x6570;</a></li>
+<li><a href="#&#x4EBA;&#x6027;&#x5316;&#x51FD;&#x6570;">&#x4EBA;&#x6027;&#x5316;&#x51FD;&#x6570;</a></li>
+<li><a href="#&#x6761;&#x4EF6;&#x51FD;&#x6570;">&#x6761;&#x4EF6;&#x51FD;&#x6570;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+
+
+<h1><span id="tickscript-lambda&#x8868;&#x8FBE;&#x5F0F;">TICKscript Lambda&#x8868;&#x8FBE;&#x5F0F;</span></h1><p><a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/" target="_blank" rel="noopener">Lambda&#x8868;&#x8FBE;&#x5F0F;&#x5B98;&#x65B9;&#x5E2E;&#x52A9;</a></p>
+<p><a href="https://help.aliyun.com/document_detail/113126.html?spm=a2c4g.11174283.6.740.529f77a2ijwJ6I#Transformations" target="_blank" rel="noopener">&#x51FD;&#x6570;&#x5E2E;&#x52A9;</a></p>
+<h2><span id="&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</span></h2><p>TICKscript&#x4F7F;&#x7528;lambda&#x8868;&#x8FBE;&#x5F0F;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#x70B9;&#x7684;&#x8F6C;&#x6362;&#xFF0C;&#x5E76;&#x5B9A;&#x4E49;&#x5145;&#x5F53;&#x8FC7;&#x6EE4;&#x5668;&#x7684;&#x5E03;&#x5C14;&#x6761;&#x4EF6;&#x3002;</p>
+<h3><span id="&#x7B80;&#x4ECB;">&#x7B80;&#x4ECB;</span></h3><p>Lambda&#x8868;&#x8FBE;&#x5F0F;&#x5305;&#x542B;&#xFF1A;</p>
+<ul>
+<li>&#x6570;&#x5B66;&#x8FD0;&#x7B97;</li>
+<li>&#x5E03;&#x5C14;&#x8FD0;&#x7B97;</li>
+<li>&#x5185;&#x90E8;&#x51FD;&#x6570;&#x8C03;&#x7528;</li>
+<li>&#x6216;&#x4E09;&#x8005;&#x7684;&#x7EC4;&#x5408;</li>
+</ul>
+<p>TICKscript&#x5C1D;&#x8BD5;&#x7C7B;&#x4F3C;&#x4E8E;InfluxQL&#xFF0C;&#x56E0;&#x4E3A;&#x60A8;&#x5728;InfluxQL WHERE&#x5B50;&#x53E5;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x5927;&#x591A;&#x6570;&#x8868;&#x8FBE;&#x5F0F;&#x5C06;&#x4F5C;&#x4E3A;TICKscript&#x4E2D;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x4F7F;&#x7528;&#xFF0C;&#x4F46;&#x5177;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x8BED;&#x6CD5;&#xFF1A;</p>
+<ul>
+<li>lambda&#x8868;&#x8FBE;&#x5F0F;&#x90FD;&#x4EE5;&#x5173;&#x952E;&#x5B57;<code>lambda:</code>&#x5F00;&#x5934;&#x3002;</li>
+<li>&#x6240;&#x6709;<code>&#x5B57;&#x6BB5;Field</code>&#x6216;<code>&#x6807;&#x8BB0;Tag</code> &#x7684;&#x6807;&#x8BC6;&#x7B26;&#x5FC5;&#x987B;&#x52A0;&#x53CC;&#x5F15;&#x53F7;&#x3002;</li>
+<li>&#x76F8;&#x7B49;&#x7684;&#x6BD4;&#x8F83;&#x8FD0;&#x7B97;&#x7B26;&#x4E3A;<code>==</code>&#x4E0D;&#x662F;<code>=</code>&#x3002;</li>
+</ul>
+<h3><span id="&#x5185;&#x7F6E;&#x51FD;&#x6570;">&#x5185;&#x7F6E;&#x51FD;&#x6570;</span></h3><p>&#x5185;&#x7F6E;&#x51FD;&#x6570;&#x5206;&#x4E3A;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x5185;&#x7F6E;&#x51FD;&#x6570;</th>
+<th></th>
+<th></th>
+<th>&#x6570;&#x91CF;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/#stateful-functions" target="_blank" rel="noopener">Stateful functions</a></td>
+<td>&#x6709;&#x72B6;&#x6001;&#x51FD;&#x6570;</td>
+<td></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/#stateless-functions" target="_blank" rel="noopener">Stateless functions</a></td>
+<td>&#x65E0;&#x72B6;&#x6001;&#x51FD;&#x6570;</td>
+<td></td>
+<td><code>78</code></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/#type-conversion-functions" target="_blank" rel="noopener">Type conversion functions</a></td>
+<td>&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x51FD;&#x6570;</td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/#existence" target="_blank" rel="noopener">Existence</a></td>
+<td>&#x5B58;&#x5728;&#x51FD;&#x6570;</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/#time-functions" target="_blank" rel="noopener">Time functions</a></td>
+<td>&#x65F6;&#x95F4;&#x51FD;&#x6570;</td>
+<td><code>7</code></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/#math-functions" target="_blank" rel="noopener">Math functions</a></td>
+<td>&#x6570;&#x5B66;&#x51FD;&#x6570;</td>
+<td><code>42</code></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/#string-functions" target="_blank" rel="noopener">String functions</a></td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x51FD;&#x6570;</td>
+<td><code>21</code></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/#human-string-functions" target="_blank" rel="noopener">Human string functions</a></td>
+<td>&#x4EBA;&#x6027;&#x5316;&#x51FD;&#x6570;</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://docs.influxdata.com/kapacitor/v1.5/tick/expr/#conditional-functions" target="_blank" rel="noopener">Conditional functions</a></td>
+<td>&#x6761;&#x4EF6;&#x51FD;&#x6570;</td>
+<td><code>1</code></td>
+</tr>
+</tbody></table>
+<h2><span id="&#x6709;&#x72B6;&#x6001;&#x51FD;&#x6570;">&#x6709;&#x72B6;&#x6001;&#x51FD;&#x6570;</span></h2><table>
+<thead>
+<tr>
+<th align="left">No.</th>
+<th align="left">&#x51FD;&#x6570;</th>
+<th align="left">&#x8FD4;&#x56DE;&#x503C;</th>
+<th align="left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><code>count()</code></td>
+<td align="left"><code>int64</code></td>
+<td align="left">&#x8FD4;&#x56DE;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x8BA1;&#x7B97;&#x6B21;&#x6570;</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left"><code>sigma(value )</code></td>
+<td align="left"><code>float64</code></td>
+<td align="left">&#x8BA1;&#x7B97;&#x7ED9;&#x5B9A;&#x503C;&#x8FDC;&#x79BB;&#x8FD0;&#x884C;&#x5E73;&#x5747;&#x503C;&#x7684;&#x6807;&#x51C6;&#x504F;&#x5DEE;&#x6570;&#x3002;&#x6BCF;&#x6B21;&#x8BC4;&#x4F30;&#x8868;&#x8FBE;&#x5F0F;&#x65F6;&#xFF0C;&#x90FD;&#x4F1A;&#x66F4;&#x65B0;&#x8FD0;&#x884C;&#x5E73;&#x5747;&#x503C;&#x548C;&#x6807;&#x51C6;&#x5DEE;&#x3002;</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left"><code>spread(value )</code></td>
+<td align="left"><code>float64</code></td>
+<td align="left">&#x8BA1;&#x7B97;&#x4F20;&#x9012;&#x7ED9;&#x5B83;&#x7684;&#x6240;&#x6709;&#x503C;&#x7684;&#x8FD0;&#x884C;&#x8303;&#x56F4;&#x3002;&#x8303;&#x56F4;&#x662F;&#x6536;&#x5230;&#x7684;&#x6700;&#x5927;&#x503C;&#x548C;&#x6700;&#x5C0F;&#x503C;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#x3002;</td>
+</tr>
+</tbody></table>
+<h3><span id="sigma&#x53EF;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x5F3A;&#x5927;&#x7684;&#x544A;&#x8B66;"><code>sigma</code>&#x53EF;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x5F3A;&#x5927;&#x7684;&#x544A;&#x8B66;</span></h3><p>&#x6BCF;&#x6B21;&#x8BA1;&#x7B97;&#x8868;&#x8FBE;&#x5F0F;&#x65F6;&#xFF0C;&#x5B83;&#x90FD;&#x4F1A;&#x66F4;&#x65B0;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x504F;&#x5DEE;&#x3002;</p>
+<p><code>sigma(&quot;value&quot;) &gt; 3.0</code>&#x8868;&#x793A;&#x8BC4;&#x4F30;&#x6536;&#x5230;&#x7684;&#x6570;&#x636E;&#x70B9;&#x6D41;&#x7684;&#x5E73;&#x5747;&#x503C;&#x7684;&#x6807;&#x51C6;&#x504F;&#x5DEE;&#xFF1A;</p>
+<ol>
+<li>&#x5982;&#x679C;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E; 3.0&#xFF0C;&#x5219;&#x8FD4;&#x56DE; <code>False</code>&#xFF1B;</li>
+<li>&#x5982;&#x679C;&#x8D85;&#x8FC7;3.0&#xFF0C;&#x5219;&#x8FD4;&#x56DE;<code>True</code>&#x3002;</li>
+</ol>
+<p>&#x8FD9;&#x6837;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x5728;TICKscript&#x5185;&#x90E8;&#x4F7F;&#x7528;&#x6765;&#x5B9A;&#x4E49;&#x5F3A;&#x5927;&#x7684;&#x8B66;&#x62A5;&#x3002;</p>
+<p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">stream</span><br><span class="line">    |<span class="hljs-keyword">from</span>()</span><br><span class="line">    ...</span><br><span class="line">    |alert()</span><br><span class="line">        <span class="hljs-comment">// use an expression to define when an alert should go critical.</span></span><br><span class="line">        .crit(lambda: sigma(<span class="hljs-string">&quot;value&quot;</span>) &gt; <span class="hljs-number">3.0</span>)</span><br></pre></td></tr></table></figure></p>
+<h4><span id="&#x77E5;&#x8BC6;&#x70B9;-&#x5E73;&#x5747;&#x504F;&#x5DEE;">&#x77E5;&#x8BC6;&#x70B9;-&#x5E73;&#x5747;&#x504F;&#x5DEE;</span></h4><p><a href="https://baike.baidu.com/item/%E5%B9%B3%E5%9D%87%E5%81%8F%E5%B7%AE/11042506" target="_blank" rel="noopener">&#x4EC0;&#x4E48;&#x662F;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#xFF1F;</a></p>
+<blockquote>
+<p>&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x662F;&#x6570;&#x5217;&#x4E2D;&#x5404;&#x9879;&#x6570;&#x503C;&#x4E0E;&#x5176;&#x7B97;&#x672F;&#x5E73;&#x5747;&#x6570;&#x7684;&#x79BB;&#x5DEE;&#x7EDD;&#x5BF9;&#x503C;&#x7684;&#x7B97;&#x672F;&#x5E73;&#x5747;&#x6570;&#x3002;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x662F;&#x7528;&#x6765;&#x6D4B;&#x5B9A;&#x6570;&#x5217;&#x4E2D;&#x5404;&#x9879;&#x6570;&#x503C;&#x5BF9;&#x5176;&#x5E73;&#x5747;&#x6570;&#x79BB;&#x52BF;&#x7A0B;&#x5EA6;&#x7684;&#x4E00;&#x79CD;&#x5C3A;&#x5EA6;&#x3002;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x53EF;&#x5206;&#x4E3A;&#x7B80;&#x5355;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x548C;&#x52A0;&#x6743;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x3002;</p>
+</blockquote>
+<p><strong>&#x5B9A;&#x4E49;</strong></p>
+<p>&#x5728;&#x7EDF;&#x8BA1;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x53CD;&#x6620;&#x51FA;&#x6240;&#x6709;&#x539F;&#x6570;&#x636E;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#xFF0C;&#x5C31;&#x8981;&#x5728;&#x5404;&#x539F;&#x6570;&#x636E;&#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x5DEE;&#x5F02;&#x6BD4;&#x8F83;&#xFF0C;&#x5F53;&#x539F;&#x6570;&#x636E;&#x8F83;&#x591A;&#x65F6;&#xFF0C;&#x8FDB;&#x884C;&#x4E24;&#x4E24;&#x6BD4;&#x8F83;&#x5C31;&#x5F88;&#x9EBB;&#x70E6;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x5171;&#x540C;&#x7684;&#x6BD4;&#x8F83;&#x6807;&#x51C6;&#xFF0C;&#x53D6;&#x6BCF;&#x4E2A;&#x539F;&#x6570;&#x636E;&#x503C;&#x4E0E;&#x6807;&#x51C6;&#x503C;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x3002;&#x8FD9;&#x4E2A;&#x6807;&#x51C6;&#x503C;&#x5C31;&#x662F;&#x7B97;&#x6570;&#x5E73;&#x5747;&#x6570;&#x3002;</p>
+<p>&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x5C31;&#x662F;&#x6BCF;&#x4E2A;&#x539F;&#x6570;&#x636E;&#x503C;&#x4E0E;&#x7B97;&#x6570;&#x5E73;&#x5747;&#x6570;&#x4E4B;&#x5DEE;&#x7684;&#x7EDD;&#x5BF9;&#x503C;&#x7684;&#x5747;&#x503C;&#xFF0C;&#x7528;&#x7B26;&#x53F7;A.D.(average deviation)&#x8868;&#x793A;&#x3002;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x662F;&#x4E00;&#x79CD;&#x5E73;&#x5747;&#x79BB;&#x5DEE;&#x3002;&#x79BB;&#x5DEE;&#x662F;&#x603B;&#x4F53;&#x5404;&#x5355;&#x4F4D;&#x7684;&#x6807;&#x5FD7;&#x503C;&#x4E0E;&#x7B97;&#x672F;&#x5E73;&#x5747;&#x6570;&#x4E4B;&#x5DEE;&#x3002;&#x56E0;&#x79BB;&#x5DEE;&#x548C;&#x4E3A;&#x96F6;&#xFF0C;&#x79BB;&#x5DEE;&#x7684;&#x5E73;&#x5747;&#x6570;&#x4E0D;&#x80FD;&#x5C06;&#x79BB;&#x5DEE;&#x548C;&#x9664;&#x4EE5;&#x79BB;&#x5DEE;&#x7684;&#x4E2A;&#x6570;&#x6C42;&#x5F97;&#xFF0C;&#x800C;&#x5FC5;&#x987B;&#x5C06;&#x79BB;&#x5DEE;&#x53D6;&#x7EDD;&#x5BF9;&#x6570;&#x6765;&#x6D88;&#x9664;&#x6B63;&#x8D1F;&#x53F7;&#x3002;</p>
+<p>&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x662F;&#x53CD;&#x6620;&#x5404;&#x6807;&#x5FD7;&#x503C;&#x4E0E;&#x7B97;&#x672F;&#x5E73;&#x5747;&#x6570;&#x4E4B;&#x95F4;&#x7684;&#x5E73;&#x5747;&#x5DEE;&#x5F02;&#x3002;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x8D8A;&#x5927;&#xFF0C;&#x8868;&#x660E;&#x5404;&#x6807;&#x5FD7;&#x503C;&#x4E0E;&#x7B97;&#x672F;&#x5E73;&#x5747;&#x6570;&#x7684;&#x5DEE;&#x5F02;&#x7A0B;&#x5EA6;&#x8D8A;&#x5927;&#xFF0C;&#x8BE5;&#x7B97;&#x672F;&#x5E73;&#x5747;&#x6570;&#x7684;&#x4EE3;&#x8868;&#x6027;&#x5C31;&#x8D8A;&#x5C0F;&#xFF1B;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x8D8A;&#x5C0F;&#xFF0C;&#x8868;&#x660E;&#x5404;&#x6807;&#x5FD7;&#x503C;&#x4E0E;&#x7B97;&#x672F;&#x5E73;&#x5747;&#x6570;&#x7684;&#x5DEE;&#x5F02;&#x7A0B;&#x5EA6;&#x8D8A;&#x5C0F;&#xFF0C;&#x8BE5;&#x7B97;&#x672F;&#x5E73;&#x5747;&#x6570;&#x7684;&#x4EE3;&#x8868;&#x6027;&#x5C31;&#x8D8A;&#x5927;&#x3002;</p>
+<p>&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x53C8;&#x6709;&#x7B80;&#x5355;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x548C;&#x52A0;&#x6743;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x4E4B;&#x5206;&#x3002;</p>
+<p><strong>&#x8BA1;&#x7B97;</strong></p>
+<ol>
+<li>&#x7B80;&#x5355;&#x5E73;&#x5747;&#x504F;&#x5DEE;<br>&#x5982;&#x679C;&#x539F;&#x6570;&#x636E;&#x672A;&#x5206;&#x7EC4;&#xFF0C;&#x5219;&#x8BA1;&#x7B97;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x7684;&#x516C;&#x5F0F;&#x4E3A;&#xFF1A;<br>$$<br>A.D. =<br>\frac{\sum\mid x-\overline x  \mid}{n}<br>$$<br>&#x8BE5;&#x5F0F;&#x79F0;&#x4E3A;&#x7B80;&#x5355;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x3002;</li>
+</ol>
+<p>&#x4E3E;&#x4F8B;&#xFF1A;&#x8BA1;&#x7B97;cpu&#x6BCF;&#x4E2A;&#x70B9;&#x7684;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x503C; <code>10 11 9 8 12 11</code></p>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x4E2A;&#x70B9;&#x7684;&#x503C;&#x4E3A;10&#xFF0C;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x4E3A;<code>0</code></li>
+<li>&#x7B2C;&#x4E8C;&#x4E2A;&#x70B9;&#x7684;&#x503C;&#x4E3A;11&#xFF0C;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x4E3A;<code>0.5</code></li>
+<li>&#x7B2C;&#x4E09;&#x4E2A;&#x70B9;&#x7684;&#x503C;&#x4E3A;9&#xFF0C;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x4E3A;<code>0.82</code></li>
+<li>&#x7B2C;&#x56DB;&#x4E2A;&#x70B9;&#x7684;&#x503C;&#x4E3A;8&#xFF0C;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x4E3A;<code>1.12</code></li>
+<li>&#x7B2C;&#x4E94;&#x4E2A;&#x70B9;&#x7684;&#x503C;&#x4E3A;12&#xFF0C;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x4E3A;<code>1.41</code></li>
+<li>&#x7B2C;&#x516D;&#x4E2A;&#x70B9;&#x7684;&#x503C;&#x4E3A;11&#xFF0C;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x4E3A;<code>1.34</code></li>
+</ul>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* &#x8BA1;&#x7B97;&#x5E73;&#x5747;&#x503C;</span><br><span class="line">* &#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x70B9;&#x4E0E;&#x5E73;&#x5747;&#x503C;&#x7684;&#x5DEE;&#x503C;&#x7684;&#x7EDD;&#x5BF9;&#x503C;</span><br><span class="line">* &#x8BA1;&#x7B97;&#x5DEE;&#x503C;&#x7684;&#x548C;</span><br><span class="line">* &#x5DEE;&#x503C;&#x548C;&#x9664;&#x4EE5;&#x603B;&#x6B21;&#x6570;</span><br></pre></td></tr></table></figure></p>
+<p><strong>python&#x8BA1;&#x7B97;&#x811A;&#x672C;</strong></p>
+<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cal_mean_std</span><span class="hljs-params">(sum_list_in)</span>:</span></span><br><span class="line">    <span class="hljs-comment"># type: (list) -&gt; tuple</span></span><br><span class="line">    N = sum_list_in.__len__()</span><br><span class="line">    narray = numpy.array(sum_list_in)</span><br><span class="line">    sum = narray.sum()</span><br><span class="line">    mean = sum / N</span><br><span class="line"></span><br><span class="line">    narray_dev = narray - mean</span><br><span class="line">    narray_dev = narray_dev * narray_dev</span><br><span class="line">    sum_dev = narray_dev.sum()</span><br><span class="line">    DEV = float(sum_dev) / float(N)</span><br><span class="line">    STDEV = numpy.math.sqrt(DEV)</span><br><span class="line">    <span class="hljs-keyword">return</span> round(mean,<span class="hljs-number">2</span>), round(DEV,<span class="hljs-number">2</span>), round(STDEV,<span class="hljs-number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sum_list_in = [<span class="hljs-number">10</span>,<span class="hljs-number">11</span>,<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">12</span>,<span class="hljs-number">11</span>]</span><br><span class="line">mean, DEV, STDEV=cal_mean_std(sum_list_in)</span><br><span class="line">print(mean, DEV, STDEV)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>mean &#x5E73;&#x5747;&#x503C;</li>
+<li>dev &#x65B9;&#x5DEE;</li>
+<li>stdev &#x6807;&#x51C6;&#x5DEE;</li>
+</ul>
+<ol start="2">
+<li>&#x52A0;&#x6743;&#x5E73;&#x5747;&#x504F;&#x5DEE;<br>&#x5728;&#x5206;&#x7EC4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x7684;&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#x4E3A;&#xFF1A;&#x8BE5;&#x5F0F;&#x79F0;&#x4E3A;&#x52A0;&#x6743;&#x5E73;&#x5747;&#x504F;&#x5DEE;&#x3002;<br>$$<br>A.D. =<br>\frac{\sum\mid x-\overline x  \mid f}{n f}<br>$$</li>
+</ol>
+<h2><span id="&#x65E0;&#x72B6;&#x6001;&#x51FD;&#x6570;">&#x65E0;&#x72B6;&#x6001;&#x51FD;&#x6570;</span></h2><h3><span id="&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x51FD;&#x6570;">&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x51FD;&#x6570;</span></h3><table>
+<thead>
+<tr>
+<th align="left">No.</th>
+<th align="left">&#x51FD;&#x6570;</th>
+<th align="left">&#x8FD4;&#x56DE;&#x503C;</th>
+<th align="left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><code>bool(value)</code></td>
+<td align="left"><code>True/False</code></td>
+<td align="left">&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x6570;&#x5B57;&#x8F6C;&#x6362;&#x4E3A;&#x5E03;&#x5C14;&#x503C;</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left"><code>int(value)</code></td>
+<td align="left"><code>int64</code></td>
+<td align="left">&#x5F3A;&#x5236;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x6216;float64&#x8F6C;&#x6362;&#x4E3A;int64</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left"><code>float(value)</code></td>
+<td align="left"><code>float64</code></td>
+<td align="left">&#x5236;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x6216;int64&#x8F6C;&#x6362;&#x4E3A;float64</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left"><code>string(value)</code></td>
+<td align="left"><code>string</code></td>
+<td align="left">&#x5C06;bool&#xFF0C;int64&#x6216;float64&#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left"><code>duration(value int64|float64, unit duration)</code></td>
+<td align="left"><code>duration</code></td>
+<td align="left">&#x5C06;int64&#x6216;float64&#x8F6C;&#x6362;&#x4E3A;&#x6301;&#x7EED;&#x65F6;&#x95F4;</td>
+</tr>
+</tbody></table>
+<h3><span id="&#x5224;&#x65AD;&#x5B58;&#x5728;&#x7684;&#x51FD;&#x6570;">&#x5224;&#x65AD;&#x5B58;&#x5728;&#x7684;&#x51FD;&#x6570;</span></h3><table>
+<thead>
+<tr>
+<th align="left">No.</th>
+<th align="left">&#x51FD;&#x6570;</th>
+<th align="left">&#x8FD4;&#x56DE;&#x503C;</th>
+<th align="left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><code>|where(lambda: isPresent(&quot;myfield&quot;))</code></td>
+<td align="left"><code>True/False</code></td>
+<td align="left">&#x5224;&#x65AD;<code>myfield</code>&#x662F;&#x5426;&#x5B58;&#x5728;</td>
+</tr>
+</tbody></table>
+<p>&#x8BE5;&#x51FD;&#x6570;&#x5728;<code>where</code>&#x8282;&#x70B9;&#x4E2D;&#x4F7F;&#x7528;&#xFF0C;&#x6839;&#x636E;&#x6307;&#x5B9A;&#x7684;&#x5B57;&#x6BB5;&#x6216;&#x6807;&#x8BB0;&#x952E;&#x662F;&#x5426;&#x5B58;&#x5728;&#x8FD4;&#x56DE;&#x5E03;&#x5C14;&#x503C;&#x3002;&#x7528;&#x4E8E;&#x8FC7;&#x6EE4;&#x6570;&#x636E;&#x8FD9;&#x662F;&#x7F3A;&#x5C11;&#x6307;&#x5B9A;&#x7684;&#x5B57;&#x6BB5;&#x6216;&#x6807;&#x8BB0;&#x3002;</p>
+<h3><span id="&#x65F6;&#x95F4;&#x51FD;&#x6570;">&#x65F6;&#x95F4;&#x51FD;&#x6570;</span></h3><table>
+<thead>
+<tr>
+<th>No.</th>
+<th>&#x51FD;&#x6570;</th>
+<th>&#x8FD4;&#x56DE;&#x503C;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>unixNano(t time)</code></td>
+<td><code>int64</code></td>
+<td>Unix&#x65F6;&#x95F4;</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>minute(t time)</code></td>
+<td><code>int64</code></td>
+<td>&#x5206;&#x949F;</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>hour(t time)</code></td>
+<td><code>int64</code></td>
+<td>&#x5C0F;&#x65F6;</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>weekday(t time)</code></td>
+<td><code>int64</code></td>
+<td>&#x5468; <code>[0,6], 0 is Sunday</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>day(t time)</code></td>
+<td><code>int64</code></td>
+<td>the day within the month: range [1,31]</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>month(t time)</code></td>
+<td><code>int64</code></td>
+<td>the month within the year: range [1,12]</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>year(t time)</code></td>
+<td><code>int64</code></td>
+<td>&#x5E74;</td>
+</tr>
+</tbody></table>
+<p>&#x4F8B;&#x5982;</p>
+<p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lambda: hour(<span class="hljs-string">&quot;time&quot;</span>) &gt;= <span class="hljs-number">9</span> AND hour(<span class="hljs-string">&quot;time&quot;</span>) &lt; <span class="hljs-number">19</span></span><br></pre></td></tr></table></figure></p>
+<h3><span id="&#x6570;&#x5B66;&#x51FD;&#x6570;">&#x6570;&#x5B66;&#x51FD;&#x6570;</span></h3><table>
+<thead>
+<tr>
+<th>No.</th>
+<th>&#x51FD;&#x6570;</th>
+<th>&#x8FD4;&#x56DE;&#x503C;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><a href="https://golang.org/pkg/math/#Abs" target="_blank" rel="noopener">abs(x)</a></td>
+<td><code>float64</code></td>
+<td>Abs&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x7EDD;&#x5BF9;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://golang.org/pkg/math/#Acos" target="_blank" rel="noopener">acos(x)</a></td>
+<td><code>float64</code></td>
+<td>Acos&#x4EE5;&#x5F27;&#x5EA6;&#x4E3A;&#x5355;&#x4F4D;&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x53CD;&#x4F59;&#x5F26;&#x3002;</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://golang.org/pkg/math/#Acosh" target="_blank" rel="noopener">acosh(x)</a></td>
+<td><code>float64</code></td>
+<td>Acosh&#x8FD4;&#x56DE;x`&#x7684;&#x53CD;&#x53CC;&#x66F2;&#x4F59;&#x5F26;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://golang.org/pkg/math/#Asin" target="_blank" rel="noopener">asin(x)</a></td>
+<td><code>float64</code></td>
+<td>Asin&#x4EE5;&#x5F27;&#x5EA6;&#x4E3A;&#x5355;&#x4F4D;&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x53CD;&#x6B63;&#x5F26;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://golang.org/pkg/math/#Asinh" target="_blank" rel="noopener">asinh(x)</a></td>
+<td><code>float64</code></td>
+<td>Asinh&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x53CD;&#x53CC;&#x66F2;&#x6B63;&#x5F26;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="https://golang.org/pkg/math/#Atan" target="_blank" rel="noopener">atan(x)</a></td>
+<td><code>float64</code></td>
+<td>Atan&#x4EE5;&#x5F27;&#x5EA6;&#x4E3A;&#x5355;&#x4F4D;&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x53CD;&#x6B63;&#x5207;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="https://golang.org/pkg/math/#Atan2" target="_blank" rel="noopener">atan2(y,x)</a></td>
+<td><code>float64</code></td>
+<td>Atan2&#x8FD4;&#x56DE;<code>y / x</code>&#x7684;&#x53CD;&#x6B63;&#x5207;&#xFF0C;&#x4F7F;&#x7528;&#x4E8C;&#x8005;&#x7684;&#x7B26;&#x53F7;&#x786E;&#x5B9A;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x8C61;&#x9650;&#x3002;</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="https://golang.org/pkg/math/#Atanh" target="_blank" rel="noopener">atanh(x)</a></td>
+<td><code>float64</code></td>
+<td>Atanh&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x53CD;&#x53CC;&#x66F2;&#x6B63;&#x5207;&#x3002;</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="https://golang.org/pkg/math/#Cbrt" target="_blank" rel="noopener">cbrt(x)</a></td>
+<td><code>float64</code></td>
+<td>Cbrt&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x7ACB;&#x65B9;&#x6839;&#x3002;</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="https://golang.org/pkg/math/#Ceil" target="_blank" rel="noopener">ceil(x)</a></td>
+<td><code>float64</code></td>
+<td>Ceil&#x8FD4;&#x56DE;&#x5927;&#x4E8E;&#x6216;&#x7B49;&#x4E8E;<code>x</code>&#x7684;&#x6700;&#x5C0F;&#x6574;&#x6570;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="https://golang.org/pkg/math/#Cos" target="_blank" rel="noopener">cos(x)</a></td>
+<td><code>float64</code></td>
+<td>Cos&#x8FD4;&#x56DE;&#x5F27;&#x5EA6;&#x53C2;&#x6570;<code>x</code>&#x7684;&#x4F59;&#x5F26;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="https://golang.org/pkg/math/#Cosh" target="_blank" rel="noopener">cosh(x)</a></td>
+<td><code>float64</code></td>
+<td>Cosh&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x53CC;&#x66F2;&#x4F59;&#x5F26;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="https://golang.org/pkg/math/#Erf" target="_blank" rel="noopener">erf(x)</a></td>
+<td><code>float64</code></td>
+<td>Erf&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x9519;&#x8BEF;&#x51FD;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="https://golang.org/pkg/math/#Erfc" target="_blank" rel="noopener">erfc(x)</a></td>
+<td><code>float64</code></td>
+<td>Erfc&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x4E92;&#x8865;&#x8BEF;&#x5DEE;&#x51FD;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="https://golang.org/pkg/math/#Exp" target="_blank" rel="noopener">exp(x)</a></td>
+<td><code>float64</code></td>
+<td>Exp&#x8FD4;&#x56DE;<code>e ** x</code>&#xFF0C;<code>x</code>&#x7684;<code>base-e</code>&#x6307;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="https://golang.org/pkg/math/#Exp2" target="_blank" rel="noopener">exp2(x)</a></td>
+<td><code>float64</code></td>
+<td>Exp2&#x8FD4;&#x56DE;<code>2 ** x</code>&#xFF0C;<code>x</code>&#x7684;&#x57FA;&#x6570;&#x4E3A;<code>2</code>&#x7684;&#x6307;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="https://golang.org/pkg/math/#Expm1" target="_blank" rel="noopener">expm1(x)</a></td>
+<td><code>float64</code></td>
+<td>Expm1&#x8FD4;&#x56DE;<code>e ** x - 1</code>&#xFF0C;<code>x</code>&#x7684;&#x57FA;&#x6570;&#x4E3A;<code>e</code>&#x7684;&#x6307;&#x6570;&#x51CF;<code>1</code>.&#x5F53;<code>x</code>&#x63A5;&#x8FD1;&#x96F6;&#x65F6;&#xFF0C;&#x5B83;&#x6BD4;<code>Exp(x&#xFF09;-1</code>&#x66F4;&#x51C6;&#x786E;&#x3002;</td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="https://golang.org/pkg/math/#Floor" target="_blank" rel="noopener">floor(x)</a></td>
+<td><code>float64</code></td>
+<td>Floor&#x8FD4;&#x56DE;&#x5C0F;&#x4E8E;&#x6216;&#x7B49;&#x4E8E;<code>x</code>&#x7684;&#x6700;&#x5927;&#x6574;&#x6570;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="https://golang.org/pkg/math/#Gamma" target="_blank" rel="noopener">gamma(x)</a></td>
+<td><code>float64</code></td>
+<td>Gamma&#x8FD4;&#x56DE;<code>x</code>&#x7684;<code>Gamma</code>&#x51FD;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="https://golang.org/pkg/math/#Hypot" target="_blank" rel="noopener">hypot(p,q)</a></td>
+<td><code>float64</code></td>
+<td>Hypot&#x8FD4;&#x56DE;<code>Sqrt(p * p + q * q&#xFF09;</code>&#xFF0C;&#x6CE8;&#x610F;&#x907F;&#x514D;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x6EA2;&#x51FA;&#x548C;&#x4E0B;&#x6EA2;&#x3002;</td>
+</tr>
+<tr>
+<td>21</td>
+<td><a href="https://golang.org/pkg/math/#J0" target="_blank" rel="noopener">j0(x)</a></td>
+<td><code>float64</code></td>
+<td>J0&#x8FD4;&#x56DE;&#x7B2C;&#x4E00;&#x7C7B;&#x7684;&#x96F6;&#x9636;&#x8D1D;&#x585E;&#x5C14;&#x51FD;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>22</td>
+<td><a href="https://golang.org/pkg/math/#J1" target="_blank" rel="noopener">j1(x)</a></td>
+<td><code>float64</code></td>
+<td>J1&#x8FD4;&#x56DE;&#x7B2C;&#x4E00;&#x7C7B;&#x7684;&#x4E00;&#x9636;&#x8D1D;&#x585E;&#x5C14;&#x51FD;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>23</td>
+<td><a href="https://golang.org/pkg/math/#Jn" target="_blank" rel="noopener">jn&#xFF08;n int64&#xFF0C;x)</a></td>
+<td><code>float64</code></td>
+<td>Jn&#x8FD4;&#x56DE;&#x7B2C;&#x4E00;&#x79CD;order-n Bessel&#x51FD;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>24</td>
+<td><a href="https://golang.org/pkg/math/#Log" target="_blank" rel="noopener">log(x)</a></td>
+<td><code>float64</code></td>
+<td>Log&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x81EA;&#x7136;&#x5BF9;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>25</td>
+<td><a href="https://golang.org/pkg/math/#Log10" target="_blank" rel="noopener">log10(x)</a></td>
+<td><code>float64</code></td>
+<td>Log10&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x5341;&#x8FDB;&#x5236;&#x5BF9;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>26</td>
+<td><a href="https://golang.org/pkg/math/#Log1p" target="_blank" rel="noopener">log1p(x)</a></td>
+<td><code>float64</code></td>
+<td>Log1p&#x8FD4;&#x56DE;<code>1</code>&#x7684;&#x81EA;&#x7136;&#x5BF9;&#x6570;&#x52A0;&#x4E0A;&#x5176;&#x53C2;&#x6570;<code>x</code>&#x3002;&#x5F53;<code>x</code>&#x63A5;&#x8FD1;&#x96F6;&#x65F6;&#xFF0C;&#x5B83;&#x6BD4;<code>Log(1 + x&#xFF09;</code>&#x66F4;&#x51C6;&#x786E;&#x3002;</td>
+</tr>
+<tr>
+<td>27</td>
+<td><a href="https://golang.org/pkg/math/#Log2" target="_blank" rel="noopener">log2(x)</a></td>
+<td><code>float64</code></td>
+<td>Log2&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5BF9;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>28</td>
+<td><a href="https://golang.org/pkg/math/#Logb" target="_blank" rel="noopener">logb(x)</a></td>
+<td><code>float64</code></td>
+<td>Logb&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6307;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>29</td>
+<td><a href="https://golang.org/pkg/math/#Max" target="_blank" rel="noopener">max(x,y)</a></td>
+<td><code>float64</code></td>
+<td>Max&#x8FD4;&#x56DE;<code>x</code>&#x6216;<code>y</code>&#x4E2D;&#x8F83;&#x5927;&#x7684;&#x4E00;&#x4E2A;&#x3002;</td>
+</tr>
+<tr>
+<td>30</td>
+<td><a href="https://golang.org/pkg/math/#Min" target="_blank" rel="noopener">min(x,y)</a></td>
+<td><code>float64</code></td>
+<td>Min&#x8FD4;&#x56DE;<code>x</code>&#x6216;<code>y</code>&#x4E2D;&#x8F83;&#x5C0F;&#x7684;&#x4E00;&#x4E2A;&#x3002;</td>
+</tr>
+<tr>
+<td>31</td>
+<td><a href="https://golang.org/pkg/math/#Mod" target="_blank" rel="noopener">mod(x,y)</a></td>
+<td><code>float64</code></td>
+<td>Mod&#x8FD4;&#x56DE;<code>x / y</code>&#x7684;&#x6D6E;&#x70B9;&#x4F59;&#x6570;&#x3002;&#x7ED3;&#x679C;&#x7684;&#x5927;&#x5C0F;&#x5C0F;&#x4E8E;y&#xFF0C;&#x5176;&#x7B26;&#x53F7;&#x4E0E;x&#x7684;&#x7B26;&#x53F7;&#x4E00;&#x81F4;&#x3002;</td>
+</tr>
+<tr>
+<td>32</td>
+<td><a href="https://golang.org/pkg/math/#Pow" target="_blank" rel="noopener">pow(x,y)</a></td>
+<td><code>float64</code></td>
+<td>Pow&#x8FD4;&#x56DE;<code>x ** y</code>&#xFF0C;y&#x7684;base-x&#x6307;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>33</td>
+<td><a href="https://golang.org/pkg/math/#Pow10" target="_blank" rel="noopener">pow10(x int64</a></td>
+<td><code>float64</code></td>
+<td>Pow10&#x8FD4;&#x56DE;<code>10 ** e</code>&#xFF0C;<code>e</code>&#x7684;&#x57FA;&#x6570;&#x4E3A;<code>10</code>&#x7684;&#x6307;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>34</td>
+<td><a href="https://golang.org/pkg/math/#Sin" target="_blank" rel="noopener">sin(x)</a></td>
+<td><code>float64</code></td>
+<td>Sin&#x8FD4;&#x56DE;&#x5F27;&#x5EA6;&#x53C2;&#x6570;<code>x</code>&#x7684;&#x6B63;&#x5F26;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>35</td>
+<td><a href="https://golang.org/pkg/math/#Sinh" target="_blank" rel="noopener">sinh(x)</a></td>
+<td><code>float64</code></td>
+<td>Sinh&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x53CC;&#x66F2;&#x6B63;&#x5F26;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>36</td>
+<td><a href="https://golang.org/pkg/math/#Sqrt" target="_blank" rel="noopener">sqrt(x)</a></td>
+<td><code>float64</code></td>
+<td>Sqrt&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x5E73;&#x65B9;&#x6839;&#x3002;</td>
+</tr>
+<tr>
+<td>37</td>
+<td><a href="https://golang.org/pkg/math/#Tan" target="_blank" rel="noopener">tan(x)</a></td>
+<td><code>float64</code></td>
+<td>Tan&#x8FD4;&#x56DE;&#x5F27;&#x5EA6;&#x53C2;&#x6570;<code>x</code>&#x7684;&#x6B63;&#x5207;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>38</td>
+<td><a href="https://golang.org/pkg/math/#Tanh" target="_blank" rel="noopener">tanh(x)</a></td>
+<td><code>float64</code></td>
+<td>Tanh&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x53CC;&#x66F2;&#x6B63;&#x5207;&#x3002;</td>
+</tr>
+<tr>
+<td>39</td>
+<td><a href="https://golang.org/pkg/math/#Trunc" target="_blank" rel="noopener">trunc(x)</a></td>
+<td><code>float64</code></td>
+<td>Trunc&#x8FD4;&#x56DE;<code>x</code>&#x7684;&#x6574;&#x6570;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>40</td>
+<td><a href="https://golang.org/pkg/math/#Y0" target="_blank" rel="noopener">y0(x)</a></td>
+<td><code>float64</code></td>
+<td>Y0&#x8FD4;&#x56DE;&#x7B2C;&#x4E8C;&#x79CD;&#x96F6;&#x9636;&#x8D1D;&#x585E;&#x5C14;&#x51FD;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>41</td>
+<td><a href="https://golang.org/pkg/math/#Y1" target="_blank" rel="noopener">y1(x)</a></td>
+<td><code>float64</code></td>
+<td>Y1&#x8FD4;&#x56DE;&#x7B2C;&#x4E8C;&#x79CD;&#x987A;&#x5E8F;&#x4E00;&#x8D1D;&#x585E;&#x5C14;&#x51FD;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>42</td>
+<td><a href="https://golang.org/pkg/math/#Yn" target="_blank" rel="noopener">yn(n int64,x)</a></td>
+<td><code>float64</code></td>
+<td>Yn&#x8FD4;&#x56DE;&#x7B2C;&#x4E8C;&#x79CD;order-n &#x8D1D;&#x585E;&#x5C14;&#x51FD;&#x6570;&#x3002;</td>
+</tr>
+</tbody></table>
+<h3><span id="&#x5B57;&#x7B26;&#x4E32;&#x51FD;&#x6570;">&#x5B57;&#x7B26;&#x4E32;&#x51FD;&#x6570;</span></h3><table>
+<thead>
+<tr>
+<th>No.</th>
+<th>&#x51FD;&#x6570;</th>
+<th>&#x8FD4;&#x56DE;&#x503C;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><a href="https://golang.org/pkg/strings/#Contains" target="_blank" rel="noopener">strContains(s, substr)</a></td>
+<td><code>bool</code></td>
+<td>StrContains&#x62A5;&#x544A;<code>substr</code>&#x662F;&#x5426;&#x5728;<code>s</code>&#x5185;&#x3002;</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://golang.org/pkg/strings/#ContainsAny" target="_blank" rel="noopener">strContainsAny(s, chars)</a></td>
+<td><code>bool</code></td>
+<td>StrContainsAny&#x62A5;&#x544A;&#x5B57;&#x7B26;&#x4E2D;&#x7684;&#x4EFB;&#x4F55;<code>Unicode</code>&#x4EE3;&#x7801;&#x70B9;&#x662F;&#x5426;&#x5728;<code>s</code>&#x5185;&#x3002;</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://golang.org/pkg/strings/#Count" target="_blank" rel="noopener">strCount(s, sep)</a></td>
+<td><code>int64</code></td>
+<td>StrCount&#x8BA1;&#x7B97;<code>s</code>&#x4E2D;&#x975E;&#x91CD;&#x53E0;<code>sep</code>&#x5B9E;&#x4F8B;&#x7684;&#x6570;&#x91CF;&#x3002;&#x5982;&#x679C;<code>sep</code>&#x662F;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5219;<code>Count</code>&#x8FD4;&#x56DE;<code>1 + s</code>&#x4E2D;&#x7684;<code>Unicode</code>&#x4EE3;&#x7801;&#x70B9;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://golang.org/pkg/strings/#HasPrefix" target="_blank" rel="noopener">strHasPrefix(s, prefix)</a></td>
+<td><code>bool</code></td>
+<td>StrHasPrefix&#x6D4B;&#x8BD5;&#x5B57;&#x7B26;&#x4E32;<code>s</code>&#x662F;&#x5426;&#x4EE5;<code>prefix</code>&#x5F00;&#x5934;&#x3002;</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://golang.org/pkg/strings/#HasSuffix" target="_blank" rel="noopener">strHasSuffix(s, suffix)</a></td>
+<td><code>bool</code></td>
+<td>StrHasSuffix&#x6D4B;&#x8BD5;&#x5B57;&#x7B26;&#x4E32;<code>s</code>&#x662F;&#x5426;&#x4EE5;&#x540E;<code>suffix</code>&#x7F00;&#x7ED3;&#x5C3E;&#x3002;</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="https://golang.org/pkg/strings/#Index" target="_blank" rel="noopener">strIndex(s, sep)</a></td>
+<td><code>int64</code></td>
+<td>StrIndex&#x8FD4;&#x56DE;<code>s</code>&#x4E2D;&#x7B2C;&#x4E00;&#x4E2A;<code>sep</code>&#x5B9E;&#x4F8B;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x5982;&#x679C;<code>s</code>&#x4E2D;&#x4E0D;&#x5B58;&#x5728;<code>sep</code>&#xFF0C;&#x5219;&#x8FD4;&#x56DE;<code>-1</code>&#x3002;</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="https://golang.org/pkg/strings/#IndexAny" target="_blank" rel="noopener">strIndexAny(s, chars)</a></td>
+<td><code>int64</code></td>
+<td>StrIndexAny&#x4ECE;<code>1</code>&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x8FD4;&#x56DE;&#x4EFB;&#x4F55;<code>Unicode</code>&#x4EE3;&#x7801;&#x70B9;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x5982;&#x679C;<code>s</code>&#x4E2D;&#x6CA1;&#x6709;&#x6765;&#x81EA;<code>chars</code>&#x7684;<code>Unicode</code>&#x4EE3;&#x7801;&#x70B9;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;<code>-1</code>&#x3002;</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="https://golang.org/pkg/strings/#LastIndex" target="_blank" rel="noopener">strLastIndex(s, sep)</a></td>
+<td><code>int64</code></td>
+<td>StrLastIndex&#x8FD4;&#x56DE;<code>s</code>&#x4E2D;&#x6700;&#x540E;&#x4E00;&#x4E2A;<code>sep</code>&#x5B9E;&#x4F8B;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x5982;&#x679C;<code>s</code>&#x4E2D;&#x4E0D;&#x5B58;&#x5728;<code>sep</code>&#xFF0C;&#x5219;&#x8FD4;&#x56DE;<code>-1</code>&#x3002;</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="https://golang.org/pkg/strings/#LastIndexAny" target="_blank" rel="noopener">strLastIndexAny(s, chars)</a></td>
+<td><code>int64</code></td>
+<td>StrLastIndexAny&#x4ECE;<code>s</code>&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x8FD4;&#x56DE;&#x4EFB;&#x4F55;<code>Unicode</code>&#x4EE3;&#x7801;&#x70B9;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x5982;&#x679C;s&#x4E2D;&#x6CA1;&#x6709;&#x6765;&#x81EA;<code>chars</code>&#x7684;<code>Unicode</code>&#x4EE3;&#x7801;&#x70B9;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;<code>-1</code>&#x3002;</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="https://golang.org/ref/spec#Length_and_capacity" target="_blank" rel="noopener">strLength(s)</a></td>
+<td><code>int64</code></td>
+<td>StrLength&#x8FD4;&#x56DE;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x957F;&#x5EA6;&#x3002;</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="https://golang.org/pkg/strings/#Replace" target="_blank" rel="noopener">strReplace(s, old, new), n int64</a></td>
+<td><code>string</code></td>
+<td>StrReplace&#x8FD4;&#x56DE;&#x5B57;&#x7B26;&#x4E32;<code>s</code>&#x7684;&#x526F;&#x672C;&#xFF0C;&#x5176;&#x4E2D;&#x524D;n&#x4E2A;&#x975E;&#x91CD;&#x53E0;&#x5B9E;&#x4F8B;&#x7531;<code>new</code>&#x66FF;&#x6362;&#x3002;</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="https://golang.org/ref/spec#Index_expressions" target="_blank" rel="noopener">strSubstring(s), start, stop int64</a></td>
+<td><code>string</code></td>
+<td>StrSubstring&#x6839;&#x636E;&#x7ED9;&#x5B9A;&#x7684;&#x7D22;&#x5F15;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5B50;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;<code>strSubstring(str,start,stop)</code>&#x76F8;&#x5F53;&#x4E8E;Go&#x4E2D;&#x7684;<code>str [start&#xFF1A;stop]</code>&#x3002;</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="https://golang.org/pkg/strings/#ToLower" target="_blank" rel="noopener">strToLower(s)</a></td>
+<td><code>string</code></td>
+<td>StrToLower&#x8FD4;&#x56DE;&#x5B57;&#x7B26;&#x4E32;s&#x7684;&#x526F;&#x672C;&#xFF0C;&#x5176;&#x4E2D;&#x6240;&#x6709;<code>Unicode</code>&#x5B57;&#x6BCD;&#x90FD;&#x6620;&#x5C04;&#x5230;&#x5B83;&#x4EEC;&#x7684;&#x5C0F;&#x5199;&#x5B57;&#x6BCD;&#x3002;</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="https://golang.org/pkg/strings/#ToUpper" target="_blank" rel="noopener">strToUpper(s)</a></td>
+<td><code>string</code></td>
+<td>StrToUpper&#x8FD4;&#x56DE;&#x5B57;&#x7B26;&#x4E32;s&#x7684;&#x526F;&#x672C;&#xFF0C;&#x5176;&#x4E2D;&#x6240;&#x6709;<code>Unicode</code>&#x5B57;&#x6BCD;&#x90FD;&#x6620;&#x5C04;&#x5230;&#x5B83;&#x4EEC;&#x7684;&#x5927;&#x5199;&#x5B57;&#x6BCD;&#x3002;</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="https://golang.org/pkg/strings/#Trim" target="_blank" rel="noopener">strTrim(s, cutset)</a></td>
+<td><code>string</code></td>
+<td>StrTrim&#x8FD4;&#x56DE;&#x5B57;&#x7B26;&#x4E32;s&#x7684;&#x4E00;&#x4E2A;&#x7247;&#x6BB5;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;<code>cutset</code>&#x4E2D;&#x5305;&#x542B;&#x7684;&#x6240;&#x6709;&#x524D;&#x5BFC;&#x548C;&#x5C3E;&#x968F;<code>Unicode</code>&#x4EE3;&#x7801;&#x70B9;&#x3002;</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="https://golang.org/pkg/strings/#TrimLeft" target="_blank" rel="noopener">strTrimLeft(s, cutset)</a></td>
+<td><code>string</code></td>
+<td>StrTrimLeft&#x8FD4;&#x56DE;&#x5B57;&#x7B26;&#x4E32;<code>s</code>&#x7684;&#x4E00;&#x4E2A;&#x7247;&#x6BB5;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;<code>cutset</code>&#x4E2D;&#x5305;&#x542B;&#x7684;&#x6240;&#x6709;&#x524D;&#x5BFC;<code>Unicode</code>&#x4EE3;&#x7801;&#x70B9;&#x3002;</td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="https://golang.org/pkg/strings/#TrimPrefix" target="_blank" rel="noopener">strTrimPrefix(s, prefix)</a></td>
+<td><code>string</code></td>
+<td>StrTrimPrefix&#x8FD4;&#x56DE;<code>s</code>&#x800C;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x7684;&#x524D;&#x5BFC;&#x524D;&#x7F00;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x5982;&#x679C;<code>s</code>&#x4E0D;&#x4EE5;<code>prefix</code>&#x5F00;&#x5934;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;s&#x4E0D;&#x53D8;&#x3002;</td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="https://golang.org/pkg/strings/#TrimRight" target="_blank" rel="noopener">strTrimRight(s, cutset)</a></td>
+<td><code>string</code></td>
+<td>StrTrimRight&#x8FD4;&#x56DE;&#x5B57;&#x7B26;&#x4E32;<code>s</code>&#x7684;&#x4E00;&#x4E2A;&#x5207;&#x7247;&#xFF0C;&#x5E76;&#x5220;&#x9664;&#x4E86;<code>cutset</code>&#x4E2D;&#x5305;&#x542B;&#x7684;&#x6240;&#x6709;&#x5C3E;&#x968F;<code>Unicode</code>&#x4EE3;&#x7801;&#x70B9;&#x3002;</td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="https://golang.org/pkg/strings/#TrimSpace" target="_blank" rel="noopener">strTrimSpace(s)</a></td>
+<td><code>string</code></td>
+<td>StrTrimSpace&#x8FD4;&#x56DE;&#x5B57;&#x7B26;&#x4E32;<code>s</code>&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x5220;&#x9664;&#x6240;&#x6709;&#x524D;&#x5BFC;&#x548C;&#x5C3E;&#x968F;&#x7A7A;&#x683C;&#xFF0C;&#x5982;<code>Unicode</code>&#x6240;&#x5B9A;&#x4E49;&#x3002;</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="https://golang.org/pkg/strings/#TrimSuffix" target="_blank" rel="noopener">strTrimSuffix(s, suffix)</a></td>
+<td><code>string</code></td>
+<td>StrTrimSuffix&#x8FD4;&#x56DE;<code>s</code>&#x800C;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x7684;&#x5C3E;&#x968F;&#x540E;&#x7F00;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x5982;&#x679C;<code>s</code>&#x4E0D;&#x4EE5;&#x540E;&#x7F00;&#x7ED3;&#x5C3E;&#xFF0C;&#x5219;<code>s</code>&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#x3002;</td>
+</tr>
+<tr>
+<td>21</td>
+<td><a href="https://golang.org/pkg/regexp/#Regexp.ReplaceAllString" target="_blank" rel="noopener">regexReplace(r regex, s, pattern)</a></td>
+<td><code>string</code></td>
+<td>RegexReplace&#x5C06;&#x8F93;&#x5165;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x5339;&#x914D;&#x66FF;&#x6362;&#x4E3A;&#x8F93;&#x51FA;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x4F8B;&#x5982;<code>regexReplace(/a(b*)c/, &#x2018;abbbc&#x2019;, &#x2018;group is $1&#x2019;) -&gt; &#x2018;group is bbb&#x2019;</code>&#x3002;&#x5982;&#x679C;&#x672A;&#x627E;&#x5230;&#x5339;&#x914D;&#x9879;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x539F;&#x59CB;&#x5B57;&#x7B26;&#x4E32;&#x3002;</td>
+</tr>
+</tbody></table>
+<h3><span id="&#x4EBA;&#x6027;&#x5316;&#x51FD;&#x6570;">&#x4EBA;&#x6027;&#x5316;&#x51FD;&#x6570;</span></h3><table>
+<thead>
+<tr>
+<th align="left">No.</th>
+<th align="left">&#x51FD;&#x6570;</th>
+<th align="left">&#x8FD4;&#x56DE;&#x503C;</th>
+<th align="left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><code>humanBytes(value)</code></td>
+<td align="left"><code>string</code></td>
+<td align="left">&#x5C06;&#x5177;&#x6709;&#x5355;&#x4F4D;&#x5B57;&#x8282;&#x7684;<code>int64</code>&#x6216;<code>float64</code>&#x8F6C;&#x6362;&#x4E3A;&#x8868;&#x793A;&#x5B57;&#x8282;&#x6570;&#x7684;&#x4EBA;&#x7C7B;&#x53EF;&#x8BFB;&#x5B57;&#x7B26;&#x4E32;&#x3002;</td>
+</tr>
+</tbody></table>
+<h3><span id="&#x6761;&#x4EF6;&#x51FD;&#x6570;">&#x6761;&#x4EF6;&#x51FD;&#x6570;</span></h3><table>
+<thead>
+<tr>
+<th align="left">No.</th>
+<th align="left">&#x51FD;&#x6570;</th>
+<th align="left">&#x8FD4;&#x56DE;&#x503C;</th>
+<th align="left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><code>if(condition, true expression, false expression)</code></td>
+<td align="left"><code>True/False</code></td>
+<td align="left">&#x6839;&#x636E;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x503C;&#x8FD4;&#x56DE;&#x5176;&#x64CD;&#x4F5C;&#x6570;&#x7684;&#x7ED3;&#x679C;&#x3002;&#x7B2C;&#x4E8C;&#x4E2A;&#x548C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x5FC5;&#x987B;&#x8FD4;&#x56DE;&#x76F8;&#x540C;&#x7684;&#x7C7B;&#x578B;&#x3002;</td>
+</tr>
+</tbody></table>
+<p>&#x4F8B;&#xFF1A;</p>
+<p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|<span class="hljs-built_in">eval</span>(lambda: <span class="hljs-keyword">if</span>(<span class="hljs-string">&quot;field&quot;</span> &gt; threshold AND <span class="hljs-string">&quot;field&quot;</span> != <span class="hljs-number">0</span>, <span class="hljs-string">&apos;true&apos;</span>, <span class="hljs-string">&apos;false&apos;</span>))</span><br><span class="line">    .as(<span class="hljs-string">&apos;value&apos;</span>)</span><br></pre></td></tr></table></figure></p>
+<p><code>value</code>&#x4E0A;&#x4F8B;&#x4E2D;&#x5B57;&#x6BB5;&#x7684;&#x503C;&#x5C06;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;<code>true</code>&#x6216;&#x8005;<code>false</code>&#x53D6;&#x51B3;&#x4E8E;&#x4F5C;&#x4E3A;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x6761;&#x4EF6;&#x3002;</p>
+<p>&#x8BE5;<code>if</code>&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#x76F8;&#x540C;&#x7C7B;&#x578B;&#x4F5C;&#x4E3A;&#x5176;&#x7B2C;&#x4E8C;&#x4E2A;&#x548C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
+<p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span>(condition, <span class="hljs-literal">true</span> expression, <span class="hljs-literal">false</span> expression)</span><br></pre></td></tr></table></figure></p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6/">#监控告警</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/TICK%E6%8A%80%E6%9C%AF%E6%A0%88/">#TICK技术栈</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/TICKscript%E8%AF%AD%E8%A8%80/">#TICKscript语言</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/04/14/booboo_tick/kapacitor/03_Kapacitor%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/A_Kapacitor%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%AE%80%E4%BB%8B/">03-Kapcitor配置文件-A-配置文件简介</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/H_TICKscriptInfluxQL/">02-TICKscript语言-H-InfluxQL</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2020/04/14/booboo_tick/kapacitor/02_TICKscript语言/I_TICKscriptLambda表达式/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+</div>
+
+
+    </div>
+</section>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span> 人次 </span>
+           </div>
+
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+    
+</body>
+</html>
