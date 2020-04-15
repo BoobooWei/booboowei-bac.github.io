@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/tools/index.html</loc>
+    
+    <lastmod>2020-04-15T06:42:21.398Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2020/04/14/booboo_hexo/2020-04-14-tec-hexo/</loc>
     
     <lastmod>2020-04-14T07:38:21.790Z</lastmod>
@@ -551,13 +558,6 @@
     <loc>http://www.toberoot.com/2020/03/27/booboo_others/2020-03-26-tec-python/</loc>
     
     <lastmod>2020-03-29T14:01:08.427Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/tools/index.html</loc>
-    
-    <lastmod>2020-03-28T10:08:15.530Z</lastmod>
     
   </url>
   
