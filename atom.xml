@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.toberoot.com/"/>
-  <updated>2020-04-17T13:27:46.282Z</updated>
+  <updated>2020-04-22T09:28:48.153Z</updated>
   <id>http://www.toberoot.com/</id>
   
   <author>
@@ -17,9 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>PostgreSQL安装pg_stat_statements模块开启慢查询统计</title>
+    <link href="http://www.toberoot.com/2020/04/23/booboo_others/2020-04-22-tec-pg-md/"/>
+    <id>http://www.toberoot.com/2020/04/23/booboo_others/2020-04-22-tec-pg-md/</id>
+    <published>2020-04-22T16:34:59.000Z</published>
+    <updated>2020-04-22T09:28:48.153Z</updated>
+    
+    <content type="html"><![CDATA[<h2><span id="&#x5B89;&#x88C5;pg_stat_statements&#x6A21;&#x5757;&#x5F00;&#x542F;&#x6162;&#x67E5;&#x8BE2;&#x7EDF;&#x8BA1;">&#x5B89;&#x88C5;pg_stat_statements&#x6A21;&#x5757;&#x5F00;&#x542F;&#x6162;&#x67E5;&#x8BE2;&#x7EDF;&#x8BA1;</span></h2><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x9700;&#x8981;&#x5B89;&#x88C5;&#x76F8;&#x540C;&#x7248;&#x672C;&#x7684;contrib&#x5305;</span></span><br><span class="line">yum install -y postgresql-contrib.x86_64</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span></span><br><span class="line">vim /var/lib/pgsql/data/postgresql.conf</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x5F53;&#x9700;&#x8981;&#x8DDF;&#x8E2A;SQL&#x8BED;&#x53E5;&#x6216;&#x8005;&#x6162;&#x8BED;&#x53E5;&#xFF0C;&#x5F97;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x4EE5;&#x4E0B;&#x53C2;&#x6570;&#xFF1A;</span></span><br><span class="line">log_statement = all     #&#x9700;&#x8BBE;&#x7F6E;&#x8DDF;&#x8E2A;&#x6240;&#x6709;&#x8BED;&#x53E5;&#xFF0C;&#x5426;&#x5219;&#x53EA;&#x80FD;&#x8DDF;&#x8E2A;&#x51FA;&#x9519;&#x4FE1;&#x606F;</span><br><span class="line">log_min_duration_statement = 5000    #milliseconds,&#x8BB0;&#x5F55;&#x6267;&#x884C;5&#x79D2;&#x53CA;&#x4EE5;&#x4E0A;&#x7684;&#x8BED;&#x53E5;</span><br><span class="line"></span><br><span class="line">shared_preload_libraries = &apos;pg_stat_statements&apos;         # (change requires restart)</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">&#x4EE5;&#x4E0B;&#x914D;&#x7F6E;pg_stat_statements&#x91C7;&#x6837;&#x53C2;&#x6570;</span></span><br><span class="line">pg_stat_statements.max = 10000</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># &#x5728;pg_stat_statements&#x4E2D;&#x6700;&#x591A;&#x4FDD;&#x7559;&#x591A;&#x5C11;&#x6761;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#xFF0C;&#x901A;&#x8FC7;LRU&#x7B97;&#x6CD5;&#xFF0C;&#x8986;&#x76D6;&#x8001;&#x7684;&#x8BB0;&#x5F55;&#x3002;</span></span></span><br><span class="line">pg_stat_statements.track = all</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># all - (&#x6240;&#x6709;SQL&#x5305;&#x62EC;&#x51FD;&#x6570;&#x5185;&#x5D4C;&#x5957;&#x7684;SQL), top - &#x76F4;&#x63A5;&#x6267;&#x884C;&#x7684;SQL(&#x51FD;&#x6570;&#x5185;&#x7684;sql&#x4E0D;&#x88AB;&#x8DDF;&#x8E2A;), none - (&#x4E0D;&#x8DDF;&#x8E2A;)</span></span></span><br><span class="line">pg_stat_statements.track_utility = off</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"><span class="hljs-comment"># &#x662F;&#x5426;&#x8DDF;&#x8E2A;&#x975E;DML&#x8BED;&#x53E5; (&#x4F8B;&#x5982;DDL&#xFF0C;DCL)&#xFF0C;on&#x8868;&#x793A;&#x8DDF;&#x8E2A;, off&#x8868;&#x793A;&#x4E0D;&#x8DDF;&#x8E2A;</span></span></span><br><span class="line">pg_stat_statements.save = on</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x91CD;&#x542F;&#x670D;&#x52A1;</span></span><br><span class="line">su - postgres</span><br><span class="line">pg_ctl -D /var/lib/pgsql/data reload</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x521B;&#x5EFA; extension</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x7531;&#x4E8E;pg_stat_statements&#x9488;&#x5BF9;&#x7684;&#x662F;&#x6570;&#x636E;&#x5E93;&#x7EA7;&#x522B;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x9996;&#x5148;&#x8FDB;&#x5165;&#x6307;&#x5B9A;&#x6570;&#x636E;&#x5E93;</span></span><br><span class="line">psql</span><br><span class="line">\l</span><br><span class="line">\c test01</span><br><span class="line">create extension pg_stat_statements;</span><br><span class="line"></span><br><span class="line">\df</span><br></pre></td></tr></table></figure></p><h2><span id="&#x67E5;&#x8BE2;&#x6162;sql">&#x67E5;&#x8BE2;&#x6162;SQL</span></h2><p><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">query</span>, calls, total_time, <span class="hljs-keyword">rows</span>, <span class="hljs-number">100.0</span> * shared_blks_hit /</span><br><span class="line">               <span class="hljs-keyword">nullif</span>(shared_blks_hit + shared_blks_read, <span class="hljs-number">0</span>) <span class="hljs-keyword">AS</span> hit_percent</span><br><span class="line">          <span class="hljs-keyword">FROM</span> pg_stat_statements <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> calls,total_time <span class="hljs-keyword">DESC</span> <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">query</span>, calls, total_time, <span class="hljs-keyword">rows</span>, <span class="hljs-number">100.0</span> * shared_blks_hit / <span class="hljs-keyword">nullif</span>(shared_blks_hit + shared_blks_read, <span class="hljs-number">0</span>) <span class="hljs-keyword">AS</span> hit_percent <span class="hljs-keyword">FROM</span> pg_stat_statements <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> calls,total_time <span class="hljs-keyword">DESC</span> <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span>;</span><br></pre></td></tr></table></figure></p><h2><span id="&#x53C2;&#x8003;&#x6587;&#x6863;">&#x53C2;&#x8003;&#x6587;&#x6863;</span></h2><ul><li><p><a href="https://blog.csdn.net/ctypyb2002/article/details/83151836" target="_blank" rel="noopener">postgresql &#x67E5;&#x627E;&#x6162;sql&#x4E4B;&#x4E8C;: pg_stat_statements</a></p></li><li><p><a href="https://blog.csdn.net/qq_18863573/article/details/104409897" target="_blank" rel="noopener">PostgreSQL&#x4E00;&#x4E9B;&#x5E38;&#x7528;&#x547D;&#x4EE4;</a></p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;span id=&quot;&amp;#x5B89;&amp;#x88C5;pg_stat_statements&amp;#x6A21;&amp;#x5757;&amp;#x5F00;&amp;#x542F;&amp;#x6162;&amp;#x67E5;&amp;#x8BE2;&amp;#x7EDF;&amp;#x8BA1;&quot;&gt;&amp;#x5B89;&amp;#x88C5;pg
+      
+    
+    </summary>
+    
+    
+      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
+    
+      <category term="PostgreSQL" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/PostgreSQL/"/>
+    
+    
+      <category term="慢SQL" scheme="http://www.toberoot.com/tags/%E6%85%A2SQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>表格实现合计</title>
-    <link href="http://www.toberoot.com/2020/04/18/2020-04-17-tec-html/"/>
-    <id>http://www.toberoot.com/2020/04/18/2020-04-17-tec-html/</id>
+    <link href="http://www.toberoot.com/2020/04/18/booboo_others/2020-04-17-tec-html/"/>
+    <id>http://www.toberoot.com/2020/04/18/booboo_others/2020-04-17-tec-html/</id>
     <published>2020-04-17T21:20:35.000Z</published>
     <updated>2020-04-17T13:27:46.282Z</updated>
     
@@ -642,39 +670,6 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#tickscripts&amp;#x5F00;&amp;#x53D1;&amp;#x89C4;&amp;#
-      
-    
-    </summary>
-    
-    
-      <category term="TICK" scheme="http://www.toberoot.com/categories/TICK/"/>
-    
-      <category term="kapacitor" scheme="http://www.toberoot.com/categories/TICK/kapacitor/"/>
-    
-    
-      <category term="监控告警" scheme="http://www.toberoot.com/tags/%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6/"/>
-    
-      <category term="TICK技术栈" scheme="http://www.toberoot.com/tags/TICK%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kapacitor简介</title>
-    <link href="http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/kapacitor-introduce/"/>
-    <id>http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/kapacitor-introduce/</id>
-    <published>2020-04-14T11:28:40.000Z</published>
-    <updated>2020-04-14T04:44:13.753Z</updated>
-    
-    <content type="html"><![CDATA[<!-- MDTOC maxdepth:6 firsth1:1 numbering:0 flatten:0 bullets:1 updateOnSave:1 --><ul><li><a href="#kapacitor&#x7B80;&#x4ECB;">Kapacitor&#x7B80;&#x4ECB;</a>   <ul><li><a href="#&#x4E3B;&#x8981;&#x7279;&#x70B9;">&#x4E3B;&#x8981;&#x7279;&#x70B9;</a>   </li><li><a href="#&#x5B66;&#x4E60;&#x8DEF;&#x5F84;">&#x5B66;&#x4E60;&#x8DEF;&#x5F84;</a>   </li><li><a href="#awsome-tools">awsome tools</a>   </li></ul></li></ul><!-- /MDTOC --><p><a href="https://docs.influxdata.com/kapacitor/v1.5/" target="_blank" rel="noopener">Kapacitor</a>&#x662F;&#x4E00;&#x4E2A;&#x5F00;&#x6E90;&#x6570;&#x636E;&#x5904;&#x7406;&#x6846;&#x67B6;&#xFF0C;&#x53EF;&#x4EE5;&#x8F7B;&#x677E;&#x521B;&#x5EFA;&#x8B66;&#x62A5;&#xFF0C;&#x8FD0;&#x884C;ETL&#x4F5C;&#x4E1A;&#x548C;&#x68C0;&#x6D4B;&#x5F02;&#x5E38;&#x3002;Kapacitor&#x662F;TICK&#x5806;&#x6808;&#x7684;&#x6700;&#x540E;&#x4E00;&#x5757;&#x3002;</p><h2><span id="&#x4E3B;&#x8981;&#x7279;&#x70B9;">&#x4E3B;&#x8981;&#x7279;&#x70B9;</span></h2><p>&#x4EE5;&#x4E0B;&#x662F;Kapacitor&#x76EE;&#x524D;&#x652F;&#x6301;&#x7684;&#x4E00;&#x4E9B;&#x529F;&#x80FD;&#xFF0C;&#x4F7F;&#x5176;&#x6210;&#x4E3A;&#x6570;&#x636E;&#x5904;&#x7406;&#x7684;&#x7EDD;&#x4F73;&#x9009;&#x62E9;&#x3002;</p><ul><li>&#x652F;&#x6301;&#x4E24;&#x79CD;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#xFF1A;&#x6D41;&#x5904;&#x7406;&#x548C;&#x6279;&#x5904;&#x7406;&#x3002;</li><li>&#x901A;&#x8FC7;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#xFF0C;&#x6709;&#x8BA1;&#x5212;&#x5730;&#x4ECE;InfluxDB&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x67E5;&#x8BE2;&#x6570;&#x636E;&#xFF0C;&#x4E14;InfluxDB&#x7684;&#x6570;&#x636E;&#x6765;&#x6E90;&#x975E;&#x5E38;&#x5E7F;&#x6CDB;&#xFF0C;&#x53EA;&#x8981;&#x7B26;&#x5408;influx&#x534F;&#x8BAE;&#x5373;&#x53EF;&#x63D2;&#x5165;&#x6570;&#x636E;&#x5E93;&#x3002;</li><li>&#x901A;&#x8FC7;<code>InfluxQL</code>&#x5B9E;&#x73B0;&#x6570;&#x636E;&#x7684;&#x8F6C;&#x6362;&#x3002;</li><li>&#x53EF;&#x4EE5;&#x5C06;&#x8F6C;&#x6362;&#x540E;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;InfluxDB&#x4E2D;&#x3002;</li><li>&#x652F;&#x6301;&#x81EA;&#x7528;&#x6237;&#x5B9A;&#x4E49;&#x7684;&#x51FD;&#x6570;&#x3002;</li><li>&#x53EF;&#x4EE5;&#x4E0E;HipChat&#xFF0C;OpsGenie&#xFF0C;Alerta&#xFF0C;Sensu&#xFF0C;PagerDuty&#xFF0C;Slack&#x7B49;&#x8FDB;&#x884C;&#x96C6;&#x6210;&#xFF08;&#x4E13;&#x4E1A;&#x7684;&#x544A;&#x8B66;&#x7BA1;&#x7406;&#x901A;&#x77E5;&#x7EC4;&#x4EF6;&#xFF09;&#x3002;</li></ul><h2><span id="&#x5B66;&#x4E60;&#x8DEF;&#x5F84;">&#x5B66;&#x4E60;&#x8DEF;&#x5F84;</span></h2><table><thead><tr><th align="left">No.</th><th align="left">&#x5185;&#x5BB9;</th><th align="left">&#x96BE;&#x5EA6;</th></tr></thead><tbody><tr><td align="left">1</td><td align="left">Kapacitor&#x5B89;&#x88C5;</td><td align="left">*</td></tr><tr><td align="left">2</td><td align="left">TICKscript&#x8BED;&#x8A00;</td><td align="left">***</td></tr><tr><td align="left">3</td><td align="left">Kapacitor&#x914D;&#x7F6E;&#x6587;&#x4EF6;</td><td align="left">**</td></tr><tr><td align="left">4</td><td align="left">Kapacitor&#x547D;&#x4EE4;&#x884C;</td><td align="left">****</td></tr><tr><td align="left">5</td><td align="left">Kapacitor&#x76D1;&#x63A7;&#x6848;&#x4F8B;</td><td align="left">**</td></tr></tbody></table><p><img src="/2020/04/14/booboo_tick/kapacitor/kapacitor-introduce/dag_01.jpg" alt></p><p><img src="/2020/04/14/booboo_tick/kapacitor/kapacitor-introduce/dag_02.jpg" alt></p><h2><span id="awsome-tools">awsome tools</span></h2><p><a href="https://github.com/influxdata/ansible-kapacitor" target="_blank" rel="noopener">Ansible Kapacitor</a> Linux&#x4E0A;Kapacitor&#x7684;&#x914D;&#x7F6E;&#x7BA1;&#x7406;&#x548C;&#x53D8;&#x66F4;&#x81EA;&#x52A8;&#x5316;</p><p><a href="https://github.com/influxdata/kapacitor-course" target="_blank" rel="noopener">kapacitor-course</a> kapacitor &#x811A;&#x672C;&#x6559;&#x7A0B;</p><p><a href="https://github.com/influxdata/influx-stress" target="_blank" rel="noopener">influx-stress</a> InfluxDB&#x538B;&#x6D4B;&#x5DE5;&#x5177;</p><p><a href="https://github.com/influxdata/sandbox" target="_blank" rel="noopener">InfluxData Sandbox</a> TICK &#x6C99;&#x7BB1;</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!-- MDTOC maxdepth:6 firsth1:1 numbering:0 flatten:0 bullets:1 updateOnSave:1 --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#kapacitor&amp;#x7B80;&amp;#x4ECB;&quot;&gt;Kapacitor&amp;
       
     
     </summary>
