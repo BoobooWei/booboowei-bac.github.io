@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/2020/04/24/booboo_others/2020-04-24-tec-rds-md/</loc>
+    
+    <lastmod>2020-04-24T06:00:37.748Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/04/24/booboo_others/2020-04-24-tec-mysql/</loc>
+    
+    <lastmod>2020-04-24T05:54:27.062Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2018/05/17/booboo_others/2018-05-16-tec-mysql/</loc>
+    
+    <lastmod>2020-04-24T03:47:24.333Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2020/04/23/booboo_others/2020-04-23-tec-datadog/</loc>
     
     <lastmod>2020-04-22T11:47:38.125Z</lastmod>
@@ -586,13 +607,6 @@
     <loc>http://www.toberoot.com/2018/08/03/booboo_others/2018-08-03-tec-mongodb/</loc>
     
     <lastmod>2020-03-28T07:44:43.090Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2018/05/17/booboo_others/2018-05-16-tec-mysql/</loc>
-    
-    <lastmod>2020-03-28T07:43:23.573Z</lastmod>
     
   </url>
   
