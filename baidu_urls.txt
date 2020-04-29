@@ -1,3 +1,4 @@
+http://www.toberoot.com/2020/04/29/amy_life/2020-04-29-amy/
 http://www.toberoot.com/2020/04/24/booboo_others/2020-04-24-tec-rds-md/
 http://www.toberoot.com/2020/04/24/booboo_others/2020-04-24-tec-mysql/
 http://www.toberoot.com/2020/04/23/booboo_others/2020-04-23-tec-datadog/
@@ -25,7 +26,6 @@ http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/kapacitor-introduce/
 http://www.toberoot.com/2020/04/13/booboo_hbcloud/2020-04-13-hb-cloud02/
 http://www.toberoot.com/2020/04/13/booboo_hbcloud/2020-04-13-hb-cloud/
 http://www.toberoot.com/2020/04/13/amy_life/2020-04-12-amy/
-http://www.toberoot.com/2020/04/09/amy_life/2020-04-29-amy/
 http://www.toberoot.com/2020/04/08/booboo_hexo/2020-04-03-tec-hexo/
 http://www.toberoot.com/2020/04/08/booboo_hexo/2020-04-08-tec-hexo/
 http://www.toberoot.com/2020/04/07/booboo_hexo/2020-04-07-tec-hexo/
