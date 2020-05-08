@@ -5,6 +5,7 @@ http://www.toberoot.com/2020/05/03/ocp/Oracle12c/2020-05-03-ocp-oracle12c/
 http://www.toberoot.com/2020/04/29/amy_life/2020-04-29-amy/
 http://www.toberoot.com/2020/04/24/booboo_others/2020-04-24-tec-rds-md/
 http://www.toberoot.com/2020/04/24/booboo_others/2020-04-24-tec-mysql/
+http://www.toberoot.com/2020/04/24/booboo_others/2020-05-08-tec-mysql/
 http://www.toberoot.com/2020/04/23/booboo_others/2020-04-23-tec-datadog/
 http://www.toberoot.com/2020/04/23/booboo_others/2020-04-22-tec-pg-md/
 http://www.toberoot.com/2020/04/18/booboo_others/2020-04-17-tec-html/
