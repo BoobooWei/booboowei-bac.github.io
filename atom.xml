@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.toberoot.com/"/>
-  <updated>2020-05-08T03:16:41.466Z</updated>
+  <updated>2020-05-11T04:05:53.795Z</updated>
   <id>http://www.toberoot.com/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据库大表常用操作耗时记录</title>
+    <link href="http://www.toberoot.com/2020/05/11/booboo_others/2020-05-10-tec-mysql-md/"/>
+    <id>http://www.toberoot.com/2020/05/11/booboo_others/2020-05-10-tec-mysql-md/</id>
+    <published>2020-05-11T10:28:11.000Z</published>
+    <updated>2020-05-11T04:05:53.795Z</updated>
+    
+    <content type="html"><![CDATA[<table><thead><tr><th align="center">&#x5927;&#x8868;&#x64CD;&#x4F5C;</th><th align="center">&#x8868;&#x5927;&#x5C0F;</th><th align="center">&#x7D22;&#x5F15;&#x5927;&#x5C0F;</th><th align="center">&#x603B;&#x5927;&#x5C0F;</th><th align="center">&#x64CD;&#x4F5C;&#x884C;&#x6570;</th><th align="center">&#x5B9E;&#x4F8B;&#x89C4;&#x683C;</th><th align="center">&#x8017;&#x65F6;</th><th align="center">&#x8D44;&#x6E90;&#x5F71;&#x54CD;</th></tr></thead><tbody><tr><td align="center">&#x8868;&#x5927;&#x5C0F;</td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center">2.73 &#x4EBF;&#x884C;</td><td align="center">8&#x6838;32G RDS</td><td align="center"></td><td align="center"></td></tr><tr><td align="center">&#x521B;&#x5EFA;&#x7D22;&#x5F15;</td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center">4 &#x4EBF;</td><td align="center">8&#x6838;32G RDS</td><td align="center">2&#x5C0F;&#x65F6;</td><td align="center"></td></tr><tr><td align="center">&#x521B;&#x5EFA;&#x7D22;&#x5F15;</td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center">2.73 &#x4EBF;</td><td align="center">8&#x6838;32G RDS</td><td align="center">27&#x5206;&#x949F;18.94&#x79D2;</td><td align="center"></td></tr><tr><td align="center">&#x67E5;&#x8BE2;4&#x6708;&#x4EFD;&#x6570;&#x636E;</td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center">0.4 &#x4EBF;</td><td align="center">8&#x6838;32G RDS</td><td align="center">1&#x5206;13.62&#x79D2;</td><td align="center"></td></tr><tr><td align="center">&#x8BA1;&#x7B97;4&#x6708;&#x4EFD;&#x6570;&#x636E;</td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center">0.4 &#x4EBF;</td><td align="center">8&#x6838;32G RDS</td><td align="center">&#x7EA6;25&#x5206;&#x949F;</td><td align="center"></td></tr><tr><td align="center">&#x9700;&#x6539;&#x5217;&#x6570;&#x636E;&#x7C7B;&#x578B;</td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center">8 &#x4EBF;</td><td align="center"></td><td align="center">14&#x5C0F;&#x65F6;16&#x5206;&#x949F;</td><td align="center">IOPS&#x6253;&#x6EE1;5000 CPU&#x5185;&#x5B58;&#x6709;&#x5C0F;&#x5E45;&#x5EA6;&#x4E0A;&#x5347;</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;&amp;#x5927;&amp;#x8868;&amp;#x64CD;&amp;#x4F5C;&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;&amp;#x8868;&amp;#x5927;&amp;#x5C0F;&lt;/th&gt;
+&lt;th align=&quot;ce
+      
+    
+    </summary>
+    
+    
+      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
+    
+      <category term="MySQL" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/"/>
+    
+    
+      <category term="阿里云" scheme="http://www.toberoot.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/"/>
+    
+      <category term="在线DDL" scheme="http://www.toberoot.com/tags/%E5%9C%A8%E7%BA%BFDDL/"/>
+    
+  </entry>
   
   <entry>
     <title>Amy经典语录-第六篇</title>
@@ -602,41 +637,6 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#tickscript-lambda&amp;#x8868;&amp;#x8FBE;&amp;#x5F0F;&quot;&gt;T
-      
-    
-    </summary>
-    
-    
-      <category term="TICK" scheme="http://www.toberoot.com/categories/TICK/"/>
-    
-      <category term="kapacitor" scheme="http://www.toberoot.com/categories/TICK/kapacitor/"/>
-    
-    
-      <category term="监控告警" scheme="http://www.toberoot.com/tags/%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6/"/>
-    
-      <category term="TICK技术栈" scheme="http://www.toberoot.com/tags/TICK%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
-    
-      <category term="TICKscript语言" scheme="http://www.toberoot.com/tags/TICKscript%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>02-TICKscript语言-H-InfluxQL</title>
-    <link href="http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/H_TICKscriptInfluxQL/"/>
-    <id>http://www.toberoot.com/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/H_TICKscriptInfluxQL/</id>
-    <published>2020-04-14T11:28:50.000Z</published>
-    <updated>2020-04-14T04:35:33.736Z</updated>
-    
-    <content type="html"><![CDATA[<!-- MDTOC maxdepth:6 firsth1:1 numbering:0 flatten:0 bullets:1 updateOnSave:1 --><ul><li><a href="#tickscript-influxql">TICKscript InfluxQL</a>   <ul><li><a href="#&#x793A;&#x4F8B;30-&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;influxql&#x67E5;&#x8BE2;&#x8BED;&#x53E5;">&#x793A;&#x4F8B;30 - &#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;InfluxQL&#x67E5;&#x8BE2;&#x8BED;&#x53E5;</a>   </li><li><a href="#&#x4F8B;31-&#x5E26;&#x53D8;&#x91CF;&#x7684;&#x7B80;&#x5355;influxql&#x67E5;&#x8BE2;&#x8BED;&#x53E5;">&#x4F8B;31 - &#x5E26;&#x53D8;&#x91CF;&#x7684;&#x7B80;&#x5355;InfluxQL&#x67E5;&#x8BE2;&#x8BED;&#x53E5;</a>   </li><li><a href="#&#x793A;&#x4F8B;32-&#x5E26;&#x6709;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;influxql&#x67E5;&#x8BE2;&#x8BED;&#x53E5;">&#x793A;&#x4F8B;32 - &#x5E26;&#x6709;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;InfluxQL&#x67E5;&#x8BE2;&#x8BED;&#x53E5;</a>   </li></ul></li></ul><!-- /MDTOC --><h1><span id="tickscript-influxql">TICKscript InfluxQL</span></h1><p>InfluxQL&#x4E3B;&#x8981;&#x5728;<code>query</code>&#x8282;&#x70B9;&#x4E2D;&#x53D1;&#x751F;&#x5728;TICKscript&#x4E2D;&#xFF0C;&#x5176;&#x94FE;&#x63A5;&#x65B9;&#x6CD5;&#x91C7;&#x7528;InfluxQL&#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x8FD9;&#x51E0;&#x4E4E;&#x603B;&#x662F;&#x4E00;&#x4E2A;<code>SELECT</code>&#x58F0;&#x660E;&#x3002;</p><p>InfluxQL&#x7684;&#x8BED;&#x6CD5;&#x4E0E;SQL&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#x3002;&#x5F53;&#x7F16;&#x5199;&#x4E00;&#x4E2A;TICKscript&#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;<code>query</code>&#x8282;&#x70B9;&#xFF0C;&#x4E00;&#x822C;&#x53EA;&#x6709;&#x4E09;&#x4E2A;&#x6761;&#x6B3E;&#x5C06;&#x88AB;&#x8981;&#x6C42;&#xFF1A;<code>SELECT</code>&#xFF0C;<code>FROM</code>&#x548C;<code>WHERE</code>&#x3002;&#x4E00;&#x822C;&#x6A21;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p><p><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> {&lt;FIELD_KEY&gt; | &lt;TAG_KEY&gt; | &lt;<span class="hljs-keyword">FUNCTION</span>&gt;([&lt;FIELD_KEY&gt;|&lt;TAG_KEY])} <span class="hljs-keyword">FROM</span> &lt;<span class="hljs-keyword">DATABASE</span>&gt;.&lt;RETENTION_POLICY&gt;.&lt;MEASUREMENT&gt; <span class="hljs-keyword">WHERE</span> {&lt;CONDITIONAL_EXPRESSION&gt;}</span><br></pre></td></tr></table></figure></p><ul><li><p><code>SELECT</code>&#x5B50;&#x53E5;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x5B57;&#x6BB5;&#x6216;&#x6807;&#x8BB0;&#x952E;&#x6216;&#x51FD;&#x6570;&#x3002;&#x8FD9;&#x4E9B;&#x53EF;&#x4EE5;&#x4E0E;&#x6570;&#x5B66;&#x8FD0;&#x7B97;&#x548C;&#x5B57;&#x9762;&#x503C;&#x7EC4;&#x5408;&#x3002;&#x5B83;&#x4EEC;&#x7684;&#x503C;&#x6216;&#x7ED3;&#x679C;&#x5C06;&#x6DFB;&#x52A0;&#x5230;&#x6570;&#x636E;&#x6846;&#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>AS</code>&#x5B50;&#x53E5;&#x522B;&#x540D;&#x3002;&#x661F;&#x53F7;<code>*</code>&#x5916;&#x5361;&#x8FD8;&#x53EF;&#x7528;&#x4E8E;&#x4ECE;&#x6D4B;&#x91CF;&#x4E2D;&#x68C0;&#x7D22;&#x6240;&#x6709;&#x6807;&#x7B7E;&#x548C;&#x5B57;&#x6BB5;&#x3002;</p></li><li><p>&#x4F7F;&#x7528;&#x8BE5;<code>AS</code>&#x5B50;&#x53E5;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x7A0D;&#x540E;&#x4F7F;&#x7528;&#x53CC;&#x5F15;&#x53F7;&#x5C06;&#x522B;&#x540D;&#x6807;&#x8BC6;&#x7B26;&#x4F5C;&#x4E3A;&#x547D;&#x540D;&#x7ED3;&#x679C;&#x5728;TICKscript&#x4E2D;&#x8BBF;&#x95EE;&#x3002;</p></li><li><p>&#x8BE5;<code>FROM</code>&#x5B50;&#x53E5;&#x9700;&#x8981;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#x548C;&#x5C06;&#x4ECE;&#x4E2D;&#x9009;&#x62E9;&#x503C;&#x7684;&#x5EA6;&#x91CF;&#x540D;&#x79F0;&#x3002;&#x8FD9;&#x4E9B;&#x4EE4;&#x724C;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x90FD;&#x7528;&#x70B9;&#x5206;&#x9694;&#x3002;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x53CC;&#x5F15;&#x53F7;&#x8BBE;&#x7F6E;&#x6570;&#x636E;&#x5E93;&#x548C;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#x7684;&#x503C;&#x3002;</p></li><li><p>&#x8BE5;<code>WHERE</code>&#x5B50;&#x53E5;&#x9700;&#x8981;&#x6761;&#x4EF6;&#x8868;&#x8FBE;&#x5F0F;&#x3002;&#x8FD9;&#x53EF;&#x80FD;&#x5305;&#x62EC;<code>AND</code>&#x548C;<code>OR</code>&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;&#x4EE5;&#x53CA;&#x6570;&#x5B66;&#x8FD0;&#x7B97;&#x3002;</p></li></ul><h2><span id="&#x793A;&#x4F8B;30-&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;influxql&#x67E5;&#x8BE2;&#x8BED;&#x53E5;">&#x793A;&#x4F8B;30 - &#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;InfluxQL&#x67E5;&#x8BE2;&#x8BED;&#x53E5;</span></h2><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">batch</span><br><span class="line">    |query(<span class="hljs-string">&apos;SELECT cpu, usage_idle FROM &quot;telegraf&quot;.&quot;autogen&quot;.cpu WHERE time &gt; now() - 10s&apos;</span>)</span><br><span class="line">        .period(<span class="hljs-number">10</span>s)</span><br><span class="line">        .every(<span class="hljs-number">10</span>s)</span><br><span class="line">    |httpOut(<span class="hljs-string">&apos;dump&apos;</span>)</span><br></pre></td></tr></table></figure></p><p>&#x793A;&#x4F8B;30&#x663E;&#x793A;&#x4E86;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;<code>SELECT</code>&#x8BED;&#x53E5;&#xFF0C;&#x8BE5;&#x8BED;&#x53E5;&#x4ECE;&#x8FC7;&#x53BB;&#x5341;&#x79D2;&#x5185;&#x8BB0;&#x5F55;&#x7684;cpu&#x6D4B;&#x91CF;&#x4E2D;&#x83B7;&#x53D6;<code>cpu</code>&#x6807;&#x8BB0;&#x548C;<code>usage_idle</code>&#x5B57;&#x6BB5;&#x3002;</p><h2><span id="&#x4F8B;31-&#x5E26;&#x53D8;&#x91CF;&#x7684;&#x7B80;&#x5355;influxql&#x67E5;&#x8BE2;&#x8BED;&#x53E5;">&#x4F8B;31 - &#x5E26;&#x53D8;&#x91CF;&#x7684;&#x7B80;&#x5355;InfluxQL&#x67E5;&#x8BE2;&#x8BED;&#x53E5;</span></h2><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> my_field = <span class="hljs-string">&apos;usage_idle&apos;</span></span><br><span class="line"><span class="hljs-keyword">var</span> my_tag = <span class="hljs-string">&apos;cpu&apos;</span></span><br><span class="line"></span><br><span class="line">batch</span><br><span class="line">    |query(<span class="hljs-string">&apos;SELECT &apos;</span> + my_tag + <span class="hljs-string">&apos;, &apos;</span> + my_field + <span class="hljs-string">&apos; FROM &quot;telegraf&quot;.&quot;autogen&quot;.cpu WHERE time &gt; now() - 10s&apos;</span>)</span><br><span class="line">        .period(<span class="hljs-number">10</span>s)</span><br><span class="line">        .every(<span class="hljs-number">10</span>s)</span><br><span class="line">    |httpOut(<span class="hljs-string">&apos;dump&apos;</span>)</span><br></pre></td></tr></table></figure></p><p>&#x793A;&#x4F8B;31&#x91CD;&#x590D;&#x4E86;&#x793A;&#x4F8B;30&#x4E2D;&#x7684;&#x76F8;&#x540C;&#x67E5;&#x8BE2;&#xFF0C;&#x4F46;&#x663E;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x5C06;&#x53D8;&#x91CF;&#x6DFB;&#x52A0;&#x5230;&#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p><h2><span id="&#x793A;&#x4F8B;32-&#x5E26;&#x6709;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;influxql&#x67E5;&#x8BE2;&#x8BED;&#x53E5;">&#x793A;&#x4F8B;32 - &#x5E26;&#x6709;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;InfluxQL&#x67E5;&#x8BE2;&#x8BED;&#x53E5;</span></h2><p><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="hljs-keyword">var</span> data = batch</span><br><span class="line">  |query(<span class="hljs-string">&apos;&apos;</span><span class="hljs-string">&apos;SELECT 100 - mean(usage_idle) AS stat FROM &quot;telegraf&quot;.&quot;autogen&quot;.&quot;cpu&quot; WHERE cpu = &apos;</span>cpu-total<span class="hljs-string">&apos; &apos;</span><span class="hljs-string">&apos;&apos;</span>)</span><br><span class="line">    .period(period)</span><br><span class="line">    .every(every)</span><br><span class="line">    .groupBy(<span class="hljs-string">&apos;host&apos;</span>)</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><p>&#x793A;&#x4F8B;32&#x663E;&#x793A;&#x4E86;&#x4E00;&#x4E2A;<code>SELECT</code>&#x8BED;&#x53E5;&#xFF0C;&#x8BE5;&#x8BED;&#x53E5;&#x5305;&#x542B;<code>SELECT</code>&#x5B50;&#x53E5;&#x4E2D;&#x7684;&#x51FD;&#x6570;&#x548C;&#x6570;&#x5B66;&#x8FD0;&#x7B97;&#xFF0C;&#x4EE5;&#x53CA;<code>AS</code>alias&#x5B50;&#x53E5;&#x3002;</p><p>&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;select&#x8BED;&#x53E5;&#x5C06;&#x76F4;&#x63A5;&#x4F20;&#x9012;&#x7ED9;InfluxDB API&#x3002;&#x5728;InfluxQL&#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;&#x5B57;&#x6BB5;&#x548C;&#x6807;&#x8BB0;&#x540D;&#x79F0;&#x4E2D;&#x4E0D;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x53CC;&#x5F15;&#x53F7;&#x8BBF;&#x95EE;&#xFF0C;&#x5C31;&#x50CF;TICKscript&#x4E2D;&#x7684;&#x5176;&#x4ED6;&#x60C5;&#x51B5;&#x4E00;&#x6837;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x540D;&#x79F0;&#x548C;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#x786E;&#x5B9E;&#x5305;&#x542B;&#x5728;&#x53CC;&#x5F15;&#x53F7;&#x4E2D;&#x3002;&#x5B57;&#x7B26;&#x4E32;&#x6587;&#x5B57;&#xFF0C;&#x4F8B;&#x5982;<code>&apos;cpu-total&apos;</code>&#x5728;&#x5E26;&#x6709;&#x5355;&#x5F15;&#x53F7;&#x7684;&#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x8868;&#x793A;&#x3002;</p><p>&#x6709;&#x5173;&#x4F7F;&#x7528;&#x67E5;&#x8BE2;&#x8BED;&#x8A00;&#x7684;&#x5B8C;&#x6574;&#x4ECB;&#x7ECD;&#xFF0C;&#x8BF7;&#x53C2;&#x9605;<a href="https://docs.influxdata.com/influxdb/v1.3/query_language/" target="_blank" rel="noopener">InfluxQL</a>&#x6587;&#x6863;&#x3002;</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!-- MDTOC maxdepth:6 firsth1:1 numbering:0 flatten:0 bullets:1 updateOnSave:1 --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#tickscript-influxql&quot;&gt;TICKscript Influ
       
     
     </summary>
