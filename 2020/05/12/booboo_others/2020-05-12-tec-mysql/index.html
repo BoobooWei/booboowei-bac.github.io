@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>归档 - 归去来兮</title>
+<title>MySQL8.0.16使用pt-online-schema-change在线添加索引报错处理 - 归去来兮</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -18,12 +18,20 @@
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="归去来兮">
-<meta property="og:url" content="http://www.toberoot.com/archives/page/5/index.html">
+    <meta name="description" content="&amp;#x5728;&amp;#x7EBF;MySQL8.0&amp;#x7ED3;&amp;#x6784;&amp;#x53D8;&amp;#x66F4;&amp;#x95EE;&amp;#x9898;&amp;#x6392;&amp;#x67E5;    &amp;#x62A5;&amp;#x9519;&amp;#x660E;&amp;#x7EC6;    &amp;#x89E3;&amp;#x51B3;&amp;#x65B9;&amp;#x6CD5;    &amp;#x6D4B;&amp;#x8BD5;&amp;#x73AF;&amp;#x5883;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL8.0.16使用pt-online-schema-change在线添加索引报错处理">
+<meta property="og:url" content="http://www.toberoot.com/2020/05/12/booboo_others/2020-05-12-tec-mysql/index.html">
 <meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="&amp;#x5728;&amp;#x7EBF;MySQL8.0&amp;#x7ED3;&amp;#x6784;&amp;#x53D8;&amp;#x66F4;&amp;#x95EE;&amp;#x9898;&amp;#x6392;&amp;#x67E5;    &amp;#x62A5;&amp;#x9519;&amp;#x660E;&amp;#x7EC6;    &amp;#x89E3;&amp;#x51B3;&amp;#x65B9;&amp;#x6CD5;    &amp;#x6D4B;&amp;#x8BD5;&amp;#x73AF;&amp;#x5883;">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-12T12:59:00.000Z">
+<meta property="article:modified_time" content="2020-05-12T05:40:58.512Z">
 <meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="阿里云">
+<meta property="article:tag" content="在线DDL">
+<meta property="article:tag" content="pt-online-schema-change">
+<meta property="article:tag" content="Percona">
 <meta name="twitter:card" content="summary">
 
 
@@ -358,6 +366,56 @@
                     <svg t="1586350091188" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2280" width="20" height="20"><path d="M306.4 773.3h188v16.3c0 13.8 11.2 25 25 25s25-11.2 25-25v-16.3h180.5c68.9 0 125-56.1 125-125V295.4c0-68.9-56.1-125-125-125H549.6c-10.7 0-19.9 6.8-23.4 16.3-2.1-0.6-4.4-0.9-6.7-0.9-2 0-3.9 0.2-5.8 0.7-3.6-9.4-12.7-16-23.3-16h-184c-68.9 0-125 56.1-125 125v352.9c0 68.8 56.1 124.9 125 124.9z m418.5-552.9c41.4 0 75 33.6 75 75v352.9c0 41.4-33.6 75-75 75H544.4V219.9c1.7 0.4 3.4 0.5 5.2 0.5h175.3z m-493.5 75c0-41.4 33.6-75 75-75h183.9c1.4 0 2.8-0.1 4.1-0.3v503.2h-188c-41.4 0-75-33.6-75-75V295.4z" p-id="2281"></path><path d="M901.5 314.3c-11 0-20 9-20 20v384c0 44.1-35.9 80-80 80H615.3c-5.6 0-11 2.4-14.8 6.5l-25.9 28.4c-2 2.2-4.9 3.5-7.9 3.5H459c-2.9 0-5.6-1.1-7.6-3.1L425.8 808c-3.8-3.8-8.8-5.9-14.1-5.9H224.8c-44.1 0-80-35.9-80-80V343.9c0-11-9-20-20-20s-20 9-20 20v378.3c0 66.2 53.8 120 120 120h178.5l19.7 19.7c9.6 9.6 22.3 14.9 35.9 14.9h107.7c14.2 0 27.9-6 37.5-16.5l20-21.9h177.4c66.2 0 120-53.8 120-120v-384c0-11.1-9-20.1-20-20.1z" p-id="2282"></path><path d="M297.5 341.4h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 408.6h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 506.5h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20z" p-id="2283"></path></svg>
                 </a>
                 
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5728;&#x7EBF;MySQL8.0&#x7ED3;&#x6784;&#x53D8;&#x66F4;&#x95EE;&#x9898;&#x6392;&#x67E5;">1&nbsp;&nbsp;<b>&#x5728;&#x7EBF;MySQL8.0&#x7ED3;&#x6784;&#x53D8;&#x66F4;&#x95EE;&#x9898;&#x6392;&#x67E5;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x62A5;&#x9519;&#x660E;&#x7EC6;">1.1&nbsp;&nbsp;&#x62A5;&#x9519;&#x660E;&#x7EC6;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x89E3;&#x51B3;&#x65B9;&#x6CD5;">1.2&nbsp;&nbsp;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6D4B;&#x8BD5;&#x73AF;&#x5883;">1.3&nbsp;&nbsp;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#MySQL&#x6D4B;&#x8BD5;&#x6570;&#x636E;">1.3.1&nbsp;&nbsp;MySQL&#x6D4B;&#x8BD5;&#x6570;&#x636E;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#pt-online-ddl">1.3.2&nbsp;&nbsp;pt-online-ddl</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6267;&#x884C;&#x7ED3;&#x679C;">1.3.3&nbsp;&nbsp;&#x6267;&#x884C;&#x7ED3;&#x679C;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x603B;&#x7ED3;">1.4&nbsp;&nbsp;&#x603B;&#x7ED3;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#v3.2.0-released-2019-04-20">1.4.1&nbsp;&nbsp;v3.2.0 released 2019-04-20</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#v3.0.13-released-2019-01-03">1.4.2&nbsp;&nbsp;v3.0.13 released 2019-01-03</a>
+                        
+                    </div>
+                </div>
+                
                 
                 <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
@@ -375,113 +433,171 @@
 
     <section class="section">
     <div class="container">
-        <div class="jumbotron">
-            <p align="center">除了自己的无知，我什么都不懂。 --苏格拉底 Σωκράτης</p>
-        </div>
-    
-    
-        <div class="archive content">
-            <h4 class="title is-4" id="2020">2020</h4>
-            <div class="articles">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            MySQL8.0.16使用pt-online-schema-change在线添加索引报错处理
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-05-12T12:59:00.000Z" itemprop="datePublished">5月 12 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/">技术广角</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/">MySQL</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
             
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-05T10:52:04.000Z" itemprop="datePublished">
-                        4月 5</time>
-                    <h6 class="title is-6"><a href="/2020/04/05/booboo_hexo/2020-04-05-tec-hexo/">Minos主题解决中文目录乱码问题</a></h6>
-                </div>
             
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-04T10:52:04.000Z" itemprop="datePublished">
-                        4月 4</time>
-                    <h6 class="title is-6"><a href="/2020/04/04/booboo_hexo/2020-04-04-tec-hexo/">Minos主题修改筛选后的页面</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-02T11:28:40.000Z" itemprop="datePublished">
-                        4月 2</time>
-                    <h6 class="title is-6"><a href="/2020/04/02/booboo_others/2020-04-02-tec-front/">2020年的前端感受</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-01T19:49:09.000Z" itemprop="datePublished">
-                        4月 2</time>
-                    <h6 class="title is-6"><a href="/2020/04/02/amy_life/2020-04-01-amy/">疫情下的宝宝英语课-系列1</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-03-26T19:58:02.000Z" itemprop="datePublished">
-                        3月 27</time>
-                    <h6 class="title is-6"><a href="/2020/03/27/booboo_others/2020-03-26-tec-python/">CentOS6.5配置python3.7安装后ssl问题</a></h6>
-                </div>
-            
-            </div>
-        </div>
-    
-        <div class="archive content">
-            <h4 class="title is-4" id="2018">2018</h4>
-            <div class="articles">
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2018-09-30T10:43:53.000Z" itemprop="datePublished">
-                        9月 30</time>
-                    <h6 class="title is-6"><a href="/2018/09/30/amy_life/2018-09-30-amy/">国庆前学洗手</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2018-09-29T10:43:41.000Z" itemprop="datePublished">
-                        9月 29</time>
-                    <h6 class="title is-6"><a href="/2018/09/29/amy_life/2018-09-29-amy/">宝宝们上班啦</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2018-09-21T12:25:51.000Z" itemprop="datePublished">
-                        9月 21</time>
-                    <h6 class="title is-6"><a href="/2018/09/21/amy_life/2018-09-21-amy/">月饼烘培和小小搬运工</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2018-09-20T12:08:51.000Z" itemprop="datePublished">
-                        9月 20</time>
-                    <h6 class="title is-6"><a href="/2018/09/20/amy_life/2018-09-20-amy/">宝宝们开始漱口了</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2018-09-19T11:40:55.000Z" itemprop="datePublished">
-                        9月 19</time>
-                    <h6 class="title is-6"><a href="/2018/09/19/amy_life/2018-09-19-amy/">家长会</a></h6>
-                </div>
-            
-            </div>
-        </div>
-    
-    
-    
-<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
-    <div class="pagination-previous">
-        <a href="/archives/page/4/">上一页</a>
+            8 分钟 读完 (约 1140 字)
+        </span>
+        
     </div>
-    <div class="pagination-next">
-        <a href="/archives/page/6/">下一页</a>
-    </div>
-    <ul class="pagination-list is-hidden-mobile">
-        
-        <li><a class="pagination-link" href="/archives/">1</a></li>
-        
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        
-        <li><a class="pagination-link" href="/archives/page/4/">4</a></li>
-        
-        <li><a class="pagination-link is-current" href="/archives/page/5/">5</a></li>
-        
-        <li><a class="pagination-link" href="/archives/page/6/">6</a></li>
-        
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        
-        <li><a class="pagination-link" href="/archives/page/10/">10</a></li>
-        
-    </ul>
-</nav>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
+        <!-- MDTOC maxdepth:6 firsth1:1 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
+
+<ul>
+<li><a href="#&#x5728;&#x7EBF;mysql80&#x7ED3;&#x6784;&#x53D8;&#x66F4;&#x95EE;&#x9898;&#x6392;&#x67E5;">&#x5728;&#x7EBF;MySQL8.0&#x7ED3;&#x6784;&#x53D8;&#x66F4;&#x95EE;&#x9898;&#x6392;&#x67E5;</a>   <ul>
+<li><a href="#&#x62A5;&#x9519;&#x660E;&#x7EC6;">&#x62A5;&#x9519;&#x660E;&#x7EC6;</a>   </li>
+<li><a href="#&#x89E3;&#x51B3;&#x65B9;&#x6CD5;">&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</a>   </li>
+<li><a href="#&#x6D4B;&#x8BD5;&#x73AF;&#x5883;">&#x6D4B;&#x8BD5;&#x73AF;&#x5883;</a>   <ul>
+<li><a href="#mysql&#x6D4B;&#x8BD5;&#x6570;&#x636E;">MySQL&#x6D4B;&#x8BD5;&#x6570;&#x636E;</a>   </li>
+<li><a href="#pt-online-ddl">pt-online-ddl</a>   </li>
+<li><a href="#&#x6267;&#x884C;&#x7ED3;&#x679C;">&#x6267;&#x884C;&#x7ED3;&#x679C;</a>   </li>
+</ul>
+</li>
+<li><a href="#&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</a>   </li>
+</ul>
+</li>
+</ul>
+<!-- /MDTOC -->
+
+<h1><span id="&#x5728;&#x7EBF;mysql80&#x7ED3;&#x6784;&#x53D8;&#x66F4;&#x95EE;&#x9898;&#x6392;&#x67E5;">&#x5728;&#x7EBF;MySQL8.0&#x7ED3;&#x6784;&#x53D8;&#x66F4;&#x95EE;&#x9898;&#x6392;&#x67E5;</span></h1><table>
+<thead>
+<tr>
+<th align="left">&#x8F6F;&#x4EF6;</th>
+<th align="left">&#x7248;&#x672C;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">mysql-server</td>
+<td align="left">8.0.16</td>
+</tr>
+<tr>
+<td align="left">pt-tools</td>
+<td align="left">3.2.0</td>
+</tr>
+</tbody></table>
+<h2><span id="&#x62A5;&#x9519;&#x660E;&#x7EC6;">&#x62A5;&#x9519;&#x660E;&#x7EC6;</span></h2><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 install]<span class="hljs-comment"># pt-online-schema-change --port=3306 --host=localhost --user=root --password=xxx --alter=&quot;add index TMS_LEG_IDS (ID,CHANGE_ORG_ID,FROM_RECEIVER_ID,TO_RECEIVER_ID,TO_REGIONZONE_ID)&quot; D=wlyotwb,t=tms_leg_test --no-version-check --execute --charset=utf8</span></span><br><span class="line">No slaves found.  See --recursion-method <span class="hljs-keyword">if</span> host node2 has slaves.</span><br><span class="line">Not checking slave lag because no slaves were found and --check-slave-lag was not specified.</span><br><span class="line">Operation, tries, <span class="hljs-built_in">wait</span>:</span><br><span class="line">  analyze_table, 10, 1</span><br><span class="line">  copy_rows, 10, 0.25</span><br><span class="line">  create_triggers, 10, 1</span><br><span class="line">  drop_triggers, 10, 1</span><br><span class="line">  swap_tables, 10, 1</span><br><span class="line">  update_foreign_keys, 10, 1</span><br><span class="line">There is an error <span class="hljs-keyword">in</span> MySQL that makes the server to die when trying to rename a table with FKs. See https://bugs.mysql.com/bug.php?id=96145</span><br><span class="line">Since pt-online-schema change needs to rename the old &lt;-&gt; new tables as the final step, and the requested table has FKs, it cannot be executed under the current MySQL version</span><br></pre></td></tr></table></figure></p>
+<h2><span id="&#x89E3;&#x51B3;&#x65B9;&#x6CD5;">&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</span></h2><ul>
+<li>pt-tools&#x8F6F;&#x4EF6;&#x7248;&#x672C;&#x4F7F;&#x7528; <code>3.0.13</code></li>
+</ul>
+<p>&#x6216;&#x8005;</p>
+<ul>
+<li><code>mysql-server</code>&#x7248;&#x672C;&#x5347;&#x7EA7;&#x5230; <code>8.0.20</code></li>
+</ul>
+<h2><span id="&#x6D4B;&#x8BD5;&#x73AF;&#x5883;">&#x6D4B;&#x8BD5;&#x73AF;&#x5883;</span></h2><h3><span id="mysql&#x6D4B;&#x8BD5;&#x6570;&#x636E;">MySQL&#x6D4B;&#x8BD5;&#x6570;&#x636E;</span></h3><p><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">user</span> root@<span class="hljs-string">&apos;localhost&apos;</span> <span class="hljs-keyword">identified</span> <span class="hljs-keyword">WITH</span> mysql_native_password <span class="hljs-keyword">by</span> <span class="hljs-string">&apos;Zyadmin123&apos;</span>;</span><br><span class="line"><span class="hljs-keyword">flush</span> <span class="hljs-keyword">privileges</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> booboo;</span><br><span class="line"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> booboo.t1 (<span class="hljs-keyword">id</span> <span class="hljs-built_in">int</span> primary <span class="hljs-keyword">key</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> booboo.t1 <span class="hljs-keyword">values</span> (<span class="hljs-number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<h3><span id="pt-online-ddl">pt-online-ddl</span></h3><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall -y percona-toolkit-3.2.0-1.el7.x86_64.rpm</span><br><span class="line">pt-online-schema-change --port=3306 --host=localhost --user=root --password=Zyadmin123 --alter=<span class="hljs-string">&quot;add column name varchar(22)&quot;</span> D=booboo,t=t1 --no-version-check --execute --charset=utf8</span><br></pre></td></tr></table></figure></p>
+<h3><span id="&#x6267;&#x884C;&#x7ED3;&#x679C;">&#x6267;&#x884C;&#x7ED3;&#x679C;</span></h3><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 install]<span class="hljs-comment"># pt-online-schema-change --port=3306 --host=localhost --user=root --password=Zyadmin123 --alter=&quot;add column name varchar(22)&quot; D=booboo,t=t1 --no-version-check --execute --charset=utf8</span></span><br><span class="line">No slaves found.  See --recursion-method <span class="hljs-keyword">if</span> host node2 has slaves.</span><br><span class="line">Not checking slave lag because no slaves were found and --check-slave-lag was not specified.</span><br><span class="line">Operation, tries, <span class="hljs-built_in">wait</span>:</span><br><span class="line">  analyze_table, 10, 1</span><br><span class="line">  copy_rows, 10, 0.25</span><br><span class="line">  create_triggers, 10, 1</span><br><span class="line">  drop_triggers, 10, 1</span><br><span class="line">  swap_tables, 10, 1</span><br><span class="line">  update_foreign_keys, 10, 1</span><br><span class="line">Altering `booboo`.`t1`...</span><br><span class="line">Creating new table...</span><br><span class="line">Created new table booboo._t1_new OK.</span><br><span class="line">Altering new table...</span><br><span class="line">Altered `booboo`.`_t1_new` OK.</span><br><span class="line">2020-05-12T21:26:08 Creating triggers...</span><br><span class="line">2020-05-12T21:26:08 Created triggers OK.</span><br><span class="line">2020-05-12T21:26:08 Copying approximately 1 rows...</span><br><span class="line">2020-05-12T21:26:08 Copied rows OK.</span><br><span class="line">2020-05-12T21:26:08 Analyzing new table...</span><br><span class="line">2020-05-12T21:26:09 Swapping tables...</span><br><span class="line">2020-05-12T21:26:09 Swapped original and new tables OK.</span><br><span class="line">2020-05-12T21:26:09 Dropping old table...</span><br><span class="line">2020-05-12T21:26:09 Dropped old table `booboo`.`_t1_old` OK.</span><br><span class="line">2020-05-12T21:26:09 Dropping triggers...</span><br><span class="line">2020-05-12T21:26:09 Dropped triggers OK.</span><br><span class="line">Successfully altered `booboo`.`t1`.</span><br></pre></td></tr></table></figure></p>
+<h2><span id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</span></h2><p>&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x5E93;&#x7248;&#x672C;&#x5BF9;&#x5E94;&#x7684;pt&#x5DE5;&#x5177;&#x7248;&#x672C;&#x4F1A;&#x6709;&#x533A;&#x522B;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;<a href="https://www.percona.com/doc/percona-toolkit/LATEST/index.html" target="_blank" rel="noopener">percona-toolkit</a></p>
+<h3><span id="v320-released-2019-04-20">v3.2.0 released 2019-04-20</span></h3><p>Improvements:</p>
+<ul>
+<li><a href="https://jira.percona.com/browse/PT-1773" target="_blank" rel="noopener">PT-1773</a>: Don&#x2019;t make the foreign key check in <code>pt-online-schema-change</code> if not needed.</li>
+<li><a href="https://jira.percona.com/browse/PT-1757" target="_blank" rel="noopener">PT-1757</a>: <code>pt-table-checksum</code> can now handle small tables as a single chunk.</li>
+<li><a href="https://jira.percona.com/browse/PT-1813" target="_blank" rel="noopener">PT-1813</a>: MariaDB 10.4 is now supported.</li>
+</ul>
+<p>Bug fixes:</p>
+<ul>
+<li><a href="https://jira.percona.com/browse/PT-1782" target="_blank" rel="noopener">PT-1782</a>: <code>pt-online-schema-change</code> declined to handle tables because of foreign keys even when there were no foreign keys with some MariaDB 10.2 and MySQL 8 versions.</li>
+<li><a href="https://jira.percona.com/browse/PT-1759" target="_blank" rel="noopener">PT-1759</a>: <code>pt-stalk</code> with <code>--mysql-only</code> option didn&#x2019;t collect MySQL Status variables.</li>
+<li><a href="https://jira.percona.com/browse/PT-1802" target="_blank" rel="noopener">PT-1802</a>: <code>pt-online-schema-change</code> didn&#x2019;t handle self-referencing foreign keys properly which caused an unnecessarily high resource consumption.</li>
+<li><a href="https://jira.percona.com/browse/PT-1766" target="_blank" rel="noopener">PT-1766</a>: <code>pt-table-checksum</code> <code>DIFF_ROWS</code> was not computed correctly.</li>
+<li><a href="https://jira.percona.com/browse/PT-1760" target="_blank" rel="noopener">PT-1760</a>: <code>pt-online-schema-change</code> regression caused it to hang for a stopped replica when using replication channels on the slave.</li>
+<li><a href="https://jira.percona.com/browse/PT-1707" target="_blank" rel="noopener">PT-1707</a>: A number of the Percona Toolkit tools failed to operate in the IPv6 environment if the host address specified as a parameter was not enclosed in square brackets.</li>
+<li><a href="https://jira.percona.com/browse/PT-1502" target="_blank" rel="noopener">PT-1502</a>: <code>pt-online-schema-change</code> was not recognizing the slave with multi-source replication active.</li>
+<li><a href="https://jira.percona.com/browse/PT-1824" target="_blank" rel="noopener">PT-1824</a>: <code>pt-online-schema-change</code> allowed the name of a constraint to exceed 64 characters when <code>--alter-foreign-keys-method=rebuild_constraints</code> was used. (Thank you, Iwo Panowicz.)</li>
+<li><a href="https://jira.percona.com/browse/PT-1765" target="_blank" rel="noopener">PT-1765</a>: Documentation for <code>DIFF_ROWS</code> doesn&#x2019;t exist.</li>
+<li><a href="https://jira.percona.com/browse/PT-297" target="_blank" rel="noopener">PT-297</a>: <code>pt-online-schema-change</code> could break replication.</li>
+<li><a href="https://jira.percona.com/browse/PT-1768" target="_blank" rel="noopener">PT-1768</a>: Source code for <code>src/go/pt-mongodb-query-digest/pt-mongodb-query-digest</code> was missing in the official source tar ball.</li>
+<li><a href="https://jira.percona.com/browse/PT-1576" target="_blank" rel="noopener">PT-1576</a>: <code>pt-stalk</code> with ``&#x2013;mysql-only<code>option was not adding MySQL</code>processlist` information to the output file.</li>
+<li><a href="https://jira.percona.com/browse/PT-1793" target="_blank" rel="noopener">PT-1793</a>: <code>pt-query-digest</code> was unable to handle the year 2020 because of wrong <code>tcpdump</code> parsing. (Thank you, Kei Tsuchiya.)</li>
+</ul>
+<h3><span id="v3013-released-2019-01-03">v3.0.13 released 2019-01-03</span></h3><p>Improvements</p>
+<ul>
+<li><a href="https://jira.percona.com/browse/PT-1340" target="_blank" rel="noopener">PT-1340</a>: <code>pt-stalk</code> now doesn&#x2019;t call <code>mysqladmin debug</code> command by default to avoid flooding in the error log when not needed. <code>CMD_MYSQLADMIN=&quot;mysqladmin debug&quot;</code> environment variable reverts <code>pt-stalk</code> to the previous way of operation.</li>
+<li><a href="https://jira.percona.com/browse/PT-1637" target="_blank" rel="noopener">PT-1637</a>: A new <code>--fail-on-stopped-replication</code> option allows <code>pt-table-checksum</code> to detect failing slave nodes.</li>
+</ul>
+<p>Fixed bugs</p>
+<ul>
+<li><a href="https://jira.percona.com/browse/PT-1673" target="_blank" rel="noopener">PT-1673</a>: <code>pt-show-grants</code> was incompatible with MariaDB 10+ (thanks <a href="https://github.com/pysysops" target="_blank" rel="noopener">Tim Birkett</a>)</li>
+<li><a href="https://jira.percona.com/browse/PT-1638" target="_blank" rel="noopener">PT-1638</a>: <code>pt-online-schema-change</code> was erroneously taking MariaDB 10.x for MySQL 8.0 and rejecting to work with it to avoid the upstream bug <a href="https://bugs.mysql.com/bug.php?id=89441" target="_blank" rel="noopener">#89441</a> scope.</li>
+<li><a href="https://jira.percona.com/browse/PT-1616" target="_blank" rel="noopener">PT-1616</a>: <code>pt-table-checksum</code> failed to resume on large tables with binary strings containing invalid UTF-8 characters.</li>
+<li><a href="https://jira.percona.com/browse/PT-1573" target="_blank" rel="noopener">PT-1573</a>: <code>pt-query-digest</code> didn&#x2019;t work in case of <code>log_timestamps = SYSTEM</code> my.cnf option.</li>
+<li><a href="https://jira.percona.com/browse/PT-1114" target="_blank" rel="noopener">PT-1114</a>: <code>pt-table-checksum</code> failed when the table was empty.</li>
+<li><a href="https://jira.percona.com/browse/PT-157" target="_blank" rel="noopener">PT-157</a>: Specifying a non-primary key index with the <code>i</code> part of the <code>--source</code> argument made <code>pt-archiver</code> to ignore the <code>--primary-key-only</code> option presence.</li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">#阿里云</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%9C%A8%E7%BA%BFDDL/">#在线DDL</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/pt-online-schema-change/">#pt-online-schema-change</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Percona/">#Percona</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/05/11/booboo_others/2020-05-11-tec-mysql/">数据库大表常用操作耗时记录</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2020/05/12/booboo_others/2020-05-12-tec-mysql/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+
+
+</div>
+
+
     </div>
 </section>
 
