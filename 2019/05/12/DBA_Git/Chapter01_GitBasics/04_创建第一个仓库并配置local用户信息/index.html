@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>玩转Git三剑客学习笔记-第04课-创建第一个仓库并配置local用户信息 - 归去来兮</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+
+
+
+
+
+
+
+
+    <meta name="description" content="&amp;#x5EFA; Git &amp;#x4ED3;&amp;#x5E93;&amp;#x573A;&amp;#x666F;1&amp;#xFF1A; &amp;#x5C06;&amp;#x5DF2;&amp;#x6709;&amp;#x7684;&amp;#x9879;&amp;#x76EE;&amp;#x4EE3;&amp;#x7801;&amp;#x7EB3;&amp;#x5165; Git &amp;#x7BA1;&amp;#x7406;Git &amp;#x57FA;&amp;#x672C;&amp;#x547D;&amp;#x4EE4;12$ cd d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玩转Git三剑客学习笔记-第04课-创建第一个仓库并配置local用户信息">
+<meta property="og:url" content="http://www.toberoot.com/2019/05/12/DBA_Git/Chapter01_GitBasics/04_%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93%E5%B9%B6%E9%85%8D%E7%BD%AElocal%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/index.html">
+<meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="&amp;#x5EFA; Git &amp;#x4ED3;&amp;#x5E93;&amp;#x573A;&amp;#x666F;1&amp;#xFF1A; &amp;#x5C06;&amp;#x5DF2;&amp;#x6709;&amp;#x7684;&amp;#x9879;&amp;#x76EE;&amp;#x4EE3;&amp;#x7801;&amp;#x7EB3;&amp;#x5165; Git &amp;#x7BA1;&amp;#x7406;Git &amp;#x57FA;&amp;#x672C;&amp;#x547D;&amp;#x4EE4;12$ cd d">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-12T14:04:00.000Z">
+<meta property="article:modified_time" content="2020-05-12T07:33:58.884Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="培训">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Gitlab">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="归去来兮" type="application/atom+xml">
+</head>
+<body>
+    
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+    <div class="row">
+        <!--左侧只占一个格子 -->
+        <div class="col-md-1">
+            <div class="navbar-brand">
+                <a class="navbar-item navbar-logo" href="/">
+                    
+                        
+                        <img src="/images/influx.svg" alt="" height="28">
+                        
+                    
+                </a>
+                <div class="navbar-burger">
+                    <span>
+                    </span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--中间自适应 -->
+        <div class="col-md-10">
+            
+            <div class="navbar-menu navbar-start">
+                
+                <a class="navbar-item "
+                   href="/archives/">最近更新</a>
+                
+                <a class="navbar-item "
+                   href="/tags/">标签</a>
+                
+
+                <!-- BoobooWei自动根据已有的category创建-->
+            
+
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <!--循环category 生成navbar代码-->
+                        
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="往昔追忆">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/" data-rel="经典语录">经典语录</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="培训教程">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/%E7%8E%A9%E8%BD%ACGit%E4%B8%89%E5%89%91%E5%AE%A2/" data-rel="玩转Git三剑客">玩转Git三剑客</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术峰会"><i class="fold iconfont icon-right"></i>技术峰会</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术峰会">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Aliyun/" data-rel="Aliyun">Aliyun</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Azure/" data-rel="Azure">Azure</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术广角">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Minos%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/" data-rel="Minos主题优化">Minos主题优化</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/" data-rel="技术思考">技术思考</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/PostgreSQL/" data-rel="PostgreSQL">PostgreSQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/datadog/" data-rel="datadog">datadog</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/jira/" data-rel="jira">jira</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="TICK"><i class="fold iconfont icon-right"></i>TICK</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="TICK">
+                                    
+                                    <a class="dropdown-item" href="/categories/TICK/kapacitor/" data-rel="kapacitor">kapacitor</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="OCP"><i class="fold iconfont icon-right"></i>OCP</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="OCP">
+                                    
+                                    <a class="dropdown-item" href="/categories/OCP/Oracle12C/" data-rel="Oracle12C">Oracle12C</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                </ul>
+              </div>
+            </nav>
+
+            <!-- 自动根据已有的category创建-->
+        </div>
+        
+
+        </div>
+
+
+        <!--最右侧 -->
+        <div class="col-md-1">
+
+            <div class="navbar-menu navbar-end">
+                
+                <a class="navbar-item" title="tools" href="/tools/">
+                    <svg t="1586931802353" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="18381" width="20" height="20"><path d="M519.4 878l-69.7-38.1-30.6-16.7-30.6 16.7-86.9 47.3-86.7-47.3-30.6-16.7-30.6 16.7-22.6 12.3V160c0-17.7 14.3-32 32-32h511.6c17.7 0 32 14.3 32 32v288c0 17.7 14.3 32 32 32s32-14.3 32-32V128c0-35.3-26.2-64-58.6-64H125.6C93.2 64 67 92.7 67 128v832l117.2-64 117.3 64L419 896l69.7 38.1C510 945.8 536 930.3 536 906c0.1-11.7-6.3-22.4-16.6-28z" p-id="18382"></path><path d="M258.9 256c-17.7 0-32 14.3-32 32s14.3 32 32 32h319.8c17.7 0 32-14.3 32-32s-14.3-32-32-32H258.9zM610.6 448c0-17.7-14.3-32-32-32H258.9c-17.7 0-32 14.3-32 32s14.3 32 32 32h319.8c17.6 0 31.9-14.3 31.9-32zM514.7 576H258.9c-17.7 0-32 14.3-32 32s14.3 32 32 32h255.8c17.7 0 32-14.3 32-32s-14.4-32-32-32zM947.6 899.4l-185-184.9c17.5-35.8 11.4-80.3-18.4-110.1-25.2-25.2-61-33.5-93.1-24.8l49.7 49.7-14.3 53.2-53.3 14.3-49.7-49.7c-8.7 32.1-0.4 67.9 24.8 93.1 29.4 29.3 73 35.7 108.5 19.1l185.4 185.4c12.5 12.5 32.8 12.5 45.3 0 12.6-12.5 12.6-32.8 0.1-45.3z" p-id="18383"></path></svg>
+               </a>
+                <a class="navbar-item" title="movie" href="/movies/">
+                    <svg t="1586342683221" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1766" width="20" height="20"><path d="M914.044 898.826H109.956c-20.435 0-37-16.565-37-37V280.131c0-20.435 16.565-37 37-37h804.088c20.435 0 37 16.565 37 37v581.695c0 20.435-16.565 37-37 37z m-767.088-74h730.088V317.131H146.956v507.695zM322.739 199.174H113c-20.435 0-37-16.565-37-37s16.565-37 37-37h209.739c20.435 0 37 16.565 37 37s-16.565 37-37 37z" p-id="1767" fill="#2c2c2c"></path><path d="M457.932 752.856A37.002 37.002 0 0 1 420.937 716l-1.122-287.64a37.003 37.003 0 0 1 20.769-33.395 37.006 37.006 0 0 1 39.104 4.167l184.107 144.792a37 37 0 0 1-0.105 58.248L480.704 745.021a36.982 36.982 0 0 1-22.772 7.835z m36.181-248.234l0.528 135.641 86.29-67.361-86.818-68.28z" p-id="1768" fill="#2c2c2c"></path></svg>
+                </a>
+                <a class="navbar-item" title="books" href="/books/">
+                    <svg t="1586350091188" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2280" width="20" height="20"><path d="M306.4 773.3h188v16.3c0 13.8 11.2 25 25 25s25-11.2 25-25v-16.3h180.5c68.9 0 125-56.1 125-125V295.4c0-68.9-56.1-125-125-125H549.6c-10.7 0-19.9 6.8-23.4 16.3-2.1-0.6-4.4-0.9-6.7-0.9-2 0-3.9 0.2-5.8 0.7-3.6-9.4-12.7-16-23.3-16h-184c-68.9 0-125 56.1-125 125v352.9c0 68.8 56.1 124.9 125 124.9z m418.5-552.9c41.4 0 75 33.6 75 75v352.9c0 41.4-33.6 75-75 75H544.4V219.9c1.7 0.4 3.4 0.5 5.2 0.5h175.3z m-493.5 75c0-41.4 33.6-75 75-75h183.9c1.4 0 2.8-0.1 4.1-0.3v503.2h-188c-41.4 0-75-33.6-75-75V295.4z" p-id="2281"></path><path d="M901.5 314.3c-11 0-20 9-20 20v384c0 44.1-35.9 80-80 80H615.3c-5.6 0-11 2.4-14.8 6.5l-25.9 28.4c-2 2.2-4.9 3.5-7.9 3.5H459c-2.9 0-5.6-1.1-7.6-3.1L425.8 808c-3.8-3.8-8.8-5.9-14.1-5.9H224.8c-44.1 0-80-35.9-80-80V343.9c0-11-9-20-20-20s-20 9-20 20v378.3c0 66.2 53.8 120 120 120h178.5l19.7 19.7c9.6 9.6 22.3 14.9 35.9 14.9h107.7c14.2 0 27.9-6 37.5-16.5l20-21.9h177.4c66.2 0 120-53.8 120-120v-384c0-11.1-9-20.1-20-20.1z" p-id="2282"></path><path d="M297.5 341.4h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 408.6h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 506.5h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20z" p-id="2283"></path></svg>
+                </a>
+                
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5EFA;-Git-&#x4ED3;&#x5E93;">1&nbsp;&nbsp;<b>&#x5EFA; Git &#x4ED3;&#x5E93;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x573A;&#x666F;1&#xFF1A;-&#x5C06;&#x5DF2;&#x6709;&#x7684;&#x9879;&#x76EE;&#x4EE3;&#x7801;&#x7EB3;&#x5165;-Git-&#x7BA1;&#x7406;">1.1&nbsp;&nbsp;&#x573A;&#x666F;1&#xFF1A; &#x5C06;&#x5DF2;&#x6709;&#x7684;&#x9879;&#x76EE;&#x4EE3;&#x7801;&#x7EB3;&#x5165; Git &#x7BA1;&#x7406;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Git-&#x57FA;&#x672C;&#x547D;&#x4EE4;">1.1.1&nbsp;&nbsp;Git &#x57FA;&#x672C;&#x547D;&#x4EE4;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x7EC3;&#x4E60;">1.1.2&nbsp;&nbsp;&#x7EC3;&#x4E60;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x573A;&#x666F;2&#xFF1A;-&#x65B0;&#x5EFA;&#x7684;&#x9879;&#x76EE;&#x76F4;&#x63A5;&#x7528;-Git-&#x7BA1;&#x7406;">1.2&nbsp;&nbsp;&#x573A;&#x666F;2&#xFF1A; &#x65B0;&#x5EFA;&#x7684;&#x9879;&#x76EE;&#x76F4;&#x63A5;&#x7528; Git &#x7BA1;&#x7406;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Git-&#x57FA;&#x672C;&#x547D;&#x4EE4;">1.2.1&nbsp;&nbsp;Git &#x57FA;&#x672C;&#x547D;&#x4EE4;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x7EC3;&#x4E60;">1.2.2&nbsp;&nbsp;&#x7EC3;&#x4E60;</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#git-init&#x57FA;&#x7840;&#x547D;&#x4EE4;&#x603B;&#x7ED3;">2&nbsp;&nbsp;<b>git init&#x57FA;&#x7840;&#x547D;&#x4EE4;&#x603B;&#x7ED3;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x540D;&#x79F0;">2.1&nbsp;&nbsp;&#x540D;&#x79F0;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x6982;&#x8981;">2.2&nbsp;&nbsp;&#x6982;&#x8981;</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#git-config&#x5E38;&#x7528;&#x914D;&#x7F6E;">3&nbsp;&nbsp;<b>git config&#x5E38;&#x7528;&#x914D;&#x7F6E;</b></a>
+                        
+                    </div>
+                </div>
+                
+                
+                <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                   
+                
+            </div>
+        </div>
+</div>
+</div>
+</nav>
+
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            玩转Git三剑客学习笔记-第04课-创建第一个仓库并配置local用户信息
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2019-05-12T14:04:00.000Z" itemprop="datePublished">5月 12 2019</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/">培训教程</a><span>></span><a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/%E7%8E%A9%E8%BD%ACGit%E4%B8%89%E5%89%91%E5%AE%A2/">玩转Git三剑客</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            5 分钟 读完 (约 721 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h1><span id="&#x5EFA;-git-&#x4ED3;&#x5E93;">&#x5EFA; Git &#x4ED3;&#x5E93;</span></h1><h2><span id="&#x573A;&#x666F;1-&#x5C06;&#x5DF2;&#x6709;&#x7684;&#x9879;&#x76EE;&#x4EE3;&#x7801;&#x7EB3;&#x5165;-git-&#x7BA1;&#x7406;">&#x573A;&#x666F;1&#xFF1A; &#x5C06;&#x5DF2;&#x6709;&#x7684;&#x9879;&#x76EE;&#x4EE3;&#x7801;&#x7EB3;&#x5165; Git &#x7BA1;&#x7406;</span></h2><h3><span id="git-&#x57FA;&#x672C;&#x547D;&#x4EE4;">Git &#x57FA;&#x672C;&#x547D;&#x4EE4;</span></h3><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> <span class="hljs-built_in">cd</span> dir</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> git init</span></span><br></pre></td></tr></table></figure></p>
+<h3><span id="&#x7EC3;&#x4E60;">&#x7EC3;&#x4E60;</span></h3><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x521B;&#x5EFA;&#x76EE;&#x5F55;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> mkdir git_learn_1</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x8FDB;&#x5165;&#x76EE;&#x5F55;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> <span class="hljs-built_in">cd</span> git_learn_1/</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x67E5;&#x770B;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> ls -al</span></span><br><span class="line">total 40</span><br><span class="line">drwxr-xr-x 1 rgwei 197121 0 3&#x6708;  10 12:17 ./</span><br><span class="line">drwxr-xr-x 1 rgwei 197121 0 3&#x6708;  10 12:17 ../</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x521D;&#x59CB;&#x5316;&#x4ED3;&#x5E93;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> git init</span></span><br><span class="line">Initialized empty Git repository in C:/Users/rgwei/AppData/Local/Temp/git_learn_1/.git/</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x770B;&#x5230;&#x521D;&#x59CB;&#x5316;&#x540E;&#x7684;&#x76EE;&#x5F55;&#x4E2D;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x9690;&#x85CF;&#x76EE;&#x5F55;.git</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> ls -al</span></span><br><span class="line">total 44</span><br><span class="line">drwxr-xr-x 1 rgwei 197121 0 3&#x6708;  10 12:18 ./</span><br><span class="line">drwxr-xr-x 1 rgwei 197121 0 3&#x6708;  10 12:17 ../</span><br><span class="line">drwxr-xr-x 1 rgwei 197121 0 3&#x6708;  10 12:18 .git/</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x67E5;&#x770B;.git&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x5177;&#x4F53;&#x6587;&#x4EF6;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> ls -la .git</span></span><br><span class="line">total 11</span><br><span class="line">drwxr-xr-x 1 rgwei 197121   0 3&#x6708;  10 12:18 ./</span><br><span class="line">drwxr-xr-x 1 rgwei 197121   0 3&#x6708;  10 12:18 ../</span><br><span class="line">-rw-r--r-- 1 rgwei 197121 130 3&#x6708;  10 12:18 config</span><br><span class="line">-rw-r--r-- 1 rgwei 197121  73 3&#x6708;  10 12:18 description</span><br><span class="line">-rw-r--r-- 1 rgwei 197121  23 3&#x6708;  10 12:18 HEAD</span><br><span class="line">drwxr-xr-x 1 rgwei 197121   0 3&#x6708;  10 12:18 hooks/</span><br><span class="line">drwxr-xr-x 1 rgwei 197121   0 3&#x6708;  10 12:18 info/</span><br><span class="line">drwxr-xr-x 1 rgwei 197121   0 3&#x6708;  10 12:18 objects/</span><br><span class="line">drwxr-xr-x 1 rgwei 197121   0 3&#x6708;  10 12:18 refs/</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;readme</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> touch readme</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x5C06;reamde&#x6DFB;&#x52A0;&#x5230;git&#x8DDF;&#x8E2A;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> git add readme</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x67E5;&#x770B;git&#x8DDF;&#x8E2A;&#x7684;&#x660E;&#x7EC6;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> git status</span></span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   readme</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x63D0;&#x4EA4;&#x53D8;&#x66F4;&#x660E;&#x7EC6;&#x5230;&#x672C;&#x5730;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> git commit -m <span class="hljs-string">&apos;add readme&apos;</span></span></span><br><span class="line">[master (root-commit) 1c244eb] add readme</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 readme</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x63D0;&#x4EA4;&#x53D8;&#x66F4;&#x5230;&#x8FDC;&#x7A0B;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> git push</span></span><br><span class="line">fatal: No configured push destination.</span><br><span class="line">Either specify the URL from the command-line or configure a remote repository using</span><br><span class="line"></span><br><span class="line">    git remote add &lt;name&gt; &lt;url&gt;</span><br><span class="line"></span><br><span class="line">and then push using the remote name</span><br><span class="line"></span><br><span class="line">    git push &lt;name&gt;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x7531;&#x4E8E;&#x6CA1;&#x6709;&#x914D;&#x7F6E;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#xFF0C;&#x56E0;&#x6B64;&#x6B64;&#x5904;&#x63D0;&#x793A;&#x9700;&#x8981;&#x5148;&#x6DFB;&#x52A0;&#x8FDC;&#x7A0B;&#x5206;&#x652F;&#xFF0C;&#x540E;&#x7EED;&#x4F1A;&#x5B66;&#x4E60;</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="&#x573A;&#x666F;2-&#x65B0;&#x5EFA;&#x7684;&#x9879;&#x76EE;&#x76F4;&#x63A5;&#x7528;-git-&#x7BA1;&#x7406;">&#x573A;&#x666F;2&#xFF1A; &#x65B0;&#x5EFA;&#x7684;&#x9879;&#x76EE;&#x76F4;&#x63A5;&#x7528; Git &#x7BA1;&#x7406;</span></h2><h3><span id="git-&#x57FA;&#x672C;&#x547D;&#x4EE4;">Git &#x57FA;&#x672C;&#x547D;&#x4EE4;</span></h3><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> <span class="hljs-built_in">cd</span> dir</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> git init your_project</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> <span class="hljs-built_in">cd</span> your_project</span></span><br></pre></td></tr></table></figure></p>
+<h3><span id="&#x7EC3;&#x4E60;">&#x7EC3;&#x4E60;</span></h3><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x521B;&#x5EFA;&#x65B0;&#x7684;&#x9879;&#x76EE;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> git init git_learn_2</span></span><br><span class="line">Initialized empty Git repository in C:/Users/rgwei/AppData/Local/Temp/git_learn_2/.git/</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x8FDB;&#x5165;&#x8BE5;&#x76EE;&#x5F55;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> <span class="hljs-built_in">cd</span> git_learn_2/</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> &#x67E5;&#x770B;&#x660E;&#x7EC6;</span></span><br><span class="line"><span class="hljs-meta">$</span><span class="hljs-bash"> ll -al</span></span><br><span class="line">total 44</span><br><span class="line">drwxr-xr-x 1 rgwei 197121 0 3&#x6708;  10 12:44 ./</span><br><span class="line">drwxr-xr-x 1 rgwei 197121 0 3&#x6708;  10 12:44 ../</span><br><span class="line">drwxr-xr-x 1 rgwei 197121 0 3&#x6708;  10 12:44 .git/</span><br></pre></td></tr></table></figure></p>
+<h1><span id="git-init&#x57FA;&#x7840;&#x547D;&#x4EE4;&#x603B;&#x7ED3;"><code>git init</code>&#x57FA;&#x7840;&#x547D;&#x4EE4;&#x603B;&#x7ED3;</span></h1><h2><span id="&#x540D;&#x79F0;">&#x540D;&#x79F0;</span></h2><p>git-init - &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x7684;Git&#x5B58;&#x50A8;&#x5E93;&#x6216;&#x91CD;&#x65B0;&#x521D;&#x59CB;&#x5316;&#x73B0;&#x6709;&#x5B58;&#x50A8;&#x5E93;</p>
+<h2><span id="&#x6982;&#x8981;">&#x6982;&#x8981;</span></h2><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init [-q | --quiet] [--bare] [--template = &lt;template_directory&gt;]</span><br><span class="line">	  [--separate-git-dir &lt;git dir&gt;]</span><br><span class="line">	  [--shared [= &lt;permissions&gt;]] [&#x76EE;&#x5F55;]</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th><code>git init</code></th>
+<th>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x7684;Git&#x5B58;&#x50A8;&#x5E93;&#x6216;&#x91CD;&#x65B0;&#x521D;&#x59CB;&#x5316;&#x73B0;&#x6709;&#x5B58;&#x50A8;&#x5E93;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git init --help</code></td>
+<td>&#x67E5;&#x770B;&#x5E2E;&#x52A9;&#x6587;&#x6863;</td>
+</tr>
+<tr>
+<td><code>git init -q</code></td>
+<td>&#x4EC5;&#x6253;&#x5370;&#x9519;&#x8BEF;&#x548C;&#x8B66;&#x544A;&#x6D88;&#x606F;; &#x6240;&#x6709;&#x5176;&#x4ED6;&#x8F93;&#x51FA;&#x90FD;&#x5C06;&#x88AB;&#x6291;&#x5236;&#x3002;</td>
+</tr>
+</tbody></table>
+<h1><span id="git-config&#x5E38;&#x7528;&#x914D;&#x7F6E;"><code>git config</code>&#x5E38;&#x7528;&#x914D;&#x7F6E;</span></h1><p><figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">[core]</span></span><br><span class="line">        <span class="hljs-string">repositoryformatversion</span> <span class="hljs-string">=</span> <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-string">filemode</span> <span class="hljs-string">=</span> <span class="hljs-literal">false</span></span><br><span class="line">        <span class="hljs-string">bare</span> <span class="hljs-string">=</span> <span class="hljs-literal">false</span></span><br><span class="line">        <span class="hljs-string">logallrefupdates</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span></span><br><span class="line">        <span class="hljs-string">symlinks</span> <span class="hljs-string">=</span> <span class="hljs-literal">false</span></span><br><span class="line">        <span class="hljs-string">ignorecase</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span></span><br><span class="line">        <span class="hljs-string">editor</span> <span class="hljs-string">=</span> <span class="hljs-string">vim</span></span><br><span class="line">        <span class="hljs-string">excludesfile</span> <span class="hljs-string">=</span> <span class="hljs-string">~/.gitignore</span></span><br><span class="line">        <span class="hljs-string">autocrlf</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-string">[remote</span> <span class="hljs-string">&quot;origin&quot;</span><span class="hljs-string">]</span></span><br><span class="line">        <span class="hljs-string">url</span> <span class="hljs-string">=</span> <span class="hljs-string">git@github.com:xxxx/xxxx.git</span></span><br><span class="line">        <span class="hljs-string">fetch</span> <span class="hljs-string">=</span> <span class="hljs-string">+refs/heads/*:refs/remotes/origin/*</span></span><br><span class="line"><span class="hljs-string">[branch</span> <span class="hljs-string">&quot;master&quot;</span><span class="hljs-string">]</span></span><br><span class="line">        <span class="hljs-string">remote</span> <span class="hljs-string">=</span> <span class="hljs-string">origin</span></span><br><span class="line">        <span class="hljs-string">merge</span> <span class="hljs-string">=</span> <span class="hljs-string">refs/heads/master</span></span><br><span class="line"><span class="hljs-string">[alias]</span></span><br><span class="line">        <span class="hljs-string">amend</span> <span class="hljs-string">=</span> <span class="hljs-string">commit</span> <span class="hljs-string">--amend</span></span><br><span class="line">        <span class="hljs-string">amendf</span> <span class="hljs-string">=</span> <span class="hljs-string">commit</span> <span class="hljs-string">--amend</span> <span class="hljs-string">--no-edit</span></span><br><span class="line">        <span class="hljs-string">br</span> <span class="hljs-string">=</span> <span class="hljs-string">branch</span></span><br><span class="line">        <span class="hljs-string">ct</span> <span class="hljs-string">=</span> <span class="hljs-string">commit</span></span><br><span class="line">        <span class="hljs-string">co</span> <span class="hljs-string">=</span> <span class="hljs-string">checkout</span></span><br><span class="line">        <span class="hljs-string">cp</span> <span class="hljs-string">=</span> <span class="hljs-string">cherry-pick</span></span><br><span class="line">        <span class="hljs-string">df</span> <span class="hljs-string">=</span> <span class="hljs-string">diff</span></span><br><span class="line">        <span class="hljs-string">ds</span> <span class="hljs-string">=</span> <span class="hljs-string">diff</span> <span class="hljs-string">--staged</span></span><br><span class="line">        <span class="hljs-string">l</span> <span class="hljs-string">=</span> <span class="hljs-string">log</span></span><br><span class="line">        <span class="hljs-string">lg</span> <span class="hljs-string">=</span> <span class="hljs-string">log</span> <span class="hljs-string">--graph</span> <span class="hljs-string">--all</span> <span class="hljs-string">--format=format:&apos;%C(bold</span> <span class="hljs-string">blue)%h%C(reset)</span> <span class="hljs-bullet">-</span> <span class="hljs-string">%C(bold</span> <span class="hljs-string">green)(%ar)%C(reset)</span> <span class="hljs-string">%C(white)%s%C(reset)</span> <span class="hljs-string">%C(bold</span> <span class="hljs-string">white)&#xFFFD;&#xFFFD;</span> <span class="hljs-string">%an%C(reset)%C(bold</span> <span class="hljs-string">yellow)%d%C(reset)&apos;</span> <span class="hljs-string">--abbrev-commit</span> <span class="hljs-string">--date=relative</span></span><br><span class="line">        <span class="hljs-string">lp</span> <span class="hljs-string">=</span> <span class="hljs-string">log</span> <span class="hljs-string">--pretty=oneline</span></span><br><span class="line">        <span class="hljs-string">sa</span> <span class="hljs-string">=</span> <span class="hljs-string">stash</span> <span class="hljs-string">apply</span></span><br><span class="line">        <span class="hljs-string">sh</span> <span class="hljs-string">=</span> <span class="hljs-string">show</span></span><br><span class="line">        <span class="hljs-string">ss</span> <span class="hljs-string">=</span> <span class="hljs-string">stash</span> <span class="hljs-string">save</span></span><br><span class="line">        <span class="hljs-string">st</span> <span class="hljs-string">=</span> <span class="hljs-string">status</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-string">[color]</span></span><br><span class="line">        <span class="hljs-string">ui</span> <span class="hljs-string">=</span> <span class="hljs-string">auto</span> </span><br><span class="line"><span class="hljs-string">[color</span> <span class="hljs-string">&quot;branch&quot;</span><span class="hljs-string">]</span></span><br><span class="line">        <span class="hljs-string">current</span> <span class="hljs-string">=</span> <span class="hljs-string">yellow</span> <span class="hljs-string">reverse</span></span><br><span class="line">        <span class="hljs-string">local</span> <span class="hljs-string">=</span> <span class="hljs-string">yellow</span></span><br><span class="line">        <span class="hljs-string">remote</span> <span class="hljs-string">=</span> <span class="hljs-string">green</span></span><br><span class="line"><span class="hljs-string">[color</span> <span class="hljs-string">&quot;status&quot;</span><span class="hljs-string">]</span></span><br><span class="line">        <span class="hljs-string">added</span> <span class="hljs-string">=</span> <span class="hljs-string">yellow</span></span><br><span class="line">        <span class="hljs-string">changed</span> <span class="hljs-string">=</span> <span class="hljs-string">green</span></span><br><span class="line">        <span class="hljs-string">untracked</span> <span class="hljs-string">=</span> <span class="hljs-string">cyan</span></span><br><span class="line"><span class="hljs-string">[color</span> <span class="hljs-string">&quot;diff&quot;</span><span class="hljs-string">]</span> </span><br><span class="line">        <span class="hljs-string">meta</span> <span class="hljs-string">=</span> <span class="hljs-string">yellow</span></span><br><span class="line">        <span class="hljs-string">frag</span> <span class="hljs-string">=</span> <span class="hljs-string">magenta</span> <span class="hljs-string">bold</span></span><br><span class="line">        <span class="hljs-string">commit</span> <span class="hljs-string">=</span> <span class="hljs-string">yellow</span> <span class="hljs-string">bold</span></span><br><span class="line">        <span class="hljs-string">old</span> <span class="hljs-string">=</span> <span class="hljs-string">red</span> <span class="hljs-string">bold</span></span><br><span class="line">        <span class="hljs-string">new</span> <span class="hljs-string">=</span> <span class="hljs-string">green</span> <span class="hljs-string">bold</span></span><br><span class="line">        <span class="hljs-string">whitespace</span> <span class="hljs-string">=</span> <span class="hljs-string">red</span> <span class="hljs-string">reverse</span></span><br><span class="line"><span class="hljs-string">[color</span> <span class="hljs-string">&quot;diff-highlight&quot;</span><span class="hljs-string">]</span></span><br><span class="line">        <span class="hljs-string">oldNormal</span> <span class="hljs-string">=</span> <span class="hljs-string">red</span> <span class="hljs-string">bold</span></span><br><span class="line">        <span class="hljs-string">oldHighlight</span> <span class="hljs-string">=</span> <span class="hljs-string">red</span> <span class="hljs-string">bold</span> <span class="hljs-number">52</span></span><br><span class="line">        <span class="hljs-string">newNormal</span> <span class="hljs-string">=</span> <span class="hljs-string">green</span> <span class="hljs-string">bold</span></span><br><span class="line">        <span class="hljs-string">newHighlight</span> <span class="hljs-string">=</span> <span class="hljs-string">green</span> <span class="hljs-string">bold</span> <span class="hljs-number">22</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-string">[credential]</span></span><br><span class="line">        <span class="hljs-string">helper</span> <span class="hljs-string">=</span> <span class="hljs-string">cache</span> <span class="hljs-string">--timeout=28800</span></span><br></pre></td></tr></table></figure></p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%9F%B9%E8%AE%AD/">#培训</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Git/">#Git</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Github/">#Github</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Gitlab/">#Gitlab</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2019/05/12/DBA_Git/Chapter01_GitBasics/05_%E9%80%9A%E8%BF%87%E5%87%A0%E6%AC%A1commit%E6%9D%A5%E8%AE%A4%E8%AF%86%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA/">玩转Git三剑客学习笔记-第05课-通过几次commit来认识工作区和暂存区</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2019/05/12/DBA_Git/Chapter01_GitBasics/03_%E4%BD%BF%E7%94%A8Git%E4%B9%8B%E5%89%8D%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AE/">玩转Git三剑客学习笔记-第03课-使用Git之前需要做的最小配置</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2019/05/12/DBA_Git/Chapter01_GitBasics/04_创建第一个仓库并配置local用户信息/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+
+
+</div>
+
+
+    </div>
+</section>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span> 人次 </span>
+           </div>
+
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+    
+</body>
+</html>
