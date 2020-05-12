@@ -26,7 +26,7 @@
 <meta property="og:description" content="&amp;#x5728;&amp;#x7EBF;MySQL8.0&amp;#x7ED3;&amp;#x6784;&amp;#x53D8;&amp;#x66F4;&amp;#x95EE;&amp;#x9898;&amp;#x6392;&amp;#x67E5;    &amp;#x62A5;&amp;#x9519;&amp;#x660E;&amp;#x7EC6;    &amp;#x89E3;&amp;#x51B3;&amp;#x65B9;&amp;#x6CD5;    &amp;#x6D4B;&amp;#x8BD5;&amp;#x73AF;&amp;#x5883;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-12T12:59:00.000Z">
-<meta property="article:modified_time" content="2020-05-12T05:40:58.512Z">
+<meta property="article:modified_time" content="2020-05-12T05:43:47.631Z">
 <meta property="article:author" content="BoobooWei">
 <meta property="article:tag" content="阿里云">
 <meta property="article:tag" content="在线DDL">
@@ -453,7 +453,7 @@
         <span class="column is-narrow">
             
             
-            8 分钟 读完 (约 1140 字)
+            8 分钟 读完 (约 1152 字)
         </span>
         
     </div>
@@ -494,6 +494,7 @@
 </tr>
 </tbody></table>
 <h2><span id="&#x62A5;&#x9519;&#x660E;&#x7EC6;">&#x62A5;&#x9519;&#x660E;&#x7EC6;</span></h2><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 install]<span class="hljs-comment"># pt-online-schema-change --port=3306 --host=localhost --user=root --password=xxx --alter=&quot;add index TMS_LEG_IDS (ID,CHANGE_ORG_ID,FROM_RECEIVER_ID,TO_RECEIVER_ID,TO_REGIONZONE_ID)&quot; D=wlyotwb,t=tms_leg_test --no-version-check --execute --charset=utf8</span></span><br><span class="line">No slaves found.  See --recursion-method <span class="hljs-keyword">if</span> host node2 has slaves.</span><br><span class="line">Not checking slave lag because no slaves were found and --check-slave-lag was not specified.</span><br><span class="line">Operation, tries, <span class="hljs-built_in">wait</span>:</span><br><span class="line">  analyze_table, 10, 1</span><br><span class="line">  copy_rows, 10, 0.25</span><br><span class="line">  create_triggers, 10, 1</span><br><span class="line">  drop_triggers, 10, 1</span><br><span class="line">  swap_tables, 10, 1</span><br><span class="line">  update_foreign_keys, 10, 1</span><br><span class="line">There is an error <span class="hljs-keyword">in</span> MySQL that makes the server to die when trying to rename a table with FKs. See https://bugs.mysql.com/bug.php?id=96145</span><br><span class="line">Since pt-online-schema change needs to rename the old &lt;-&gt; new tables as the final step, and the requested table has FKs, it cannot be executed under the current MySQL version</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://jira.percona.com/browse/PT-1782" target="_blank" rel="noopener">https://jira.percona.com/browse/PT-1782</a></p>
 <h2><span id="&#x89E3;&#x51B3;&#x65B9;&#x6CD5;">&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</span></h2><ul>
 <li>pt-tools&#x8F6F;&#x4EF6;&#x7248;&#x672C;&#x4F7F;&#x7528; <code>3.0.13</code></li>
 </ul>
