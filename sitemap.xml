@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/tools/index.html</loc>
+    
+    <lastmod>2020-05-13T08:46:07.166Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/14/booboo_others/2020-05-12-tec-linux/</loc>
+    
+    <lastmod>2020-05-13T08:31:58.188Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2020/05/13/booboo_others/2020-05-12-tec-redhat/</loc>
     
     <lastmod>2020-05-13T07:35:23.562Z</lastmod>
@@ -299,13 +313,6 @@
     <loc>http://www.toberoot.com/2020/05/12/booboo_others/2020-05-12-tec-mysql/</loc>
     
     <lastmod>2020-05-12T05:43:47.631Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/tools/index.html</loc>
-    
-    <lastmod>2020-05-12T05:38:32.719Z</lastmod>
     
   </url>
   
