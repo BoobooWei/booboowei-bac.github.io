@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>booboo_git/第一节git版本控制 - 归去来兮</title>
+<title>Git版本控制 - 归去来兮</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -18,22 +18,25 @@
 
 
 
-    <meta name="description" content="Git&amp;#x7248;&amp;#x672C;&amp;#x63A7;&amp;#x5236;Git&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x514D;&amp;#x8D39;&amp;#x7684;&amp;#x5F00;&amp;#x6E90; &amp;#x5206;&amp;#x5E03;&amp;#x5F0F;&amp;#x7248;&amp;#x672C;&amp;#x63A7;&amp;#x5236;&amp;#x7CFB;&amp;#x7EDF;&amp;#xFF0C;&amp;#x65E8;&amp;#x5728;&amp;">
+    <meta name="description" content="&amp;#x7248;&amp;#x672C;&amp;#x63A7;&amp;#x5236;&amp;#x7684;&amp;#x5386;&amp;#x53F2;&amp;#x53CA;&amp;#x4F5C;&amp;#x7528;    GIT&amp;#x7684;&amp;#x5B89;&amp;#x88C5;    GIT&amp;#x7684;&amp;#x521D;&amp;#x59CB;&amp;#x5316;    &amp;#x7B2C;&amp;#x4E00;&amp;#x6B21;&amp;#x63D0;&amp;#x4EA4;&amp;#x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="booboo_git&#x2F;第一节git版本控制">
-<meta property="og:url" content="http://www.toberoot.com/2020/05/12/booboo_git/%E7%AC%AC%E4%B8%80%E8%8A%82git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/index.html">
+<meta property="og:title" content="Git版本控制">
+<meta property="og:url" content="http://www.toberoot.com/2019/05/13/booboo_others/2020-05-12-tec-git/index.html">
 <meta property="og:site_name" content="归去来兮">
-<meta property="og:description" content="Git&amp;#x7248;&amp;#x672C;&amp;#x63A7;&amp;#x5236;Git&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x514D;&amp;#x8D39;&amp;#x7684;&amp;#x5F00;&amp;#x6E90; &amp;#x5206;&amp;#x5E03;&amp;#x5F0F;&amp;#x7248;&amp;#x672C;&amp;#x63A7;&amp;#x5236;&amp;#x7CFB;&amp;#x7EDF;&amp;#xFF0C;&amp;#x65E8;&amp;#x5728;&amp;">
+<meta property="og:description" content="&amp;#x7248;&amp;#x672C;&amp;#x63A7;&amp;#x5236;&amp;#x7684;&amp;#x5386;&amp;#x53F2;&amp;#x53CA;&amp;#x4F5C;&amp;#x7528;    GIT&amp;#x7684;&amp;#x5B89;&amp;#x88C5;    GIT&amp;#x7684;&amp;#x521D;&amp;#x59CB;&amp;#x5316;    &amp;#x7B2C;&amp;#x4E00;&amp;#x6B21;&amp;#x63D0;&amp;#x4EA4;&amp;#x">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.toberoot.com/2020/05/12/booboo_git/%E7%AC%AC%E4%B8%80%E8%8A%82git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/1.png">
-<meta property="og:image" content="http://www.toberoot.com/2020/05/12/booboo_git/%E7%AC%AC%E4%B8%80%E8%8A%82git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/2.png">
-<meta property="og:image" content="http://www.toberoot.com/2020/05/12/booboo_git/%E7%AC%AC%E4%B8%80%E8%8A%82git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/4.png">
-<meta property="og:image" content="http://www.toberoot.com/2020/05/12/booboo_git/%E7%AC%AC%E4%B8%80%E8%8A%82git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/5.png">
-<meta property="article:published_time" content="2020-05-12T06:55:49.988Z">
-<meta property="article:modified_time" content="2020-05-12T06:57:41.789Z">
+<meta property="og:image" content="http://www.toberoot.com/2019/05/13/booboo_others/2020-05-12-tec-git/1.png">
+<meta property="og:image" content="http://www.toberoot.com/2019/05/13/booboo_others/2020-05-12-tec-git/2.png">
+<meta property="og:image" content="http://www.toberoot.com/2019/05/13/booboo_others/2020-05-12-tec-git/4.png">
+<meta property="og:image" content="http://www.toberoot.com/2019/05/13/booboo_others/2020-05-12-tec-git/5.png">
+<meta property="article:published_time" content="2019-05-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-12T08:04:41.669Z">
 <meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Gitlab">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.toberoot.com/2020/05/12/booboo_git/%E7%AC%AC%E4%B8%80%E8%8A%82git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/1.png">
+<meta name="twitter:image" content="http://www.toberoot.com/2019/05/13/booboo_others/2020-05-12-tec-git/1.png">
 
 
 
@@ -238,6 +241,12 @@
                                     <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/jira/" data-rel="jira">jira</a>
                                         
                                         
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Git/" data-rel="Git">Git</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/RedHat/" data-rel="RedHat">RedHat</a>
+                                        
+                                        
                                 </div>
 
                         </li>
@@ -348,6 +357,14 @@
 
                     
                 
+                        
+
+                    
+                
+                        
+
+                    
+                
                 </ul>
               </div>
             </nav>
@@ -383,43 +400,55 @@
                         
                         
                         
-                        <a class="navbar-item" href="#Git&#x7248;&#x672C;&#x63A7;&#x5236;">1&nbsp;&nbsp;<b>Git&#x7248;&#x672C;&#x63A7;&#x5236;</b></a>
+                        <a class="navbar-item" href="#&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#x53CA;&#x4F5C;&#x7528;">1&nbsp;&nbsp;<b>&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#x53CA;&#x4F5C;&#x7528;</b></a>
                         
                         
-                        
-                        <a class="navbar-item" href="#1.&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#x53CA;&#x4F5C;&#x7528;">1.1.1&nbsp;&nbsp;1.&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#x53CA;&#x4F5C;&#x7528;</a>
-                        
+                        <hr class="navbar-divider">
                         
                         
-                        <a class="navbar-item" href="#2.GIT&#x7684;&#x5B89;&#x88C5;##">1.2&nbsp;&nbsp;2.GIT&#x7684;&#x5B89;&#x88C5;##</a>
+                        <a class="navbar-item" href="#GIT&#x7684;&#x5B89;&#x88C5;">2&nbsp;&nbsp;<b>GIT&#x7684;&#x5B89;&#x88C5;</b></a>
                         
                         
-                        
-                        <a class="navbar-item" href="#3.GIT&#x7684;&#x521D;&#x59CB;&#x5316;##">1.3&nbsp;&nbsp;3.GIT&#x7684;&#x521D;&#x59CB;&#x5316;##</a>
-                        
+                        <hr class="navbar-divider">
                         
                         
-                        <a class="navbar-item" href="#4.&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;">1.4&nbsp;&nbsp;4.&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;</a>
+                        <a class="navbar-item" href="#GIT&#x7684;&#x521D;&#x59CB;&#x5316;">3&nbsp;&nbsp;<b>GIT&#x7684;&#x521D;&#x59CB;&#x5316;</b></a>
                         
                         
-                        
-                        <a class="navbar-item" href="#5.GIT&#x7684;&#x5DE5;&#x4F5C;&#x533A;&#x3001;&#x6682;&#x5B58;&#x533A;&#x3001;&#x7248;&#x672C;&#x5E93;##">1.5&nbsp;&nbsp;5.GIT&#x7684;&#x5DE5;&#x4F5C;&#x533A;&#x3001;&#x6682;&#x5B58;&#x533A;&#x3001;&#x7248;&#x672C;&#x5E93;##</a>
-                        
+                        <hr class="navbar-divider">
                         
                         
-                        <a class="navbar-item" href="#6.GIT&#x7684;&#x5E38;&#x7528;&#x57FA;&#x672C;&#x547D;&#x4EE4;">1.6&nbsp;&nbsp;6.GIT&#x7684;&#x5E38;&#x7528;&#x57FA;&#x672C;&#x547D;&#x4EE4;</a>
+                        <a class="navbar-item" href="#&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;">4&nbsp;&nbsp;<b>&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;</b></a>
                         
                         
-                        
-                        <a class="navbar-item" href="#7.GIT&#x5206;&#x652F;">1.7&nbsp;&nbsp;7.GIT&#x5206;&#x652F;</a>
-                        
+                        <hr class="navbar-divider">
                         
                         
-                        <a class="navbar-item" href="#8.GIT&#x514B;&#x9686;##">1.8&nbsp;&nbsp;8.GIT&#x514B;&#x9686;##</a>
+                        <a class="navbar-item" href="#GIT&#x7684;&#x5DE5;&#x4F5C;&#x533A;&#x3001;&#x6682;&#x5B58;&#x533A;&#x3001;&#x7248;&#x672C;&#x5E93;">5&nbsp;&nbsp;<b>GIT&#x7684;&#x5DE5;&#x4F5C;&#x533A;&#x3001;&#x6682;&#x5B58;&#x533A;&#x3001;&#x7248;&#x672C;&#x5E93;</b></a>
                         
                         
+                        <hr class="navbar-divider">
                         
-                        <a class="navbar-item" href="#9.GITHUB&#x7684;&#x4F7F;&#x7528;##">1.9&nbsp;&nbsp;9.GITHUB&#x7684;&#x4F7F;&#x7528;##</a>
+                        
+                        <a class="navbar-item" href="#GIT&#x7684;&#x5E38;&#x7528;&#x57FA;&#x672C;&#x547D;&#x4EE4;">6&nbsp;&nbsp;<b>GIT&#x7684;&#x5E38;&#x7528;&#x57FA;&#x672C;&#x547D;&#x4EE4;</b></a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#GIT&#x5206;&#x652F;">7&nbsp;&nbsp;<b>GIT&#x5206;&#x652F;</b></a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#GIT&#x514B;&#x9686;">8&nbsp;&nbsp;<b>GIT&#x514B;&#x9686;</b></a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#9.GITHUB&#x7684;&#x4F7F;&#x7528;">9&nbsp;&nbsp;<b>9.GITHUB&#x7684;&#x4F7F;&#x7528;</b></a>
                         
                     </div>
                 </div>
@@ -444,27 +473,47 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            booboo_git/第一节git版本控制
+            Git版本控制
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-05-12T06:55:49.988Z" itemprop="datePublished">5月 12 2020</time>
+            <time datetime="2019-05-12T16:00:00.000Z" itemprop="datePublished">5月 13 2019</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/">技术广角</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Git/">Git</a>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            27 分钟 读完 (约 4029 字)
+            28 分钟 读完 (约 4143 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <h1><span id="git&#x7248;&#x672C;&#x63A7;&#x5236;">Git&#x7248;&#x672C;&#x63A7;&#x5236;</span></h1><p>Git&#x662F;&#x4E00;&#x4E2A;&#x514D;&#x8D39;&#x7684;&#x5F00;&#x6E90; &#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x7CFB;&#x7EDF;&#xFF0C;&#x65E8;&#x5728;&#x5FEB;&#x901F;&#x9AD8;&#x6548;&#x5730;&#x5904;&#x7406;&#x4ECE;&#x5C0F;&#x578B;&#x5230;&#x5927;&#x578B;&#x9879;&#x76EE;&#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x3002;</p>
+        <!-- MDTOC maxdepth:6 firsth1:1 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
+
+<ul>
+<li><a href="#&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#x53CA;&#x4F5C;&#x7528;">&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#x53CA;&#x4F5C;&#x7528;</a>   </li>
+<li><a href="#git&#x7684;&#x5B89;&#x88C5;">GIT&#x7684;&#x5B89;&#x88C5;</a>   </li>
+<li><a href="#git&#x7684;&#x521D;&#x59CB;&#x5316;">GIT&#x7684;&#x521D;&#x59CB;&#x5316;</a>   </li>
+<li><a href="#&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;">&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;</a>   </li>
+<li><a href="#git&#x7684;&#x5DE5;&#x4F5C;&#x533A;&#x3001;&#x6682;&#x5B58;&#x533A;&#x3001;&#x7248;&#x672C;&#x5E93;">GIT&#x7684;&#x5DE5;&#x4F5C;&#x533A;&#x3001;&#x6682;&#x5B58;&#x533A;&#x3001;&#x7248;&#x672C;&#x5E93;</a>   </li>
+<li><a href="#git&#x7684;&#x5E38;&#x7528;&#x57FA;&#x672C;&#x547D;&#x4EE4;">GIT&#x7684;&#x5E38;&#x7528;&#x57FA;&#x672C;&#x547D;&#x4EE4;</a>   </li>
+<li><a href="#git&#x5206;&#x652F;">GIT&#x5206;&#x652F;</a>   </li>
+<li><a href="#git&#x514B;&#x9686;">GIT&#x514B;&#x9686;</a>   </li>
+<li><a href="#9github&#x7684;&#x4F7F;&#x7528;">9.GITHUB&#x7684;&#x4F7F;&#x7528;</a>   </li>
+</ul>
+<!-- /MDTOC -->
+
+<p>Git&#x662F;&#x4E00;&#x4E2A;&#x514D;&#x8D39;&#x7684;&#x5F00;&#x6E90; &#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x7CFB;&#x7EDF;&#xFF0C;&#x65E8;&#x5728;&#x5FEB;&#x901F;&#x9AD8;&#x6548;&#x5730;&#x5904;&#x7406;&#x4ECE;&#x5C0F;&#x578B;&#x5230;&#x5927;&#x578B;&#x9879;&#x76EE;&#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x3002;</p>
 <p>Git &#x6613;&#x4E8E;&#x5B66;&#x4E60;&#xFF0C; &#x5360;&#x5730;&#x9762;&#x79EF;&#x5C0F;&#xFF0C;&#x5177;&#x6709;&#x95EA;&#x7535;&#x822C;&#x7684;&#x5FEB;&#x901F;&#x6027;&#x80FD;&#x3002;&#x5B83;&#x5177;&#x6709;&#x8BF8;&#x5982;Subversion&#xFF0C;CVS&#xFF0C;Perforce&#x548C;ClearCase&#x4E4B;&#x7C7B;&#x7684;SCM&#x5DE5;&#x5177;&#xFF0C;&#x5E76;&#x4E14;&#x5177;&#x6709;&#x5EC9;&#x4EF7;&#x7684;&#x672C;&#x5730;&#x5206;&#x652F;&#xFF0C;&#x65B9;&#x4FBF;&#x7684;&#x6682;&#x5B58;&#x533A;&#x57DF;&#x548C; &#x591A;&#x4E2A;&#x5DE5;&#x4F5C;&#x6D41;&#x7B49;&#x529F;&#x80FD;&#x3002;</p>
-<h3><span id="1&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#x53CA;&#x4F5C;&#x7528;">1.&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#x53CA;&#x4F5C;&#x7528;</span></h3><p><strong>&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x4F5C;&#x7528;&#xFF1A;</strong></p>
+<h2><span id="&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#x53CA;&#x4F5C;&#x7528;">&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#x53CA;&#x4F5C;&#x7528;</span></h2><p><strong>&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x4F5C;&#x7528;&#xFF1A;</strong></p>
 <p>&#x5BF9;&#x4E8E;IT&#x8FD9;&#x4E2A;&#x884C;&#x4E1A;&#x6765;&#x8BF4;&#xFF0C;&#x7ECF;&#x5E38;&#x4F1A;&#x9047;&#x5230;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;&#x4EE3;&#x7801;&#x5206;&#x6563;&#x7684;&#x62F7;&#x8D1D;&#x5728;&#x5404;&#x4E2A;&#x5206;&#x533A;&#x4E4B;&#x4E2D;&#xFF0C;&#x4E0D;&#x77E5;&#x9053;&#x54EA;&#x4E2A;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x662F;&#x6700;&#x65B0;&#x7684;&#xFF0C;&#x54EA;&#x4E2A;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x662F;&#x6700;&#x4F18;&#x7684;&#x3002;&#x5931;&#x8D25;&#x7684;&#x590D;&#x5236;&#x3001;&#x66FF;&#x6362;&#x7ECF;&#x5E38;&#x4F1A;&#x5BFC;&#x81F4;&#x539F;&#x6765;&#x5C1A;&#x80FD;&#x8FD0;&#x884C;&#x7684;&#x4EE3;&#x7801;&#x906D;&#x5230;&#x7834;&#x574F;&#x3002;&#x4E8E;&#x662F;&#xFF0C;&#x9488;&#x5BF9;&#x4EE5;&#x4E0A;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x4EA7;&#x751F;&#x4E86;&#x4E00;&#x79CD;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x6848;&#x6211;&#x4EEC;&#x6210;&#x4E3A;&#x7248;&#x672C;&#x63A7;&#x5236;&#x3002;&#x7248;&#x672C;&#x63A7;&#x5236;&#x7CFB;&#x7EDF;&#x662F;&#x80FD;&#x591F;&#x968F;&#x7740;&#x65F6;&#x95F4;&#x7684;&#x63A8;&#x8FDB;&#x8BB0;&#x5F55;&#x4E00;&#x7CFB;&#x5217;&#x6587;&#x4EF6;&#x7684;&#x53D8;&#x5316;&#x4EE5;&#x4FBF;&#x4E8E;&#x4F60;&#x4EE5;&#x540E;&#x60F3;&#x8981;&#x7684;&#x9000;&#x56DE;&#x5230;&#x67D0;&#x4E2A;&#x7248;&#x672C;&#x7684;&#x7CFB;&#x7EDF;&#x3002;</p>
 <p><strong>&#x7248;&#x672C;&#x63A7;&#x5236;&#x7684;&#x5386;&#x53F2;&#xFF1A;</strong></p>
 <p>1&#xFF09;CVS&#xFF1A;&#x6700;&#x65E9;&#x671F;&#x7684;&#x7248;&#x672C;&#x63A7;&#x5236;&#x5DE5;&#x5177;&#x79F0;&#x4E3A;CVS&#xFF0C;&#x4E8E;1985&#x5E74;&#x7531;&#x8377;&#x5170;&#x963F;&#x59C6;&#x65AF;&#x7279;&#x4E39;VU&#x5927;&#x5B66;&#x7684;Dick Grune&#x6559;&#x6388;&#x5B8C;&#x6210;&#x5F00;&#x53D1;&#xFF0C;&#x5960;&#x5B9A;&#x4E86;&#x540E;&#x7EED;&#x7248;&#x672C;&#x63A7;&#x5236;&#x8F6F;&#x4EF6;&#x7684;&#x6A21;&#x578B;&#x57FA;&#x7840;&#x3002;CVS&#x91C7;&#x7528;C/S&#x6A21;&#x578B;&#xFF0C;&#x7248;&#x672C;&#x5E93;&#x4F4D;&#x4E8E;&#x670D;&#x52A1;&#x7AEF;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5B58;&#x50A8;&#x7684;&#x6587;&#x4EF6;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4E00;&#x4E2A;RCS&#x5BB9;&#x5668;&#x3002;&#x6BCF;&#x4E00;&#x4E2A;RCS&#x6587;&#x4EF6;&#x4EE5;&#x2019;.v&#x2018;&#x4F5C;&#x4E3A;&#x540E;&#x7F00;&#xFF0C;&#x4FDD;&#x5B58;&#x8BE5;&#x6587;&#x4EF6;&#x7684;&#x6BCF;&#x4E00;&#x6B21;&#x66F4;&#x6539;&#x5386;&#x53F2;&#xFF0C;&#x4F7F;&#x5F97;&#x5176;&#x5B58;&#x50A8;&#x5341;&#x5206;&#x6709;&#x6548;&#x3002;&#x7136;&#x800C;CVS&#x4E5F;&#x5B58;&#x5728;&#x5982;&#x4E0B;&#x7F3A;&#x70B9;&#xFF1A;1.&#x6548;&#x7387;&#x4E0D;&#x9AD8;&#xFF0C;&#x670D;&#x52A1;&#x7AEF;&#x6587;&#x4EF6;&#x8D8A;&#x591A;&#xFF0C;&#x5904;&#x7406;&#x901F;&#x5EA6;&#x8D8A;&#x6162;&#x3002;2.&#x5408;&#x5E76;&#x56F0;&#x96BE;&#x91CD;&#x91CD;&#xFF0C;&#x7ECF;&#x5E38;&#x4F1A;&#x9047;&#x5230;&#x4E25;&#x91CD;&#x51B2;&#x7A81;&#x3002;3.&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x5BF9;&#x6587;&#x4EF6;&#x548C;&#x76EE;&#x5F55;&#x7684;&#x91CD;&#x547D;&#x540D;&#x8FDB;&#x884C;&#x7248;&#x672C;&#x63A7;&#x5236;&#xFF0C;&#x4F1A;&#x7834;&#x574F;&#x6570;&#x636E;&#x3002;</p>
@@ -475,26 +524,26 @@
 <p>&#x672C;&#x5730;&#x7248;&#x672C;&#x63A7;&#x5236;&#xFF1A;&#x5C06;&#x6587;&#x4EF6;&#x7684;&#x5404;&#x4E2A;&#x7248;&#x672C;&#x4EE5;&#x4E00;&#x5B9A;&#x7684;&#x6570;&#x636E;&#x683C;&#x5F0F;&#x5B58;&#x50A8;&#x5728;&#x672C;&#x5730;&#x7684;&#x78C1;&#x76D8;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x5728;&#x4E00;&#x5B9A;&#x7684;&#x7A0B;&#x5EA6;&#x4E0A;&#x89E3;&#x51B3;&#x4E86;&#x624B;&#x52A8;&#x590D;&#x5236;&#x9ECF;&#x8D34;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x65E0;&#x6CD5;&#x89E3;&#x51B3;&#x591A;&#x4EBA;&#x534F;&#x4F5C;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
 <p>&#x96C6;&#x4E2D;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#xFF1A;&#x6BD4;&#x8D77;&#x672C;&#x5730;&#x7248;&#x672C;&#x63A7;&#x5236;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x4E2D;&#x592E;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5404;&#x4E2A;&#x7248;&#x672C;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;&#x4E2D;&#x592E;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x7BA1;&#x7406;&#x5458;&#x53EF;&#x4EE5;&#x63A7;&#x5236;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x7684;&#x6743;&#x9650;&#xFF0C;&#x800C;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4E5F;&#x53EF;&#x4EE5;&#x4ECE;&#x4E2D;&#x592E;&#x670D;&#x52A1;&#x5668;&#x62C9;&#x53D6;&#x6570;&#x636E;&#x3002;&#x96C6;&#x4E2D;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x89E3;&#x51B3;&#x4E86;&#x56E2;&#x961F;&#x534F;&#x4F5C;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x7F3A;&#x70B9;&#x662F;&#x6240;&#x6709;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;&#x4E2D;&#x592E;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x4E00;&#x65E6;&#x5B95;&#x673A;&#xFF0C;&#x4F1A;&#x9020;&#x6210;&#x4E0D;&#x53EF;&#x4F30;&#x91CF;&#x7684;&#x635F;&#x5931;&#x3002;SVN&#x548C;CVS&#x90FD;&#x662F;&#x96C6;&#x4E2D;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x3002;</p>
 <p>&#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#xFF0C;&#x7CFB;&#x7EDF;&#x4FDD;&#x5B58;&#x7684;&#x4E0D;&#x662F;&#x6587;&#x4EF6;&#x53D8;&#x5316;&#x7684;&#x5DEE;&#x4E24;&#xFF0C;&#x800C;&#x662F;&#x6587;&#x4EF6;&#x7684;&#x5FEB;&#x7167;&#x3002;&#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x7CFB;&#x7EDF;&#x662F;&#x5206;&#x5E03;&#x5F0F;&#x7684;&#xFF0C;&#x5F53;&#x4F60;&#x4ECE;&#x4E2D;&#x592E;&#x670D;&#x52A1;&#x5668;&#x62F7;&#x8D1D;&#x4E0B;&#x6765;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x4F60;&#x62F7;&#x8D1D;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x7248;&#x672C;&#x5E93;&#xFF0C;&#x5305;&#x62EC;&#x5386;&#x53F2;&#x7EAA;&#x5F55;&#xFF0C;&#x63D0;&#x4EA4;&#x8BB0;&#x5F55;&#x7B49;&#xFF0C;&#x5373;&#x4F7F;&#x67D0;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x5B95;&#x673A;&#xFF0C;&#x4E5F;&#x80FD;&#x591F;&#x627E;&#x5230;&#x6587;&#x4EF6;&#x7684;&#x5B8C;&#x6574;&#x5907;&#x4EFD;&#x3002;GIT&#x5C31;&#x662F;&#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x3002;</p>
-<h2><span id="2git&#x7684;&#x5B89;&#x88C5;">2.GIT&#x7684;&#x5B89;&#x88C5;##</span></h2><p>git&#x8BE5;&#x8F6F;&#x4EF6;&#x5149;&#x76D8;&#x81EA;&#x5E26;&#xFF0C;&#x76F4;&#x63A5;&#x901A;&#x8FC7;yum&#x7684;&#x65B9;&#x5F0F;&#x53BB;&#x5B89;&#x88C5;&#x5373;&#x53EF;&#xFF0C;&#x76EE;&#x524D;&#x6211;&#x4EEC;&#x91C7;&#x7528;&#x7684;git&#x7248;&#x672C;&#x662F;1.8.3.1&#x7248;&#x672C;&#x3002;</p>
+<h2><span id="git&#x7684;&#x5B89;&#x88C5;">GIT&#x7684;&#x5B89;&#x88C5;</span></h2><p>git&#x8BE5;&#x8F6F;&#x4EF6;&#x5149;&#x76D8;&#x81EA;&#x5E26;&#xFF0C;&#x76F4;&#x63A5;&#x901A;&#x8FC7;yum&#x7684;&#x65B9;&#x5F0F;&#x53BB;&#x5B89;&#x88C5;&#x5373;&#x53EF;&#xFF0C;&#x76EE;&#x524D;&#x6211;&#x4EEC;&#x91C7;&#x7528;&#x7684;git&#x7248;&#x672C;&#x662F;1.8.3.1&#x7248;&#x672C;&#x3002;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@servera ~]# yum -y install git</span><br><span class="line">[root@servera ~]# git --version</span><br><span class="line">git version 1.8.3.1</span><br></pre></td></tr></table></figure></p>
 <p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x65B9;&#x5F0F;&#x5B8C;&#x6210;&#x547D;&#x4EE4;&#x8865;&#x5168;&#xFF1A;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@servera ~]# cp /usr/share/doc/git-1.8.3.1/contrib/completion/git-completion.bash /etc/bash_completion.d</span><br><span class="line">[root@servera ~]# source /etc/bash_completion.d/git-completion.bash</span><br></pre></td></tr></table></figure></p>
-<h2><span id="3git&#x7684;&#x521D;&#x59CB;&#x5316;">3.GIT&#x7684;&#x521D;&#x59CB;&#x5316;##</span></h2><p>1&#xFF09;&#x8BBE;&#x7F6E;&#x4E0B;git&#x7684;&#x914D;&#x7F6E;&#x53D8;&#x91CF;&#xFF0C;&#x544A;&#x8BC9;git&#x5F53;&#x524D;&#x7528;&#x6237;&#x7684;&#x59D3;&#x540D;&#x548C;&#x90AE;&#x4EF6;&#x5730;&#x5740;&#xFF0C;&#x914D;&#x7F6E;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x90AE;&#x4EF6;&#x5730;&#x5740;&#x5C06;&#x4F1A;&#x5728;&#x7248;&#x672C;&#x5E93;&#x63D0;&#x4EA4;&#x65F6;&#x5019;&#x7528;&#x5230;&#x3002;</p>
+<h2><span id="git&#x7684;&#x521D;&#x59CB;&#x5316;">GIT&#x7684;&#x521D;&#x59CB;&#x5316;</span></h2><p>1&#xFF09;&#x8BBE;&#x7F6E;&#x4E0B;git&#x7684;&#x914D;&#x7F6E;&#x53D8;&#x91CF;&#xFF0C;&#x544A;&#x8BC9;git&#x5F53;&#x524D;&#x7528;&#x6237;&#x7684;&#x59D3;&#x540D;&#x548C;&#x90AE;&#x4EF6;&#x5730;&#x5740;&#xFF0C;&#x914D;&#x7F6E;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x90AE;&#x4EF6;&#x5730;&#x5740;&#x5C06;&#x4F1A;&#x5728;&#x7248;&#x672C;&#x5E93;&#x63D0;&#x4EA4;&#x65F6;&#x5019;&#x7528;&#x5230;&#x3002;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@servera .git]# git config --global user.name &quot;carol&quot;</span><br><span class="line">[root@servera .git]# git config --global user.email lijiayi@uplooking.com</span><br></pre></td></tr></table></figure></p>
 <p>2&#xFF09;&#x521B;&#x5EFA;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x5E76;&#x521D;&#x59CB;&#x5316;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@servera ~]# cd /root</span><br><span class="line">[root@servera ~]# ls</span><br><span class="line">anaconda-ks.cfg</span><br><span class="line">[root@servera ~]# mkdir workspace</span><br><span class="line">[root@servera ~]# cd workspace/</span><br><span class="line">[root@servera workspace]# git init</span><br><span class="line">Initialized empty Git repository in /root/workspace/.git/</span><br></pre></td></tr></table></figure></p>
 <p>&#x8FD9;&#x91CC;/root/workspace&#x76EE;&#x5F55;&#x5C31;&#x662F;&#x5DE5;&#x4F5C;&#x533A;&#x3002;git ini&#x4E3A;&#x521D;&#x59CB;&#x5316;&#x547D;&#x4EE4;&#xFF0C;&#x5728;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x4F1A;&#x5728;&#x8BE5;&#x76EE;&#x5F55;&#x4E0B;&#x751F;&#x6210;&#x4E00;&#x4E2A;.git&#x7684;&#x7248;&#x672C;&#x5E93;&#x3002;</p>
-<h2><span id="4&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;">4.&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;</span></h2><p>1&#xFF09;&#x5148;&#x5728;&#x5DE5;&#x4F5C;&#x533A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;</p>
+<h2><span id="&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;">&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;</span></h2><p>1&#xFF09;&#x5148;&#x5728;&#x5DE5;&#x4F5C;&#x533A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@servera workspace]# echo hello &gt; welcome.txt</span><br><span class="line">[root@servera workspace]# ls</span><br><span class="line">welcome.txt</span><br><span class="line">[root@servera workspace]# cat welcome.txt</span><br><span class="line">hello</span><br></pre></td></tr></table></figure></p>
 <p>2&#xFF09;&#x4E3A;&#x4E86;&#x5C06;&#x8FD9;&#x4E2A;&#x65B0;&#x5EFA;&#x7ACB;&#x7684;&#x6587;&#x4EF6;&#x6DFB;&#x52A0;&#x5230;&#x7248;&#x672C;&#x5E93;&#xFF0C;&#x9700;&#x8981;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x6307;&#x4EE4;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@servera workspace]# git add welcome.txt</span><br><span class="line">[root@servera workspace]# git commit -m &quot;first&quot;</span><br><span class="line">[master c5171b5] first</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 welcome.txt</span><br></pre></td></tr></table></figure></p>
-<h2><span id="5git&#x7684;&#x5DE5;&#x4F5C;&#x533A;-&#x6682;&#x5B58;&#x533A;-&#x7248;&#x672C;&#x5E93;">5.GIT&#x7684;&#x5DE5;&#x4F5C;&#x533A;&#x3001;&#x6682;&#x5B58;&#x533A;&#x3001;&#x7248;&#x672C;&#x5E93;##</span></h2><p><img src="/2020/05/12/booboo_git/%E7%AC%AC%E4%B8%80%E8%8A%82git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/1.png" alt="1"></p>
+<h2><span id="git&#x7684;&#x5DE5;&#x4F5C;&#x533A;-&#x6682;&#x5B58;&#x533A;-&#x7248;&#x672C;&#x5E93;">GIT&#x7684;&#x5DE5;&#x4F5C;&#x533A;&#x3001;&#x6682;&#x5B58;&#x533A;&#x3001;&#x7248;&#x672C;&#x5E93;</span></h2><p><img src="/2019/05/13/booboo_others/2020-05-12-tec-git/1.png" alt="1"></p>
 <p>&#x5728;&#x8FD9;&#x91CC;&#x6709;&#x4E09;&#x4E2A;&#x6982;&#x5FF5;&#x3002;1.&#x5DE5;&#x4F5C;&#x533A;   2.&#x7248;&#x672C;&#x5E93;   3.&#x6682;&#x5B58;&#x533A;</p>
 <p>&#x5B9E;&#x9645;&#x4E0A;&#x5728;&#x4E0A;&#x4E00;&#x4E2A;&#x5B9E;&#x8DF5;&#x4E4B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x7ECF;&#x5386;&#x4E86;&#x4E24;&#x6B21;&#x63D0;&#x4EA4;&#xFF0C;&#x4E3B;&#x8981;&#x548C;&#x8FD9;&#x4E2A;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x6709;&#x5173;&#x3002;</p>
 <p>&#x5F53;&#x5DE5;&#x4F5C;&#x533A;&#x6267;&#x884C;git add&#x547D;&#x4EE4;&#x65F6;&#xFF0C;&#x54B1;&#x7FA4;&#x51FA;&#x7684;&#x76EE;&#x5F55;&#x6811;&#x5C06;&#x88AB;&#x66F4;&#x65B0;&#xFF0C;&#x540C;&#x65F6;&#x5DE5;&#x4F5C;&#x533A;&#x7684;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x4F1A;&#x88AB;&#x5199;&#x5165;&#x5230;&#x5BF9;&#x8C61;&#x5E93;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#x4E2D;&#xFF0C;&#x800C;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;ID&#x88AB;&#x8BB0;&#x5F55;&#x5728;&#x6682;&#x5B58;&#x533A;&#x7684;&#x6587;&#x4EF6;&#x7D22;&#x5F15;&#x4E2D;&#x3002;</p>
 <p>&#x5F53;&#x6267;&#x884C;git commit&#x64CD;&#x4F5C;&#x65F6;&#x5019;&#xFF0C;&#x6682;&#x5B58;&#x533A;&#x7684;&#x76EE;&#x5F55;&#x6811;&#x4F1A;&#x5199;&#x5230;&#x7248;&#x672C;&#x5E93;&#x4E2D;&#xFF0C;&#x6700;&#x65B0;&#x6307;&#x5411;&#x7684;&#x76EE;&#x5F55;&#x6811;&#x5C31;&#x662F;&#x63D0;&#x4EA4;&#x65F6;&#x6682;&#x5B58;&#x533A;&#x7684;&#x76EE;&#x5F55;&#x6811;&#x3002;</p>
 <p>&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x6682;&#x5B58;&#x533A;&#x5C40;&#x50CF;&#x662F;&#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x7684;&#x5DE5;&#x4F5C;&#x533A;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x865A;&#x62DF;&#x5DE5;&#x4F5C;&#x533A;&#x7684;&#x76EE;&#x5F55;&#x6811;&#x4E2D;&#xFF0C;&#x6587;&#x4EF6;.git/index&#x5B9E;&#x9645;&#x8BB0;&#x5F55;&#x4E86;&#x6587;&#x4EF6;&#x540D;&#x548C;&#x6587;&#x4EF6;&#x7684;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#xFF08;&#x65F6;&#x95F4;&#x6233;&#x3001;&#x6587;&#x4EF6;&#x957F;&#x5EA6;&#x7B49;&#x7B49;&#xFF09;&#xFF0C;&#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;&#x5E76;&#x6CA1;&#x6709;&#x5B9E;&#x9645;&#x5B58;&#x50A8;&#x5176;&#x4E2D;&#xFF0C;&#x800C;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x4E86;git&#x5BF9;&#x8C61;&#x5E93;(.git/objects)&#x4E2D;&#xFF0C;&#x6587;&#x4EF6;&#x7D22;&#x5F15;&#x5EFA;&#x7ACB;&#x8D77;&#x4E86;&#x5BF9;&#x8C61;&#x5E93;&#x548C;&#x5B9E;&#x4F53;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x7684;&#x5BF9;&#x5E94;&#x3002;&#x56FE;&#x663E;&#x793A;&#x4E86;&#x5DE5;&#x4F5C;&#x533A;&#x3001;&#x6682;&#x5B58;&#x533A;&#x548C;&#x7248;&#x672C;&#x5E93;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
-<h2><span id="6git&#x7684;&#x5E38;&#x7528;&#x57FA;&#x672C;&#x547D;&#x4EE4;">6.GIT&#x7684;&#x5E38;&#x7528;&#x57FA;&#x672C;&#x547D;&#x4EE4;</span></h2><p>1&#xFF09;git diff&#xFF1A;&#x7528;&#x6765;&#x663E;&#x793A;&#x5DE5;&#x4F5C;&#x533A;&#x548C;&#x6682;&#x5B58;&#x533A;&#x6587;&#x4EF6;&#x7684;&#x5DEE;&#x5F02;</p>
+<h2><span id="git&#x7684;&#x5E38;&#x7528;&#x57FA;&#x672C;&#x547D;&#x4EE4;">GIT&#x7684;&#x5E38;&#x7528;&#x57FA;&#x672C;&#x547D;&#x4EE4;</span></h2><p>1&#xFF09;git diff&#xFF1A;&#x7528;&#x6765;&#x663E;&#x793A;&#x5DE5;&#x4F5C;&#x533A;&#x548C;&#x6682;&#x5B58;&#x533A;&#x6587;&#x4EF6;&#x7684;&#x5DEE;&#x5F02;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@servera workspace]# echo test  &gt;&gt; welcome.txt</span><br><span class="line">[root@servera workspace]# ls</span><br><span class="line">welcome.txt</span><br><span class="line">[root@servera workspace]# cat welcome.txt</span><br><span class="line">hello</span><br><span class="line">test</span><br><span class="line">[root@servera workspace]# ls</span><br><span class="line">welcome.txt</span><br><span class="line">[root@servera workspace]# git diff welcome.txt</span><br><span class="line">diff --git a/welcome.txt b/welcome.txt</span><br><span class="line">index ce01362..b2b9cc9 100644</span><br><span class="line">--- a/welcome.txt</span><br><span class="line">+++ b/welcome.txt</span><br><span class="line">@@ -1 +1,2 @@</span><br><span class="line"> hello</span><br><span class="line">+test</span><br></pre></td></tr></table></figure></p>
 <p>2&#xFF09;git status&#xFF1A;&#x7528;&#x6765;&#x67E5;&#x770B;&#x6539;&#x8FC7;&#x7684;&#x5185;&#x5BB9;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@servera workspace]# git status</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> On branch master</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> Changes not staged <span class="hljs-keyword">for</span> commit:</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">   (use <span class="hljs-string">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed)</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">   (use <span class="hljs-string">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes <span class="hljs-keyword">in</span> working directory)</span></span><br><span class="line"><span class="hljs-meta">#</span></span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash">	modified:   welcome.txt</span></span><br><span class="line"><span class="hljs-meta">#</span></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br><span class="line">[root@servera workspace]#</span><br></pre></td></tr></table></figure></p>
@@ -511,7 +560,7 @@
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@servera workspace]# echo carol &gt;&gt; welcome.txt</span><br><span class="line">[root@servera workspace]# git add welcome.txt</span><br><span class="line">[root@servera workspace]# cat welcome.txt</span><br><span class="line">hello</span><br><span class="line">testok</span><br><span class="line">testok</span><br><span class="line">carol #&#x91CD;&#x65B0;&#x63D0;&#x4EA4;&#x4E00;&#x4E2A;&#x4FEE;&#x6539;&#x540E;&#x7684;&#x6587;&#x4EF6;&#x81F3;&#x5DE5;&#x4F5C;&#x533A;</span><br><span class="line">[root@servera workspace]# git reset HEAD welcome.txt #&#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x63D0;&#x4EA4;&#x7ED9;&#x7F13;&#x5B58;&#x533A;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x8981;&#x505A;&#x8FD9;&#x6B65;</span><br><span class="line">Unstaged changes after reset:</span><br><span class="line">M	welcome.txt</span><br><span class="line">[root@servera workspace]# git checkout -- welcome.txt</span><br><span class="line">[root@servera workspace]# cat welcome.txt</span><br><span class="line">hello</span><br><span class="line">testok</span><br><span class="line">testok</span><br></pre></td></tr></table></figure></p>
 <p>7&#xFF09;git rm &#x4ECE;&#x7248;&#x672C;&#x5E93;&#x4E2D;&#x5220;&#x9664;&#x6587;&#x4EF6;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@servera workspace]# git rm welcome.txt</span><br><span class="line">rm &apos;welcome.txt&apos;</span><br><span class="line">[root@servera workspace]# git commit -m &quot;delete welcome&quot;</span><br><span class="line">[master ba79342] delete welcome</span><br><span class="line"> 1 file changed, 3 deletions(-)</span><br><span class="line"> delete mode 100644 welcome.txt</span><br><span class="line">[root@servera workspace]# ls</span><br><span class="line">[root@servera workspace]# ls</span><br></pre></td></tr></table></figure></p>
-<h2><span id="7git&#x5206;&#x652F;">7.GIT&#x5206;&#x652F;</span></h2><p>&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E00;&#x5957;&#x5206;&#x652F;&#x53EA;&#x7528;&#x6765;&#x5B58;&#x653E;&#x4E00;&#x5957;&#x4EE3;&#x7801;&#xFF0C;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x6BCF;&#x5957;&#x4EE3;&#x7801;&#x7684;&#x72EC;&#x7ACB;&#x6027;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x5EFA;&#x7ACB;&#x591A;&#x4E2A;&#x5206;&#x652F;&#x6765;&#x5206;&#x5F00;&#x7BA1;&#x7406;&#x3002;</p>
+<h2><span id="git&#x5206;&#x652F;">GIT&#x5206;&#x652F;</span></h2><p>&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E00;&#x5957;&#x5206;&#x652F;&#x53EA;&#x7528;&#x6765;&#x5B58;&#x653E;&#x4E00;&#x5957;&#x4EE3;&#x7801;&#xFF0C;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x6BCF;&#x5957;&#x4EE3;&#x7801;&#x7684;&#x72EC;&#x7ACB;&#x6027;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x5EFA;&#x7ACB;&#x591A;&#x4E2A;&#x5206;&#x652F;&#x6765;&#x5206;&#x5F00;&#x7BA1;&#x7406;&#x3002;</p>
 <table>
 <thead>
 <tr>
@@ -531,7 +580,7 @@
 </tr>
 </tbody></table>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">[root@servera workspace]# git branch  # &#x67E5;&#x770B;fenzhi</span><br><span class="line">* master</span><br><span class="line">[root@servera workspace]# git branch a #&#x521B;&#x5EFA;&#x540D;&#x4E3A;a&#x7684;&#x5206;&#x652F;</span><br><span class="line">[root@servera workspace]# git branch</span><br><span class="line">  a</span><br><span class="line">* master   # * &#x4EE3;&#x8868;&#x5F53;&#x524D;&#x5206;&#x652F;</span><br><span class="line">[root@servera workspace]# git checkout a  # &#x5207;&#x6362;&#x5206;&#x652F;</span><br><span class="line">Switched to branch &apos;a&apos;</span><br><span class="line">[root@servera workspace]# git branch</span><br><span class="line">* a</span><br><span class="line">  master</span><br><span class="line">[root@servera workspace]# echo test &gt; testfile</span><br><span class="line">[root@servera workspace]# git add testfile</span><br><span class="line">[root@servera workspace]# git commit -m &apos;a&apos;&#x3000;&#x3000;# &#x91CD;&#x65B0;&#x63D0;&#x4EA4;&#x4E2A;&#x6587;&#x4EF6;</span><br><span class="line">[a 92abcd8] a</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 testfile</span><br><span class="line">[root@servera workspace]# ls</span><br><span class="line">testfile</span><br><span class="line">[root@servera workspace]# git status  # &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5DF2;&#x7ECF;&#x63D0;&#x4EA4;&#x7ED9;&#x4E86;a&#x8FD9;&#x4E2A;&#x5206;&#x652F;</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> On branch a</span></span><br><span class="line">nothing to commit, working directory clean</span><br><span class="line">[root@servera workspace]# cd .git/</span><br><span class="line">[root@servera .git]# ls</span><br><span class="line">branches        config       HEAD   index  logs     ORIG_HEAD</span><br><span class="line">COMMIT_EDITMSG  description  hooks  info   objects  refs</span><br><span class="line">[root@servera .git]# cat HEAD</span><br><span class="line">ref: refs/heads/a   # &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5F53;&#x524D;&#x5206;&#x652F;&#x5934;&#x90E8;&#x6307;&#x5411;&#x4E86;a</span><br><span class="line"></span><br><span class="line">[root@servera workspace]# git checkout master</span><br><span class="line">Switched to branch &apos;master&apos;</span><br><span class="line">[root@servera workspace]# git merge a  # &#x5408;&#x5E76;&#x5206;&#x652F;&#xFF0C;&#x4E0D;&#x5EFA;&#x8BAE;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x51B2;&#x7A81;&#x3002;</span><br><span class="line">Updating ba79342..92abcd8</span><br><span class="line">Fast-forward</span><br><span class="line"> testfile | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 testfile</span><br></pre></td></tr></table></figure></p>
-<h2><span id="8git&#x514B;&#x9686;">8.GIT&#x514B;&#x9686;##</span></h2><p>git&#x514B;&#x9686;&#x7684;&#x4F5C;&#x7528;&#xFF1A;&#x5907;&#x4EFD;&#xFF0C;&#x5728;&#x5206;&#x5E03;&#x5F0F;&#x7684;&#x96C6;&#x4E2D;&#x5316;&#x7BA1;&#x7406;&#x673A;&#x5236;&#x91CC;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x514B;&#x9686;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5C06;&#x8FDC;&#x7A0B;&#x7684;git&#x7248;&#x672C;&#x5E93;&#x514B;&#x9686;&#x81F3;&#x672C;&#x5730;&#x6765;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x3002;</p>
+<h2><span id="git&#x514B;&#x9686;">GIT&#x514B;&#x9686;</span></h2><p>git&#x514B;&#x9686;&#x7684;&#x4F5C;&#x7528;&#xFF1A;&#x5907;&#x4EFD;&#xFF0C;&#x5728;&#x5206;&#x5E03;&#x5F0F;&#x7684;&#x96C6;&#x4E2D;&#x5316;&#x7BA1;&#x7406;&#x673A;&#x5236;&#x91CC;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x514B;&#x9686;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5C06;&#x8FDC;&#x7A0B;&#x7684;git&#x7248;&#x672C;&#x5E93;&#x514B;&#x9686;&#x81F3;&#x672C;&#x5730;&#x6765;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x3002;</p>
 <p>1&#xFF09;&#x514B;&#x9686;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@servera ~]# git clone /root/workspace/ /backup</span><br><span class="line">Cloning into &apos;/backup&apos;...</span><br><span class="line">done.</span><br><span class="line">[root@servera ~]# cd /backup/</span><br><span class="line">[root@servera backup]# ls</span><br><span class="line">testfile</span><br></pre></td></tr></table></figure></p>
 <p>2&#xFF09;&#x62C9;&#x53D6;&#x548C;&#x63A8;&#x9001;</p>
@@ -539,26 +588,43 @@
 <p>&#x62A5;&#x9519;&#x7684;&#x539F;&#x56E0;&#xFF1A;</p>
 <p>&#x9ED8;&#x8BA4;&#x66F4;&#x65B0;&#x975E;&#x88F8;&#x7248;&#x672C;&#x5E93;&#x7684;&#x5F53;&#x524D;&#x5206;&#x652F;&#x662F;&#x4E0D;&#x88AB;&#x5141;&#x8BB8;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x6837;&#x4F1A;&#x5BFC;&#x81F4;&#x6682;&#x5B58;&#x533A;&#x548C;&#x5DE5;&#x4F5C;&#x533A;&#x4E0E;&#x4F60;&#x63A8;&#x9001;&#x81F3;&#x7248;&#x672C;&#x5E93;&#x7684;&#x65B0;&#x63D0;&#x4EA4;&#x4E0D;&#x4E00;&#x81F4;&#x3002;&#x592A;&#x53E4;&#x602A;&#x4E86;&#x3002;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x62C9;&#x53D6;&#xFF1A;</span><br><span class="line">[root@servera workspace]# cd /backup</span><br><span class="line">[root@servera backup]# ls</span><br><span class="line">testfile</span><br><span class="line">[root@servera backup]# git pull /root/workspace/</span><br><span class="line">From /root/workspace</span><br><span class="line"> * branch            HEAD       -&gt; FETCH_HEAD</span><br><span class="line">Updating 92abcd8..3191ffc</span><br><span class="line">Fast-forward</span><br><span class="line"> hello | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 hello</span><br><span class="line">[root@servera backup]# ls</span><br><span class="line">hello  testfile</span><br></pre></td></tr></table></figure></p>
-<h2><span id="9github&#x7684;&#x4F7F;&#x7528;">9.GITHUB&#x7684;&#x4F7F;&#x7528;##</span></h2><p>GitHub &#x662F;&#x4E00;&#x4E2A;&#x9762;&#x5411;&#x5F00;&#x6E90;&#x53CA;&#x79C1;&#x6709;&#x8F6F;&#x4EF6;&#x9879;&#x76EE;&#x7684;&#x6258;&#x7BA1;&#x5E73;&#x53F0;&#xFF0C;&#x56E0;&#x4E3A;&#x53EA;&#x652F;&#x6301; Git &#x4F5C;&#x4E3A;&#x552F;&#x4E00;&#x7684;&#x7248;&#x672C;&#x5E93;&#x683C;&#x5F0F;&#x8FDB;&#x884C;&#x6258;&#x7BA1;&#xFF0C;&#x6545;&#x540D; GitHub</p>
+<h2><span id="9github&#x7684;&#x4F7F;&#x7528;">9.GITHUB&#x7684;&#x4F7F;&#x7528;</span></h2><p>GitHub &#x662F;&#x4E00;&#x4E2A;&#x9762;&#x5411;&#x5F00;&#x6E90;&#x53CA;&#x79C1;&#x6709;&#x8F6F;&#x4EF6;&#x9879;&#x76EE;&#x7684;&#x6258;&#x7BA1;&#x5E73;&#x53F0;&#xFF0C;&#x56E0;&#x4E3A;&#x53EA;&#x652F;&#x6301; Git &#x4F5C;&#x4E3A;&#x552F;&#x4E00;&#x7684;&#x7248;&#x672C;&#x5E93;&#x683C;&#x5F0F;&#x8FDB;&#x884C;&#x6258;&#x7BA1;&#xFF0C;&#x6545;&#x540D; GitHub</p>
 <p>&#x7F51;&#x7AD9;&#x5730;&#x5740;&#xFF1A;<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></p>
-<p>1&#xFF09;&#x5C06;&#x672C;&#x5730;&#x7248;&#x672C;&#x5E93;&#x4E0A;&#x4F20;&#x81F3;github&#x4FDD;&#x5B58;</p>
-<p>1.&#x5148;&#x6253;&#x5F00;github&#xFF0C;&#x81EA;&#x884C;&#x6CE8;&#x518C;</p>
-<p>2.&#x5728;github&#x4E0A;&#x901A;&#x8FC7;&#x56FE;&#x5F62;&#x5316;&#x754C;&#x9762;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#x5E93;</p>
-<p><img src="/2020/05/12/booboo_git/%E7%AC%AC%E4%B8%80%E8%8A%82git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/2.png" alt="2"></p>
-<p>3.&#x5C06;&#x672C;&#x5730;&#x7684;&#x7248;&#x672C;&#x5E93;&#x901A;&#x8FC7;push&#x7684;&#x65B9;&#x5F0F;&#x4E0A;&#x4F20;&#x81F3;&#x8FDC;&#x7A0B;</p>
+<ol>
+<li><p>&#x5C06;&#x672C;&#x5730;&#x7248;&#x672C;&#x5E93;&#x4E0A;&#x4F20;&#x81F3;github&#x4FDD;&#x5B58;</p>
+</li>
+<li><p>&#x5148;&#x6253;&#x5F00;github&#xFF0C;&#x81EA;&#x884C;&#x6CE8;&#x518C;</p>
+</li>
+<li><p>&#x5728;github&#x4E0A;&#x901A;&#x8FC7;&#x56FE;&#x5F62;&#x5316;&#x754C;&#x9762;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#x5E93; <img src="/2019/05/13/booboo_others/2020-05-12-tec-git/2.png" alt="2"></p>
+</li>
+<li><p>&#x5C06;&#x672C;&#x5730;&#x7684;&#x7248;&#x672C;&#x5E93;&#x901A;&#x8FC7;push&#x7684;&#x65B9;&#x5F0F;&#x4E0A;&#x4F20;&#x81F3;&#x8FDC;&#x7A0B;</p>
+</li>
+</ol>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@servera backup]# git remote add carol https://github.com/atheling004/test1.git  #&#x6DFB;&#x52A0;&#x6267;&#x884C;&#x7528;&#x6237;</span><br><span class="line">[root@servera backup]# git push -u carol master</span><br><span class="line">Username for &apos;https://github.com&apos;: atheling004</span><br><span class="line">Password for &apos;https://atheling004@github.com&apos;:   # &#x8F93;&#x5165;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;</span><br><span class="line">Counting objects: 4, done.</span><br><span class="line">Delta compression using up to 2 threads.</span><br><span class="line">Compressing objects: 100% (2/2), done.</span><br><span class="line">Writing objects: 100% (4/4), 248 bytes | 0 bytes/s, done.</span><br><span class="line">Total 4 (delta 0), reused 0 (delta 0)</span><br><span class="line">To https://github.com/atheling004/test1.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">Branch master set up to track remote branch master from carol.</span><br></pre></td></tr></table></figure></p>
-<p>4.&#x67E5;&#x770B;&#x7ED3;&#x679C;</p>
-<p><img src="/2020/05/12/booboo_git/%E7%AC%AC%E4%B8%80%E8%8A%82git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/4.png" alt="3">2&#xFF09;&#x5C06;&#x8FDC;&#x7A0B;github&#x7248;&#x672C;&#x5E93;&#x4E2D;&#x4FDD;&#x5B58;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x653E;&#x81F3;&#x672C;&#x5730;</p>
+<ol start="4">
+<li>&#x67E5;&#x770B;&#x7ED3;&#x679C;</li>
+</ol>
+<p><img src="/2019/05/13/booboo_others/2020-05-12-tec-git/4.png" alt="3">2&#xFF09;&#x5C06;&#x8FDC;&#x7A0B;github&#x7248;&#x672C;&#x5E93;&#x4E2D;&#x4FDD;&#x5B58;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x653E;&#x81F3;&#x672C;&#x5730;</p>
 <p>1.&#x73B0;&#x5728;github&#x4E0A;&#x901A;&#x8FC7;create new file&#x9009;&#x9879;&#x81EA;&#x884C;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x91CC;&#x521B;&#x5EFA;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#x4E3A;zazazazazazaza</p>
 <p>2.&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x64CD;&#x4F5C;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@servera backup]# git pull https://github.com/atheling004/test1.git</span><br><span class="line">remote: Counting objects: 3, done.</span><br><span class="line">remote: Compressing objects: 100% (2/2), done.</span><br><span class="line">remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (3/3), done.</span><br><span class="line">From https://github.com/atheling004/test1</span><br><span class="line"> * branch            HEAD       -&gt; FETCH_HEAD</span><br><span class="line">Updating 92a7721..33a62ba</span><br><span class="line">Fast-forward</span><br><span class="line"> zazazazazazaza | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 zazazazazazaza</span><br><span class="line">[root@foundation0 workspace]# ls</span><br><span class="line">hello  testfile  zazazazazazaza</span><br></pre></td></tr></table></figure></p>
-<p>3&#xFF09;github&#x7684;&#x7248;&#x672C;&#x514B;&#x9686;&#xFF08;&#x5373;&#x8FDC;&#x7A0B;&#x7248;&#x672C;&#x514B;&#x9686;&#xFF09;</p>
+<p>3.github&#x7684;&#x7248;&#x672C;&#x514B;&#x9686;&#xFF08;&#x5373;&#x8FDC;&#x7A0B;&#x7248;&#x672C;&#x514B;&#x9686;&#xFF09;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@foundation0 ~]# mkdir /test</span><br><span class="line">[root@foundation0 ~]# cd /test/</span><br><span class="line">[root@foundation0 test]# ls</span><br><span class="line">[root@foundation0 test]# git clone https://github.com/atheling004/test1.git</span><br><span class="line">Cloning into &apos;test1&apos;...</span><br><span class="line">remote: Counting objects: 7, done.</span><br><span class="line">remote: Compressing objects: 100% (4/4), done.</span><br><span class="line">remote: Total 7 (delta 1), reused 3 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (7/7), done.</span><br><span class="line">[root@foundation0 test]# ls</span><br><span class="line">test1</span><br><span class="line">[root@foundation0 test]# cd test1/</span><br><span class="line">[root@foundation0 test1]# ls</span><br><span class="line">hello  testfile  zazazazazazaza</span><br><span class="line">[root@foundation0 test1]#</span><br></pre></td></tr></table></figure></p>
-<p>4&#xFF09;&#x5728;&#x672C;&#x5730;&#x7248;&#x672C;&#x5E93;&#x53D1;&#x751F;&#x53D8;&#x66F4;&#x540E;&#x4E0A;&#x4F20;</p>
+<p>4.&#x5728;&#x672C;&#x5730;&#x7248;&#x672C;&#x5E93;&#x53D1;&#x751F;&#x53D8;&#x66F4;&#x540E;&#x4E0A;&#x4F20;</p>
 <p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@foundation0 test1]# cat 1</span><br><span class="line">testfile</span><br><span class="line">[root@foundation0 test1]# git add 1</span><br><span class="line">[root@foundation0 test1]# git commit -m 1</span><br><span class="line">[root@foundation0 test1]# git push https://github.com/atheling004/test1.git</span><br><span class="line">warning: push.default is unset; its implicit value is changing in</span><br><span class="line">Git 2.0 from &apos;matching&apos; to &apos;simple&apos;. To squelch this message</span><br><span class="line">and maintain the current behavior after the default changes, use:</span><br><span class="line"></span><br><span class="line">  git config --global push.default matching</span><br><span class="line"></span><br><span class="line">To squelch this message and adopt the new behavior now, use:</span><br><span class="line"></span><br><span class="line">  git config --global push.default simple</span><br><span class="line"></span><br><span class="line">See &apos;git help config&apos; and search for &apos;push.default&apos; for further information.</span><br><span class="line">(the &apos;simple&apos; mode was introduced in Git 1.7.11. Use the similar mode</span><br><span class="line">&apos;current&apos; instead of &apos;simple&apos; if you sometimes use older versions of Git)</span><br><span class="line"></span><br><span class="line">Username for &apos;https://github.com&apos;: atheling004</span><br><span class="line">Password for &apos;https://atheling004@github.com&apos;:</span><br><span class="line">Counting objects: 4, done.</span><br><span class="line">Delta compression using up to 2 threads.</span><br><span class="line">Compressing objects: 100% (2/2), done.</span><br><span class="line">Writing objects: 100% (3/3), 252 bytes | 0 bytes/s, done.</span><br><span class="line">Total 3 (delta 1), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (1/1), completed with 1 local objects.</span><br><span class="line">To https://github.com/atheling004/test1.git</span><br><span class="line">   33a62ba..85c6527  master -&gt; master</span><br></pre></td></tr></table></figure></p>
 <p>&#x7ED3;&#x679C;&#x5982;&#x4E0B;</p>
-<p><img src="/2020/05/12/booboo_git/%E7%AC%AC%E4%B8%80%E8%8A%82git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/5.png" alt></p>
+<p><img src="/2019/05/13/booboo_others/2020-05-12-tec-git/5.png" alt></p>
 
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Git/">#Git</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Github/">#Github</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Gitlab/">#Gitlab</a></span>
     
     </div>
     
@@ -566,12 +632,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2020/05/12/booboo_others/2020-05-12-tec-mysql/">MySQL8.0.16使用pt-online-schema-change在线添加索引报错处理</a>
+            <a href="/2020/03/27/booboo_others/2020-03-26-tec-python/">CentOS6.5配置python3.7安装后ssl问题</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2020/05/11/booboo_others/2020-05-11-tec-mysql/">数据库大表常用操作耗时记录</a>
+            <a href="/2019/05/12/DBA_Git/Chapter08_GitLabPractice/readme/">玩转Git三剑客学习笔记-第57～62课-GitLab实践</a>
             
         </span>
     </div>
@@ -589,7 +655,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 	var gitment = new Gitment({
-		id: '2020/05/12/booboo_git/第一节git版本控制/',
+		id: '2019/05/13/booboo_others/2020-05-12-tec-git/',
 		owner: 'booboowei',
 		repo: 'booboowei.github.io',
 		oauth: {
