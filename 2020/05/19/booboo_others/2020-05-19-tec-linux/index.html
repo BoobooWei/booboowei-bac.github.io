@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>归档 - 归去来兮</title>
+<title>记一次grep命令常用方法带文件名和行数 - 归去来兮</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -18,12 +18,17 @@
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="归去来兮">
-<meta property="og:url" content="http://www.toberoot.com/archives/page/4/index.html">
+    <meta name="description" content="&amp;#x9700;&amp;#x6C42;&amp;#x627E;&amp;#x5230;&amp;#x6307;&amp;#x5B9A;&amp;#x76EE;&amp;#x5F55;&amp;#x4E2D;&amp;#x7684;&amp;#x6240;&amp;#x6709;&amp;#x6587;&amp;#x4EF6;&amp;#x4E2D;&amp;#x5305;&amp;#x542B;&amp;#x5B57;&amp;#x7B26;nav-item dropdown&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x548C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次grep命令常用方法带文件名和行数">
+<meta property="og:url" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-19-tec-linux/index.html">
 <meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="&amp;#x9700;&amp;#x6C42;&amp;#x627E;&amp;#x5230;&amp;#x6307;&amp;#x5B9A;&amp;#x76EE;&amp;#x5F55;&amp;#x4E2D;&amp;#x7684;&amp;#x6240;&amp;#x6709;&amp;#x6587;&amp;#x4EF6;&amp;#x4E2D;&amp;#x5305;&amp;#x542B;&amp;#x5B57;&amp;#x7B26;nav-item dropdown&amp;#x7684;&amp;#x6587;&amp;#x4EF6;&amp;#x548C">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-19T10:24:00.000Z">
+<meta property="article:modified_time" content="2020-05-19T02:41:42.544Z">
 <meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 
 
@@ -393,6 +398,26 @@
                     <svg t="1586350091188" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2280" width="20" height="20"><path d="M306.4 773.3h188v16.3c0 13.8 11.2 25 25 25s25-11.2 25-25v-16.3h180.5c68.9 0 125-56.1 125-125V295.4c0-68.9-56.1-125-125-125H549.6c-10.7 0-19.9 6.8-23.4 16.3-2.1-0.6-4.4-0.9-6.7-0.9-2 0-3.9 0.2-5.8 0.7-3.6-9.4-12.7-16-23.3-16h-184c-68.9 0-125 56.1-125 125v352.9c0 68.8 56.1 124.9 125 124.9z m418.5-552.9c41.4 0 75 33.6 75 75v352.9c0 41.4-33.6 75-75 75H544.4V219.9c1.7 0.4 3.4 0.5 5.2 0.5h175.3z m-493.5 75c0-41.4 33.6-75 75-75h183.9c1.4 0 2.8-0.1 4.1-0.3v503.2h-188c-41.4 0-75-33.6-75-75V295.4z" p-id="2281"></path><path d="M901.5 314.3c-11 0-20 9-20 20v384c0 44.1-35.9 80-80 80H615.3c-5.6 0-11 2.4-14.8 6.5l-25.9 28.4c-2 2.2-4.9 3.5-7.9 3.5H459c-2.9 0-5.6-1.1-7.6-3.1L425.8 808c-3.8-3.8-8.8-5.9-14.1-5.9H224.8c-44.1 0-80-35.9-80-80V343.9c0-11-9-20-20-20s-20 9-20 20v378.3c0 66.2 53.8 120 120 120h178.5l19.7 19.7c9.6 9.6 22.3 14.9 35.9 14.9h107.7c14.2 0 27.9-6 37.5-16.5l20-21.9h177.4c66.2 0 120-53.8 120-120v-384c0-11.1-9-20.1-20-20.1z" p-id="2282"></path><path d="M297.5 341.4h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 408.6h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 506.5h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20z" p-id="2283"></path></svg>
                 </a>
                 
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x9700;&#x6C42;">1&nbsp;&nbsp;<b>&#x9700;&#x6C42;</b></a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x547D;&#x4EE4;">2&nbsp;&nbsp;<b>&#x547D;&#x4EE4;</b></a>
+                        
+                    </div>
+                </div>
+                
                 
                 <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
                     
@@ -410,106 +435,85 @@
 
     <section class="section">
     <div class="container">
-        <div class="jumbotron">
-            <p align="center">除了自己的无知，我什么都不懂。 --苏格拉底 Σωκράτης</p>
-        </div>
-    
-    
-        <div class="archive content">
-            <h4 class="title is-4" id="2020">2020</h4>
-            <div class="articles">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            记一次grep命令常用方法带文件名和行数
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-05-19T10:24:00.000Z" itemprop="datePublished">5月 19 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/">技术广角</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Linux/">Linux</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
             
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-14T11:28:45.000Z" itemprop="datePublished">
-                        4月 14</time>
-                    <h6 class="title is-6"><a href="/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/C_TICKscript%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E/">02-TICKscript语言-C-变量声明</a></h6>
-                </div>
             
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-14T11:28:44.000Z" itemprop="datePublished">
-                        4月 14</time>
-                    <h6 class="title is-6"><a href="/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/B_TICKscript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">02-TICKscript语言-B-数据类型</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-14T11:28:43.000Z" itemprop="datePublished">
-                        4月 14</time>
-                    <h6 class="title is-6"><a href="/2020/04/14/booboo_tick/kapacitor/02_TICKscript%E8%AF%AD%E8%A8%80/A_TICKscript%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/">02-TICKscript语言-A-基础语法和运算符</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-14T11:28:42.000Z" itemprop="datePublished">
-                        4月 14</time>
-                    <h6 class="title is-6"><a href="/2020/04/14/booboo_tick/kapacitor/01_Kapacitor%E5%AE%89%E8%A3%85/CentOS7%E5%AE%89%E8%A3%85TICK%E6%8A%80%E6%9C%AF%E6%A0%88/">01-Kapacitor安装-CentOS 7 安装TICK技术栈</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-14T11:28:41.000Z" itemprop="datePublished">
-                        4月 14</time>
-                    <h6 class="title is-6"><a href="/2020/04/14/booboo_tick/kapacitor/TICKscriptsDevelopmentSpecification/">TICKscripts开发规范</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-14T11:28:40.000Z" itemprop="datePublished">
-                        4月 14</time>
-                    <h6 class="title is-6"><a href="/2020/04/14/booboo_tick/kapacitor/kapacitor-introduce/">Kapacitor简介</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-13T12:09:00.000Z" itemprop="datePublished">
-                        4月 13</time>
-                    <h6 class="title is-6"><a href="/2020/04/13/booboo_hbcloud/2020-04-13-hb-cloud02/">企业复工期间，如何快速构建线上实时分析系统？</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-13T10:37:00.000Z" itemprop="datePublished">
-                        4月 13</time>
-                    <h6 class="title is-6"><a href="/2020/04/13/booboo_hbcloud/2020-04-13-hb-cloud/">Microsoft Online Tech Forum 微软在线技术峰会</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-12T21:22:09.000Z" itemprop="datePublished">
-                        4月 13</time>
-                    <h6 class="title is-6"><a href="/2020/04/13/amy_life/2020-04-12-amy/">疫情下的宝宝英语课-系列2</a></h6>
-                </div>
-            
-                <div class="article content>">
-                    <time class="is-text-small" datetime="2020-04-08T11:15:45.000Z" itemprop="datePublished">
-                        4月 8</time>
-                    <h6 class="title is-6"><a href="/2020/04/08/booboo_hexo/2020-04-03-tec-hexo/">Minos主题博客使用个性域名</a></h6>
-                </div>
-            
-            </div>
-        </div>
-    
-    
-    
-<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
-    <div class="pagination-previous">
-        <a href="/archives/page/3/">上一页</a>
+            几秒 读完 (约 47 字)
+        </span>
+        
     </div>
-    <div class="pagination-next">
-        <a href="/archives/page/5/">下一页</a>
-    </div>
-    <ul class="pagination-list is-hidden-mobile">
-        
-        <li><a class="pagination-link" href="/archives/">1</a></li>
-        
-        <li><a class="pagination-link" href="/archives/page/2/">2</a></li>
-        
-        <li><a class="pagination-link" href="/archives/page/3/">3</a></li>
-        
-        <li><a class="pagination-link is-current" href="/archives/page/4/">4</a></li>
-        
-        <li><a class="pagination-link" href="/archives/page/5/">5</a></li>
-        
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        
-        <li><a class="pagination-link" href="/archives/page/15/">15</a></li>
-        
-    </ul>
-</nav>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
+        <h2><span id="&#x9700;&#x6C42;">&#x9700;&#x6C42;</span></h2><p>&#x627E;&#x5230;&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x4E2D;&#x5305;&#x542B;&#x5B57;&#x7B26;<code>nav-item dropdown</code>&#x7684;&#x6587;&#x4EF6;&#x548C;&#x884C;&#x6570;&#x3002;</p>
+<h2><span id="&#x547D;&#x4EE4;">&#x547D;&#x4EE4;</span></h2><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for i in $(find `pwd` -type f); do grep -H -n &quot;2020-05-19&quot; $i; done 2&gt; /dev/null</span><br></pre></td></tr></table></figure></p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Linux/">#Linux</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/05/18/amy_life/2020-05-18-amy/">团队家庭聚餐日</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2020/05/19/booboo_others/2020-05-19-tec-linux/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+
+
+</div>
+
+
     </div>
 </section>
 
