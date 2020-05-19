@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>rsync + inotify 实现实时同步 - 归去来兮</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+
+
+
+
+
+
+
+
+    <meta name="description" content="rsync&amp;#x4ECB;&amp;#x7ECD;rsync&amp;#xFF0C;remote synchronize&amp;#x987E;&amp;#x540D;&amp;#x601D;&amp;#x610F;&amp;#x5C31;&amp;#x77E5;&amp;#x9053;&amp;#x5B83;&amp;#x662F;&amp;#x4E00;&amp;#x6B3E;&amp;#x5B9E;&amp;#x73B0;&amp;#x8FDC;&amp;#x7A0B;&amp;#x540C;&amp;#x6B65;&amp;#x529F;&amp;#x8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rsync + inotify 实现实时同步">
+<meta property="og:url" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/index.html">
+<meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="rsync&amp;#x4ECB;&amp;#x7ECD;rsync&amp;#xFF0C;remote synchronize&amp;#x987E;&amp;#x540D;&amp;#x601D;&amp;#x610F;&amp;#x5C31;&amp;#x77E5;&amp;#x9053;&amp;#x5B83;&amp;#x662F;&amp;#x4E00;&amp;#x6B3E;&amp;#x5B9E;&amp;#x73B0;&amp;#x8FDC;&amp;#x7A0B;&amp;#x540C;&amp;#x6B65;&amp;#x529F;&amp;#x8">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/01.png">
+<meta property="og:image" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/02.png">
+<meta property="og:image" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/03.png">
+<meta property="og:image" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/04.png">
+<meta property="og:image" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/05.png">
+<meta property="og:image" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/06.png">
+<meta property="og:image" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/07.png">
+<meta property="og:image" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/08.png">
+<meta property="og:image" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/09.png">
+<meta property="article:published_time" content="2020-05-19T10:24:00.000Z">
+<meta property="article:modified_time" content="2020-05-19T03:01:30.214Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.toberoot.com/2020/05/19/booboo_others/2020-05-20-tec-linux/01.png">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="归去来兮" type="application/atom+xml">
+</head>
+<body>
+    
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+    <div class="row">
+        <!--左侧只占一个格子 -->
+        <div class="col-md-1">
+            <div class="navbar-brand">
+                <a class="navbar-item navbar-logo" href="/">
+                    
+                        
+                        <img src="/images/influx.svg" alt="" height="28">
+                        
+                    
+                </a>
+                <div class="navbar-burger">
+                    <span>
+                    </span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--中间自适应 -->
+        <div class="col-md-10">
+            
+            <div class="navbar-menu navbar-start">
+                
+                <a class="navbar-item "
+                   href="/archives/">最近更新</a>
+                
+                <a class="navbar-item "
+                   href="/tags/">标签</a>
+                
+
+                <!-- BoobooWei自动根据已有的category创建-->
+            
+
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <!--循环category 生成navbar代码-->
+                        
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="往昔追忆">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/" data-rel="经典语录">经典语录</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%9B%A2%E9%98%9F%E5%AE%B6%E5%BA%AD%E8%81%9A%E9%A4%90/" data-rel="团队家庭聚餐">团队家庭聚餐</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="培训教程">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/%E7%8E%A9%E8%BD%ACGit%E4%B8%89%E5%89%91%E5%AE%A2/" data-rel="玩转Git三剑客">玩转Git三剑客</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术峰会"><i class="fold iconfont icon-right"></i>技术峰会</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术峰会">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Aliyun/" data-rel="Aliyun">Aliyun</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Azure/" data-rel="Azure">Azure</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术广角">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Minos%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/" data-rel="Minos主题优化">Minos主题优化</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/" data-rel="技术思考">技术思考</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/PostgreSQL/" data-rel="PostgreSQL">PostgreSQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/datadog/" data-rel="datadog">datadog</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/jira/" data-rel="jira">jira</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Git/" data-rel="Git">Git</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/RedHat/" data-rel="RedHat">RedHat</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Linux/" data-rel="Linux">Linux</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="TICK"><i class="fold iconfont icon-right"></i>TICK</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="TICK">
+                                    
+                                    <a class="dropdown-item" href="/categories/TICK/kapacitor/" data-rel="kapacitor">kapacitor</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="OCP"><i class="fold iconfont icon-right"></i>OCP</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="OCP">
+                                    
+                                    <a class="dropdown-item" href="/categories/OCP/Oracle12C/" data-rel="Oracle12C">Oracle12C</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                </ul>
+              </div>
+            </nav>
+
+            <!-- 自动根据已有的category创建-->
+        </div>
+        
+
+        </div>
+
+
+        <!--最右侧 -->
+        <div class="col-md-1">
+
+            <div class="navbar-menu navbar-end">
+                
+                <a class="navbar-item" title="tools" href="/tools/">
+                    <svg t="1586931802353" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="18381" width="20" height="20"><path d="M519.4 878l-69.7-38.1-30.6-16.7-30.6 16.7-86.9 47.3-86.7-47.3-30.6-16.7-30.6 16.7-22.6 12.3V160c0-17.7 14.3-32 32-32h511.6c17.7 0 32 14.3 32 32v288c0 17.7 14.3 32 32 32s32-14.3 32-32V128c0-35.3-26.2-64-58.6-64H125.6C93.2 64 67 92.7 67 128v832l117.2-64 117.3 64L419 896l69.7 38.1C510 945.8 536 930.3 536 906c0.1-11.7-6.3-22.4-16.6-28z" p-id="18382"></path><path d="M258.9 256c-17.7 0-32 14.3-32 32s14.3 32 32 32h319.8c17.7 0 32-14.3 32-32s-14.3-32-32-32H258.9zM610.6 448c0-17.7-14.3-32-32-32H258.9c-17.7 0-32 14.3-32 32s14.3 32 32 32h319.8c17.6 0 31.9-14.3 31.9-32zM514.7 576H258.9c-17.7 0-32 14.3-32 32s14.3 32 32 32h255.8c17.7 0 32-14.3 32-32s-14.4-32-32-32zM947.6 899.4l-185-184.9c17.5-35.8 11.4-80.3-18.4-110.1-25.2-25.2-61-33.5-93.1-24.8l49.7 49.7-14.3 53.2-53.3 14.3-49.7-49.7c-8.7 32.1-0.4 67.9 24.8 93.1 29.4 29.3 73 35.7 108.5 19.1l185.4 185.4c12.5 12.5 32.8 12.5 45.3 0 12.6-12.5 12.6-32.8 0.1-45.3z" p-id="18383"></path></svg>
+               </a>
+                <a class="navbar-item" title="movie" href="/movies/">
+                    <svg t="1586342683221" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1766" width="20" height="20"><path d="M914.044 898.826H109.956c-20.435 0-37-16.565-37-37V280.131c0-20.435 16.565-37 37-37h804.088c20.435 0 37 16.565 37 37v581.695c0 20.435-16.565 37-37 37z m-767.088-74h730.088V317.131H146.956v507.695zM322.739 199.174H113c-20.435 0-37-16.565-37-37s16.565-37 37-37h209.739c20.435 0 37 16.565 37 37s-16.565 37-37 37z" p-id="1767" fill="#2c2c2c"></path><path d="M457.932 752.856A37.002 37.002 0 0 1 420.937 716l-1.122-287.64a37.003 37.003 0 0 1 20.769-33.395 37.006 37.006 0 0 1 39.104 4.167l184.107 144.792a37 37 0 0 1-0.105 58.248L480.704 745.021a36.982 36.982 0 0 1-22.772 7.835z m36.181-248.234l0.528 135.641 86.29-67.361-86.818-68.28z" p-id="1768" fill="#2c2c2c"></path></svg>
+                </a>
+                <a class="navbar-item" title="books" href="/books/">
+                    <svg t="1586350091188" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2280" width="20" height="20"><path d="M306.4 773.3h188v16.3c0 13.8 11.2 25 25 25s25-11.2 25-25v-16.3h180.5c68.9 0 125-56.1 125-125V295.4c0-68.9-56.1-125-125-125H549.6c-10.7 0-19.9 6.8-23.4 16.3-2.1-0.6-4.4-0.9-6.7-0.9-2 0-3.9 0.2-5.8 0.7-3.6-9.4-12.7-16-23.3-16h-184c-68.9 0-125 56.1-125 125v352.9c0 68.8 56.1 124.9 125 124.9z m418.5-552.9c41.4 0 75 33.6 75 75v352.9c0 41.4-33.6 75-75 75H544.4V219.9c1.7 0.4 3.4 0.5 5.2 0.5h175.3z m-493.5 75c0-41.4 33.6-75 75-75h183.9c1.4 0 2.8-0.1 4.1-0.3v503.2h-188c-41.4 0-75-33.6-75-75V295.4z" p-id="2281"></path><path d="M901.5 314.3c-11 0-20 9-20 20v384c0 44.1-35.9 80-80 80H615.3c-5.6 0-11 2.4-14.8 6.5l-25.9 28.4c-2 2.2-4.9 3.5-7.9 3.5H459c-2.9 0-5.6-1.1-7.6-3.1L425.8 808c-3.8-3.8-8.8-5.9-14.1-5.9H224.8c-44.1 0-80-35.9-80-80V343.9c0-11-9-20-20-20s-20 9-20 20v378.3c0 66.2 53.8 120 120 120h178.5l19.7 19.7c9.6 9.6 22.3 14.9 35.9 14.9h107.7c14.2 0 27.9-6 37.5-16.5l20-21.9h177.4c66.2 0 120-53.8 120-120v-384c0-11.1-9-20.1-20-20.1z" p-id="2282"></path><path d="M297.5 341.4h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 408.6h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 506.5h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20z" p-id="2283"></path></svg>
+                </a>
+                
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                        
+                        
+                        <a class="navbar-item" href="#rsync&#x4ECB;&#x7ECD;">1&nbsp;&nbsp;<b>rsync&#x4ECB;&#x7ECD;</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#RSYNC&#x516D;&#x79CD;&#x547D;&#x4EE4;&#x683C;&#x5F0F;">1.1&nbsp;&nbsp;RSYNC&#x516D;&#x79CD;&#x547D;&#x4EE4;&#x683C;&#x5F0F;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#RSYNC&#x5B89;&#x88C5;">1.2&nbsp;&nbsp;RSYNC&#x5B89;&#x88C5;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#RSYNC&#x6848;&#x4F8B;">1.3&nbsp;&nbsp;RSYNC&#x6848;&#x4F8B;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#RSYNC&#x53C2;&#x6570;">1.4&nbsp;&nbsp;RSYNC&#x53C2;&#x6570;</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#&#x5E94;&#x7528;&#x573A;&#x666F;">2&nbsp;&nbsp;<b>&#x5E94;&#x7528;&#x573A;&#x666F;</b></a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#rsync&#x6848;&#x4F8B;1">3&nbsp;&nbsp;<b>rsync&#x6848;&#x4F8B;1</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#Server&#x7AEF;&#x914D;&#x7F6E;">3.1&nbsp;&nbsp;Server&#x7AEF;&#x914D;&#x7F6E;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x73AF;&#x5883;&#x4ECB;&#x7ECD;">3.1.1&nbsp;&nbsp;&#x73AF;&#x5883;&#x4ECB;&#x7ECD;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B89;&#x88C5;&#x65B9;&#x5F0F;">3.1.2&nbsp;&nbsp;&#x5B89;&#x88C5;&#x65B9;&#x5F0F;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x914D;&#x7F6E;">3.1.3&nbsp;&nbsp;&#x914D;&#x7F6E;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x7F16;&#x5199;&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;-rsyncd.conf">3.1.4&nbsp;&nbsp;&#x7F16;&#x5199;&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6; rsyncd.conf</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x7F16;&#x5199;&#x7528;&#x6237;&#x8BA4;&#x8BC1;&#x6587;&#x4EF6;">3.1.5&nbsp;&nbsp;&#x7F16;&#x5199;&#x7528;&#x6237;&#x8BA4;&#x8BC1;&#x6587;&#x4EF6;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x542F;&#x52A8;&#x670D;&#x52A1;">3.2&nbsp;&nbsp;&#x542F;&#x52A8;&#x670D;&#x52A1;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4FEE;&#x6539;&#xFF1A;-&#x6DFB;&#x52A0;&#x4E86;&#x201C;&#x786E;&#x8BA4;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x201D;-&#x6807;&#x9898;&#xFF0C;&#x4EE5;&#x53CA;&#x76F8;&#x5173;&#x547D;&#x4EE4;;-&#x5C06;-&#x201C;&#x6CE8;&#xFF1A;rsync-&#x670D;&#x52A1;&#x9ED8;&#x8BA4;&#x7AEF;&#x53E3;&#x662F;-873&#x201D;-&#x524D;&#x79FB;--&#x786E;&#x8BA4;&#x670D;&#x52A1;&#x542F;&#x52A8;">3.2.1&nbsp;&nbsp;&#x4FEE;&#x6539;&#xFF1A; &#x6DFB;&#x52A0;&#x4E86;&#x201C;&#x786E;&#x8BA4;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x201D; &#x6807;&#x9898;&#xFF0C;&#x4EE5;&#x53CA;&#x76F8;&#x5173;&#x547D;&#x4EE4;; &#x5C06; &#x201C;&#x6CE8;&#xFF1A;rsync &#x670D;&#x52A1;&#x9ED8;&#x8BA4;&#x7AEF;&#x53E3;&#x662F; 873&#x201D; &#x524D;&#x79FB;  &#x786E;&#x8BA4;&#x670D;&#x52A1;&#x542F;&#x52A8;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#rsync&#x5BA2;&#x6237;&#x7AEF;">3.3&nbsp;&nbsp;rsync&#x5BA2;&#x6237;&#x7AEF;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B89;&#x88C5;&#x65B9;&#x5F0F;">3.3.1&nbsp;&nbsp;&#x5B89;&#x88C5;&#x65B9;&#x5F0F;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x9A8C;&#x8BC1;">3.3.2&nbsp;&nbsp;&#x9A8C;&#x8BC1;</a>
+                        
+                        
+                        <hr class="navbar-divider">
+                        
+                        
+                        <a class="navbar-item" href="#inotify">4&nbsp;&nbsp;<b>inotify</b></a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4FEE;&#x6539;&#xFF1A;-&#x6DFB;&#x52A0;&#x4E86;&#x201C;&#x5B9E;&#x9A8C;&#x76EE;&#x5730;&#x201D;-&#x548C;&#x201C;&#x62D3;&#x6251;&#x73AF;&#x5883;&#x201D;-&#x4E24;&#x4E2A;&#x9879;&#x76EE;">4.1&nbsp;&nbsp;&#x4FEE;&#x6539;&#xFF1A; &#x6DFB;&#x52A0;&#x4E86;&#x201C;&#x5B9E;&#x9A8C;&#x76EE;&#x5730;&#x201D; &#x548C;&#x201C;&#x62D3;&#x6251;&#x73AF;&#x5883;&#x201D; &#x4E24;&#x4E2A;&#x9879;&#x76EE;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B9E;&#x9A8C;&#x76EE;&#x7684;">4.2&nbsp;&nbsp;&#x5B9E;&#x9A8C;&#x76EE;&#x7684;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x62D3;&#x6251;&#x73AF;&#x5883;">4.3&nbsp;&nbsp;&#x62D3;&#x6251;&#x73AF;&#x5883;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x5B89;&#x88C5;">4.4&nbsp;&nbsp;&#x5B89;&#x88C5;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x4F7F;&#x7528;">4.5&nbsp;&nbsp;&#x4F7F;&#x7528;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x68C0;&#x6D4B;&#x521B;&#x5EFA;&#x4E8B;&#x4EF6;">4.5.1&nbsp;&nbsp;&#x68C0;&#x6D4B;&#x521B;&#x5EFA;&#x4E8B;&#x4EF6;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x68C0;&#x6D4B;&#x5220;&#x9664;&#x4E8B;&#x4EF6;">4.5.2&nbsp;&nbsp;&#x68C0;&#x6D4B;&#x5220;&#x9664;&#x4E8B;&#x4EF6;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x7F16;&#x5199;&#x5B9E;&#x65F6;&#x540C;&#x6B65;&#x811A;&#x672C;">4.5.3&nbsp;&nbsp;&#x7F16;&#x5199;&#x5B9E;&#x65F6;&#x540C;&#x6B65;&#x811A;&#x672C;</a>
+                        
+                        
+                        
+                        <a class="navbar-item" href="#&#x9A8C;&#x8BC1;">4.6&nbsp;&nbsp;&#x9A8C;&#x8BC1;</a>
+                        
+                    </div>
+                </div>
+                
+                
+                <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                   
+                
+            </div>
+        </div>
+</div>
+</div>
+</nav>
+
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            rsync + inotify 实现实时同步
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-05-19T10:24:00.000Z" itemprop="datePublished">5月 19 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/">技术广角</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Linux/">Linux</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            22 分钟 读完 (约 3319 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2><span id="rsync&#x4ECB;&#x7ECD;">rsync&#x4ECB;&#x7ECD;</span></h2><p>rsync&#xFF0C;remote synchronize&#x987E;&#x540D;&#x601D;&#x610F;&#x5C31;&#x77E5;&#x9053;&#x5B83;&#x662F;&#x4E00;&#x6B3E;&#x5B9E;&#x73B0;&#x8FDC;&#x7A0B;&#x540C;&#x6B65;&#x529F;&#x80FD;&#x7684;&#x8F6F;&#x4EF6;&#xFF0C;&#x5B83;&#x5728;&#x540C;&#x6B65;&#x6587;&#x4EF6;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x4FDD;&#x6301;&#x539F;&#x6765;&#x6587;&#x4EF6;&#x7684;&#x6743;&#x9650;&#x3001;&#x65F6;&#x95F4;&#x3001;&#x8F6F;&#x786C;&#x94FE;&#x63A5;&#x7B49;&#x9644;&#x52A0;&#x4FE1;&#x606F;&#x3002; rsync&#x662F;&#x7528; &#x201C;rsync &#x7B97;&#x6CD5;&#x201D;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x5BA2;&#x6237;&#x673A;&#x548C;&#x8FDC;&#x7A0B;&#x6587;&#x4EF6;&#x670D;&#x52A1;&#x5668;&#x7684;&#x6587;&#x4EF6;&#x540C;&#x6B65;&#x7684;&#x5FEB;&#x901F;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x4E14;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;ssh&#x65B9;&#x5F0F;&#x6765;&#x4F20;&#x8F93;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x6837;&#x5176;&#x4FDD;&#x5BC6;&#x6027;&#x4E5F;&#x975E;&#x5E38;&#x597D;&#xFF0C;&#x53E6;&#x5916;&#x5B83;&#x8FD8;&#x662F;&#x514D;&#x8D39;&#x7684;&#x8F6F;&#x4EF6;&#x3002;</p>
+<h3><span id="rsync&#x516D;&#x79CD;&#x547D;&#x4EE4;&#x683C;&#x5F0F;">RSYNC&#x516D;&#x79CD;&#x547D;&#x4EE4;&#x683C;&#x5F0F;</span></h3><p>Rsync&#x7684;&#x547D;&#x4EE4;&#x683C;&#x5F0F;&#x53EF;&#x4EE5;&#x4E3A;&#x4EE5;&#x4E0B;&#x516D;&#x79CD;&#xFF1A;</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rsync [OPTION]... SRC DEST</span><br><span class="line">&#x3000;&#x3000;rsync [OPTION]... SRC [USER@]HOST:DEST</span><br><span class="line">&#x3000;&#x3000;rsync [OPTION]... [USER@]HOST:SRC DEST</span><br><span class="line">&#x3000;&#x3000;rsync [OPTION]... [USER@]HOST::SRC DEST</span><br><span class="line">&#x3000;&#x3000;rsync [OPTION]... SRC [USER@]HOST::DEST</span><br><span class="line">&#x3000;&#x3000;rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST]</span><br></pre></td></tr></table></figure></p>
+<p>&#x5BF9;&#x5E94;&#x4E8E;&#x4EE5;&#x4E0A;&#x516D;&#x79CD;&#x547D;&#x4EE4;&#x683C;&#x5F0F;&#xFF0C;rsync&#x6709;&#x516D;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x5DE5;&#x4F5C;&#x6A21;&#x5F0F;&#xFF1A;</p>
+<ul>
+<li>&#x62F7;&#x8D1D;&#x672C;&#x5730;&#x6587;&#x4EF6;&#x3002;&#x5F53;SRC&#x548C;DES&#x8DEF;&#x5F84;&#x4FE1;&#x606F;&#x90FD;&#x4E0D;&#x5305;&#x542B;&#x6709;&#x5355;&#x4E2A;&#x5192;&#x53F7;&#x201D;:&#x201D;&#x5206;&#x9694;&#x7B26;&#x65F6;&#x5C31;&#x542F;&#x52A8;&#x8FD9;&#x79CD;&#x5DE5;&#x4F5C;&#x6A21;&#x5F0F;&#x3002;&#x5982;&#xFF1A;rsync -a /data /backup</li>
+<li>&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x8FDC;&#x7A0B;shell&#x7A0B;&#x5E8F;(&#x5982;rsh&#x3001;ssh)&#x6765;&#x5B9E;&#x73B0;&#x5C06;&#x672C;&#x5730;&#x673A;&#x5668;&#x7684;&#x5185;&#x5BB9;&#x62F7;&#x8D1D;&#x5230;&#x8FDC;&#x7A0B;&#x673A;&#x5668;&#x3002;&#x5F53;DST&#x8DEF;&#x5F84;&#x5730;&#x5740;&#x5305;&#x542B;&#x5355;&#x4E2A;&#x5192;&#x53F7;&#x201D;:&#x201D;&#x5206;&#x9694;&#x7B26;&#x65F6;&#x542F;&#x52A8;&#x8BE5;&#x6A21;&#x5F0F;&#x3002;&#x5982;&#xFF1A;rsync -avz *.c foo:src</li>
+<li>&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x8FDC;&#x7A0B;shell&#x7A0B;&#x5E8F;(&#x5982;rsh&#x3001;ssh)&#x6765;&#x5B9E;&#x73B0;&#x5C06;&#x8FDC;&#x7A0B;&#x673A;&#x5668;&#x7684;&#x5185;&#x5BB9;&#x62F7;&#x8D1D;&#x5230;&#x672C;&#x5730;&#x673A;&#x5668;&#x3002;&#x5F53;SRC&#x5730;&#x5740;&#x8DEF;&#x5F84;&#x5305;&#x542B;&#x5355;&#x4E2A;&#x5192;&#x53F7;&#x201D;:&#x201D;&#x5206;&#x9694;&#x7B26;&#x65F6;&#x542F;&#x52A8;&#x8BE5;&#x6A21;&#x5F0F;&#x3002;&#x5982;&#xFF1A;rsync -avz foo:src/bar /data</li>
+<li>&#x4ECE;&#x8FDC;&#x7A0B;rsync&#x670D;&#x52A1;&#x5668;&#x4E2D;&#x62F7;&#x8D1D;&#x6587;&#x4EF6;&#x5230;&#x672C;&#x5730;&#x673A;&#x3002;&#x5F53;SRC&#x8DEF;&#x5F84;&#x4FE1;&#x606F;&#x5305;&#x542B;&#x201D;::&#x201D;&#x5206;&#x9694;&#x7B26;&#x65F6;&#x542F;&#x52A8;&#x8BE5;&#x6A21;&#x5F0F;&#x3002;&#x5982;&#xFF1A;rsync -av <a href="mailto:root@172.16.78.192">root@172.16.78.192</a>::www /databack</li>
+<li>&#x4ECE;&#x672C;&#x5730;&#x673A;&#x5668;&#x62F7;&#x8D1D;&#x6587;&#x4EF6;&#x5230;&#x8FDC;&#x7A0B;rsync&#x670D;&#x52A1;&#x5668;&#x4E2D;&#x3002;&#x5F53;DST&#x8DEF;&#x5F84;&#x4FE1;&#x606F;&#x5305;&#x542B;&#x201D;::&#x201D;&#x5206;&#x9694;&#x7B26;&#x65F6;&#x542F;&#x52A8;&#x8BE5;&#x6A21;&#x5F0F;&#x3002;&#x5982;&#xFF1A;rsync -av /databack <a href="mailto:root@172.16.78.192">root@172.16.78.192</a>::www</li>
+<li>&#x5217;&#x8FDC;&#x7A0B;&#x673A;&#x7684;&#x6587;&#x4EF6;&#x5217;&#x8868;&#x3002;&#x8FD9;&#x7C7B;&#x4F3C;&#x4E8E;rsync&#x4F20;&#x8F93;&#xFF0C;&#x4E0D;&#x8FC7;&#x53EA;&#x8981;&#x5728;&#x547D;&#x4EE4;&#x4E2D;&#x7701;&#x7565;&#x6389;&#x672C;&#x5730;&#x673A;&#x4FE1;&#x606F;&#x5373;&#x53EF;&#x3002;&#x5982;&#xFF1A;rsync -v rsync://172.16.78.192/www</li>
+</ul>
+<h3><span id="rsync&#x5B89;&#x88C5;">RSYNC&#x5B89;&#x88C5;</span></h3><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#&#x6CE8;&#xFF1A;&#x5728;debian&#x3001;ubuntu &#x7B49;&#x5728;&#x7EBF;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1B;</span></span><br><span class="line">sudo apt-get install rsync </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#&#x6CE8;&#xFF1A;Fedora&#x3001;Redhat &#x7B49;&#x5728;&#x7EBF;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1B;</span></span><br><span class="line">yum install rsync </span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#&#x6CE8;&#xFF1A;Fedora&#x3001;Redhat &#x7B49;rpm&#x5305;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1B;</span></span><br><span class="line">rpm -ivh rsync</span><br></pre></td></tr></table></figure></p>
+<h3><span id="rsync&#x6848;&#x4F8B;">RSYNC&#x6848;&#x4F8B;</span></h3><p>&#x5728;&#x6211;&#x4EEC;&#x5185;&#x90E8;&#x8DF3;&#x677F;&#x673A;1&#xFF1A;&#x676D;&#x5DDE;&#x8282;&#x70B9;&#xFF08;&#x4E3B;&#xFF09;&#x4E2D;&#xFF0C;&#x5BF9;&#x5E94;&#x5728;&#x201C;/etc/ssh/ssh_config.d&#x201D;&#x4E2D;&#x914D;&#x7F6E;&#x4E86;&#x6BCF;&#x4E2A;&#x9879;&#x76EE;&#x7684;ssh&#x5FEB;&#x6377;&#x767B;&#x9646;&#xFF0C;&#x6240;&#x4EE5;&#x540E;&#x7EED;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x201C;ssh &lt;&#x4E3B;&#x673A;&#x540D;&gt;&#x201D;&#x4FBF;&#x80FD;&#x767B;&#x9646;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x76EE;&#x6807;&#x670D;&#x52A1;&#x5668;&#x4E2D;&#x3002;<br>&#x4F46;&#x8FD9;&#x91CC;&#x6709;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x676D;&#x5DDE;&#x8282;&#x70B9;&#xFF08;&#x4E3B;&#xFF09;&#x4E2D;&#xFF0C;&#x5BF9;&#x5E94;&#x53D8;&#x66F4;&#x4E86;&#x201C;/etc/ssh/ssh_config.d&#x201D;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x90A3;&#x5176;&#x4ED6;&#x8DF3;&#x677F;&#x673A;&#x600E;&#x4E48;&#x6837;&#x540C;&#x6B65;&#x66F4;&#x65B0;&#x5462;&#xFF1F;&#x5176;&#x5B9E;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x91C7;&#x7528;&#x4E86;rsync&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x540C;&#x6B65;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># rsync server&#x914D;&#x7F6E;</span></span><br><span class="line"><span class="hljs-comment"># 1.&#x5728;&#x5185;&#x90E8;&#x8DF3;&#x677F;&#x673A;1&#xFF1A;&#x676D;&#x5DDE;&#x8282;&#x70B9;&#xFF08;&#x4E3B;&#xFF1A;srv-zy-ssh1&#xFF09;&#x4E0A;&#xFF0C;&#x7F16;&#x8F91;&#x914D;&#x7F6E;&#x6587;&#x4EF6;/etc/rsyncd.conf</span></span><br><span class="line">uid=root</span><br><span class="line">git=root</span><br><span class="line">use chroot=no</span><br><span class="line">max connection=0</span><br><span class="line">port=873</span><br><span class="line">pid file=/var/<span class="hljs-built_in">log</span>/rsync/rsyncd.pid</span><br><span class="line">lock file=/var/<span class="hljs-built_in">log</span>/rsync/rsync.lock</span><br><span class="line"><span class="hljs-built_in">log</span> file=/var/<span class="hljs-built_in">log</span>/rsync/rsyncd.log</span><br><span class="line">motd file=/var/<span class="hljs-built_in">log</span>/rsync/rsyncd.motd</span><br><span class="line">strict modes=yes</span><br><span class="line">[sshconfig]</span><br><span class="line">uid=root</span><br><span class="line">git=root</span><br><span class="line">path=/etc/ssh/ssh_config.d/</span><br><span class="line">comment=rsync ssh_config</span><br><span class="line"><span class="hljs-built_in">read</span> only=<span class="hljs-literal">false</span></span><br><span class="line">list=<span class="hljs-literal">false</span></span><br><span class="line">host allow=ip1 ip2 ip3 </span><br><span class="line"><span class="hljs-comment">#hosts deny=172.25.0.0/24</span></span><br><span class="line">auth users=sshconfig</span><br><span class="line">secrets file=/etc/rsyncd.passwd</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#2.&#x7F16;&#x8F91;/etc/rsyncd.passwd &#x6587;&#x4EF6;&#x52A0;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;</span></span><br><span class="line">sshconfig:rsync20150128</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#3.&#x8D4B;&#x6743;&#xFF08;&#x5FC5;&#x987B;600&#x6743;&#x9650;&#xFF0C;&#x5426;&#x5219;&#x62A5;&#x9519;&#xFF09;</span></span><br><span class="line">chmod 600 /etc/rsyncd.passwd</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#4.&#x542F;&#x52A8;rsync</span></span><br><span class="line">rsync --daemon /etc/rsyncd.conf</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># rsync cilent&#x914D;&#x7F6E;</span></span><br><span class="line">&#x5206;&#x522B;&#x5728;&#x5176;&#x4ED6;&#x8DF3;&#x677F;&#x673A;&#x4E0A;&#x9762;&#xFF1A;</span><br><span class="line">&#x5185;&#x90E8;&#x8DF3;&#x677F;&#x673A;2&#xFF1A;&#x9752;&#x5C9B;&#x8282;&#x70B9;&#xFF08;&#x5907;&#xFF1A;srv-zy-ssh2&#xFF09;</span><br><span class="line">&#x5BA2;&#x6237;&#x8DF3;&#x677F;&#x673A;1&#xFF1A;&#x676D;&#x5DDE;&#x8282;&#x70B9;&#xFF08;&#x4E3B;&#xFF1A;srv-zy-ssh3&#xFF09;</span><br><span class="line">&#x5BA2;&#x6237;&#x8DF3;&#x677F;&#x673A;2&#xFF1A;&#x9752;&#x5C9B;&#x8282;&#x70B9;&#xFF08;&#x5907;&#xFF1A;srv-zy-ssh4&#xFF09;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># &#x7F16;&#x8F91;/etc/rsyncd.passwd &#x6587;&#x4EF6;&#x52A0;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</span></span><br><span class="line">sshconfig:rsync20150128</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># &#x8D4B;&#x6743;&#xFF08;&#x5FC5;&#x987B;600&#x6743;&#x9650;&#xFF0C;&#x5426;&#x5219;&#x62A5;&#x9519;&#xFF09;:</span></span><br><span class="line">chmod 600 /etc/rsyncd.passwd</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># &#x6267;&#x884C;&#x540C;&#x6B65;&#x547D;&#x4EE4;&#xFF1A;</span></span><br><span class="line">rsync -vzrtopg --delete --progress sshconfig@115.29.244.224::sshconfig /etc/ssh/ssh_config.d/ --password-file=/etc/rsyncd.passwd</span><br><span class="line">&#x6216;&#x8005;&#xFF1A;</span><br><span class="line">rsync -avz --delete --progress sshconfig@115.29.244.224::sshconfig /etc/ssh/ssh_config.d/ --password-file=/etc/rsyncd.passwd</span><br></pre></td></tr></table></figure></p>
+<h3><span id="rsync&#x53C2;&#x6570;">RSYNC&#x53C2;&#x6570;</span></h3><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">rsync&#x53C2;&#x6570;&#x7684;&#x5177;&#x4F53;&#x89E3;&#x91CA;&#x5982;&#x4E0B;&#xFF1A;</span><br><span class="line">-v, --verbose &#x8BE6;&#x7EC6;&#x6A21;&#x5F0F;&#x8F93;&#x51FA;</span><br><span class="line">-q, --quiet &#x7CBE;&#x7B80;&#x8F93;&#x51FA;&#x6A21;&#x5F0F;</span><br><span class="line">-c, --checksum &#x6253;&#x5F00;&#x6821;&#x9A8C;&#x5F00;&#x5173;&#xFF0C;&#x5F3A;&#x5236;&#x5BF9;&#x6587;&#x4EF6;&#x4F20;&#x8F93;&#x8FDB;&#x884C;&#x6821;&#x9A8C;</span><br><span class="line">-a, --archive &#x5F52;&#x6863;&#x6A21;&#x5F0F;&#xFF0C;&#x8868;&#x793A;&#x4EE5;&#x9012;&#x5F52;&#x65B9;&#x5F0F;&#x4F20;&#x8F93;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x4FDD;&#x6301;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x5C5E;&#x6027;&#xFF0C;&#x7B49;&#x4E8E;-rlptgoD</span><br><span class="line">-r, --recursive &#x5BF9;&#x5B50;&#x76EE;&#x5F55;&#x4EE5;&#x9012;&#x5F52;&#x6A21;&#x5F0F;&#x5904;&#x7406;</span><br><span class="line">-R, --relative &#x4F7F;&#x7528;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x4FE1;&#x606F;</span><br><span class="line">-b, --backup &#x521B;&#x5EFA;&#x5907;&#x4EFD;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5BF9;&#x4E8E;&#x76EE;&#x7684;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x6709;&#x540C;&#x6837;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x65F6;&#xFF0C;&#x5C06;&#x8001;&#x7684;&#x6587;&#x4EF6;&#x91CD;&#x65B0;&#x547D;&#x540D;&#x4E3A;~filename&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;--suffix&#x9009;&#x9879;&#x6765;&#x6307;&#x5B9A;&#x4E0D;&#x540C;&#x7684;&#x5907;&#x4EFD;&#x6587;&#x4EF6;&#x524D;&#x7F00;&#x3002;</span><br><span class="line">--backup-dir &#x5C06;&#x5907;&#x4EFD;&#x6587;&#x4EF6;(&#x5982;~filename)&#x5B58;&#x653E;&#x5728;&#x5728;&#x76EE;&#x5F55;&#x4E0B;&#x3002;</span><br><span class="line">-suffix=SUFFIX &#x5B9A;&#x4E49;&#x5907;&#x4EFD;&#x6587;&#x4EF6;&#x524D;&#x7F00;</span><br><span class="line">-u, --update &#x4EC5;&#x4EC5;&#x8FDB;&#x884C;&#x66F4;&#x65B0;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8DF3;&#x8FC7;&#x6240;&#x6709;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x4E8E;DST&#xFF0C;&#x5E76;&#x4E14;&#x6587;&#x4EF6;&#x65F6;&#x95F4;&#x665A;&#x4E8E;&#x8981;&#x5907;&#x4EFD;&#x7684;&#x6587;&#x4EF6;&#x3002;(&#x4E0D;&#x8986;&#x76D6;&#x66F4;&#x65B0;&#x7684;&#x6587;&#x4EF6;)</span><br><span class="line">-l, --links &#x4FDD;&#x7559;&#x8F6F;&#x94FE;&#x7ED3;</span><br><span class="line">-L, --copy-links &#x60F3;&#x5BF9;&#x5F85;&#x5E38;&#x89C4;&#x6587;&#x4EF6;&#x4E00;&#x6837;&#x5904;&#x7406;&#x8F6F;&#x94FE;&#x7ED3;</span><br><span class="line">--copy-unsafe-links &#x4EC5;&#x4EC5;&#x62F7;&#x8D1D;&#x6307;&#x5411;SRC&#x8DEF;&#x5F84;&#x76EE;&#x5F55;&#x6811;&#x4EE5;&#x5916;&#x7684;&#x94FE;&#x7ED3;</span><br><span class="line">--safe-links &#x5FFD;&#x7565;&#x6307;&#x5411;SRC&#x8DEF;&#x5F84;&#x76EE;&#x5F55;&#x6811;&#x4EE5;&#x5916;&#x7684;&#x94FE;&#x7ED3;</span><br><span class="line">-H, --hard-links &#x4FDD;&#x7559;&#x786C;&#x94FE;&#x7ED3; -p, --perms &#x4FDD;&#x6301;&#x6587;&#x4EF6;&#x6743;&#x9650;</span><br><span class="line">-o, --owner &#x4FDD;&#x6301;&#x6587;&#x4EF6;&#x5C5E;&#x4E3B;&#x4FE1;&#x606F; -g, --group &#x4FDD;&#x6301;&#x6587;&#x4EF6;&#x5C5E;&#x7EC4;&#x4FE1;&#x606F;</span><br><span class="line">-D, --devices &#x4FDD;&#x6301;&#x8BBE;&#x5907;&#x6587;&#x4EF6;&#x4FE1;&#x606F; -t, --<span class="hljs-built_in">times</span> &#x4FDD;&#x6301;&#x6587;&#x4EF6;&#x65F6;&#x95F4;&#x4FE1;&#x606F;</span><br><span class="line">-S, --sparse &#x5BF9;&#x7A00;&#x758F;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x7279;&#x6B8A;&#x5904;&#x7406;&#x4EE5;&#x8282;&#x7701;DST&#x7684;&#x7A7A;&#x95F4;</span><br><span class="line">-n, --dry-run&#x73B0;&#x5B9E;&#x54EA;&#x4E9B;&#x6587;&#x4EF6;&#x5C06;&#x88AB;&#x4F20;&#x8F93;</span><br><span class="line">-W, --whole-file &#x62F7;&#x8D1D;&#x6587;&#x4EF6;&#xFF0C;&#x4E0D;&#x8FDB;&#x884C;&#x589E;&#x91CF;&#x68C0;&#x6D4B;</span><br><span class="line">-x, --one-file-system &#x4E0D;&#x8981;&#x8DE8;&#x8D8A;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x8FB9;&#x754C;</span><br><span class="line">-B, --block-size=SIZE &#x68C0;&#x9A8C;&#x7B97;&#x6CD5;&#x4F7F;&#x7528;&#x7684;&#x5757;&#x5C3A;&#x5BF8;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;700&#x5B57;&#x8282;</span><br><span class="line">-e, --rsh=COMMAND &#x6307;&#x5B9A;&#x4F7F;&#x7528;rsh&#x3001;ssh&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x540C;&#x6B65;</span><br><span class="line">--rsync-path=PATH &#x6307;&#x5B9A;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;rsync&#x547D;&#x4EE4;&#x6240;&#x5728;&#x8DEF;&#x5F84;&#x4FE1;&#x606F;</span><br><span class="line">-C, --cvs-exclude &#x4F7F;&#x7528;&#x548C;CVS&#x4E00;&#x6837;&#x7684;&#x65B9;&#x6CD5;&#x81EA;&#x52A8;&#x5FFD;&#x7565;&#x6587;&#x4EF6;&#xFF0C;&#x7528;&#x6765;&#x6392;&#x9664;&#x90A3;&#x4E9B;&#x4E0D;&#x5E0C;&#x671B;&#x4F20;&#x8F93;&#x7684;&#x6587;&#x4EF6;</span><br><span class="line">--existing &#x4EC5;&#x4EC5;&#x66F4;&#x65B0;&#x90A3;&#x4E9B;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x4E8E;DST&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x800C;&#x4E0D;&#x5907;&#x4EFD;&#x90A3;&#x4E9B;&#x65B0;&#x521B;&#x5EFA;&#x7684;&#x6587;&#x4EF6;</span><br><span class="line">--delete &#x5220;&#x9664;&#x90A3;&#x4E9B;DST&#x4E2D;SRC&#x6CA1;&#x6709;&#x7684;&#x6587;&#x4EF6;</span><br><span class="line">--delete-excluded &#x540C;&#x6837;&#x5220;&#x9664;&#x63A5;&#x6536;&#x7AEF;&#x90A3;&#x4E9B;&#x88AB;&#x8BE5;&#x9009;&#x9879;&#x6307;&#x5B9A;&#x6392;&#x9664;&#x7684;&#x6587;&#x4EF6;</span><br><span class="line">--delete-after &#x4F20;&#x8F93;&#x7ED3;&#x675F;&#x4EE5;&#x540E;&#x518D;&#x5220;&#x9664;</span><br><span class="line">--ignore-errors &#x53CA;&#x65F6;&#x51FA;&#x73B0;IO&#x9519;&#x8BEF;&#x4E5F;&#x8FDB;&#x884C;&#x5220;&#x9664;</span><br><span class="line">--max-delete=NUM &#x6700;&#x591A;&#x5220;&#x9664;NUM&#x4E2A;&#x6587;&#x4EF6;</span><br><span class="line">--partial &#x4FDD;&#x7559;&#x90A3;&#x4E9B;&#x56E0;&#x6545;&#x6CA1;&#x6709;&#x5B8C;&#x5168;&#x4F20;&#x8F93;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x4EE5;&#x662F;&#x52A0;&#x5FEB;&#x968F;&#x540E;&#x7684;&#x518D;&#x6B21;&#x4F20;&#x8F93;</span><br><span class="line">--force &#x5F3A;&#x5236;&#x5220;&#x9664;&#x76EE;&#x5F55;&#xFF0C;&#x5373;&#x4F7F;&#x4E0D;&#x4E3A;&#x7A7A;</span><br><span class="line">--numeric-ids &#x4E0D;&#x5C06;&#x6570;&#x5B57;&#x7684;&#x7528;&#x6237;&#x548C;&#x7EC4;ID&#x5339;&#x914D;&#x4E3A;&#x7528;&#x6237;&#x540D;&#x548C;&#x7EC4;&#x540D;</span><br><span class="line">--timeout=TIME IP&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#xFF0C;&#x5355;&#x4F4D;&#x4E3A;&#x79D2;</span><br><span class="line">-I, --ignore-times &#x4E0D;&#x8DF3;&#x8FC7;&#x90A3;&#x4E9B;&#x6709;&#x540C;&#x6837;&#x7684;&#x65F6;&#x95F4;&#x548C;&#x957F;&#x5EA6;&#x7684;&#x6587;&#x4EF6;</span><br><span class="line">--size-only &#x5F53;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x8981;&#x5907;&#x4EFD;&#x6587;&#x4EF6;&#x65F6;&#xFF0C;&#x4EC5;&#x4EC5;&#x5BDF;&#x770B;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#x800C;&#x4E0D;&#x8003;&#x8651;&#x6587;&#x4EF6;&#x65F6;&#x95F4;</span><br><span class="line">--modify-window=NUM &#x51B3;&#x5B9A;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x65F6;&#x95F4;&#x76F8;&#x540C;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x65F6;&#x95F4;&#x6233;&#x7A97;&#x53E3;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;0</span><br><span class="line">-T --temp-dir=DIR &#x5728;DIR&#x4E2D;&#x521B;&#x5EFA;&#x4E34;&#x65F6;&#x6587;&#x4EF6;</span><br><span class="line">--compare-dest=DIR &#x540C;&#x6837;&#x6BD4;&#x8F83;DIR&#x4E2D;&#x7684;&#x6587;&#x4EF6;&#x6765;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x9700;&#x8981;&#x5907;&#x4EFD;</span><br><span class="line">-P &#x7B49;&#x540C;&#x4E8E; --partial</span><br><span class="line">--progress &#x663E;&#x793A;&#x5907;&#x4EFD;&#x8FC7;&#x7A0B;</span><br><span class="line">-z, --compress &#x5BF9;&#x5907;&#x4EFD;&#x7684;&#x6587;&#x4EF6;&#x5728;&#x4F20;&#x8F93;&#x65F6;&#x8FDB;&#x884C;&#x538B;&#x7F29;&#x5904;&#x7406;</span><br><span class="line">--exclude=PATTERN &#x6307;&#x5B9A;&#x6392;&#x9664;&#x4E0D;&#x9700;&#x8981;&#x4F20;&#x8F93;&#x7684;&#x6587;&#x4EF6;&#x6A21;&#x5F0F;</span><br><span class="line">--include=PATTERN &#x6307;&#x5B9A;&#x4E0D;&#x6392;&#x9664;&#x800C;&#x9700;&#x8981;&#x4F20;&#x8F93;&#x7684;&#x6587;&#x4EF6;&#x6A21;&#x5F0F;</span><br><span class="line">--exclude-from=FILE &#x6392;&#x9664;FILE&#x4E2D;&#x6307;&#x5B9A;&#x6A21;&#x5F0F;&#x7684;&#x6587;&#x4EF6;</span><br><span class="line">--include-from=FILE &#x4E0D;&#x6392;&#x9664;FILE&#x6307;&#x5B9A;&#x6A21;&#x5F0F;&#x5339;&#x914D;&#x7684;&#x6587;&#x4EF6;</span><br><span class="line">--version &#x6253;&#x5370;&#x7248;&#x672C;&#x4FE1;&#x606F;</span><br><span class="line">--address &#x7ED1;&#x5B9A;&#x5230;&#x7279;&#x5B9A;&#x7684;&#x5730;&#x5740;</span><br><span class="line">--config=FILE &#x6307;&#x5B9A;&#x5176;&#x4ED6;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x4E0D;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;rsyncd.conf&#x6587;&#x4EF6;</span><br><span class="line">--port=PORT &#x6307;&#x5B9A;&#x5176;&#x4ED6;&#x7684;rsync&#x670D;&#x52A1;&#x7AEF;&#x53E3;</span><br><span class="line">--blocking-io &#x5BF9;&#x8FDC;&#x7A0B;shell&#x4F7F;&#x7528;&#x963B;&#x585E;IO</span><br><span class="line">-stats &#x7ED9;&#x51FA;&#x67D0;&#x4E9B;&#x6587;&#x4EF6;&#x7684;&#x4F20;&#x8F93;&#x72B6;&#x6001;</span><br><span class="line">--progress &#x5728;&#x4F20;&#x8F93;&#x65F6;&#x73B0;&#x5B9E;&#x4F20;&#x8F93;&#x8FC7;&#x7A0B;</span><br><span class="line">--<span class="hljs-built_in">log</span>-format=formAT &#x6307;&#x5B9A;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x683C;&#x5F0F;</span><br><span class="line">--password-file=FILE &#x4ECE;FILE&#x4E2D;&#x5F97;&#x5230;&#x5BC6;&#x7801;</span><br><span class="line">--bwlimit=KBPS &#x9650;&#x5236;I/O&#x5E26;&#x5BBD;&#xFF0C;KBytes per second</span><br><span class="line">-h, --<span class="hljs-built_in">help</span> &#x663E;&#x793A;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="&#x5E94;&#x7528;&#x573A;&#x666F;">&#x5E94;&#x7528;&#x573A;&#x666F;</span></h2><p>&#x5728;&#x6211;&#x4EEC;&#x7684;&#x65E5;&#x5E38;&#x573A;&#x666F;&#x4E2D;&#x7ECF;&#x5E38;&#x4F1A;&#x7ECF;&#x5E38;&#x78B0;&#x5230;&#x6587;&#x4EF6;&#x5171;&#x4EAB;&#x540C;&#x6B65;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<ul>
+<li>&#x96C6;&#x7FA4;&#xFF0C;&#x63D0;&#x4F9B;&#x9AD8;&#x53EF;&#x7528;&#x670D;&#x52A1;&#xFF08;&#x9700;&#x8981;&#x7F51;&#x7AD9;&#x4EE3;&#x7801;&#x6216;&#x8005;&#x76EE;&#x5F55;&#x5B9E;&#x65F6;&#x540C;&#x6B65;&#xFF0C;&#x4FDD;&#x8BC1;&#x6570;&#x636E;&#x7684;&#x4E00;&#x81F4;&#x6027;&#xFF09;</li>
+<li>&#x8FC1;&#x79FB;&#x6570;&#x636E; (&#x5B9E;&#x65F6;&#x589E;&#x91CF;&#x4F20;&#x8F93;)</li>
+<li>&#x6587;&#x4EF6;&#x5907;&#x4EFD;&#xFF08;&#x5B9E;&#x65F6;&#x5C06;&#x6570;&#x636E;&#x5907;&#x4EFD;&#x5230;&#x5176;&#x4ED6;&#x8BBE;&#x5907;&#xFF0C;&#x9632;&#x6B62;&#x6570;&#x636E;&#x4E22;&#x5931;&#xFF09;</li>
+</ul>
+<p>&#x6211;&#x4EEC;&#x9488;&#x5BF9;&#x4EE5;&#x4E0A;&#x573A;&#x666F;&#x5728; Linux &#x7CFB;&#x7EDF;&#x4E0B;&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x5B9E;&#x65F6;&#x540C;&#x6B65;</p>
+<h2><span id="rsync&#x6848;&#x4F8B;1">rsync&#x6848;&#x4F8B;1</span></h2><h3><span id="server&#x7AEF;&#x914D;&#x7F6E;">Server&#x7AEF;&#x914D;&#x7F6E;</span></h3><h4><span id="&#x73AF;&#x5883;&#x4ECB;&#x7ECD;">&#x73AF;&#x5883;&#x4ECB;&#x7ECD;</span></h4><p>&#x4FEE;&#x6539;&#xFF1A;&#x8C03;&#x6574;&#x4E86;&#x76EE;&#x5F55;&#x987A;&#x5E8F;</p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF1A;CentOS 6.8 rsync: rsync-3.0.6 (yum &#x6E90;&#x9ED8;&#x8BA4;&#x5B89;&#x88C5;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2020/05/19/booboo_others/2020-05-20-tec-linux/01.png" alt></p>
+<h4><span id="&#x5B89;&#x88C5;&#x65B9;&#x5F0F;">&#x5B89;&#x88C5;&#x65B9;&#x5F0F;</span></h4><p>&#x5B89;&#x88C5;&#x65B9;&#x5F0F;</p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo` `apt-get ``install` `rsync` `#debian&#x3001;ubuntu &#x7B49;&#x5728;&#x7EBF;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1B;``yum ``install` `rsync` `#Fedora&#x3001;Redhat &#x7B49;&#x5728;&#x7EBF;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1B;``rpm -ivh ``rsync` `# Fedora&#x3001;Redhat &#x7B49;rpm&#x5305;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1B;``rpm -qa | ``grep` `rsync` `# &#x67E5;&#x770B;&#x5B89;&#x88C5;&#x7684;&#x7248;&#x672C;</span><br></pre></td></tr></table></figure></p>
+<h4><span id="&#x914D;&#x7F6E;">&#x914D;&#x7F6E;</span></h4><p>&#x4FEE;&#x6539;&#xFF1A; &#x6587;&#x4EF6;&#x540D;&#x7F3A;&#x5C11;&#x201C;d&#x201D; &#x5B57;&#x7B26;</p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 /etc/rsync.d/rsyncd.conf </span><br><span class="line">chmod 600 /etc/rsync.d/rsyncd.pass</span><br></pre></td></tr></table></figure></p>
+<p>&#x521B;&#x5EFA;&#x76F8;&#x5173;&#x914D;&#x7F6E;&#x76EE;&#x5F55;&#x548C;&#x6587;&#x4EF6;</p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir` `-p ``/etc/rsync``.d  ``# rsync &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#xFF0C;&#x9ED8;&#x8BA4;&#x6CA1;&#x6709;` `touch` `/etc/rsync``.d``/rsyncd``.conf ``# rsync&#x670D;&#x52A1;&#x7AEF;&#x914D;&#x7F6E;&#x6587;&#x4EF6;` `touch` `/etc/rsync``.d``/rsyncd``.pass ``# &#x5BA2;&#x6237;&#x7AEF;&#x62C9;&#x53D6;&#x6587;&#x4EF6;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x7528;&#x6237;&#x5BC6;&#x7801;` `chmod` `600 ``/etc/rsync``.d``/rsyncd``.conf` `chmod` `600 ``/etc/rsync``.d``/rsyncd``.pass</span><br></pre></td></tr></table></figure></p>
+<h4><span id="&#x7F16;&#x5199;&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;-rsyncdconf">&#x7F16;&#x5199;&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6; rsyncd.conf</span></h4><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ``/etc/rsync``.d``/rsyncd``.conf</span><br></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x4EE5;&#x4E0B;&#x662F;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF09;</p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">log file=/var/log/rsyncd.log</span><br><span class="line"></span><br><span class="line">pid file=/var/run/rsyncd.pid</span><br><span class="line"></span><br><span class="line">lock file=/var/run/rsyncd.lock</span><br><span class="line"></span><br><span class="line">motd file = /etc/rsyncd/rsyncd.motd</span><br><span class="line"></span><br><span class="line">uid=root</span><br><span class="line"></span><br><span class="line">gid=root</span><br><span class="line"></span><br><span class="line">max connections=5</span><br><span class="line"></span><br><span class="line">hosts allow=192.168.1.167 # &#x5141;&#x8BB8;&#x8BBF;&#x95EE;&#x7684;IP&#x5730;&#x5740;&#xFF0C;&#x6211;&#x8FD9;&#x91CC;&#x586B;&#x5199;&#x7684;&#x662F;&#x6D4B;&#x8BD5;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x5730;&#x5740;</span><br><span class="line"></span><br><span class="line">hosts deny=*</span><br><span class="line"></span><br><span class="line">secrets file = /etc/rsync.d/rsyncd.pass</span><br><span class="line"></span><br><span class="line">log = /var/log/rsyncd.log l</span><br><span class="line"></span><br><span class="line">og format = %t %a %m %f %b</span><br><span class="line"></span><br><span class="line">syslog facility = local3 timeout = 300</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[handbook]</span><br><span class="line"></span><br><span class="line">path=/handbook/</span><br><span class="line"></span><br><span class="line">comment= handbook</span><br><span class="line"></span><br><span class="line">test auth users=rsync</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2020/05/19/booboo_others/2020-05-20-tec-linux/02.png" alt></p>
+<p>&#x8BE6;&#x7EC6;&#x53C2;&#x6570;&#x53EF;&#x53C2;&#x8003;&#x5B98;&#x7F51; <a href="https://download.samba.org/pub/rsync/rsyncd.conf.html" target="_blank" rel="noopener">rsyncd.conf &#x4ECB;&#x7ECD; </a></p>
+<h4><span id="&#x7F16;&#x5199;&#x7528;&#x6237;&#x8BA4;&#x8BC1;&#x6587;&#x4EF6;">&#x7F16;&#x5199;&#x7528;&#x6237;&#x8BA4;&#x8BC1;&#x6587;&#x4EF6;</span></h4><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ``/etc/rsync``.d``/rsyncd``.pass</span><br></pre></td></tr></table></figure></p>
+<p>&#x4FEE;&#x6539;&#xFF1A;&#x5C06;&#x4EE3;&#x7801;&#x6A21;&#x5F0F;&#x53BB;&#x9664;&#xFF0C;&#x5E76;&#x6DFB;&#x52A0;&#x6587;&#x5B57;&#x63CF;&#x8FF0;</p>
+<p>&#x8F93;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync:cloudcare</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2020/05/19/booboo_others/2020-05-20-tec-linux/03.png" alt></p>
+<h3><span id="&#x542F;&#x52A8;&#x670D;&#x52A1;">&#x542F;&#x52A8;&#x670D;&#x52A1;</span></h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync` `--daemon --config=``/etc/rsync``.d``/rsyncd``.conf</span><br></pre></td></tr></table></figure></p>
+<h4><span id="&#x4FEE;&#x6539;-&#x6DFB;&#x52A0;&#x4E86;&#x786E;&#x8BA4;&#x670D;&#x52A1;&#x542F;&#x52A8;-&#x6807;&#x9898;&#x4EE5;&#x53CA;&#x76F8;&#x5173;&#x547D;&#x4EE4;-&#x5C06;-&#x6CE8;rsync-&#x670D;&#x52A1;&#x9ED8;&#x8BA4;&#x7AEF;&#x53E3;&#x662F;-873-&#x524D;&#x79FB;-&#x786E;&#x8BA4;&#x670D;&#x52A1;&#x542F;&#x52A8;">&#x4FEE;&#x6539;&#xFF1A; &#x6DFB;&#x52A0;&#x4E86;&#x201C;&#x786E;&#x8BA4;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x201D; &#x6807;&#x9898;&#xFF0C;&#x4EE5;&#x53CA;&#x76F8;&#x5173;&#x547D;&#x4EE4;; &#x5C06; &#x201C;&#x6CE8;&#xFF1A;rsync &#x670D;&#x52A1;&#x9ED8;&#x8BA4;&#x7AEF;&#x53E3;&#x662F; 873&#x201D; &#x524D;&#x79FB;  &#x786E;&#x8BA4;&#x670D;&#x52A1;&#x542F;&#x52A8;</span></h4><p>&#x6CE8;&#xFF1A;rsync &#x670D;&#x52A1;&#x9ED8;&#x8BA4;&#x7AEF;&#x53E3;&#x662F; 873</p>
+<p>&#x786E;&#x8BA4;&#x670D;&#x52A1;&#x542F;&#x52A8;</p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps` `-ef | ``grep` `rsync` `netstat` `-nltp | ``grep` `7589</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2020/05/19/booboo_others/2020-05-20-tec-linux/04.png" alt></p>
+<h3><span id="rsync&#x5BA2;&#x6237;&#x7AEF;">rsync&#x5BA2;&#x6237;&#x7AEF;</span></h3><p>&#x5BA2;&#x6237;&#x7AEF;&#x914D;&#x7F6E;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5B89;&#x88C5; rsync &#x5DE5;&#x5177;&#x5373;&#x53EF;</p>
+<h4><span id="&#x5B89;&#x88C5;&#x65B9;&#x5F0F;">&#x5B89;&#x88C5;&#x65B9;&#x5F0F;</span></h4><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo` `apt-get ``install` `rsync` `# debian&#x3001;ubuntu &#x7B49;&#x5728;&#x7EBF;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1B;` `yum ``install` `rsync` `# Fedora&#x3001;Redhat &#x7B49;&#x5728;&#x7EBF;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1B;` `rpm -ivh ``rsync` `# Fedora&#x3001;Redhat &#x7B49;rpm&#x5305;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF1B;` `rpm -qa | ``grep` `rsync` `# &#x67E5;&#x770B;&#x5B89;&#x88C5;&#x7684;&#x7248;&#x672C;</span><br></pre></td></tr></table></figure></p>
+<h4><span id="&#x9A8C;&#x8BC1;">&#x9A8C;&#x8BC1;</span></h4><p>&#x4FEE;&#x6539;&#xFF1A;&#x6DFB;&#x52A0;&#x4E86;&#x201C;&#x793A;&#x4F8B;&#x5185;&#x5BB9;&#x201D;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A; &#x5C06;192.168.1.176 &#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684; handbook &#xFF08;&#x8FD9;&#x91CC;&#x662F;&#x5B9A;&#x4E49;&#x7684;&#x9879;&#x76EE;&#x540D;&#x79F0;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;rsync server &#x7AEF;&#x7684;&#x914D;&#x7F6E;&#xFF09;&#x9879;&#x76EE;&#x540C;&#x6B65;&#x5230; 192.168.1.167 &#x7684; /tmp &#x4E0B;</p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync` `-avzP ``rsync``@192.168.1.176::handbook ``/tmp</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x8BF4;&#x660E;&#xFF1A; -a &#x53C2;&#x6570;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;-rlptgoD&#xFF0C;-r &#x662F;&#x9012;&#x5F52; -l &#x662F;&#x94FE;&#x63A5;&#x6587;&#x4EF6;&#xFF0C;&#x610F;&#x601D;&#x662F;&#x62F7;&#x8D1D;&#x94FE;&#x63A5;&#x6587;&#x4EF6;&#xFF1B;-p &#x8868;&#x793A;&#x4FDD;&#x6301;&#x6587;&#x4EF6;&#x539F;&#x6709;&#x6743;&#x9650;&#xFF1B;-t &#x4FDD;&#x6301;&#x6587;&#x4EF6;&#x539F;&#x6709;&#x65F6;&#x95F4;&#xFF1B;-g &#x4FDD;&#x6301;&#x6587;&#x4EF6;&#x539F;&#x6709;&#x7528;&#x6237;&#x7EC4;&#xFF1B;-o &#x4FDD;&#x6301;&#x6587;&#x4EF6;&#x539F;&#x6709;&#x5C5E;&#x4E3B;&#xFF1B;-D &#x76F8;&#x5F53;&#x4E8E;&#x5757;&#x8BBE;&#x5907;&#x6587;&#x4EF6;&#xFF1B; -z &#x4F20;&#x8F93;&#x65F6;&#x538B;&#x7F29;&#xFF1B; -P &#x4F20;&#x8F93;&#x8FDB;&#x5EA6;&#xFF1B; -v &#x4F20;&#x8F93;&#x65F6;&#x7684;&#x8FDB;&#x5EA6;&#x7B49;&#x4FE1;&#x606F;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2020/05/19/booboo_others/2020-05-20-tec-linux/05.png" alt></p>
+<p>&#x8BE6;&#x7EC6;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x53C2;&#x8003;: <a href="https://confluence.jiagouyun.com/pages/viewpage.action?pageId=15503070" target="_blank" rel="noopener">RSYNC &#x53C2;&#x6570; </a></p>
+<p>&#x5982;&#x679C;&#x60F3;&#x6BCF;&#x9694;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x540C;&#x6B65;&#x4E00;&#x6B21;&#xFF0C;&#x53EF;&#x4EE5;&#x914D;&#x5408; crontab &#x6765;&#x5B9E;&#x73B0;&#xFF1B;&#x4F46;&#x662F;&#x5982;&#x679C;&#x60F3;&#x5B9E;&#x65F6;&#x540C;&#x6B65;&#xFF0C;&#x90A3;&#x5C31;&#x9700;&#x8981;&#x7528;&#x5230;inotify &#x5DE5;&#x5177;&#x4E86;</p>
+<h2><span id="inotify">inotify</span></h2><blockquote>
+<p>inotify&#x662F;Linux&#x6838;&#x5FC3;&#x5B50;&#x7CFB;&#x7EDF;&#x4E4B;&#x4E00;&#xFF0C;&#x505A;&#x4E3A;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x7684;&#x9644;&#x52A0;&#x529F;&#x80FD;&#xFF0C;&#x5B83;&#x53EF;&#x76D1;&#x63A7;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x5E76;&#x5C06;&#x5F02;&#x52A8;&#x901A;&#x77E5;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;&#x6458;&#x81EA;<a href="https://zh.wikipedia.org/wiki/Inotify" target="_blank" rel="noopener">&#x7EF4;&#x57FA;&#x767E;&#x79D1;</a> &#x53EF;&#x4EE5;&#x914D;&#x5408;rsync&#x505A;&#x5B9E;&#x65F6;&#x540C;&#x6B65;&#xFF0C;inotify &#x901A;&#x8FC7;&#x76D1;&#x63A7;&#x6587;&#x4EF6;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x7136;&#x540E;&#x89E6;&#x53D1;&#x540C;&#x6B65;&#x811A;&#x672C;&#xFF0C;&#x5B9E;&#x73B0;&#x5B9E;&#x65F6;&#x540C;&#x6B65;&#x3002;</p>
+</blockquote>
+<h3><span id="&#x4FEE;&#x6539;-&#x6DFB;&#x52A0;&#x4E86;&#x5B9E;&#x9A8C;&#x76EE;&#x5730;-&#x548C;&#x62D3;&#x6251;&#x73AF;&#x5883;-&#x4E24;&#x4E2A;&#x9879;&#x76EE;">&#x4FEE;&#x6539;&#xFF1A; &#x6DFB;&#x52A0;&#x4E86;&#x201C;&#x5B9E;&#x9A8C;&#x76EE;&#x5730;&#x201D; &#x548C;&#x201C;&#x62D3;&#x6251;&#x73AF;&#x5883;&#x201D; &#x4E24;&#x4E2A;&#x9879;&#x76EE;</span></h3><h3><span id="&#x5B9E;&#x9A8C;&#x76EE;&#x7684;">&#x5B9E;&#x9A8C;&#x76EE;&#x7684;</span></h3><p>&#x5C06; 192.168.1.167 &#x7684; /handbook &#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x5185;&#x5BB9;&#x5B9E;&#x65F6;&#x540C;&#x6B65;&#x5230; 192.168.1.176 &#x5B9A;&#x4E49;&#x7684; &#x201C;handbook&#x201D; &#x76EE;&#x5F55;&#x4E0B;&#xFF08;&#x5B9E;&#x9A8C;&#x73AF;&#x5883;&#x4F9D;&#x65E7;&#x91C7;&#x7528;&#x4E0A;&#x9762;&#x7684;&#x8001;&#x73AF;&#x5883;&#xFF09;</p>
+<h3><span id="&#x62D3;&#x6251;&#x73AF;&#x5883;">&#x62D3;&#x6251;&#x73AF;&#x5883;</span></h3><p><img src="/2020/05/19/booboo_others/2020-05-20-tec-linux/06.png" alt></p>
+<h3><span id="&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</span></h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum ``install` `-y inotify-tools</span><br></pre></td></tr></table></figure></p>
+<p>&#x6CE8;&#xFF1A;inotify &#x5176;&#x5B9E;&#x4E0D;&#x9700;&#x8981;&#x4EFB;&#x4F55;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x5B89;&#x88C5;&#x597D;&#x4E4B;&#x540E;&#x9ED8;&#x8BA4;&#x6709;&#x4E24;&#x4E2A;&#x547D;&#x4EE4;;</p>
+<blockquote>
+<p>inotifywait : &#x5728;&#x88AB;&#x76D1;&#x63A7;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x76EE;&#x5F55;&#x4E0A;&#x7B49;&#x5F85;&#x7279;&#x5B9A;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E8B;&#x4EF6;&#xFF08;open close delete&#x7B49;&#xFF09;&#x53D1;&#x751F;</p>
+<p>inotifywatch :&#x6536;&#x96C6;&#x88AB;&#x76D1;&#x63A7;&#x7684;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4F7F;&#x7528;&#x7684;&#x7EDF;&#x8BA1;&#x6570;&#x636E;,&#x6307;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E8B;&#x4EF6;&#x53D1;&#x751F;&#x7684;&#x6B21;&#x6570;&#x7EDF;&#x8BA1;</p>
+</blockquote>
+<h3><span id="&#x4F7F;&#x7528;">&#x4F7F;&#x7528;</span></h3><h4><span id="&#x68C0;&#x6D4B;&#x521B;&#x5EFA;&#x4E8B;&#x4EF6;">&#x68C0;&#x6D4B;&#x521B;&#x5EFA;&#x4E8B;&#x4EF6;</span></h4><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inotifywait -mrq ``/handbook/` `cd` `/handbook/` `touch` `1</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2020/05/19/booboo_others/2020-05-20-tec-linux/07.png" alt></p>
+<h4><span id="&#x68C0;&#x6D4B;&#x5220;&#x9664;&#x4E8B;&#x4EF6;">&#x68C0;&#x6D4B;&#x5220;&#x9664;&#x4E8B;&#x4EF6;</span></h4><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inotifywait -mrq ``/handbook` `--timefmt ``&quot;%d-%m-%y %H:%M&quot;` `--``format` `&quot;%T %w%f &#x4E8B; &#x4EF6; &#x606F;: %e&quot;` `-e delete ``cd` `/handbook/` `rm` `-rf 1 4</span><br></pre></td></tr></table></figure><br><img src="/2020/05/19/booboo_others/2020-05-20-tec-linux/08.png" alt></p>
+<h4><span id="&#x7F16;&#x5199;&#x5B9E;&#x65F6;&#x540C;&#x6B65;&#x811A;&#x672C;">&#x7F16;&#x5199;&#x5B9E;&#x65F6;&#x540C;&#x6B65;&#x811A;&#x672C;</span></h4><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more rsync-handbook.sh</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash` `inotifywait -mrq ``/handbook/` `--``format` `&quot;%w%f&quot;` `-e create,delete,moved_to,close_write | ``while` `read` `line ``do` `rsync` `-az ``/handbook/` `rsync``@192.168.1.176::handbook --password-``file``=``/root/handbook``.pw ``done</span><br></pre></td></tr></table></figure></p>
+<p><em>&#x6CE8;&#xFF1A; &#x5176;&#x4E2D;&#x2013;password-file &#x662F;&#x6307;&#x5B9A; &#x201C;handbook&#x201D; &#x6A21;&#x5757;&#x8BA4;&#x7528;&#x6237;&#x8BA4;&#x8BC1;&#x7684;&#x5BC6;&#x7801;&#x6587;&#x4EF6;\</em></p>
+<h3><span id="&#x9A8C;&#x8BC1;">&#x9A8C;&#x8BC1;</span></h3><p><img src="/2020/05/19/booboo_others/2020-05-20-tec-linux/09.png" alt></p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Linux/">#Linux</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/05/19/booboo_others/2020-05-19-tec-linux/">记一次grep命令常用方法带文件名和行数</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/05/18/amy_life/2020-05-18-amy/">团队家庭聚餐日</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2020/05/19/booboo_others/2020-05-20-tec-linux/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+
+
+</div>
+
+
+    </div>
+</section>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span> 人次 </span>
+           </div>
+
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+    
+</body>
+</html>
