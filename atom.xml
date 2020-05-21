@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.toberoot.com/"/>
-  <updated>2020-05-19T03:11:00.188Z</updated>
+  <updated>2020-05-21T09:48:15.820Z</updated>
   <id>http://www.toberoot.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mysqlbinlog远程拉日志</title>
+    <link href="http://www.toberoot.com/2020/05/22/booboo_others/2020-05-21-tec-mysql/"/>
+    <id>http://www.toberoot.com/2020/05/22/booboo_others/2020-05-21-tec-mysql/</id>
+    <published>2020-05-21T17:47:33.000Z</published>
+    <updated>2020-05-21T09:48:15.820Z</updated>
+    
+    <content type="html"><![CDATA[<h2><span id="&#x83B7;&#x53D6;&#x8FDC;&#x7A0B;mysql&#x670D;&#x52A1;&#x5668;&#x7684;binlog&#x65E5;&#x5FD7;">&#x83B7;&#x53D6;&#x8FDC;&#x7A0B;MySQL&#x670D;&#x52A1;&#x5668;&#x7684;binlog&#x65E5;&#x5FD7;</span></h2><p><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--row&#x683C;&#x5F0F;&#x7684;&#x65E5;&#x5FD7;</span><br><span class="line">mysqlbinlog -vv -P 3306 -uxxxx -pxxxx -hxxxx.mysql.rds.aliyuncs.com --read-from-remote-server --start-datetime=&apos;2020-05-20 09:00:00&apos; --stop-datetime=&apos;2020-05-20 11:00:00&apos; --base64-output=DECODE-ROWS mysql-bin.000xxx &gt; xxxlog.sql</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;span id=&quot;&amp;#x83B7;&amp;#x53D6;&amp;#x8FDC;&amp;#x7A0B;mysql&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x7684;binlog&amp;#x65E5;&amp;#x5FD7;&quot;&gt;&amp;#x83B7;&amp;#x53D6;&amp;#x8FDC;&amp;#x7A0B;M
+      
+    
+    </summary>
+    
+    
+      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
+    
+      <category term="MySQL" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/"/>
+    
+    
+      <category term="紧急救援" scheme="http://www.toberoot.com/tags/%E7%B4%A7%E6%80%A5%E6%95%91%E6%8F%B4/"/>
+    
+      <category term="mysqlbinlog" scheme="http://www.toberoot.com/tags/mysqlbinlog/"/>
+    
+  </entry>
   
   <entry>
     <title>rsync + inotify 实现实时同步</title>
@@ -602,33 +632,6 @@
     
     
       <category term="技术管理" scheme="http://www.toberoot.com/tags/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于博客中技术文章的思考</title>
-    <link href="http://www.toberoot.com/2020/04/14/booboo_hexo/2020-04-14-tec-hexo/"/>
-    <id>http://www.toberoot.com/2020/04/14/booboo_hexo/2020-04-14-tec-hexo/</id>
-    <published>2020-04-14T14:15:45.000Z</published>
-    <updated>2020-04-14T07:38:21.790Z</updated>
-    
-    <content type="html"><![CDATA[<p>&#x6458;&#x8981;&#xFF1A;&#x5DE5;&#x4F5C;&#x4E2D;&#x7684;&#x6280;&#x672F;&#x79EF;&#x7D2F;&#xFF0C;&#x9700;&#x8981;&#x6C89;&#x6DC0;&#xFF0C;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x65B9;&#x5F0F;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x5E76;&#x4E14;&#x9700;&#x8981;&#x957F;&#x671F;&#x7684;&#x575A;&#x6301;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x6280;&#x672F;&#x8005;&#x7684; <strong>&#x81EA;&#x6211;&#x5B66;&#x4E60;&#x4E0E;&#x6C89;&#x6DC0;</strong>&#x7684;&#x80FD;&#x529B;&#x3002;</p><a id="more"></a><p>2020&#x5E74;&#x4E4B;&#x524D;&#x6240;&#x6709;&#x7684;&#x5B66;&#x4E60;&#x8BB0;&#x5F55;&#x5747;&#x5B58;&#x653E;&#x5728;Github&#x4E2D;&#x7EF4;&#x62A4;&#xFF0C;&#x4F18;&#x70B9;&#xFF1A;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#x5185;&#x5BB9;&#x7684;&#x8FED;&#x4EE3;&#xFF1B;&#x7F3A;&#x70B9;&#xFF1A;&#x4E0D;&#x65B9;&#x4FBF;&#x5206;&#x4EAB;&#x3002;</p><p>&#x8BA1;&#x5212;&#xFF1A;</p><ol><li>&#x4ECE;&#x57FA;&#x7840;&#x7CFB;&#x5217;&#x5F00;&#x59CB;&#x5C06;&#x5DF2;&#x6210;&#x4F53;&#x7CFB;&#x7684;&#x5B66;&#x4E60;&#x5185;&#x5BB9;&#x8F93;&#x51FA;&#x81F3;&#x535A;&#x5BA2;&#xFF0C;&#x672A;&#x6210;&#x4F53;&#x7CFB;&#x7684;&#x5185;&#x5BB9;&#x7EE7;&#x7EED;&#x5728;Github&#x4E2D;&#x8FED;&#x4EE3;&#x3002;</li><li>&#x6280;&#x672F;&#x6587;&#x6863;&#x4E2D;&#xFF0C;&#x975E;markdown&#x6587;&#x4EF6;&#x4F7F;&#x7528;github&#x539F;&#x6709;&#x4ED3;&#x5E93;&#x6765;&#x4FDD;&#x5B58;&#xFF0C;&#x901A;&#x8FC7;&#x94FE;&#x63A5;&#x7684;&#x65B9;&#x5F0F;&#x5230;&#x535A;&#x5BA2;&#x3002;</li><li>&#x540E;&#x7EED;&#x7684;&#x8FED;&#x4EE3;&#xFF0C;&#x4F8B;&#x5982;&#x6280;&#x672F;&#x6587;&#x6863;&#x7684;&#x66F4;&#x65B0;&#xFF0C;&#x82E5;&#x5DF2;&#x5F00;&#x59CB;&#x8F93;&#x51FA;&#x81F3;&#x535A;&#x5BA2;&#xFF0C;&#x5219;&#x539F;&#x5148;&#x5728;Github&#x7684;&#x4ED3;&#x5E93;&#x4E0D;&#x518D;&#x66F4;&#x65B0;&#x3002;</li></ol><table><thead><tr><th>GitHub&#x9879;&#x76EE;&#x7EF4;&#x62A4;</th><th></th><th></th><th></th></tr></thead><tbody><tr><td>&#x7CFB;&#x5217;</td><td>repo</td><td>&#x8BF4;&#x660E;</td><td>&#x535A;&#x5BA2;&#x6C89;&#x6DC0;</td></tr><tr><td>&#x57FA;&#x7840;&#x7CFB;&#x5217;</td><td>booboo_linux_base</td><td>Linux&#x7CFB;&#x7EDF;&#x57FA;&#x7840;</td><td>1</td></tr><tr><td></td><td>booboo_easy_service</td><td>Linux&#x7B80;&#x6613;&#x670D;&#x52A1;</td><td>1</td></tr><tr><td></td><td>booboo_bash_shell_scripts</td><td>LinuxBash&#x811A;&#x672C;</td><td>1</td></tr><tr><td></td><td>booboo_mysql</td><td>MySQL&#x6570;&#x636E;&#x5E93;&#x57FA;&#x7840;</td><td>1</td></tr><tr><td></td><td>booboo_redis</td><td>Redis&#x6570;&#x636E;&#x5E93;&#x57FA;&#x7840;</td><td>1</td></tr><tr><td></td><td>booboo_oracle</td><td>Oracle&#x6570;&#x636E;&#x5E93;&#x57FA;&#x7840;</td><td></td></tr><tr><td></td><td>booboo_mongodb</td><td>MongoDB&#x6570;&#x636E;&#x5E93;&#x57FA;&#x7840;</td><td></td></tr><tr><td></td><td>booboo_service</td><td>Linux&#x670D;&#x52A1;&#xFF08;Web&#x3001;&#x76D1;&#x63A7;&#x3001;&#x81EA;&#x52A8;&#x5316;&#x8FD0;&#x7EF4;&#x670D;&#x52A1;&#xFF09;</td><td></td></tr><tr><td></td><td>booboo_python</td><td>Python&#x5F00;&#x53D1;&#x57FA;&#x7840;</td><td></td></tr><tr><td></td><td>booboo_docker</td><td>docker&#x57FA;&#x7840;&#x5B66;&#x4E60;</td><td></td></tr><tr><td></td><td>booboo_datav</td><td>datav&#x57FA;&#x7840;&#x5B66;&#x4E60;</td><td></td></tr><tr><td></td><td>booboo_hadoop</td><td>hadoop&#x57FA;&#x7840;&#x5B66;&#x4E60;</td><td></td></tr><tr><td>&#x8FDB;&#x9636;&#x7CFB;&#x5217;</td><td>DBA_Mysql</td><td>MySQL DBA&#x5DE5;&#x4F5C;</td><td></td></tr><tr><td></td><td>DBA_redis</td><td>Redis DBA&#x5DE5;&#x4F5C;</td><td></td></tr><tr><td></td><td>DBA_MongoDB</td><td>MongoDB DBA&#x5DE5;&#x4F5C;</td><td></td></tr><tr><td></td><td>DBA_Linux</td><td>Linux_DBA&#x5DE5;&#x4F5C;</td><td></td></tr><tr><td></td><td>DBA_python</td><td>Python&#x4E2D;&#x9AD8;&#x7EA7;_DBA&#x5DE5;&#x4F5C;</td><td></td></tr><tr><td></td><td>DBA_Git</td><td>Git_DBA&#x5DE5;&#x4F5C;</td><td></td></tr><tr><td></td><td>DevOps-Database-Troubleshooting</td><td>&#x6570;&#x636E;&#x5E93;&#x81EA;&#x52A8;&#x5316;</td><td></td></tr><tr><td>&#x535A;&#x5BA2;</td><td>booboowei.github.io</td><td>&#x4E2A;&#x4EBA;&#x535A;&#x5BA2;</td><td></td></tr><tr><td>&#x8003;&#x7814;</td><td>lianlianyouci</td><td>&#x82F1;&#x8BED;</td><td></td></tr><tr><td></td><td>booboo_match</td><td>&#x6570;&#x5B66;</td><td></td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;#x6458;&amp;#x8981;&amp;#xFF1A;&amp;#x5DE5;&amp;#x4F5C;&amp;#x4E2D;&amp;#x7684;&amp;#x6280;&amp;#x672F;&amp;#x79EF;&amp;#x7D2F;&amp;#xFF0C;&amp;#x9700;&amp;#x8981;&amp;#x6C89;&amp;#x6DC0;&amp;#xFF0C;&amp;#x9009;&amp;#x62E9;&amp;#x4E00;&amp;#x4E2A;&amp;#x597D;&amp;#x7684;&amp;#x65B9;&amp;#x5F0F;&amp;#x5F88;&amp;#x91CD;&amp;#x8981;&amp;#xFF0C;&amp;#x5E76;&amp;#x4E14;&amp;#x9700;&amp;#x8981;&amp;#x957F;&amp;#x671F;&amp;#x7684;&amp;#x575A;&amp;#x6301;&amp;#xFF0C;&amp;#x8FD9;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x6280;&amp;#x672F;&amp;#x8005;&amp;#x7684; &lt;strong&gt;&amp;#x81EA;&amp;#x6211;&amp;#x5B66;&amp;#x4E60;&amp;#x4E0E;&amp;#x6C89;&amp;#x6DC0;&lt;/strong&gt;&amp;#x7684;&amp;#x80FD;&amp;#x529B;&amp;#x3002;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
-    
-      <category term="技术思考" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/"/>
-    
-    
-      <category term="hexo" scheme="http://www.toberoot.com/tags/hexo/"/>
-    
-      <category term="定制自己的Hexo博客专题" scheme="http://www.toberoot.com/tags/%E5%AE%9A%E5%88%B6%E8%87%AA%E5%B7%B1%E7%9A%84Hexo%E5%8D%9A%E5%AE%A2%E4%B8%93%E9%A2%98/"/>
     
   </entry>
   
