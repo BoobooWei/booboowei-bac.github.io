@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.toberoot.com/"/>
-  <updated>2020-05-22T02:12:43.879Z</updated>
+  <updated>2020-05-22T04:40:16.015Z</updated>
   <id>http://www.toberoot.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多个Github账号导致 hexo deploy 报错</title>
+    <link href="http://www.toberoot.com/2020/05/23/booboo_hexo/2020-05-23-tec-hexo/"/>
+    <id>http://www.toberoot.com/2020/05/23/booboo_hexo/2020-05-23-tec-hexo/</id>
+    <published>2020-05-23T12:03:00.000Z</published>
+    <updated>2020-05-22T04:40:16.015Z</updated>
+    
+    <content type="html"><![CDATA[<h2><span id="&#x95EE;&#x9898;&#x63CF;&#x8FF0;">&#x95EE;&#x9898;&#x63CF;&#x8FF0;</span></h2><p>2&#x4E2A;github&#x5E10;&#x53F7;&#x66F4;&#x65B0;2&#x4E2A;hexo&#x535A;&#x5BA2;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x535A;&#x5BA2;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#x4F7F;&#x7528;&#xFF0C;&#x6267;&#x884C; <code>hexo deploy</code>&#x62A5;&#x9519;&#x5982;&#x4E0B;&#xFF1A;</p><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p><p>&#x76EE;&#x524D;&#x4E24;&#x4E2A;github&#x5747;&#x914D;&#x7F6E;&#x4E86;ssh&#x65E0;&#x5BC6;&#x94A5;&#x8BBF;&#x95EE;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x516C;&#x94A5;&#x6587;&#x4EF6;&#x5206;&#x522B;&#x4E3A;&#xFF1A;</p><ul><li><code>booboowei</code> &#x4F7F;&#x7528;&#x7684;&#x662F; <code>ssh-keygen -t rsa</code> &#x547D;&#x4EE4;&#x751F;&#x4EA7;ssh&#x516C;&#x94A5;&#x548C;&#x5BC6;&#x94A5; </li><li><code>toberoot-wyp</code> &#x4F7F;&#x7528;&#x7684;&#x662F; <code>ssh-keygen -t id_ed25519</code> &#x547D;&#x4EE4;&#x751F;&#x4EA7;ssh&#x516C;&#x94A5;&#x548C;&#x5BC6;&#x94A5; </li></ul><h2><span id="&#x89E3;&#x51B3;&#x65B9;&#x6CD5;">&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</span></h2><h3><span id="&#x914D;&#x7F6E;config">&#x914D;&#x7F6E;config</span></h3><p>&#x5982;&#x679C; ~/.ssh/&#x6839;&#x8DEF;&#x5F84;&#x4E0B;, &#x6CA1;&#x6709;config, &#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;config&#x6587;&#x4EF6;</p><p>config&#x914D;&#x7F6E;&#x5982;&#x4E0B;, &#x7B2C;&#x4E00;&#x4E2A;&#x4E3A;&#x539F;&#x6765;&#x7684;ssh key&#x914D;&#x7F6E;, kentsun&#x4E3A;&#x65B0;&#x7684;ssh key&#x914D;&#x7F6E;</p><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#&#x7B2C;&#x4E00;&#x4E2A;&#x8D26;&#x53F7;&#xFF0C;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x7684;&#x8D26;&#x53F7; booboowei</span></span><br><span class="line">Host github.com</span><br><span class="line"> HostName github.com</span><br><span class="line"> User git</span><br><span class="line"> IdentityFile ~/.ssh/id_rsa</span><br><span class="line"><span class="hljs-comment"># &#x7B2C;&#x4E8C;&#x4E2A;&#x8D26;&#x53F7; toberoot-wyp</span></span><br><span class="line">Host toberoot-wyp.github.com <span class="hljs-comment"># kentsun&#x4E3A;&#x524D;&#x7F00;&#x540D;&#xFF0C;&#x53EF;&#x4EE5;&#x4EFB;&#x610F;&#x8BBE;&#x7F6E;</span></span><br><span class="line"> HostName github.com</span><br><span class="line"> User git</span><br><span class="line"> IdentityFile ~/.ssh/id_ed25519</span><br></pre></td></tr></table></figure></p><h3><span id="&#x6E05;&#x7A7A;ssh&#x7F13;&#x5B58;&#x5E76;&#x6D4B;&#x8BD5;">&#x6E05;&#x7A7A;SSH&#x7F13;&#x5B58;&#x5E76;&#x6D4B;&#x8BD5;</span></h3><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">cd</span> ~/.ssh</span><br><span class="line">ssh-add -D</span><br><span class="line">ssh-add id_rsa</span><br><span class="line">ssh-add id_ed25519</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># &#x6700;&#x540E;&#x786E;&#x8BA4;&#x4E00;&#x4E0B;&#x65B0;&#x79D8;&#x94A5;&#x5DF2;&#x7ECF;&#x6DFB;&#x52A0;&#x6210;&#x529F;</span></span><br><span class="line">ssh-add -l</span><br><span class="line"><span class="hljs-comment"># &#x8F93;&#x5165;&#x6307;&#x4EE4;, &#x9A8C;&#x8BC1;&#x914D;&#x7F6E;&#x662F;&#x5426;&#x6210;&#x529F;</span></span><br><span class="line"><span class="hljs-comment"># &#x9ED8;&#x8BA4;ssh_key&#x9A8C;&#x8BC1;</span></span><br><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="hljs-comment"># &#x65B0;ssh_key&#x9A8C;&#x8BC1;, &#x65B0;&#x79D8;&#x94A5;&#x540D;&#x66FF;&#x6362;username</span></span><br><span class="line">ssh -T git@toberoot-wyp.github.com</span><br></pre></td></tr></table></figure></p><p>&#x5982;&#x4E0B;&#x63D0;&#x793A;&#x4FE1;&#x606F;, &#x5219;&#x914D;&#x7F6E;&#x6210;&#x529F;</p><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">12:35 &#x4E0B;&#x5348; :~ booboowei$ ssh -T git@github.com</span><br><span class="line">Hi BoobooWei! You<span class="hljs-string">&apos;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br><span class="line"><span class="hljs-string">12:39 &#x4E0B;&#x5348; :~ booboowei$ ssh -T git@toberoot-wypgithub.com</span></span><br><span class="line"><span class="hljs-string">ssh: Could not resolve hostname toberoot-wypgithub.com: nodename nor servname provided, or not known</span></span><br><span class="line"><span class="hljs-string">12:39 &#x4E0B;&#x5348; :~ booboowei$ ssh -T git@toberoot-wyp.github.com</span></span><br><span class="line"><span class="hljs-string">Hi toberoot-wyp! You&apos;</span>ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;span id=&quot;&amp;#x95EE;&amp;#x9898;&amp;#x63CF;&amp;#x8FF0;&quot;&gt;&amp;#x95EE;&amp;#x9898;&amp;#x63CF;&amp;#x8FF0;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;2&amp;#x4E2A;github&amp;#x5E10;&amp;#x53F7;&amp;#x66F4;&amp;#x65B
+      
+    
+    </summary>
+    
+    
+      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
+    
+      <category term="博客搭建" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="hexo" scheme="http://www.toberoot.com/tags/hexo/"/>
+    
+      <category term="定制自己的Hexo博客专题" scheme="http://www.toberoot.com/tags/%E5%AE%9A%E5%88%B6%E8%87%AA%E5%B7%B1%E7%9A%84Hexo%E5%8D%9A%E5%AE%A2%E4%B8%93%E9%A2%98/"/>
+    
+      <category term="github" scheme="http://www.toberoot.com/tags/github/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Github Page搭建自己的轻量级博客(Hexo+Next)</title>
@@ -607,34 +639,6 @@
     
     
       <category term="慢SQL" scheme="http://www.toberoot.com/tags/%E6%85%A2SQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>表格实现合计</title>
-    <link href="http://www.toberoot.com/2020/04/18/booboo_others/2020-04-17-tec-html/"/>
-    <id>http://www.toberoot.com/2020/04/18/booboo_others/2020-04-17-tec-html/</id>
-    <published>2020-04-17T21:20:35.000Z</published>
-    <updated>2020-04-17T13:27:46.282Z</updated>
-    
-    <content type="html"><![CDATA[<h2><span id="&#x9700;&#x6C42;">&#x9700;&#x6C42;</span></h2><p>&#x5BF9; Flask_Admin &#x7684; list.html &#x4E2D;&#x6DFB;&#x52A0; &#x4E00;&#x4E2A;&#x7EDF;&#x8BA1;&#x5217;&#x3002;</p><h2><span id="&#x6280;&#x672F;&#x8C03;&#x7814;">&#x6280;&#x672F;&#x8C03;&#x7814;</span></h2><ol><li>html</li><li>css</li><li>js</li><li>bootstrap</li></ol><p>&#x76EE;&#x524D;&#x6BD4;&#x8F83;&#x7F3A;&#x7684;&#x6280;&#x672F;&#x662F;js&#x3002;</p><p>&#x5728;&#x5B8C;&#x6210;&#x8BE5;&#x9700;&#x6C42;&#x524D;&#xFF0C;&#x5148;&#x5B66;&#x4E60;<a href="https://www.liaoxuefeng.com/wiki/1022910821149312" target="_blank" rel="noopener">JavaScript&#x6559;&#x7A0B;</a>&#x3002;</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;&lt;span id=&quot;&amp;#x9700;&amp;#x6C42;&quot;&gt;&amp;#x9700;&amp;#x6C42;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;&amp;#x5BF9; Flask_Admin &amp;#x7684; list.html &amp;#x4E2D;&amp;#x6DFB;&amp;#x52A0; &amp;#x4E00;&amp;#x4
-      
-    
-    </summary>
-    
-    
-      <category term="技术广角" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/"/>
-    
-      <category term="前端" scheme="http://www.toberoot.com/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="bootstrap" scheme="http://www.toberoot.com/tags/bootstrap/"/>
     
   </entry>
   
