@@ -1,6 +1,6 @@
 http://www.toberoot.com/2020/05/24/booboo_others/2020-05-23-tec-mysql/
 http://www.toberoot.com/2020/05/23/booboo_hexo/2020-05-23-tec-hexo/
-http://www.toberoot.com/2020/05/22/booboo_others/2020-05-22-Jekyll-tec/
+http://www.toberoot.com/2020/05/22/booboo_hexo/2020-05-22-Jekyll-tec/
 http://www.toberoot.com/2020/05/22/booboo_hexo/2020-05-22-tec-hexo/
 http://www.toberoot.com/2020/05/22/booboo_others/2020-05-21-tec-mysql/
 http://www.toberoot.com/2020/05/20/booboo_others/2020-05-20-tec-linux/
