@@ -2,9 +2,65 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.toberoot.com/2020/05/03/ocp/Oracle12c/2020-05-03-ocp-oracle12c/</loc>
+    <loc>http://www.toberoot.com/2020/04/04/booboo_hexo/2020-04-04-tec-hexo/</loc>
     
-    <lastmod>2020-05-25T15:15:09.431Z</lastmod>
+    <lastmod>2020-05-25T15:18:50.083Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/04/05/booboo_hexo/2020-04-05-tec-hexo/</loc>
+    
+    <lastmod>2020-05-25T15:18:50.079Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/04/14/booboo_hexo/2020-04-14-tec-hexo/</loc>
+    
+    <lastmod>2020-05-25T15:18:50.077Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/04/07/booboo_hexo/2020-04-07-tec-hexo/</loc>
+    
+    <lastmod>2020-05-25T15:18:50.073Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/22/booboo_hexo/2020-05-22-tec-hexo/</loc>
+    
+    <lastmod>2020-05-25T15:18:50.070Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/04/08/booboo_hexo/2020-04-08-tec-hexo/</loc>
+    
+    <lastmod>2020-05-25T15:18:50.067Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/04/08/booboo_hexo/2020-04-03-tec-hexo/</loc>
+    
+    <lastmod>2020-05-25T15:18:50.064Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/23/booboo_hexo/2020-05-23-tec-hexo/</loc>
+    
+    <lastmod>2020-05-25T15:18:50.062Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/04/06/booboo_hexo/2020-04-06-tec-hexo/</loc>
+    
+    <lastmod>2020-05-25T15:18:50.058Z</lastmod>
     
   </url>
   
@@ -173,69 +229,6 @@
     <loc>http://www.toberoot.com/2020/05/24/booboo_others/2020-05-23-tec-mysql/</loc>
     
     <lastmod>2020-05-22T05:35:44.922Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/05/23/booboo_hexo/2020-05-23-tec-hexo/</loc>
-    
-    <lastmod>2020-05-22T04:40:16.015Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/05/22/booboo_hexo/2020-05-22-tec-hexo/</loc>
-    
-    <lastmod>2020-05-22T02:12:43.879Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/04/04/booboo_hexo/2020-04-04-tec-hexo/</loc>
-    
-    <lastmod>2020-05-22T02:03:04.469Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/04/08/booboo_hexo/2020-04-08-tec-hexo/</loc>
-    
-    <lastmod>2020-05-22T02:03:04.464Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/04/08/booboo_hexo/2020-04-03-tec-hexo/</loc>
-    
-    <lastmod>2020-05-22T02:03:04.460Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/04/06/booboo_hexo/2020-04-06-tec-hexo/</loc>
-    
-    <lastmod>2020-05-22T02:03:04.457Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/04/05/booboo_hexo/2020-04-05-tec-hexo/</loc>
-    
-    <lastmod>2020-05-22T02:03:04.443Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/04/07/booboo_hexo/2020-04-07-tec-hexo/</loc>
-    
-    <lastmod>2020-05-22T02:03:04.439Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/04/14/booboo_hexo/2020-04-14-tec-hexo/</loc>
-    
-    <lastmod>2020-05-22T02:03:04.433Z</lastmod>
     
   </url>
   
