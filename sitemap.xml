@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/2020/05/26/booboo_mse/2020-05-25-mse/</loc>
+    
+    <lastmod>2020-05-25T17:32:12.560Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2020/05/22/booboo_hexo/2020-05-22-Jekyll-tec/</loc>
     
     <lastmod>2020-05-25T15:19:52.999Z</lastmod>
@@ -79,7 +86,14 @@
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2020/05/06/booboo-ocp/Oracle12c/1z0-071/1z0-071/</loc>
+    <loc>http://www.toberoot.com/2020/05/03/booboo_ocp/Oracle12c/2020-05-03-ocp-oracle12c/</loc>
+    
+    <lastmod>2020-05-25T15:15:09.431Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/06/booboo_ocp/Oracle12c/1z0-071/1z0-071/</loc>
     
     <lastmod>2020-05-25T15:14:58.052Z</lastmod>
     
