@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/MySQL%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B01/</loc>
+    <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/%E6%93%8D%E4%BD%9C%E7%B1%BB/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/readme/</loc>
     
-    <lastmod>2020-05-26T06:10:08.222Z</lastmod>
+    <lastmod>2020-05-26T07:00:46.213Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/%E6%93%8D%E4%BD%9C%E7%B1%BB/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/readme/mariadb/</loc>
+    
+    <lastmod>2020-05-26T06:43:34.446Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/%E6%93%8D%E4%BD%9C%E7%B1%BB/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/readme/mysql/</loc>
+    
+    <lastmod>2020-05-26T06:43:27.571Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/MySQL%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B01/</loc>
+    
+    <lastmod>2020-05-26T06:40:43.254Z</lastmod>
     
   </url>
   
