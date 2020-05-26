@@ -1,0 +1,16 @@
+<hr>
+<p>title: MySQL 8.0的新增功能探索-表加密管理<br>date: 2020-05-26T17:58:00.000Z<br>categories:</p>
+<ul>
+<li><ul>
+<li>培训教程</li>
+<li>MySQL高级管理教程<br>tags:</li>
+</ul>
+</li>
+<li>培训</li>
+<li>MySQL高级管理教程-探索类</li>
+<li>MySQL8</li>
+</ul>
+<hr>
+<ul>
+<li><strong>表加密管理。</strong> 现在，可以通过定义和强制执行加密默认值来全局管理表加密。该 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_default_table_encryption" target="_blank" rel="noopener"><code>default_table_encryption</code></a> 变量为新创建的模式和常规表空间定义加密默认值。<code>DEFAULT ENCRYPTION</code>创建模式时，也可以使用子句定义模式的加密默认值。默认情况下，表继承对其创建的架构或常规表空间的加密。通过启用 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_table_encryption_privilege_check" target="_blank" rel="noopener"><code>table_encryption_privilege_check</code></a> 变量。当使用不同于设置的加密设置创建或更改模式或常规表空间<a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_default_table_encryption" target="_blank" rel="noopener"><code>default_table_encryption</code></a> 时，或者使用不同于默认模式加密的加密设置创建或更改表时，将进行特权检查 。 启用该 <a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_table-encryption-admin" target="_blank" rel="noopener"><code>TABLE_ENCRYPTION_ADMIN</code></a> 特权后，将允许覆盖默认的加密设置 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_table_encryption_privilege_check" target="_blank" rel="noopener"><code>table_encryption_privilege_check</code></a>。有关更多信息，请参见 <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-schema-tablespace-encryption-default" target="_blank" rel="noopener">为架构和常规表空间定义加密默认值</a>。-</li>
+</ul>

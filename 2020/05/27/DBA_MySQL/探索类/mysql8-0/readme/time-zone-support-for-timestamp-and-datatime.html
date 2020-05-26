@@ -1,0 +1,20 @@
+<hr>
+<p>title: MySQL 8.0的新增功能探索-TIMESTAMP和DATETIME的时区支持<br>date: 2020-05-26T17:58:00.000Z<br>categories:</p>
+<ul>
+<li><ul>
+<li>培训教程</li>
+<li>MySQL高级管理教程<br>tags:</li>
+</ul>
+</li>
+<li>培训</li>
+<li>MySQL高级管理教程-探索类</li>
+<li>MySQL8</li>
+</ul>
+<hr>
+<ul>
+<li><strong>TIMESTAMP和DATETIME的时区支持。</strong> 从MySQL 8.0.19开始，服务器接受带有插入的datetime（<a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_blank" rel="noopener"><code>TIMESTAMP</code></a>和 <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_blank" rel="noopener"><code>DATETIME</code></a>）值的时区偏移量。该偏移量使用与设置<a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_time_zone" target="_blank" rel="noopener"><code>time_zone</code></a>系统变量时使用的格式相同的格式，不同之处在于，当偏移量的小时部分小于10且<code>&#39;-00:00&#39;</code>不允许时，前导零是必需的 。日期时间文字，其中包括时区偏移的例子是 <code>&#39;2019-12-11 10:40:30-05:00&#39;</code>， <code>&#39;2003-04-14 03:30:00+10:00&#39;</code>和 <code>&#39;2020-01-01 15:35:45+05:30&#39;</code>。</li>
+</ul>
+<p>选择日期时间值时不显示时区偏移量。</p>
+<p>包含时区偏移量的Datetime文字可用作准备好的语句参数值。</p>
+<p>作为这项工作的一部分，用于设置 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_time_zone" target="_blank" rel="noopener"><code>time_zone</code></a>系统变量的值现在也被限制 <code>-14:00</code>为<code>+14:00</code>，包括在内。（它仍然可以分配名称值以 <code>time_zone</code>诸如 <code>&#39;EST&#39;</code>， <code>&#39;Posix/Australia/Brisbane&#39;</code>和 <code>&#39;Europe/Stockholm&#39;</code>该变量，条件是MySQL的时区表被加载;另见 <a href="https://dev.mysql.com/doc/refman/8.0/en/time-zone-support.html#time-zone-installation" target="_blank" rel="noopener">填充的时区表</a>）。</p>
+<p>有关更多信息和示例，请参见 <a href="https://dev.mysql.com/doc/refman/8.0/en/time-zone-support.html" target="_blank" rel="noopener">第5.1.14节” MySQL服务器时区支持”</a>以及 <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_blank" rel="noopener">第11.2.2节” DATE，DATETIME和TIMESTAMP类型”</a>。</p>

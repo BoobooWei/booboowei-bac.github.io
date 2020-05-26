@@ -1,0 +1,34 @@
+<hr>
+<p>title: MySQL 8.0的新增功能探索-JSON_VALUE()函数<br>date: 2020-05-26T17:58:00.000Z<br>categories:</p>
+<ul>
+<li><ul>
+<li>培训教程</li>
+<li>MySQL高级管理教程<br>tags:</li>
+</ul>
+</li>
+<li>培训</li>
+<li>MySQL高级管理教程-探索类</li>
+<li>MySQL8</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>JSON_VALUE（）函数。</strong> MySQL 8.0.21实现了一个<a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-value" target="_blank" rel="noopener"><code>JSON_VALUE()</code></a>旨在简化<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a> 列索引的新功能 。在最基本的形式中，它将JSON文档和指向该文档中单个值的JSON路径作为参数，以及（可选）允许您使用<code>RETURNING</code>关键字指定返回类型 。 等效于此： <code>JSON_VALUE(*</code>json_doc<code>*, *</code>path<code>* RETURNING *</code>type<code>*)</code></p>
+<pre><code class="sql">CAST(
+    JSON_UNQUOTE( JSON_EXTRACT(json_doc, path) )
+    AS type
+);</code></pre>
+<p>您还可以指定<code>ON EMPTY</code>， <code>ON ERROR</code>或两个子句，与一起使用 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-table-functions.html#function_json-table" target="_blank" rel="noopener"><code>JSON_TABLE()</code></a>。</p>
+<p>您可以使用<code>JSON_VALUE()</code>在这样的<code>JSON</code>列上的表达式上创建索引：</p>
+<pre><code class="sql"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t1(
+    j <span class="keyword">JSON</span>,
+    <span class="keyword">INDEX</span> i1 ( (JSON_VALUE(j, <span class="string">'$.id'</span> <span class="keyword">RETURNING</span> <span class="keyword">UNSIGNED</span>)) )
+);
+
+<span class="keyword">INSERT</span> <span class="keyword">INTO</span> t1 <span class="keyword">VALUES</span> <span class="keyword">ROW</span>(<span class="string">'{"id": "123", "name": "shoes", "price": "49.95"}'</span>);</code></pre>
+<p>使用此表达式的查询（例如此处所示）可以使用索引：</p>
+<pre><code class="sql"><span class="keyword">SELECT</span> <span class="keyword">name</span>, price <span class="keyword">FROM</span> t1
+    <span class="keyword">WHERE</span> JSON_VALUE(j, <span class="string">'$.id'</span> <span class="keyword">RETURNING</span> <span class="keyword">UNSIGNED</span>) = <span class="number">123</span>;</code></pre>
+<p>在许多情况下，这比从该<code>JSON</code>列创建一个生成的列然后在生成的列上创建索引要简单得多。</p>
+<p>有关更多信息和示例，请参见的描述 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-value" target="_blank" rel="noopener"><code>JSON_VALUE()</code></a>。</p>
+</li>
+</ul>

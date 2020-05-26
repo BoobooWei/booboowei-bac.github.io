@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>MySQL 8.0的新增功能探索-Json增强功能 - 归去来兮</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+
+
+
+
+
+
+
+
+    <meta name="description" content="JSON&amp;#x589E;&amp;#x5F3A;&amp;#x3002; &amp;#x5BF9;MySQL&amp;#x7684;JSON&amp;#x529F;&amp;#x80FD;&amp;#x8FDB;&amp;#x884C;&amp;#x4E86;&amp;#x4EE5;&amp;#x4E0B;&amp;#x589E;&amp;#x5F3A;&amp;#x6216;&amp;#x6DFB;&amp;#x52A0;&amp;#xFF1A;- &amp;#x6DFB;&amp;#x52A0;&amp;#x4E86; -&gt;&gt; &amp;#xF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 8.0的新增功能探索-Json增强功能">
+<meta property="og:url" content="http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/json-enhancements/index.html">
+<meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="JSON&amp;#x589E;&amp;#x5F3A;&amp;#x3002; &amp;#x5BF9;MySQL&amp;#x7684;JSON&amp;#x529F;&amp;#x80FD;&amp;#x8FDB;&amp;#x884C;&amp;#x4E86;&amp;#x4EE5;&amp;#x4E0B;&amp;#x589E;&amp;#x5F3A;&amp;#x6216;&amp;#x6DFB;&amp;#x52A0;&amp;#xFF1A;- &amp;#x6DFB;&amp;#x52A0;&amp;#x4E86; -&gt;&gt; &amp;#xF">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-26T17:58:00.000Z">
+<meta property="article:modified_time" content="2020-05-26T11:02:38.950Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="培训">
+<meta property="article:tag" content="MySQL高级管理教程-探索类">
+<meta property="article:tag" content="MySQL8">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="归去来兮" type="application/atom+xml">
+</head>
+<body>
+    
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+    <div class="row">
+        <!--左侧只占一个格子 -->
+        <div class="col-md-1">
+            <div class="navbar-brand">
+                <a class="navbar-item navbar-logo" href="/">
+                    
+                        
+                        <img src="/images/influx.svg" alt="" height="28">
+                        
+                    
+                </a>
+                <div class="navbar-burger">
+                    <span>
+                    </span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--中间自适应 -->
+        <div class="col-md-10">
+            
+            <div class="navbar-menu navbar-start">
+                
+                <a class="navbar-item "
+                   href="/archives/">最近更新</a>
+                
+                <a class="navbar-item "
+                   href="/tags/">标签</a>
+                
+
+                <!-- BoobooWei自动根据已有的category创建-->
+            
+
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <!--循环category 生成navbar代码-->
+                        
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="往昔追忆">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/" data-rel="经典语录">经典语录</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%9B%A2%E9%98%9F%E5%AE%B6%E5%BA%AD%E8%81%9A%E9%A4%90/" data-rel="团队家庭聚餐">团队家庭聚餐</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="培训教程">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/%E7%8E%A9%E8%BD%ACGit%E4%B8%89%E5%89%91%E5%AE%A2/" data-rel="玩转Git三剑客">玩转Git三剑客</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/TICK%E6%8A%80%E6%9C%AF%E6%A0%88%E4%B9%8Bkapacitor/" data-rel="TICK技术栈之kapacitor">TICK技术栈之kapacitor</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/OCP%E4%B9%8BOracle12C/" data-rel="OCP之Oracle12C">OCP之Oracle12C</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E9%AB%98%E7%BA%A7%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL高级管理教程">MySQL高级管理教程</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术峰会"><i class="fold iconfont icon-right"></i>技术峰会</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术峰会">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Aliyun/" data-rel="Aliyun">Aliyun</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Azure/" data-rel="Azure">Azure</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术广角">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/" data-rel="技术思考">技术思考</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/PostgreSQL/" data-rel="PostgreSQL">PostgreSQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/datadog/" data-rel="datadog">datadog</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/jira/" data-rel="jira">jira</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Git/" data-rel="Git">Git</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/RedHat/" data-rel="RedHat">RedHat</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Linux/" data-rel="Linux">Linux</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="博客搭建"><i class="fold iconfont icon-right"></i>博客搭建</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="博客搭建">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo/" data-rel="Hexo">Hexo</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Jekyll/" data-rel="Jekyll">Jekyll</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="考研"><i class="fold iconfont icon-right"></i>考研</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="考研">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E8%80%83%E7%A0%94/MSE/" data-rel="MSE">MSE</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程 ySQL高级管理教程">培训教程 ySQL高级管理教程</a>
+                            
+                    
+                
+                </ul>
+              </div>
+            </nav>
+
+            <!-- 自动根据已有的category创建-->
+        </div>
+        
+
+        </div>
+
+
+        <!--最右侧 -->
+        <div class="col-md-1">
+
+            <div class="navbar-menu navbar-end">
+                
+                <a class="navbar-item" title="tools" href="/tools/">
+                    <svg t="1586931802353" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="18381" width="20" height="20"><path d="M519.4 878l-69.7-38.1-30.6-16.7-30.6 16.7-86.9 47.3-86.7-47.3-30.6-16.7-30.6 16.7-22.6 12.3V160c0-17.7 14.3-32 32-32h511.6c17.7 0 32 14.3 32 32v288c0 17.7 14.3 32 32 32s32-14.3 32-32V128c0-35.3-26.2-64-58.6-64H125.6C93.2 64 67 92.7 67 128v832l117.2-64 117.3 64L419 896l69.7 38.1C510 945.8 536 930.3 536 906c0.1-11.7-6.3-22.4-16.6-28z" p-id="18382"></path><path d="M258.9 256c-17.7 0-32 14.3-32 32s14.3 32 32 32h319.8c17.7 0 32-14.3 32-32s-14.3-32-32-32H258.9zM610.6 448c0-17.7-14.3-32-32-32H258.9c-17.7 0-32 14.3-32 32s14.3 32 32 32h319.8c17.6 0 31.9-14.3 31.9-32zM514.7 576H258.9c-17.7 0-32 14.3-32 32s14.3 32 32 32h255.8c17.7 0 32-14.3 32-32s-14.4-32-32-32zM947.6 899.4l-185-184.9c17.5-35.8 11.4-80.3-18.4-110.1-25.2-25.2-61-33.5-93.1-24.8l49.7 49.7-14.3 53.2-53.3 14.3-49.7-49.7c-8.7 32.1-0.4 67.9 24.8 93.1 29.4 29.3 73 35.7 108.5 19.1l185.4 185.4c12.5 12.5 32.8 12.5 45.3 0 12.6-12.5 12.6-32.8 0.1-45.3z" p-id="18383"></path></svg>
+               </a>
+                <a class="navbar-item" title="movie" href="/movies/">
+                    <svg t="1586342683221" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1766" width="20" height="20"><path d="M914.044 898.826H109.956c-20.435 0-37-16.565-37-37V280.131c0-20.435 16.565-37 37-37h804.088c20.435 0 37 16.565 37 37v581.695c0 20.435-16.565 37-37 37z m-767.088-74h730.088V317.131H146.956v507.695zM322.739 199.174H113c-20.435 0-37-16.565-37-37s16.565-37 37-37h209.739c20.435 0 37 16.565 37 37s-16.565 37-37 37z" p-id="1767" fill="#2c2c2c"></path><path d="M457.932 752.856A37.002 37.002 0 0 1 420.937 716l-1.122-287.64a37.003 37.003 0 0 1 20.769-33.395 37.006 37.006 0 0 1 39.104 4.167l184.107 144.792a37 37 0 0 1-0.105 58.248L480.704 745.021a36.982 36.982 0 0 1-22.772 7.835z m36.181-248.234l0.528 135.641 86.29-67.361-86.818-68.28z" p-id="1768" fill="#2c2c2c"></path></svg>
+                </a>
+                <a class="navbar-item" title="books" href="/books/">
+                    <svg t="1586350091188" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2280" width="20" height="20"><path d="M306.4 773.3h188v16.3c0 13.8 11.2 25 25 25s25-11.2 25-25v-16.3h180.5c68.9 0 125-56.1 125-125V295.4c0-68.9-56.1-125-125-125H549.6c-10.7 0-19.9 6.8-23.4 16.3-2.1-0.6-4.4-0.9-6.7-0.9-2 0-3.9 0.2-5.8 0.7-3.6-9.4-12.7-16-23.3-16h-184c-68.9 0-125 56.1-125 125v352.9c0 68.8 56.1 124.9 125 124.9z m418.5-552.9c41.4 0 75 33.6 75 75v352.9c0 41.4-33.6 75-75 75H544.4V219.9c1.7 0.4 3.4 0.5 5.2 0.5h175.3z m-493.5 75c0-41.4 33.6-75 75-75h183.9c1.4 0 2.8-0.1 4.1-0.3v503.2h-188c-41.4 0-75-33.6-75-75V295.4z" p-id="2281"></path><path d="M901.5 314.3c-11 0-20 9-20 20v384c0 44.1-35.9 80-80 80H615.3c-5.6 0-11 2.4-14.8 6.5l-25.9 28.4c-2 2.2-4.9 3.5-7.9 3.5H459c-2.9 0-5.6-1.1-7.6-3.1L425.8 808c-3.8-3.8-8.8-5.9-14.1-5.9H224.8c-44.1 0-80-35.9-80-80V343.9c0-11-9-20-20-20s-20 9-20 20v378.3c0 66.2 53.8 120 120 120h178.5l19.7 19.7c9.6 9.6 22.3 14.9 35.9 14.9h107.7c14.2 0 27.9-6 37.5-16.5l20-21.9h177.4c66.2 0 120-53.8 120-120v-384c0-11.1-9-20.1-20-20.1z" p-id="2282"></path><path d="M297.5 341.4h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 408.6h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 506.5h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20z" p-id="2283"></path></svg>
+                </a>
+                
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                    </div>
+                </div>
+                
+                
+                <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                   
+                
+            </div>
+        </div>
+</div>
+</div>
+</nav>
+
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            MySQL 8.0的新增功能探索-Json增强功能
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-05-26T17:58:00.000Z" itemprop="datePublished">5月 27 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/">培训教程</a><span>></span><a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E9%AB%98%E7%BA%A7%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/">MySQL高级管理教程</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            16 分钟 读完 (约 2465 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <ul>
+<li><p><strong>JSON&#x589E;&#x5F3A;&#x3002;</strong> &#x5BF9;MySQL&#x7684;JSON&#x529F;&#x80FD;&#x8FDB;&#x884C;&#x4E86;&#x4EE5;&#x4E0B;&#x589E;&#x5F3A;&#x6216;&#x6DFB;&#x52A0;&#xFF1A;- &#x6DFB;&#x52A0;&#x4E86; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#operator_json-inline-path" target="_blank" rel="noopener"><code>-&gt;&gt;</code></a> &#xFF08;&#x5185;&#x8054;&#x8DEF;&#x5F84;&#xFF09;&#x8FD0;&#x7B97;&#x7B26;&#xFF0C;&#x7B49;&#x6548;&#x4E8E;&#x8C03;&#x7528; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-unquote" target="_blank" rel="noopener"><code>JSON_UNQUOTE()</code></a>&#x7684;&#x7ED3;&#x679C;<a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-extract" target="_blank" rel="noopener"><code>JSON_EXTRACT()</code></a>&#x3002;</p>
+<p>&#x8FD9;&#x662F;<a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#operator_json-column-path" target="_blank" rel="noopener"><code>-&gt;</code></a> &#x5BF9;MySQL 5.7&#x4E2D;&#x5F15;&#x5165;&#x7684;&#x5217;&#x8DEF;&#x5F84;&#x8FD0;&#x7B97;&#x7B26;&#x7684;&#x6539;&#x8FDB; &#xFF1B; <code>col-&gt;&gt;&quot;$.path&quot;</code>&#x7B49;&#x540C;&#x4E8E; <code>JSON_UNQUOTE(col-&gt;&quot;$.path&quot;)</code>&#x3002;&#x5185;&#x8054;&#x8DEF;&#x5F84;&#x8FD0;&#x7B97;&#x7B26;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x968F;&#x65F6;&#x968F;&#x5730;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>JSON_UNQUOTE(JSON_EXTRACT())</code>&#xFF0C;&#x5982; <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank" rel="noopener"><code>SELECT</code></a>&#x5217;&#x6E05;&#x5355;&#xFF0C; <code>WHERE</code>&#x548C;<code>HAVING</code> &#x6761;&#x6B3E;&#xFF0C;&#x5E76;<code>ORDER BY</code>&#x548C; <code>GROUP BY</code>&#x6761;&#x6B3E;&#x3002;&#x6709;&#x5173;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x8FD0;&#x7B97;&#x7B26;&#x7684;&#x63CF;&#x8FF0;&#x4EE5;&#x53CA;<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-path-syntax" target="_blank" rel="noopener">JSON Path Syntax</a>&#x3002;</p>
+<ul>
+<li><p>&#x6DFB;&#x52A0;&#x4E86;&#x4E24;&#x4E2A;JSON&#x805A;&#x5408;&#x51FD;&#x6570; <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_json-arrayagg" target="_blank" rel="noopener"><code>JSON_ARRAYAGG()</code></a>&#x548C; <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_json-objectagg" target="_blank" rel="noopener"><code>JSON_OBJECTAGG()</code></a>&#x3002; <code>JSON_ARRAYAGG()</code>&#x5C06;&#x5217;&#x6216;&#x8868;&#x8FBE;&#x5F0F;&#x4F5C;&#x4E3A;&#x5176;&#x53C2;&#x6570;&#xFF0C;&#x5E76;&#x5C06;&#x7ED3;&#x679C;&#x805A;&#x5408;&#x4E3A;&#x5355;&#x4E2A;<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a>&#x6570;&#x7EC4;&#x3002;&#x8BE5;&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x6C42;&#x503C;&#x4E3A;&#x4EFB;&#x4F55;MySQL&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF1B;&#x8FD9;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x4E00;&#x4E2A;<code>JSON</code>&#x503C;&#x3002; <code>JSON_OBJECTAGG()</code>&#x63A5;&#x53D7;&#x4E24;&#x5217;&#x6216;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x5C06;&#x5176;&#x89E3;&#x91CA;&#x4E3A;&#x952E;&#x548C;&#x503C;&#xFF1B;&#x5B83;&#x5C06;&#x7ED3;&#x679C;&#x4F5C;&#x4E3A;&#x5355;&#x4E2A;<code>JSON</code> &#x5BF9;&#x8C61;&#x8FD4;&#x56DE;&#x3002;&#x6709;&#x5173;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#x548C;&#x793A;&#x4F8B;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1; <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions-and-modifiers.html" target="_blank" rel="noopener">&#x7B2C;12.20&#x8282;&#x201D;&#x805A;&#x5408;&#xFF08;GROUP BY&#xFF09;&#x51FD;&#x6570;&#x201D;</a>&#x3002;</p>
+</li>
+<li><p>&#x6DFB;&#x52A0;&#x4E86;JSON&#x5B9E;&#x7528;&#x7A0B;&#x5E8F;&#x529F;&#x80FD;<a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html#function_json-pretty" target="_blank" rel="noopener"><code>JSON_PRETTY()</code></a>&#xFF0C;&#x8BE5;&#x529F;&#x80FD; <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a> &#x4EE5;&#x6613;&#x4E8E;&#x9605;&#x8BFB;&#x7684;&#x683C;&#x5F0F;&#x8F93;&#x51FA;&#x73B0;&#x6709;&#x503C;&#xFF1B;&#x6BCF;&#x4E2A;JSON&#x5BF9;&#x8C61;&#x6210;&#x5458;&#x6216;&#x6570;&#x7EC4;&#x503C;&#x90FD;&#x6253;&#x5370;&#x5728;&#x5355;&#x72EC;&#x7684;&#x4E00;&#x884C;&#x4E0A;&#xFF0C;&#x5E76;&#x4E14;&#x5B50;&#x5BF9;&#x8C61;&#x6216;&#x6570;&#x7EC4;&#x76F8;&#x5BF9;&#x4E8E;&#x5176;&#x7236;&#x5BF9;&#x8C61;&#x8981;&#x6709;2&#x4E2A;&#x7A7A;&#x683C;&#x3002;</p>
+<p>&#x6B64;&#x51FD;&#x6570;&#x8FD8;&#x53EF;&#x4EE5;&#x4E0E;&#x53EF;&#x89E3;&#x6790;&#x4E3A;JSON&#x503C;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x6709;&#x5173;&#x66F4;&#x591A;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x548C;&#x793A;&#x4F8B;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html" target="_blank" rel="noopener">&#x7B2C;12.17.8&#x8282;&#x201D; JSON&#x5B9E;&#x7528;&#x7A0B;&#x5E8F;&#x51FD;&#x6570;&#x201D;</a>&#x3002;</p>
+</li>
+<li><p>&#x73B0;&#x5728;&#xFF0C;<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a>&#x4F7F;&#x7528;&#x6765;&#x5BF9;&#x67E5;&#x8BE2;&#x4E2D;&#x7684;&#x503C;&#x8FDB;&#x884C; &#x6392;&#x5E8F;&#x65F6;<code>ORDER BY</code>&#xFF0C;&#x6BCF;&#x4E2A;&#x503C;&#x73B0;&#x5728;&#x90FD;&#x7531;sort&#x952E;&#x7684;&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#x90E8;&#x5206;&#x8868;&#x793A;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7531;&#x56FA;&#x5B9A;&#x7684;1K&#x5927;&#x5C0F;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x8868;&#x793A;&#x3002;&#x5728;&#x8BB8;&#x591A;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FD9;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x8FC7;&#x591A;&#x7684;&#x4F7F;&#x7528;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x6807;&#x91CF;<code>INT</code>&#x751A;&#x81F3; <code>BIGINT</code>&#x503C;&#x5B9E;&#x9645;&#x4E0A;&#x9700;&#x8981;&#x5F88;&#x5C11;&#x7684;&#x5B57;&#x8282;&#xFF0C;&#x56E0;&#x6B64;&#x8BE5;&#x7A7A;&#x95F4;&#x7684;&#x5176;&#x4F59;&#x90E8;&#x5206;&#xFF08;&#x6700;&#x591A;90&#xFF05;&#x6216;&#x66F4;&#x591A;&#xFF09;&#x88AB;&#x586B;&#x5145;&#x5360;&#x7528;&#x3002;&#x6B64;&#x66F4;&#x6539;&#x5177;&#x6709;&#x4EE5;&#x4E0B;&#x6027;&#x80FD;&#x4F18;&#x52BF;&#xFF1A;</p>
+<ul>
+<li>&#x73B0;&#x5728;&#x53EF;&#x4EE5;&#x66F4;&#x6709;&#x6548;&#x5730;&#x4F7F;&#x7528;&#x6392;&#x5E8F;&#x7F13;&#x51B2;&#x533A;&#x7A7A;&#x95F4;&#xFF0C;&#x56E0;&#x6B64;&#x6587;&#x4EF6;&#x6392;&#x5E8F;&#x4E0D;&#x9700;&#x8981;&#x50CF;&#x56FA;&#x5B9A;&#x957F;&#x5EA6;&#x6392;&#x5E8F;&#x952E;&#x90A3;&#x6837;&#x65E9;&#x6216;&#x7ECF;&#x5E38;&#x5237;&#x65B0;&#x5230;&#x78C1;&#x76D8;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x53EF;&#x4EE5;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x6574;&#x7406;&#x66F4;&#x591A;&#x6570;&#x636E;&#xFF0C;&#x907F;&#x514D;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x78C1;&#x76D8;&#x8BBF;&#x95EE;&#x3002;</li>
+<li>&#x6BD4;&#x8D77;&#x8F83;&#x957F;&#x7684;&#x952E;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x5FEB;&#x5730;&#x6BD4;&#x8F83;&#x8F83;&#x77ED;&#x7684;&#x952E;&#xFF0C;&#x4ECE;&#x800C;&#x663E;&#x7740;&#x63D0;&#x9AD8;&#x6027;&#x80FD;&#x3002;&#x5BF9;&#x4E8E;&#x5B8C;&#x5168;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x6267;&#x884C;&#x7684;&#x6392;&#x5E8F;&#x4EE5;&#x53CA;&#x9700;&#x8981;&#x5199;&#x5165;&#x78C1;&#x76D8;&#x548C;&#x4ECE;&#x78C1;&#x76D8;&#x8BFB;&#x53D6;&#x7684;&#x6392;&#x5E8F;&#xFF0C;&#x90FD;&#x662F;&#x5982;&#x6B64;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x5728;MySQL 8.0.2&#x4E2D;&#x6DFB;&#x52A0;&#x4E86;&#x5BF9;<code>JSON</code>&#x5217;&#x503C;&#x7684;&#x90E8;&#x5206;&#x5C31;&#x5730;&#x66F4;&#x65B0;&#x7684;&#x652F;&#x6301;&#xFF0C;&#x8FD9;&#x6BD4;&#x5B8C;&#x5168;&#x5220;&#x9664;&#x73B0;&#x6709;JSON&#x503C;&#x5E76;&#x5728;&#x5176;&#x4F4D;&#x7F6E;&#x5199;&#x5165;&#x4E00;&#x4E2A;&#x65B0;&#x7684;JSON&#x6548;&#x7387;&#x66F4;&#x9AD8;&#xFF0C;&#x5C31;&#x50CF;&#x4EE5;&#x524D;&#x5728;&#x66F4;&#x65B0;&#x4EFB;&#x4F55;<code>JSON</code>&#x5217;&#x65F6;&#x6240;&#x505A;&#x7684;&#x90A3;&#x6837; &#x3002;&#x8981;&#x5E94;&#x7528;&#x8FD9;&#x79CD;&#x4F18;&#x5316;&#xFF0C;&#x66F4;&#x65B0;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x5E94;&#x7528; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-set" target="_blank" rel="noopener"><code>JSON_SET()</code></a>&#xFF0C; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-replace" target="_blank" rel="noopener"><code>JSON_REPLACE()</code></a>&#x6216; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-remove" target="_blank" rel="noopener"><code>JSON_REMOVE()</code></a>&#x3002;&#x65E0;&#x6CD5;&#x5C06;&#x65B0;&#x5143;&#x7D20;&#x6DFB;&#x52A0;&#x5230;&#x8981;&#x66F4;&#x65B0;&#x7684;JSON&#x6587;&#x6863;&#x4E2D;&#xFF1B;&#x6587;&#x6863;&#x4E2D;&#x7684;&#x503C;&#x4E0D;&#x80FD;&#x5360;&#x7528;&#x6BD4;&#x66F4;&#x65B0;&#x524D;&#x66F4;&#x591A;&#x7684;&#x7A7A;&#x95F4;&#x3002;&#x8BF7;&#x53C2;&#x9605; <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-partial-updates" target="_blank" rel="noopener">JSON&#x503C;&#x7684;&#x90E8;&#x5206;&#x66F4;&#x65B0;</a>&#xFF0C;&#x4EE5;&#x8BE6;&#x7EC6;&#x8BA8;&#x8BBA;&#x8981;&#x6C42;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x5C06;JSON&#x6587;&#x6863;&#x7684;&#x90E8;&#x5206;&#x66F4;&#x65B0;&#x5199;&#x5165;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#xFF0C;&#x6BD4;&#x8BB0;&#x5F55;&#x5B8C;&#x6574;&#x7684;JSON&#x6587;&#x6863;&#x5360;&#x7528;&#x66F4;&#x5C11;&#x7684;&#x7A7A;&#x95F4;&#x3002;&#x4F7F;&#x7528;&#x57FA;&#x4E8E;&#x8BED;&#x53E5;&#x7684;&#x590D;&#x5236;&#x65F6;&#xFF0C;&#x59CB;&#x7EC8;&#x4F1A;&#x8BB0;&#x5F55;&#x90E8;&#x5206;&#x66F4;&#x65B0;&#x3002;&#x4E3A;&#x4E86;&#x4F7F;&#x5176;&#x4E0E;&#x57FA;&#x4E8E;&#x884C;&#x7684;&#x590D;&#x5236;&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#xFF0C;&#x5FC5;&#x987B;&#x9996;&#x5148;&#x8BBE;&#x7F6E; <a href="https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html#sysvar_binlog_row_value_options" target="_blank" rel="noopener"><code>binlog_row_value_options=PARTIAL_JSON</code></a>; &#x6709;&#x5173;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x6B64;&#x53D8;&#x91CF;&#x7684;&#x8BF4;&#x660E;&#x3002;</p>
+</li>
+<li><p>&#x6DFB;&#x52A0;&#x4E86;JSON&#x5B9E;&#x7528;&#x7A0B;&#x5E8F;&#x529F;&#x80FD; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html#function_json-storage-size" target="_blank" rel="noopener"><code>JSON_STORAGE_SIZE()</code></a>&#x548C; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html#function_json-storage-free" target="_blank" rel="noopener"><code>JSON_STORAGE_FREE()</code></a>&#x3002; <code>JSON_STORAGE_SIZE()</code>&#x5728;&#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x90E8;&#x5206;&#x66F4;&#x65B0;&#x4E4B;&#x524D;&#xFF0C;&#x8FD4;&#x56DE;&#x7528;&#x4E8E;JSON&#x6587;&#x6863;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;&#x5F62;&#x5F0F;&#x7684;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#xFF08;&#x4EE5;&#x5B57;&#x8282;&#x4E3A;&#x5355;&#x4F4D;&#xFF09;&#xFF08;&#x8BF7;&#x53C2;&#x9605;&#x4E0A;&#x4E00;&#x9879;&#xFF09;&#x3002; <code>JSON_STORAGE_FREE()</code>&#x663E;&#x793A;<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a>&#x4F7F;&#x7528;<code>JSON_SET()</code>&#x6216; &#x90E8;&#x5206;&#x66F4;&#x65B0;&#x7684;&#x7C7B;&#x578B;&#x7684;&#x8868;&#x5217;&#x4E2D;&#x5269;&#x4F59;&#x7684;&#x7A7A;&#x95F4;&#x91CF; <code>JSON_REPLACE()</code>&#x3002;&#x5982;&#x679C;&#x65B0;&#x503C;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;&#x5F62;&#x5F0F;&#x5C0F;&#x4E8E;&#x5148;&#x524D;&#x503C;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;&#x5F62;&#x5F0F;&#xFF0C;&#x5219;&#x8BE5;&#x503C;&#x5927;&#x4E8E;&#x96F6;&#x3002;</p>
+<p>&#x6BCF;&#x4E2A;&#x51FD;&#x6570;&#x8FD8;&#x63A5;&#x53D7;JSON&#x6587;&#x6863;&#x7684;&#x6709;&#x6548;&#x5B57;&#x7B26;&#x4E32;&#x8868;&#x793A;&#x5F62;&#x5F0F;&#x3002;&#x5BF9;&#x4E8E;&#x8FD9;&#x6837;&#x7684;&#x503C;&#xFF0C; <code>JSON_STORAGE_SIZE()</code>&#x8FD4;&#x56DE;&#x5176;&#x8F6C;&#x6362;&#x4E3A;JSON&#x6587;&#x6863;&#x540E;&#x5176;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;&#x5F62;&#x5F0F;&#x4F7F;&#x7528;&#x7684;&#x7A7A;&#x95F4;&#x3002;&#x5BF9;&#x4E8E;&#x5305;&#x542B;JSON&#x6587;&#x6863;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x8868;&#x793A;&#x5F62;&#x5F0F;&#x7684;&#x53D8;&#x91CF;&#xFF0C; <code>JSON_STORAGE_FREE()</code>&#x8FD4;&#x56DE;&#x96F6;&#x3002;&#x5982;&#x679C;&#x65E0;&#x6CD5;&#x5C06;&#x5176;&#xFF08;&#x975E;null&#xFF09;&#x53C2;&#x6570;&#x89E3;&#x6790;&#x4E3A;&#x6709;&#x6548;&#x7684;JSON&#x6587;&#x6863;&#xFF0C;&#x5E76;&#x4E14;<code>NULL</code>&#x53C2;&#x6570;&#x4E3A;&#xFF0C;&#x5219; &#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x90FD;&#x4F1A;&#x4EA7;&#x751F;&#x9519;&#x8BEF; <code>NULL</code>&#x3002;</p>
+<p>&#x6709;&#x5173;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#x548C;&#x793A;&#x4F8B;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html" target="_blank" rel="noopener">&#x7B2C;12.17.8&#x8282;&#x201D; JSON&#x5B9E;&#x7528;&#x7A0B;&#x5E8F;&#x51FD;&#x6570;&#x201D;</a>&#x3002;</p>
+<p><code>JSON_STORAGE_SIZE()</code>&#x5E76; <code>JSON_STORAGE_FREE()</code>&#x5728;MySQL 8.0.2&#x4E2D;&#x5B9E;&#x73B0;&#x3002;</p>
+</li>
+<li><p>&#x5728;MySQL 8.0.2&#x4E2D;&#x6DFB;&#x52A0;&#x4E86;&#x5BF9;&#x8303;&#x56F4;&#xFF08;&#x4F8B;&#x5982; <code>$[1 to 5]</code>XPath&#x8868;&#x8FBE;&#x5F0F;&#xFF09;&#x7684;&#x652F;&#x6301;&#x3002;&#x5728;&#x6B64;&#x7248;&#x672C;&#x4E2D;&#x8FD8;&#x6DFB;&#x52A0;&#x4E86;&#x5BF9; <code>last</code>&#x5173;&#x952E;&#x5B57;&#x548C;&#x76F8;&#x5BF9;&#x5BFB;&#x5740;&#x7684;&#x652F;&#x6301;&#xFF0C;&#x56E0;&#x6B64;<code>$[last]</code>&#x59CB;&#x7EC8;&#x9009;&#x62E9;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#xFF08;&#x6700;&#x9AD8;&#x7F16;&#x53F7;&#xFF09;&#x5143;&#x7D20;&#x4EE5;&#x53CA; <code>$[last-1]</code>&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x76F8;&#x90BB;&#x5143;&#x7D20;&#x3002; <code>last</code>&#x4F7F;&#x7528;&#x5B83;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x4E5F;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x5728;&#x8303;&#x56F4;&#x5B9A;&#x4E49;&#x4E2D;&#x3002;&#x4F8B;&#x5982;&#xFF0C; <code>$[last-2 to last-1]</code>&#x8FD4;&#x56DE;&#x6700;&#x540E;&#x4E24;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x4F46;&#x8FD4;&#x56DE;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x3002;&#x6709;&#x5173;&#x5176;&#x4ED6;&#x4FE1;&#x606F;&#x548C;&#x793A;&#x4F8B;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1; <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-paths" target="_blank" rel="noopener">&#x641C;&#x7D22;&#x548C;&#x4FEE;&#x6539;JSON&#x503C;</a>&#x3002;</p>
+</li>
+<li><p>&#x6DFB;&#x52A0;&#x4E86;&#x65E8;&#x5728;&#x7B26;&#x5408;<a href="https://tools.ietf.org/html/rfc7396" target="_blank" rel="noopener">RFC 7396</a>&#x7684;JSON&#x5408;&#x5E76;&#x529F;&#x80FD; &#x3002; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-merge-patch" target="_blank" rel="noopener"><code>JSON_MERGE_PATCH()</code></a>&#xFF0C;&#x5F53;&#x7528;&#x4E8E;2&#x4E2A;JSON&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x5C06;&#x5B83;&#x4EEC;&#x5408;&#x5E76;&#x4E3A;&#x4E00;&#x4E2A;&#x5177;&#x6709;&#x4EE5;&#x4E0B;&#x96C6;&#x5408;&#x7684;&#x5E76;&#x96C6;&#x7684;&#x5355;&#x4E2A;JSON&#x5BF9;&#x8C61;&#xFF1A;</p>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x6BCF;&#x4E2A;&#x6210;&#x5458;&#xFF0C;&#x5728;&#x7B2C;&#x4E8C;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x4E0D;&#x5B58;&#x5728;&#x5177;&#x6709;&#x76F8;&#x540C;&#x952E;&#x7684;&#x6210;&#x5458;&#x3002;</li>
+<li>&#x7B2C;&#x4E8C;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x6BCF;&#x4E2A;&#x6210;&#x5458;&#xFF0C;&#x5728;&#x7B2C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x6CA1;&#x6709;&#x6210;&#x5458;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x952E;&#xFF0C;&#x5E76;&#x4E14;&#x5176;&#x503C;&#x4E0D;&#x662F;JSON <code>null</code>&#x6587;&#x5B57;&#x3002;</li>
+<li>&#x6BCF;&#x4E2A;&#x6210;&#x5458;&#x90FD;&#x5177;&#x6709;&#x5728;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x90FD;&#x5B58;&#x5728;&#x7684;&#x952E;&#xFF0C;&#x5E76;&#x4E14;&#x5176;&#x5728;&#x7B2C;&#x4E8C;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x503C;&#x4E0D;&#x662F;JSON <code>null</code>&#x6587;&#x5B57;&#x3002;</li>
+</ul>
+<p>&#x4F5C;&#x4E3A;&#x8FD9;&#x9879;&#x5DE5;&#x4F5C;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x8BE5; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-merge" target="_blank" rel="noopener"><code>JSON_MERGE()</code></a>&#x529F;&#x80FD;&#x5DF2;&#x91CD;&#x547D;&#x540D; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-merge-preserve" target="_blank" rel="noopener"><code>JSON_MERGE_PRESERVE()</code></a>&#x3002; <code>JSON_MERGE()</code>&#x4ECD;&#x7136;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;<code>JSON_MERGE_PRESERVE()</code>MySQL 8.0 &#x7684;&#x522B;&#x540D; &#xFF0C;&#x4F46;&#x73B0;&#x5728;&#x5DF2;&#x88AB;&#x5F03;&#x7528;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x80FD;&#x5728;&#x5C06;&#x6765;&#x7684;MySQL&#x7248;&#x672C;&#x4E2D;&#x5220;&#x9664;&#x3002;</p>
+<p>&#x6709;&#x5173;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#x548C;&#x793A;&#x4F8B;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html" target="_blank" rel="noopener">&#x7B2C;12.17.4&#x8282;&#x201D;&#x4FEE;&#x6539;JSON&#x503C;&#x7684;&#x51FD;&#x6570;&#x201D;</a>&#x3002;</p>
+</li>
+<li><p>&#x5B9E;&#x73B0;&#x91CD;&#x590D;&#x5BC6;&#x94A5;&#x7684; &#x201C; &#x6700;&#x540E;&#x91CD;&#x590D;&#x5BC6;&#x94A5;&#x83B7;&#x80DC; &#x201C; &#x89C4;&#x8303;&#x5316;&#xFF0C;&#x4E0E; <a href="https://tools.ietf.org/html/rfc7159" target="_blank" rel="noopener">RFC 7159</a>&#x548C;&#x5927;&#x591A;&#x6570;JavaScript&#x89E3;&#x6790;&#x5668;&#x4E00;&#x81F4;&#x3002;&#x6B64;&#x884C;&#x4E3A;&#x7684;&#x793A;&#x4F8B;&#x5728;&#x6B64;&#x5904;&#x663E;&#x793A;&#xFF0C;&#x5176;&#x4E2D;&#x4EC5;<code>x</code>&#x4FDD;&#x7559;&#x5177;&#x6709;&#x5BC6;&#x94A5;&#x7684;&#x6700;&#x53F3;&#x8FB9;&#x7684;&#x6210;&#x5458;&#xFF1A;</p>
+<p><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT JSON_OBJECT(&apos;x&apos;, &apos;32&apos;, &apos;y&apos;, &apos;[true, false]&apos;,</span><br><span class="line">     &gt;                     &apos;x&apos;, &apos;&quot;abc&quot;&apos;, &apos;x&apos;, &apos;100&apos;) AS Result;</span><br><span class="line">+<span class="hljs-comment">------------------------------------+</span></span><br><span class="line">| Result                             |</span><br><span class="line">+<span class="hljs-comment">------------------------------------+</span></span><br><span class="line">| {&quot;x&quot;: &quot;100&quot;, &quot;y&quot;: &quot;[true, false]&quot;} |</span><br><span class="line">+<span class="hljs-comment">------------------------------------+</span></span><br><span class="line">1 row in <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>&#x63D2;&#x5165;MySQL <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a>&#x5217;&#x4E2D;&#x7684;&#x503C; &#x4E5F;&#x4EE5;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x6807;&#x51C6;&#x5316;&#xFF0C;&#x5982;&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#x6240;&#x793A;&#xFF1A;</p>
+<p><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE t1 (c1 JSON);</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO t1 VALUES (&apos;{&quot;x&quot;: 17, &quot;x&quot;: &quot;red&quot;, &quot;x&quot;: [3, 5, 7]}&apos;);</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT c1 FROM t1;</span><br><span class="line">+<span class="hljs-comment">------------------+</span></span><br><span class="line">| c1               |</span><br><span class="line">+<span class="hljs-comment">------------------+</span></span><br><span class="line">| {&quot;x&quot;: [3, 5, 7]} |</span><br><span class="line">+<span class="hljs-comment">------------------+</span></span><br></pre></td></tr></table></figure></p>
+<p>&#x4E0E;&#x4EE5;&#x524D;&#x7684;MySQL&#x7248;&#x672C;&#x76F8;&#x6BD4;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x4E0D;&#x517C;&#x5BB9;&#x7684;&#x66F4;&#x6539;&#xFF0C; &#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4F7F;&#x7528;&#x4E86;&#x201D; &#x9996;&#x6B21;&#x91CD;&#x590D;&#x952E;&#x8D62; &#x201C;&#x7B97;&#x6CD5;&#x3002;</p>
+<p>&#x6709;&#x5173;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#x548C;&#x793A;&#x4F8B;<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-normalization" target="_blank" rel="noopener">&#xFF0C;</a>&#x8BF7;&#x53C2;&#x89C1;<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-normalization" target="_blank" rel="noopener">JSON&#x503C;&#x7684;&#x89C4;&#x8303;&#x5316;&#xFF0C;&#x5408;&#x5E76;&#x548C;&#x81EA;&#x52A8;&#x5305;&#x88C5;</a>&#x3002;</p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/json-table-functions.html#function_json-table" target="_blank" rel="noopener"><code>JSON_TABLE()</code></a> &#x5728;MySQL 8.0.4&#x4E2D; &#x6DFB;&#x52A0;&#x4E86;&#x8BE5;&#x529F;&#x80FD;&#x3002;&#x6B64;&#x51FD;&#x6570;&#x63A5;&#x53D7;JSON&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x4F5C;&#x4E3A;&#x5177;&#x6709;&#x6307;&#x5B9A;&#x5217;&#x7684;&#x5173;&#x7CFB;&#x8868;&#x8FD4;&#x56DE;&#x3002;</p>
+<p>&#x8BE5;&#x51FD;&#x6570;&#x7684;&#x8BED;&#x6CD5;&#x4E3A; &#xFF0C;&#x5176;&#x4E2D; &#x662F;&#x8FD4;&#x56DE;JSON&#x6570;&#x636E;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x662F;&#x5E94;&#x7528;&#x4E8E;&#x6E90;&#x7684;JSON&#x8DEF;&#x5F84;&#x4EE5;&#x53CA; &#x5217;&#x5B9A;&#x4E49;&#x7684;&#x5217;&#x8868;&#x3002;&#x8FD9;&#x91CC;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#xFF1A; <code>JSON_TABLE(*</code>expr<code>*, *</code>path<code>* COLUMNS *</code>column_list<code>*) [AS] *</code>alias<code>*)</code><em><code>expr</code><strong><code>path</code></strong><code>column_list</code></em></p>
+<p><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT *</span><br><span class="line">    -&gt; FROM</span><br><span class="line">    -&gt;   JSON_TABLE(</span><br><span class="line">    -&gt;     &apos;[{&quot;a&quot;:3,&quot;b&quot;:&quot;0&quot;},{&quot;a&quot;:&quot;3&quot;,&quot;b&quot;:&quot;1&quot;},{&quot;a&quot;:2,&quot;b&quot;:1},{&quot;a&quot;:0},{&quot;b&quot;:[1,2]}]&apos;,</span><br><span class="line">    -&gt;     &quot;$[*]&quot; COLUMNS(</span><br><span class="line">    -&gt;       rowid FOR ORDINALITY,</span><br><span class="line">    -&gt;</span><br><span class="line">    -&gt;       xa INT EXISTS PATH &quot;$.a&quot;,</span><br><span class="line">    -&gt;       xb INT EXISTS PATH &quot;$.b&quot;,</span><br><span class="line">    -&gt;</span><br><span class="line">    -&gt;       sa VARCHAR(100) PATH &quot;$.a&quot;,</span><br><span class="line">    -&gt;       sb VARCHAR(100) PATH &quot;$.b&quot;,</span><br><span class="line">    -&gt;</span><br><span class="line">    -&gt;       ja JSON PATH &quot;$.a&quot;,</span><br><span class="line">    -&gt;       jb JSON PATH &quot;$.b&quot;</span><br><span class="line">    -&gt;     )</span><br><span class="line">    -&gt;   ) AS  jt1;</span><br><span class="line">+<span class="hljs-comment">-------+------+------+------+------+------+--------+</span></span><br><span class="line">| rowid | xa   | xb   | sa   | sb   | ja   | jb     |</span><br><span class="line">+<span class="hljs-comment">-------+------+------+------+------+------+--------+</span></span><br><span class="line">|     1 |    1 |    1 | 3    | 0    | 3    | &quot;0&quot;    |</span><br><span class="line">|     2 |    1 |    1 | 3    | 1    | &quot;3&quot;  | &quot;1&quot;    |</span><br><span class="line">|     3 |    1 |    1 | 2    | 1    | 2    | 1      |</span><br><span class="line">|     4 |    1 |    0 | 0    | NULL | 0    | NULL   |</span><br><span class="line">|     5 |    0 |    1 | NULL | NULL | NULL | [1, 2] |</span><br><span class="line">+<span class="hljs-comment">-------+------+------+------+------+------+--------+</span></span><br></pre></td></tr></table></figure></p>
+<p>JSON&#x6E90;&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x662F;&#x4EA7;&#x751F;&#x6709;&#x6548;JSON&#x6587;&#x6863;&#x7684;&#x4EFB;&#x4F55;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x5305;&#x62EC;JSON&#x6587;&#x5B57;&#xFF0C;&#x8868;&#x5217;&#x6216;&#x8FD4;&#x56DE;JSON&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;&#xFF0C;&#x4F8B;&#x5982;<a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-extract" target="_blank" rel="noopener"><code>JSON_EXTRACT(t1, data, &apos;$.post.comments&apos;)</code></a>&#x3002;&#x6709;&#x5173;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1; <a href="https://dev.mysql.com/doc/refman/8.0/en/json-table-functions.html" target="_blank" rel="noopener">&#x7B2C;12.17.6&#x8282;&#x201D; JSON&#x8868;&#x51FD;&#x6570;&#x201D;</a>&#x3002;</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%9F%B9%E8%AE%AD/">#培训</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/MySQL%E9%AB%98%E7%BA%A7%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B-%E6%8E%A2%E7%B4%A2%E7%B1%BB/">#MySQL高级管理教程-探索类</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/MySQL8/">#MySQL8</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/internal-tempoary-tables/">MySQL 8.0的新增功能探索-内部临时表</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/innodb-enhancements/">MySQL 8.0的新增功能探索-InnoDB增强功能</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2020/05/27/DBA_MySQL/探索类/mysql8-0/readme/json-enhancements/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+
+
+</div>
+
+
+    </div>
+</section>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span> 人次 </span>
+           </div>
+
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+    
+</body>
+</html>

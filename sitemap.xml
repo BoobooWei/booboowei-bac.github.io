@@ -2,6 +2,307 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/xml-enhancements/</loc>
+    
+    <lastmod>2020-05-26T11:02:58.180Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/window-functions/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.997Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/optimizer-hints-for-force-index-ignore-index/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.990Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/new-optimizer-switch-flags/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.984Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/user-comments-and-user-attributes/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.984Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/table-encryption-management/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.974Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/time-zone-support-for-timestamp-and-datatime/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.974Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/mysql-upgrade/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.972Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/the-clone-plugin/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.972Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/plugins/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/precise-information-for-json-schema-check-constraint/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/query-cast-injection/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/redo-log-archiving/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/regular-expression-support/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/replication/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/resource-management/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/sql-standard-explicit-table-clause-and-table-value-constructor/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/security-and-account-management/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/row-and-columns-aliases-with-on-duplicate-key-update/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/multi-valued-indexes/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.970Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/optimizer/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.970Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/innodb-enhancements/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.954Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/json-enhancements/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.950Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/aliases-in-single-table-delete-statements/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/atomic-ddl/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/backup-lock/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/internal-tempoary-tables/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/json-schema-validation/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/json-value-function/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/lateral-derived-tables/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/additional-target-types-for-casts/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/c-api/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/connection-management/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/common-table-expressions/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/character-set-support/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/configuration/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/data-type-support/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/explain-analyze-statement/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/data-dictionary/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/hash-join-optimization/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/hintable-time-zone/</loc>
+    
+    <lastmod>2020-05-26T11:02:38.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/</loc>
+    
+    <lastmod>2020-05-26T11:01:18.229Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8-0/readme/json-vaibutes/</loc>
+    
+    <lastmod>2020-05-26T09:55:24.122Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/%E6%93%8D%E4%BD%9C%E7%B1%BB/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/readme/</loc>
     
     <lastmod>2020-05-26T07:00:46.213Z</lastmod>

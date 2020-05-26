@@ -1,0 +1,16 @@
+<hr>
+<p>title: MySQL 8.0的新增功能探索-复制<br>categories:</p>
+<ul>
+<li><ul>
+<li>培训教程</li>
+<li>MySQL高级管理教程<br>tags:</li>
+</ul>
+</li>
+<li>培训</li>
+<li>MySQL高级管理教程-探索类</li>
+<li>MySQL8</li>
+</ul>
+<hr>
+<ul>
+<li><strong>复制。</strong> 对MySQL复制进行了以下增强：- MySQL复制现在支持使用紧凑的二进制格式对JSON文档的部分更新进行二进制日志记录，从而在记录完整的JSON文档时节省了日志空间。当使用基于语句的日志记录时，这种紧凑的日志记录会自动完成，并且可以通过将新的<code>binlog_row_value_options</code>系统变量设置为来启用 <code>PARTIAL_JSON</code>。有关更多信息，请参见<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-partial-updates" target="_blank" rel="noopener">JSON值的部分更新</a>以及的描述 <a href="https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html#sysvar_binlog_row_value_options" target="_blank" rel="noopener"><code>binlog_row_value_options</code></a>。</li>
+</ul>

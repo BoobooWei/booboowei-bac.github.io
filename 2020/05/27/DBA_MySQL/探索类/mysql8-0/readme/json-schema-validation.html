@@ -1,0 +1,23 @@
+<hr>
+<p>title: MySQL 8.0的新增功能探索-JSON模式验证<br>date: 2020-05-26T17:58:00.000Z<br>categories:</p>
+<ul>
+<li><ul>
+<li>培训教程</li>
+<li>MySQL高级管理教程<br>tags:</li>
+</ul>
+</li>
+<li>培训</li>
+<li>MySQL高级管理教程-探索类</li>
+<li>MySQL8</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>JSON模式验证。</strong> MySQL 8.0.17添加了两个功能 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-validation-functions.html#function_json-schema-valid" target="_blank" rel="noopener"><code>JSON_SCHEMA_VALID()</code></a>， <a href="https://dev.mysql.com/doc/refman/8.0/en/json-validation-functions.html#function_json-schema-validation-report" target="_blank" rel="noopener"><code>JSON_SCHEMA_VALIDATION_REPORT()</code></a> 用于再次验证JSON文档JSON模式。 <code>JSON_SCHEMA_VALID()</code>如果文档根据架构进行验证，则返回TRUE（1），否则通过FALSE（0）返回。 <code>JSON_SCHEMA_VALIDATION_REPORT()</code>返回一个JSON文档，其中包含有关验证结果的详细信息。以下语句适用于这两个功能：- 模式必须符合JSON模式规范的草案4。</p>
+<ul>
+<li><code>required</code> 支持属性。</li>
+<li><code>$ref</code> 不支持 外部资源和关键字。</li>
+<li>支持正则表达式模式；无效模式将被静默忽略。</li>
+</ul>
+<p>有关更多信息和示例，请参见<a href="https://dev.mysql.com/doc/refman/8.0/en/json-validation-functions.html" target="_blank" rel="noopener">第12.17.7节” JSON模式验证函数”</a>。</p>
+</li>
+</ul>
