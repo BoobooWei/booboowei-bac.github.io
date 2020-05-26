@@ -1,0 +1,37 @@
+<hr>
+<p>title: MySQL 8.0的新增功能探索-SQL标准的显式表子句和表值构造函数<br>date: 2020-05-26T17:58:00.000Z<br>categories:</p>
+<ul>
+<li>[培训教程,MySQL高级管理教程]<br>tags:</li>
+<li>培训</li>
+<li>MySQL高级管理教程-探索类</li>
+<li>MySQL8</li>
+</ul>
+<hr>
+<ul>
+<li><strong>SQL标准的显式表子句和表值构造函数。</strong> 根据SQL标准添加了表值构造函数和显式表子句。这些分别在MySQL 8.0.19中作为 <a href="https://dev.mysql.com/doc/refman/8.0/en/table.html" target="_blank" rel="noopener"><code>TABLE</code></a>语句和 <a href="https://dev.mysql.com/doc/refman/8.0/en/values.html" target="_blank" rel="noopener"><code>VALUES</code></a>语句实现。</li>
+</ul>
+<p>该<a href="https://dev.mysql.com/doc/refman/8.0/en/table.html" target="_blank" rel="noopener"><code>TABLE</code></a>语句具有格式，并且等效于。它支持 和 子句（后者带有optional ），但不允许选择单个表列。 可以在您使用等效 语句的任何地方使用；这包括连接，联合， ，， 语句和子查询。例如： <code>TABLE *</code>table_name<code>*``SELECT * FROM *</code>table_name<code>*``ORDER BY``LIMIT``OFFSET``TABLE</code><a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank" rel="noopener"><code>SELECT</code></a><a href="https://dev.mysql.com/doc/refman/8.0/en/insert-select.html" target="_blank" rel="noopener"><code>INSERT ... SELECT</code></a><a href="https://dev.mysql.com/doc/refman/8.0/en/replace.html" target="_blank" rel="noopener"><code>REPLACE</code></a><a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-select.html" target="_blank" rel="noopener"><code>CREATE TABLE ... SELECT</code></a></p>
+<ul>
+<li><p><code>TABLE t1 UNION TABLE t2</code> 相当于 <code>SELECT * FROM t1 UNION SELECT * FROM t2</code></p>
+</li>
+<li><p><code>CREATE TABLE t2 TABLE t1</code> 相当于 <code>CREATE TABLE t2 SELECT * FROM t1</code></p>
+</li>
+<li><p><code>SELECT a FROM t1 WHERE b &gt; ANY (TABLE t2)</code>等同于<code>SELECT a FROM t1 WHERE b &gt; ANY (SELECT * FROM t2)</code>。</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/values.html" target="_blank" rel="noopener"><code>VALUES</code></a>可用于一个表值提供给一个<a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank" rel="noopener"><code>INSERT</code></a>， <a href="https://dev.mysql.com/doc/refman/8.0/en/replace.html" target="_blank" rel="noopener"><code>REPLACE</code></a>或 <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank" rel="noopener"><code>SELECT</code></a>语句，和由的<code>VALUES</code>关键字随后进行了一系列行构造（的<code>ROW()</code>）由逗号分隔。例如，该语句 <code>INSERT INTO t1 VALUES ROW(1,2,3), ROW(4,5,6), ROW(7,8,9)</code>提供与SQL兼容的等效于MySQL特定的<code>INSERT INTO t1 VALUES (1,2,3), (4,5,6), (7,8,9)</code>。您还可以像选择<a href="https://dev.mysql.com/doc/refman/8.0/en/values.html" target="_blank" rel="noopener"><code>VALUES</code></a>表一样从表值构造函数中进行选择 ，请记住，这样做时必须提供表别名，并且必须<a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank" rel="noopener"><code>SELECT</code></a>像使用其他别名一样使用它 。这包括联接，联合和子查询。</p>
+<p>有关详细信息<code>TABLE</code>，并 <code>VALUES</code>和其使用的示例，请参阅本文档的以下部分：</p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/table.html" target="_blank" rel="noopener">第13.2.12节” TABLE语句”</a></p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/values.html" target="_blank" rel="noopener">第13.2.14节” VALUES语句”</a></p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-select.html" target="_blank" rel="noopener">第13.1.20.4节” CREATE TABLE … SELECT语句”</a></p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/insert-select.html" target="_blank" rel="noopener">第13.2.6.1节” INSERT … SELECT语句”</a></p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/join.html" target="_blank" rel="noopener">第13.2.10.2节” JOIN子句”</a></p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/subqueries.html" target="_blank" rel="noopener">第13.2.11节”子查询”</a></p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/union.html" target="_blank" rel="noopener">第13.2.10.3节” UNION子句”</a></p>
+</li>
+</ul>

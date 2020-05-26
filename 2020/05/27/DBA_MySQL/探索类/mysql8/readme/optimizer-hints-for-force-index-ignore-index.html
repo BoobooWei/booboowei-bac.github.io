@@ -1,0 +1,34 @@
+<hr>
+<p>title: MySQL 8.0的新增功能探索-FORCE INDEX，IGNORE INDEX的优化程序提示<br>date: 2020-05-26T17:58:00.000Z<br>categories:</p>
+<ul>
+<li>[培训教程,MySQL高级管理教程]<br>tags:</li>
+<li>培训</li>
+<li>MySQL高级管理教程-探索类</li>
+<li>MySQL8</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>FORCE INDEX，IGNORE INDEX的优化程序提示。</strong> MySQL 8.0引入了索引级优化器提示，这些提示与<a href="https://dev.mysql.com/doc/refman/8.0/en/index-hints.html" target="_blank" rel="noopener">第8.9.4节”索引提示”中</a>所述的传统索引提示类似。新的提示这里列出，与他们一起<code>FORCE INDEX</code>或<code>IGNORE INDEX</code> 等价物：</p>
+<ul>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>GROUP_INDEX</code></a>： 相当于 <code>FORCE INDEX FOR GROUP BY</code></p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_GROUP_INDEX</code></a>： 相当于 <code>IGNORE INDEX FOR GROUP BY</code></p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>JOIN_INDEX</code></a>： 相当于 <code>FORCE INDEX FOR JOIN</code></p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_JOIN_INDEX</code></a>： 相当于 <code>IGNORE INDEX FOR JOIN</code></p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>ORDER_INDEX</code></a>： 相当于 <code>FORCE INDEX FOR ORDER BY</code></p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_ORDER_INDEX</code></a>： 相当于 <code>IGNORE INDEX FOR ORDER BY</code></p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>INDEX</code></a>：与<a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>GROUP_INDEX</code></a>加 <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>JOIN_INDEX</code></a>号 相同 <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>ORDER_INDEX</code></a>; 等同于<code>FORCE INDEX</code>没有修饰符</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_INDEX</code></a>：与<a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_GROUP_INDEX</code></a>加 <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_JOIN_INDEX</code></a>号 相同 <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_ORDER_INDEX</code></a>; 等同于<code>IGNORE INDEX</code>没有修饰符</p>
+</li>
+</ul>
+<p>例如，以下两个查询是等效的：</p>
+<pre><code class="sql"><span class="keyword">SELECT</span> a <span class="keyword">FROM</span> t1 <span class="keyword">FORCE</span> <span class="keyword">INDEX</span> (i_a) <span class="keyword">FOR</span> <span class="keyword">JOIN</span> <span class="keyword">WHERE</span> a=<span class="number">1</span> <span class="keyword">AND</span> b=<span class="number">2</span>;
+
+<span class="keyword">SELECT</span> <span class="comment">/*+ JOIN_INDEX(t1 i_a) */</span> a <span class="keyword">FROM</span> t1 <span class="keyword">WHERE</span> a=<span class="number">1</span> <span class="keyword">AND</span> b=<span class="number">2</span>;</code></pre>
+<p>前面列出的优化器提示在语法和用法上与现有索引级优化器提示遵循相同的基本规则。</p>
+<p>这些优化器提示旨在替换<code>FORCE INDEX</code>和<code>IGNORE INDEX</code>，我们计划在将来的MySQL版本中弃用和，然后从MySQL中删除。他们没有实现的单个精确等效项<code>USE INDEX</code>；相反，你可以使用一个或多个 <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_INDEX</code></a>， <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_JOIN_INDEX</code></a>， <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_GROUP_INDEX</code></a>，或 <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener"><code>NO_ORDER_INDEX</code></a>达到同样的效果。</p>
+<p>有关更多信息和使用示例，请参见 <a href="https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html#optimizer-hints-index-level" target="_blank" rel="noopener">索引级优化器提示</a>。</p>
+</li>
+</ul>

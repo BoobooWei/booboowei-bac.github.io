@@ -1,0 +1,100 @@
+<hr>
+<p>title: MySQL 8.0的新增功能探索-Json增强功能<br>date: 2020-05-26T17:58:00.000Z<br>categories:</p>
+<ul>
+<li>[培训教程,MySQL高级管理教程]</li>
+<li>培训</li>
+<li>MySQL高级管理教程-探索类</li>
+<li>MySQL8</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>JSON增强。</strong> 对MySQL的JSON功能进行了以下增强或添加：- 添加了 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#operator_json-inline-path" target="_blank" rel="noopener"><code>-&gt;&gt;</code></a> （内联路径）运算符，等效于调用 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-unquote" target="_blank" rel="noopener"><code>JSON_UNQUOTE()</code></a>的结果<a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-extract" target="_blank" rel="noopener"><code>JSON_EXTRACT()</code></a>。</p>
+<p>这是<a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#operator_json-column-path" target="_blank" rel="noopener"><code>-&gt;</code></a> 对MySQL 5.7中引入的列路径运算符的改进 ； <code>col-&gt;&gt;&quot;$.path&quot;</code>等同于 <code>JSON_UNQUOTE(col-&gt;&quot;$.path&quot;)</code>。内联路径运算符可以用来随时随地可以使用 <code>JSON_UNQUOTE(JSON_EXTRACT())</code>，如 <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html" target="_blank" rel="noopener"><code>SELECT</code></a>列清单， <code>WHERE</code>和<code>HAVING</code> 条款，并<code>ORDER BY</code>和 <code>GROUP BY</code>条款。有关更多信息，请参见运算符的描述以及<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-path-syntax" target="_blank" rel="noopener">JSON Path Syntax</a>。</p>
+<ul>
+<li><p>添加了两个JSON聚合函数 <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_json-arrayagg" target="_blank" rel="noopener"><code>JSON_ARRAYAGG()</code></a>和 <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_json-objectagg" target="_blank" rel="noopener"><code>JSON_OBJECTAGG()</code></a>。 <code>JSON_ARRAYAGG()</code>将列或表达式作为其参数，并将结果聚合为单个<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a>数组。该表达式可以求值为任何MySQL数据类型；这不一定是一个<code>JSON</code>值。 <code>JSON_OBJECTAGG()</code>接受两列或表达式，将其解释为键和值；它将结果作为单个<code>JSON</code> 对象返回。有关更多信息和示例，请参见 <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions-and-modifiers.html" target="_blank" rel="noopener">第12.20节”聚合（GROUP BY）函数”</a>。</p>
+</li>
+<li><p>添加了JSON实用程序功能<a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html#function_json-pretty" target="_blank" rel="noopener"><code>JSON_PRETTY()</code></a>，该功能 <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a> 以易于阅读的格式输出现有值；每个JSON对象成员或数组值都打印在单独的一行上，并且子对象或数组相对于其父对象要有2个空格。</p>
+<p>此函数还可以与可解析为JSON值的字符串一起使用。</p>
+<p>有关更多详细信息和示例，请参见 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html" target="_blank" rel="noopener">第12.17.8节” JSON实用程序函数”</a>。</p>
+</li>
+<li><p>现在，<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a>使用来对查询中的值进行 排序时<code>ORDER BY</code>，每个值现在都由sort键的可变长度部分表示，而不是由固定的1K大小的一部分表示。在许多情况下，这可以减少过多的使用。例如，标量<code>INT</code>甚至 <code>BIGINT</code>值实际上需要很少的字节，因此该空间的其余部分（最多90％或更多）被填充占用。此更改具有以下性能优势：</p>
+<ul>
+<li>现在可以更有效地使用排序缓冲区空间，因此文件排序不需要像固定长度排序键那样早或经常刷新到磁盘。这意味着可以在内存中整理更多数据，避免不必要的磁盘访问。</li>
+<li>比起较长的键，可以更快地比较较短的键，从而显着提高性能。对于完全在内存中执行的排序以及需要写入磁盘和从磁盘读取的排序，都是如此。</li>
+</ul>
+</li>
+<li><p>在MySQL 8.0.2中添加了对<code>JSON</code>列值的部分就地更新的支持，这比完全删除现有JSON值并在其位置写入一个新的JSON效率更高，就像以前在更新任何<code>JSON</code>列时所做的那样 。要应用这种优化，更新，必须使用应用 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-set" target="_blank" rel="noopener"><code>JSON_SET()</code></a>， <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-replace" target="_blank" rel="noopener"><code>JSON_REPLACE()</code></a>或 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-remove" target="_blank" rel="noopener"><code>JSON_REMOVE()</code></a>。无法将新元素添加到要更新的JSON文档中；文档中的值不能占用比更新前更多的空间。请参阅 <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-partial-updates" target="_blank" rel="noopener">JSON值的部分更新</a>，以详细讨论要求。</p>
+<p>可以将JSON文档的部分更新写入二进制日志，比记录完整的JSON文档占用更少的空间。使用基于语句的复制时，始终会记录部分更新。为了使其与基于行的复制一起使用，必须首先设置 <a href="https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html#sysvar_binlog_row_value_options" target="_blank" rel="noopener"><code>binlog_row_value_options=PARTIAL_JSON</code></a>; 有关更多信息，请参见此变量的说明。</p>
+</li>
+<li><p>添加了JSON实用程序功能 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html#function_json-storage-size" target="_blank" rel="noopener"><code>JSON_STORAGE_SIZE()</code></a>和 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html#function_json-storage-free" target="_blank" rel="noopener"><code>JSON_STORAGE_FREE()</code></a>。 <code>JSON_STORAGE_SIZE()</code>在进行任何部分更新之前，返回用于JSON文档的二进制表示形式的存储空间（以字节为单位）（请参阅上一项）。 <code>JSON_STORAGE_FREE()</code>显示<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a>使用<code>JSON_SET()</code>或 部分更新的类型的表列中剩余的空间量 <code>JSON_REPLACE()</code>。如果新值的二进制表示形式小于先前值的二进制表示形式，则该值大于零。</p>
+<p>每个函数还接受JSON文档的有效字符串表示形式。对于这样的值， <code>JSON_STORAGE_SIZE()</code>返回其转换为JSON文档后其二进制表示形式使用的空间。对于包含JSON文档的字符串表示形式的变量， <code>JSON_STORAGE_FREE()</code>返回零。如果无法将其（非null）参数解析为有效的JSON文档，并且<code>NULL</code>参数为，则 任何一个函数都会产生错误 <code>NULL</code>。</p>
+<p>有关更多信息和示例，请参见 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-utility-functions.html" target="_blank" rel="noopener">第12.17.8节” JSON实用程序函数”</a>。</p>
+<p><code>JSON_STORAGE_SIZE()</code>并 <code>JSON_STORAGE_FREE()</code>在MySQL 8.0.2中实现。</p>
+</li>
+<li><p>在MySQL 8.0.2中添加了对范围（例如 <code>$[1 to 5]</code>XPath表达式）的支持。在此版本中还添加了对 <code>last</code>关键字和相对寻址的支持，因此<code>$[last]</code>始终选择数组中的最后一个（最高编号）元素以及 <code>$[last-1]</code>最后一个相邻元素。 <code>last</code>使用它的表达式也可以包含在范围定义中。例如， <code>$[last-2 to last-1]</code>返回最后两个元素，但返回数组中的一个。有关其他信息和示例，请参见 <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-paths" target="_blank" rel="noopener">搜索和修改JSON值</a>。</p>
+</li>
+<li><p>添加了旨在符合<a href="https://tools.ietf.org/html/rfc7396" target="_blank" rel="noopener">RFC 7396</a>的JSON合并功能 。 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-merge-patch" target="_blank" rel="noopener"><code>JSON_MERGE_PATCH()</code></a>，当用于2个JSON对象时，将它们合并为一个具有以下集合的并集的单个JSON对象：</p>
+<ul>
+<li>第一个对象的每个成员，在第二个对象中不存在具有相同键的成员。</li>
+<li>第二个对象的每个成员，在第一个对象中没有成员具有相同的键，并且其值不是JSON <code>null</code>文字。</li>
+<li>每个成员都具有在两个对象中都存在的键，并且其在第二个对象中的值不是JSON <code>null</code>文字。</li>
+</ul>
+<p>作为这项工作的一部分，该 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-merge" target="_blank" rel="noopener"><code>JSON_MERGE()</code></a>功能已重命名 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html#function_json-merge-preserve" target="_blank" rel="noopener"><code>JSON_MERGE_PRESERVE()</code></a>。 <code>JSON_MERGE()</code>仍然被认为是<code>JSON_MERGE_PRESERVE()</code>MySQL 8.0 的别名 ，但现在已被弃用，并且可能在将来的MySQL版本中删除。</p>
+<p>有关更多信息和示例，请参见 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html" target="_blank" rel="noopener">第12.17.4节”修改JSON值的函数”</a>。</p>
+</li>
+<li><p>实现重复密钥的 “ 最后重复密钥获胜 “ 规范化，与 <a href="https://tools.ietf.org/html/rfc7159" target="_blank" rel="noopener">RFC 7159</a>和大多数JavaScript解析器一致。此行为的示例在此处显示，其中仅<code>x</code>保留具有密钥的最右边的成员：</p>
+<pre><code class="sql">mysql&gt; SELECT JSON_OBJECT('x', '32', 'y', '[true, false]',
+     &gt;                     'x', '"abc"', 'x', '100') AS Result;
++<span class="comment">------------------------------------+</span>
+| Result                             |
++<span class="comment">------------------------------------+</span>
+| {"x": "100", "y": "[true, false]"} |
++<span class="comment">------------------------------------+</span>
+1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</code></pre>
+<p>插入MySQL <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html" target="_blank" rel="noopener"><code>JSON</code></a>列中的值 也以这种方式标准化，如以下示例所示：</p>
+<pre><code class="sql">mysql&gt; CREATE TABLE t1 (c1 JSON);
+
+mysql&gt; INSERT INTO t1 VALUES ('{"x": 17, "x": "red", "x": [3, 5, 7]}');
+
+mysql&gt; SELECT c1 FROM t1;
++<span class="comment">------------------+</span>
+| c1               |
++<span class="comment">------------------+</span>
+| {"x": [3, 5, 7]} |
++<span class="comment">------------------+</span></code></pre>
+<p>与以前的MySQL版本相比，这是一个不兼容的更改， 在这种情况下，使用了” 首次重复键赢 “算法。</p>
+<p>有关更多信息和示例<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-normalization" target="_blank" rel="noopener">，</a>请参见<a href="https://dev.mysql.com/doc/refman/8.0/en/json.html#json-normalization" target="_blank" rel="noopener">JSON值的规范化，合并和自动包装</a>。</p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/json-table-functions.html#function_json-table" target="_blank" rel="noopener"><code>JSON_TABLE()</code></a> 在MySQL 8.0.4中 添加了该功能。此函数接受JSON数据，并将其作为具有指定列的关系表返回。</p>
+<p>该函数的语法为 ，其中 是返回JSON数据的表达式，是应用于源的JSON路径以及 列定义的列表。这里显示一个示例： <code>JSON_TABLE(*</code>expr<code>*, *</code>path<code>* COLUMNS *</code>column_list<code>*) [AS] *</code>alias<code>*)</code><em><code>expr</code><strong><code>path</code></strong><code>column_list</code></em></p>
+<pre><code class="sql">mysql&gt; SELECT *
+    -&gt; FROM
+    -&gt;   JSON_TABLE(
+    -&gt;     '[{"a":3,"b":"0"},{"a":"3","b":"1"},{"a":2,"b":1},{"a":0},{"b":[1,2]}]',
+    -&gt;     "$[*]" COLUMNS(
+    -&gt;       rowid FOR ORDINALITY,
+    -&gt;
+    -&gt;       xa INT EXISTS PATH "$.a",
+    -&gt;       xb INT EXISTS PATH "$.b",
+    -&gt;
+    -&gt;       sa VARCHAR(100) PATH "$.a",
+    -&gt;       sb VARCHAR(100) PATH "$.b",
+    -&gt;
+    -&gt;       ja JSON PATH "$.a",
+    -&gt;       jb JSON PATH "$.b"
+    -&gt;     )
+    -&gt;   ) AS  jt1;
++<span class="comment">-------+------+------+------+------+------+--------+</span>
+| rowid | xa   | xb   | sa   | sb   | ja   | jb     |
++<span class="comment">-------+------+------+------+------+------+--------+</span>
+|     1 |    1 |    1 | 3    | 0    | 3    | "0"    |
+|     2 |    1 |    1 | 3    | 1    | "3"  | "1"    |
+|     3 |    1 |    1 | 2    | 1    | 2    | 1      |
+|     4 |    1 |    0 | 0    | NULL | 0    | NULL   |
+|     5 |    0 |    1 | NULL | NULL | NULL | [1, 2] |
++<span class="comment">-------+------+------+------+------+------+--------+</span></code></pre>
+<p>JSON源表达式可以是产生有效JSON文档的任何表达式，包括JSON文字，表列或返回JSON的函数调用，例如<a href="https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-extract" target="_blank" rel="noopener"><code>JSON_EXTRACT(t1, data, &#39;$.post.comments&#39;)</code></a>。有关更多信息，请参见 <a href="https://dev.mysql.com/doc/refman/8.0/en/json-table-functions.html" target="_blank" rel="noopener">第12.17.6节” JSON表函数”</a>。</p>
+</li>
+</ul>
+</li>
+</ul>

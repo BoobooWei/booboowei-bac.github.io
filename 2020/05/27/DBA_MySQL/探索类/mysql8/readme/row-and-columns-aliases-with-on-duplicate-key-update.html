@@ -1,0 +1,27 @@
+<hr>
+<p>title: MySQL 8.0的新增功能探索-行和列别名具有ON DUPLICATE KEY UPDATE<br>date: 2020-05-26T17:58:00.000Z<br>categories:</p>
+<ul>
+<li>[培训教程,MySQL高级管理教程]<br>tags:</li>
+<li>培训</li>
+<li>MySQL高级管理教程-探索类</li>
+<li>MySQL8</li>
+</ul>
+<hr>
+<ul>
+<li><strong>行和列别名具有ON DUPLICATE KEY UPDATE。</strong> 从MySQL 8.0.19开始，可以使用别名引用要插入的行，以及（可选）引用其列。考虑在具有列 和<a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" target="_blank" rel="noopener"><code>INSERT</code></a>的表<code>t</code>上的以下 语句 ： <code>a``b</code></li>
+</ul>
+<pre><code class="sql"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t <span class="keyword">SET</span> a=<span class="number">9</span>,b=<span class="number">5</span>
+    <span class="keyword">ON</span> <span class="keyword">DUPLICATE</span> <span class="keyword">KEY</span> <span class="keyword">UPDATE</span> a=<span class="keyword">VALUES</span>(a)+<span class="keyword">VALUES</span>(b);</code></pre>
+<p>使用<code>new</code>新行的别名，在某些情况下，使用别名<code>m</code>以及 <code>n</code>该行的列，<code>INSERT</code>可以用许多不同的方式重写该 语句，此处显示了一些示例：</p>
+<pre><code class="sql"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t <span class="keyword">SET</span> a=<span class="number">9</span>,b=<span class="number">5</span> <span class="keyword">AS</span> <span class="keyword">new</span>
+    <span class="keyword">ON</span> <span class="keyword">DUPLICATE</span> <span class="keyword">KEY</span> <span class="keyword">UPDATE</span> a=new.a+new.b;
+
+<span class="keyword">INSERT</span> <span class="keyword">INTO</span> t <span class="keyword">VALUES</span>(<span class="number">9</span>,<span class="number">5</span>) <span class="keyword">AS</span> <span class="keyword">new</span>
+    <span class="keyword">ON</span> <span class="keyword">DUPLICATE</span> <span class="keyword">KEY</span> <span class="keyword">UPDATE</span> a=new.a+new.b;
+
+<span class="keyword">INSERT</span> <span class="keyword">INTO</span> t <span class="keyword">SET</span> a=<span class="number">9</span>,b=<span class="number">5</span> <span class="keyword">AS</span> <span class="keyword">new</span>(m,n)
+    <span class="keyword">ON</span> <span class="keyword">DUPLICATE</span> <span class="keyword">KEY</span> <span class="keyword">UPDATE</span> a=m+n;
+
+<span class="keyword">INSERT</span> <span class="keyword">INTO</span> t <span class="keyword">VALUES</span>(<span class="number">9</span>,<span class="number">5</span>) <span class="keyword">AS</span> <span class="keyword">new</span>(m,n)
+    <span class="keyword">ON</span> <span class="keyword">DUPLICATE</span> <span class="keyword">KEY</span> <span class="keyword">UPDATE</span> a=m+n;</code></pre>
+<p>欲了解更多信息和示例，请参见 <a href="https://dev.mysql.com/doc/refman/8.0/en/insert-on-duplicate.html" target="_blank" rel="noopener">第13.2.6.2，”INSERT … ON DUPLICATE KEY UPDATE语句”</a>。</p>
