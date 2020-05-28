@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.toberoot.com/2020/05/29/booboo_others/2020-05-28-tec-oracle/</loc>
+    
+    <lastmod>2020-05-28T08:11:50.904Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8/readme/</loc>
     
-    <lastmod>2020-05-26T11:26:36.609Z</lastmod>
+    <lastmod>2020-05-28T07:54:29.506Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/%E6%93%8D%E4%BD%9C%E7%B1%BB/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/readme/</loc>
+    
+    <lastmod>2020-05-28T07:51:57.586Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8/readme/window-functions/</loc>
+    
+    <lastmod>2020-05-28T07:46:20.646Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8/readme/json-enhancements/</loc>
+    
+    <lastmod>2020-05-28T07:44:50.974Z</lastmod>
     
   </url>
   
@@ -61,13 +89,6 @@
     <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8/readme/redo-log-archiving/</loc>
     
     <lastmod>2020-05-26T11:21:17.246Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8/readme/json-enhancements/</loc>
-    
-    <lastmod>2020-05-26T11:21:17.243Z</lastmod>
     
   </url>
   
@@ -282,13 +303,6 @@
   </url>
   
   <url>
-    <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8/readme/window-functions/</loc>
-    
-    <lastmod>2020-05-26T11:21:17.148Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.toberoot.com/2020/05/27/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8/readme/additional-target-types-for-casts/</loc>
     
     <lastmod>2020-05-26T11:21:17.145Z</lastmod>
@@ -299,20 +313,6 @@
     <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/%E6%93%8D%E4%BD%9C%E7%B1%BB/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/readme/mysql/</loc>
     
     <lastmod>2020-05-26T11:15:24.127Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/%E6%8E%A2%E7%B4%A2%E7%B1%BB/mysql8/readme/json-vaibutes/</loc>
-    
-    <lastmod>2020-05-26T09:55:24.122Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.toberoot.com/2020/05/26/DBA_MySQL/%E6%93%8D%E4%BD%9C%E7%B1%BB/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/readme/</loc>
-    
-    <lastmod>2020-05-26T07:00:46.213Z</lastmod>
     
   </url>
   

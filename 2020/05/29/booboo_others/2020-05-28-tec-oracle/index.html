@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>Oracle11g常用视图 - 归去来兮</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+
+
+
+
+
+
+
+
+    <meta name="description" content="Oracle&amp;#x5E38;&amp;#x7528;&amp;#x89C6;&amp;#x56FE; &amp;#x8BF4;&amp;#x660E;    dba_hist_snapshot &amp;#x5728;&amp;#x5DE5;&amp;#x4F5C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5B58;&amp;#x50A8;&amp;#x5E93;&amp;#x4E2D;&amp;#x663E;&amp;#x793A;&amp;#x6709;&amp;#x5173;&amp;#x5FEB;&amp;#x7167;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle11g常用视图">
+<meta property="og:url" content="http://www.toberoot.com/2020/05/29/booboo_others/2020-05-28-tec-oracle/index.html">
+<meta property="og:site_name" content="归去来兮">
+<meta property="og:description" content="Oracle&amp;#x5E38;&amp;#x7528;&amp;#x89C6;&amp;#x56FE; &amp;#x8BF4;&amp;#x660E;    dba_hist_snapshot &amp;#x5728;&amp;#x5DE5;&amp;#x4F5C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5B58;&amp;#x50A8;&amp;#x5E93;&amp;#x4E2D;&amp;#x663E;&amp;#x793A;&amp;#x6709;&amp;#x5173;&amp;#x5FEB;&amp;#x7167;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-28T16:11:33.000Z">
+<meta property="article:modified_time" content="2020-05-28T08:11:50.904Z">
+<meta property="article:author" content="BoobooWei">
+<meta property="article:tag" content="oracle11g">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="归去来兮" type="application/atom+xml">
+</head>
+<body>
+    
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+    <div class="row">
+        <!--左侧只占一个格子 -->
+        <div class="col-md-1">
+            <div class="navbar-brand">
+                <a class="navbar-item navbar-logo" href="/">
+                    
+                        
+                        <img src="/images/influx.svg" alt="" height="28">
+                        
+                    
+                </a>
+                <div class="navbar-burger">
+                    <span>
+                    </span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--中间自适应 -->
+        <div class="col-md-10">
+            
+            <div class="navbar-menu navbar-start">
+                
+                <a class="navbar-item "
+                   href="/archives/">最近更新</a>
+                
+                <a class="navbar-item "
+                   href="/tags/">标签</a>
+                
+
+                <!-- BoobooWei自动根据已有的category创建-->
+            
+
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <!--循环category 生成navbar代码-->
+                        
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="培训教程"><i class="fold iconfont icon-right"></i>培训教程</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="培训教程">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E9%AB%98%E7%BA%A7%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL高级管理教程">MySQL高级管理教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/LinuxShell%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/" data-rel="LinuxShell脚本教程">LinuxShell脚本教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%AE%80%E6%98%93%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B/" data-rel="Linux简易服务教程">Linux简易服务教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/Linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%9F%B9%E8%AE%AD/" data-rel="Linux系统基础培训">Linux系统基础培训</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/MySQL%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B/" data-rel="MySQL基础管理教程">MySQL基础管理教程</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/%E7%8E%A9%E8%BD%ACGit%E4%B8%89%E5%89%91%E5%AE%A2/" data-rel="玩转Git三剑客">玩转Git三剑客</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/OCP%E4%B9%8BOracle12C/" data-rel="OCP之Oracle12C">OCP之Oracle12C</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%9F%B9%E8%AE%AD%E6%95%99%E7%A8%8B/TICK%E6%8A%80%E6%9C%AF%E6%A0%88%E4%B9%8Bkapacitor/" data-rel="TICK技术栈之kapacitor">TICK技术栈之kapacitor</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="往昔追忆"><i class="fold iconfont icon-right"></i>往昔追忆</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="往昔追忆">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/" data-rel="经典语录">经典语录</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%B0%8F%E4%BA%8C%E7%8F%AD/" data-rel="小二班">小二班</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E8%8B%B1%E8%AF%AD/" data-rel="英语">英语</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%BE%80%E6%98%94%E8%BF%BD%E5%BF%86/%E5%9B%A2%E9%98%9F%E5%AE%B6%E5%BA%AD%E8%81%9A%E9%A4%90/" data-rel="团队家庭聚餐">团队家庭聚餐</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术峰会"><i class="fold iconfont icon-right"></i>技术峰会</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术峰会">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Aliyun/" data-rel="Aliyun">Aliyun</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B3%B0%E4%BC%9A/Azure/" data-rel="Azure">Azure</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="博客搭建"><i class="fold iconfont icon-right"></i>博客搭建</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="博客搭建">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Hexo/" data-rel="Hexo">Hexo</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/Jekyll/" data-rel="Jekyll">Jekyll</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="考研"><i class="fold iconfont icon-right"></i>考研</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="考研">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E8%80%83%E7%A0%94/MSE/" data-rel="MSE">MSE</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="技术广角"><i class="fold iconfont icon-right"></i>技术广角</a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="技术广角">
+                                    
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/" data-rel="Oracle">Oracle</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MySQL/" data-rel="MySQL">MySQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E5%89%8D%E7%AB%AF/" data-rel="前端">前端</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Python/" data-rel="Python">Python</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/PostgreSQL/" data-rel="PostgreSQL">PostgreSQL</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/MongoDB/" data-rel="MongoDB">MongoDB</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/datadog/" data-rel="datadog">datadog</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/jira/" data-rel="jira">jira</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/%E6%8A%80%E6%9C%AF%E6%80%9D%E8%80%83/" data-rel="技术思考">技术思考</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Linux/" data-rel="Linux">Linux</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Git/" data-rel="Git">Git</a>
+                                        
+                                        
+                                    <a class="dropdown-item" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/RedHat/" data-rel="RedHat">RedHat</a>
+                                        
+                                        
+                                </div>
+
+                        </li>
+                        
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                        
+
+                    
+                
+                </ul>
+              </div>
+            </nav>
+
+            <!-- 自动根据已有的category创建-->
+        </div>
+        
+
+        </div>
+
+
+        <!--最右侧 -->
+        <div class="col-md-1">
+
+            <div class="navbar-menu navbar-end">
+                
+                <a class="navbar-item" title="tools" href="/tools/">
+                    <svg t="1586931802353" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="18381" width="20" height="20"><path d="M519.4 878l-69.7-38.1-30.6-16.7-30.6 16.7-86.9 47.3-86.7-47.3-30.6-16.7-30.6 16.7-22.6 12.3V160c0-17.7 14.3-32 32-32h511.6c17.7 0 32 14.3 32 32v288c0 17.7 14.3 32 32 32s32-14.3 32-32V128c0-35.3-26.2-64-58.6-64H125.6C93.2 64 67 92.7 67 128v832l117.2-64 117.3 64L419 896l69.7 38.1C510 945.8 536 930.3 536 906c0.1-11.7-6.3-22.4-16.6-28z" p-id="18382"></path><path d="M258.9 256c-17.7 0-32 14.3-32 32s14.3 32 32 32h319.8c17.7 0 32-14.3 32-32s-14.3-32-32-32H258.9zM610.6 448c0-17.7-14.3-32-32-32H258.9c-17.7 0-32 14.3-32 32s14.3 32 32 32h319.8c17.6 0 31.9-14.3 31.9-32zM514.7 576H258.9c-17.7 0-32 14.3-32 32s14.3 32 32 32h255.8c17.7 0 32-14.3 32-32s-14.4-32-32-32zM947.6 899.4l-185-184.9c17.5-35.8 11.4-80.3-18.4-110.1-25.2-25.2-61-33.5-93.1-24.8l49.7 49.7-14.3 53.2-53.3 14.3-49.7-49.7c-8.7 32.1-0.4 67.9 24.8 93.1 29.4 29.3 73 35.7 108.5 19.1l185.4 185.4c12.5 12.5 32.8 12.5 45.3 0 12.6-12.5 12.6-32.8 0.1-45.3z" p-id="18383"></path></svg>
+               </a>
+                <a class="navbar-item" title="movie" href="/movies/">
+                    <svg t="1586342683221" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1766" width="20" height="20"><path d="M914.044 898.826H109.956c-20.435 0-37-16.565-37-37V280.131c0-20.435 16.565-37 37-37h804.088c20.435 0 37 16.565 37 37v581.695c0 20.435-16.565 37-37 37z m-767.088-74h730.088V317.131H146.956v507.695zM322.739 199.174H113c-20.435 0-37-16.565-37-37s16.565-37 37-37h209.739c20.435 0 37 16.565 37 37s-16.565 37-37 37z" p-id="1767" fill="#2c2c2c"></path><path d="M457.932 752.856A37.002 37.002 0 0 1 420.937 716l-1.122-287.64a37.003 37.003 0 0 1 20.769-33.395 37.006 37.006 0 0 1 39.104 4.167l184.107 144.792a37 37 0 0 1-0.105 58.248L480.704 745.021a36.982 36.982 0 0 1-22.772 7.835z m36.181-248.234l0.528 135.641 86.29-67.361-86.818-68.28z" p-id="1768" fill="#2c2c2c"></path></svg>
+                </a>
+                <a class="navbar-item" title="books" href="/books/">
+                    <svg t="1586350091188" class="bi bi-award" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2280" width="20" height="20"><path d="M306.4 773.3h188v16.3c0 13.8 11.2 25 25 25s25-11.2 25-25v-16.3h180.5c68.9 0 125-56.1 125-125V295.4c0-68.9-56.1-125-125-125H549.6c-10.7 0-19.9 6.8-23.4 16.3-2.1-0.6-4.4-0.9-6.7-0.9-2 0-3.9 0.2-5.8 0.7-3.6-9.4-12.7-16-23.3-16h-184c-68.9 0-125 56.1-125 125v352.9c0 68.8 56.1 124.9 125 124.9z m418.5-552.9c41.4 0 75 33.6 75 75v352.9c0 41.4-33.6 75-75 75H544.4V219.9c1.7 0.4 3.4 0.5 5.2 0.5h175.3z m-493.5 75c0-41.4 33.6-75 75-75h183.9c1.4 0 2.8-0.1 4.1-0.3v503.2h-188c-41.4 0-75-33.6-75-75V295.4z" p-id="2281"></path><path d="M901.5 314.3c-11 0-20 9-20 20v384c0 44.1-35.9 80-80 80H615.3c-5.6 0-11 2.4-14.8 6.5l-25.9 28.4c-2 2.2-4.9 3.5-7.9 3.5H459c-2.9 0-5.6-1.1-7.6-3.1L425.8 808c-3.8-3.8-8.8-5.9-14.1-5.9H224.8c-44.1 0-80-35.9-80-80V343.9c0-11-9-20-20-20s-20 9-20 20v378.3c0 66.2 53.8 120 120 120h178.5l19.7 19.7c9.6 9.6 22.3 14.9 35.9 14.9h107.7c14.2 0 27.9-6 37.5-16.5l20-21.9h177.4c66.2 0 120-53.8 120-120v-384c0-11.1-9-20.1-20-20.1z" p-id="2282"></path><path d="M297.5 341.4h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 408.6h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20zM297.5 506.5h123.6c11 0 20-9 20-20s-9-20-20-20H297.5c-11 0-20 9-20 20s8.9 20 20 20z" p-id="2283"></path></svg>
+                </a>
+                
+                <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                    <a class="navbar-item" title="目录">
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        
+                        
+                    </div>
+                </div>
+                
+                
+                <a class="navbar-item" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    <i class="fab fa-github"></i>
+                    
+                </a>
+                   
+                
+            </div>
+        </div>
+</div>
+</div>
+</nav>
+
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Oracle11g常用视图
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-05-28T16:11:33.000Z" itemprop="datePublished">5月 29 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/">技术广角</a><span>></span><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B9%BF%E8%A7%92/Oracle/">Oracle</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            10 分钟 读完 (约 1501 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <table>
+<thead>
+<tr>
+<th>Oracle&#x5E38;&#x7528;&#x89C6;&#x56FE;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/statviews_4045.htm#REFRN23442" target="_blank" rel="noopener">dba_hist_snapshot</a></td>
+<td>&#x5728;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x5B58;&#x50A8;&#x5E93;&#x4E2D;&#x663E;&#x793A;&#x6709;&#x5173;&#x5FEB;&#x7167;&#x7684;&#x4FE1;&#x606F;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_2085.htm" target="_blank" rel="noopener">v$osstat</a></td>
+<td>&#x663E;&#x793A;&#x6765;&#x81EA;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x7CFB;&#x7EDF;&#x5229;&#x7528;&#x7387;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#x3002;&#x6BCF;&#x4E2A;&#x7CFB;&#x7EDF;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#x8FD4;&#x56DE;&#x4E00;&#x884C;          * PHYSICAL_MEMORY_BYTES:Total number of bytes of physical memory     * NUM_CPUS:Number of CPUs or processors available</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_1097.htm#REFRN30047" target="_blank" rel="noopener">v$database</a></td>
+<td>&#x663E;&#x793A;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#x4E2D;&#x6709;&#x5173;&#x6570;&#x636E;&#x5E93;&#x7684;&#x4FE1;&#x606F;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_2002.htm" target="_blank" rel="noopener">v$instance</a></td>
+<td>&#x663E;&#x793A;&#x5F53;&#x524D;&#x5B9E;&#x4F8B;&#x7684;&#x72B6;&#x6001;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/statviews_4212.htm" target="_blank" rel="noopener">DBA_REGISTRY_HISTORY</a></td>
+<td>&#x63D0;&#x4F9B;&#x6709;&#x5173;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#x6267;&#x884C;&#x7684;&#x5347;&#x7EA7;&#xFF0C;&#x964D;&#x7EA7;&#x548C;&#x91CD;&#x8981;&#x8865;&#x4E01;&#x66F4;&#x65B0;&#x7684;&#x4FE1;&#x606F;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_2087.htm#REFRN30176" target="_blank" rel="noopener">v$parameter</a>      <a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/initparams017.htm#REFRN10006" target="_blank" rel="noopener">AUDIT_TRAIL</a>     <a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/initparams234.htm" target="_blank" rel="noopener">SESSIONS</a>      <a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/initparams202.htm#REFRN10175" target="_blank" rel="noopener">PROCESSES</a></td>
+<td>&#x663E;&#x793A;&#x6709;&#x5173;&#x8BE5;&#x4F1A;&#x8BDD;&#x5F53;&#x524D;&#x6709;&#x6548;&#x7684;&#x521D;&#x59CB;&#x5316;&#x53C2;&#x6570;&#x7684;&#x4FE1;&#x606F;&#x3002;         <br> * audit_trail:&#x542F;&#x7528;&#x6216;&#x7981;&#x7528;&#x6570;&#x636E;&#x5E93;&#x5BA1;&#x6838;     <br>* sessions:&#x6307;&#x5B9A;&#x7CFB;&#x7EDF;&#x4E2D;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x7684;&#x6700;&#x5927;&#x4F1A;&#x8BDD;&#x6570;&#x3002;     <br>* processes:&#x6307;&#x5B9A;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x8FDE;&#x63A5;&#x5230;Oracle&#x7684;&#x6700;&#x5927;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7528;&#x6237;&#x8FDB;&#x7A0B;&#x6570;&#x3002;&#x5B83;&#x7684;&#x503C;&#x5E94;&#x5141;&#x8BB8;&#x6240;&#x6709;&#x540E;&#x53F0;&#x8FDB;&#x7A0B;&#xFF0C;&#x4F8B;&#x5982;&#x9501;&#xFF0C;&#x4F5C;&#x4E1A;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x548C;&#x5E76;&#x884C;&#x6267;&#x884C;&#x8FDB;&#x7A0B;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_1016.htm#REFRN30011" target="_blank" rel="noopener">V$ARCHIVED_LOG</a></td>
+<td><code>V$ARCHIVED_LOG</code>&#x663E;&#x793A;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x5B58;&#x6863;&#x65E5;&#x5FD7;&#x4FE1;&#x606F;&#xFF0C;&#x5305;&#x62EC;&#x5B58;&#x6863;&#x65E5;&#x5FD7;&#x540D;&#x79F0;&#x3002;&#x6210;&#x529F;&#x5F52;&#x6863;&#x6216;&#x6E05;&#x9664;&#x8054;&#x673A;&#x91CD;&#x505A;&#x65E5;&#x5FD7;&#x540E;&#xFF0C;&#x5C06;&#x63D2;&#x5165;&#x5F52;&#x6863;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#xFF08;<code>NULL</code>&#x5982;&#x679C;&#x6E05;&#x9664;&#x4E86;&#x65E5;&#x5FD7;&#xFF0C;&#x5219;&#x540D;&#x79F0;&#x5217;&#xFF09;&#x3002;&#x5982;&#x679C;&#x65E5;&#x5FD7;&#x88AB;&#x5F52;&#x6863;&#x4E24;&#x6B21;&#xFF0C;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x5E26;&#x6709;&#x4E24;&#x4E2A;&#x76F8;&#x540C;&#x7684;&#x5F52;&#x6863;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;<code>THREAD#</code>&#xFF0C;<code>SEQUENCE#</code>&#x548C;<code>FIRST_CHANGE#</code>&#xFF0C;&#x4F46;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4ECE;&#x5907;&#x4EFD;&#x96C6;&#x6216;&#x526F;&#x672C;&#x8FD8;&#x539F;&#x5B58;&#x6863;&#x65E5;&#x5FD7;&#x65F6;&#xFF0C;&#x4EE5;&#x53CA;&#x4F7F;&#x7528;RMAN  <code>COPY</code>&#x547D;&#x4EE4;&#x521B;&#x5EFA;&#x65E5;&#x5FD7;&#x526F;&#x672C;&#x65F6;&#xFF0C;&#x4E5F;&#x4F1A;&#x63D2;&#x5165;&#x5B58;&#x6863;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_2096.htm#REFRN30180" target="_blank" rel="noopener">V$PGASTAT</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/statviews_5081.htm#REFRN23302" target="_blank" rel="noopener">dba_users</a></td>
+<td><code>DBA_USERS</code> &#x63CF;&#x8FF0;&#x6570;&#x636E;&#x5E93;&#x7684;&#x6240;&#x6709;&#x7528;&#x6237;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/statviews_1158.htm#i1583352" target="_blank" rel="noopener">DBA_OBJECTS</a></td>
+<td><code>DBA_OBJECTS</code>&#x63CF;&#x8FF0;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x3002;          <code>V$LOCKED_OBJECT</code>&#x5217;&#x51FA;&#x7CFB;&#x7EDF;&#x4E0A;&#x6BCF;&#x4E2A;&#x4E8B;&#x52A1;&#x83B7;&#x53D6;&#x7684;&#x6240;&#x6709;&#x9501;&#x3002;&#x5B83;&#x663E;&#x793A;&#x54EA;&#x4E9B;&#x4F1A;&#x8BDD;&#x5728;&#x4EC0;&#x4E48;&#x5BF9;&#x8C61;&#x548C;&#x4EC0;&#x4E48;&#x6A21;&#x5F0F;&#x4E0B;&#x6301;&#x6709;DML&#x9501;&#xFF08;&#x5373;TM&#x7C7B;&#x578B;&#x7684;&#x961F;&#x5217;&#xFF09;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_3016.htm" target="_blank" rel="noopener">v$session</a></td>
+<td>&#x663E;&#x793A;&#x6BCF;&#x4E2A;&#x5F53;&#x524D;&#x4F1A;&#x8BDD;&#x7684;&#x4F1A;&#x8BDD;&#x4FE1;&#x606F;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_2030.htm#REFRN30125" target="_blank" rel="noopener">v$locked_object</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_3118.htm#REFRN30295" target="_blank" rel="noopener">v$undostat</a></td>
+<td>&#x663E;&#x793A;&#x7EDF;&#x8BA1;&#x6570;&#x636E;&#x7684;&#x76F4;&#x65B9;&#x56FE;&#x4EE5;&#x663E;&#x793A;&#x7CFB;&#x7EDF;&#x7684;&#x8FD0;&#x884C;&#x72B6;&#x51B5;&#x3002;&#x53EF;&#x7528;&#x7684;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#x5305;&#x62EC;&#x64A4;&#x6D88;&#x7A7A;&#x95F4;&#x6D88;&#x8017;&#xFF0C;&#x4E8B;&#x52A1;&#x5E76;&#x53D1;&#x4EE5;&#x53CA;&#x5728;&#x5B9E;&#x4F8B;&#x4E2D;&#x6267;&#x884C;&#x7684;&#x67E5;&#x8BE2;&#x7684;&#x957F;&#x5EA6;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B64;&#x89C6;&#x56FE;&#x6765;&#x4F30;&#x8BA1;&#x5F53;&#x524D;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x6240;&#x9700;&#x7684;&#x64A4;&#x6D88;&#x7A7A;&#x95F4;&#x91CF;&#x3002;Oracle&#x4F7F;&#x7528;&#x6B64;&#x89C6;&#x56FE;&#x6765;&#x8C03;&#x6574;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x64A4;&#x6D88;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x3002;&#x5982;&#x679C;&#x7CFB;&#x7EDF;&#x5904;&#x4E8E;&#x624B;&#x52A8;&#x64A4;&#x6D88;&#x7BA1;&#x7406;&#x6A21;&#x5F0F;&#xFF0C;&#x5219;&#x8BE5;&#x89C6;&#x56FE;&#x8FD4;&#x56DE;NULL&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_2031.htm" target="_blank" rel="noopener">v$log</a></td>
+<td>&#x663E;&#x793A;&#x63A7;&#x5236;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x4FE1;&#x606F;&#x3002;          <strong>STATUS</strong>&#x65E5;&#x5FD7;&#x72B6;&#x6001;&#xFF1A;          - <code>UNUSED</code>-&#x5728;&#x7EBF;&#x91CD;&#x505A;&#x65E5;&#x5FD7;&#x4ECE;&#x672A;&#x5199;&#x5165;&#x8FC7;&#x3002;&#x8FD9;&#x662F;&#x521A;&#x521A;&#x6DFB;&#x52A0;&#x7684;&#x91CD;&#x505A;&#x65E5;&#x5FD7;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x6216;&#x8005;<code>RESETLOGS</code>&#x4E0D;&#x662F;&#x5F53;&#x524D;&#x91CD;&#x505A;&#x65E5;&#x5FD7;&#x65F6;&#x5728;&#x4E4B;&#x540E;&#x7684;&#x72B6;&#x6001;&#x3002;     - <code>CURRENT</code>-&#x5F53;&#x524D;&#x91CD;&#x505A;&#x65E5;&#x5FD7;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x91CD;&#x505A;&#x65E5;&#x5FD7;&#x5904;&#x4E8E;&#x6D3B;&#x52A8;&#x72B6;&#x6001;&#x3002;&#x91CD;&#x505A;&#x65E5;&#x5FD7;&#x53EF;&#x4EE5;&#x6253;&#x5F00;&#x6216;&#x5173;&#x95ED;&#x3002;     - <code>ACTIVE</code>-&#x65E5;&#x5FD7;&#x5904;&#x4E8E;&#x6D3B;&#x52A8;&#x72B6;&#x6001;&#xFF0C;&#x4F46;&#x4E0D;&#x662F;&#x5F53;&#x524D;&#x65E5;&#x5FD7;&#x3002;&#x5D29;&#x6E83;&#x6062;&#x590D;&#x9700;&#x8981;&#x5B83;&#x3002;&#x5B83;&#x53EF;&#x80FD;&#x6B63;&#x5728;&#x7528;&#x4E8E;&#x5757;&#x6062;&#x590D;&#x3002;&#x5B83;&#x53EF;&#x80FD;&#x5DF2;&#x5B58;&#x6863;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x672A;&#x5B58;&#x6863;&#x3002;     - <code>CLEARING</code>- <code>ALTER DATABASE CLEAR LOGFILE</code>&#x8BED;&#x53E5;&#x540E;&#xFF0C;&#x65E5;&#x5FD7;&#x5C06;&#x91CD;&#x65B0;&#x521B;&#x5EFA;&#x4E3A;&#x7A7A;&#x65E5;&#x5FD7;&#x3002;&#x6E05;&#x9664;&#x65E5;&#x5FD7;&#x540E;&#xFF0C;&#x72B6;&#x6001;&#x53D8;&#x4E3A;<code>UNUSED</code>&#x3002;     - <code>CLEARING_CURRENT</code>-&#x5F53;&#x524D;&#x65E5;&#x5FD7;&#x6B63;&#x5728;&#x6E05;&#x9664;&#x5173;&#x95ED;&#x7684;&#x7EBF;&#x7A0B;&#x3002;&#x5982;&#x679C;&#x4EA4;&#x6362;&#x673A;&#x51FA;&#x73B0;&#x6545;&#x969C;&#xFF0C;&#x4F8B;&#x5982;I / O&#x9519;&#x8BEF;&#x5199;&#x5165;&#x65B0;&#x7684;&#x65E5;&#x5FD7;&#x5934;&#xFF0C;&#x5219;&#x65E5;&#x5FD7;&#x53EF;&#x4EE5;&#x4FDD;&#x6301;&#x6B64;&#x72B6;&#x6001;&#x3002;     - <code>INACTIVE</code>-&#x5B9E;&#x4F8B;&#x6062;&#x590D;&#x4E0D;&#x518D;&#x9700;&#x8981;&#x65E5;&#x5FD7;&#x3002;&#x5B83;&#x53EF;&#x80FD;&#x6B63;&#x5728;&#x7528;&#x4E8E;&#x4ECB;&#x8D28;&#x6062;&#x590D;&#x3002;&#x5B83;&#x53EF;&#x80FD;&#x5DF2;&#x5B58;&#x6863;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x672A;&#x5B58;&#x6863;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_1105.htm" target="_blank" rel="noopener">v$dataguard_status</a></td>
+<td>&#x663E;&#x793A;&#x6700;&#x8FD1;&#x5199;&#x5165;&#x8B66;&#x62A5;&#x65E5;&#x5FD7;&#x6216;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x7A0B;&#x8DDF;&#x8E2A;&#x6587;&#x4EF6;&#x7684;&#x6D88;&#x606F;&#xFF0C;&#x8FD9;&#x4E9B;&#x6D88;&#x606F;&#x4E0E;&#x7269;&#x7406;&#x5907;&#x7528;&#x6570;&#x636E;&#x5E93;&#x6216;&#x6240;&#x6709;&#x5907;&#x7528;&#x6570;&#x636E;&#x5E93;&#x7C7B;&#x578B;&#x7684;&#x91CD;&#x505A;&#x4F20;&#x8F93;&#x670D;&#x52A1;&#x6709;&#x5173;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_2050.htm" target="_blank" rel="noopener">V$MANAGED_STANDBY</a></td>
+<td>&#x663E;&#x793A;&#x4E0E;Data Guard&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x5907;&#x7528;&#x6570;&#x636E;&#x5E93;&#x6709;&#x5173;&#x7684;&#x67D0;&#x4E9B;Oracle Database&#x8FDB;&#x7A0B;&#x7684;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x3002;&#x5B9E;&#x4F8B;&#x5173;&#x95ED;&#x540E;&#xFF0C;&#x8BE5;&#x89C6;&#x56FE;&#x4E0D;&#x4F1A;&#x7EE7;&#x7EED;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_1027.htm#REFRN30171" target="_blank" rel="noopener">V$ASM_DISKGROUP</a></td>
+<td>V$ASM_DISKGROUP &#x4E3A;&#x8282;&#x70B9;&#x4E0A;&#x7684;ASM&#x5B9E;&#x4F8B;&#x53D1;&#x73B0;&#x7684;&#x6BCF;&#x4E2A;ASM&#x78C1;&#x76D8;&#x7EC4;&#x663E;&#x793A;&#x4E00;&#x884C;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_2125.htm" target="_blank" rel="noopener">v$recovery_file_dest</a></td>
+<td>&#x5728;&#x5FEB;&#x901F;&#x6062;&#x590D;&#x533A;&#x57DF;&#x4E2D;&#x663E;&#x793A;&#x6709;&#x5173;&#x78C1;&#x76D8;&#x914D;&#x989D;&#x548C;&#x5F53;&#x524D;&#x78C1;&#x76D8;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x7684;&#x4FE1;&#x606F;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/statviews_3194.htm#REFRN23076" target="_blank" rel="noopener">DBA_FREE_SPACE</a></td>
+<td>&#x63CF;&#x8FF0;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x6240;&#x6709;&#x8868;&#x7A7A;&#x95F4;&#x7684;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/statviews_5061.htm" target="_blank" rel="noopener">dba_temp_files</a></td>
+<td>DBA_TEMP_FILES &#x63CF;&#x8FF0;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x4E34;&#x65F6;&#x6587;&#x4EF6;&#xFF08;&#x4E34;&#x65F6;&#x6587;&#x4EF6;&#xFF09;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/statviews_5060.htm#REFRN23287" target="_blank" rel="noopener">dba_tablespaces</a></td>
+<td>DBA_TABLESPACES &#x63CF;&#x8FF0;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x8868;&#x7A7A;&#x95F4;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_3041.htm" target="_blank" rel="noopener">gv$sort_segment</a></td>
+<td>V$SORT_SEGMENT&#x663E;&#x793A;&#x6709;&#x5173;&#x7ED9;&#x5B9A;&#x5B9E;&#x4F8B;&#x4E2D;&#x6BCF;&#x4E2A;&#x6392;&#x5E8F;&#x6BB5;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x4EC5;&#x5728;&#x8868;&#x7A7A;&#x95F4;&#x662F;TEMPORARY&#x7C7B;&#x578B;&#x65F6;&#x66F4;&#x65B0;&#x89C6;&#x56FE;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_3114.htm" target="_blank" rel="noopener">v$transaction</a></td>
+<td>V$TRANSACTION &#x5217;&#x51FA;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6D3B;&#x52A8;&#x4E8B;&#x52A1;&#x3002;</td>
+</tr>
+<tr>
+<td><a href="https://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_1062.htm#REFRN30371" target="_blank" rel="noopener">v$backup_set_details</a></td>
+<td>&#x5907;&#x4EFD;&#x4FE1;&#x606F;10g 11g 12c</td>
+</tr>
+</tbody></table>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/oracle11g/">#oracle11g</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/05/27/DBA_MySQL/MySQL%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B01/">第一课 MySQL高级管理课程简介</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '2020/05/29/booboo_others/2020-05-28-tec-oracle/',
+		owner: 'booboowei',
+		repo: 'booboowei.github.io',
+		oauth: {
+			client_id: 'af999a0c30ad557db57d',
+			client_secret: 'e8187ce46941faf83cd26f8d53e40f2cd63900a9',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+
+
+</div>
+
+
+    </div>
+</section>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span> 次 | </span>
+            <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span> 人次 </span>
+           </div>
+
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 BoobooWei&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/booboowei" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+    
+</body>
+</html>
